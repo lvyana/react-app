@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Expenses from './views/expenses';
-import Invoices from './views/invoices';
+import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import actions from './actions';
 // import reportWebVitals from './reportWebVitals';
@@ -12,11 +11,16 @@ import actions from './actions';
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
+// import enUS from 'antd/lib/locale/en_US';
+import zhCN from 'antd/lib/locale/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('en');
 
 function render(props: any) {
   // const { container } = props;
   ReactDOM.render(
-    <React.StrictMode>
+    <ConfigProvider locale={zhCN}>
       <BrowserRouter
         basename={
           (window as any).__POWERED_BY_QIANKUN__
@@ -24,13 +28,11 @@ function render(props: any) {
             : '/'
         }
       >
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="app" element={<Expenses />} />
-          <Route path="about" element={<Invoices />} />
-        </Routes>
+        <ConfigProvider locale={zhCN}>
+          <App />
+        </ConfigProvider>
       </BrowserRouter>
-    </React.StrictMode>,
+    </ConfigProvider>,
     document.getElementById('root')
   );
 }

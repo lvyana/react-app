@@ -1,24 +1,22 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.scss';
-import { Button } from 'antd';
-import { Link } from 'react-router-dom';
+
+import { Routes, Route } from 'react-router-dom';
+import Expenses from './views/expenses';
+import Invoices from './views/invoices';
+import Layout from './layout';
 
 function App() {
-  const isQiankun = (path: string) => {
-    if ((window as any).__POWERED_BY_QIANKUN__) {
-      return '/' + process.env.REACT_APP_BASE_PATH + path;
-    } else {
-      return path;
-    }
-  };
   console.log(process.env.REACT_APP_BASE_PATH);
 
   return (
     <div className="App">
-      <Button type="primary">QWE </Button>
-      <Link to={isQiankun('/app')}>Invoices</Link> |
-      <Link to={isQiankun('/about')}>Expenses</Link>
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="app" element={<Expenses />} />
+        <Route path="about" element={<Invoices />} />
+      </Routes>
     </div>
   );
 }

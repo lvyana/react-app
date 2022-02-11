@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "react-app-rewired start  --mode development",
-    "qiankun": "react-app-rewired start  --mode qiankun",
+    "dev:qiankun": "react-app-rewired start  --mode qiankun",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
