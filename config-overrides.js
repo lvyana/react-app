@@ -7,6 +7,7 @@ const {
   addWebpackAlias,
   addWebpackExternals,
   overrideDevServer,
+  watchAll,
 } = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -16,25 +17,30 @@ const { name } = require('./package');
 
 // 跨域配置
 const devServerConfig = () => (config) => {
-  return {
-    ...config,
-    port: 8888,
-    // 服务开启gzip
-    compress: true,
-    proxy: {
-      '/api': {
-        target: 'xxx',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/api',
-        },
-      },
-    },
-  };
+  // config.host = '127.0.0.1';
+  config.port = 80;
+  config.compress = true;
+  return config;
+  // return {
+  //   ...config,
+  //   host: '127.0.0.1',
+  //   port: 80,
+  //   // 服务开启gzip
+  //   compress: true,
+  //   proxy: {
+  //     '/api': {
+  //       target: 'xxx',
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '^/api': '/api',
+  //       },
+  //     },
+  //   },
+  // };
 };
 
 module.exports = {
-  devServer: overrideDevServer(devServerConfig()),
+  devServer: overrideDevServer(watchAll(), devServerConfig()),
   webpack: override(
     (config) => {
       config.output.library = `${name}-[name]`;

@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom';
 function App() {
   const isQiankun = (path: string) => {
     if ((window as any).__POWERED_BY_QIANKUN__) {
-      return 'qiankun/child/sub-react' + path;
+      return '/' + process.env.REACT_APP_BASE_PATH + path;
     } else {
       return path;
     }
   };
+  console.log(process.env.REACT_APP_BASE_PATH);
+
   return (
     <div className="App">
       <Button type="primary">QWE </Button>

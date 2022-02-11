@@ -20,7 +20,7 @@ function render(props: any) {
       <BrowserRouter
         basename={
           (window as any).__POWERED_BY_QIANKUN__
-            ? 'qiankun/child/sub-react'
+            ? process.env.REACT_APP_BASE_PATH
             : '/'
         }
       >
