@@ -20,48 +20,43 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 moment.locale('en');
 
-function render(props: any) {
-  // const { container } = props;
-  ReactDOM.render(
-    <ConfigProvider locale={zhCN}>
-      <BrowserRouter
-        basename={
-          (window as any).__POWERED_BY_QIANKUN__
-            ? process.env.REACT_APP_BASE_PATH
-            : '/'
-        }
-      >
-        <ConfigProvider locale={zhCN}>
-          <Provider store={store}>
-            <App />
-          </Provider>
-        </ConfigProvider>
-      </BrowserRouter>
-    </ConfigProvider>,
-    document.getElementById('root')
-  );
+interface Window {
+	__POWERED_BY_QIANKUN__?: boolean;
 }
 
-if (!(window as any).__POWERED_BY_QIANKUN__) {
-  render({});
+function render(props: any) {
+	// const { container } = props;
+
+	ReactDOM.render(
+		<ConfigProvider locale={zhCN}>
+			<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? process.env.REACT_APP_BASE_PATH : '/'}>
+				<ConfigProvider locale={zhCN}>
+					<Provider store={store}>
+						<App />
+					</Provider>
+				</ConfigProvider>
+			</BrowserRouter>
+		</ConfigProvider>,
+		document.getElementById('root')
+	);
+}
+
+if (!(window as Window).__POWERED_BY_QIANKUN__) {
+	render({});
 }
 
 export async function bootstrap() {
-  console.log('[react16] react app bootstraped');
+	console.log('[react16] react app bootstraped');
 }
 
 export async function mount(props: any) {
-  console.log('[react16] props from main framework', props);
-  actions.setActions(props); //注入actions实例
+	console.log('[react16] props from main framework', props);
+	actions.setActions(props); //注入actions实例
 
-  render(props);
+	render(props);
 }
 
 export async function unmount(props: any) {
-  const { container } = props;
-  ReactDOM.unmountComponentAtNode(
-    container
-      ? container.querySelector('#root')
-      : document.querySelector('#root')
-  );
+	const { container } = props;
+	ReactDOM.unmountComponentAtNode(container ? container.querySelector('#root') : document.querySelector('#root'));
 }
