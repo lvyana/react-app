@@ -5,6 +5,9 @@ import App from './App';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import actions from './actions';
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
 // import reportWebVitals from './reportWebVitals';
 
 // If you want to start measuring performance in your app, pass a function
@@ -29,7 +32,9 @@ function render(props: any) {
         }
       >
         <ConfigProvider locale={zhCN}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </ConfigProvider>
       </BrowserRouter>
     </ConfigProvider>,
