@@ -25,7 +25,7 @@ interface Window {
 }
 
 function render(props: any) {
-	// const { container } = props;
+	const { container } = props;
 
 	ReactDOM.render(
 		<ConfigProvider locale={zhCN}>
@@ -37,7 +37,7 @@ function render(props: any) {
 				</ConfigProvider>
 			</BrowserRouter>
 		</ConfigProvider>,
-		document.getElementById('root')
+		container ? container.querySelector('#root') : document.querySelector('#root')
 	);
 }
 
