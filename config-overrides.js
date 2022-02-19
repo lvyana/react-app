@@ -8,12 +8,34 @@ const {
   addWebpackExternals,
   overrideDevServer,
   watchAll,
+  useBabelRc
 } = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const { name } = require('./package');
+
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+// 打包配置
+console.log(process.env.NODE_ENV)
+const addCustomize = () => config => {
+  if (process.env.NODE_ENV === 'production') {
+    // 关闭sourceMap
+    config.devtool = false;
+    // 配置打包后的文件位置
+    // config.output.path = __dirname + '../dist/demo/';
+    // config.output.publicPath = './demo';
+    // 添加js打包gzip配置
+    config.plugins.push(
+      new CompressionWebpackPlugin({
+        test: /\.js$|\.css$/,
+        threshold: 1024,
+      }),
+    )
+  }
+  return config;
+}
 
 // 跨域配置
 const devServerConfig = () => (config) => {
@@ -56,12 +78,14 @@ module.exports = {
       libraryDirectory: 'es',
       style: 'css',
     }),
+    useBabelRc(),
     addLessLoader({
       // 这里可以添加less的其他配置
       lessOptions: {
         // 根据自己需要配置即可~
       },
     }),
+    addCustomize(),
     // alias
     addWebpackAlias({
       // 加载模块的时候，可以使用“@”符号来进行简写啦~
