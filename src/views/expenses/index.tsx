@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import actions from '@/actions'; //导入实例
-import { DatePicker } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import { Table, Tag, Space } from 'antd';
 import { Column } from '@antv/g2plot';
+import useHeaderTable, { Itable } from './components/headerTable';
+import { pageData } from './service';
 
 const Expenses = () => {
-	let [mes, setMes] = useState(0);
-
+	const buttonEvent = (value: Itable) => {
+		console.log(value);
+	};
+	const char = useRef<HTMLDivElement>(null);
+	const { columns } = useHeaderTable({ buttonEvent });
 	useEffect(() => {
-		console.log(mes, '1111');
 		initChar();
+		getPageData();
 	}, []);
 	const initChar = () => {
-		console.log('11');
-
 		const data = [
 			{
 				type: '家具家电',
@@ -79,19 +81,42 @@ const Expenses = () => {
 		columnPlot.render();
 	};
 
-	// 获取主应用传过来的数据
-	actions.onGlobalStateChange((state: any) => {
-		//监听全局状态
-		console.log(state);
-		mes = state;
-	}, true);
+	//用人单位
+	const getPageData = async () => {
+		let res = await pageData();
+		console.log(res);
+	};
 	return (
 		<div>
 			<h2>Expenses</h2>
-			<DatePicker />
-			<div id="char"></div>
+			<Table columns={columns} dataSource={data} />
+			<div id="char" ref={char}></div>
 		</div>
 	);
 };
 
 export default Expenses;
+
+const data = [
+	{
+		key: '1',
+		name: 'John Brown',
+		age: 32,
+		address: 'New York No. 1 Lake Park',
+		tags: ['nice', 'developer']
+	},
+	{
+		key: '2',
+		name: 'Jim Green',
+		age: 42,
+		address: 'London No. 1 Lake Park',
+		tags: ['loser']
+	},
+	{
+		key: '3',
+		name: 'Joe Black',
+		age: 32,
+		address: 'Sidney No. 1 Lake Park',
+		tags: ['cool', 'teacher']
+	}
+];

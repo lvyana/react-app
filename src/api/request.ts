@@ -5,6 +5,8 @@
 import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
 import { message } from 'antd';
 type Type = 'error' | 'success' | 'info' | 'warn' | 'warning';
+import { getToken } from '@/uilts/storage';
+
 const openError = (msg: string, type: Type = 'error') => {
 	if (msg) {
 		if (type === 'error') {
@@ -30,8 +32,9 @@ const openError = (msg: string, type: Type = 'error') => {
 // 全局配置axios ，注冊token、
 
 // 请求拦截器 引入加载圈
+console.log(process.env.REACT_APP_BASE_API);
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVE_URL; //服务
+axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
 /**
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码
@@ -57,7 +60,9 @@ var instance = axios.create({
 	timeout: 1000 * 12
 });
 // 设置post请求头
-instance.defaults.headers.post['Content-Type'] = 'application/json';
+instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+instance.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
 
 /**
  * 请求拦截器
@@ -69,7 +74,9 @@ instance.interceptors.request.use(
 		// 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
 		// 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
 		// 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
-		const token = sessionStorage.getItem('token');
+
+		const token = getToken();
+
 		token && config.headers && (config.headers.Authorization = token);
 		return config;
 	},
@@ -81,6 +88,7 @@ instance.interceptors.response.use(
 	// 请求成功
 	(res: AxiosResponse) => {
 		let { data, code, message } = res.data;
+		debugger;
 		if (code === 200) {
 			return Promise.resolve(res);
 		} else {

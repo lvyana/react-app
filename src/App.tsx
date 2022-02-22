@@ -3,9 +3,15 @@ import React from 'react';
 import './App.scss';
 import { useRoutes } from 'react-router-dom';
 import router from '@/router';
-
+import actions from '@/actions'; //导入实例
+import { setToken } from '@/uilts/storage';
 function App() {
-	console.log(process.env.REACT_APP_BASE_PATH);
+	actions.onGlobalStateChange((state: any) => {
+		//监听全局状态
+		console.log(state);
+		setToken(state.token);
+		console.log(setToken(state.token));
+	}, true);
 
 	return useRoutes(router);
 }

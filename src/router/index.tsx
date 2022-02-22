@@ -14,6 +14,7 @@ import Dynamicform from '@/views/dynamicform';
 interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
 }
+
 // 判断是不是子应用
 const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 	? [

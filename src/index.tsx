@@ -29,7 +29,7 @@ function render(props: any) {
 
 	ReactDOM.render(
 		<ConfigProvider locale={zhCN}>
-			<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? process.env.REACT_APP_BASE_PATH : '/'}>
+			<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? '/qiankun/react' : '/'}>
 				<ConfigProvider locale={zhCN}>
 					<Provider store={store}>
 						<App />
