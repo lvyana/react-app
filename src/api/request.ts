@@ -4,30 +4,9 @@
  */
 import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
 import { message } from 'antd';
+import { errorCode, Message } from '@/utils/errorCode';
+import { getToken } from '@/utils/storage';
 type Type = 'error' | 'success' | 'info' | 'warn' | 'warning';
-import { getToken } from '@/uilts/storage';
-
-const openError = (msg: string, type: Type = 'error') => {
-	if (msg) {
-		if (type === 'error') {
-			message.error(msg);
-		} else if (type === 'success') {
-			message.success(msg);
-		} else if (type === 'info') {
-			message.info(msg);
-		} else if (type === 'warn') {
-			message.warn(msg);
-		} else if (type === 'warning') {
-			message.warning(msg);
-		}
-	} else {
-		message.error('系统异常');
-	}
-};
-/**
- * 提示函数
- * 禁止点击蒙层、显示一秒后关闭
- */
 
 // 全局配置axios ，注冊token、
 
@@ -39,21 +18,6 @@ axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码
  */
-const errorHandle = (status: number, other: string) => {
-	let msg: string = '';
-	// 状态码判断
-	if (status === 401) {
-		// 401: 未登录状态，跳转登录页
-		msg = '请登录';
-	} else if (status === 405) {
-		msg = '请求被拒,联系管理员';
-	} else if (status === 404) {
-		msg = '请求的资源不存在';
-	} else if (status === 500) {
-		msg = '服务报错,联系管理员';
-	}
-	openError(msg);
-};
 
 // 创建axios实例
 var instance = axios.create({
@@ -87,29 +51,46 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	// 请求成功
 	(res: AxiosResponse) => {
-		let { data, code, message } = res.data;
-		debugger;
-		if (code === 200) {
-			return Promise.resolve(res);
+		console.log(res);
+
+		// 未设置状态码则默认成功状态
+		const code = res.data.code || 200;
+		const bizCode = res.data.bizCode || 20000;
+
+		// 获取错误信息
+		const msg = errorCode(code) || res.data.msg || errorCode('default');
+		if (code === 401) {
+			// 处理401
+			// notFind();
+			return Promise.reject(new Error('错误信息'));
+		} else if (code === 500) {
+			message.error(msg);
+			return Promise.reject(new Error(msg));
+		} else if (code !== 200) {
+			message.error(msg);
+			return Promise.reject('error');
 		} else {
-			openError(code + '异常错误');
-			return Promise.reject(res);
+			if (bizCode !== 20000) {
+				message.error(msg);
+				return Promise.reject('error');
+			} else {
+				return res.data;
+			}
 		}
 	},
 	// 请求失败
 	(error: AxiosError) => {
-		const { response } = error;
-		if (response) {
-			// 请求已发出，但是不在2xx的范围
-			errorHandle(response.status, response.data.message);
-			return Promise.reject(response);
-		} else {
-			// 处理断网的情况
-			// eg:请求超时或断网时，更新state的network状态
-			// network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
-			// 关于断网组件中的刷新重新获取数据，会在断网组件中说明
-			// store.commit('changeNetwork', false)
+		console.log('err', error.message);
+		let { message } = error;
+		if (message == 'Network Error') {
+			message = '后端接口连接异常';
+		} else if (message.includes('timeout')) {
+			message = '系统接口请求超时';
+		} else if (message.includes('Request failed with status code')) {
+			message = '系统接口' + message.substr(message.length - 3) + '异常';
 		}
+		Message('error', message);
+		return Promise.reject(error);
 	}
 );
 

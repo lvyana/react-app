@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import IconFont from '@/uilts/iconfont';
+import IconFont from '@/utils/iconfont';
 
 const { SubMenu } = Menu;
 export interface router {

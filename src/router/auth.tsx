@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { getToken } from '@/uilts/storage';
+import { getToken } from '@/utils/storage';
 import { Navigate } from 'react-router-dom';
 
 export interface WrapperRouteProps {

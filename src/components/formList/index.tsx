@@ -16,7 +16,7 @@ import {
 	Rate,
 	FormInstance
 } from 'antd';
-import IconFont from '@/uilts/iconfont';
+import IconFont from '@/utils/iconfont';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Formlist from '@/components/formList';
-import getKey from '@/uilts/onlyKey';
+import getKey from '@/utils/onlyKey';
 import { Form } from 'antd';
 
 const Dynamicform = () => {

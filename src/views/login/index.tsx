@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notification, Tabs, Row, Col } from 'antd';
-import { setToken } from '@/uilts/storage';
+import { setToken } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
 import loginLess from './index.module.scss';
