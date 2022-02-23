@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/lib/interface';
+import moment, { Moment } from 'moment';
 
 /**
  *
@@ -22,7 +23,8 @@ export interface FORMITEM {
 	checkbox?: boolean; //下拉树多选
 	fieldNames?: fieldNamesType; //修改option数据key
 	maxLength?: number; //文本框字数
-	style?: object; //按钮外边距 float:'right'
+	style?: object; //按钮外边距 float:'right'，
+	disabledDate?: (currentDate: Moment) => boolean; //设置时间范围
 }
 
 /**

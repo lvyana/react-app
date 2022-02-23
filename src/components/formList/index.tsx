@@ -120,7 +120,7 @@ const Formlist: FC<PropsType> = ({ formList, form, onFinish }) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<DatePicker onChange={item.onChange} />
+					<DatePicker onChange={item.onChange} disabledDate={item.disabledDate} />
 				</Form.Item>
 			</Col>
 		);
@@ -130,7 +130,7 @@ const Formlist: FC<PropsType> = ({ formList, form, onFinish }) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<RangePicker onChange={item.onChange} />
+					<RangePicker onChange={item.onChange} disabledDate={item.disabledDate} />
 				</Form.Item>
 			</Col>
 		);
