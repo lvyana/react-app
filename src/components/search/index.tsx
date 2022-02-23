@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Formlist from '@/components/formList';
-import { FORMITEM } from '@/components/formList/type';
+import Ifrom from '@/components/iForm';
+import { FORMITEM } from '@/components/iForm/type';
 import { Card, FormInstance } from 'antd';
 import './index.less';
 
@@ -17,7 +17,7 @@ const Search: FC<Iprops> = ({ formList, form, onFinish }) => {
 	return (
 		<div className="myCard">
 			<Card>
-				<Formlist formList={formList} form={form} onFinish={onFinish} />
+				<Ifrom formList={formList} form={form} onFinish={onFinish} />
 			</Card>
 		</div>
 	);

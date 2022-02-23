@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Table, Tag, Space } from 'antd';
 import { Column } from '@antv/g2plot';
-import useHeaderTable, { Itable } from './components/headerTable';
+import useHeaderTable, { ItableBt } from './components/headerTable';
 import { pageData } from './service';
+import Itable from '@/components/iTable';
 
 const Expenses = () => {
-	const buttonEvent = (value: Itable) => {
+	const buttonEvent = (value: ItableBt) => {
 		console.log(value);
 	};
 	const char = useRef<HTMLDivElement>(null);
@@ -89,7 +90,7 @@ const Expenses = () => {
 	return (
 		<div>
 			<h2>Expenses</h2>
-			<Table columns={columns} dataSource={data} />
+			<Itable columns={columns} data={data} />
 			<div id="char" ref={char}></div>
 		</div>
 	);

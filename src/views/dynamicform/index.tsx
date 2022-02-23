@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Formlist from '@/components/formList';
+import Ifrom from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { Form } from 'antd';
 
@@ -513,7 +513,7 @@ const Dynamicform = () => {
 	const fileUrl = 'http://172.16.92.62:8088/file/statics/2021/08/11/da3c8e15-4432-4de2-b39b-ded7af333194.pdf';
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Formlist formList={state} form={form} />
+			<Ifrom formList={state} form={form} />
 		</div>
 	);
 };

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Table, Tag, Space } from 'antd';
+import { Tooltip, Tag, Space } from 'antd';
+import Post, { PostTitle, InameList } from '@/components/iTable/components/Post';
 
-export interface Itable {
+export interface ItableBt {
 	key: string;
 	name: string;
 	age: number;
@@ -10,20 +11,42 @@ export interface Itable {
 }
 
 interface Iprops {
-	buttonEvent: (value: Itable) => void;
+	buttonEvent: (value: ItableBt) => void;
 }
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
+	const goDrawer = (name: string, nameList: InameList) => {
+		console.log(name, nameList);
+	};
 	const columns = [
 		{
 			title: 'Name',
 			dataIndex: 'name',
 			key: 'name',
-			render: (text: string) => <a>{text}</a>
+			render: (text: string) => <div className="omit">{text}</div>
 		},
 		{
 			title: 'Age',
 			dataIndex: 'age',
-			key: 'age'
+			key: 'age',
+			width: 200,
+			render: (text: string, record: ItableBt) => (
+				<Tooltip
+					placement="top"
+					overlayInnerStyle={{ width: '500px' }}
+					color={'purple'}
+					title={
+						<>
+							<PostTitle nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}></PostTitle>
+						</>
+					}>
+					<div>
+						<Post
+							name={record.name}
+							nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}
+							goDrawer={goDrawer}></Post>
+					</div>
+				</Tooltip>
+			)
 		},
 		{
 			title: 'Address',
@@ -53,7 +76,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		{
 			title: 'Action',
 			key: 'action',
-			render: (text: unknown, record: Itable) => (
+			render: (text: unknown, record: ItableBt) => (
 				<Space size="middle" onClick={() => buttonEvent(record)}>
 					<a>Invite {record.name}</a>
 					<a>Delete</a>

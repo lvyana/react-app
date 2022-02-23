@@ -30,7 +30,7 @@ interface PropsType {
 	form: FormInstance;
 	onFinish?: ((values?: any) => void) | undefined;
 }
-const Formlist: FC<PropsType> = ({ formList, form, onFinish }) => {
+const Ifrom: FC<PropsType> = ({ formList, form, onFinish }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
@@ -293,4 +293,4 @@ const Formlist: FC<PropsType> = ({ formList, form, onFinish }) => {
 		</Form>
 	);
 };
-export default Formlist;
+export default Ifrom;

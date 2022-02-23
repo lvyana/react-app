@@ -17,7 +17,7 @@ interface TABEL<T> {
 	rowKey?: string;
 }
 // type SizeType = "small" | "middle" | "default" | undefined
-const Tabellist = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL<object>) => {
+const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL<object>) => {
 	const size = useSelector<RootState>((state) => state.layout.size);
 	console.log(size);
 
@@ -34,4 +34,4 @@ const Tabellist = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TA
 		/>
 	);
 };
-export default Tabellist;
+export default Itable;
