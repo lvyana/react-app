@@ -5,13 +5,13 @@ export type InameList = (string | number)[];
 interface Iprops {
 	name: string;
 	nameList: InameList;
-	goDrawer?: (name: string, nameList: InameList) => void;
+	tbClick?: (name: string, nameList: InameList) => void;
 }
 
-const Post: FC<Iprops> = ({ name, nameList, goDrawer }) => {
+const Post: FC<Iprops> = ({ name, nameList, tbClick }) => {
 	return (
 		<div style={{ width: '200px' }}>
-			<span onClick={() => goDrawer && goDrawer(name, nameList)} className={styles.omit}>
+			<span onClick={() => tbClick && tbClick(name, nameList)} className={styles.omit}>
 				{(nameList[0] ? nameList[0] : '') + (nameList[0] && nameList[1] ? ' · ' : '') + (nameList[1] ? nameList[1] + ' ' : '')}
 			</span>
 			<div className={styles.omit}>

@@ -103,21 +103,21 @@ const data = [
 		key: '1',
 		name: 'John Brown',
 		age: 32,
-		address: 'New York No. 1 Lake Park',
+		address: ['New York No. 1 Lake Park', '很好1'],
 		tags: ['nice', 'developer']
 	},
 	{
 		key: '2',
 		name: 'Jim Green',
 		age: 42,
-		address: 'London No. 1 Lake Park',
+		address: ['New York No. 1 Lake Park', '很好2'],
 		tags: ['loser']
 	},
 	{
 		key: '3',
 		name: 'Joe Black',
 		age: 32,
-		address: 'Sidney No. 1 Lake Park',
+		address: ['New York No. 1 Lake Park', '很好3'],
 		tags: ['cool', 'teacher']
 	}
 ];

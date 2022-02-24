@@ -1,12 +1,15 @@
 import React from 'react';
-import { Tooltip, Tag, Space } from 'antd';
-import Post, { PostTitle, InameList } from '@/components/iTable/components/Post';
+import { Button, Tag, Space } from 'antd';
+import Post, { PostTitle, InameList } from '@/components/iTable/components/TbPost';
+import Itooltip from '@/components/iTooltip';
+import Multi from '@/components/iTable/components/TbMulti';
+import TbButton from '@/components/iTable/components/TbButton';
 
 export interface ItableBt {
 	key: string;
 	name: string;
 	age: number;
-	address: string;
+	address: string[];
 	tags: string[];
 }
 
@@ -14,7 +17,7 @@ interface Iprops {
 	buttonEvent: (value: ItableBt) => void;
 }
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
-	const goDrawer = (name: string, nameList: InameList) => {
+	const tbClick = (name: string, nameList: InameList) => {
 		console.log(name, nameList);
 	};
 	const columns = [
@@ -22,7 +25,13 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: 'Name',
 			dataIndex: 'name',
 			key: 'name',
-			render: (text: string) => <div className="omit">{text}</div>
+			render: (text: string) => (
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
+					<div className="omit" style={{ color: 'blue' }}>
+						{text}
+					</div>
+				</Itooltip>
+			)
 		},
 		{
 			title: 'Age',
@@ -30,7 +39,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			key: 'age',
 			width: 200,
 			render: (text: string, record: ItableBt) => (
-				<Tooltip
+				<Itooltip
 					placement="top"
 					overlayInnerStyle={{ width: '500px' }}
 					color={'purple'}
@@ -43,15 +52,30 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 						<Post
 							name={record.name}
 							nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}
-							goDrawer={goDrawer}></Post>
+							tbClick={tbClick}></Post>
 					</div>
-				</Tooltip>
+				</Itooltip>
 			)
 		},
 		{
 			title: 'Address',
 			dataIndex: 'address',
-			key: 'address'
+			key: 'address',
+			render: (text: string, record: ItableBt) => (
+				<Itooltip
+					placement="top"
+					overlayInnerStyle={{ width: '200px' }}
+					color={'purple'}
+					title={
+						<>
+							<Multi option={record.address} />
+						</>
+					}>
+					<div>
+						<Multi option={record.address} />
+					</div>
+				</Itooltip>
+			)
 		},
 		{
 			title: 'Tags',
@@ -65,13 +89,20 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 							color = 'volcano';
 						}
 						return (
-							<Tag color={color} key={tag}>
+							<Button color={color} key={tag}>
 								{tag.toUpperCase()}
-							</Tag>
+							</Button>
 						);
 					})}
 				</>
 			)
+		},
+
+		{
+			title: 'age',
+			key: 'age',
+			dataIndex: 'age',
+			render: (text: string, record: ItableBt) => <TbButton name={text}></TbButton>
 		},
 		{
 			title: 'Action',

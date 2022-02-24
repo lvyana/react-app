@@ -43,16 +43,16 @@ const devServerConfig = () => (config) => {
 	// config.port = 80;
 	config.compress = true;
 	config.proxy = {
-		[process.env.VUE_APP_BASE_API]: {
+		[process.env.REACT_APP_BASE_API]: {
 			// target: `http://localhost:8088`,
 			// target: `http://172.16.81.123:8088`,//任勇
-			// target: `http://172.16.103.125:8088`, //文雷
-			target: `http://172.16.81.94:8088`, //宇哲
+			target: `http://172.16.102.122:8088`, //文雷
+			// target: `http://172.16.81.94:8088`, //宇哲
 			// target: `http://172.16.81.108:8088`, //贺辉
 			// target: `http://172.16.81.91:8088`, //汽水
 			changeOrigin: true,
 			pathRewrite: {
-				['^' + process.env.VUE_APP_BASE_API]: ''
+				['^' + process.env.REACT_APP_BASE_API]: ''
 			}
 		}
 	};
