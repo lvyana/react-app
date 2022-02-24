@@ -16,6 +16,13 @@ interface TABEL<T> {
 	rowSelection?: object;
 	rowKey?: string;
 }
+
+/**
+ * 表格内事件
+ *
+ */
+export type ItbClick = (type: string, nameList: object | undefined) => void;
+
 // type SizeType = "small" | "middle" | "default" | undefined
 const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL<object>) => {
 	const size = useSelector<RootState>((state) => state.layout.size);

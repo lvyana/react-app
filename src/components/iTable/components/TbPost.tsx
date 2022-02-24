@@ -1,17 +1,26 @@
 import React, { FC } from 'react';
 import styles from '@/styles/index.module.scss';
+import { ItbClick } from '@/components/iTable';
+
 export type InameList = (string | number)[];
 
+/**
+ * type 定义事件类型
+ * nameList 展示的数据集合
+ * tbClick 表格事件
+ *
+ */
 interface Iprops {
-	name: string;
+	type: string;
 	nameList: InameList;
-	tbClick?: (name: string, nameList: InameList) => void;
+	record: object;
+	tbClick?: ItbClick;
 }
 
-const Post: FC<Iprops> = ({ name, nameList, tbClick }) => {
+const Post: FC<Iprops> = ({ type, nameList, record, tbClick }) => {
 	return (
 		<div style={{ width: '200px' }}>
-			<span onClick={() => tbClick && tbClick(name, nameList)} className={styles.omit}>
+			<span onClick={() => tbClick && tbClick(type, record)} className={styles.omit}>
 				{(nameList[0] ? nameList[0] : '') + (nameList[0] && nameList[1] ? ' · ' : '') + (nameList[1] ? nameList[1] + ' ' : '')}
 			</span>
 			<div className={styles.omit}>

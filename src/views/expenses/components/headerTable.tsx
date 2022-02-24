@@ -4,6 +4,7 @@ import Post, { PostTitle, InameList } from '@/components/iTable/components/TbPos
 import Itooltip from '@/components/iTooltip';
 import Multi from '@/components/iTable/components/TbMulti';
 import TbButton from '@/components/iTable/components/TbButton';
+import { ItbClick } from '@/components/iTable';
 
 export interface ItableBt {
 	key: string;
@@ -16,9 +17,10 @@ export interface ItableBt {
 interface Iprops {
 	buttonEvent: (value: ItableBt) => void;
 }
+
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
-	const tbClick = (name: string, nameList: InameList) => {
-		console.log(name, nameList);
+	const tbClick: ItbClick = (type, record) => {
+		console.log(type, record);
 	};
 	const columns = [
 		{
@@ -50,8 +52,9 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 					}>
 					<div>
 						<Post
-							name={record.name}
+							type={'Age'}
 							nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}
+							record={record}
 							tbClick={tbClick}></Post>
 					</div>
 				</Itooltip>
@@ -102,7 +105,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: 'age',
 			key: 'age',
 			dataIndex: 'age',
-			render: (text: string, record: ItableBt) => <TbButton name={text}></TbButton>
+			render: (text: string, record: ItableBt) => <TbButton type={'age'} name={text} record={record} tbClick={tbClick}></TbButton>
 		},
 		{
 			title: 'Action',
