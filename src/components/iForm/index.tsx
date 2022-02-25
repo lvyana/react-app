@@ -31,19 +31,19 @@ interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;
 	onFinish?: ((values?: any) => void) | undefined;
+	setReset?: () => void;
 	num?: number;
 	setNum?: React.Dispatch<React.SetStateAction<number>>;
 }
-const Ifrom: FC<PropsType> = ({ formList, form, onFinish, num }) => {
+const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
 	const [expand, setExpand] = useState(false);
 	const [showNum, setShowNum] = useState(num);
 	const onReset = () => {
-		console.log(typeof form);
 		form.resetFields();
-		onFinish && onFinish();
+		setReset && setReset();
 	};
 
 	// input
@@ -227,45 +227,59 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, num }) => {
 		);
 	};
 	//按钮
+	const getBtType = (type: string, name: string) => {
+		if (type === 'submit') {
+			return (
+				<Form.Item>
+					<Button type="primary" htmlType="submit">
+						{name}
+					</Button>
+				</Form.Item>
+			);
+		} else if (type === 'onReset') {
+			return (
+				<Form.Item>
+					<Button htmlType="button" onClick={onReset}>
+						{name}
+					</Button>
+				</Form.Item>
+			);
+		} else if (type === 'expand') {
+			return (
+				<Form.Item>
+					<Button
+						type="link"
+						onClick={() => {
+							if (expand) {
+								setShowNum(num);
+							} else {
+								setShowNum(formList?.length);
+							}
+							setExpand(!expand);
+						}}>
+						{expand ? <UpOutlined /> : <DownOutlined />}
+					</Button>
+				</Form.Item>
+			);
+		} else {
+			return (
+				<Form.Item>
+					<Button>{name}</Button>
+				</Form.Item>
+			);
+		}
+	};
 	const formButton = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Row style={item.style}>
-					<Col className={styles.mr10}>
-						<Form.Item>
-							<Button type="primary" htmlType="submit">
-								{item.option && item.option[0]}
-							</Button>
-						</Form.Item>
-					</Col>
-					<Col className={styles.mr10}>
-						<Form.Item>
-							<Button htmlType="button" onClick={onReset}>
-								{item.option && item.option[1]}
-							</Button>
-						</Form.Item>
-					</Col>
-					{num ? (
-						<Col>
-							<Form.Item>
-								<Button
-									htmlType="button"
-									type="link"
-									onClick={() => {
-										if (expand) {
-											setShowNum(num);
-										} else {
-											setShowNum(formList?.length);
-										}
-										setExpand(!expand);
-									}}>
-									{expand ? <UpOutlined /> : <DownOutlined />}
-								</Button>
-							</Form.Item>
-						</Col>
-					) : (
-						<></>
-					)}
+					{item.option?.map((value, i) => {
+						return (
+							<Col key={i} className={styles.mr10}>
+								{getBtType(value.type, value.name)}
+							</Col>
+						);
+					})}
 				</Row>
 			</Col>
 		);

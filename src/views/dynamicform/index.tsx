@@ -247,7 +247,10 @@ const Dynamicform = () => {
 				name: 'button',
 				key: getKey(),
 				span: 24,
-				option: ['提交', '重置'],
+				option: [
+					{ type: 'submit', name: '搜索' },
+					{ type: 'onReset', name: '重置' }
+				],
 				style: { float: 'right' }
 			}
 		]);
@@ -502,7 +505,10 @@ const Dynamicform = () => {
 		{
 			type: 'button',
 			name: 'button',
-			option: ['提交', '重置'],
+			option: [
+				{ type: 'submit', name: '搜索' },
+				{ type: 'onReset', name: '重置' }
+			],
 			key: getKey(),
 			span: 24,
 			style: { float: 'right' }
