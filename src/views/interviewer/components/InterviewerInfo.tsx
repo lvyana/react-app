@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Form, Descriptions, Row, Col, Button, Menu, Dropdown } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
 import Icard from '@/components/iCard';
 
-const InterviewerInfo = () => {
+export type ICradEidt = (type: string, value: object) => void;
+interface Iprops {
+	onCradEidt: ICradEidt;
+}
+const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
+	const menu = (value: object) => {
+		return (
+			<Menu>
+				<Menu.Item key="1" onClick={() => onCradEidt('邀约下轮面试', value)}>
+					邀约下轮面试
+				</Menu.Item>
+				<Menu.Item key="2" onClick={() => onCradEidt('关闭面试', value)}>
+					关闭面试
+				</Menu.Item>
+				<Menu.Item key="3" onClick={() => onCradEidt('查看面试记录', value)}>
+					查看面试记录
+				</Menu.Item>
+			</Menu>
+		);
+	};
+
 	return (
 		<div>
 			<Row gutter={16}>
@@ -15,7 +35,7 @@ const InterviewerInfo = () => {
 									title="彭翔"
 									column={2}
 									extra={
-										<Dropdown overlay={menu} arrow>
+										<Dropdown overlay={menu({ item })} arrow>
 											<Button type="link">
 												<EllipsisOutlined />
 											</Button>
@@ -49,11 +69,3 @@ const InterviewerInfo = () => {
 };
 
 export default InterviewerInfo;
-
-const menu = (
-	<Menu>
-		<Menu.Item>邀约下轮面试</Menu.Item>
-		<Menu.Item>关闭面试</Menu.Item>
-		<Menu.Item>查看面试记录</Menu.Item>
-	</Menu>
-);
