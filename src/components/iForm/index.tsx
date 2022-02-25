@@ -34,7 +34,7 @@ interface PropsType {
 	num?: number;
 	setNum?: React.Dispatch<React.SetStateAction<number>>;
 }
-const Ifrom: FC<PropsType> = ({ formList, form, onFinish, num = formList?.length }) => {
+const Ifrom: FC<PropsType> = ({ formList, form, onFinish, num }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };

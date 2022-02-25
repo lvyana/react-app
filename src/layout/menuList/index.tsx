@@ -28,6 +28,13 @@ export const menuList: router[] = [
 		key: '5',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
+	},
+	{
+		title: '面试官',
+		path: '/interviewer',
+		key: '5',
+		icon: 'icon-bingtu-huanxing',
+		menutype: 1
 	}
 ];
 const Menulist = () => {

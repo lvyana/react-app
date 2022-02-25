@@ -7,6 +7,7 @@ import Error404 from '@/views/Error404';
 import Layout from '@/layout/index';
 import Expenses from '@/views/expenses';
 import Dynamicform from '@/views/dynamicform';
+import Interviewer from '@/views/interviewer';
 // const Dynamicform = lazy(() => import('@/views/dynamicform')); //动态表单
 // const Layout = lazy(() => import('@/layout')); // Layout
 // const Expenses = lazy(() => import('@/views/expenses'));
@@ -31,8 +32,8 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 				element: <Auth element={SuspenseLoad(<Expenses />)} title="Expenses" />
 			},
 			{
-				path: 'dynamicform',
-				element: <Auth element={SuspenseLoad(<Dynamicform />)} title="Dynamicform" />
+				path: 'interviewer',
+				element: <Auth element={SuspenseLoad(<Interviewer />)} title="Interviewer" />
 			},
 			{ path: '*', element: <Error404 /> }
 	  ]
@@ -50,6 +51,14 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 					{
 						path: 'dynamicform',
 						element: <Auth element={SuspenseLoad(<Dynamicform />)} title="Dynamicform" />
+					},
+					{
+						path: 'dynamicform',
+						element: <Auth element={SuspenseLoad(<Dynamicform />)} title="Dynamicform" />
+					},
+					{
+						path: 'interviewer',
+						element: <Auth element={SuspenseLoad(<Interviewer />)} title="Interviewer" />
 					},
 					{ path: '*', element: <Error404 /> }
 				]

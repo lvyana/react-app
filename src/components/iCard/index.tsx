@@ -3,11 +3,12 @@ import { Card } from 'antd';
 
 interface Iprops {
 	children: ReactNode;
+	styles?: object;
 }
-const Icard: FC<Iprops> = ({ children }) => {
+const Icard: FC<Iprops> = ({ children, styles = { padding: '16px' } }) => {
 	return (
 		<>
-			<Card hoverable bordered={false} bodyStyle={{ padding: '16px' }}>
+			<Card hoverable bordered={false} bodyStyle={styles}>
 				{children}
 			</Card>
 		</>
