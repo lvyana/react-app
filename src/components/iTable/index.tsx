@@ -23,7 +23,8 @@ interface TABEL<T> {
  */
 export type ItbClick = (type: string, nameList: object | undefined) => void;
 
-// type SizeType = "small" | "middle" | "default" | undefined
+export type AlignType = 'left' | 'right' | 'center';
+
 const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL<object>) => {
 	const size = useSelector<RootState>((state) => state.layout.size);
 	console.log(size);

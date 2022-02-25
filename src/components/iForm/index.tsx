@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
 	Form,
 	Input,
@@ -21,6 +21,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { FORMITEM } from './type';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import styles from '@/styles/index.module.scss';
 
 const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
@@ -29,11 +31,15 @@ interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;
 	onFinish?: ((values?: any) => void) | undefined;
+	num?: number;
+	setNum?: React.Dispatch<React.SetStateAction<number>>;
 }
-const Ifrom: FC<PropsType> = ({ formList, form, onFinish }) => {
+const Ifrom: FC<PropsType> = ({ formList, form, onFinish, num = formList?.length }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
+	const [expand, setExpand] = useState(false);
+	const [showNum, setShowNum] = useState(num);
 	const onReset = () => {
 		console.log(typeof form);
 		form.resetFields();
@@ -225,21 +231,41 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish }) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Row style={item.style}>
-					<Col className="ml">
+					<Col className={styles.mr10}>
 						<Form.Item>
 							<Button type="primary" htmlType="submit">
 								{item.option && item.option[0]}
 							</Button>
 						</Form.Item>
 					</Col>
-					<Col className="ml">
+					<Col className={styles.mr10}>
 						<Form.Item>
 							<Button htmlType="button" onClick={onReset}>
 								{item.option && item.option[1]}
 							</Button>
 						</Form.Item>
 					</Col>
-					<Col></Col>
+					{num ? (
+						<Col>
+							<Form.Item>
+								<Button
+									htmlType="button"
+									type="link"
+									onClick={() => {
+										if (expand) {
+											setShowNum(num);
+										} else {
+											setShowNum(formList?.length);
+										}
+										setExpand(!expand);
+									}}>
+									{expand ? <UpOutlined /> : <DownOutlined />}
+								</Button>
+							</Form.Item>
+						</Col>
+					) : (
+						<></>
+					)}
 				</Row>
 			</Col>
 		);
@@ -282,12 +308,23 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish }) => {
 	// 尺寸
 	const size = useSelector<RootState>((state) => state.layout.size);
 
+	// 显示表单个数
+	const showForm = (showNum: number | undefined, i: number, item: FORMITEM) => {
+		if (!showNum) {
+			return formItem(item);
+		} else if (showNum > i || i === (formList && formList.length - 1)) {
+			return formItem(item);
+		} else {
+			return <></>;
+		}
+	};
+
 	return (
 		<Form form={form} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
 			<Row>
 				{formList &&
-					formList.map((item: FORMITEM) => {
-						return formItem(item);
+					formList.map((item: FORMITEM, i) => {
+						return showForm(showNum, i, item);
 					})}
 			</Row>
 		</Form>

@@ -4,10 +4,11 @@ import { Column } from '@antv/g2plot';
 import useHeaderTable, { ItableBt } from './components/headerTable';
 import { pageData } from './service';
 import Itable from '@/components/iTable';
+import Icard from '@/components/iCard';
 
 const Expenses = () => {
-	const buttonEvent = (value: ItableBt) => {
-		console.log(value);
+	const buttonEvent = (type: string, value: ItableBt) => {
+		console.log(type, value);
 	};
 	const char = useRef<HTMLDivElement>(null);
 	const { columns } = useHeaderTable({ buttonEvent });
@@ -87,10 +88,14 @@ const Expenses = () => {
 		let res = await pageData();
 		console.log(res);
 	};
+
 	return (
 		<div>
 			<h2>Expenses</h2>
-			<Itable columns={columns} data={data} />
+			<Icard>
+				<Itable columns={columns} data={data} />
+			</Icard>
+
 			<div id="char" ref={char}></div>
 		</div>
 	);

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Post, { PostTitle, InameList } from '@/components/iTable/components/TbPost';
 import Itooltip from '@/components/iTooltip';
 import Multi from '@/components/iTable/components/TbMulti';
 import TbButton from '@/components/iTable/components/TbButton';
-import { ItbClick } from '@/components/iTable';
+import Idropdown from '@/components/iDropdown';
+import { ItbClick, AlignType } from '@/components/iTable';
 
 export interface ItableBt {
 	key: string;
@@ -15,18 +16,29 @@ export interface ItableBt {
 }
 
 interface Iprops {
-	buttonEvent: (value: ItableBt) => void;
+	buttonEvent: (type: string, value: ItableBt) => void;
 }
 
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
+	//表格单元里面的功能回调
 	const tbClick: ItbClick = (type, record) => {
 		console.log(type, record);
 	};
+
+	// 表格图表移入移出功能
+	const onVisibleChange = (visible: boolean, record: any) => {
+		console.log(visible, record);
+		setBtFun([{ name: '修改' }, { name: '删除' }]);
+	};
+	// 初始化按钮
+	const [btFun, setBtFun] = useState<{ name: string }[]>([]);
+
 	const columns = [
 		{
 			title: 'Name',
 			dataIndex: 'name',
 			key: 'name',
+			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
 					<div className="omit" style={{ color: 'blue' }}>
@@ -40,6 +52,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			dataIndex: 'age',
 			key: 'age',
 			width: 200,
+			align: 'center' as AlignType,
 			render: (text: string, record: ItableBt) => (
 				<Itooltip
 					placement="top"
@@ -64,6 +77,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: 'Address',
 			dataIndex: 'address',
 			key: 'address',
+			align: 'center' as AlignType,
 			render: (text: string, record: ItableBt) => (
 				<Itooltip
 					placement="top"
@@ -84,6 +98,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: 'Tags',
 			key: 'tags',
 			dataIndex: 'tags',
+			align: 'center' as AlignType,
 			render: (tags: string[]) => (
 				<>
 					{tags.map((tag) => {
@@ -105,17 +120,21 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: 'age',
 			key: 'age',
 			dataIndex: 'age',
+			align: 'center' as AlignType,
 			render: (text: string, record: ItableBt) => <TbButton type={'age'} name={text} record={record} tbClick={tbClick}></TbButton>
 		},
 		{
 			title: 'Action',
 			key: 'action',
-			render: (text: unknown, record: ItableBt) => (
-				<Space size="middle" onClick={() => buttonEvent(record)}>
-					<a>Invite {record.name}</a>
-					<a>Delete</a>
-				</Space>
-			)
+			align: 'center' as AlignType,
+			render: (text: unknown, record: ItableBt) => {
+				return (
+					<Idropdown
+						btFun={btFun}
+						onVisibleChange={(visible) => onVisibleChange(visible, record)}
+						buttonEvent={(type) => buttonEvent(type, record)}></Idropdown>
+				);
+			}
 		}
 	];
 	return { columns };
