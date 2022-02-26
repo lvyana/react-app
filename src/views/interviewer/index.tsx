@@ -25,7 +25,7 @@ const Interviewer = () => {
 		setVisible(false);
 	};
 	return (
-		<div>
+		<div className="animate__animated animate__fadeIn">
 			<SearchForm></SearchForm>
 			<div style={{ marginTop: '20px' }}>
 				<InterviewerInfo onCradEidt={onCradEidt}></InterviewerInfo>

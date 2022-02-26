@@ -5,6 +5,7 @@ import useHeaderTable, { ItableBt } from './components/headerTable';
 import { pageData } from './service';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
 const Expenses = () => {
 	const buttonEvent = (type: string, value: ItableBt) => {
@@ -89,6 +90,13 @@ const Expenses = () => {
 		console.log(res);
 	};
 
+	const [numPages, setNumPages] = useState<number | null>(null);
+	const [pageNumber, setPageNumber] = useState(1);
+
+	function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+		setNumPages(numPages);
+	}
+
 	return (
 		<div>
 			<h2>Expenses</h2>
@@ -97,6 +105,15 @@ const Expenses = () => {
 			</Icard>
 
 			<div id="char" ref={char}></div>
+
+			<div>
+				<Document file="https://flbook.com.cn/c/hrqYE5lqUf" onLoadSuccess={onDocumentLoadSuccess}>
+					<Page pageNumber={pageNumber} />
+				</Document>
+				<p>
+					Page {pageNumber} of {numPages}
+				</p>
+			</div>
 		</div>
 	);
 };

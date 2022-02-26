@@ -1,5 +1,5 @@
 import React from 'react';
-// import logo from './logo.svg';
+import 'animate.css';
 import './App.scss';
 import { useRoutes } from 'react-router-dom';
 import router from '@/router';
