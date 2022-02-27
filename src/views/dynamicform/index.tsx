@@ -4,7 +4,6 @@ import getKey from '@/utils/onlyKey';
 import { Form } from 'antd';
 
 const Dynamicform = () => {
-	const [num, setNum] = useState(4);
 	const selectOnChange = (value: number) => {
 		console.log(value);
 		setstate([
@@ -517,10 +516,10 @@ const Dynamicform = () => {
 	const [state, setstate] = useState(formList);
 	//表单
 	const [form] = Form.useForm();
-	const fileUrl = 'http://172.16.92.62:8088/file/statics/2021/08/11/da3c8e15-4432-4de2-b39b-ded7af333194.pdf';
+
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Ifrom formList={state} form={form} num={num} setNum={setNum} />
+			<Ifrom formList={state} form={form} />
 		</div>
 	);
 };

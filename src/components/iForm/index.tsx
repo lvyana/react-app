@@ -227,6 +227,18 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 		);
 	};
 	//按钮
+	// 按钮图标功能
+	const onIconBt = () => {
+		if (expand) {
+			setHeight('56px');
+			setShowNum(num);
+		} else {
+			let height = Math.ceil((formList && ((formList?.length / 4) as number)) as number) * 56 + 'px';
+			setHeight(height);
+			setShowNum(formList?.length);
+		}
+		setExpand(!expand);
+	};
 	const getBtType = (type: string, name: string) => {
 		if (type === 'submit') {
 			return (
@@ -247,16 +259,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 		} else if (type === 'expand') {
 			return (
 				<Form.Item>
-					<Button
-						type="link"
-						onClick={() => {
-							if (expand) {
-								setShowNum(num);
-							} else {
-								setShowNum(formList?.length);
-							}
-							setExpand(!expand);
-						}}>
+					<Button type="link" onClick={onIconBt}>
 						{expand ? <UpOutlined /> : <DownOutlined />}
 					</Button>
 				</Form.Item>
@@ -332,16 +335,20 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 			return <></>;
 		}
 	};
+	// 过度动画
+	const [height, setHeight] = useState('56px');
 
 	return (
-		<Form form={form} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
-			<Row>
-				{formList &&
-					formList.map((item: FORMITEM, i) => {
-						return showForm(showNum, i, item);
-					})}
-			</Row>
-		</Form>
+		<div style={{ height: num ? height : '', transition: 'all 0.5s', overflow: 'hidden' }}>
+			<Form form={form} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
+				<Row>
+					{formList &&
+						formList.map((item: FORMITEM, i) => {
+							return showForm(showNum, i, item);
+						})}
+				</Row>
+			</Form>
+		</div>
 	);
 };
 export default Ifrom;

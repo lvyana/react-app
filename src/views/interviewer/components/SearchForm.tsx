@@ -27,6 +27,42 @@ const SearchForm = () => {
 			}
 		},
 		{
+			type: 'input',
+			name: 'name',
+			label: '姓名',
+			rules: [],
+			key: getKey(),
+			span: 6,
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
+		{
+			type: 'input',
+			name: 'name',
+			label: '姓名',
+			rules: [],
+			key: getKey(),
+			span: 6,
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
+		{
+			type: 'input',
+			name: 'name',
+			label: '姓名',
+			rules: [],
+			key: getKey(),
+			span: 6,
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
+		{
 			type: 'select',
 			name: 'select',
 			label: '岗位',
@@ -80,7 +116,8 @@ const SearchForm = () => {
 			name: 'button',
 			option: [
 				{ type: 'submit', name: '搜索' },
-				{ type: 'onReset', name: '重置' }
+				{ type: 'onReset', name: '重置' },
+				{ type: 'expand', name: '重置' }
 			],
 			key: getKey(),
 			span: 6,
@@ -95,7 +132,7 @@ const SearchForm = () => {
 	return (
 		<div>
 			<Icard styles={{ padding: '16px 16px 0' }}>
-				<Ifrom formList={state} form={form} onFinish={onFinish} />
+				<Ifrom num={3} formList={state} form={form} onFinish={onFinish} />
 			</Icard>
 		</div>
 	);
