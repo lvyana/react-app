@@ -7,14 +7,32 @@ export interface ImodalProps {
 	confirmLoading: boolean;
 	handleOk: () => void;
 	handleCancel: () => void;
+	width?: string;
+	maskClosable?: boolean;
 }
 interface Iprops extends ImodalProps {
 	children: ReactNode;
 }
-const Imodal: FC<Iprops> = ({ children, title, visible, handleOk, confirmLoading, handleCancel }) => {
+const Imodal: FC<Iprops> = ({
+	children,
+	title,
+	visible,
+	handleOk,
+	confirmLoading,
+	handleCancel,
+	width = '500px',
+	maskClosable = false
+}) => {
 	return (
 		<div>
-			<Modal title={title} visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
+			<Modal
+				title={title}
+				visible={visible}
+				confirmLoading={confirmLoading}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				width={width}
+				maskClosable={maskClosable}>
 				{children}
 			</Modal>
 		</div>

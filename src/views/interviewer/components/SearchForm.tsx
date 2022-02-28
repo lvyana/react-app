@@ -27,42 +27,6 @@ const SearchForm = () => {
 			}
 		},
 		{
-			type: 'input',
-			name: 'name',
-			label: '姓名',
-			rules: [],
-			key: getKey(),
-			span: 6,
-			layout: {
-				labelCol: { span: 8 },
-				wrapperCol: { span: 16 }
-			}
-		},
-		{
-			type: 'input',
-			name: 'name',
-			label: '姓名',
-			rules: [],
-			key: getKey(),
-			span: 6,
-			layout: {
-				labelCol: { span: 8 },
-				wrapperCol: { span: 16 }
-			}
-		},
-		{
-			type: 'input',
-			name: 'name',
-			label: '姓名',
-			rules: [],
-			key: getKey(),
-			span: 6,
-			layout: {
-				labelCol: { span: 8 },
-				wrapperCol: { span: 16 }
-			}
-		},
-		{
 			type: 'select',
 			name: 'select',
 			label: '岗位',
@@ -132,7 +96,7 @@ const SearchForm = () => {
 	return (
 		<div>
 			<Icard styles={{ padding: '16px 16px 0' }}>
-				<Ifrom num={3} formList={state} form={form} onFinish={onFinish} />
+				<Ifrom formList={state} form={form} onFinish={onFinish} />
 			</Icard>
 		</div>
 	);

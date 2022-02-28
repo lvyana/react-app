@@ -14,7 +14,8 @@ import {
 	Radio,
 	Checkbox,
 	Rate,
-	FormInstance
+	FormInstance,
+	TimePicker
 } from 'antd';
 import IconFont from '@/utils/iconfont';
 import { useSelector } from 'react-redux';
@@ -51,7 +52,11 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item label={item.label} name={item.name} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<Input onChange={item.onChange} placeholder={item.placeholder ? item.placeholder : '请输入' + item.label} />
+					<Input
+						onChange={item.onChange}
+						placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
+						disabled={item.disabled}
+					/>
 				</Form.Item>
 			</Col>
 		);
@@ -121,7 +126,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 			</Col>
 		);
 	};
-	// 时间
+	// 日期
 	const formDatePicker = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
@@ -131,12 +136,46 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 			</Col>
 		);
 	};
-	// 区间时间
+	// 区间日期
 	const formRangePicker = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<RangePicker onChange={item.onChange} disabledDate={item.disabledDate} />
+					<RangePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} />
+				</Form.Item>
+			</Col>
+		);
+	};
+	// 时间
+	const formTimePicker = (item: FORMITEM) => {
+		const format = 'HH:mm';
+		return (
+			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
+				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+					<TimePicker
+						minuteStep={15}
+						onChange={item.onChange}
+						format={format}
+						disabledDate={item.disabledDate}
+						style={{ width: '100%' }}
+					/>
+				</Form.Item>
+			</Col>
+		);
+	};
+	// 时间区间
+	const formTimeRangePicker = (item: FORMITEM) => {
+		const format = 'HH:mm';
+		return (
+			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
+				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+					<TimePicker.RangePicker
+						onChange={item.onChange}
+						minuteStep={15}
+						format={format}
+						disabledDate={item.disabledDate}
+						style={{ width: '100%' }}
+					/>
 				</Form.Item>
 			</Col>
 		);
@@ -146,7 +185,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<InputNumber min={0} onChange={item.onChange} />
+					<InputNumber min={0} onChange={item.onChange} disabled={item.disabled} defaultValue={0} />
 				</Form.Item>
 			</Col>
 		);
@@ -302,6 +341,10 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 				return formDatePicker(item);
 			case 'rangePicker':
 				return formRangePicker(item);
+			case 'TimePicker':
+				return formTimePicker(item);
+			case 'timeRangePicker':
+				return formTimeRangePicker(item);
 			case 'inputNumber':
 				return formInputNumber(item);
 			case 'switch':

@@ -12,6 +12,7 @@ export interface FORMITEM {
 	label?: string; //表单名字
 	rules?: Rule[] | undefined; //校验
 	key: string | number; //key
+	disabled?: boolean; //禁用
 	span?: number; //formitem 宽度
 	layout?: LAYOUT; //样式
 	onChange?: (e: any) => void; //change事件
