@@ -20,7 +20,31 @@ const SearchForm = () => {
 			label: '姓名',
 			rules: [],
 			key: getKey(),
-			span: 6,
+			span: 5,
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
+		{
+			type: 'input',
+			name: 'name2',
+			label: '登录账号',
+			rules: [],
+			key: getKey(),
+			span: 5,
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
+		{
+			type: 'input',
+			name: 'name4',
+			label: '手机号码',
+			rules: [],
+			key: getKey(),
+			span: 5,
 			layout: {
 				labelCol: { span: 8 },
 				wrapperCol: { span: 16 }
@@ -29,34 +53,10 @@ const SearchForm = () => {
 		{
 			type: 'select',
 			name: 'select',
-			label: '岗位',
+			label: '关联项目',
 			rules: [],
 			key: getKey(),
-			span: 6,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
-			layout: {
-				labelCol: { span: 8 },
-				wrapperCol: { span: 16 }
-			}
-		},
-		{
-			type: 'select',
-			name: 'danwei',
-			label: '推荐单位',
-			rules: [],
-			key: getKey(),
-			span: 6,
+			span: 5,
 			option: [
 				{
 					name: 'male',
@@ -83,8 +83,8 @@ const SearchForm = () => {
 				{ type: 'onReset', name: '重置' }
 			],
 			key: getKey(),
-			span: 6,
-			style: { marginLeft: '10px' }
+			span: 4,
+			style: { float: 'right' }
 		}
 	];
 	const [state, setstate] = useState(formList);
@@ -93,7 +93,7 @@ const SearchForm = () => {
 		console.log(value);
 	};
 	return (
-		<div>
+		<div className="animate__animated animate__fadeIn">
 			<Icard styles={{ padding: '16px 16px 0' }}>
 				<Ifrom formList={state} form={form} onFinish={onFinish} />
 			</Icard>

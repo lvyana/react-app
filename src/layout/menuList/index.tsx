@@ -35,6 +35,13 @@ export const menuList: router[] = [
 		key: '5',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
+	},
+	{
+		title: '配置面试官',
+		path: '/configureInterviewers',
+		key: '5',
+		icon: 'icon-bingtu-huanxing',
+		menutype: 1
 	}
 ];
 const Menulist = () => {

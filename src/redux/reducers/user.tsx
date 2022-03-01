@@ -1,9 +1,10 @@
-import { PHOTO, TOKEN } from '../constant/user';
+import { PHOTO, TOKEN, PERMISS } from '../constant/user';
 export let initialState = {
 	photo: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-	token: ''
+	token: '',
+	permiss: ['*:*:*']
 };
-const user = (state = initialState, action: { type: string; value: number }) => {
+const user = (state = initialState, action: { type: string; value: any }) => {
 	let newState = JSON.parse(JSON.stringify(state));
 	let { type, value } = action;
 	switch (type) {
@@ -12,7 +13,9 @@ const user = (state = initialState, action: { type: string; value: number }) => 
 			return newState;
 		case TOKEN:
 			newState[TOKEN] = value;
-			console.log(newState);
+			return newState;
+		case PERMISS:
+			newState[PERMISS] = value;
 			return newState;
 		default:
 			return newState;
