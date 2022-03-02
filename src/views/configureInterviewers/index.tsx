@@ -18,6 +18,8 @@ const ConfigureInterviewers = () => {
 	const buttonEvent = (type: string, value: ItableBt) => {
 		console.log(type, value);
 		if (type === '修改') {
+			setTitle('修改面试官');
+			setVisible(true);
 		}
 	};
 
@@ -70,7 +72,7 @@ const ConfigureInterviewers = () => {
 			</div>
 			{/* 添加面试官 */}
 			<Imodal title={title} visible={visible} confirmLoading={confirmLoading} handleOk={handleOk} handleCancel={handleCancel}>
-				<EidtInterviewer form={form}></EidtInterviewer>
+				<EidtInterviewer form={form} type={title}></EidtInterviewer>
 			</Imodal>
 		</div>
 	);

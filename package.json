@@ -32,7 +32,7 @@
 	},
 	"scripts": {
 		"dev": "cross-env PORT=3002 REACT_APP_BASE_API=/dev-api REACT_APP_ENV=development react-app-rewired start",
-		"build:sit": "cross-env REACT_APP_BASE_API=/sit-api REACT_APP_ENV=sit react-app-rewired start",
+		"build:sit": "cross-env REACT_APP_BASE_API=/sit-api REACT_APP_ENV=sit react-app-rewired build",
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test",
 		"eject": "react-app-rewired eject"

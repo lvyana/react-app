@@ -24,7 +24,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const onVisibleChange = (visible: boolean, record: any) => {
 		console.log(visible, record);
 		if (visible) {
-			setBtFun([{ name: '修改' }, { name: '删除' }]);
+			setBtFun([{ name: '修改' }]);
 		} else {
 			setBtFun([]);
 		}
