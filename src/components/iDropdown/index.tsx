@@ -8,7 +8,7 @@ const Menus = ({ btFun, buttonEvent }: IbtFun) => {
 			{btFun?.map((item, i) => {
 				return (
 					<Menu.Item key={i} onClick={() => buttonEvent(item.name)}>
-						{item.name}
+						<Button type="link">{item.name}</Button>
 					</Menu.Item>
 				);
 			})}

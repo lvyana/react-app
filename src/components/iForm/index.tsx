@@ -28,15 +28,18 @@ import styles from '@/styles/index.module.scss';
 const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
 
+export type IformLayout = 'horizontal' | 'vertical' | 'inline';
+export type FORMtype = FormInstance;
 interface PropsType {
 	formList?: FORMITEM[];
-	form: FormInstance;
+	form: FORMtype;
 	onFinish?: ((values?: any) => void) | undefined;
 	setReset?: () => void;
 	num?: number;
 	setNum?: React.Dispatch<React.SetStateAction<number>>;
+	formLayout?: IformLayout;
 }
-const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
+const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLayout = 'horizontal' }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
@@ -82,6 +85,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
 					<Select
+						showSearch
 						allowClear
 						onChange={item.onChange}
 						fieldNames={item.fieldNames}
@@ -326,6 +330,14 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 			</Col>
 		);
 	};
+	// 自定义组件
+	const userDefined = (item: FORMITEM) => {
+		return (
+			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
+				{item.children}
+			</Col>
+		);
+	};
 	const formItem = (item: FORMITEM) => {
 		if (item.show === false) return;
 		switch (item.type) {
@@ -361,8 +373,10 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 				return formRate(item);
 			case 'textArea':
 				return formInputTextArea(item);
+			case 'userDefined':
+				return userDefined(item);
 			default:
-				return;
+				return <div style={{ color: 'red' }}>error:调用组件错误,检查此项数据是否正确</div>;
 		}
 	};
 	// 尺寸
@@ -383,7 +397,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num }) => {
 
 	return (
 		<div style={{ height: num ? height : '', transition: 'all 0.5s', overflow: 'hidden' }}>
-			<Form form={form} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
+			<Form form={form} layout={formLayout} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
 				<Row>
 					{formList &&
 						formList.map((item: FORMITEM, i) => {

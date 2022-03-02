@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import { Rule } from 'rc-field-form/lib/interface';
 import moment, { Moment } from 'moment';
 
@@ -26,6 +27,7 @@ export interface FORMITEM {
 	maxLength?: number; //文本框字数
 	style?: object; //按钮外边距 float:'right'，
 	disabledDate?: (currentDate: Moment) => boolean; //设置时间范围
+	children?: ReactNode;
 }
 
 /**

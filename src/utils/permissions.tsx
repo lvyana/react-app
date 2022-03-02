@@ -7,7 +7,7 @@ const useHasPermiss = () => {
 	console.log(permissList);
 
 	const getPermiss = (hasPermiss?: string) => {
-		if (permissList.indexOf('*:*:*') > -1) return true;
+		if (!hasPermiss || permissList.indexOf('*:*:*') > -1) return true;
 		if (permissList.indexOf(hasPermiss) > -1) {
 			return true;
 		} else {

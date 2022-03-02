@@ -3,21 +3,23 @@ import { MouseEventHandler } from 'react';
  *
  * 按钮集合
  */
-export interface BUTTON {
+export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事件
+
+export interface IBUTTON {
 	buttonList: BUTTONITEM[]; //按钮集合
 	loadingName?: string; // 那个按钮需要加载直接传名字
-	editBtn?: MouseEventHandler<HTMLElement>;
+	editBtn?: BTeditBtn;
 }
-
 /**
  *
  * 按钮接口
  */
+export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
 export interface BUTTONITEM {
 	name: string;
-	type: 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
-	disabled: boolean; // 开启禁用模式 true  否则 false
-	edit?: (item: string) => void; // 编辑
+	type: BTtype;
+	disabled?: boolean; // 开启禁用模式 true  否则 false
+	hasPermiss?: string | undefined; //权限
 }
 
 /**

@@ -28,7 +28,11 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	// 表格图表移入移出功能
 	const onVisibleChange = (visible: boolean, record: any) => {
 		console.log(visible, record);
-		setBtFun([{ name: '修改' }, { name: '删除' }]);
+		if (visible) {
+			setBtFun([{ name: '修改' }, { name: '删除' }]);
+		} else {
+			setBtFun([]);
+		}
 	};
 	// 初始化按钮
 	const [btFun, setBtFun] = useState<{ name: string }[]>([]);
