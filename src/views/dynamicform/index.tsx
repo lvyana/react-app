@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import Ifrom from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
-import { Form } from 'antd';
+import { Form, Upload, message, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 const Dynamicform = () => {
+	const props = {
+		name: 'file',
+		action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+		headers: {
+			authorization: 'authorization-text'
+		},
+		onChange(info: any) {
+			if (info.file.status !== 'uploading') {
+				console.log(info.file, info.fileList);
+			}
+			if (info.file.status === 'done') {
+				message.success(`${info.file.name} file uploaded successfully`);
+			} else if (info.file.status === 'error') {
+				message.error(`${info.file.name} file upload failed.`);
+			}
+		}
+	};
+	const normFile = (e: any) => {
+		console.log('26Upload event:', e);
+		if (Array.isArray(e)) {
+			return e;
+		}
+		return e && e.fileList;
+	};
 	const selectOnChange = (value: number) => {
 		console.log(value);
 		setstate([
@@ -474,7 +499,28 @@ const Dynamicform = () => {
 				wrapperCol: { span: 18 }
 			}
 		},
-
+		{
+			type: 'userDefined',
+			name: 'Upload',
+			key: getKey(),
+			span: 24,
+			children: (
+				<Form.Item
+					name={'Upload'}
+					label={'上传'}
+					rules={[]}
+					{...{
+						labelCol: { span: 6 },
+						wrapperCol: { span: 18 }
+					}}
+					valuePropName="fileList"
+					getValueFromEvent={normFile}>
+					<Upload {...props} key={'Upload'}>
+						<Button icon={<UploadOutlined />}>Click to Upload</Button>
+					</Upload>
+				</Form.Item>
+			)
+		},
 		{
 			type: 'button',
 			name: 'button',
@@ -490,10 +536,12 @@ const Dynamicform = () => {
 	const [state, setstate] = useState(formList);
 	//表单
 	const [form] = Form.useForm();
-
+	const onFinish = (value: any) => {
+		console.log(value);
+	};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Ifrom formList={state} form={form} />
+			<Ifrom formList={state} form={form} onFinish={onFinish} />
 		</div>
 	);
 };

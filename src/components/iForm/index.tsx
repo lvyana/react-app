@@ -189,7 +189,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<InputNumber min={0} onChange={item.onChange} disabled={item.disabled} defaultValue={0} />
+					<InputNumber min={0} onChange={item.onChange} disabled={item.disabled} />
 				</Form.Item>
 			</Col>
 		);
@@ -330,6 +330,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 			</Col>
 		);
 	};
+
 	// 自定义组件
 	const userDefined = (item: FORMITEM) => {
 		return (
@@ -397,7 +398,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 
 	return (
 		<div style={{ height: num ? height : '', transition: 'all 0.5s', overflow: 'hidden' }}>
-			<Form form={form} layout={formLayout} initialValues={{ remember: true }} onFinish={onFinish} size={size as SizeType}>
+			<Form form={form} layout={formLayout} onFinish={onFinish} size={size as SizeType}>
 				<Row>
 					{formList &&
 						formList.map((item: FORMITEM, i) => {
