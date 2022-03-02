@@ -228,20 +228,6 @@ const Dynamicform = () => {
 				}
 			},
 			{
-				type: 'uploaddragger',
-				name: 'uploaddragger',
-				label: '拖拽上传',
-				rules: [],
-				key: getKey(),
-				span: 24,
-
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				},
-				value: 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
-			},
-			{
 				type: 'button',
 				name: 'button',
 				key: getKey(),
@@ -488,19 +474,7 @@ const Dynamicform = () => {
 				wrapperCol: { span: 18 }
 			}
 		},
-		{
-			type: 'uploaddragger',
-			name: 'uploaddragger',
-			label: '拖拽上传',
-			rules: [],
-			key: getKey(),
-			span: 24,
-			layout: {
-				labelCol: { span: 6 },
-				wrapperCol: { span: 18 }
-			},
-			value: 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
-		},
+
 		{
 			type: 'button',
 			name: 'button',
