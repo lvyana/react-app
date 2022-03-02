@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'animate.css';
 import './App.scss';
 import { useRoutes } from 'react-router-dom';
@@ -10,14 +10,17 @@ import { setPermiss } from '@/redux/actions/user';
 
 function App() {
 	const dispatch = useDispatch();
-	actions.onGlobalStateChange((state: any) => {
-		//监听全局状态
-		console.log(state);
-		// 设置token
-		setToken(state.token);
-		// 设置按钮权限
-		dispatch(setPermiss(state.permissions));
-	}, true);
+
+	useEffect(() => {
+		actions.onGlobalStateChange((state: any) => {
+			//监听全局状态
+			console.log(state);
+			// 设置token
+			setToken(state.token);
+			// 设置按钮权限
+			dispatch(setPermiss(state.permissions));
+		}, true);
+	}, []);
 
 	return useRoutes(router);
 }
