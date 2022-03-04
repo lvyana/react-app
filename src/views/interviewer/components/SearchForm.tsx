@@ -74,7 +74,35 @@ const SearchForm = () => {
 				wrapperCol: { span: 16 }
 			}
 		},
-
+		{
+			type: 'select',
+			name: 'danwei',
+			label: '候选人状态',
+			rules: [],
+			key: getKey(),
+			span: 6,
+			option: [
+				{
+					name: '进行中',
+					value: 'male',
+					key: getKey()
+				},
+				{
+					name: '面试通过',
+					value: 'female',
+					key: getKey()
+				},
+				{
+					name: '被拒绝',
+					value: 'female',
+					key: getKey()
+				}
+			],
+			layout: {
+				labelCol: { span: 8 },
+				wrapperCol: { span: 16 }
+			}
+		},
 		{
 			type: 'button',
 			name: 'button',
@@ -83,8 +111,8 @@ const SearchForm = () => {
 				{ type: 'onReset', name: '重置' }
 			],
 			key: getKey(),
-			span: 6,
-			style: { marginLeft: '10px' }
+			span: 24,
+			style: { float: 'right' }
 		}
 	];
 	const [state, setstate] = useState(formList);

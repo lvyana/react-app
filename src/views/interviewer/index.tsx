@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Form, Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Form } from 'antd';
 import SearchForm from './components/SearchForm';
 import InterviewerInfo, { ICradEidt } from './components/InterviewerInfo';
 import { CradEidt } from './components/NextInterviews';
 import InterviewRecords from './components/InterviewRecords';
-const { confirm } = Modal;
+import InterviewTime from './components/InterviewTime';
+import useIconfirm from '@/components/iModal/Iconfirm';
+import { pageData } from './service';
 
 const Interviewer = () => {
+	const { onConfirm } = useIconfirm();
+
 	// 编辑卡片
 	const onCradEidt: ICradEidt = (type, value) => {
 		console.log(type, value);
@@ -46,30 +49,25 @@ const Interviewer = () => {
 		setVisible(false);
 	};
 	// 关闭面试
+	const onCallback = async () => {
+		// 接口
+		await pageData();
+	};
 	const ClosingInterview = () => {
-		confirm({
-			title: '您确定关闭鹏翔的面试吗?',
-			icon: <ExclamationCircleOutlined />,
-
-			onOk() {
-				return new Promise((resolve, reject) => {
-					setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-				}).catch(() => console.log('Oops errors!'));
-			},
-			onCancel() {
-				console.log('Cancel');
-			}
-		});
+		onConfirm(`您确定关闭鹏翔的面试吗?`, onCallback);
 	};
 	// 查看面试记录
 	const [lookRecords, setLookRecords] = useState(false);
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SearchForm></SearchForm>
-			<div style={{ marginTop: '20px' }}>
+			{/* 添加面试时间 */}
+			<InterviewTime></InterviewTime>
+			<div style={{ marginTop: '10px' }}>
+				{/* 面试人员信息 */}
 				<InterviewerInfo onCradEidt={onCradEidt}></InterviewerInfo>
 			</div>
-
+			{/* 编辑功能 */}
 			<CradEidt
 				form={form}
 				title={title}

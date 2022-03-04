@@ -29,7 +29,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 			<Row gutter={16}>
 				{[1, 1, 1, 1, , 1, 1, 1].map((item, i) => {
 					return (
-						<Col span={8} style={{ marginTop: '10px' }} key={i}>
+						<Col span={8} style={{ marginBottom: '10px' }} key={i}>
 							<Icard key={i}>
 								<Descriptions
 									title="彭翔"
