@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Menu, Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
 
@@ -7,20 +7,27 @@ const Menus = ({ btFun, buttonEvent }: IbtFun) => {
 		<Menu>
 			{btFun?.map((item, i) => {
 				return (
-					<Menu.Item key={i} onClick={() => buttonEvent(item.name)}>
-						<Button type="link">{item.name}</Button>
+					<Menu.Item key={i} onClick={() => buttonEvent(item.type)}>
+						<Button type={item.Btype ? item.Btype : 'link'}>
+							{item.iconFont}
+							{item.name}
+						</Button>
 					</Menu.Item>
 				);
 			})}
 		</Menu>
 	);
 };
-interface IbtFunItem {
-	name: string;
+export interface IbtFunItem {
+	type: string | number;
+	name?: string;
+	iconFont?: ReactNode;
+	Btype?: 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
 }
+export type IbuttonEvent = (type: string | number) => void;
 interface IbtFun {
 	btFun: IbtFunItem[];
-	buttonEvent: (type: string) => void;
+	buttonEvent: IbuttonEvent;
 }
 interface Iprops extends IbtFun {
 	onVisibleChange: (visible: boolean) => void;

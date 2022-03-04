@@ -4,7 +4,7 @@ import Post, { PostTitle, InameList } from '@/components/iTable/components/TbPos
 import Itooltip from '@/components/iTooltip';
 import Multi from '@/components/iTable/components/TbMulti';
 import TbButton from '@/components/iTable/components/TbButton';
-import Idropdown from '@/components/iDropdown';
+import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { ItbClick, AlignType } from '@/components/iTable';
 
 export interface ItableBt {
@@ -16,7 +16,7 @@ export interface ItableBt {
 }
 
 interface Iprops {
-	buttonEvent: (type: string, value: ItableBt) => void;
+	buttonEvent: (type: string | number, value: ItableBt) => void;
 }
 
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
@@ -29,13 +29,16 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const onVisibleChange = (visible: boolean, record: any) => {
 		console.log(visible, record);
 		if (visible) {
-			setBtFun([{ name: '修改' }, { name: '删除' }]);
+			setBtFun([
+				{ type: '修改', name: '修改' },
+				{ type: '删除', name: '删除' }
+			]);
 		} else {
 			setBtFun([]);
 		}
 	};
 	// 初始化按钮
-	const [btFun, setBtFun] = useState<{ name: string }[]>([]);
+	const [btFun, setBtFun] = useState<IbtFunItem[]>([]);
 
 	const columns = [
 		{

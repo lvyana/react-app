@@ -9,7 +9,7 @@ const InterviewTime = () => {
 		setVisible(true);
 	};
 
-	const [title, setTitle] = useState('可面试时间基础配置');
+	const [title, setTitle] = useState('可面试时间配置');
 	const [visible, setVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
 

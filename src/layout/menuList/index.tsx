@@ -18,27 +18,34 @@ export const menuList: router[] = [
 	{
 		title: 'expenses',
 		path: '/expenses',
-		key: '4',
+		key: '1',
 		icon: 'icon-tiaoxingtu-duidie',
 		menutype: 1
 	},
 	{
 		title: '动态表单',
 		path: '/dynamicform',
-		key: '5',
+		key: '2',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
 	},
 	{
 		title: '面试官',
 		path: '/interviewer',
-		key: '5',
+		key: '3',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
 	},
 	{
 		title: '配置面试官',
 		path: '/configureInterviewers',
+		key: '4',
+		icon: 'icon-bingtu-huanxing',
+		menutype: 1
+	},
+	{
+		title: '简历筛选',
+		path: '/screenResumes',
 		key: '5',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Tag, Switch } from 'antd';
-import Idropdown, { IbtFunItem } from '@/components/iDropdown';
+import Idropdown, { IbtFunItem, IbuttonEvent } from '@/components/iDropdown';
 import { AlignType } from '@/components/iTable';
 import useIconfirm from '@/components/iModal/Iconfirm';
-import { pageData } from '../service';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 export interface ItableBt {
 	name: string;
@@ -24,7 +24,10 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const onVisibleChange = (visible: boolean, record: any) => {
 		console.log(visible, record);
 		if (visible) {
-			setBtFun([{ type: '修改', name: '修改' }]);
+			setBtFun([
+				{ type: '通过', iconFont: <CheckOutlined /> },
+				{ type: '拒绝', iconFont: <CloseOutlined style={{ color: 'red' }} /> }
+			]);
 		} else {
 			setBtFun([]);
 		}
@@ -32,73 +35,62 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	// 初始化按钮
 	const [btFun, setBtFun] = useState<IbtFunItem[]>([]);
 
-	const onCallback = async () => {
-		// 接口
-		await pageData();
-	};
-	const onChangeSwitch = (checked: boolean, record: ItableBt) => {
-		onConfirm(`您是否停用${record.name}面试官账号?`, onCallback);
-	};
 	const columns = [
 		{
-			title: '账号',
+			title: '标记',
 			dataIndex: 'name',
 			key: 'name',
 			align: 'center' as AlignType,
 			render: (text: string) => <div>{text}</div>
 		},
 		{
-			title: '用户名称',
+			title: '岗位',
 			dataIndex: 'nickName',
 			key: 'nickName',
 			align: 'center' as AlignType,
 			render: (text: string) => <div>{text}</div>
 		},
 		{
-			title: '电子邮箱',
+			title: '候选人',
 			dataIndex: 'email',
 			key: 'email',
 			align: 'center' as AlignType,
 			render: (text: string) => <div>{text}</div>
 		},
 		{
-			title: '手机号码',
+			title: '查看简历',
 			dataIndex: 'phone',
 			key: 'phone',
 			align: 'center' as AlignType,
 			render: (text: string) => <div>{text}</div>
 		},
 		{
-			title: '关联项目',
+			title: '推荐单位',
 			dataIndex: 'project',
 			key: 'project',
 			align: 'center' as AlignType,
-			render: (tags: string[]) => (
-				<>
-					{tags.map((tag) => {
-						let color = tag.length > 5 ? 'geekblue' : 'green';
-						if (tag === 'loser') {
-							color = 'volcano';
-						}
-						return (
-							<Tag color={color} key={tag}>
-								{tag.toUpperCase()}
-							</Tag>
-						);
-					})}
-				</>
-			)
+			render: (text: string) => <div>{text}</div>
 		},
 		{
-			title: '状态',
+			title: '推荐人',
 			dataIndex: 'status',
 			key: 'name',
 			align: 'center' as AlignType,
-			render: (text: string, record: ItableBt) => (
-				<div>
-					<Switch checked={text === '1' ? true : false} onChange={(checked) => onChangeSwitch(checked, record)} />
-				</div>
-			)
+			render: (text: string) => <div>{text}</div>
+		},
+		{
+			title: '推荐理由',
+			dataIndex: 'status23',
+			key: 'name',
+			align: 'center' as AlignType,
+			render: (text: string) => <div>{text}</div>
+		},
+		{
+			title: '简历筛选结果',
+			dataIndex: 'sta34t34us23',
+			key: 'name',
+			align: 'center' as AlignType,
+			render: (text: string) => <div>{text}</div>
 		},
 		{
 			title: '操作',

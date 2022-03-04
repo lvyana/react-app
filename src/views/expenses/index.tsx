@@ -7,7 +7,7 @@ import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 
 const Expenses = () => {
-	const buttonEvent = (type: string, value: ItableBt) => {
+	const buttonEvent = (type: string | number, value: ItableBt) => {
 		console.log(type, value);
 	};
 	const char = useRef<HTMLDivElement>(null);

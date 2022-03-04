@@ -17,39 +17,43 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 						<Col span={6} style={{ marginBottom: '10px' }} key={i}>
 							<Icard key={i}>
 								<div style={{ height: '70px' }}>
-									<Row gutter={16}>
-										<Col className="gutter-row" span={6}>
+									<Row gutter={8}>
+										<Col flex="70px">
 											<Avatar
 												src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
-												style={{ width: '100%', height: '70px' }}
+												style={{ width: '70px', height: '70px' }}
 											/>
 										</Col>
-										<Col className="gutter-row" span={14}>
-											<div>
-												<Itooltip placement="top" color={'purple'} title={'查看简历'}>
-													<Button type="link" style={{ padding: '4px 0' }}>
-														<span style={{ fontSize: '18px', fontWeight: 700 }}>倪妮</span>
-													</Button>
-												</Itooltip>
-												<span style={{ marginLeft: '5px' }}>
-													<Itooltip placement="top" color={'purple'} title={'当前面试轮次'}>
-														<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
-														<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
-														<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
-													</Itooltip>
-												</span>
-											</div>
-											<div style={{ fontSize: '12px', color: '#ccc' }}>
-												<div>数据应用-测试</div>
-												<div>深圳市 初二级 一年以上</div>
-											</div>
-										</Col>
-										<Col className="gutter-row" span={4}>
-											<div style={{ width: '100%', height: '100%' }}>
-												<Itooltip placement="top" color={'purple'} title={'面试状态'}>
-													<IconFont type="icon-yishen" style={{ fontSize: '24px' }}></IconFont>
-												</Itooltip>
-											</div>
+										<Col flex="auto">
+											<Row gutter={8}>
+												<Col span={19}>
+													<div>
+														<Itooltip placement="top" color={'purple'} title={'查看简历'}>
+															<Button type="link" style={{ padding: '4px 0' }}>
+																<span style={{ fontSize: '18px', fontWeight: 700 }}>苏大强</span>
+															</Button>
+														</Itooltip>
+														<span style={{ marginLeft: '5px' }}>
+															<Itooltip placement="top" color={'purple'} title={'当前面试轮次'}>
+																<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
+																<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
+																<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
+															</Itooltip>
+														</span>
+													</div>
+													<div style={{ fontSize: '12px', color: '#ccc' }}>
+														<div>数据应用-测试</div>
+														<div>深圳市 初二级 一年以上</div>
+													</div>
+												</Col>
+												<Col span={5}>
+													<div style={{ width: '100%', height: '100%' }}>
+														<Itooltip placement="top" color={'purple'} title={'面试状态'}>
+															<IconFont type="icon-yishen" style={{ fontSize: '24px' }}></IconFont>
+														</Itooltip>
+													</div>
+												</Col>
+											</Row>
 										</Col>
 									</Row>
 								</div>

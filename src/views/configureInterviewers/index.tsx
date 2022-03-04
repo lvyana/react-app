@@ -15,7 +15,7 @@ const ConfigureInterviewers = () => {
 	const { getPermiss } = useHasPermiss();
 	console.log(getPermiss());
 
-	const buttonEvent = (type: string, value: ItableBt) => {
+	const buttonEvent = (type: string | number, value: ItableBt) => {
 		console.log(type, value);
 		if (type === '修改') {
 			setTitle('修改面试官');
