@@ -25,11 +25,11 @@ interface Iprops {
 
 const Itooltip: FC<Iprops> = ({ children, title, overlayInnerStyle, placement = 'top', color }) => {
 	return (
-		<div>
+		<>
 			<Tooltip placement={placement} overlayInnerStyle={overlayInnerStyle} color={color} title={title}>
 				{children}
 			</Tooltip>
-		</div>
+		</>
 	);
 };
 

@@ -14,7 +14,7 @@ const Interviewer = () => {
 	// 编辑卡片
 	const onCradEidt: ICradEidt = (type, value) => {
 		console.log(type, value);
-		if (type === '邀约下轮面试') {
+		if (type === '邀约面试') {
 			setTitle(type);
 			setVisible(true);
 		} else if (type === '关闭面试') {
@@ -24,7 +24,7 @@ const Interviewer = () => {
 		}
 	};
 
-	// 邀约下轮面试
+	// 邀约面试
 	const [title, setTitle] = useState('');
 	const [visible, setVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);

@@ -5,7 +5,7 @@ import getKey from '@/utils/onlyKey';
 import { Form, FormInstance } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
 
-// 邀约下轮面试
+// 邀约面试
 interface Iprops extends ImodalProps {
 	form: FormInstance;
 }
@@ -28,40 +28,40 @@ export const CradEidt: FC<Iprops> = ({ title, visible, confirmLoading, handleOk,
 // 下一轮面试
 const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 	const formList = [
-		{
-			type: 'rangePicker',
-			name: 'rangePicker1',
-			label: '可面试日期',
-			rules: [
-				{
-					required: true,
-					message: '请选择日期'
-				}
-			],
-			key: getKey(),
-			span: 24,
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		},
-		{
-			type: 'timeRangePicker',
-			name: 'timeRangePicker2',
-			label: '可面试时间',
-			rules: [
-				{
-					required: true,
-					message: '请选择时间'
-				}
-			],
-			key: getKey(),
-			span: 24,
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		},
+		// {
+		// 	type: 'rangePicker',
+		// 	name: 'rangePicker1',
+		// 	label: '可面试日期',
+		// 	rules: [
+		// 		{
+		// 			required: true,
+		// 			message: '请选择日期'
+		// 		}
+		// 	],
+		// 	key: getKey(),
+		// 	span: 24,
+		// 	layout: {
+		// 		labelCol: { span: 4 },
+		// 		wrapperCol: { span: 20 }
+		// 	}
+		// },
+		// {
+		// 	type: 'timeRangePicker',
+		// 	name: 'timeRangePicker2',
+		// 	label: '可面试时间',
+		// 	rules: [
+		// 		{
+		// 			required: true,
+		// 			message: '请选择时间'
+		// 		}
+		// 	],
+		// 	key: getKey(),
+		// 	span: 24,
+		// 	layout: {
+		// 		labelCol: { span: 4 },
+		// 		wrapperCol: { span: 20 }
+		// 	}
+		// },
 		{
 			type: 'select',
 			name: 'select3',

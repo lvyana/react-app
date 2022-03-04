@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Ifrom from '@/components/iForm';
+import { FORMITEM } from '@/components/iForm/type';
 import getKey from '@/utils/onlyKey';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -226,6 +227,23 @@ const Dynamicform = () => {
 				layout: {
 					labelCol: { span: 6 },
 					wrapperCol: { span: 18 }
+				}
+			},
+			{
+				type: 'timeRangePicker',
+				name: 'timeRangePicker2',
+				label: '可面试时间',
+				rules: [
+					{
+						required: true,
+						message: '请选择时间'
+					}
+				],
+				key: getKey(),
+				span: 24,
+				layout: {
+					labelCol: { span: 4 },
+					wrapperCol: { span: 20 }
 				}
 			},
 			{
@@ -533,7 +551,7 @@ const Dynamicform = () => {
 			style: { float: 'right' }
 		}
 	];
-	const [state, setstate] = useState(formList);
+	const [state, setstate] = useState<FORMITEM[]>(formList);
 	//表单
 	const [form] = Form.useForm();
 	const onFinish = (value: any) => {
