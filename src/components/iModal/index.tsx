@@ -7,7 +7,7 @@ export interface ImodalProps {
 	confirmLoading: boolean;
 	handleOk: () => void;
 	handleCancel: () => void;
-	width?: string;
+	width?: string | number;
 	maskClosable?: boolean;
 }
 interface Iprops extends ImodalProps {

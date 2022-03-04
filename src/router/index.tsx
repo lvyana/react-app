@@ -10,6 +10,8 @@ import Dynamicform from '@/views/dynamicform';
 import Interviewer from '@/views/interviewer';
 import ConfigureInterviewers from '@/views/configureInterviewers';
 import ScreenResumes from '@/views/screenResumes';
+import MyCenter from '@/views/myCenter';
+// const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
 // const Dynamicform = lazy(() => import('@/views/dynamicform')); //动态表单
 // const Layout = lazy(() => import('@/layout')); // Layout
 // const Expenses = lazy(() => import('@/views/expenses'));
@@ -45,6 +47,7 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 				path: 'screenResumes',
 				element: <Auth element={SuspenseLoad(<ScreenResumes />)} title="screenResumes" />
 			},
+			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} title="个人中心" /> },
 			{ path: '*', element: <Error404 /> }
 	  ]
 	: [
@@ -78,6 +81,7 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 						path: 'screenResumes',
 						element: <Auth element={SuspenseLoad(<ScreenResumes />)} title="screenResumes" />
 					},
+					{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} title="个人中心" /> },
 					{ path: '*', element: <Error404 /> }
 				]
 			}
