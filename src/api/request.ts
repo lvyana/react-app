@@ -26,8 +26,6 @@ var instance = axios.create({
 // 设置post请求头
 instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-instance.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';
-
 /**
  * 请求拦截器
  * 每次请求前，如果存在token则在请求头中携带token
