@@ -13,6 +13,8 @@
 		"@types/react": "^17.0.39",
 		"@types/react-copy-to-clipboard": "^5.0.2",
 		"@types/react-dom": "^17.0.11",
+		"@wangeditor/editor": "^0.15.11",
+		"@wangeditor/editor-for-react": "^0.6.23",
 		"animate.css": "^4.1.1",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",

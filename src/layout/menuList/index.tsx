@@ -50,6 +50,13 @@ export const menuList: router[] = [
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
 	},
+	{
+		title: '富文本',
+		path: '/richtextedit',
+		key: '9',
+		icon: 'icon-chuangyepeixunxiangmu',
+		menutype: 1
+	},
 	// 不显示在菜单中中
 	{
 		title: '个人中心',

@@ -11,6 +11,9 @@ import Interviewer from '@/views/interviewer';
 import ConfigureInterviewers from '@/views/configureInterviewers';
 import ScreenResumes from '@/views/screenResumes';
 import MyCenter from '@/views/myCenter';
+import RichTextEdit from '@/views/richTextEdit';
+
+// const RichTextEdit = lazy(() => import('@/views/richTextEdit')); //富文本编辑
 // const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
 // const Dynamicform = lazy(() => import('@/views/dynamicform')); //动态表单
 // const Layout = lazy(() => import('@/layout')); // Layout
@@ -47,6 +50,7 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 				path: 'screenResumes',
 				element: <Auth element={SuspenseLoad(<ScreenResumes />)} title="screenResumes" />
 			},
+			{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} title="富文本" /> },
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} title="个人中心" /> },
 			{ path: '*', element: <Error404 /> }
 	  ]
@@ -81,6 +85,7 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 						path: 'screenResumes',
 						element: <Auth element={SuspenseLoad(<ScreenResumes />)} title="screenResumes" />
 					},
+					{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} title="富文本" /> },
 					{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} title="个人中心" /> },
 					{ path: '*', element: <Error404 /> }
 				]
