@@ -8,8 +8,6 @@ import { errorCode, Message } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 type Type = 'error' | 'success' | 'info' | 'warn' | 'warning';
 
-// 全局配置axios ，注冊token、
-
 // 请求拦截器 引入加载圈
 console.log(process.env.REACT_APP_BASE_API);
 
@@ -37,6 +35,7 @@ instance.interceptors.request.use(
 		// 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
 		// 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
 
+		// 全局配置axios ，注冊token、
 		const token = getToken();
 
 		token && config.headers && (config.headers.Authorization = token);
@@ -49,8 +48,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
 	// 请求成功
 	(res: AxiosResponse) => {
-		console.log(res);
-
 		// 未设置状态码则默认成功状态
 		const code = res.data.code || 200;
 		const bizCode = res.data.bizCode || 20000;
@@ -59,8 +56,8 @@ instance.interceptors.response.use(
 		const msg = errorCode(code) || res.data.msg || errorCode('default');
 		if (code === 401) {
 			// 处理401
-			// notFind();
-			return Promise.reject(new Error('错误信息'));
+			// logonFailure();
+			return Promise.reject(new Error('登录失效'));
 		} else if (code === 500) {
 			message.error(msg);
 			return Promise.reject(new Error(msg));

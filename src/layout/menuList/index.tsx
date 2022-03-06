@@ -49,6 +49,15 @@ export const menuList: router[] = [
 		key: '5',
 		icon: 'icon-bingtu-huanxing',
 		menutype: 1
+	},
+	// 不显示在菜单中中
+	{
+		title: '个人中心',
+		path: '/mycenter',
+		key: '6',
+		icon: 'icon-bingtu-huanxing',
+		menutype: 1,
+		show: false
 	}
 ];
 const Menulist = () => {

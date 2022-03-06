@@ -1,4 +1,7 @@
-import { message } from 'antd';
+import { Modal, message } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
+const { confirm } = Modal;
 
 export const errorCode = (code: number | string) => {
 	let codeMsg;
@@ -18,4 +21,19 @@ export const Message = (type: string, msg: string) => {
 	if (type === 'error') {
 		return message.error(msg);
 	}
+};
+
+// 登录失效
+export const logonFailure = () => {
+	confirm({
+		title: 'Do you Want to delete these items?',
+		icon: <ExclamationCircleOutlined />,
+		content: 'Some descriptions',
+		onOk() {
+			console.log('OK');
+		},
+		onCancel() {
+			console.log('Cancel');
+		}
+	});
 };
