@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import 'animate.css';
-import './App.scss';
 import { useRoutes } from 'react-router-dom';
 import router from '@/router';
 import actions from '@/actions'; //导入实例
