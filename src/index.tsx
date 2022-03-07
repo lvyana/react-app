@@ -30,11 +30,9 @@ function render(props: any) {
 	ReactDOM.render(
 		<ConfigProvider locale={zhCN}>
 			<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? '/qiankun/react' : '/'}>
-				<ConfigProvider locale={zhCN}>
-					<Provider store={store}>
-						<App />
-					</Provider>
-				</ConfigProvider>
+				<Provider store={store}>
+					<App />
+				</Provider>
 			</BrowserRouter>
 		</ConfigProvider>,
 		container ? container.querySelector('#root') : document.querySelector('#root')
