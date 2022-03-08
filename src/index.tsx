@@ -26,14 +26,13 @@ interface Window {
 
 function render(props: any) {
 	const { container } = props;
-
 	ReactDOM.render(
 		<ConfigProvider locale={zhCN}>
-			<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? '/qiankun/react' : '/'}>
-				<Provider store={store}>
+			<Provider store={store}>
+				<BrowserRouter basename={(window as Window).__POWERED_BY_QIANKUN__ ? '/qiankun/react' : '/'}>
 					<App />
-				</Provider>
-			</BrowserRouter>
+				</BrowserRouter>
+			</Provider>
 		</ConfigProvider>,
 		container ? container.querySelector('#root') : document.querySelector('#root')
 	);

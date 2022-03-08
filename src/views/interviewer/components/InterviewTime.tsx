@@ -56,7 +56,7 @@ const InterviewTime = () => {
 export default InterviewTime;
 
 // 左侧日期
-const Icalendar = () => {
+export const Icalendar = () => {
 	function onPanelChange(value: Moment, mode: string) {
 		console.log(value, mode);
 	}
@@ -105,7 +105,7 @@ const Icalendar = () => {
 };
 
 // 右侧时间
-const DayTime = () => {
+export const DayTime = () => {
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
 	const handleChange = (tag: string, checked: boolean) => {

@@ -1,15 +1,29 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import Ifrom from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
-import { Form, FormInstance } from 'antd';
+import { Button, FormInstance, Row, Col } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
+import { Icalendar, DayTime } from './InterviewTime';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import Itransition from '@/components/iTransition';
 
 // 邀约面试
 interface Iprops extends ImodalProps {
 	form: FormInstance;
 }
-export const CradEidt: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, handleCancel, form }) => {
+const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, handleCancel, form }) => {
+	const [expand, setExpand] = useState(false);
+	const onIsExpand = () => {
+		setExpand(!expand);
+		if (expand) {
+			setHeight('0px');
+		} else {
+			setHeight('321px');
+		}
+	};
+	// 动画效果
+	const [height, setHeight] = useState('0px');
 	return (
 		<div>
 			<Imodal
@@ -20,48 +34,26 @@ export const CradEidt: FC<Iprops> = ({ title, visible, confirmLoading, handleOk,
 				handleCancel={handleCancel}
 				width="800px">
 				<NextInterviewsForm form={form}></NextInterviewsForm>
+				<Itransition title="查看可面试时间" minHeight="0px" maxHeight="321px">
+					<Row gutter={16}>
+						<Col span={10}>
+							<Icalendar></Icalendar>
+						</Col>
+						<Col span={14}>
+							<DayTime></DayTime>
+						</Col>
+					</Row>
+				</Itransition>
 			</Imodal>
 		</div>
 	);
 };
 
+export default NextInterviews;
+
 // 下一轮面试
 const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 	const formList = [
-		// {
-		// 	type: 'rangePicker',
-		// 	name: 'rangePicker1',
-		// 	label: '可面试日期',
-		// 	rules: [
-		// 		{
-		// 			required: true,
-		// 			message: '请选择日期'
-		// 		}
-		// 	],
-		// 	key: getKey(),
-		// 	span: 24,
-		// 	layout: {
-		// 		labelCol: { span: 4 },
-		// 		wrapperCol: { span: 20 }
-		// 	}
-		// },
-		// {
-		// 	type: 'timeRangePicker',
-		// 	name: 'timeRangePicker2',
-		// 	label: '可面试时间',
-		// 	rules: [
-		// 		{
-		// 			required: true,
-		// 			message: '请选择时间'
-		// 		}
-		// 	],
-		// 	key: getKey(),
-		// 	span: 24,
-		// 	layout: {
-		// 		labelCol: { span: 4 },
-		// 		wrapperCol: { span: 20 }
-		// 	}
-		// },
 		{
 			type: 'select',
 			name: 'select3',
@@ -168,6 +160,18 @@ const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 			layout: {
 				labelCol: { span: 8 },
 				wrapperCol: { span: 16 }
+			}
+		},
+		{
+			type: 'input',
+			name: 'name534',
+			label: '面试地址',
+			rules: [],
+			key: getKey(),
+			span: 24,
+			layout: {
+				labelCol: { span: 4 },
+				wrapperCol: { span: 20 }
 			}
 		},
 		{

@@ -28,7 +28,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 											<Row gutter={8}>
 												<Col span={19}>
 													<div>
-														<Itooltip placement="top" color={'purple'} title={'查看简历'}>
+														<Itooltip placement="top" color={'purple'} title={'查看联系人详情'}>
 															<Button type="link" style={{ padding: '4px 0' }}>
 																<span style={{ fontSize: '18px', fontWeight: 700 }}>苏大强</span>
 															</Button>

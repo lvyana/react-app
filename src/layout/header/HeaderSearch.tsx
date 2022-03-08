@@ -34,18 +34,16 @@ const HeaderSearch = () => {
 	return (
 		<span style={{ width: '200px', display: 'inline-block' }}>
 			{search ? (
-				<span className="animate__animated animate__fadeInRight ">
-					<Dropdown overlay={menu(searchList)}>
-						<Input
-							placeholder="搜索"
-							ref={searchRef}
-							suffix={suffix}
-							onBlur={inputOnBlur}
-							onChange={searchChange}
-							style={{ borderRadius: '32px' }}
-						/>
-					</Dropdown>
-				</span>
+				<Dropdown overlay={menu(searchList)}>
+					<Input
+						placeholder="搜索"
+						ref={searchRef}
+						suffix={suffix}
+						onBlur={inputOnBlur}
+						onChange={searchChange}
+						style={{ borderRadius: '32px' }}
+					/>
+				</Dropdown>
 			) : (
 				<Button type="link" style={{ marginLeft: '157px' }} onClick={checkbox}>
 					{suffix}

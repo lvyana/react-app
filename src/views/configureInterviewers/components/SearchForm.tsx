@@ -93,11 +93,9 @@ const SearchForm = () => {
 		console.log(value);
 	};
 	return (
-		<div className="animate__animated animate__fadeIn">
-			<Icard styles={{ padding: '16px 16px 0' }}>
-				<Ifrom formList={state} form={form} onFinish={onFinish} />
-			</Icard>
-		</div>
+		<Icard styles={{ padding: '16px 16px 0' }}>
+			<Ifrom formList={state} form={form} onFinish={onFinish} />
+		</Icard>
 	);
 };
 

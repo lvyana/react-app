@@ -1,29 +1,23 @@
 import React from 'react';
 import SearchForm from './components/SearchForm';
-import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
-import useHeaderTable, { ItableBt } from './components/headerTable';
 import { message } from 'antd';
+import ResumeInfo, { ICradEidt } from './components/ResumeInfo';
 
 const ScreenResumes = () => {
-	const buttonEvent = (type: string | number, value: ItableBt) => {
+	// 编辑卡片
+	const onCradEidt: ICradEidt = (type, value) => {
 		console.log(type, value);
-		if (type === '通过') {
-			message.success('通过已提成功');
-		} else if (type === '拒绝') {
-			message.success('拒绝已提成功');
-		}
 	};
-
-	const { columns } = useHeaderTable({ buttonEvent });
 
 	return (
 		<div>
-			<SearchForm></SearchForm>
+			<Icard styles={{ padding: '16px 16px 0' }}>
+				<SearchForm></SearchForm>
+			</Icard>
+
 			<div style={{ marginTop: '10px' }}>
-				<Icard>
-					<Itable columns={columns} data={data} />
-				</Icard>
+				<ResumeInfo onCradEidt={onCradEidt}></ResumeInfo>
 			</div>
 		</div>
 	);

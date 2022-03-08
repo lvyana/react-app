@@ -3,6 +3,9 @@ import Icard from '@/components/iCard';
 import Ifrom from '@/components/iForm';
 import { Form } from 'antd';
 import getKey from '@/utils/onlyKey';
+import { Tag } from 'antd';
+
+const { CheckableTag } = Tag;
 
 interface IsearchForm {
 	name: string;
@@ -29,7 +32,7 @@ const SearchForm = () => {
 		{
 			type: 'input',
 			name: 'name2',
-			label: '登录账号',
+			label: '岗位名称',
 			rules: [],
 			key: getKey(),
 			span: 5,
@@ -41,7 +44,7 @@ const SearchForm = () => {
 		{
 			type: 'input',
 			name: 'name4',
-			label: '手机号码',
+			label: '项目组',
 			rules: [],
 			key: getKey(),
 			span: 5,
@@ -53,7 +56,7 @@ const SearchForm = () => {
 		{
 			type: 'select',
 			name: 'select',
-			label: '关联项目',
+			label: '推荐单位',
 			rules: [],
 			key: getKey(),
 			span: 5,
@@ -93,12 +96,45 @@ const SearchForm = () => {
 		console.log(value);
 	};
 	return (
-		<div className="animate__animated animate__fadeIn">
-			<Icard styles={{ padding: '16px 16px 0' }}>
-				<Ifrom formList={state} form={form} onFinish={onFinish} />
-			</Icard>
-		</div>
+		<>
+			<Ifrom formList={state} form={form} onFinish={onFinish} />
+			<SearchTag></SearchTag>
+		</>
 	);
 };
 
 export default SearchForm;
+
+export const SearchTag = () => {
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
+	const tagsData = [
+		'简历待筛选',
+		'简历筛选通过',
+		'简历已筛选',
+		'简历筛选不通过',
+		'简历已收藏',
+		'今天推送简历',
+		'近三日推送简历',
+		'近七日推送简历'
+	];
+
+	const handleChange = (tag: string, checked: boolean) => {
+		const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter((t) => t !== tag);
+		console.log('You are interested in: ', nextSelectedTags);
+		setSelectedTags(nextSelectedTags);
+	};
+	return (
+		<div style={{ marginBottom: '10px', marginLeft: '50px' }}>
+			<span style={{ marginRight: 8, color: '#ccc' }}>快速搜索:</span>
+			{tagsData.map((tag) => (
+				<CheckableTag
+					style={{ fontSize: '14px' }}
+					key={tag}
+					checked={selectedTags.indexOf(tag) > -1}
+					onChange={(checked) => handleChange(tag, checked)}>
+					{tag}
+				</CheckableTag>
+			))}
+		</div>
+	);
+};

@@ -8,6 +8,8 @@ import {
 	IToolbarConfig // 工具栏配置
 } from '@wangeditor/editor';
 import { Button } from 'antd';
+import ILookModal from '@/components/iLookModal';
+import Preview from './components/Preview';
 
 export interface ISingleMenuConfig {
 	[key: string]: any;
@@ -44,17 +46,37 @@ const RichTextEdit = () => {
 		};
 	}, [editor]);
 
+	const [content, setContent] = useState('');
+	const [visible, setVisible] = useState(false);
 	const submit = () => {
 		console.log(editor?.children); // 节点对象
 		console.log(editor?.getHtml()); //获取非格式化的 html
 	};
+	const onPreview = () => {
+		console.log(editor?.getHtml());
+
+		setContent(editor?.getHtml() as string);
+		setVisible(true);
+	};
+	const handleCancel = () => {
+		setVisible(false);
+	};
 	return (
-		<div className="animate__animated animate__fadeIn" style={{ border: '1px solid #ccc', zIndex: 100 }}>
+		<div className="animate__animated animate__fadeIn">
 			<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
 			<Editor defaultConfig={editorConfig} defaultContent={defaultContent} mode="default" style={{ height: '500px' }} />
-			<Button type="primary" onClick={submit}>
-				提交
-			</Button>
+			<div style={{ marginTop: '10px' }}>
+				<Button type="primary" onClick={submit} style={{ marginRight: '5px' }}>
+					提交
+				</Button>
+				<Button type="primary" onClick={onPreview}>
+					预览
+				</Button>
+			</div>
+
+			<ILookModal title="预览模板" visible={visible} handleCancel={handleCancel}>
+				<Preview content={content}></Preview>
+			</ILookModal>
 		</div>
 	);
 };

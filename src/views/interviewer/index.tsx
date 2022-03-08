@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'antd';
 import SearchForm from './components/SearchForm';
 import InterviewerInfo, { ICradEidt } from './components/InterviewerInfo';
-import { CradEidt } from './components/NextInterviews';
+import NextInterviews from './components/NextInterviews';
 import InterviewRecords from './components/InterviewRecords';
 import InterviewTime from './components/InterviewTime';
 import useIconfirm from '@/components/iModal/Iconfirm';
@@ -67,14 +67,14 @@ const Interviewer = () => {
 				{/* 面试人员信息 */}
 				<InterviewerInfo onCradEidt={onCradEidt}></InterviewerInfo>
 			</div>
-			{/* 编辑功能 */}
-			<CradEidt
+			{/* 邀约面试 */}
+			<NextInterviews
 				form={form}
 				title={title}
 				visible={visible}
 				confirmLoading={confirmLoading}
 				handleOk={handleOk}
-				handleCancel={handleCancel}></CradEidt>
+				handleCancel={handleCancel}></NextInterviews>
 			{/* 查看面试记录 */}
 			<InterviewRecords lookRecords={lookRecords} setLookRecords={setLookRecords}></InterviewRecords>
 		</div>
