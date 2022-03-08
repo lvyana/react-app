@@ -4,7 +4,7 @@
  */
 import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
 import { message } from 'antd';
-import { errorCode, Message } from '@/utils/errorCode';
+import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 type Type = 'error' | 'success' | 'info' | 'warn' | 'warning';
 
@@ -56,7 +56,7 @@ instance.interceptors.response.use(
 		const msg = errorCode(code) || res.data.msg || errorCode('default');
 		if (code === 401) {
 			// 处理401
-			// logonFailure();
+			logonFailure();
 			return Promise.reject(new Error('登录失效'));
 		} else if (code === 500) {
 			message.error(msg);

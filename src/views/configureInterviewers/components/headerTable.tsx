@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tag, Switch } from 'antd';
 import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { AlignType } from '@/components/iTable';

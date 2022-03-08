@@ -1,6 +1,7 @@
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-
+import { clearToken } from './storage';
+import actions from '@/actions';
 const { confirm } = Modal;
 
 export const errorCode = (code: number | string) => {
@@ -26,11 +27,15 @@ export const Message = (type: string, msg: string) => {
 // 登录失效
 export const logonFailure = () => {
 	confirm({
-		title: 'Do you Want to delete these items?',
+		title: '系统提示',
 		icon: <ExclamationCircleOutlined />,
-		content: 'Some descriptions',
+		content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
+		okText: '重新登陆',
 		onOk() {
+			clearToken();
 			console.log('OK');
+			actions.setGlobalState({ token: '' });
+			window.location.href = '/login';
 		},
 		onCancel() {
 			console.log('Cancel');
