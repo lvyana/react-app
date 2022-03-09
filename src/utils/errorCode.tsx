@@ -35,7 +35,7 @@ export const logonFailure = () => {
 			clearToken();
 			console.log('OK');
 			actions.setGlobalState({ token: '' });
-			window.location.href = '/login';
+			// window.location.href = '/login';
 		},
 		onCancel() {
 			console.log('Cancel');

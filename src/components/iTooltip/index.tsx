@@ -15,6 +15,14 @@ type Iplacement =
 	| 'rightTop'
 	| 'rightBottom';
 
+/**
+ *
+ * children 子集内容
+ * overlayInnerStyle 样式
+ * placement 位置
+ * color 颜色
+ * title 显示内容
+ */
 interface Iprops {
 	children: ReactNode;
 	overlayInnerStyle?: object;

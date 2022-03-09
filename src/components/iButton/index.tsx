@@ -14,8 +14,8 @@ const Ibutton = ({ buttonList, loadingName, editBtn }: IBUTTON) => {
 				getPermiss(item.hasPermiss) ? (
 					<Button
 						key={i}
-						type={item.type}
-						onClick={() => editBtn && editBtn(item.name, item)}
+						type={item.btType}
+						onClick={() => editBtn && editBtn(item.type, item)}
 						disabled={item.disabled === true}
 						loading={loadingName === item.name}
 						size={size}

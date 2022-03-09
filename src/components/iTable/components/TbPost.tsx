@@ -5,10 +5,11 @@ import { ItbClick } from '@/components/iTable';
 export type InameList = (string | number)[];
 
 /**
+ * tbPost
  * type 定义事件类型
  * nameList 展示的数据集合
  * tbClick 表格事件
- *
+ * record 表格某一条数据
  */
 interface Iprops {
 	type: string;

@@ -135,7 +135,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
-					<DatePicker onChange={item.onChange} disabledDate={item.disabledDate} />
+					<DatePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} />
 				</Form.Item>
 			</Col>
 		);

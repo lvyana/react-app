@@ -1,5 +1,14 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Pagination } from 'antd';
+
+/**
+ * Paginations分页
+ * total 总条数
+ * pageNum 第几页
+ * setPageNum 更新pageNum
+ * pageSize 一页显示多少条
+ * setPageSize 更新pageSize
+ */
 interface Pagination {
 	total?: number; // 条数
 	pageNum: number;
@@ -7,6 +16,7 @@ interface Pagination {
 	setPageSize: Dispatch<SetStateAction<number>>;
 	setPageNum: Dispatch<SetStateAction<number>>;
 }
+
 const Paginations = ({ total, pageNum, setPageSize, pageSize, setPageNum }: Pagination) => {
 	const onChange = (page: number, pageSize: number | undefined) => {
 		console.log(page, pageSize);

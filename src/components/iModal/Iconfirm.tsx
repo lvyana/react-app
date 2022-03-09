@@ -4,8 +4,16 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { confirm } = Modal;
 
 type Icallback = () => void;
+/**
+ * Iconfirm
+ * title 标题
+ * callbackfn 接口回调函数
+ * content 内容
+ */
+type onConfirmType = (title: string, callbackfn: Icallback, content?: ReactNode) => void;
+
 const useIconfirm = () => {
-	const onConfirm = (title: string, callbackfn: Icallback, content?: ReactNode) => {
+	const onConfirm: onConfirmType = (title, callbackfn, content) => {
 		confirm({
 			title: title,
 			icon: <ExclamationCircleOutlined />,

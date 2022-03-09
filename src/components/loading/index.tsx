@@ -2,8 +2,19 @@ import React, { ReactNode, FC } from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import moduleCss from './index.module.scss';
+
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-const Loading: FC<{ loading?: boolean; children?: ReactNode | null }> = ({ children, loading }) => {
+
+/**
+ * Loading
+ * loading 状态
+ * children 子集内容
+ */
+interface Iprops {
+	loading?: boolean;
+	children?: ReactNode | null;
+}
+const Loading: FC<Iprops> = ({ children, loading }) => {
 	console.log(typeof loading === 'boolean');
 
 	// 判断 children 是否空对象

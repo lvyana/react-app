@@ -1,6 +1,16 @@
 import React, { FC, ReactNode } from 'react';
 import { Modal } from 'antd';
 
+/**
+ * 弹框
+ * title 标题
+ * visible 控制弹框打开关闭
+ * confirmLoading 确定按钮loading
+ * handleOk 确定事件回调
+ * handleCancel 取消事件回调
+ * width 宽度
+ * maskClosable 点击弹框之外是否关闭
+ */
 export interface ImodalProps {
 	title: string;
 	visible: boolean;

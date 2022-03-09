@@ -30,7 +30,7 @@ export const menuList: router[] = [
 		menutype: 1
 	},
 	{
-		title: '面试官',
+		title: '面试筛选',
 		path: '/interviewer',
 		key: '3',
 		icon: 'icon-bingtu-huanxing',

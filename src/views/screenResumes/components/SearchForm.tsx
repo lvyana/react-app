@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import Icard from '@/components/iCard';
 import Ifrom from '@/components/iForm';
 import { Form } from 'antd';
+import SearchTag, { onChangeType } from '@/components/iSearchTag';
 import getKey from '@/utils/onlyKey';
-import { Tag } from 'antd';
-
-const { CheckableTag } = Tag;
 
 interface IsearchForm {
 	name: string;
@@ -95,46 +93,24 @@ const SearchForm = () => {
 	const onFinish = (value: IsearchForm) => {
 		console.log(value);
 	};
+
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 	return (
 		<>
 			<Ifrom formList={state} form={form} onFinish={onFinish} />
-			<SearchTag></SearchTag>
+			<SearchTag selectedTags={selectedTags} setSelectedTags={setSelectedTags} tagsData={tagsData}></SearchTag>
 		</>
 	);
 };
 
 export default SearchForm;
-
-export const SearchTag = () => {
-	const [selectedTags, setSelectedTags] = useState<string[]>([]);
-	const tagsData = [
-		'简历待筛选',
-		'简历筛选通过',
-		'简历已筛选',
-		'简历筛选不通过',
-		'简历已收藏',
-		'今天推送简历',
-		'近三日推送简历',
-		'近七日推送简历'
-	];
-
-	const handleChange = (tag: string, checked: boolean) => {
-		const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter((t) => t !== tag);
-		console.log('You are interested in: ', nextSelectedTags);
-		setSelectedTags(nextSelectedTags);
-	};
-	return (
-		<div style={{ marginBottom: '10px', marginLeft: '50px' }}>
-			<span style={{ marginRight: 8, color: '#ccc' }}>快速搜索:</span>
-			{tagsData.map((tag) => (
-				<CheckableTag
-					style={{ fontSize: '14px' }}
-					key={tag}
-					checked={selectedTags.indexOf(tag) > -1}
-					onChange={(checked) => handleChange(tag, checked)}>
-					{tag}
-				</CheckableTag>
-			))}
-		</div>
-	);
-};
+const tagsData = [
+	'简历待筛选',
+	'简历筛选通过',
+	'简历已筛选',
+	'简历筛选不通过',
+	'简历已收藏',
+	'今天推送简历',
+	'近三日推送简历',
+	'近七日推送简历'
+];

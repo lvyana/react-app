@@ -2,10 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import Ifrom from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
-import { Button, FormInstance, Row, Col } from 'antd';
+import { FormInstance, Row, Col } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
 import { Icalendar, DayTime } from './InterviewTime';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import Itransition from '@/components/iTransition';
 
 // 邀约面试

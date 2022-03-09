@@ -6,6 +6,7 @@ import { menuList, router, excludeMenu } from '../menuList/index';
 const Crumb = () => {
 	const location = useLocation();
 	const [currentRouter, SetcurrentRouter] = useState<router[]>([]);
+
 	useEffect(() => {
 		console.log(location.pathname);
 		if (location.pathname.indexOf(excludeMenu[0]) !== -1) return;
@@ -24,6 +25,7 @@ const Crumb = () => {
 
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
+
 	const menu = (
 		<Menu>
 			<Menu.Item>
@@ -43,6 +45,7 @@ const Crumb = () => {
 			</Menu.Item>
 		</Menu>
 	);
+
 	return (
 		<div style={{ paddingLeft: '27px' }}>
 			<Breadcrumb>

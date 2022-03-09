@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Icard from '@/components/iCard';
 import Ifrom from '@/components/iForm';
 import { Form } from 'antd';
+import SearchTag, { onChangeType } from '@/components/iSearchTag';
 import getKey from '@/utils/onlyKey';
 
 interface IsearchForm {
@@ -20,7 +20,7 @@ const SearchForm = () => {
 			label: '姓名',
 			rules: [],
 			key: getKey(),
-			span: 6,
+			span: 5,
 			layout: {
 				labelCol: { span: 8 },
 				wrapperCol: { span: 16 }
@@ -32,7 +32,7 @@ const SearchForm = () => {
 			label: '岗位',
 			rules: [],
 			key: getKey(),
-			span: 6,
+			span: 5,
 			option: [
 				{
 					name: 'male',
@@ -56,7 +56,7 @@ const SearchForm = () => {
 			label: '推荐单位',
 			rules: [],
 			key: getKey(),
-			span: 6,
+			span: 5,
 			option: [
 				{
 					name: 'male',
@@ -80,7 +80,7 @@ const SearchForm = () => {
 			label: '候选人状态',
 			rules: [],
 			key: getKey(),
-			span: 6,
+			span: 5,
 			option: [
 				{
 					name: '进行中',
@@ -111,8 +111,8 @@ const SearchForm = () => {
 				{ type: 'onReset', name: '重置' }
 			],
 			key: getKey(),
-			span: 24,
-			style: { float: 'right' }
+			span: 4,
+			style: { marginLeft: '10px' }
 		}
 	];
 	const [state, setstate] = useState(formList);
@@ -120,13 +120,16 @@ const SearchForm = () => {
 	const onFinish = (value: IsearchForm) => {
 		console.log(value);
 	};
+
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 	return (
-		<div>
-			<Icard styles={{ padding: '16px 16px 0' }}>
-				<Ifrom formList={state} form={form} onFinish={onFinish} />
-			</Icard>
-		</div>
+		<>
+			<Ifrom formList={state} form={form} onFinish={onFinish} />
+			<SearchTag selectedTags={selectedTags} setSelectedTags={setSelectedTags} tagsData={tagsData}></SearchTag>
+		</>
 	);
 };
 
 export default SearchForm;
+
+const tagsData = ['待安排面试', '面试进行中', '面试通过', '面试不通过', '候选人放弃面试', '今日待面试'];

@@ -16,6 +16,7 @@ const InterviewRecords: FC<Iprops> = ({ lookRecords, setLookRecords }) => {
 			<Candidate></Candidate>
 			<Jobs></Jobs>
 			<Records></Records>
+			<InterviewResult></InterviewResult>
 		</ILookModal>
 	);
 };
@@ -23,27 +24,27 @@ const InterviewRecords: FC<Iprops> = ({ lookRecords, setLookRecords }) => {
 export default InterviewRecords;
 
 // 候选人
-const Candidate = () => {
+export const Candidate = () => {
 	return (
 		<>
 			<Descriptions title="候选人信息" column={4}>
 				<Descriptions.Item label="供应商">Zhou Maomao</Descriptions.Item>
 				<Descriptions.Item label="候选人姓名">1810000000</Descriptions.Item>
 				<Descriptions.Item label="性别">Hangzhou, Zhejiang</Descriptions.Item>
-				<Descriptions.Item label="联系人">empty</Descriptions.Item>
+				<Descriptions.Item label="联系方式">empty</Descriptions.Item>
 			</Descriptions>
 		</>
 	);
 };
 
 // 岗位
-const Jobs = () => {
+export const Jobs = () => {
 	return (
 		<>
 			<Descriptions title="岗位信息">
 				<Descriptions.Item label="项目组">Zhou Maomao</Descriptions.Item>
 				<Descriptions.Item label="岗位类别">1810000000</Descriptions.Item>
-				<Descriptions.Item label="岗位要求">Hangzhou, Zhejiang</Descriptions.Item>
+				<Descriptions.Item label="岗位职级">Hangzhou, Zhejiang</Descriptions.Item>
 				<Descriptions.Item label="城市">empty</Descriptions.Item>
 				<Descriptions.Item label="经验要求">empty</Descriptions.Item>
 			</Descriptions>
@@ -64,17 +65,35 @@ const Records = () => {
 						<Timeline.Item color={index % 2 === 0 ? 'red' : 'green'} key={index}>
 							<Descriptions title="" column={2}>
 								<Descriptions.Item label="面试轮次">Zhou Maomao</Descriptions.Item>
+								<Descriptions.Item label="当前轮次面试状态">Zhou Maomao</Descriptions.Item>
 								<Descriptions.Item label="面试方式">1810000000</Descriptions.Item>
-								<Descriptions.Item label="面试结果">Hangzhou, Zhejiang</Descriptions.Item>
 								<Descriptions.Item label="面试官">empty</Descriptions.Item>
-								<Descriptions.Item label="面试官电话">empty</Descriptions.Item>
-								<Descriptions.Item label="面试官邮箱">empty</Descriptions.Item>
-								<Descriptions.Item label="面试定级">只有终面才会出现</Descriptions.Item>
+								<Descriptions.Item label="面试日期">Hangzhou, Zhejiang</Descriptions.Item>
+								<Descriptions.Item label="面试时间">Hangzhou, Zhejiang</Descriptions.Item>
+								<Descriptions.Item label="综合打分">empty</Descriptions.Item>
+								<Descriptions.Item label="此轮面试结果">empty</Descriptions.Item>
+								<Descriptions.Item label="面试评价">empty</Descriptions.Item>
+								<br />
+								<Descriptions.Item label="面试关闭原因">empty</Descriptions.Item>
+								<br />
+								<Descriptions.Item label="评价时间">只有</Descriptions.Item>
 							</Descriptions>
 						</Timeline.Item>
 					);
 				})}
 			</Timeline>
+		</>
+	);
+};
+
+// 面试最终结果
+const InterviewResult = () => {
+	return (
+		<>
+			<Descriptions title="面试最终结果" column={2}>
+				<Descriptions.Item label="最终结果">Zhou Maomao</Descriptions.Item>
+				<Descriptions.Item label="面试定级">1810000000</Descriptions.Item>
+			</Descriptions>
 		</>
 	);
 };

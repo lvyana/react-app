@@ -26,7 +26,8 @@ const ConfigureInterviewers = () => {
 	const buttonList = [
 		{
 			name: '添加面试官',
-			type: 'primary' as BTtype
+			type: '添加面试官',
+			btType: 'primary' as BTtype
 		}
 	];
 	const editBtn: BTeditBtn = (type, value) => {

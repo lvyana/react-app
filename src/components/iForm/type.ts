@@ -3,40 +3,56 @@ import { Rule } from 'rc-field-form/lib/interface';
 import moment, { Moment } from 'moment';
 
 /**
- *
  * 动态表单集合
+ * type 类型
+ * name key
+ * label 表单名字
+ * rules 校验
+ * key 绑定唯一key
+ * disabled 禁用
+ * span formitem 宽度
+ * layout 样式
+ * onChange change事件
+ * mode 下拉多选
+ * placeholder 提示信息
+ * labelAlign label位置
+ * show 显示隐藏
+ * option 拉下..数据
+ * checkbox 下拉树多选
+ * fieldNames 修改option数据key
+ * maxLength 文本框字数限制
+ * style 按钮样式
+ * disabledDate 设置时间范围
+ * children 自定义组件内容
  */
 
 export interface FORMITEM {
-	type: string; //类型
-	name: string; //key
-	label?: string; //表单名字
-	rules?: Rule[] | undefined; //校验
-	key: string | number; //key
-	disabled?: boolean; //禁用
-	span?: number; //formitem 宽度
-	layout?: LAYOUT; //样式
-	onChange?: (e: any) => void; //change事件
-	mode?: MODE; // 下拉多选
-	placeholder?: string; //提示信息
-	labelAlign?: FormLabelAlign; //label位置
-	show?: boolean; //显示隐藏
-	option?: any[] | undefined; //拉下..数据
-	checkbox?: boolean; //下拉树多选
-	fieldNames?: fieldNamesType; //修改option数据key
-	maxLength?: number; //文本框字数
-	style?: object; //按钮外边距 float:'right'，
-	disabledDate?: (currentDate: Moment) => boolean; //设置时间范围
+	type: string;
+	name: string;
+	label?: string;
+	rules?: Rule[] | undefined;
+	key: string | number;
+	disabled?: boolean;
+	span?: number;
+	layout?: LAYOUT;
+	onChange?: (e: any) => void;
+	mode?: MODE;
+	placeholder?: string;
+	labelAlign?: FormLabelAlign;
+	show?: boolean;
+	option?: any[] | undefined;
+	checkbox?: boolean;
+	fieldNames?: fieldNamesType;
+	maxLength?: number;
+	style?: object;
+	disabledDate?: (currentDate: Moment) => boolean;
 	children?: ReactNode;
 }
 
-/**
- *
- * label
- */
-type FormLabelAlign = 'left' | 'right';
+export type FormLabelAlign = 'left' | 'right';
 
 export type MODE = 'multiple' | 'tags';
+
 /**
  *
  * lable 和 value 宽度比例
