@@ -11,7 +11,7 @@ const ScreenResumes = () => {
 	};
 
 	return (
-		<div>
+		<div className="animate__animated animate__fadeIn">
 			<Icard styles={{ padding: '16px 16px 0' }}>
 				<SearchForm></SearchForm>
 			</Icard>
@@ -24,14 +24,3 @@ const ScreenResumes = () => {
 };
 
 export default ScreenResumes;
-const data = [
-	{
-		key: '1',
-		name: 'John Brown',
-		nickName: 'Brown',
-		email: '1345646@qq.com',
-		phone: '12388845646',
-		project: ['nice', 'developer'],
-		status: '1'
-	}
-];

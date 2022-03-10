@@ -12,17 +12,6 @@ interface Iprops extends ImodalProps {
 	form: FormInstance;
 }
 const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, handleCancel, form }) => {
-	const [expand, setExpand] = useState(false);
-	const onIsExpand = () => {
-		setExpand(!expand);
-		if (expand) {
-			setHeight('0px');
-		} else {
-			setHeight('321px');
-		}
-	};
-	// 动画效果
-	const [height, setHeight] = useState('0px');
 	return (
 		<div>
 			<Imodal
@@ -50,7 +39,7 @@ const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, 
 
 export default NextInterviews;
 
-// 下一轮面试
+// 邀约面试
 const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 	const formList = [
 		{

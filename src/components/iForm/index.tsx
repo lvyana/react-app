@@ -23,7 +23,6 @@ import { RootState } from '@/redux/store';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { FORMITEM } from './type';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
-import styles from '@/styles/index.module.scss';
 
 const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
@@ -321,7 +320,7 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 				<Row style={item.style}>
 					{item.option?.map((value, i) => {
 						return (
-							<Col key={i} className={styles.mr10}>
+							<Col key={i} className="mr10">
 								{getBtType(value.type, value.name)}
 							</Col>
 						);

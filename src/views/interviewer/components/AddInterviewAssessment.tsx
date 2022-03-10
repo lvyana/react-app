@@ -187,6 +187,7 @@ const AddInterviewAssessment: FC<Iprops> = ({ visibleAssessment, setVisibleAsses
 				width="600px">
 				<Candidate></Candidate>
 				<Jobs></Jobs>
+				<div className="ant-descriptions-title mb10 mt10">面试评价</div>
 				<Ifrom formList={formList} form={form} />
 			</Imodal>
 		</div>

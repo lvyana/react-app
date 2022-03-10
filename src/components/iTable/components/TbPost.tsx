@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import styles from '@/styles/index.module.scss';
 import { ItbClick } from '@/components/iTable';
 
 export type InameList = (string | number)[];
@@ -21,10 +20,10 @@ interface Iprops {
 const Post: FC<Iprops> = ({ type, nameList, record, tbClick }) => {
 	return (
 		<div style={{ width: '200px' }}>
-			<span onClick={() => tbClick && tbClick(type, record)} className={styles.omit}>
+			<span onClick={() => tbClick && tbClick(type, record)} className="omit">
 				{(nameList[0] ? nameList[0] : '') + (nameList[0] && nameList[1] ? ' · ' : '') + (nameList[1] ? nameList[1] + ' ' : '')}
 			</span>
-			<div className={styles.omit}>
+			<div className="omit">
 				{nameList[2] ? nameList[2] : ''}
 				{nameList[2] && ((nameList[3] && nameList[4]) || nameList[5]) ? ' · ' : ''}
 				{nameList[3] == nameList[4]

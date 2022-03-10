@@ -10,6 +10,7 @@ import { Modal } from 'antd';
  * handleCancel 关闭事件
  * footer 自定义按钮
  * width 宽度
+ * destroyOnClose 关闭时销毁 Modal 里的子元素
  */
 interface Iprops {
 	children: ReactNode;
@@ -19,11 +20,28 @@ interface Iprops {
 	handleCancel?: () => void;
 	footer?: ReactNode[];
 	width?: string;
+	destroyOnClose?: boolean;
 }
-const ILookModal: FC<Iprops> = ({ children, visible, title, handleOk, handleCancel, footer = [], width = '500px' }) => {
+const ILookModal: FC<Iprops> = ({
+	children,
+	visible,
+	title,
+	handleOk,
+	handleCancel,
+	footer = [],
+	width = '500px',
+	destroyOnClose = true
+}) => {
 	return (
 		<div>
-			<Modal visible={visible} title={title} onOk={handleOk} onCancel={handleCancel} footer={footer} width={width}>
+			<Modal
+				visible={visible}
+				title={title}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={footer}
+				width={width}
+				destroyOnClose={destroyOnClose}>
 				{children}
 			</Modal>
 		</div>

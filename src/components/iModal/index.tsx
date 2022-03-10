@@ -10,6 +10,7 @@ import { Modal } from 'antd';
  * handleCancel 取消事件回调
  * width 宽度
  * maskClosable 点击弹框之外是否关闭
+ * destroyOnClose 关闭时销毁 Modal 里的子元素
  */
 export interface ImodalProps {
 	title: string;
@@ -19,6 +20,7 @@ export interface ImodalProps {
 	handleCancel: () => void;
 	width?: string | number;
 	maskClosable?: boolean;
+	destroyOnClose?: boolean;
 }
 interface Iprops extends ImodalProps {
 	children: ReactNode;
@@ -31,7 +33,8 @@ const Imodal: FC<Iprops> = ({
 	confirmLoading,
 	handleCancel,
 	width = '500px',
-	maskClosable = false
+	maskClosable = false,
+	destroyOnClose = true
 }) => {
 	return (
 		<div>
@@ -42,7 +45,8 @@ const Imodal: FC<Iprops> = ({
 				onOk={handleOk}
 				onCancel={handleCancel}
 				width={width}
-				maskClosable={maskClosable}>
+				maskClosable={maskClosable}
+				destroyOnClose={destroyOnClose}>
 				{children}
 			</Modal>
 		</div>

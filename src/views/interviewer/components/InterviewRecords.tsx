@@ -15,8 +15,8 @@ const InterviewRecords: FC<Iprops> = ({ lookRecords, setLookRecords }) => {
 		<ILookModal visible={lookRecords} title="查看面试记录" handleCancel={handleCancel} width={'750px'}>
 			<Candidate></Candidate>
 			<Jobs></Jobs>
-			<Records></Records>
 			<InterviewResult></InterviewResult>
+			<Records></Records>
 		</ILookModal>
 	);
 };
@@ -41,7 +41,7 @@ export const Candidate = () => {
 export const Jobs = () => {
 	return (
 		<>
-			<Descriptions title="岗位信息">
+			<Descriptions title="岗位信息" className="mt10">
 				<Descriptions.Item label="项目组">Zhou Maomao</Descriptions.Item>
 				<Descriptions.Item label="岗位类别">1810000000</Descriptions.Item>
 				<Descriptions.Item label="岗位职级">Hangzhou, Zhejiang</Descriptions.Item>
@@ -56,7 +56,9 @@ export const Jobs = () => {
 const Records = () => {
 	return (
 		<>
-			<div style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold', fontSize: '16px', lineHeight: '1.5715', marginBottom: '20px' }}>
+			<div
+				className="mt10"
+				style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold', fontSize: '16px', lineHeight: '1.5715', marginBottom: '20px' }}>
 				面试记录
 			</div>
 			<Timeline>
@@ -90,7 +92,7 @@ const Records = () => {
 const InterviewResult = () => {
 	return (
 		<>
-			<Descriptions title="面试最终结果" column={2}>
+			<Descriptions title="面试最终结果" column={2} className="mt10">
 				<Descriptions.Item label="最终结果">Zhou Maomao</Descriptions.Item>
 				<Descriptions.Item label="面试定级">1810000000</Descriptions.Item>
 			</Descriptions>

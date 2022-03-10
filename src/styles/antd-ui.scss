@@ -1,0 +1,15 @@
+// ant组件
+// Descriptions 组件样式修改
+.ant-descriptions-row > th,
+.ant-descriptions-row > td {
+	padding-bottom: 4px;
+}
+
+.ant-descriptions-header {
+	margin-bottom: 10px;
+}
+
+// 表单
+.ant-row .ant-form-item {
+	margin-bottom: 16px;
+}

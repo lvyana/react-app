@@ -6,6 +6,7 @@ import actions from '@/actions'; //导入实例
 import { setToken } from '@/utils/storage';
 import { useDispatch } from 'react-redux';
 import { setPermiss } from '@/redux/actions/user';
+import '@/styles/index.scss';
 
 function App() {
 	const dispatch = useDispatch();

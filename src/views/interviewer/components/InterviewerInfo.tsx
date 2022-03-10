@@ -56,43 +56,35 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 											/>
 										</Col>
 										<Col flex="auto">
-											<Row gutter={8}>
-												<Col span={19}>
-													<div>
-														<Itooltip placement="top" color={'purple'} title={'查看联系人详情'}>
-															<Button type="link" style={{ padding: '4px 0' }}>
-																<span style={{ fontSize: '18px', fontWeight: 700 }}>苏大强</span>
-															</Button>
-														</Itooltip>
-														<span style={{ marginLeft: '5px' }}>
-															<Itooltip placement="top" color={'purple'} title={'查看面试记录'}>
-																<Button
-																	type="link"
-																	style={{ padding: '4px 0' }}
-																	onClick={() => onCradEidt('查看面试记录', item)}>
-																	<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
-																</Button>
-															</Itooltip>
-														</span>
-													</div>
-													<div style={{ fontSize: '12px', color: '#ccc' }}>
-														<div>数据应用-测试</div>
-														<div>深圳市 初二级 一年以上</div>
-													</div>
-												</Col>
-												<Col span={5}>
-													<div style={{ width: '100%', height: '100%', position: 'relative' }}>
-														<IconFont
-															type="icon-lianxi-yiguoqi"
-															style={{
-																fontSize: '60px',
-																position: 'absolute',
-																top: '-16px',
-																right: '-16px'
-															}}></IconFont>
-													</div>
-												</Col>
-											</Row>
+											<div>
+												<Itooltip placement="top" color={'purple'} title={'查看联系人详情'}>
+													<Button type="link" style={{ padding: '4px 0' }}>
+														<span style={{ fontSize: '18px', fontWeight: 700 }}>苏大强</span>
+													</Button>
+												</Itooltip>
+												<span style={{ marginLeft: '5px' }}>
+													<Itooltip placement="top" color={'purple'} title={'查看面试记录'}>
+														<Button
+															type="link"
+															style={{ padding: '4px 0' }}
+															onClick={() => onCradEidt('查看面试记录', item)}>
+															<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
+														</Button>
+													</Itooltip>
+												</span>
+											</div>
+											<div style={{ fontSize: '12px', color: '#ccc' }}>
+												<div>数据应用-测试</div>
+												<div>深圳市 初二级 一年以上</div>
+											</div>
+											<IconFont
+												type="icon-lianxi-yiguoqi"
+												style={{
+													fontSize: '60px',
+													position: 'absolute',
+													top: '-16px',
+													right: '-12px'
+												}}></IconFont>
 										</Col>
 									</Row>
 								</div>

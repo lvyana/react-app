@@ -90,7 +90,7 @@ const Expenses = () => {
 	};
 
 	return (
-		<div>
+		<div className="animate__animated animate__fadeIn">
 			<h2>Expenses</h2>
 			<Icard>
 				<Itable columns={columns} data={data} />
