@@ -5,7 +5,7 @@ import useHeaderTable, { ItableBt } from './components/headerTable';
 import { pageData } from './service';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
-
+import InfiniteListExample from './components/scoll';
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: ItableBt) => {
 		console.log(type, value);
@@ -97,6 +97,7 @@ const Expenses = () => {
 			</Icard>
 
 			<div id="char" ref={char}></div>
+			<InfiniteListExample></InfiniteListExample>
 		</div>
 	);
 };

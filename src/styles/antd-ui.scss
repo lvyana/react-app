@@ -13,3 +13,10 @@
 .ant-row .ant-form-item {
 	margin-bottom: 16px;
 }
+
+// 实现滚动自动加载列表
+.infinite-scroll-component__outerdiv{
+	.infinite-scroll-component {
+		overflow: hidden !important;
+	}
+}

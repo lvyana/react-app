@@ -47,7 +47,10 @@ const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 												<Col span={5}>
 													<div style={{ width: '100%', height: '100%' }}>
 														<Itooltip placement="top" color={'purple'} title={'收藏'}>
-															<IconFont type="icon-star" style={{ fontSize: '24px' }}></IconFont>
+															<IconFont type="icon-shoucang1" style={{ fontSize: '24px' }}></IconFont>
+														</Itooltip>
+														<Itooltip placement="top" color={'purple'} title={'已收藏'}>
+															<IconFont type="icon-shoucang" style={{ fontSize: '24px' }}></IconFont>
 														</Itooltip>
 													</div>
 												</Col>

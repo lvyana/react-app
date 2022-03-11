@@ -1,4 +1,10 @@
 @import './antd-ui.scss';
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
 .omit {
 	width: 100%;
 	overflow: hidden; /*超出部分隐藏*/
