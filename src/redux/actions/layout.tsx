@@ -1,6 +1,5 @@
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { SIZE, editorSizeType } from '../constant/layout';
 
-import { SIZE } from '../constant/layout';
-export const editorSize = (value: SizeType) => {
+export const editorSize: editorSizeType = (value) => {
 	return { type: SIZE, value };
 };

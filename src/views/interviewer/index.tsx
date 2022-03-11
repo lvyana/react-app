@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { Form } from 'antd';
+import { Form, Col, Row } from 'antd';
 import SearchForm from './components/SearchForm';
 import InterviewerInfo, { ICradEidt } from './components/InterviewerInfo';
 import NextInterviews from './components/NextInterviews';
 import InterviewRecords from './components/InterviewRecords';
 import InterviewTime from './components/InterviewTime';
-import useIconfirm from '@/components/iModal/Iconfirm';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom, { FORMtype } from '@/components/iForm';
 import AddInterviewAssessment from './components/AddInterviewAssessment';
 import Icard from '@/components/iCard';
+import { BulkOperation, CloseRound } from './components/EditBt';
 import { pageData } from './service';
-import getKey from '@/utils/onlyKey';
 
 const Interviewer = () => {
-	const { onConfirm } = useIconfirm();
-
 	// 编辑卡片
 	const onCradEidt: ICradEidt = (type, value) => {
 		console.log(type, value);
@@ -35,6 +31,7 @@ const Interviewer = () => {
 	const [title, setTitle] = useState('');
 	const [visible, setVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
+
 	//表单
 	const [form] = Form.useForm();
 
@@ -78,17 +75,31 @@ const Interviewer = () => {
 		roundForm.resetFields(); //重置表单数据
 		setVisibleRound(false);
 	};
+
 	// 查看面试记录
 	const [lookRecords, setLookRecords] = useState(false);
+
 	// 填写本轮面试评价
 	const [visibleAssessment, setVisibleAssessment] = useState(false);
+
+	// 批量操作
+	const onBulkOperation = () => {};
+
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Icard styles={{ padding: '16px 16px 0' }}>
 				<SearchForm></SearchForm>
 			</Icard>
 			{/* 添加面试时间 */}
-			<InterviewTime></InterviewTime>
+			<Row gutter={8} style={{ marginTop: '10px' }}>
+				<Col>
+					<InterviewTime></InterviewTime>
+				</Col>
+				<Col>
+					<BulkOperation onBulkOperation={onBulkOperation}></BulkOperation>
+				</Col>
+			</Row>
+
 			<div style={{ marginTop: '10px' }}>
 				{/* 面试人员信息 */}
 				<InterviewerInfo onCradEidt={onCradEidt}></InterviewerInfo>
@@ -122,28 +133,3 @@ const Interviewer = () => {
 };
 
 export default Interviewer;
-
-// 关闭本轮面试
-const CloseRound = ({ roundForm }: { roundForm: FORMtype }) => {
-	// 参数
-	const formList = [
-		{
-			type: 'textArea',
-			name: 'textArea',
-			label: '关闭理由',
-			rules: [{ required: true, message: '请输入关闭理由' }],
-			key: getKey(),
-			span: 24,
-			maxLength: 150,
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		}
-	];
-	return (
-		<>
-			<Ifrom formList={formList} form={roundForm} />
-		</>
-	);
-};

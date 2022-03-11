@@ -1,5 +1,5 @@
-import { SIZE } from '../constant/layout';
-type SizeType = 'small' | 'middle' | 'large' | undefined;
+import { SIZE, SizeType, layoutActions } from '../constant/layout';
+
 export interface TabPaneListType {
 	path: string;
 	key: string;
@@ -11,12 +11,12 @@ interface initialStateType {
 let initialState: initialStateType = {
 	size: 'middle'
 };
-const layout = (state = initialState, action: { type: string; value: string }) => {
-	let newState = JSON.parse(JSON.stringify(state));
+const layout = (state = initialState, action: layoutActions) => {
+	let newState: initialStateType = JSON.parse(JSON.stringify(state));
 	let { type, value } = action;
 	switch (type) {
 		case SIZE:
-			newState.size = value;
+			newState[SIZE] = value;
 			return newState;
 		default:
 			return newState;

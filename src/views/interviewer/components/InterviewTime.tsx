@@ -29,7 +29,7 @@ const InterviewTime = () => {
 		setVisible(false);
 	};
 	return (
-		<div style={{ marginTop: '10px' }}>
+		<div>
 			<Button type="primary" onClick={setTime}>
 				配置可面试时间
 			</Button>

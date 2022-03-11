@@ -1,7 +1,7 @@
-import { PHOTO, TOKEN, PERMISS } from '../constant/user';
+import { PHOTO, setPhotoType, TOKEN, PERMISS } from '../constant/user';
 
 // 头像
-export const setPhoto = (value: string) => {
+export const setPhoto: setPhotoType = (value) => {
 	return { type: PHOTO, value };
 };
 
