@@ -1,52 +1,53 @@
 import React, { FC, useState } from 'react';
-import { Avatar, Descriptions, Row, Col, Button, Form, Dropdown } from 'antd';
+import { Avatar, Descriptions, Row, Col, Button, message } from 'antd';
 import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
-import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom, { FormInstance } from '@/components/iForm';
-import getKey from '@/utils/onlyKey';
-import { FORMITEM } from '@/components/iForm/type';
 
 export type ICradEidt = (type: string, value: object) => void;
+/**
+ *
+ * onCradEidt 卡片内的操作功能
+ * selectId 选中的卡片
+ * setSelectId 更新选中的卡片
+ * isBulk 是否可批量操作
+ * bulkOperationLoading 提交批量操作中
+ */
 interface Iprops {
 	onCradEidt: ICradEidt;
+	selectId: (string | number)[];
+	setSelectId: React.Dispatch<React.SetStateAction<(string | number)[]>>;
+	isBulk: boolean;
+	bulkOperationLoading: boolean;
 }
-const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
-	// 确认面试结果
-	const onConfirmInterviewResults = (type: string, value: object) => {
-		setVisible(true);
+const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId, bulkOperationLoading }) => {
+	// 选中卡片
+	const onSelectCard = (index: number) => {
+		if (isBulk) return;
+		if (bulkOperationLoading) {
+			return message.warning('提交中不可操作');
+		}
+		let isSelect = selectId.indexOf(index) === -1;
+		if (isSelect) {
+			setSelectId([...selectId, index]);
+		} else {
+			let newSelectId = selectId.filter((item) => item !== index);
+			setSelectId(newSelectId);
+		}
 	};
-	//表单
-	const [form] = Form.useForm();
-	const [visible, setVisible] = useState(false);
-	const [confirmLoading, setConfirmLoading] = useState(false);
-
-	const handleOk = async () => {
-		try {
-			// 校验表单
-			const values = await form.validateFields();
-			setConfirmLoading(true);
-			setTimeout(() => {
-				form.resetFields(); //重置表单数据
-				setConfirmLoading(false);
-				setVisible(false);
-			}, 2000);
-		} catch (error) {}
-	};
-
-	const handleCancel = () => {
-		form.resetFields(); //重置表单数据
-		setVisible(false);
-	};
-
 	return (
 		<div>
 			<Row gutter={16}>
 				{[{}, {}, {}, {}, {}, {}, {}, {}].map((item, i) => {
 					return (
-						<Col span={6} style={{ marginBottom: '10px' }} key={i}>
-							<Icard key={i}>
+						<Col span={6} style={{ marginBottom: '10px' }} key={i} onClick={() => onSelectCard(i)}>
+							<Icard
+								key={i}
+								styles={{
+									padding: '16px',
+									boxShadow: isBulk ? '' : '5px 5px 5px skyblue',
+									border: selectId.indexOf(i) > -1 ? '2px solid blue' : ''
+								}}>
 								<div style={{ height: '70px' }}>
 									<Row gutter={8}>
 										<Col flex="70px">
@@ -113,7 +114,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 									</Col>
 									<Col className="gutter-row" span={6}>
 										<Itooltip placement="top" color={'purple'} title={'确认最终面试结果'}>
-											<Button type="link" onClick={() => onConfirmInterviewResults('确认最终面试结果', item)}>
+											<Button type="link" onClick={() => onCradEidt('确认最终面试结果', item)}>
 												<IconFont type="icon-iconfont_yinzhangguanli" style={{ fontSize: '24px' }}></IconFont>
 											</Button>
 										</Itooltip>
@@ -131,97 +132,8 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 					);
 				})}
 			</Row>
-			{/* 确认面试结果 */}
-			<Imodal
-				title="确认最终面试结果"
-				visible={visible}
-				confirmLoading={confirmLoading}
-				handleOk={handleOk}
-				handleCancel={handleCancel}
-				width="600px">
-				<ConfirmInterviewResult form={form}></ConfirmInterviewResult>
-			</Imodal>
 		</div>
 	);
 };
 
 export default InterviewerInfo;
-
-const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
-	// 参数
-	const addFormList = [
-		{
-			type: 'select',
-			name: 'select',
-			label: '面试结果',
-			rules: [],
-			key: getKey(),
-			span: 24,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		},
-		{
-			type: 'select',
-			name: 'selec2t',
-			label: '面试定级',
-			rules: [],
-			key: getKey(),
-			span: 24,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		},
-		{
-			type: 'textArea',
-			name: 'textArea',
-			label: '注意事项',
-			rules: [],
-			key: getKey(),
-			span: 24,
-			maxLength: 150,
-			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
-			}
-		}
-	];
-	const [state, setstate] = useState<FORMITEM[]>(addFormList);
-	// 确认面试结果
-	return (
-		<>
-			<Descriptions>
-				<Descriptions.Item label="候选人">Zhou</Descriptions.Item>
-				<Descriptions.Item label="岗位名称">数据应用-测试</Descriptions.Item>
-				<Descriptions.Item label="岗位职级">初级-中级</Descriptions.Item>
-			</Descriptions>
-			<Ifrom formList={state} form={form} />
-		</>
-	);
-};

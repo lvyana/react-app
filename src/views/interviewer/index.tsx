@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Col, Row } from 'antd';
 import SearchForm from './components/SearchForm';
 import InterviewerInfo, { ICradEidt } from './components/InterviewerInfo';
@@ -8,7 +8,7 @@ import InterviewTime from './components/InterviewTime';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import AddInterviewAssessment from './components/AddInterviewAssessment';
 import Icard from '@/components/iCard';
-import { BulkOperation, CloseRound } from './components/EditBt';
+import { BulkOperation, CloseRound, ConfirmInterviewResults } from './components/EditBt';
 import { pageData } from './service';
 
 const Interviewer = () => {
@@ -24,6 +24,8 @@ const Interviewer = () => {
 			setLookRecords(true);
 		} else if (type === '填写本轮面试评价') {
 			setVisibleAssessment(true);
+		} else if (type === '确认最终面试结果') {
+			setVisibleResults(true);
 		}
 	};
 
@@ -82,9 +84,29 @@ const Interviewer = () => {
 	// 填写本轮面试评价
 	const [visibleAssessment, setVisibleAssessment] = useState(false);
 
-	// 批量操作
-	const onBulkOperation = () => {};
+	// 确认最终面试结果
+	const [visibleResults, setVisibleResults] = useState(false);
 
+	// 批量操作
+	const [isBulk, setIsBulk] = useState(true);
+	const [selectId, setSelectId] = useState<(string | number)[]>([]);
+	const [bulkOperationLoading, setBulkOperationLoading] = useState(false);
+	const onBulkOperation = () => {
+		setIsBulk(!isBulk);
+	};
+	useEffect(() => {
+		if (isBulk) {
+			setSelectId([]);
+		}
+	}, [isBulk]);
+	// 提交操作
+	const submitBulkOperation = () => {
+		setBulkOperationLoading(true);
+		setTimeout(() => {
+			onBulkOperation();
+			setBulkOperationLoading(false);
+		}, 2000);
+	};
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Icard styles={{ padding: '16px 16px 0' }}>
@@ -96,13 +118,22 @@ const Interviewer = () => {
 					<InterviewTime></InterviewTime>
 				</Col>
 				<Col>
-					<BulkOperation onBulkOperation={onBulkOperation}></BulkOperation>
+					<BulkOperation
+						onBulkOperation={onBulkOperation}
+						submitBulkOperation={submitBulkOperation}
+						isBulk={isBulk}
+						bulkOperationLoading={bulkOperationLoading}></BulkOperation>
 				</Col>
 			</Row>
 
 			<div style={{ marginTop: '10px' }}>
 				{/* 面试人员信息 */}
-				<InterviewerInfo onCradEidt={onCradEidt}></InterviewerInfo>
+				<InterviewerInfo
+					onCradEidt={onCradEidt}
+					isBulk={isBulk}
+					selectId={selectId}
+					setSelectId={setSelectId}
+					bulkOperationLoading={bulkOperationLoading}></InterviewerInfo>
 			</div>
 			{/* 邀约面试 */}
 			<NextInterviews
@@ -128,6 +159,8 @@ const Interviewer = () => {
 			<AddInterviewAssessment
 				visibleAssessment={visibleAssessment}
 				setVisibleAssessment={setVisibleAssessment}></AddInterviewAssessment>
+			{/* 确认最终面试结果 */}
+			<ConfirmInterviewResults visibleResults={visibleResults} setVisibleResults={setVisibleResults}></ConfirmInterviewResults>
 		</div>
 	);
 };
