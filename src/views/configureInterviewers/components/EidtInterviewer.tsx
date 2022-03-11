@@ -1,13 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Button, Form } from 'antd';
-import Ifrom, { FORMtype } from '@/components/iForm';
+import Ifrom, { FormInstance } from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
 
 interface Iprops {
-	form: FORMtype;
+	form: FormInstance;
 	type?: string;
 }
 const EidtInterviewer: FC<Iprops> = ({ form, type }) => {

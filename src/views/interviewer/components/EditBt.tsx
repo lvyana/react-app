@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button } from 'antd';
 import getKey from '@/utils/onlyKey';
-import Ifrom, { FORMtype } from '@/components/iForm';
+import Ifrom, { FormInstance } from '@/components/iForm';
 
 interface Iprops {
 	onBulkOperation: () => void;
@@ -16,7 +16,7 @@ export const BulkOperation: FC<Iprops> = ({ onBulkOperation }) => {
 };
 
 // 关闭本轮面试
-export const CloseRound = ({ roundForm }: { roundForm: FORMtype }) => {
+export const CloseRound = ({ roundForm }: { roundForm: FormInstance }) => {
 	// 参数
 	const formList = [
 		{

@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom, { FORMtype } from '@/components/iForm';
+import Ifrom, { FormInstance } from '@/components/iForm';
 import { Form, Rate } from 'antd';
 import { Candidate, Jobs } from './InterviewRecords';
 import getKey from '@/utils/onlyKey';

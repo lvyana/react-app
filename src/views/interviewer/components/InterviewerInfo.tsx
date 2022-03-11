@@ -4,7 +4,7 @@ import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom, { FORMtype } from '@/components/iForm';
+import Ifrom, { FormInstance } from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { FORMITEM } from '@/components/iForm/type';
 
@@ -147,7 +147,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt }) => {
 
 export default InterviewerInfo;
 
-const ConfirmInterviewResult = ({ form }: { form: FORMtype }) => {
+const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
 	// 参数
 	const addFormList = [
 		{

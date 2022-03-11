@@ -28,10 +28,10 @@ const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
 
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
-export type FORMtype = FormInstance;
+export type { FormInstance };
 interface PropsType {
 	formList?: FORMITEM[];
-	form: FORMtype;
+	form: FormInstance;
 	onFinish?: ((values?: any) => void) | undefined;
 	setReset?: () => void;
 	num?: number;
