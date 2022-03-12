@@ -5,6 +5,7 @@ import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from '@/components/loading';
+import styles from '../index.module.scss';
 
 export type ICradEidt = (type: string, value: object) => void;
 /**
@@ -55,9 +56,9 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 	return (
 		<div
 			id="scrollableDiv"
+			className={styles.scrollableDiv}
 			style={{
-				height: 450,
-				overflow: 'auto'
+				height: 450
 			}}>
 			<InfiniteScroll
 				dataLength={data.length}
