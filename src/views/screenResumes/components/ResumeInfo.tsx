@@ -1,18 +1,34 @@
-import React, { FC } from 'react';
-import { Avatar, Descriptions, Row, Col, Button, Menu, Dropdown } from 'antd';
+import React, { FC, useState } from 'react';
+import { Avatar, Descriptions, Row, Col, Button, Divider, Dropdown } from 'antd';
 import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
+import IinfiniteScroll from '@/components/iInfiniteScroll';
 
 export type ICradEidt = (type: string, value: object) => void;
 interface Iprops {
 	onCradEidt: ICradEidt;
 }
 const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
+	// 懒加载
+	const [loading, setLoading] = useState(false);
+	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+	const loadMoreDataApi = () => {
+		setTimeout(() => {
+			setData([...data, ...data]);
+			setLoading(false);
+		}, 1500);
+	};
 	return (
-		<div>
+		<IinfiniteScroll
+			current={data.length}
+			total={50}
+			loading={loading}
+			setLoading={setLoading}
+			height={450}
+			loadMoreDataApi={loadMoreDataApi}>
 			<Row gutter={16}>
-				{[{}, {}, {}, {}, {}, {}, {}, {}].map((item, i) => {
+				{data.map((item, i) => {
 					return (
 						<Col span={6} style={{ marginBottom: '10px' }} key={i}>
 							<Icard key={i}>
@@ -83,7 +99,7 @@ const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 					);
 				})}
 			</Row>
-		</div>
+		</IinfiniteScroll>
 	);
 };
 
