@@ -39,7 +39,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 
 	// 懒加载
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 	const loadMoreDataApi = () => {
 		setTimeout(() => {
 			setData([...data, ...data]);
@@ -49,7 +49,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 
 	const [scrollHeight, setScrollHeight] = useState(0);
 	useEffect(() => {
-		let height = document.documentElement.clientHeight - 240;
+		let height = document.documentElement.clientHeight - 280;
 		console.log(height);
 		setScrollHeight(height);
 	}, []);

@@ -12,7 +12,7 @@ interface Iprops {
 const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 	// 懒加载
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 	const loadMoreDataApi = () => {
 		setTimeout(() => {
 			setData([...data, ...data]);
