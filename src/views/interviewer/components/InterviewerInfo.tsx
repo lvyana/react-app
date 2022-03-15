@@ -47,13 +47,19 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 		}, 1500);
 	};
 
+	const [scrollHeight, setScrollHeight] = useState(0);
+	useEffect(() => {
+		let height = document.documentElement.clientHeight - 240;
+		console.log(height);
+		setScrollHeight(height);
+	}, []);
 	return (
 		<IinfiniteScroll
 			current={data.length}
 			total={50}
 			loading={loading}
 			setLoading={setLoading}
-			height={450}
+			height={scrollHeight}
 			loadMoreDataApi={loadMoreDataApi}>
 			<Row gutter={16} style={{ marginLeft: '0px', marginRight: '0px', overflow: 'hidden' }}>
 				{data.map((item, i) => {

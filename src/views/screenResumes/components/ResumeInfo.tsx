@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Avatar, Descriptions, Row, Col, Button, Divider, Dropdown } from 'antd';
 import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
@@ -19,13 +19,20 @@ const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 			setLoading(false);
 		}, 1500);
 	};
+
+	const [scrollHeight, setScrollHeight] = useState(0);
+	useEffect(() => {
+		let height = document.documentElement.clientHeight - 240;
+		console.log(height);
+		setScrollHeight(height);
+	}, []);
 	return (
 		<IinfiniteScroll
 			current={data.length}
 			total={50}
 			loading={loading}
 			setLoading={setLoading}
-			height={450}
+			height={scrollHeight}
 			loadMoreDataApi={loadMoreDataApi}>
 			<Row gutter={16}>
 				{data.map((item, i) => {
