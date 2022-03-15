@@ -4,7 +4,7 @@ import Ifrom from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { FormInstance, Row, Col } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
-import { Icalendar, DayTime } from './InterviewTime';
+import { TimeCenter, IselectedAllTagsType } from './InterviewTime';
 import Itransition from '@/components/iTransition';
 
 // 邀约面试
@@ -12,6 +12,18 @@ interface Iprops extends ImodalProps {
 	form: FormInstance;
 }
 const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, handleCancel, form }) => {
+	// 全部选中数据
+	const [selectedAllTags, setSelectedAllTags] = useState<IselectedAllTagsType[]>([
+		{
+			day: '2022-03-16',
+			tags: ['12:00-12:30', '12:30-13:00', '13:00-13:30']
+		},
+		{
+			day: '2022-03-17',
+			tags: ['12:00-12:30', '12:30-13:00']
+		}
+	]);
+
 	return (
 		<div>
 			<Imodal
@@ -23,14 +35,7 @@ const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, 
 				width="800px">
 				<NextInterviewsForm form={form}></NextInterviewsForm>
 				<Itransition title="查看可面试时间" minHeight="0px" maxHeight="321px">
-					<Row gutter={16}>
-						<Col span={10}>
-							<Icalendar></Icalendar>
-						</Col>
-						<Col span={14}>
-							<DayTime></DayTime>
-						</Col>
-					</Row>
+					<TimeCenter selectedAllTags={selectedAllTags} setSelectedAllTags={setSelectedAllTags}></TimeCenter>
 				</Itransition>
 			</Imodal>
 		</div>

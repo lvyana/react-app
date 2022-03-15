@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
-import { Button, Tag, Row, Col, Calendar } from 'antd';
+import React, { FC, useState, useEffect } from 'react';
+import { Button, Tag, Row, Col, Calendar, Checkbox } from 'antd';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import moment, { Moment } from 'moment';
+import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 const { CheckableTag } = Tag;
 
+export interface IselectedAllTagsType {
+	day: string;
+	tags: string[];
+}
 const InterviewTime = () => {
+	// 全部选中数据
+	const [selectedAllTags, setSelectedAllTags] = useState<IselectedAllTagsType[]>([
+		{
+			day: '2022-03-16',
+			tags: ['12:00-12:30', '12:30-13:00', '13:00-13:30']
+		},
+		{
+			day: '2022-03-17',
+			tags: ['12:00-12:30', '12:30-13:00']
+		}
+	]);
 	const setTime = () => {
 		setVisible(true);
 	};
@@ -15,8 +31,6 @@ const InterviewTime = () => {
 
 	const handleOk = async () => {
 		try {
-			// 校验表单
-
 			setConfirmLoading(true);
 			setTimeout(() => {
 				setConfirmLoading(false);
@@ -28,6 +42,7 @@ const InterviewTime = () => {
 	const handleCancel = () => {
 		setVisible(false);
 	};
+
 	return (
 		<div>
 			<Button type="primary" onClick={setTime}>
@@ -40,14 +55,7 @@ const InterviewTime = () => {
 				handleOk={handleOk}
 				handleCancel={handleCancel}
 				width="800px">
-				<Row gutter={16}>
-					<Col span={10}>
-						<Icalendar></Icalendar>
-					</Col>
-					<Col span={14}>
-						<DayTime></DayTime>
-					</Col>
-				</Row>
+				<TimeCenter selectedAllTags={selectedAllTags} setSelectedAllTags={setSelectedAllTags}></TimeCenter>
 			</Imodal>
 		</div>
 	);
@@ -55,17 +63,104 @@ const InterviewTime = () => {
 
 export default InterviewTime;
 
+interface ItimeCenterrProps {
+	selectedAllTags: IselectedAllTagsType[];
+	setSelectedAllTags: React.Dispatch<React.SetStateAction<IselectedAllTagsType[]>>;
+}
+export const TimeCenter: FC<ItimeCenterrProps> = ({ selectedAllTags, setSelectedAllTags }) => {
+	// 那些天有数据
+	const [hasTagsDay, setHasTagsDay] = useState<string[]>([]);
+	// 某一天 默认当天
+	const [day, setDay] = useState(moment().format('YYYY-MM-DD'));
+	// 某一天选中数据
+	const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+	// 监听左侧时间的变化
+	useEffect(() => {
+		console.log(day, getDatcheckTag());
+		let selectedArr = getDatcheckTag() || [];
+		setSelectedTags(selectedArr);
+	}, []);
+	useEffect(() => {
+		let selectedArr = getDatcheckTag() || [];
+		setSelectedTags(selectedArr);
+	}, [day]);
+
+	// 获取day那一天的选中数据
+	const getDatcheckTag = () => {
+		let selectedAllTag = selectedAllTags.find((item) => {
+			return item.day === day;
+		});
+		return selectedAllTag?.tags;
+	};
+
+	// 操作右侧时间tag 进行保存到selectedAllTags
+	useEffect(() => {
+		// 判断selectedAllTags的数据有没有选中的那一天
+		let selectedAllTag: IselectedAllTagsType[] = [];
+		if (hasTagsDay.indexOf(day) > -1) {
+			selectedAllTag = selectedAllTags.map((item) => {
+				if (item.day === day) {
+					return { day: item.day, tags: selectedTags };
+				} else {
+					return { day: item.day, tags: item.tags };
+				}
+			});
+		} else {
+			if (selectedTags.length === 0) {
+				selectedAllTag = [...selectedAllTags];
+			} else {
+				selectedAllTag = [...selectedAllTags, { day, tags: selectedTags }];
+			}
+		}
+
+		setSelectedAllTags(selectedAllTag);
+	}, [selectedTags]);
+
+	// 监听selectedAllTags 获取所有有数据的天数
+	useEffect(() => {
+		// 获取selectedAllTags所有天数
+		let hasTagsDay = selectedAllTags.filter((item) => {
+			return item.tags.length !== 0;
+		});
+		console.log(hasTagsDay, selectedAllTags);
+
+		let dayArr = hasTagsDay.map((item) => {
+			return item.day;
+		});
+		console.log(dayArr, '123');
+
+		setHasTagsDay(dayArr);
+	}, [selectedAllTags]);
+
+	return (
+		<Row gutter={16}>
+			<Col span={10}>
+				<Icalendar day={day} setDay={setDay} hasTagsDay={hasTagsDay}></Icalendar>
+			</Col>
+			<Col span={14}>
+				<DayTime selectedTags={selectedTags} setSelectedTags={setSelectedTags}></DayTime>
+			</Col>
+		</Row>
+	);
+};
 // 左侧日期
-export const Icalendar = () => {
+interface IicalendarProps {
+	day?: string;
+	setDay?: React.Dispatch<React.SetStateAction<string>>;
+	hasTagsDay: string[];
+}
+export const Icalendar: FC<IicalendarProps> = ({ day, setDay, hasTagsDay }) => {
 	function onPanelChange(value: Moment, mode: string) {
 		console.log(value, mode);
 	}
 	const onSelect = (day: Moment) => {
 		console.log(day);
+		setDay && setDay(moment(day).format('YYYY-MM-DD'));
 	};
 
 	const dateCellRender = (value: Moment) => {
-		let isColor = moment(value).format('L') === '03/06/2022' || moment(value).format('L') === '03/05/2022';
+		let isColor = hasTagsDay.indexOf(moment(value).format('YYYY-MM-DD')) > -1;
 		return isColor ? (
 			<div
 				style={{
@@ -85,8 +180,6 @@ export const Icalendar = () => {
 
 	const disabledDay = (current: Moment) => {
 		// 只能选择当前日期的两个月范围内
-		console.log(current);
-
 		return current && current < moment().subtract(1, 'days');
 
 		// 只能选择当前日期的前后一个月范围
@@ -95,6 +188,7 @@ export const Icalendar = () => {
 
 	return (
 		<Calendar
+			value={moment(day)}
 			disabledDate={disabledDay}
 			fullscreen={false}
 			onPanelChange={onPanelChange}
@@ -105,13 +199,23 @@ export const Icalendar = () => {
 };
 
 // 右侧时间
-export const DayTime = () => {
-	const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
+interface IdayTimeProps {
+	selectedTags: string[];
+	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
+}
+export const DayTime: FC<IdayTimeProps> = ({ selectedTags, setSelectedTags }) => {
 	const handleChange = (tag: string, checked: boolean) => {
 		const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter((t) => t !== tag);
 		console.log('You are interested in: ', nextSelectedTags);
 		setSelectedTags(nextSelectedTags);
+	};
+
+	const onCheckChange = (type: string, e: CheckboxChangeEvent) => {
+		console.log(type, `checked = ${e.target.checked}`);
+		if (e.target.checked === true) {
+			// 选中
+		} else {
+		}
 	};
 
 	return (
@@ -120,7 +224,9 @@ export const DayTime = () => {
 				return (
 					<div key={i}>
 						<div>
-							<div style={{ marginBottom: '5px' }}>上午</div>
+							<div style={{ marginBottom: '5px' }}>
+								上午<Checkbox onChange={(e) => onCheckChange('上午', e)}>全选</Checkbox>
+							</div>
 							<Row gutter={16}>
 								{item.am.map((item, index) => {
 									return (
@@ -138,7 +244,9 @@ export const DayTime = () => {
 							</Row>
 						</div>
 						<div>
-							<div style={{ marginBottom: '5px' }}>下午</div>
+							<div style={{ marginBottom: '5px' }}>
+								下午<Checkbox onChange={(e) => onCheckChange('下午', e)}>全选</Checkbox>
+							</div>
 							<Row gutter={16}>
 								{item.pm.map((item, index) => {
 									return (
