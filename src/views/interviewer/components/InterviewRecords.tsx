@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, ReactNode } from 'react';
 import ILookModal from '@/components/iLookModal';
 import { Descriptions, Timeline } from 'antd';
-
+import styles from '../index.module.scss';
 interface Iprops {
 	lookRecords: boolean;
 	setLookRecords: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,16 +55,12 @@ export const Jobs = () => {
 // 面试记录
 const Records = () => {
 	return (
-		<>
-			<div
-				className="mt10"
-				style={{ color: 'rgba(0, 0, 0, 0.85)', fontWeight: 'bold', fontSize: '16px', lineHeight: '1.5715', marginBottom: '20px' }}>
-				面试记录
-			</div>
+		<div className={styles.Records}>
+			<div className={styles.title}>面试记录</div>
 			<Timeline>
 				{[1, 2, 3].map((item, index) => {
 					return (
-						<Timeline.Item color={index % 2 === 0 ? 'red' : 'green'} key={index}>
+						<Timeline.Item dot={<Dot color={index % 2 === 0 ? 'red' : 'green'}></Dot>} key={index}>
 							<Descriptions title="" column={2}>
 								<Descriptions.Item label="面试轮次">Zhou Maomao</Descriptions.Item>
 								<Descriptions.Item label="当前轮次面试状态">Zhou Maomao</Descriptions.Item>
@@ -84,7 +80,7 @@ const Records = () => {
 					);
 				})}
 			</Timeline>
-		</>
+		</div>
 	);
 };
 
@@ -98,4 +94,13 @@ const InterviewResult = () => {
 			</Descriptions>
 		</>
 	);
+};
+
+// 颜色实体圆
+interface Idot {
+	color?: string;
+	mr?: string;
+}
+export const Dot: FC<Idot> = ({ color = 'red', mr }) => {
+	return <div style={{ width: '10px', height: '10px', borderRadius: '10px', backgroundColor: color, marginRight: mr }}></div>;
 };

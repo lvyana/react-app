@@ -1,0 +1,18 @@
+// InterviewRecords组件
+.Records{
+  margin-top: 10px;
+  // 使用 :global 修改antd组件样式
+  :global{
+    .ant-timeline-item-head-custom{
+      padding: 0;
+    }
+  }
+}
+
+.title{
+  color:rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.5715;
+  margin-bottom: 20px;
+}

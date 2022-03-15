@@ -4,7 +4,7 @@ import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
 import IinfiniteScroll from '@/components/iInfiniteScroll';
-
+import { Dot } from './InterviewRecords';
 export type ICradEidt = (type: string, value: object) => void;
 /**
  *
@@ -93,7 +93,11 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 															type="link"
 															style={{ padding: '4px 0' }}
 															onClick={() => onCradEidt('查看面试记录', item)}>
-															<IconFont type="icon-dengpao" style={{ fontSize: '12px' }}></IconFont>
+															<div style={{ display: 'flex' }}>
+																<Dot color="green" mr={'2px'}></Dot>
+																<Dot color="green" mr={'2px'}></Dot>
+																<Dot color="red"></Dot>
+															</div>
 														</Button>
 													</Itooltip>
 												</span>
