@@ -214,82 +214,97 @@ export const DayTime: FC<IdayTimeProps> = ({ selectedTags, setSelectedTags }) =>
 		console.log(type, `checked = ${e.target.checked}`);
 		if (e.target.checked === true) {
 			// 选中
+			if (type === '上午') {
+				let amAll = [...new Set([...selectedTags, ...weektime.am])];
+				console.log(amAll);
+				setSelectedTags(amAll);
+			} else if (type === '下午') {
+				let pmAll = [...new Set([...selectedTags, ...weektime.pm])];
+				console.log(pmAll);
+				setSelectedTags(pmAll);
+			}
 		} else {
+			if (type === '上午') {
+				let amClear = selectedTags.filter((item) => {
+					return weektime.am.indexOf(item) === -1;
+				});
+				setSelectedTags(amClear);
+			} else if (type === '下午') {
+				let pmClear = selectedTags.filter((item) => {
+					return weektime.pm.indexOf(item) === -1;
+				});
+				setSelectedTags(pmClear);
+			}
 		}
 	};
 
 	return (
 		<>
-			{weektime.map((item, i) => {
-				return (
-					<div key={i}>
-						<div>
-							<div style={{ marginBottom: '5px' }}>
-								上午<Checkbox onChange={(e) => onCheckChange('上午', e)}>全选</Checkbox>
-							</div>
-							<Row gutter={16}>
-								{item.am.map((item, index) => {
-									return (
-										<Col span={6} key={index}>
-											<CheckableTag
-												checked={selectedTags.indexOf(item) > -1}
-												onChange={(checked) => handleChange(item, checked)}
-												key={index}
-												style={{ width: '78px', border: '1px solid skyblue', marginBottom: '5px' }}>
-												{item}
-											</CheckableTag>
-										</Col>
-									);
-								})}
-							</Row>
-						</div>
-						<div>
-							<div style={{ marginBottom: '5px' }}>
-								下午<Checkbox onChange={(e) => onCheckChange('下午', e)}>全选</Checkbox>
-							</div>
-							<Row gutter={16}>
-								{item.pm.map((item, index) => {
-									return (
-										<Col span={6} key={index}>
-											<CheckableTag
-												checked={selectedTags.indexOf(item) > -1}
-												onChange={(checked) => handleChange(item, checked)}
-												key={index}
-												style={{ width: '78px', border: '1px solid skyblue', marginBottom: '5px' }}>
-												{item}
-											</CheckableTag>
-										</Col>
-									);
-								})}
-							</Row>
-						</div>
-					</div>
-				);
-			})}
+			<div style={{ marginBottom: '5px' }}>
+				上午
+				<Checkbox className="ml10 mt10" onChange={(e) => onCheckChange('上午', e)}>
+					全选
+				</Checkbox>
+			</div>
+			<Row gutter={16}>
+				{weektime.am.map((item, index) => {
+					return (
+						<Col span={6} key={index}>
+							<CheckableTag
+								checked={selectedTags.indexOf(item) > -1}
+								onChange={(checked) => handleChange(item, checked)}
+								key={index}
+								style={{ width: '78px', border: '1px solid skyblue', marginBottom: '5px' }}>
+								{item}
+							</CheckableTag>
+						</Col>
+					);
+				})}
+			</Row>
+
+			<div style={{ marginBottom: '5px' }}>
+				下午
+				<Checkbox className="ml10 mt10" onChange={(e) => onCheckChange('下午', e)}>
+					全选
+				</Checkbox>
+			</div>
+			<Row gutter={16}>
+				{weektime.pm.map((item, index) => {
+					return (
+						<Col span={6} key={index}>
+							<CheckableTag
+								checked={selectedTags.indexOf(item) > -1}
+								onChange={(checked) => handleChange(item, checked)}
+								key={index}
+								style={{ width: '78px', border: '1px solid skyblue', marginBottom: '5px' }}>
+								{item}
+							</CheckableTag>
+						</Col>
+					);
+				})}
+			</Row>
 		</>
 	);
 };
 
-const weektime = [
-	{
-		am: ['8:00-8:30', '8:30-9:00', '9:00-9:30', '9:30-10:00', '10:00-10:30', '10:30-11:00', '11:00-11:30', '11:30-12:00'],
-		pm: [
-			'12:00-12:30',
-			'12:30-13:00',
-			'13:00-13:30',
-			'13:30-14:00',
-			'14:00-14:30',
-			'14:30-15:00',
-			'15:00-15:30',
-			'15:30-16:00',
-			'16:00-16:30',
-			'16:30-17:00',
-			'17:00-17:30',
-			'17:30-18:00',
-			'18:00-18:30',
-			'18:30-19:00',
-			'19:00-19:30',
-			'19:30-20:00'
-		]
-	}
-];
+const weektime = {
+	am: ['8:00-8:30', '8:30-9:00', '9:00-9:30', '9:30-10:00', '10:00-10:30', '10:30-11:00', '11:00-11:30', '11:30-12:00'],
+	pm: [
+		'12:00-12:30',
+		'12:30-13:00',
+		'13:00-13:30',
+		'13:30-14:00',
+		'14:00-14:30',
+		'14:30-15:00',
+		'15:00-15:30',
+		'15:30-16:00',
+		'16:00-16:30',
+		'16:30-17:00',
+		'17:00-17:30',
+		'17:30-18:00',
+		'18:00-18:30',
+		'18:30-19:00',
+		'19:00-19:30',
+		'19:30-20:00'
+	]
+};
