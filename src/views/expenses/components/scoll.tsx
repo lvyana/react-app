@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { List, message, Avatar, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import getKey from '@/utils/onlyKey';
 
 const InfiniteListExample = () => {
 	const [loading, setLoading] = useState(false);
@@ -24,6 +25,9 @@ const InfiniteListExample = () => {
 
 	useEffect(() => {
 		loadMoreData();
+		return () => {
+			loadMoreData();
+		};
 	}, []);
 
 	return (
@@ -57,7 +61,9 @@ const InfiniteListExample = () => {
 				/> */}
 				<div>
 					{data.map((item: any) => (
-						<div style={{ height: '40px' }}>item</div>
+						<div style={{ height: '40px' }} key={getKey()}>
+							item
+						</div>
 					))}
 				</div>
 			</InfiniteScroll>

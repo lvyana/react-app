@@ -88,12 +88,32 @@ const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 									<Descriptions.Item label="毕业院校">上海戏剧学院</Descriptions.Item>
 									<Descriptions.Item label="工作年限">3</Descriptions.Item>
 									<Descriptions.Item label="专业">计算机科学与技术</Descriptions.Item>
-									<Descriptions.Item label="推荐理由">合适</Descriptions.Item>
+									<Descriptions.Item label="推荐理由">
+										<Itooltip
+											placement="top"
+											color={'purple'}
+											title={'合适合适合适合适合适合适合适合适合适合合适合适合适合适合适合适合适合适合'}>
+											<div style={{ width: '170px' }} className="omit">
+												合适合适合适合适合适合适合适合适合适合适合
+											</div>
+										</Itooltip>
+									</Descriptions.Item>
+									<Descriptions.Item label="推荐时间">2020-03-15</Descriptions.Item>
+									<Descriptions.Item label="拒绝理由">
+										<Itooltip
+											placement="top"
+											color={'purple'}
+											title={'拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝'}>
+											<div style={{ width: '170px' }} className="omit">
+												拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝拒绝
+											</div>
+										</Itooltip>
+									</Descriptions.Item>
 								</Descriptions>
 
 								<Row gutter={16} style={{ textAlign: 'center' }}>
 									<Col className="gutter-row" span={12}>
-										<Button onClick={() => onCradEidt('可面试', item)}>拒绝</Button>
+										<Button onClick={() => onCradEidt('拒绝', item)}>拒绝</Button>
 									</Col>
 									<Col className="gutter-row" span={12}>
 										<Button type="primary" onClick={() => onCradEidt('可面试', item)}>

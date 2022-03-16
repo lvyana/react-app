@@ -15,6 +15,10 @@ const Expenses = () => {
 	useEffect(() => {
 		initChar();
 		getPageData();
+		return () => {
+			// initChar();
+			// getPageData();
+		};
 	}, []);
 	const initChar = () => {
 		const data = [
@@ -109,21 +113,21 @@ const data = [
 		key: '1',
 		name: 'John Brown',
 		age: 32,
-		address: ['New York No. 1 Lake Park', '很好1'],
+		address: ['New York No. 1 Lake Park1', '很好1'],
 		tags: ['nice', 'developer']
 	},
 	{
 		key: '2',
 		name: 'Jim Green',
 		age: 42,
-		address: ['New York No. 1 Lake Park', '很好2'],
+		address: ['New York No. 1 Lake Park2', '很好2'],
 		tags: ['loser']
 	},
 	{
 		key: '3',
 		name: 'Joe Black',
 		age: 32,
-		address: ['New York No. 1 Lake Park', '很好3'],
+		address: ['New York No. 1 Lake Park3', '很好3'],
 		tags: ['cool', 'teacher']
 	}
 ];

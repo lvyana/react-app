@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from 'react';
-import { Tooltip, Tag, Space } from 'antd';
+import React, { CSSProperties, FC, ReactNode } from 'react';
+import { Tooltip } from 'antd';
 
 type Iplacement =
 	| 'top'
@@ -25,7 +25,7 @@ type Iplacement =
  */
 interface Iprops {
 	children: ReactNode;
-	overlayInnerStyle?: object;
+	overlayInnerStyle?: CSSProperties;
 	placement?: Iplacement;
 	color?: string;
 	title: ReactNode;
