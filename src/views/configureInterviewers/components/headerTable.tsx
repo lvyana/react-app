@@ -3,7 +3,6 @@ import { Tag, Switch } from 'antd';
 import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { AlignType } from '@/components/iTable';
 import useIconfirm from '@/components/iModal/Iconfirm';
-import { pageData } from '../service';
 
 export interface ItableBt {
 	name: string;
@@ -34,7 +33,6 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	const onCallback = async () => {
 		// 接口
-		await pageData();
 	};
 	const onChangeSwitch = (checked: boolean, record: ItableBt) => {
 		onConfirm(`您是否停用${record.name}面试官账号?`, onCallback);
@@ -42,8 +40,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const columns = [
 		{
 			title: '账号',
-			dataIndex: 'name',
-			key: 'name',
+			dataIndex: 'userName',
+			key: 'userName',
 			align: 'center' as AlignType,
 			render: (text: string) => <div>{text}</div>
 		},
@@ -70,8 +68,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		},
 		{
 			title: '关联项目',
-			dataIndex: 'project',
-			key: 'project',
+			dataIndex: 'projectName',
+			key: 'projectName',
 			align: 'center' as AlignType,
 			render: (tags: string[]) => (
 				<>
@@ -82,7 +80,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 						}
 						return (
 							<Tag color={color} key={tag}>
-								{tag.toUpperCase()}
+								{tag}
 							</Tag>
 						);
 					})}
@@ -96,7 +94,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			align: 'center' as AlignType,
 			render: (text: string, record: ItableBt) => (
 				<div>
-					<Switch checked={text === '1' ? true : false} onChange={(checked) => onChangeSwitch(checked, record)} />
+					<Switch checked={text === '0' ? true : false} onChange={(checked) => onChangeSwitch(checked, record)} />
 				</div>
 			)
 		},

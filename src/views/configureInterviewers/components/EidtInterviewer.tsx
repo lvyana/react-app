@@ -1,11 +1,16 @@
 import React, { FC, useState, useEffect } from 'react';
+import Pinyin from 'pinyin';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 import { Button, Form } from 'antd';
 import Iform, { FormInstance } from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
-
+import { findAllInterviewer, pinyin, addInterviewerAccount } from '../service';
+import { Rule } from 'antd/lib/form';
+import { validatePhoneTwo, validateEMail } from '@/utils/rules';
 interface Iprops {
 	form: FormInstance;
 	type?: string;
@@ -19,18 +24,20 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	const handleOk = async () => {
 		try {
 			// 校验表单
-			const values = await form.validateFields();
+			const values = await addInterForm.validateFields();
 			setConfirmLoading(true);
-			setTimeout(() => {
-				form.resetFields(); //重置表单数据
-				setConfirmLoading(false);
-				setVisible(false);
-			}, 2000);
-		} catch (error) {}
+			let res = await addInterviewerAccount({ ...addInterForm.getFieldsValue() });
+			addInterForm.resetFields(); //重置表单数据
+			setConfirmLoading(false);
+			setVisible(false);
+			getFindAllInterviewer();
+		} catch (error) {
+			setConfirmLoading(false);
+		}
 	};
 
 	const handleCancel = () => {
-		form.resetFields(); //重置表单数据
+		addInterForm.resetFields(); //重置表单数据
 		setVisible(false);
 	};
 
@@ -39,28 +46,42 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 		setVisible(true);
 	};
 
+	useEffect(() => {
+		getFindAllInterviewer();
+	}, []);
+	// 查询用户作为面试官
+	const projectData = useSelector((state: RootState) => state.configureInterviewers.projectData);
+	const [interviewerData, setInterviewerData] = useState([]);
+	// 查询所有用户
+	const getFindAllInterviewer = async () => {
+		let res = await findAllInterviewer();
+		console.log(res);
+		let data = res.data.map((item: { interviewerId: string; nickName: string }) => {
+			return {
+				interviewerId: item.interviewerId,
+				nickName: item.nickName
+			};
+		});
+		setInterviewerData(data);
+	};
+	useEffect(() => {
+		setstate(addFormList);
+	}, [interviewerData]);
 	// 参数
 	const addFormList = [
 		{
 			type: 'select',
-			name: 'select',
-			label: '请选择用户作为面试官:',
+			name: 'interviewerId',
+			label: '请选择用户作为面试官',
 			placeholder: '请选择用户作为面试官',
-			rules: [],
+			rules: [{ required: true, message: '请选择用户作为面试官' }],
 			key: getKey(),
 			span: 24,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
+			fieldNames: {
+				value: 'interviewerId',
+				label: 'nickName'
+			},
+			option: interviewerData,
 			layout: {
 				labelCol: { span: 24 },
 				wrapperCol: { offset: 2, span: 16 }
@@ -83,25 +104,18 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 		},
 		{
 			type: 'select',
-			name: 'select343',
-			label: '请选择该面试官关联的项目:',
+			name: 'projectIds',
+			label: '请选择该面试官关联的项目',
 			placeholder: '请选择该面试官关联的项目',
-			rules: [],
+			rules: [{ required: true, message: '请选择该面试官关联的项目' }],
 			mode: 'multiple' as MODE,
 			key: getKey(),
 			span: 24,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
+			fieldNames: {
+				value: 'id',
+				label: 'projectName'
+			},
+			option: projectData,
 			layout: {
 				labelCol: { span: 24 },
 				wrapperCol: { offset: 2, span: 16 }
@@ -109,20 +123,20 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 		},
 		{
 			type: 'radio',
-			name: 'radio',
+			name: 'status',
 			label: '状态',
-			rules: [],
+			rules: [{ required: true, message: '请选择状态' }],
 			key: getKey(),
 			span: 24,
 			option: [
 				{
 					name: '正常',
-					value: '1',
+					value: '0',
 					key: getKey()
 				},
 				{
 					name: '停用',
-					value: '2',
+					value: '1',
 					key: getKey()
 				}
 			],
@@ -165,11 +179,12 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	useEffect(() => {
 		if (type === '添加面试官') {
 			setstate(addFormList);
-			form.setFieldsValue({ radio: '1' });
+			form.setFieldsValue({ status: '0' });
 		} else if (type === '修改面试官') {
 			setstate(amendFormList);
 		}
 	}, [type]);
+
 	return (
 		<div>
 			<Iform formList={state} form={form} formLayout={'vertical'} />
@@ -182,13 +197,48 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 
 export default EidtInterviewer;
 
+export interface checkInterviewerExistForm {
+	nickName: string;
+	pinYinName: string;
+	phone: string;
+	email: string;
+}
 const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
+	const pinYinNameValidator = async (rule: Rule, value: string | number): Promise<void> => {
+		console.log(value);
+		if (value) {
+			try {
+				let res = await pinyin({ nickName: form.getFieldValue('pinYinName') });
+				console.log(res);
+				// form.setFieldsValue({ pinYinName: res.data.pinYinName });
+			} catch (error) {
+				console.log('用户名已存在');
+
+				return Promise.reject('用户名已存在');
+			}
+		}
+	};
+
+	const setPinYin = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+		console.log(e.target.value);
+		let pinYinStr = '';
+		let pinyinArr = Pinyin(e.target.value, {
+			style: Pinyin.STYLE_NORMAL // 设置拼音风格
+		});
+		pinyinArr.map((item) => {
+			pinYinStr = pinYinStr + item[0];
+		});
+		console.log(pinYinStr, pinyinArr);
+
+		form.setFieldsValue({ pinYinName: pinYinStr.replace(/\s*/g, '') });
+	};
 	// 参数
 	const formList = [
 		{
 			type: 'input',
-			name: 'name',
+			name: 'nickName',
 			label: '用户名称',
+
 			rules: [
 				{
 					required: true,
@@ -196,6 +246,7 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 				}
 			],
 			key: getKey(),
+			onBlur: setPinYin,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -204,12 +255,16 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		},
 		{
 			type: 'input',
-			name: 'name2',
+			name: 'pinYinName',
 			label: '登录账号',
+			validateTrigger: 'onBlur',
 			rules: [
 				{
 					required: true,
 					message: '请输入登录账号'
+				},
+				{
+					validator: pinYinNameValidator
 				}
 			],
 			key: getKey(),
@@ -221,12 +276,15 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		},
 		{
 			type: 'input',
-			name: 'name4',
+			name: 'phone',
 			label: '手机号码',
 			rules: [
 				{
 					required: true,
 					message: '请输入手机号码'
+				},
+				{
+					validator: validatePhoneTwo
 				}
 			],
 			key: getKey(),
@@ -238,12 +296,15 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		},
 		{
 			type: 'input',
-			name: 'name4',
+			name: 'email',
 			label: '邮箱号码',
 			rules: [
 				{
 					required: true,
 					message: '请输入邮箱号码'
+				},
+				{
+					validator: validateEMail
 				}
 			],
 			key: getKey(),

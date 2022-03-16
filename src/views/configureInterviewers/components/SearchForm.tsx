@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 import Icard from '@/components/iCard';
-import Iform from '@/components/iForm';
+import Iform, { FormInstance } from '@/components/iForm';
 import { Form } from 'antd';
 import getKey from '@/utils/onlyKey';
 
@@ -9,14 +11,28 @@ interface IsearchForm {
 	select: string;
 	danwei: string;
 }
-const SearchForm = () => {
-	//表单
-	const [form] = Form.useForm();
+// 表单数据
+export interface IsearchFormType {
+	nickName: string;
+	userName: string;
+	phone: string;
+	projectId: string;
+	pageSize?: number;
+	pageNum?: number;
+}
+interface Iprops {
+	form: FormInstance;
+	getTaableData: () => void;
+}
+const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
+	const projectData = useSelector((state: RootState) => state.configureInterviewers.projectData);
+	console.log(projectData);
+
 	// 参数
 	const formList = [
 		{
 			type: 'input',
-			name: 'name',
+			name: 'nickName',
 			label: '姓名',
 			rules: [],
 			key: getKey(),
@@ -28,7 +44,7 @@ const SearchForm = () => {
 		},
 		{
 			type: 'input',
-			name: 'name2',
+			name: 'userName',
 			label: '登录账号',
 			rules: [],
 			key: getKey(),
@@ -40,7 +56,7 @@ const SearchForm = () => {
 		},
 		{
 			type: 'input',
-			name: 'name4',
+			name: 'phone',
 			label: '手机号码',
 			rules: [],
 			key: getKey(),
@@ -52,23 +68,16 @@ const SearchForm = () => {
 		},
 		{
 			type: 'select',
-			name: 'select',
+			name: 'projectId',
 			label: '关联项目',
 			rules: [],
 			key: getKey(),
 			span: 5,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
+			fieldNames: {
+				value: 'id',
+				label: 'projectName'
+			},
+			option: projectData,
 			layout: {
 				labelCol: { span: 8 },
 				wrapperCol: { span: 16 }
@@ -87,14 +96,14 @@ const SearchForm = () => {
 			style: { float: 'right' }
 		}
 	];
-	const [state, setstate] = useState(formList);
 
 	const onFinish = (value: IsearchForm) => {
 		console.log(value);
+		getTaableData();
 	};
 	return (
 		<Icard styles={{ padding: '16px 16px 0' }}>
-			<Iform formList={state} form={form} onFinish={onFinish} />
+			<Iform formList={formList} form={form} onFinish={onFinish} />
 		</Icard>
 	);
 };

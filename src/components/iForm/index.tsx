@@ -53,9 +53,16 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formInputItem = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item label={item.label} name={item.name} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					label={item.label}
+					name={item.name}
+					validateTrigger={item.validateTrigger}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<Input
 						onChange={item.onChange}
+						onBlur={item.onBlur}
 						placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 						disabled={item.disabled}
 					/>

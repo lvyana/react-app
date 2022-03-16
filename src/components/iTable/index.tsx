@@ -14,9 +14,9 @@ import { ColumnsType } from 'antd/es/table';
  * rowSelection 事件回调对象
  * rowKey 定义唯一key字段
  */
-interface TABEL<T> {
+interface Iprops {
 	columns?: ColumnsType<any>; //表头
-	data?: T[]; //表内容
+	data?: any[]; //表内容
 	loading?: boolean;
 	rowSelection?: object;
 	rowKey?: string;
@@ -30,7 +30,7 @@ export type ItbClick = (type: string, nameList: object | undefined) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 
-const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL<object>) => {
+const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading }: Iprops) => {
 	const size = useSelector<RootState>((state) => state.layout.size);
 	console.log(size);
 
@@ -41,6 +41,7 @@ const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key' }: TABEL
 			columns={columns}
 			rowSelection={rowSelection && { ...rowSelection }}
 			dataSource={data}
+			loading={loading}
 			pagination={false}
 			rowKey={rowKey}
 			// bordered

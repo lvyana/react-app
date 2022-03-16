@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getProjectApi } from '@/redux/actions/configureInterviewers';
 import SearchForm from './components/SearchForm';
 import useHasPermiss from '@/utils/permissions';
 import useHeaderTable, { ItableBt } from './components/headerTable';
@@ -8,12 +10,38 @@ import Ibutton from '@/components/iButton';
 import { BTtype, BTeditBtn } from '@/components/iButton/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import EidtInterviewer from './components/EidtInterviewer';
+import Paginations from '@/components/pagination';
 import { Form } from 'antd';
+import { interviewerList } from './service';
 
 const ConfigureInterviewers = () => {
+	const dispatch = useDispatch();
 	// 按钮权限
 	const { getPermiss } = useHasPermiss();
 	console.log(getPermiss());
+	// 表格面试官
+	//表单
+	const [searchForm] = Form.useForm();
+	const [total, setTotal] = useState(0);
+	const [pageNum, setPageNum] = useState(1);
+	const [pageSize, setPageSize] = useState(10);
+	const [tableLoading, setTableLoading] = useState(false);
+	const [data, setdata] = useState([]);
+
+	const getTaableData = async () => {
+		let formData = searchForm?.getFieldsValue();
+		let res = await interviewerList({ ...formData, pageNum, pageSize });
+		console.log(res);
+		setdata(res.data);
+	};
+
+	useEffect(() => {
+		dispatch(getProjectApi());
+	}, []);
+
+	useEffect(() => {
+		getTaableData();
+	}, [pageNum, pageSize]);
 
 	const buttonEvent = (type: string | number, value: ItableBt) => {
 		console.log(type, value);
@@ -62,13 +90,20 @@ const ConfigureInterviewers = () => {
 		form.resetFields(); //重置表单数据
 		setVisible(false);
 	};
+
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<SearchForm></SearchForm>
+			<SearchForm form={searchForm} getTaableData={getTaableData}></SearchForm>
 			<div style={{ marginTop: '10px' }}>
 				<Icard>
 					<Ibutton buttonList={buttonList} editBtn={editBtn}></Ibutton>
-					<Itable columns={columns} data={data} />
+					<Itable rowKey={'interviewerId'} columns={columns} data={data} loading={tableLoading} />
+					<Paginations
+						total={total}
+						pageNum={pageNum}
+						pageSize={pageSize}
+						setPageSize={setPageSize}
+						setPageNum={setPageNum}></Paginations>
 				</Icard>
 			</div>
 			{/* 添加面试官 */}
@@ -80,32 +115,3 @@ const ConfigureInterviewers = () => {
 };
 
 export default ConfigureInterviewers;
-const data = [
-	{
-		key: '1',
-		name: 'John Brown',
-		nickName: 'Brown',
-		email: '1345646@qq.com',
-		phone: '12388845646',
-		project: ['nice', 'developer'],
-		status: '1'
-	},
-	{
-		key: '2',
-		name: 'John Brown',
-		nickName: 'Brown',
-		email: '1345646@qq.com',
-		phone: '12388845646',
-		project: ['nice', 'developer'],
-		status: '0'
-	},
-	{
-		key: '3',
-		name: 'John Brown',
-		nickName: 'Brown',
-		email: '1345646@qq.com',
-		phone: '12388845646',
-		project: ['nice', 'developer'],
-		status: '1'
-	}
-];

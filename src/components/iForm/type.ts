@@ -8,11 +8,13 @@ import moment, { Moment } from 'moment';
  * name key
  * label 表单名字
  * rules 校验
+ * validateTrigger 校验类型
  * key 绑定唯一key
  * disabled 禁用
  * span formitem 宽度
  * layout 样式
  * onChange change事件
+ * onBlur input 失焦事件
  * mode 下拉多选
  * placeholder 提示信息
  * labelAlign label位置
@@ -31,11 +33,13 @@ export interface FORMITEM {
 	name: string;
 	label?: string;
 	rules?: Rule[] | undefined;
+	validateTrigger?: string | string[];
 	key: string | number;
 	disabled?: boolean;
 	span?: number;
 	layout?: LAYOUT;
 	onChange?: (e: any) => void;
+	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
 	mode?: MODE;
 	placeholder?: string;
 	labelAlign?: FormLabelAlign;
