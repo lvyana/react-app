@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom from '@/components/iForm';
+import Iform from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { FormInstance, Row, Col } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
@@ -189,7 +189,7 @@ const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 				<span style={{ marginLeft: '54px' }}>面试轮次 :</span>
 				<span style={{ marginLeft: '10px' }}>一面</span>
 			</div>
-			<Ifrom formList={state} form={form} />
+			<Iform formList={state} form={form} />
 		</div>
 	);
 };

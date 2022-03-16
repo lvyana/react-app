@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Button, Form } from 'antd';
-import Ifrom, { FormInstance } from '@/components/iForm';
+import Iform, { FormInstance } from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
@@ -172,7 +172,7 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	}, [type]);
 	return (
 		<div>
-			<Ifrom formList={state} form={form} formLayout={'vertical'} />
+			<Iform formList={state} form={form} formLayout={'vertical'} />
 			<Imodal title={title} visible={visible} confirmLoading={confirmLoading} handleOk={handleOk} handleCancel={handleCancel}>
 				<AddInterviewerInfo form={addInterForm}></AddInterviewerInfo>
 			</Imodal>
@@ -258,7 +258,7 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 
 	return (
 		<>
-			<Ifrom formList={state} form={form} />
+			<Iform formList={state} form={form} />
 		</>
 	);
 };

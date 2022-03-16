@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icard from '@/components/iCard';
-import Ifrom from '@/components/iForm';
+import Iform from '@/components/iForm';
 import { Form } from 'antd';
 import getKey from '@/utils/onlyKey';
 
@@ -94,7 +94,7 @@ const SearchForm = () => {
 	};
 	return (
 		<Icard styles={{ padding: '16px 16px 0' }}>
-			<Ifrom formList={state} form={form} onFinish={onFinish} />
+			<Iform formList={state} form={form} onFinish={onFinish} />
 		</Icard>
 	);
 };

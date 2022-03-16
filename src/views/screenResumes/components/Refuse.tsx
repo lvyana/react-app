@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Form } from 'antd';
-import Ifrom, { FormInstance } from '@/components/iForm';
+import Iform, { FormInstance } from '@/components/iForm';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import getKey from '@/utils/onlyKey';
 import { FORMITEM } from '@/components/iForm/type';
@@ -73,6 +73,6 @@ const RefuseForm: FC<IrefuseFormProps> = ({ form }) => {
 		}
 	];
 	const [state, setstate] = useState<FORMITEM[]>(stateForm);
-	return <Ifrom formList={state} form={form} />;
+	return <Iform formList={state} form={form} />;
 };
 export default Refuse;

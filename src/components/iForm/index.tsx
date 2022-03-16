@@ -38,7 +38,7 @@ interface PropsType {
 	setNum?: React.Dispatch<React.SetStateAction<number>>;
 	formLayout?: IformLayout;
 }
-const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLayout = 'horizontal' }) => {
+const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLayout = 'horizontal' }) => {
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
@@ -408,4 +408,4 @@ const Ifrom: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		</div>
 	);
 };
-export default Ifrom;
+export default Iform;

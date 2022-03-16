@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icard from '@/components/iCard';
-import Ifrom from '@/components/iForm';
+import Iform from '@/components/iForm';
 import { Form } from 'antd';
 import SearchTag, { onChangeType } from '@/components/iSearchTag';
 import getKey from '@/utils/onlyKey';
@@ -97,7 +97,7 @@ const SearchForm = () => {
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 	return (
 		<>
-			<Ifrom formList={state} form={form} onFinish={onFinish} />
+			<Iform formList={state} form={form} onFinish={onFinish} />
 			<SearchTag selectedTags={selectedTags} setSelectedTags={setSelectedTags} tagsData={tagsData}></SearchTag>
 		</>
 	);

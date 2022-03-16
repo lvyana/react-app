@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Ifrom from '@/components/iForm';
+import Iform from '@/components/iForm';
 import { FORMITEM } from '@/components/iForm/type';
 import getKey from '@/utils/onlyKey';
 import { Form, Upload, message, Button } from 'antd';
@@ -559,7 +559,7 @@ const Dynamicform = () => {
 	};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Ifrom formList={state} form={form} onFinish={onFinish} />
+			<Iform formList={state} form={form} onFinish={onFinish} />
 		</div>
 	);
 };

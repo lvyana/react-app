@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button, Form, Descriptions } from 'antd';
-import Ifrom, { FormInstance } from '@/components/iForm';
+import Iform, { FormInstance } from '@/components/iForm';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import getKey from '@/utils/onlyKey';
 import { FORMITEM } from '@/components/iForm/type';
@@ -49,7 +49,7 @@ export const CloseRound = ({ roundForm }: { roundForm: FormInstance }) => {
 	];
 	return (
 		<>
-			<Ifrom formList={formList} form={roundForm} />
+			<Iform formList={formList} form={roundForm} />
 		</>
 	);
 };
@@ -168,7 +168,7 @@ const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
 				<Descriptions.Item label="岗位名称">数据应用-测试</Descriptions.Item>
 				<Descriptions.Item label="岗位职级">初级-中级</Descriptions.Item>
 			</Descriptions>
-			<Ifrom formList={state} form={form} />
+			<Iform formList={state} form={form} />
 		</>
 	);
 };

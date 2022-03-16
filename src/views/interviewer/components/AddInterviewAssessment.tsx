@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import Ifrom, { FormInstance } from '@/components/iForm';
+import Iform, { FormInstance } from '@/components/iForm';
 import { Form, Rate } from 'antd';
 import { Candidate, Jobs } from './InterviewRecords';
 import getKey from '@/utils/onlyKey';
@@ -188,7 +188,7 @@ const AddInterviewAssessment: FC<Iprops> = ({ visibleAssessment, setVisibleAsses
 				<Candidate></Candidate>
 				<Jobs></Jobs>
 				<div className="ant-descriptions-title mb10 mt10">面试评价</div>
-				<Ifrom formList={formList} form={form} />
+				<Iform formList={formList} form={form} />
 			</Imodal>
 		</div>
 	);
