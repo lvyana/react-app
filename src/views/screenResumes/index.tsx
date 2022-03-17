@@ -5,14 +5,6 @@ import { message } from 'antd';
 import ResumeInfo, { ICradEidt } from './components/ResumeInfo';
 import Refuse from './components/Refuse';
 const ScreenResumes = () => {
-	// 编辑卡片
-	const onCradEidt: ICradEidt = (type, value) => {
-		console.log(type, value);
-		if (type === '拒绝') {
-			setVisibleRefuse(true);
-		}
-	};
-
 	// 拒绝面试
 	const [visibleRefuse, setVisibleRefuse] = useState(false);
 
@@ -23,7 +15,7 @@ const ScreenResumes = () => {
 			</Icard>
 
 			<div style={{ marginTop: '10px' }}>
-				<ResumeInfo onCradEidt={onCradEidt}></ResumeInfo>
+				<ResumeInfo setVisibleRefuse={setVisibleRefuse}></ResumeInfo>
 			</div>
 			<Refuse visibleRefuse={visibleRefuse} setVisibleRefuse={setVisibleRefuse}></Refuse>
 		</div>
