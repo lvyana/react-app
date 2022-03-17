@@ -97,13 +97,12 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 		}
 	];
 
-	const onFinish = (value: IsearchForm) => {
-		console.log(value);
+	const onFinish = () => {
 		getTaableData();
 	};
 	return (
 		<Icard styles={{ padding: '16px 16px 0' }}>
-			<Iform formList={formList} form={form} onFinish={onFinish} />
+			<Iform formList={formList} form={form} onFinish={onFinish} setReset={onFinish} />
 		</Icard>
 	);
 };

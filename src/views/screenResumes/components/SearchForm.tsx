@@ -58,6 +58,10 @@ const SearchForm = () => {
 			rules: [],
 			key: getKey(),
 			span: 5,
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',

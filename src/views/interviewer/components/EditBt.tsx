@@ -104,6 +104,11 @@ const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
 			rules: [],
 			key: getKey(),
 			span: 24,
+
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',
@@ -128,6 +133,11 @@ const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
 			rules: [],
 			key: getKey(),
 			span: 24,
+
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',

@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { confirm } = Modal;
 
-type Icallback = () => void;
+export type Icallback = () => Promise<void>;
 /**
  * Iconfirm
  * title 标题

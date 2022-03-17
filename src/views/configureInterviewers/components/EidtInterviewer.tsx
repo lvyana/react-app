@@ -8,12 +8,18 @@ import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import { findAllInterviewer, pinyin, addInterviewerAccount } from '../service';
+import { findAllInterviewer, checkpinyin, addInterviewerAccount } from '../service';
 import { Rule } from 'antd/lib/form';
 import { validatePhoneTwo, validateEMail } from '@/utils/rules';
 interface Iprops {
 	form: FormInstance;
 	type?: string;
+}
+export interface IinterviewerProjectType {
+	userId?: number;
+	projectIds?: number[];
+	status?: string;
+	interviewerId?: string;
 }
 const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	//表单
@@ -56,29 +62,27 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	const getFindAllInterviewer = async () => {
 		let res = await findAllInterviewer();
 		console.log(res);
-		let data = res.data.map((item: { interviewerId: string; nickName: string }) => {
+		let data = res.data.data.map((item: { userId: string; nickName: string }) => {
 			return {
-				interviewerId: item.interviewerId,
+				userId: item.userId,
 				nickName: item.nickName
 			};
 		});
 		setInterviewerData(data);
 	};
-	useEffect(() => {
-		setstate(addFormList);
-	}, [interviewerData]);
+
 	// 参数
 	const addFormList = [
 		{
 			type: 'select',
-			name: 'interviewerId',
+			name: 'userId',
 			label: '请选择用户作为面试官',
 			placeholder: '请选择用户作为面试官',
 			rules: [{ required: true, message: '请选择用户作为面试官' }],
 			key: getKey(),
 			span: 24,
 			fieldNames: {
-				value: 'interviewerId',
+				value: 'userId',
 				label: 'nickName'
 			},
 			option: interviewerData,
@@ -149,25 +153,18 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	const amendFormList = [
 		{
 			type: 'select',
-			name: 'select343',
-			label: '请选择该面试官关联的项目:',
+			name: 'projectIds',
+			label: '请选择该面试官关联的项目',
 			placeholder: '请选择该面试官关联的项目',
-			rules: [],
+			rules: [{ required: true, message: '请选择该面试官关联的项目' }],
 			mode: 'multiple' as MODE,
 			key: getKey(),
 			span: 24,
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: getKey()
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: getKey()
-				}
-			],
+			fieldNames: {
+				value: 'id',
+				label: 'projectName'
+			},
+			option: projectData,
 			layout: {
 				labelCol: { span: 24 },
 				wrapperCol: { offset: 2, span: 16 }
@@ -183,7 +180,7 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 		} else if (type === '修改面试官') {
 			setstate(amendFormList);
 		}
-	}, [type]);
+	}, [type, interviewerData]);
 
 	return (
 		<div>
@@ -208,12 +205,9 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		console.log(value);
 		if (value) {
 			try {
-				let res = await pinyin({ nickName: form.getFieldValue('pinYinName') });
+				let res = await checkpinyin({ pinYinName: form.getFieldValue('pinYinName') });
 				console.log(res);
-				// form.setFieldsValue({ pinYinName: res.data.pinYinName });
 			} catch (error) {
-				console.log('用户名已存在');
-
 				return Promise.reject('用户名已存在');
 			}
 		}
@@ -237,12 +231,11 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		{
 			type: 'input',
 			name: 'nickName',
-			label: '用户名称',
-
+			label: '姓名',
 			rules: [
 				{
 					required: true,
-					message: '请输入用户名称'
+					message: '请输入姓名'
 				}
 			],
 			key: getKey(),
@@ -297,11 +290,11 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		{
 			type: 'input',
 			name: 'email',
-			label: '邮箱号码',
+			label: '邮箱',
 			rules: [
 				{
 					required: true,
-					message: '请输入邮箱号码'
+					message: '请输入邮箱'
 				},
 				{
 					validator: validateEMail
@@ -315,11 +308,10 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 			}
 		}
 	];
-	const [state, setstate] = useState(formList);
 
 	return (
 		<>
-			<Iform formList={state} form={form} />
+			<Iform formList={formList} form={form} />
 		</>
 	);
 };

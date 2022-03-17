@@ -97,7 +97,17 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 						fieldNames={item.fieldNames}
 						options={item.option}
 						mode={item.mode}
-						placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}></Select>
+						placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}
+						optionFilterProp={item.fieldNames?.label}
+						filterOption={(input, option) =>
+							option[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase().indexOf(input.toLowerCase()) >=
+							0
+						}
+						filterSort={(optionA, optionB) =>
+							optionA[item.fieldNames?.label ? item.fieldNames?.label : 'label']
+								.toLowerCase()
+								.localeCompare(optionB[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase())
+						}></Select>
 				</Form.Item>
 			</Col>
 		);

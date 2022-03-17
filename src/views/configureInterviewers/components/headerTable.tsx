@@ -3,21 +3,25 @@ import { Tag, Switch } from 'antd';
 import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { AlignType } from '@/components/iTable';
 import useIconfirm from '@/components/iModal/Iconfirm';
+import { updateInterviewerStatus } from '../service';
 
 export interface ItableBt {
-	name: string;
+	userName: string;
 	nickName: string;
 	email: string;
 	phone: string;
-	project: string[];
+	projectName: string[];
 	status: number;
+	interviewerId: string;
+	projectIds: number[];
 }
 
 interface Iprops {
 	buttonEvent: (type: string | number, value: ItableBt) => void;
+	getTaableData: () => void;
 }
 
-const useHeaderTable = ({ buttonEvent }: Iprops) => {
+const useHeaderTable = ({ buttonEvent, getTaableData }: Iprops) => {
 	const { onConfirm } = useIconfirm();
 	// 表格图表移入移出功能
 	const onVisibleChange = (visible: boolean, record: any) => {
@@ -31,11 +35,15 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	// 初始化按钮
 	const [btFun, setBtFun] = useState<IbtFunItem[]>([]);
 
-	const onCallback = async () => {
-		// 接口
-	};
 	const onChangeSwitch = (checked: boolean, record: ItableBt) => {
-		onConfirm(`您是否停用${record.name}面试官账号?`, onCallback);
+		console.log(checked);
+		const onCallback = async () => {
+			let status = checked ? '0' : '1';
+			// 接口
+			let res = await updateInterviewerStatus({ status, interviewerId: record.interviewerId });
+			getTaableData();
+		};
+		onConfirm(`您是否停用${record.userName}面试官账号?`, onCallback);
 	};
 	const columns = [
 		{
@@ -73,13 +81,13 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			align: 'center' as AlignType,
 			render: (tags: string[]) => (
 				<>
-					{tags.map((tag) => {
-						let color = tag.length > 5 ? 'geekblue' : 'green';
+					{tags.map((tag, index) => {
+						let color = tag.length > 3 ? 'geekblue' : 'green';
 						if (tag === 'loser') {
 							color = 'volcano';
 						}
 						return (
-							<Tag color={color} key={tag}>
+							<Tag color={color} key={index}>
 								{tag}
 							</Tag>
 						);

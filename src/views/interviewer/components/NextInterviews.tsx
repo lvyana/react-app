@@ -59,6 +59,11 @@ const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 			],
 			key: getKey(),
 			span: 12,
+
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',
@@ -88,6 +93,11 @@ const NextInterviewsForm = ({ form }: { form: FormInstance }) => {
 			],
 			key: getKey(),
 			span: 12,
+
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',

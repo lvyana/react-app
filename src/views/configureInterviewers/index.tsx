@@ -12,7 +12,7 @@ import Imodal, { ImodalProps } from '@/components/iModal';
 import EidtInterviewer from './components/EidtInterviewer';
 import Paginations from '@/components/pagination';
 import { Form } from 'antd';
-import { interviewerList } from './service';
+import { interviewerList, addInterviewerAndProject, updateInterviewerAndProject } from './service';
 
 const ConfigureInterviewers = () => {
 	const dispatch = useDispatch();
@@ -27,12 +27,19 @@ const ConfigureInterviewers = () => {
 	const [pageSize, setPageSize] = useState(10);
 	const [tableLoading, setTableLoading] = useState(false);
 	const [data, setdata] = useState([]);
+	const [interviewerId, setInterviewerId] = useState<string | undefined>();
 
 	const getTaableData = async () => {
-		let formData = searchForm?.getFieldsValue();
-		let res = await interviewerList({ ...formData, pageNum, pageSize });
-		console.log(res);
-		setdata(res.data);
+		try {
+			let formData = searchForm?.getFieldsValue();
+			setTableLoading(true);
+			let res = await interviewerList({ ...formData, pageNum, pageSize });
+			setTableLoading(false);
+			console.log(res);
+			setdata(res.data.rows);
+		} catch (error) {
+			setTableLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -48,6 +55,10 @@ const ConfigureInterviewers = () => {
 		if (type === '修改') {
 			setTitle('修改面试官');
 			setVisible(true);
+			console.log(value);
+
+			setInterviewerId(value.interviewerId);
+			form.setFieldsValue({ projectIds: value.projectIds });
 		}
 	};
 
@@ -58,13 +69,15 @@ const ConfigureInterviewers = () => {
 			btType: 'primary' as BTtype
 		}
 	];
+
 	const editBtn: BTeditBtn = (type, value) => {
 		if (type === '添加面试官') {
 			setTitle('添加面试官');
 			setVisible(true);
 		}
 	};
-	const { columns } = useHeaderTable({ buttonEvent });
+
+	const { columns } = useHeaderTable({ buttonEvent, getTaableData });
 
 	// 添加面试官
 	//表单
@@ -74,16 +87,7 @@ const ConfigureInterviewers = () => {
 	const [confirmLoading, setConfirmLoading] = useState(false);
 
 	const handleOk = async () => {
-		try {
-			// 校验表单
-			const values = await form.validateFields();
-			setConfirmLoading(true);
-			setTimeout(() => {
-				form.resetFields(); //重置表单数据
-				setConfirmLoading(false);
-				setVisible(false);
-			}, 2000);
-		} catch (error) {}
+		editInterviewer();
 	};
 
 	const handleCancel = () => {
@@ -91,6 +95,35 @@ const ConfigureInterviewers = () => {
 		setVisible(false);
 	};
 
+	// 修改和新增面试官
+	const editInterviewer = async () => {
+		let formData = form.getFieldsValue();
+		if (title === '添加面试官') {
+			try {
+				const values = await form.validateFields();
+				setConfirmLoading(true);
+				let res = await addInterviewerAndProject({ ...formData });
+				form.resetFields(); //重置表单数据
+				setConfirmLoading(false);
+				setVisible(false);
+				getTaableData();
+			} catch (error) {
+				setConfirmLoading(false);
+			}
+		} else if (title === '修改面试官') {
+			try {
+				const values = await form.validateFields();
+				setConfirmLoading(true);
+				let res = await updateInterviewerAndProject({ ...formData, interviewerId });
+				form.resetFields(); //重置表单数据
+				setConfirmLoading(false);
+				setVisible(false);
+				getTaableData();
+			} catch (error) {
+				setConfirmLoading(false);
+			}
+		}
+	};
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SearchForm form={searchForm} getTaableData={getTaableData}></SearchForm>

@@ -53,6 +53,11 @@ const Dynamicform = () => {
 				key: getKey(),
 				span: 24,
 				onChange: selectOnChange,
+
+				fieldNames: {
+					label: 'name',
+					value: 'value'
+				},
 				option: [
 					{
 						name: 'male',
@@ -305,6 +310,11 @@ const Dynamicform = () => {
 			key: getKey(),
 			span: 24,
 			onChange: selectOnChange,
+
+			fieldNames: {
+				label: 'name',
+				value: 'value'
+			},
 			option: [
 				{
 					name: 'male',

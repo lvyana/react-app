@@ -12,7 +12,7 @@ export const getProjectApi = () => {
 		// }, 1000);
 
 		let res = await projectList();
-		let data = res.data.map((item: IprojectItem) => {
+		let data = res.data.data.map((item: IprojectItem) => {
 			return {
 				id: item.id,
 				projectName: item.projectName
