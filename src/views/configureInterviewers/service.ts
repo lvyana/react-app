@@ -1,6 +1,6 @@
 import request from '@/api/request';
 import { IsearchFormType } from './components/SearchForm';
-import { checkInterviewerExistForm, IinterviewerProjectType } from './components/EidtInterviewer';
+import { checkInterviewerExistForm, IinterviewerProjectType } from './components/ModalInterviewer';
 // 获取项目组
 export function projectList() {
 	return request({

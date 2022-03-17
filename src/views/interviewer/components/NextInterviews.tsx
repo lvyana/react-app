@@ -2,16 +2,17 @@ import React, { FC, useState, useEffect } from 'react';
 import Imodal, { ImodalProps } from '@/components/iModal';
 import Iform from '@/components/iForm';
 import getKey from '@/utils/onlyKey';
-import { FormInstance, Row, Col } from 'antd';
+import { FormInstance, Form, Col } from 'antd';
 import { validatePhoneTwo } from '@/utils/rules';
 import { TimeCenter, IselectedAllTagsType } from './InterviewTime';
 import Itransition from '@/components/iTransition';
 
 // 邀约面试
-interface Iprops extends ImodalProps {
-	form: FormInstance;
+interface InextInterviews {
+	visible: boolean;
+	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, handleCancel, form }) => {
+const NextInterviews: FC<InextInterviews> = ({ visible, setVisible }) => {
 	// 全部选中数据
 	const [selectedAllTags, setSelectedAllTags] = useState<IselectedAllTagsType[]>([
 		{
@@ -24,10 +25,33 @@ const NextInterviews: FC<Iprops> = ({ title, visible, confirmLoading, handleOk, 
 		}
 	]);
 
+	// 邀约面试
+	const [confirmLoading, setConfirmLoading] = useState(false);
+	//表单
+	const [form] = Form.useForm();
+
+	const handleOk = async () => {
+		try {
+			// 校验表单
+			const values = await form.validateFields();
+			setConfirmLoading(true);
+			setTimeout(() => {
+				form.resetFields(); //重置表单数据
+				setConfirmLoading(false);
+				setVisible(false);
+			}, 2000);
+		} catch (error) {}
+	};
+
+	const handleCancel = () => {
+		form.resetFields(); //重置表单数据
+		setVisible(false);
+	};
+
 	return (
 		<div>
 			<Imodal
-				title={title}
+				title={'邀约面试'}
 				visible={visible}
 				confirmLoading={confirmLoading}
 				handleOk={handleOk}

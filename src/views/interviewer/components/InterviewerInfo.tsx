@@ -1,10 +1,12 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Avatar, Descriptions, Row, Col, Button, message, Skeleton, Divider } from 'antd';
+import { Avatar, Descriptions, Row, Col, Button, message } from 'antd';
 import Icard from '@/components/iCard';
 import IconFont from '@/utils/iconfont';
 import Itooltip from '@/components/iTooltip';
 import IinfiniteScroll from '@/components/iInfiniteScroll';
 import { Dot } from './InterviewRecords';
+import styles from '../index.module.scss';
+
 export type ICradEidt = (type: string, value: object) => void;
 /**
  *
@@ -36,6 +38,12 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 			setSelectId(newSelectId);
 		}
 	};
+
+	useEffect(() => {
+		if (isBulk) {
+			setSelectId([]);
+		}
+	}, [isBulk]);
 
 	// 懒加载
 	const [loading, setLoading] = useState(false);
@@ -125,33 +133,39 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 									<Descriptions.Item label="面试官">彭翔</Descriptions.Item>
 								</Descriptions>
 
-								<Row gutter={16} style={{ textAlign: 'center' }}>
+								<Row className={styles.interviewBtn} gutter={16} style={{ textAlign: 'center' }}>
 									<Col className="gutter-row" span={6}>
 										<Itooltip placement="top" color={'purple'} title={'填写本轮面试评价'}>
-											<Button type="link" onClick={() => onCradEidt('填写本轮面试评价', item)}>
-												<IconFont type="icon-wenbenbianji" style={{ fontSize: '24px' }}></IconFont>
-											</Button>
+											<Button
+												shape="circle"
+												onClick={() => onCradEidt('填写本轮面试评价', item)}
+												icon={<IconFont type="icon-wenbenbianji" style={{ fontSize: '24px' }}></IconFont>}></Button>
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
 										<Itooltip placement="top" color={'purple'} title={'邀约面试'}>
-											<Button type="link" onClick={() => onCradEidt('邀约面试', item)}>
-												<IconFont type="icon-yaoqing" style={{ fontSize: '24px' }}></IconFont>
-											</Button>
+											<Button
+												shape="circle"
+												onClick={() => onCradEidt('邀约面试', item)}
+												icon={<IconFont type="icon-zhuceyaoqing" style={{ fontSize: '24px' }}></IconFont>}></Button>
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
 										<Itooltip placement="top" color={'purple'} title={'确认最终面试结果'}>
-											<Button type="link" onClick={() => onCradEidt('确认最终面试结果', item)}>
-												<IconFont type="icon-iconfont_yinzhangguanli" style={{ fontSize: '24px' }}></IconFont>
-											</Button>
+											<Button
+												shape="circle"
+												onClick={() => onCradEidt('确认最终面试结果', item)}
+												icon={
+													<IconFont type="icon-iconfont_yinzhangguanli" style={{ fontSize: '24px' }}></IconFont>
+												}></Button>
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
 										<Itooltip placement="top" color={'purple'} title={'关闭本轮面试'}>
-											<Button type="link" onClick={() => onCradEidt('关闭本轮面试', item)}>
-												<IconFont type="icon-guanbi2" style={{ fontSize: '24px' }}></IconFont>
-											</Button>
+											<Button
+												shape="circle"
+												onClick={() => onCradEidt('关闭本轮面试', item)}
+												icon={<IconFont type="icon-guanbi2" style={{ fontSize: '24px' }}></IconFont>}></Button>
 										</Itooltip>
 									</Col>
 								</Row>

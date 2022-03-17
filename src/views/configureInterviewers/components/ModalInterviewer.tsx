@@ -8,20 +8,97 @@ import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
-import { findAllInterviewer, checkpinyin, addInterviewerAccount } from '../service';
+import { findAllInterviewer, checkpinyin, addInterviewerAccount, addInterviewerAndProject, updateInterviewerAndProject } from '../service';
 import { Rule } from 'antd/lib/form';
 import { validatePhoneTwo, validateEMail } from '@/utils/rules';
+
+/**
+ * 配置和修改面试官
+ * visible 弹框开关
+ * setVisible 修改弹框开关
+ * title 弹框名字
+ * getTaableData 查询列表接口
+ * interviewerId 修改接口的时候要用唯一id
+ * projectIds 修改接口的时候回显面试官关联的项目
+ */
 interface Iprops {
+	visible: boolean;
+	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	title: string;
+	getTaableData: () => void;
+	interviewerId?: string;
+	projectIds: number[];
+}
+const ModalInterviewer: FC<Iprops> = ({ visible, setVisible, title, getTaableData, interviewerId, projectIds }) => {
+	const [form] = Form.useForm();
+	const [confirmLoading, setConfirmLoading] = useState(false);
+
+	const handleOk = async () => {
+		editInterviewer();
+	};
+
+	const handleCancel = () => {
+		form.resetFields(); //重置表单数据
+		setVisible(false);
+	};
+
+	// 修改和新增面试官
+	const editInterviewer = async () => {
+		let formData = form.getFieldsValue();
+		if (title === '配置面试官') {
+			try {
+				const values = await form.validateFields();
+				setConfirmLoading(true);
+				let res = await addInterviewerAndProject({ ...formData });
+				form.resetFields(); //重置表单数据
+				setConfirmLoading(false);
+				setVisible(false);
+				getTaableData();
+			} catch (error) {
+				setConfirmLoading(false);
+			}
+		} else if (title === '修改面试官') {
+			try {
+				const values = await form.validateFields();
+				setConfirmLoading(true);
+				let res = await updateInterviewerAndProject({ ...formData, interviewerId });
+				form.resetFields(); //重置表单数据
+				setConfirmLoading(false);
+				setVisible(false);
+				getTaableData();
+			} catch (error) {
+				setConfirmLoading(false);
+			}
+		}
+	};
+
+	return (
+		<Imodal title={title} visible={visible} confirmLoading={confirmLoading} handleOk={handleOk} handleCancel={handleCancel}>
+			<EidtInterviewer form={form} type={title} projectIds={projectIds}></EidtInterviewer>
+		</Imodal>
+	);
+};
+
+export default ModalInterviewer;
+
+/**
+ * 配置和修改面试官弹框
+ */
+interface IeidtInterviewer {
 	form: FormInstance;
 	type?: string;
+	projectIds: number[];
 }
+/**
+ * 配置和修改面试官接口参数
+ */
 export interface IinterviewerProjectType {
 	userId?: number;
 	projectIds?: number[];
 	status?: string;
 	interviewerId?: string;
 }
-const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
+const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 	//表单
 	const [addInterForm] = Form.useForm();
 	const [title, setTitle] = useState('');
@@ -48,7 +125,7 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	};
 
 	const addInterview = () => {
-		setTitle('新增面试官');
+		setTitle('配置面试官');
 		setVisible(true);
 	};
 
@@ -139,7 +216,7 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 					key: getKey()
 				},
 				{
-					name: '停用',
+					name: '删除',
 					value: '1',
 					key: getKey()
 				}
@@ -174,11 +251,12 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	const [state, setstate] = useState<FORMITEM[]>([]);
 
 	useEffect(() => {
-		if (type === '添加面试官') {
+		if (type === '配置面试官') {
 			setstate(addFormList);
 			form.setFieldsValue({ status: '0' });
 		} else if (type === '修改面试官') {
 			setstate(amendFormList);
+			form.setFieldsValue({ projectIds });
 		}
 	}, [type, interviewerData]);
 
@@ -192,15 +270,22 @@ const EidtInterviewer: FC<Iprops> = ({ form, type }) => {
 	);
 };
 
-export default EidtInterviewer;
-
+/**
+ * 添加面试官弹框
+ */
+interface IaddInterviewerInfo {
+	form: FormInstance;
+}
+/**
+ * 添加面试官接口参数
+ */
 export interface checkInterviewerExistForm {
 	nickName: string;
 	pinYinName: string;
 	phone: string;
 	email: string;
 }
-const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
+const AddInterviewerInfo: FC<IaddInterviewerInfo> = ({ form }) => {
 	const pinYinNameValidator = async (rule: Rule, value: string | number): Promise<void> => {
 		console.log(value);
 		if (value) {
@@ -219,11 +304,10 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		let pinyinArr = Pinyin(e.target.value, {
 			style: Pinyin.STYLE_NORMAL // 设置拼音风格
 		});
-		pinyinArr.map((item: string[]) => {
+		pinyinArr.map((item) => {
 			pinYinStr = pinYinStr + item[0];
 		});
 		console.log(pinYinStr, pinyinArr);
-
 		form.setFieldsValue({ pinYinName: pinYinStr.replace(/\s*/g, '') });
 	};
 	// 参数

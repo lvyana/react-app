@@ -1,18 +1,36 @@
 import React, { FC, useState } from 'react';
 import { Button, Form, Descriptions } from 'antd';
 import Iform, { FormInstance } from '@/components/iForm';
-import Imodal, { ImodalProps } from '@/components/iModal';
+import Imodal from '@/components/iModal';
 import getKey from '@/utils/onlyKey';
 import { FORMITEM } from '@/components/iForm/type';
 
-interface Iprops {
-	onBulkOperation: () => void;
-	submitBulkOperation: () => void;
+/**
+ * 批量操作
+ * setIsBulk 是否批量操作
+ * setIsBulk 修改是否批量操作
+ * bulkOperationLoading 批量操作loading
+ * bulkOperationLoading 修改批量操作loading
+ */
+interface IbulkOperation {
+	setIsBulk: React.Dispatch<React.SetStateAction<boolean>>;
+	setBulkOperationLoading: React.Dispatch<React.SetStateAction<boolean>>;
 	isBulk: boolean;
 	bulkOperationLoading: boolean;
 }
-// 批量操作
-export const BulkOperation: FC<Iprops> = ({ onBulkOperation, submitBulkOperation, isBulk, bulkOperationLoading }) => {
+export const BulkOperation: FC<IbulkOperation> = ({ isBulk, setIsBulk, bulkOperationLoading, setBulkOperationLoading }) => {
+	const onBulkOperation = () => {
+		setIsBulk(!isBulk);
+	};
+
+	// 提交操作
+	const submitBulkOperation = () => {
+		setBulkOperationLoading(true);
+		setTimeout(() => {
+			onBulkOperation();
+			setBulkOperationLoading(false);
+		}, 2000);
+	};
 	return isBulk ? (
 		<Button type="primary" onClick={onBulkOperation}>
 			批量操作
@@ -29,8 +47,18 @@ export const BulkOperation: FC<Iprops> = ({ onBulkOperation, submitBulkOperation
 	);
 };
 
-// 关闭本轮面试
-export const CloseRound = ({ roundForm }: { roundForm: FormInstance }) => {
+/**
+ * 关闭本轮面试
+ * visibleRound 弹框开关
+ * setVisibleRound 修改弹框开关
+ */
+interface IcloseRound {
+	visibleRound: boolean;
+	setVisibleRound: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const CloseRound: FC<IcloseRound> = ({ visibleRound, setVisibleRound }) => {
+	const [roundForm] = Form.useForm();
+	const [confirmRound, setConfirmRound] = useState(false);
 	// 参数
 	const formList = [
 		{
@@ -47,14 +75,45 @@ export const CloseRound = ({ roundForm }: { roundForm: FormInstance }) => {
 			}
 		}
 	];
+
+	const handleOkRound = async () => {
+		try {
+			// 校验表单
+			const values = await roundForm.validateFields();
+			setConfirmRound(true);
+			setTimeout(() => {
+				roundForm.resetFields(); //重置表单数据
+				setConfirmRound(false);
+				setVisibleRound(false);
+			}, 2000);
+		} catch (error) {}
+	};
+
+	const handleCancelRound = () => {
+		roundForm.resetFields(); //重置表单数据
+		setVisibleRound(false);
+	};
+
 	return (
 		<>
-			<Iform formList={formList} form={roundForm} />
+			<Imodal
+				title="关闭本轮面试"
+				visible={visibleRound}
+				confirmLoading={confirmRound}
+				handleOk={handleOkRound}
+				handleCancel={handleCancelRound}
+				width="600px">
+				<Iform formList={formList} form={roundForm} />
+			</Imodal>
 		</>
 	);
 };
 
-// 确认最终面试结果
+/**
+ * 确认最终面试结果
+ * visibleResults 弹框开关
+ * setVisibleResults 修改弹框开关
+ */
 interface ConfirmInterviewResultsType {
 	visibleResults: boolean;
 	setVisibleResults: React.Dispatch<React.SetStateAction<boolean>>;
@@ -158,7 +217,7 @@ const ConfirmInterviewResult = ({ form }: { form: FormInstance }) => {
 		{
 			type: 'textArea',
 			name: 'textArea',
-			label: '注意事项',
+			label: '备注',
 			rules: [],
 			key: getKey(),
 			span: 24,
