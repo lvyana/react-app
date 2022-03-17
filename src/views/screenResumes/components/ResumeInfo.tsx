@@ -7,9 +7,9 @@ import IinfiniteScroll from '@/components/iInfiniteScroll';
 
 export type ICradEidt = (type: string, value: object) => void;
 interface Iprops {
-	setVisibleRefuse: React.Dispatch<React.SetStateAction<boolean>>;
+	onCradEidt: ICradEidt;
 }
-const ResumeInfo: FC<Iprops> = ({ setVisibleRefuse }) => {
+const ResumeInfo: FC<Iprops> = ({ onCradEidt }) => {
 	// 懒加载
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
@@ -20,23 +20,16 @@ const ResumeInfo: FC<Iprops> = ({ setVisibleRefuse }) => {
 		}, 1500);
 	};
 
-	// 编辑卡片
-	const onCradEidt: ICradEidt = (type, value) => {
-		console.log(type, value);
-		if (type === '拒绝') {
-			setVisibleRefuse(true);
-		}
-	};
-
-	// 收藏
-	const onCollect = () => {};
-
 	const [scrollHeight, setScrollHeight] = useState(0);
 	useEffect(() => {
 		let height = document.documentElement.clientHeight - 240;
 		console.log(height);
 		setScrollHeight(height);
 	}, []);
+
+	// 收藏
+	const onCollect = () => {};
+
 	return (
 		<IinfiniteScroll
 			current={data.length}

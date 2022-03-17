@@ -101,11 +101,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 															type="link"
 															style={{ padding: '4px 0' }}
 															onClick={() => onCradEidt('查看面试记录', item)}>
-															<div style={{ display: 'flex' }}>
-																<Dot color="green" mr={'2px'}></Dot>
-																<Dot color="green" mr={'2px'}></Dot>
-																<Dot color="red"></Dot>
-															</div>
+															<div style={{ display: 'flex' }}>{interviewStatus('4,4,3')}</div>
 														</Button>
 													</Itooltip>
 												</span>
@@ -114,14 +110,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 												<div>数据应用-测试</div>
 												<div>深圳市 初二级 一年以上</div>
 											</div>
-											<IconFont
-												type="icon-lianxi-yiguoqi"
-												style={{
-													fontSize: '60px',
-													position: 'absolute',
-													top: '-16px',
-													right: '-12px'
-												}}></IconFont>
+											{candidateStatus(i + '')}
 										</Col>
 									</Row>
 								</div>
@@ -135,7 +124,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 
 								<Row className={styles.interviewBtn} gutter={16} style={{ textAlign: 'center' }}>
 									<Col className="gutter-row" span={6}>
-										<Itooltip placement="top" color={'purple'} title={'填写本轮面试评价'}>
+										<Itooltip placement="top" color={'purple'} title={thisInterviewTitle(i + '', i + '')}>
 											<Button
 												shape="circle"
 												onClick={() => onCradEidt('填写本轮面试评价', item)}
@@ -143,7 +132,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
-										<Itooltip placement="top" color={'purple'} title={'邀约面试'}>
+										<Itooltip placement="top" color={'purple'} title={inviteInterviewTitle(i + '', i + '')}>
 											<Button
 												shape="circle"
 												onClick={() => onCradEidt('邀约面试', item)}
@@ -151,7 +140,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
-										<Itooltip placement="top" color={'purple'} title={'确认最终面试结果'}>
+										<Itooltip placement="top" color={'purple'} title={endResultTitle(i + '', i + '')}>
 											<Button
 												shape="circle"
 												onClick={() => onCradEidt('确认最终面试结果', item)}
@@ -161,7 +150,7 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 										</Itooltip>
 									</Col>
 									<Col className="gutter-row" span={6}>
-										<Itooltip placement="top" color={'purple'} title={'关闭本轮面试'}>
+										<Itooltip placement="top" color={'purple'} title={CloseThisRoundTitle(i + '', i + '')}>
 											<Button
 												shape="circle"
 												onClick={() => onCradEidt('关闭本轮面试', item)}
@@ -179,3 +168,222 @@ const InterviewerInfo: FC<Iprops> = ({ onCradEidt, isBulk, selectId, setSelectId
 };
 
 export default InterviewerInfo;
+
+// 候选人面试状态
+const candidateStatus = (type: string) => {
+	console.log(type);
+	if (type === '1') {
+		// 待安排
+		return (
+			<IconFont
+				type="icon-daianpai"
+				style={{
+					fontSize: '60px',
+					position: 'absolute',
+					top: '-16px',
+					right: '-12px'
+				}}></IconFont>
+		);
+	} else if (type === '2') {
+		// 进行中
+		return (
+			<IconFont
+				type="icon-jinhang"
+				style={{
+					fontSize: '60px',
+					position: 'absolute',
+					top: '-16px',
+					right: '-12px'
+				}}></IconFont>
+		);
+	} else if (type === '3') {
+		// 通过面试
+		return (
+			<IconFont
+				type="icon-mianshitongguo"
+				style={{
+					fontSize: '60px',
+					position: 'absolute',
+					top: '-16px',
+					right: '-12px'
+				}}></IconFont>
+		);
+	} else if (type === '4') {
+		// 未通过面试
+		return (
+			<IconFont
+				type="icon-mianshishibai"
+				style={{
+					fontSize: '60px',
+					position: 'absolute',
+					top: '-16px',
+					right: '-12px'
+				}}></IconFont>
+		);
+	} else if (type === '5') {
+		// 放弃面试
+		return (
+			<IconFont
+				type="icon-houxuanrenfangqi"
+				style={{
+					fontSize: '60px',
+					position: 'absolute',
+					top: '-16px',
+					right: '-12px'
+				}}></IconFont>
+		);
+	}
+};
+
+// 候选人面试进行中状态 type 4,4,1 轮次状态组合
+const interviewStatus = (type: string) => {
+	let typeArr = type.split(',');
+
+	return typeArr.map((value, i) => {
+		if (value === '1') {
+			// 已邀约
+			return <Dot color="yellow" key={i} mr={'2px'}></Dot>;
+		} else if (value === '2') {
+			// 待面试
+			return <Dot color="blue" key={i} mr={'2px'}></Dot>;
+		} else if (value === '3') {
+			// 已终止
+			return <Dot color="red" key={i} mr={'2px'}></Dot>;
+		} else if (value === '4') {
+			// 已进行
+			return <Dot color="green" key={i} mr={'2px'}></Dot>;
+		}
+	});
+};
+
+/**
+ * candidateType 候选人面试状态
+ * interviewType 候选人面试进行中状态
+ */
+// 填写本轮面试评价按钮提示语句
+const thisInterviewTitle = (candidateType: string, interviewType: string) => {
+	if (candidateType === '1') {
+		// candidateType待安排
+		return '面试未安排,无需填写面试评价';
+	} else if (candidateType === '2') {
+		// candidateType进行中
+		if (interviewType === '1') {
+			// 已邀约
+			return '请等待交付确认本次面试';
+		} else if (interviewType === '2') {
+			// 待面试
+			return '填写面试评价';
+		} else if (interviewType === '3') {
+			// 已终止
+			return '候选人已放弃面试';
+		} else if (interviewType === '4') {
+			// 已进行
+			return '面试未安排，无需填写面试评价';
+		}
+	} else if (candidateType === '3') {
+		// candidateType通过面试
+		return '候选人面试通过';
+	} else if (candidateType === '4') {
+		// candidateType未通过面试
+		return '候选人面试不通过';
+	} else if (candidateType === '5') {
+		// candidateType放弃面试
+		return '候选人已放弃面试';
+	}
+};
+
+// 邀约面试
+const inviteInterviewTitle = (candidateType: string, interviewType: string) => {
+	if (candidateType === '1') {
+		// candidateType待安排
+		return '邀约面试';
+	} else if (candidateType === '2') {
+		// candidateType进行中
+		if (interviewType === '1') {
+			// 已邀约
+			return '本轮面试进行中';
+		} else if (interviewType === '2') {
+			// 待面试
+			return '本轮面试进行中';
+		} else if (interviewType === '3') {
+			// 已终止
+			return '候选人已放弃面试';
+		} else if (interviewType === '4') {
+			// 已进行
+			return '邀约面试';
+		}
+	} else if (candidateType === '3') {
+		// candidateType通过面试
+		return '候选人面试通过';
+	} else if (candidateType === '4') {
+		// candidateType未通过面试
+		return '候选人面试不通过';
+	} else if (candidateType === '5') {
+		// candidateType放弃面试
+		return '候选人已放弃面试';
+	}
+};
+
+// 确认最终面试结果
+const endResultTitle = (candidateType: string, interviewType: string) => {
+	if (candidateType === '1') {
+		// candidateType待安排
+		return '确认最终面试结果';
+	} else if (candidateType === '2') {
+		// candidateType进行中
+		if (interviewType === '1') {
+			// 已邀约
+			return '本轮面试正在进行中';
+		} else if (interviewType === '2') {
+			// 待面试
+			return '本轮面试正在进行中';
+		} else if (interviewType === '3') {
+			// 已终止
+			return '候选人已放弃面试';
+		} else if (interviewType === '4') {
+			// 已进行
+			return '确认最终面试结果';
+		}
+	} else if (candidateType === '3') {
+		// candidateType通过面试
+		return '候选人面试通过';
+	} else if (candidateType === '4') {
+		// candidateType未通过面试
+		return '候选人面试不通过';
+	} else if (candidateType === '5') {
+		// candidateType放弃面试
+		return '候选人已放弃面试';
+	}
+};
+
+// 关闭本轮面试
+const CloseThisRoundTitle = (candidateType: string, interviewType: string) => {
+	if (candidateType === '1') {
+		// candidateType待安排
+		return '面试未安排，无需关闭面试';
+	} else if (candidateType === '2') {
+		// candidateType进行中
+		if (interviewType === '1') {
+			// 已邀约
+			return '关闭本轮面试';
+		} else if (interviewType === '2') {
+			// 待面试
+			return '关闭本轮面试';
+		} else if (interviewType === '3') {
+			// 已终止
+			return '候选人已放弃面试';
+		} else if (interviewType === '4') {
+			// 已进行
+			return '面试未安排，无需关闭面试';
+		}
+	} else if (candidateType === '3') {
+		// candidateType通过面试
+		return '候选人面试通过';
+	} else if (candidateType === '4') {
+		// candidateType未通过面试
+		return '候选人面试不通过';
+	} else if (candidateType === '5') {
+		// candidateType放弃面试
+		return '候选人已放弃面试';
+	}
+};
