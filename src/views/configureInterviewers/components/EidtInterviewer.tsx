@@ -219,7 +219,7 @@ const AddInterviewerInfo: FC<Iprops> = ({ form }) => {
 		let pinyinArr = Pinyin(e.target.value, {
 			style: Pinyin.STYLE_NORMAL // 设置拼音风格
 		});
-		pinyinArr.map((item) => {
+		pinyinArr.map((item: string[]) => {
 			pinYinStr = pinYinStr + item[0];
 		});
 		console.log(pinYinStr, pinyinArr);
