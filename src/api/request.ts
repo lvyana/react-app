@@ -89,4 +89,31 @@ instance.interceptors.response.use(
 	}
 );
 
+// 通用下载方法get
+export function downloadGet(url: string, filename: string) {
+	return instance
+		.get(url, {
+			responseType: 'blob'
+		})
+		.then((data) => {
+			const content: any = data;
+			const blob = new Blob([content]);
+			if ('download' in document.createElement('a')) {
+				const elink = document.createElement('a');
+				elink.download = filename;
+				elink.style.display = 'none';
+				elink.href = URL.createObjectURL(blob);
+				document.body.appendChild(elink);
+				elink.click();
+				URL.revokeObjectURL(elink.href);
+				document.body.removeChild(elink);
+			} else {
+				(navigator as any).msSaveBlob(blob, filename);
+			}
+		})
+		.catch((r) => {
+			console.error(r);
+		});
+}
+
 export default instance;
