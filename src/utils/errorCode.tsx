@@ -25,20 +25,26 @@ export const Message = (type: string, msg: string) => {
 };
 
 // 登录失效
+let isModal = true;
 export const logonFailure = () => {
-	confirm({
-		title: '系统提示',
-		icon: <ExclamationCircleOutlined />,
-		content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
-		okText: '重新登陆',
-		onOk() {
-			clearToken();
-			console.log('OK');
-			actions.setGlobalState({ token: '' });
-			// window.location.href = '/login';
-		},
-		onCancel() {
-			console.log('Cancel');
-		}
-	});
+	if (isModal === true) {
+		isModal = false;
+		confirm({
+			title: '系统提示',
+			icon: <ExclamationCircleOutlined />,
+			content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
+			okText: '重新登陆',
+			onOk() {
+				clearToken();
+				console.log('OK');
+				actions.setGlobalState({ token: '' });
+				// window.location.href = '/login';
+				isModal = true;
+			},
+			onCancel() {
+				console.log('Cancel');
+				isModal = true;
+			}
+		});
+	}
 };
