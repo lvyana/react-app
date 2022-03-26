@@ -1,0 +1,32 @@
+@import './antd-ui.scss';
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+.omit {
+	width: 100%;
+	overflow: hidden; /*超出部分隐藏*/
+	white-space: nowrap; /*不换行*/
+	text-overflow: ellipsis; /*超出部分文字以...显示*/
+}
+
+// 左边距
+.ml10 {
+	margin-left: 10px;
+}
+
+// 右边距
+.mr10 {
+	margin-right: 10px;
+}
+
+// 下边距
+.mb10 {
+	margin-bottom: 10px;
+}
+// 上边距
+.mt10 {
+	margin-top: 10px;
+}
