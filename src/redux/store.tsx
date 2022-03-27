@@ -1,6 +1,7 @@
 import { combineReducers, applyMiddleware } from 'redux';
 import { createStore } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension'; //开发者工具
 import layout from './reducers/layout';
 import user from './reducers/user';
@@ -12,7 +13,7 @@ const allreducer = combineReducers({
 	configureInterviewers
 });
 
-const store = createStore(allreducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(allreducer, composeWithDevTools(applyMiddleware(thunk, logger)));
 export default store;
 
 /**

@@ -32,15 +32,20 @@ const Headerregion = () => {
 		<>
 			<Row justify="space-around" align="middle">
 				<Col flex="auto">
+					{/* 菜单 */}
 					<Crumb></Crumb>
 				</Col>
 				<Col flex="350px">
+					{/* 搜索 */}
 					<HeaderSearch></HeaderSearch>
+					{/* 全屏 */}
 					<Fullscreen></Fullscreen>
+					{/* 组件大小 */}
 					<ModuleSize></ModuleSize>
+					{/* 用户头像 */}
 					<Dropdown overlay={menu} placement="bottomCenter" trigger={['click']} arrow>
 						<Button type="link">
-							<Avatar src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
+							<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
 						</Button>
 					</Dropdown>
 				</Col>

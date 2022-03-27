@@ -4,10 +4,14 @@ import { Layout, BackTop } from 'antd';
 import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
+import useIntro from '@/utils/useIntro';
 import './index.scss';
 const { Header, Content, Sider } = Layout;
 
 const List = () => {
+	// 用户指导
+	useIntro();
+	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
 	const [collapsedWidth, setCollapsedWidth] = useState(200);
 	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
