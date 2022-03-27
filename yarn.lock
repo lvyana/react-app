@@ -6061,10 +6061,10 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-intro.js@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmmirror.com/intro.js/-/intro.js-5.0.0.tgz#4e5fab764be6c086dd0413c6e0b6dac54d5ed7b2"
-  integrity sha512-bj3R8Fb9h5I/oJIit60KciZUXBDviA4qV1iM9O/AXQvrfv78Szx9ILuRWET1W2jGge8RcM11TApxwQ0007Y1nQ==
+intro.js@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.npmmirror.com/intro.js/-/intro.js-4.3.0.tgz#39d072e638eae9c8491e225b8565ad63b6aaf1f7"
+  integrity sha512-F4LXM42QIXcO3/2myGBBFdbbUVUK0lBhK7pAxPLd082u+3HfvigFR+Rptqy05q3OzjG/O0vMFDedrnHdSPi2rQ==
 
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
