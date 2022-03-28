@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import Icard from '@/components/iCard';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { reSetFormKeepAliveValue } from '@/redux/constant/user';
+import { useLocation } from 'react-router-dom';
 import Iform from '@/components/iForm';
 import { Form } from 'antd';
 import SearchTag, { onChangeType } from '@/components/iSearchTag';
 import getKey from '@/utils/onlyKey';
-
+import useFormKeepAlive from '@/utils/useFormKeepAlive';
 interface IsearchForm {
 	name: string;
 	select: string;
@@ -13,6 +16,19 @@ interface IsearchForm {
 const SearchForm = () => {
 	//表单
 	const [form] = Form.useForm();
+
+	// 缓存
+	const location = useLocation();
+	const lastFormData = useSelector<RootState>((state) => state.user.formKeepAlive) as reSetFormKeepAliveValue;
+	useEffect(() => {
+		console.log(lastFormData, '上一次数据');
+		if (lastFormData.path === location.pathname) {
+			form.setFieldsValue(lastFormData.data);
+			onFinish();
+		}
+	}, []);
+	let [formData, setFormData] = useFormKeepAlive(form, lastFormData.data);
+
 	// 参数
 	const formList = [
 		{
@@ -94,8 +110,10 @@ const SearchForm = () => {
 	];
 	const [state, setstate] = useState(formList);
 
-	const onFinish = (value: IsearchForm) => {
-		console.log(value);
+	const onFinish = () => {
+		let data = form.getFieldsValue();
+		setFormData(data);
+		console.log(data);
 	};
 
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);

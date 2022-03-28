@@ -26,7 +26,7 @@ const useIntro = () => {
 					}
 				],
 				// 是否允许点击空白处退出
-				exitOnOverlayClick: false,
+				// exitOnOverlayClick: false,
 				nextLabel: '下一步',
 				prevLabel: '返回'
 			})

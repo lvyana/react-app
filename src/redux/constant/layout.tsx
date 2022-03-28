@@ -3,12 +3,12 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext';
 // 组件大小
 export const SIZE = 'size';
 
-export interface reEditorSizeType {
+export interface reEditorSizeTypeAction {
 	type: 'size';
 	value: SizeType;
 }
-export type editorSizeType = (value: SizeType) => reEditorSizeType;
+export type editorSizeType = (value: SizeType) => reEditorSizeTypeAction;
 
-export type layoutActions = reEditorSizeType;
+export type layoutActions = reEditorSizeTypeAction;
 
 export type { SizeType };

@@ -1,13 +1,15 @@
-import { PHOTO, TOKEN, PERMISS, userActions } from '../constant/user';
+import { PHOTO, TOKEN, PERMISS, FORM_KEEP_ALIVE, reSetFormKeepAliveValue, userActions } from '../constant/user';
 interface initialStateType {
 	photo: string;
 	token: string;
 	permiss: string[];
+	formKeepAlive: reSetFormKeepAliveValue;
 }
 export let initialState: initialStateType = {
 	photo: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
 	token: '',
-	permiss: ['*:*:*']
+	permiss: ['*:*:*'],
+	formKeepAlive: { path: '', data: {} }
 };
 const user = (state = initialState, action: userActions) => {
 	let newState: initialStateType = JSON.parse(JSON.stringify(state));
@@ -21,6 +23,9 @@ const user = (state = initialState, action: userActions) => {
 			return newState;
 		case PERMISS:
 			newState[PERMISS] = value as string[];
+			return newState;
+		case FORM_KEEP_ALIVE:
+			newState[FORM_KEEP_ALIVE] = value as reSetFormKeepAliveValue;
 			return newState;
 		default:
 			return newState;
