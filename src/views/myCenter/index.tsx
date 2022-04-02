@@ -12,7 +12,7 @@ const MyCenter: FC = () => {
 	const dispatch = useDispatch();
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
-	const initImg = useSelector<RootState>((state) => state.user.photo);
+	const initImg = useSelector((state: RootState) => state.user.photo);
 
 	// 修改完的图片传入
 	const [photoFinish, setPhotoFinish] = useState(initImg as string);

@@ -8,8 +8,8 @@ import { RootState } from '@/redux/store';
 const ModuleSize = () => {
 	// 尺寸
 	const dispatch = useDispatch();
-	const sizeR = useSelector<RootState>((state) => state.layout.size);
-	const [size, setsize] = useState(sizeR as SizeType);
+	const sizeR = useSelector((state: RootState) => state.layout.size);
+	const [size, setsize] = useState(sizeR);
 	const handleSizeChange = ({ key }: { key: string }) => {
 		setsize(key as SizeType);
 		dispatch(editorSize(key as SizeType));

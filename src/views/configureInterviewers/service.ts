@@ -4,7 +4,7 @@ import { checkInterviewerExistForm, IinterviewerProjectType } from './components
 // 获取项目组
 export function projectList() {
 	return request({
-		url: '/system/project/list',
+		url: '/system',
 		method: 'get'
 	});
 }
@@ -12,7 +12,7 @@ export function projectList() {
 // 获取所有面试官
 export function interviewerList(data: IsearchFormType) {
 	return request({
-		url: '/system/interviewer/pageList',
+		url: '/system',
 		method: 'post',
 		data
 	});
@@ -21,7 +21,7 @@ export function interviewerList(data: IsearchFormType) {
 // 查询所有用户
 export function findAllInterviewer() {
 	return request({
-		url: '/system/interviewer/findAllInterviewer',
+		url: '/system',
 		method: 'get'
 	});
 }

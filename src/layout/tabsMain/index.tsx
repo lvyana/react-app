@@ -4,7 +4,6 @@ import { Tabs } from 'antd';
 import { menuList, router } from '@/layout/menuList/index';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 const { TabPane } = Tabs;
 type ACTION = 'add' | 'remove';
@@ -78,7 +77,7 @@ const TabsMain = () => {
 	useEffect(() => {
 		if (!panes.length) return;
 	}, [panes]);
-	const size = useSelector<RootState>((state) => state.layout.size) as SizeType;
+	const size = useSelector((state: RootState) => state.layout.size);
 	return (
 		<>
 			<Tabs hideAdd onChange={onChange} activeKey={activeKey} type="editable-card" onEdit={onEdit} size={size}>

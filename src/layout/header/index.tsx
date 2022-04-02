@@ -9,7 +9,7 @@ import HeaderSearch from './HeaderSearch';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
 
 const Headerregion = () => {
-	const photo = useSelector<RootState>((state) => state.user.photo);
+	const photo = useSelector((state: RootState) => state.user.photo);
 	const navigate = useNavigate();
 
 	// 头像功能
