@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import useHasPermiss from '@/utils/permissions';
+import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
 import { IBUTTON } from './type';
 

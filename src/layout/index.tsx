@@ -4,7 +4,7 @@ import { Layout, BackTop } from 'antd';
 import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
-import useIntro from '@/utils/useIntro';
+import useIntro from '@/useHooks/useIntro';
 import './index.scss';
 const { Header, Content, Sider } = Layout;
 
