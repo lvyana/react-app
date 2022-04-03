@@ -9,7 +9,6 @@ export interface router {
 	path: string;
 	key?: string;
 	icon?: string;
-	menutype?: number;
 	show?: boolean;
 	children?: router[];
 }
@@ -19,29 +18,31 @@ export const menuList: router[] = [
 		title: 'expenses',
 		path: '/expenses',
 		key: '1',
-		icon: 'icon-tiaoxingtu-duidie',
-		menutype: 1
+		icon: 'icon-tiaoxingtu-duidie'
 	},
 	{
 		title: '动态表单',
 		path: '/dynamicform',
 		key: '2',
-		icon: 'icon-bingtu-huanxing',
-		menutype: 1
+		icon: 'icon-bingtu-huanxing'
 	},
 	{
 		title: '配置面试官',
 		path: '/configureInterviewers',
 		key: '4',
-		icon: 'icon-bingtu-huanxing',
-		menutype: 1
+		icon: 'icon-bingtu-huanxing'
+	},
+	{
+		title: '日志',
+		path: '/log',
+		key: '5',
+		icon: 'icon-bingtu-huanxing'
 	},
 	{
 		title: '富文本',
 		path: '/richtextedit',
 		key: '9',
-		icon: 'icon-chuangyepeixunxiangmu',
-		menutype: 1
+		icon: 'icon-chuangyepeixunxiangmu'
 	},
 	// 不显示在菜单中中
 	{
@@ -49,7 +50,6 @@ export const menuList: router[] = [
 		path: '/mycenter',
 		key: '6',
 		icon: 'icon-bingtu-huanxing',
-		menutype: 1,
 		show: false
 	}
 ];

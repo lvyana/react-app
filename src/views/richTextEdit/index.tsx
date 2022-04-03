@@ -7,9 +7,13 @@ import {
 	IEditorConfig, // 编辑器配置
 	IToolbarConfig // 工具栏配置
 } from '@wangeditor/editor';
-import { Button } from 'antd';
 import ILookModal from '@/components/iLookModal';
 import Preview from './components/Preview';
+import { Modal, Button, Space } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import moment from 'moment';
+
+const { confirm } = Modal;
 
 export interface ISingleMenuConfig {
 	[key: string]: any;
@@ -48,9 +52,23 @@ const RichTextEdit = () => {
 
 	const [content, setContent] = useState('');
 	const [visible, setVisible] = useState(false);
-	const submit = () => {
+	const onSubmit = () => {
 		console.log(editor?.children); // 节点对象
 		console.log(editor?.getHtml()); //获取非格式化的 html
+		let time = moment().format('YYYY-MM-DD');
+		console.log(time);
+
+		confirm({
+			title: 'Do you Want to delete these items?',
+			icon: <ExclamationCircleOutlined />,
+			content: 'Some descriptions',
+			onOk() {
+				console.log('OK');
+			},
+			onCancel() {
+				console.log('Cancel');
+			}
+		});
 	};
 	const onPreview = () => {
 		console.log(editor?.getHtml());
@@ -66,7 +84,7 @@ const RichTextEdit = () => {
 			<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
 			<Editor defaultConfig={editorConfig} defaultContent={defaultContent} mode="default" style={{ height: '500px' }} />
 			<div style={{ marginTop: '10px' }}>
-				<Button type="primary" onClick={submit} style={{ marginRight: '5px' }}>
+				<Button type="primary" onClick={onSubmit} style={{ marginRight: '5px' }}>
 					提交
 				</Button>
 				<Button type="primary" onClick={onPreview}>

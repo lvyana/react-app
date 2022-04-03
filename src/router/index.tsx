@@ -20,7 +20,7 @@ const Expenses = lazy(() => import('@/views/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const ConfigureInterviewers = lazy(() => import('@/views/configureInterviewers'));
 const Error404 = lazy(() => import('@/views/Error404'));
-
+const Log = lazy(() => import('@/views/log'));
 interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
 }
@@ -70,6 +70,10 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 					{
 						path: 'configureInterviewers',
 						element: <Auth element={SuspenseLoad(<ConfigureInterviewers />)} title="configureInterviewers" />
+					},
+					{
+						path: 'log',
+						element: <Auth element={SuspenseLoad(<Log />)} title="log" />
 					},
 					{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} title="富文本" /> },
 					{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} title="个人中心" /> },

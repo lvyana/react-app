@@ -6,11 +6,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'; //开发者工�
 import layout from './reducers/layout';
 import user from './reducers/user';
 import configureInterviewers from './reducers/configureInterviewers';
+import log from './reducers/log';
 
 const allreducer = combineReducers({
 	layout,
 	user,
-	configureInterviewers
+	configureInterviewers,
+	log
 });
 
 const store = createStore(allreducer, composeWithDevTools(applyMiddleware(thunk, logger)));
