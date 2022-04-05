@@ -12,7 +12,6 @@ import Preview from './components/Preview';
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import moment from 'moment';
-
 const { confirm } = Modal;
 
 export interface ISingleMenuConfig {

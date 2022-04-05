@@ -23,9 +23,7 @@ const addCustomize = () => (config) => {
 	if (process.env.NODE_ENV === 'production') {
 		// 关闭sourceMap
 		config.devtool = false;
-		// 配置打包后的文件位置
-		// config.output.path = __dirname + '../dist/demo/';
-		// config.output.publicPath = './demo';
+
 		// 添加js打包gzip配置
 		config.plugins.push(
 			new CompressionWebpackPlugin({
@@ -75,8 +73,17 @@ module.exports = {
 			config.output.chunkLoadingGlobal = `webpackJsonp_${name}`;
 			config.output.globalObject = 'window';
 
+			// 配置打包后的文件位置 js、css会打包到dist目录下
+			// config.output.path = path.join(path.dirname(config.output.path), 'dist');
+			// config.output.publicPath = path.join(path.dirname(config.output.path), 'dist/');
+
 			return config;
 		},
+		// fixBabelImports('import', { //配置按需加载
+		// 	libraryName: 'antd',
+		// 	libraryDirectory: 'es',
+		// 	style: true,
+		// }),
 		fixBabelImports('import', {
 			libraryName: 'antd',
 			libraryDirectory: 'es',
@@ -99,6 +106,8 @@ module.exports = {
 		addWebpackExternals({
 			// 注意对应的在public/index.html引入jquery的远程文件地址
 			// jQuery: 'jQuery',
+			'@antv/g2plot': 'G2Plot',
+			'@wangeditor/editor': 'wangEditor'
 		}),
 		// 注意是production环境启动该plugin
 		process.env.NODE_ENV === 'production' &&
@@ -122,7 +131,7 @@ module.exports = {
 			})
 		),
 		// 判断环境变量ANALYZER参数的值
-		process.env.ANALYZER && addWebpackPlugin(new BundleAnalyzerPlugin()),
+		(process.env.REACT_APP_ANALYZER === 'true') && addWebpackPlugin(new BundleAnalyzerPlugin()),
 		addWebpackPlugin(new ProgressBarPlugin())
 	)
 };

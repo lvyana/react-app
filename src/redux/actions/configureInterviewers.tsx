@@ -6,18 +6,15 @@ export const getProject: Iproject = (value) => {
 
 export const getProjectApi = () => {
 	return async (dispatch: (arg0: { type: string; value: IprojectItem[] }) => void) => {
-		// setTimeout(() => {
-		// 	// Yay! Can invoke sync or async actions with `dispatch`
-		// 	dispatch(getProject(value));
-		// }, 1000);
-
-		let res = await projectList();
-		let data = res.data.data.map((item: IprojectItem) => {
-			return {
-				id: item.id,
-				projectName: item.projectName
-			};
-		});
-		dispatch(getProject(data));
+		try {
+			let res = await projectList();
+			let data = res.data.data.map((item: IprojectItem) => {
+				return {
+					id: item.id,
+					projectName: item.projectName
+				};
+			});
+			dispatch(getProject(data));
+		} catch (error) {}
 	};
 };
