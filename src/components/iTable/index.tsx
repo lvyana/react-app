@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { ColumnsType } from 'antd/es/table';
 /**
  *
@@ -20,6 +19,7 @@ interface Iprops {
 	loading?: boolean;
 	rowSelection?: object;
 	rowKey?: string;
+	bordered?: boolean;
 }
 
 /**
@@ -30,21 +30,21 @@ export type ItbClick = (type: string, nameList: object | undefined) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 
-const Itable = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading }: Iprops) => {
-	const size = useSelector<RootState>((state) => state.layout.size);
+const Itable: FC<Iprops> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading, bordered = false }) => {
+	const size = useSelector((state: RootState) => state.layout.size);
 	console.log(size);
 
 	return (
 		<Table
 			style={{ marginTop: '10px' }}
-			size={size as SizeType}
+			size={size}
 			columns={columns}
 			rowSelection={rowSelection && { ...rowSelection }}
 			dataSource={data}
 			loading={loading}
 			pagination={false}
 			rowKey={rowKey}
-			// bordered
+			bordered={bordered}
 		/>
 	);
 };
