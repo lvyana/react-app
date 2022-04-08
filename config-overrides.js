@@ -17,6 +17,14 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const { name } = require('./package');
 
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
+const cdn = {
+	css: ['https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.11/dist/css/style.css'],
+	js: [
+		'https://cdnjs.cloudflare.com/ajax/libs/g2plot/2.4.15/g2plot.min.js',
+		'https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.11/dist/index.min.js'
+	]
+};
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
@@ -111,27 +119,37 @@ module.exports = {
 		}),
 		// 注意是production环境启动该plugin
 		process.env.NODE_ENV === 'production' &&
-		addWebpackPlugin(
-			new UglifyJsPlugin({
-				// 开启打包缓存
-				cache: true,
-				// 开启多线程打包
-				parallel: true,
-				uglifyOptions: {
-					// 删除警告
-					warnings: false,
-					// 压缩
-					compress: {
-						// 移除console
-						drop_console: true,
-						// 移除debugger
-						drop_debugger: true
+			addWebpackPlugin(
+				new UglifyJsPlugin({
+					// 开启打包缓存
+					cache: true,
+					// 开启多线程打包
+					parallel: true,
+					uglifyOptions: {
+						// 删除警告
+						warnings: false,
+						// 压缩
+						compress: {
+							// 移除console
+							drop_console: true,
+							// 移除debugger
+							drop_debugger: true
+						}
 					}
-				}
-			})
-		),
+				})
+			),
 		// 判断环境变量ANALYZER参数的值
-		(process.env.REACT_APP_ANALYZER === 'true') && addWebpackPlugin(new BundleAnalyzerPlugin()),
+		process.env.REACT_APP_ANALYZER === 'true' &&
+			addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.1', analyzerPort: 8999 })),
 		addWebpackPlugin(new ProgressBarPlugin())
-	)
+	),
+	// 生产注入cdn
+	chainWebpack: (config) => {
+		if (process.env.NODE_ENV !== 'production') {
+			config.plugin('html').tap((args) => {
+				args[0].cdn = cdn;
+				return args;
+			});
+		}
+	}
 };
