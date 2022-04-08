@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import Icard from '@/components/iCard';
 import Iform, { FormInstance } from '@/components/iForm';
-import { Form } from 'antd';
+import useFormKeepAlive from '@/useHooks/useFormKeepAlive';
 import getKey from '@/utils/onlyKey';
 
 interface IsearchForm {
@@ -27,6 +27,9 @@ interface Iprops {
 const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 	const projectData = useSelector((state: RootState) => state.configureInterviewers.projectData);
 	console.log(projectData);
+
+	const [formData, setFormData] = useFormKeepAlive();
+	console.log(formData, setFormData, 123321);
 
 	// 参数
 	const formList = [
@@ -96,9 +99,12 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 			style: { float: 'right' }
 		}
 	];
-
+	useEffect(() => {
+		form.setFieldsValue(formData);
+	}, []);
 	const onFinish = () => {
 		getTaableData();
+		setFormData(form.getFieldsValue());
 	};
 	return (
 		<Icard styles={{ padding: '16px 16px 0' }}>
