@@ -564,9 +564,7 @@ const Dynamicform = () => {
 	const [state, setstate] = useState<FORMITEM[]>(formList);
 	//表单
 	const [form] = Form.useForm();
-	const onFinish = (value: any) => {
-		console.log(value);
-	};
+	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Iform formList={state} form={form} onFinish={onFinish} />

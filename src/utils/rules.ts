@@ -1,7 +1,7 @@
 import { Rule } from 'rc-field-form/lib/interface';
 
 interface RULES {
-	(rule: Rule, value: any): void;
+	(rule: Rule, value: string): Promise<void>;
 }
 
 // 手机号码和座机验证
@@ -95,7 +95,7 @@ export const checkMax20000: RULES = (rule, value) => {
 		return Promise.resolve();
 	} else if (!Number(value)) {
 		return Promise.reject(new Error('请输入[1,20000]之间的数字'));
-	} else if (value < 1 || value > 20000) {
+	} else if (Number(value) < 1 || Number(value) > 20000) {
 		return Promise.reject(new Error('请输入[1,20000]之间的数字'));
 	} else {
 		return Promise.resolve();
@@ -104,7 +104,7 @@ export const checkMax20000: RULES = (rule, value) => {
 
 // 验证数字输入框最大数值
 export const checkMaxVal: RULES = (rule, value) => {
-	if (value < 0 || value > 9999) {
+	if (Number(value) < 0 || Number(value) > 9999) {
 		return Promise.reject(new Error('请输入[0,9999]之间的数字'));
 	} else {
 		return Promise.resolve();
@@ -116,19 +116,17 @@ export const isOneToNinetyNine: RULES = (rule, value) => {
 	if (!value) {
 		return Promise.reject(new Error('输入不可以为空'));
 	}
-	setTimeout(() => {
-		if (!Number(value)) {
-			return Promise.reject(new Error('请输入正整数'));
+	if (!Number(value)) {
+		return Promise.reject(new Error('请输入正整数'));
+	} else {
+		const re = /^[1-9][0-9]{0,1}$/;
+		const rsCheck = re.test(value);
+		if (!rsCheck) {
+			return Promise.reject(new Error('请输入正整数，值为【1,99】'));
 		} else {
-			const re = /^[1-9][0-9]{0,1}$/;
-			const rsCheck = re.test(value);
-			if (!rsCheck) {
-				return Promise.reject(new Error('请输入正整数，值为【1,99】'));
-			} else {
-				return Promise.resolve();
-			}
+			return Promise.resolve();
 		}
-	}, 0);
+	}
 };
 
 // 验证是否整数
@@ -136,19 +134,18 @@ export const isInteger: RULES = (rule, value) => {
 	if (!value) {
 		return Promise.reject(new Error('输入不可以为空'));
 	}
-	setTimeout(() => {
-		if (!Number(value)) {
+
+	if (!Number(value)) {
+		return Promise.reject(new Error('请输入正整数'));
+	} else {
+		const re = /^[0-9]*[1-9][0-9]*$/;
+		const rsCheck = re.test(value);
+		if (!rsCheck) {
 			return Promise.reject(new Error('请输入正整数'));
 		} else {
-			const re = /^[0-9]*[1-9][0-9]*$/;
-			const rsCheck = re.test(value);
-			if (!rsCheck) {
-				return Promise.reject(new Error('请输入正整数'));
-			} else {
-				return Promise.resolve();
-			}
+			return Promise.resolve();
 		}
-	}, 0);
+	}
 };
 
 // 密码校验

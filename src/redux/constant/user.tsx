@@ -32,6 +32,6 @@ export interface reSetFormKeepAliveAction {
 	type: 'formKeepAlive';
 	value: reSetFormKeepAliveValue;
 }
-export type setFormKeepAlive = (value: reSetFormKeepAliveValue) => reSetFormKeepAliveAction;
+export type setFormKeepAliveType = (value: reSetFormKeepAliveValue) => reSetFormKeepAliveAction;
 
 export type userActions = reSetPhotoAction | reSetTokenAction | reSetPermissAction | reSetFormKeepAliveAction;

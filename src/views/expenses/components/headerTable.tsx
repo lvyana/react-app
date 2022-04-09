@@ -26,7 +26,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	};
 
 	// 表格图表移入移出功能
-	const onVisibleChange = (visible: boolean, record: any) => {
+	const onVisibleChange = (visible: boolean, record: ItableBt) => {
 		console.log(visible, record);
 		if (visible) {
 			setBtFun([

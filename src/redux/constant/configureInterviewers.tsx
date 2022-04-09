@@ -8,4 +8,4 @@ export interface projectAction {
 	type: 'projectData';
 	value: IprojectItem[];
 }
-export type Iproject = (value: any) => projectAction;
+export type Iproject = (value: IprojectItem[]) => projectAction;

@@ -32,7 +32,7 @@ export type { FormInstance };
 interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;
-	onFinish?: ((values?: any) => void) | undefined;
+	onFinish?: () => void;
 	setReset?: () => void;
 	num?: number;
 	setNum?: React.Dispatch<React.SetStateAction<number>>;

@@ -46,19 +46,6 @@ const InfiniteListExample = () => {
 				loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
 				endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
 				scrollableTarget="scrollableDiv">
-				{/* <List
-					dataSource={data}
-					renderItem={(item: any) => (
-						<List.Item key={item.id}>
-							<List.Item.Meta
-								avatar={<Avatar src={item.picture.large} />}
-								title={<a href="https://ant.design">{item.name.last}</a>}
-								description={item.email}
-							/>
-							<div>Content</div>
-						</List.Item>
-					)}
-				/> */}
 				<div>
 					{data.map((item: any) => (
 						<div style={{ height: '40px' }} key={getKey()}>

@@ -24,7 +24,7 @@ interface Iprops {
 const useHeaderTable = ({ buttonEvent, getTaableData }: Iprops) => {
 	const { onConfirm } = useIconfirm();
 	// 表格图表移入移出功能
-	const onVisibleChange = (visible: boolean, record: any) => {
+	const onVisibleChange = (visible: boolean, record: ItableBt) => {
 		console.log(visible, record);
 		if (visible) {
 			setBtFun([{ type: '修改', name: '修改' }]);
