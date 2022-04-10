@@ -18,13 +18,6 @@ const { name } = require('./package');
 
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-const cdn = {
-	css: ['https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.11/dist/css/style.css'],
-	js: [
-		'https://cdnjs.cloudflare.com/ajax/libs/g2plot/2.4.15/g2plot.min.js',
-		'https://cdn.jsdelivr.net/npm/@wangeditor/editor@0.15.11/dist/index.min.js'
-	]
-};
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
@@ -143,13 +136,4 @@ module.exports = {
 		addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.1', analyzerPort: 8999 })),
 		addWebpackPlugin(new ProgressBarPlugin())
 	),
-	// 生产注入cdn
-	// chainWebpack: (config) => {
-	// 	if (process.env.NODE_ENV === 'production') {
-	// 		config.plugin('html').tap((args) => {
-	// 			args[0].cdn = cdn;
-	// 			return args;
-	// 		});
-	// 	}
-	// }
 };
