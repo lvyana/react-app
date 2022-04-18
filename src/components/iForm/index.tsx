@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import {
 	Form,
 	Input,
@@ -32,7 +32,7 @@ export type { FormInstance };
 interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;
-	onFinish?: () => void;
+	onFinish?: ((values?: any) => void) | undefined;
 	setReset?: () => void;
 	num?: number;
 	setNum?: React.Dispatch<React.SetStateAction<number>>;
@@ -42,6 +42,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	// const onFinish = (values: object) => {
 	// 	console.log('Success:', values);
 	// };
+
 	const [expand, setExpand] = useState(false);
 	const [showNum, setShowNum] = useState(num);
 	const onReset = () => {
@@ -55,11 +56,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
 				<Form.Item
 					label={item.label}
+					tooltip={item.tooltip}
 					name={item.name}
 					validateTrigger={item.validateTrigger}
 					rules={item.rules}
 					{...item.layout}
-					labelAlign={item.labelAlign}>
+					labelAlign={item.labelAlign}
+					getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}>
 					<Input
 						onChange={item.onChange}
 						onBlur={item.onBlur}
@@ -74,7 +77,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formInputTextArea = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item label={item.label} name={item.name} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					label={item.label}
+					tooltip={item.tooltip}
+					name={item.name}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<Input.TextArea
 						showCount={item.maxLength ? true : false}
 						onChange={item.onChange}
@@ -89,7 +98,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formSelect = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<Select
 						showSearch
 						allowClear
@@ -103,20 +118,51 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 							option[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase().indexOf(input.toLowerCase()) >=
 							0
 						}
-						filterSort={(optionA, optionB) =>
-							optionA[item.fieldNames?.label ? item.fieldNames?.label : 'label']
-								.toLowerCase()
-								.localeCompare(optionB[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase())
-						}></Select>
+						// filterSort={(optionA, optionB) =>
+						// 	optionA[item.fieldNames?.label ? item.fieldNames?.label : 'label']
+						// 		.toLowerCase()
+						// 		.localeCompare(optionB[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase())
+						// }
+					></Select>
 				</Form.Item>
 			</Col>
 		);
 	};
+
+	// 远程搜索
+	const formSeachSelect = (item: FORMITEM) => {
+		return (
+			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
+				<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
+					<Select
+						style={{ width: '100%' }}
+						showSearch
+						allowClear
+						// labelInValue={true}
+						placeholder={'请输入岗位需求'}
+						defaultActiveFirstOption={false}
+						showArrow={false}
+						filterOption={false}
+						onSearch={item.handleSearch}
+						options={item.option}
+						// fieldNames={{ label: 'name', value: 'id' }}
+						notFoundContent={null}></Select>
+				</Form.Item>
+			</Col>
+		);
+	};
+
 	// 树形下拉
 	const formTreeSelect = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<TreeSelect
 						treeData={item.option}
 						showCheckedStrategy={SHOW_PARENT}
@@ -134,7 +180,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formCascader = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<Cascader
 						fieldNames={item.fieldNames}
 						options={item.option}
@@ -150,7 +202,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formDatePicker = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<DatePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} />
 				</Form.Item>
 			</Col>
@@ -160,7 +218,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formRangePicker = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<RangePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} />
 				</Form.Item>
 			</Col>
@@ -171,7 +235,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		const format = 'HH:mm';
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<TimePicker
 						minuteStep={15}
 						onChange={item.onChange}
@@ -188,7 +258,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		const format = 'HH:mm';
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<TimePicker.RangePicker
 						onChange={item.onChange}
 						minuteStep={15}
@@ -204,7 +280,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formInputNumber = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout} labelAlign={item.labelAlign}>
+				<Form.Item
+					name={item.name}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}>
 					<InputNumber min={0} onChange={item.onChange} disabled={item.disabled} />
 				</Form.Item>
 			</Col>
@@ -217,6 +299,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 				<Form.Item
 					name={item.name}
 					label={item.label}
+					tooltip={item.tooltip}
 					rules={item.rules}
 					valuePropName="checked"
 					{...item.layout}
@@ -231,7 +314,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formRadioIcon = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout}>
+				<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 					<Radio.Group onChange={item.onChange}>
 						{item.option &&
 							item.option.map((value) => {
@@ -250,7 +333,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formRadio = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout}>
+				<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 					<Radio.Group onChange={item.onChange}>
 						{item.option &&
 							item.option.map((value) => {
@@ -269,7 +352,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formCheckbox = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout}>
+				<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 					<Checkbox.Group options={item.option} onChange={item.onChange} />
 				</Form.Item>
 			</Col>
@@ -279,12 +362,13 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 	const formRate = (item: FORMITEM) => {
 		return (
 			<Col lg={{ span: item.span }} md={{ span: item.span }} xs={{ span: 24 }} key={item.key}>
-				<Form.Item name={item.name} label={item.label} rules={item.rules} {...item.layout}>
+				<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 					<Rate tooltips={item.option} onChange={item.onChange} />
 				</Form.Item>
 			</Col>
 		);
 	};
+
 	//按钮
 	// 按钮图标功能
 	const onIconBt = () => {
@@ -302,7 +386,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		if (type === 'submit') {
 			return (
 				<Form.Item>
-					<Button type="primary" htmlType="submit">
+					<Button type="primary" htmlType="submit" icon={<IconFont type="icon-sousuo1" />}>
 						{name}
 					</Button>
 				</Form.Item>
@@ -310,7 +394,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		} else if (type === 'onReset') {
 			return (
 				<Form.Item>
-					<Button htmlType="button" onClick={onReset}>
+					<Button htmlType="button" onClick={onReset} icon={<IconFont type="icon-zhongzhi-" />}>
 						{name}
 					</Button>
 				</Form.Item>
@@ -390,6 +474,8 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 				return formRate(item);
 			case 'textArea':
 				return formInputTextArea(item);
+			case 'seachSelect':
+				return formSeachSelect(item);
 			case 'userDefined':
 				return userDefined(item);
 			default:
@@ -397,7 +483,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, setReset, num, formLay
 		}
 	};
 	// 尺寸
-	const size = useSelector<RootState>((state) => state.layout.size);
+	const size = useSelector((state: RootState) => state.layout.size);
 
 	// 显示表单个数
 	const showForm = (showNum: number | undefined, i: number, item: FORMITEM) => {

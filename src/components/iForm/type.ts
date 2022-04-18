@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Rule } from 'rc-field-form/lib/interface';
 import moment, { Moment } from 'moment';
+import { TooltipProps } from 'antd';
 
 /**
  * 动态表单集合
@@ -32,6 +33,7 @@ export interface FORMITEM {
 	type: string;
 	name: string;
 	label?: string;
+	tooltip?: ReactNode | (TooltipProps & { icon: ReactNode });
 	rules?: Rule[] | undefined;
 	validateTrigger?: string | string[];
 	key: string | number;
@@ -51,6 +53,7 @@ export interface FORMITEM {
 	style?: object;
 	disabledDate?: (currentDate: Moment) => boolean;
 	children?: ReactNode;
+	handleSearch?: (value: string) => void;
 }
 
 export type FormLabelAlign = 'left' | 'right';
