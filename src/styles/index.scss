@@ -1,4 +1,6 @@
-@import './antd-ui.scss';
+@import './antd-ui.scss'; // 修改antd组件样式
+@import './marginAndPadding.scss'; // 内外边距
+
 *,
 *:before,
 *:after {
@@ -6,27 +8,27 @@
 }
 
 .omit {
-	width: 100%;
+	// width: 100%;
 	overflow: hidden; /*超出部分隐藏*/
 	white-space: nowrap; /*不换行*/
 	text-overflow: ellipsis; /*超出部分文字以...显示*/
 }
 
-// 左边距
-.ml10 {
-	margin-left: 10px;
+// 大标题
+.title-react {
+	color: rgba(0, 0, 0, 0.85);
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 1.5715;
+	margin-bottom: 15px;
 }
 
-// 右边距
-.mr10 {
-	margin-right: 10px;
+// /n 不能换行 加上这个样式
+.lineFeed {
+	white-space: pre-wrap;
 }
 
-// 下边距
-.mb10 {
-	margin-bottom: 10px;
-}
-// 上边距
-.mt10 {
-	margin-top: 10px;
+// hover 75, 171, 252
+.hoveBlue:hover {
+	color: rgb(75, 171, 252);
 }

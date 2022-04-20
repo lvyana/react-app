@@ -4,7 +4,6 @@ import { RootState } from '@/redux/store';
 import Icard from '@/components/iCard';
 import Iform, { FormInstance } from '@/components/iForm';
 import useFormKeepAlive from '@/useHooks/useFormKeepAlive';
-import getKey from '@/utils/onlyKey';
 
 interface IsearchForm {
 	name: string;
@@ -38,7 +37,7 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 			name: 'nickName',
 			label: '姓名',
 			rules: [],
-			key: getKey(),
+			key: 1,
 			span: 5,
 			layout: {
 				labelCol: { span: 8 },
@@ -50,7 +49,7 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 			name: 'userName',
 			label: '登录账号',
 			rules: [],
-			key: getKey(),
+			key: 2,
 			span: 5,
 			layout: {
 				labelCol: { span: 8 },
@@ -62,7 +61,7 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 			name: 'phone',
 			label: '手机号码',
 			rules: [],
-			key: getKey(),
+			key: 3,
 			span: 5,
 			layout: {
 				labelCol: { span: 8 },
@@ -74,7 +73,7 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 			name: 'projectId',
 			label: '关联项目',
 			rules: [],
-			key: getKey(),
+			key: 4,
 			span: 5,
 			fieldNames: {
 				value: 'id',
@@ -94,7 +93,7 @@ const SearchForm: FC<Iprops> = ({ form, getTaableData }) => {
 				{ type: 'submit', name: '搜索' },
 				{ type: 'onReset', name: '重置' }
 			],
-			key: getKey(),
+			key: 5,
 			span: 4,
 			style: { float: 'right' }
 		}

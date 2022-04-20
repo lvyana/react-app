@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Iform from '@/components/iForm';
 import { FORMITEM } from '@/components/iForm/type';
-import getKey from '@/utils/onlyKey';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
@@ -32,261 +31,6 @@ const Dynamicform = () => {
 	};
 	const selectOnChange = (value: number) => {
 		console.log(value);
-		setstate([
-			{
-				type: 'input',
-				name: 'name',
-				label: '姓名',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'select',
-				name: 'select',
-				label: '下拉框',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				onChange: selectOnChange,
-
-				fieldNames: {
-					label: 'name',
-					value: 'value'
-				},
-				option: [
-					{
-						name: 'male',
-						value: 'male',
-						key: getKey()
-					},
-					{
-						name: 'female',
-						value: 'female',
-						key: getKey()
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'radioIcon',
-				name: 'radioIcon',
-				label: '图标单选框',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				option: [
-					{
-						name: 'icon-zhuzhuangtu-dashuju',
-						value: 'icon-zhuzhuangtu-dashuju',
-						key: getKey()
-					},
-					{
-						name: 'icon-drxx91',
-						value: 'icon-drxx91',
-						key: getKey()
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'radio',
-				name: 'radio',
-				label: '单选框',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				option: [
-					{
-						name: '按钮11111111',
-						value: '1',
-						key: getKey()
-					},
-					{
-						name: '菜单222222222',
-						value: '2',
-						key: getKey()
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'checkbox',
-				name: 'checkbox',
-				label: '多选框',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				option: [
-					{
-						label: '按钮',
-						value: '1',
-						key: getKey()
-					},
-					{
-						label: '菜单',
-						value: '2',
-						key: getKey()
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'rate',
-				name: 'rate',
-				label: '评分',
-				rules: [],
-				key: getKey(),
-				span: 24,
-
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				},
-				option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
-			},
-			{
-				type: 'treeselect',
-				name: 'treeselect',
-				label: '下拉树',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				checkbox: true,
-				option: [
-					{
-						title: 'Light122222222222',
-						value: 'light',
-						children: [{ title: 'Bamboo', value: 'bamboo' }]
-					},
-					{
-						title: 'Light22333333333333',
-						value: 'light2',
-						children: [{ title: 'Bamboo2', value: 'bamboo2' }]
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'cascader',
-				name: 'cascader',
-				label: '联级',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				option: [
-					{
-						value: 'zhejiang',
-						label: 'Zhejiang',
-						children: [
-							{
-								value: 'hangzhou',
-								label: 'Hangzhou'
-							}
-						]
-					}
-				],
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'datePicker',
-				name: 'date',
-				label: '时间',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'rangePicker',
-				name: 'rangePicker',
-				label: '时间区间',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'timeRangePicker',
-				name: 'timeRangePicker2',
-				label: '可面试时间',
-				rules: [
-					{
-						required: true,
-						message: '请选择时间'
-					}
-				],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 4 },
-					wrapperCol: { span: 20 }
-				}
-			},
-			{
-				type: 'inputNumber',
-				name: 'inputNumber',
-				label: '数字',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'switch',
-				name: 'switch',
-				label: '是否',
-				rules: [],
-				key: getKey(),
-				span: 24,
-				layout: {
-					labelCol: { span: 6 },
-					wrapperCol: { span: 18 }
-				}
-			},
-			{
-				type: 'button',
-				name: 'button',
-				key: getKey(),
-				span: 24,
-				option: [
-					{ type: 'submit', name: '搜索' },
-					{ type: 'onReset', name: '重置' }
-				],
-				style: { float: 'right' }
-			}
-		]);
 	};
 	// 参数
 	const formList = [
@@ -295,7 +39,7 @@ const Dynamicform = () => {
 			name: 'name',
 			label: '姓名',
 			rules: [],
-			key: getKey(),
+			key: 1,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -307,7 +51,7 @@ const Dynamicform = () => {
 			name: 'select',
 			label: '下拉框',
 			rules: [],
-			key: getKey(),
+			key: 2,
 			span: 24,
 			onChange: selectOnChange,
 
@@ -319,12 +63,12 @@ const Dynamicform = () => {
 				{
 					name: 'male',
 					value: 'male',
-					key: getKey()
+					key: 1
 				},
 				{
 					name: 'female',
 					value: 'female',
-					key: getKey()
+					key: 2
 				}
 			],
 			layout: {
@@ -337,18 +81,18 @@ const Dynamicform = () => {
 			name: 'radioIcon',
 			label: '图标单选框',
 			rules: [],
-			key: getKey(),
+			key: 3,
 			span: 24,
 			option: [
 				{
 					name: 'icon-zhuzhuangtu-dashuju',
 					value: 'icon-zhuzhuangtu-dashuju',
-					key: getKey()
+					key: 1
 				},
 				{
 					name: 'icon-drxx91',
 					value: 'icon-drxx91',
-					key: getKey()
+					key: 2
 				}
 			],
 			layout: {
@@ -361,18 +105,18 @@ const Dynamicform = () => {
 			name: 'radio',
 			label: '单选框',
 			rules: [],
-			key: getKey(),
+			key: 4,
 			span: 24,
 			option: [
 				{
-					name: '按钮',
+					name: '按钮11111111',
 					value: '1',
-					key: getKey()
+					key: 1
 				},
 				{
-					name: '菜单',
+					name: '菜单222222222',
 					value: '2',
-					key: getKey()
+					key: 2
 				}
 			],
 			layout: {
@@ -385,18 +129,18 @@ const Dynamicform = () => {
 			name: 'checkbox',
 			label: '多选框',
 			rules: [],
-			key: getKey(),
+			key: 5,
 			span: 24,
 			option: [
 				{
 					label: '按钮',
 					value: '1',
-					key: getKey()
+					key: 1
 				},
 				{
 					label: '菜单',
 					value: '2',
-					key: getKey()
+					key: 2
 				}
 			],
 			layout: {
@@ -409,30 +153,31 @@ const Dynamicform = () => {
 			name: 'rate',
 			label: '评分',
 			rules: [],
-			key: getKey(),
+			key: 6,
 			span: 24,
-			option: ['terrible', 'bad', 'normal', 'good', 'wonderful'],
+
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
-			}
+			},
+			option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
 		},
 		{
 			type: 'treeselect',
 			name: 'treeselect',
 			label: '下拉树',
 			rules: [],
-			key: getKey(),
+			key: 7,
 			span: 24,
 			checkbox: true,
 			option: [
 				{
-					title: 'Light',
+					title: 'Light122222222222',
 					value: 'light',
 					children: [{ title: 'Bamboo', value: 'bamboo' }]
 				},
 				{
-					title: 'Light2',
+					title: 'Light22333333333333',
 					value: 'light2',
 					children: [{ title: 'Bamboo2', value: 'bamboo2' }]
 				}
@@ -447,7 +192,7 @@ const Dynamicform = () => {
 			name: 'cascader',
 			label: '联级',
 			rules: [],
-			key: getKey(),
+			key: 8,
 			span: 24,
 			option: [
 				{
@@ -471,7 +216,7 @@ const Dynamicform = () => {
 			name: 'date',
 			label: '时间',
 			rules: [],
-			key: getKey(),
+			key: 9,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -483,7 +228,7 @@ const Dynamicform = () => {
 			name: 'rangePicker',
 			label: '时间区间',
 			rules: [],
-			key: getKey(),
+			key: 10,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -491,11 +236,28 @@ const Dynamicform = () => {
 			}
 		},
 		{
+			type: 'timeRangePicker',
+			name: 'timeRangePicker2',
+			label: '可面试时间',
+			rules: [
+				{
+					required: true,
+					message: '请选择时间'
+				}
+			],
+			key: 11,
+			span: 24,
+			layout: {
+				labelCol: { span: 4 },
+				wrapperCol: { span: 20 }
+			}
+		},
+		{
 			type: 'inputNumber',
 			name: 'inputNumber',
 			label: '数字',
 			rules: [],
-			key: getKey(),
+			key: 12,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -507,67 +269,32 @@ const Dynamicform = () => {
 			name: 'switch',
 			label: '是否',
 			rules: [],
-			key: getKey(),
+			key: 13,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
 			}
-		},
-		{
-			type: 'textArea',
-			name: 'textArea',
-			label: '文本框',
-			rules: [],
-			key: getKey(),
-			span: 24,
-			maxLength: 150,
-			layout: {
-				labelCol: { span: 6 },
-				wrapperCol: { span: 18 }
-			}
-		},
-		{
-			type: 'userDefined',
-			name: 'Upload',
-			key: getKey(),
-			span: 24,
-			children: (
-				<Form.Item
-					name={'Upload'}
-					label={'上传'}
-					rules={[]}
-					{...{
-						labelCol: { span: 6 },
-						wrapperCol: { span: 18 }
-					}}
-					valuePropName="fileList"
-					getValueFromEvent={normFile}>
-					<Upload {...props} key={'Upload'}>
-						<Button icon={<UploadOutlined />}>Click to Upload</Button>
-					</Upload>
-				</Form.Item>
-			)
 		},
 		{
 			type: 'button',
 			name: 'button',
+			key: 14,
+			span: 24,
 			option: [
 				{ type: 'submit', name: '搜索' },
 				{ type: 'onReset', name: '重置' }
 			],
-			key: getKey(),
-			span: 24,
 			style: { float: 'right' }
 		}
 	];
-	const [state, setstate] = useState<FORMITEM[]>(formList);
+
 	//表单
 	const [form] = Form.useForm();
 	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Iform formList={state} form={form} onFinish={onFinish} />
+			<Iform formList={formList} form={form} onFinish={onFinish} />
 		</div>
 	);
 };

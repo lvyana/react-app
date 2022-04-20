@@ -15,8 +15,36 @@
 }
 
 // 实现滚动自动加载列表
-.infinite-scroll-component__outerdiv{
+.infinite-scroll-component__outerdiv {
 	.infinite-scroll-component {
 		overflow: hidden !important;
 	}
+}
+
+// BackTop回到顶部
+.site-back-top-basic {
+	color: rgba(64, 64, 64, 0.6);
+}
+
+// 按钮颜色
+.ant-btn-primary {
+	border-color: #6454ef;
+	background: #6454ef;
+}
+
+// link按钮颜色
+.ant-btn-link {
+	color: #6454ef;
+}
+
+// descriptions组件样式
+.ant-descriptions-item-label {
+	font-style: normal;
+	font-weight: 700;
+	color: #333333;
+}
+.ant-descriptions-item-content {
+	font-style: normal;
+	font-weight: 400;
+	color: #666666;
 }

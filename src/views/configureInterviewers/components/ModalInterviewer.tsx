@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Button, Form } from 'antd';
 import Iform, { FormInstance } from '@/components/iForm';
-import getKey from '@/utils/onlyKey';
 import { PlusOutlined } from '@ant-design/icons';
 import { MODE, FORMITEM } from '@/components/iForm/type';
 import Imodal, { ImodalProps } from '@/components/iModal';
@@ -156,7 +155,7 @@ const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 			label: '请选择用户作为面试官',
 			placeholder: '请选择用户作为面试官',
 			rules: [{ required: true, message: '请选择用户作为面试官' }],
-			key: getKey(),
+			key: 1,
 			span: 24,
 			fieldNames: {
 				value: 'userId',
@@ -171,7 +170,7 @@ const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 		{
 			type: 'userDefined',
 			name: 'select34',
-			key: getKey(),
+			key: 2,
 			span: 24,
 			children: (
 				<Button
@@ -190,7 +189,7 @@ const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 			placeholder: '请选择该面试官关联的项目',
 			rules: [{ required: true, message: '请选择该面试官关联的项目' }],
 			mode: 'multiple' as MODE,
-			key: getKey(),
+			key: 3,
 			span: 24,
 			fieldNames: {
 				value: 'id',
@@ -207,18 +206,18 @@ const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 			name: 'status',
 			label: '状态',
 			rules: [{ required: true, message: '请选择状态' }],
-			key: getKey(),
+			key:4,
 			span: 24,
 			option: [
 				{
 					name: '正常',
 					value: '0',
-					key: getKey()
+					key: 1
 				},
 				{
 					name: '删除',
 					value: '1',
-					key: getKey()
+					key:2
 				}
 			],
 			layout: {
@@ -235,7 +234,7 @@ const EidtInterviewer: FC<IeidtInterviewer> = ({ form, type, projectIds }) => {
 			placeholder: '请选择该面试官关联的项目',
 			rules: [{ required: true, message: '请选择该面试官关联的项目' }],
 			mode: 'multiple' as MODE,
-			key: getKey(),
+			key: 1,
 			span: 24,
 			fieldNames: {
 				value: 'id',
@@ -322,7 +321,7 @@ const AddInterviewerInfo: FC<IaddInterviewerInfo> = ({ form }) => {
 					message: '请输入姓名'
 				}
 			],
-			key: getKey(),
+			key: 1,
 			onBlur: setPinYin,
 			span: 24,
 			layout: {
@@ -344,7 +343,7 @@ const AddInterviewerInfo: FC<IaddInterviewerInfo> = ({ form }) => {
 					validator: pinYinNameValidator
 				}
 			],
-			key: getKey(),
+			key: 2,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -364,7 +363,7 @@ const AddInterviewerInfo: FC<IaddInterviewerInfo> = ({ form }) => {
 					validator: validatePhoneTwo
 				}
 			],
-			key: getKey(),
+			key: 3,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
@@ -384,7 +383,7 @@ const AddInterviewerInfo: FC<IaddInterviewerInfo> = ({ form }) => {
 					validator: validateEMail
 				}
 			],
-			key: getKey(),
+			key: 4,
 			span: 24,
 			layout: {
 				labelCol: { span: 6 },
