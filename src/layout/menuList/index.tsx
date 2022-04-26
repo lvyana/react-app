@@ -33,8 +33,14 @@ export const menuList: router[] = [
 		icon: 'icon-bingtu-huanxing'
 	},
 	{
-		title: '日志',
-		path: '/log',
+		title: 'MyUseReduce',
+		path: '/MyUseReduce',
+		key: '5',
+		icon: 'icon-bingtu-huanxing'
+	},
+	{
+		title: 'MyUseContext',
+		path: '/MyUseContext',
 		key: '5',
 		icon: 'icon-bingtu-huanxing'
 	},
