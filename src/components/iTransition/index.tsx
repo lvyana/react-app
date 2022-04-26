@@ -2,8 +2,9 @@ import React, { FC, ReactNode, useState } from 'react';
 import { Button } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 /**
- *
- * 	children: ReactNode;
+ *	实现展开收起动画效果
+ *	ly
+ *  日期：2020年4月27日
  *  title 图标旁的名字
  *  minHeight 最小高度
  *  maxHeight 最大高度
