@@ -27,22 +27,30 @@ export const menuList: router[] = [
 		icon: 'icon-bingtu-huanxing'
 	},
 	{
-		title: '配置面试官',
-		path: '/configureInterviewers',
-		key: '4',
-		icon: 'icon-bingtu-huanxing'
-	},
-	{
-		title: 'MyUseReduce',
-		path: '/MyUseReduce',
-		key: '5',
-		icon: 'icon-bingtu-huanxing'
-	},
-	{
-		title: 'MyUseContext',
-		path: '/MyUseContext',
-		key: '5',
-		icon: 'icon-bingtu-huanxing'
+		title: 'use',
+		path: '/use',
+		key: '2',
+		icon: 'icon-bingtu-huanxing',
+		children: [
+			{
+				title: 'MyUseReduce',
+				path: '/use/MyUseReduce',
+				key: '21',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseContext',
+				path: '/use/MyUseContext',
+				key: '22',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseMemo',
+				path: '/use/MyUseMemo',
+				key: '23',
+				icon: 'icon-bingtu-huanxing'
+			}
+		]
 	},
 	{
 		title: '富文本',
