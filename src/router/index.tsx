@@ -21,6 +21,8 @@ const Error404 = lazy(() => import('@/views/Error404'));
 const MyUseReduce = lazy(() => import('@/views/useHooksCom/myUseReduce'));
 const MyUseContext = lazy(() => import('@/views/useHooksCom/myUseContext'));
 const MyUseMemo = lazy(() => import('@/views/useHooksCom/myUseMemo'));
+const MyUseCallback = lazy(() => import('@/views/useHooksCom/myUseCallback'));
+
 interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
 }
@@ -73,6 +75,10 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 							{
 								path: 'MyUseMemo',
 								element: <Auth element={SuspenseLoad(<MyUseMemo />)} title="MyUseMemo" />
+							},
+							{
+								path: 'MyUseCallback',
+								element: <Auth element={SuspenseLoad(<MyUseCallback />)} title="MyUseCallback" />
 							}
 						]
 					},
