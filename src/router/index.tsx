@@ -22,6 +22,7 @@ const MyUseReduce = lazy(() => import('@/views/useHooksCom/myUseReduce'));
 const MyUseContext = lazy(() => import('@/views/useHooksCom/myUseContext'));
 const MyUseMemo = lazy(() => import('@/views/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/useHooksCom/myUseCallback'));
+const MyUseRef = lazy(() => import('@/views/useHooksCom/myUseRef'));
 
 interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
@@ -79,6 +80,10 @@ const router: RouteObject[] = (window as Window).__POWERED_BY_QIANKUN__
 							{
 								path: 'MyUseCallback',
 								element: <Auth element={SuspenseLoad(<MyUseCallback />)} title="MyUseCallback" />
+							},
+							{
+								path: 'MyUseRef',
+								element: <Auth element={SuspenseLoad(<MyUseRef />)} title="MyUseRef" />
 							}
 						]
 					},

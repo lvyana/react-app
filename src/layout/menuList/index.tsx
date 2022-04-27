@@ -55,6 +55,12 @@ export const menuList: router[] = [
 				path: '/use/MyUseCallback',
 				key: '23',
 				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseRef',
+				path: '/use/MyUseRef',
+				key: '23',
+				icon: 'icon-bingtu-huanxing'
 			}
 		]
 	},
