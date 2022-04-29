@@ -6,7 +6,6 @@ import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
 import { message } from 'antd';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
-type Type = 'error' | 'success' | 'info' | 'warn' | 'warning';
 
 // 请求拦截器 引入加载圈
 console.log(process.env.REACT_APP_BASE_API);

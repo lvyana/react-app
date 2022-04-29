@@ -28,7 +28,7 @@ const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
 
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
-export type { FormInstance };
+export type { FormInstance, FORMITEM };
 interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;

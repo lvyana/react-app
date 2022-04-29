@@ -10,10 +10,10 @@ interface Iprops {
 	children?: ReactNode;
 	styles?: object;
 }
-const Icard: FC<Iprops> = ({ children, styles = { padding: '16px' } }) => {
+const Icard: FC<Iprops> = ({ children, styles = {} }) => {
 	return (
 		<>
-			<Card hoverable bordered={false} bodyStyle={styles}>
+			<Card hoverable bordered={false} bodyStyle={{ padding: '16px', ...styles }}>
 				{children}
 			</Card>
 		</>

@@ -7,16 +7,16 @@ import TbButton from '@/components/iTable/components/TbButton';
 import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { ItbClick, AlignType } from '@/components/iTable';
 
-export interface ItableBt {
+export interface tableProps {
 	key: string;
 	name: string;
 	age: number;
-	address: string[];
-	tags: string[];
+	weight: number;
+	height: number;
 }
 
 interface Iprops {
-	buttonEvent: (type: string | number, value: ItableBt) => void;
+	buttonEvent: (type: string | number, value: tableProps) => void;
 }
 
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
@@ -26,7 +26,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	};
 
 	// 表格图表移入移出功能
-	const onVisibleChange = (visible: boolean, record: ItableBt) => {
+	const onVisibleChange = (visible: boolean, record: tableProps) => {
 		console.log(visible, record);
 		if (visible) {
 			setBtFun([
@@ -42,7 +42,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	const columns = [
 		{
-			title: 'Name',
+			title: '名字',
 			dataIndex: 'name',
 			key: 'name',
 			align: 'center' as AlignType,
@@ -55,86 +55,49 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			)
 		},
 		{
-			title: 'Age',
+			title: '年龄',
 			dataIndex: 'age',
 			key: 'age',
-			width: 200,
 			align: 'center' as AlignType,
-			render: (text: string, record: ItableBt) => (
-				<Itooltip
-					placement="top"
-					overlayInnerStyle={{ width: '500px' }}
-					color={'purple'}
-					title={
-						<>
-							<PostTitle nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}></PostTitle>
-						</>
-					}>
-					<div>
-						<Post
-							type={'Age'}
-							nameList={['1', '2', '322222222222222222', '44444444444444444', '555555555555555555']}
-							record={record}
-							tbClick={tbClick}></Post>
+			render: (text: string) => (
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
+					<div className="omit" style={{ color: 'blue' }}>
+						{text}
 					</div>
 				</Itooltip>
 			)
 		},
 		{
-			title: 'Address',
-			dataIndex: 'address',
-			key: 'address',
+			title: '体重',
+			dataIndex: 'weight',
+			key: 'weight',
 			align: 'center' as AlignType,
-			render: (text: string, record: ItableBt) => (
-				<Itooltip
-					placement="top"
-					overlayInnerStyle={{ width: '200px' }}
-					color={'purple'}
-					title={
-						<>
-							<Multi option={record.address} />
-						</>
-					}>
-					<div>
-						<Multi option={record.address} />
+			render: (text: string) => (
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
+					<div className="omit" style={{ color: 'blue' }}>
+						{text}
 					</div>
 				</Itooltip>
 			)
 		},
 		{
-			title: 'Tags',
-			key: 'tags',
-			dataIndex: 'tags',
+			title: '身高',
+			dataIndex: 'height',
+			key: 'height',
 			align: 'center' as AlignType,
-			render: (tags: string[]) => (
-				<>
-					{tags.map((tag) => {
-						let color = tag.length > 5 ? 'geekblue' : 'green';
-						if (tag === 'loser') {
-							color = 'volcano';
-						}
-						return (
-							<Button color={color} key={tag}>
-								{tag.toUpperCase()}
-							</Button>
-						);
-					})}
-				</>
+			render: (text: string) => (
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
+					<div className="omit" style={{ color: 'blue' }}>
+						{text}
+					</div>
+				</Itooltip>
 			)
-		},
-
-		{
-			title: 'age',
-			key: 'age',
-			dataIndex: 'age',
-			align: 'center' as AlignType,
-			render: (text: string, record: ItableBt) => <TbButton type={'age'} name={text} record={record} tbClick={tbClick}></TbButton>
 		},
 		{
 			title: 'Action',
 			key: 'action',
 			align: 'center' as AlignType,
-			render: (text: unknown, record: ItableBt) => {
+			render: (text: unknown, record: tableProps) => {
 				return (
 					<Idropdown
 						btFun={btFun}
