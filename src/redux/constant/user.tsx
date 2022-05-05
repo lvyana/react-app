@@ -23,15 +23,15 @@ export interface reSetPermissAction {
 export type setPermissType = (value: string[]) => reSetPermissAction;
 
 // 缓存
-export const FORM_KEEP_ALIVE = 'formKeepAlive';
-export interface reSetFormKeepAliveValue {
+export const KEEP_ALIVE = 'keepAlive';
+export interface reSetKeepAliveValue {
 	path: string;
 	data: any;
 }
-export interface reSetFormKeepAliveAction {
-	type: 'formKeepAlive';
-	value: reSetFormKeepAliveValue;
+export interface reSetKeepAliveAction {
+	type: 'keepAlive';
+	value: reSetKeepAliveValue;
 }
-export type setFormKeepAliveType = (value: reSetFormKeepAliveValue) => reSetFormKeepAliveAction;
+export type setKeepAliveType = (value: reSetKeepAliveValue) => reSetKeepAliveAction;
 
-export type userActions = reSetPhotoAction | reSetTokenAction | reSetPermissAction | reSetFormKeepAliveAction;
+export type userActions = reSetPhotoAction | reSetTokenAction | reSetPermissAction | reSetKeepAliveAction;
