@@ -44,7 +44,7 @@ const seachForm: FC<Iprops> = ({ form, onFinish }) => {
 
 	return (
 		<div>
-			<Iform form={form} formList={formList} onFinish={onFinish} setReset={onFinish}></Iform>
+			<Iform form={form} formList={formList} onFinish={onFinish}></Iform>
 		</div>
 	);
 };
