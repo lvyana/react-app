@@ -43,15 +43,10 @@ const devServerConfig = () => (config) => {
 	config.compress = true;
 	config.proxy = {
 		[process.env.REACT_APP_BASE_API]: {
-			// target: `http://localhost:8088`,
-			// target: `http://172.16.81.123:8088`,//任勇
-			target: `http://172.16.102.122:8088`, //文雷
-			// target: `http://172.16.81.94:8088`, //宇哲
-			// target: `http://172.16.81.108:8088`, //贺辉
-			// target: `http://172.16.81.91:8088`, //汽水
+			target: `http://127.0.0.1:4523`,
 			changeOrigin: true,
 			pathRewrite: {
-				['^' + process.env.REACT_APP_BASE_API]: ''
+				['^' + process.env.REACT_APP_BASE_API]: '/mock/544622'
 			}
 		}
 	};
