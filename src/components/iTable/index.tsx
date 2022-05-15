@@ -26,7 +26,7 @@ interface Iprops {
  *
  * 表格内事件
  */
-export type ItbClick = (type: string, nameList: object | undefined) => void;
+export type ItbClick<T> = (type: string, record: T) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 

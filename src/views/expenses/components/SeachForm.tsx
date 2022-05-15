@@ -5,7 +5,7 @@ interface Iprops {
 	form: FormInstance;
 	onFinish: () => void;
 }
-const seachForm: FC<Iprops> = ({ form, onFinish }) => {
+const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const formList: FORMITEM[] = [
 		{
 			type: 'input',
@@ -49,4 +49,4 @@ const seachForm: FC<Iprops> = ({ form, onFinish }) => {
 	);
 };
 
-export default seachForm;
+export default SeachForm;

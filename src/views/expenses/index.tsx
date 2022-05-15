@@ -21,20 +21,27 @@ const Expenses = () => {
 
 	useEffect(() => {
 		getTabelData();
-	}, []);
+	}, [pageSize, pageNum]);
 
 	const getTabelData = async () => {
 		let params = form.getFieldsValue();
-		const res = await tabelData(params);
+		const res = await tabelData({ ...params, pageSize, pageNum });
 		console.log(res);
 		const { data, total } = res.data;
 		setExpensesTableData(data);
 		setTotal(total);
 	};
+
+	const onFinish = () => {
+		if (pageNum === 1) {
+			return getTabelData();
+		}
+		setPageNum(1);
+	};
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Icard styles={{ paddingBottom: 0 }}>
-				<SeachForm form={form} onFinish={getTabelData}></SeachForm>
+				<SeachForm form={form} onFinish={onFinish}></SeachForm>
 			</Icard>
 			<Icard styles={{ marginTop: '10px' }}>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
-import Post, { PostTitle, InameList } from '@/components/iTable/components/TbPost';
 import Itooltip from '@/components/iTooltip';
-import Multi from '@/components/iTable/components/TbMulti';
-import TbButton from '@/components/iTable/components/TbButton';
 import Idropdown, { IbtFunItem } from '@/components/iDropdown';
 import { ItbClick, AlignType } from '@/components/iTable';
-
+import { useNavigate } from 'react-router-dom';
 export interface tableProps {
 	key: string;
 	name: string;
@@ -20,9 +17,14 @@ interface Iprops {
 }
 
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
+	const navigate = useNavigate();
+
 	//表格单元里面的功能回调
-	const tbClick: ItbClick = (type, record) => {
+	const tbClick: ItbClick<tableProps> = (type, record) => {
 		console.log(type, record);
+		if (type === 'name') {
+			navigate('/mycenter', { state: { name: record.name } });
+		}
 	};
 
 	// 表格图表移入移出功能
@@ -46,9 +48,9 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			dataIndex: 'name',
 			key: 'name',
 			align: 'center' as AlignType,
-			render: (text: string) => (
+			render: (text: string, record: tableProps) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
-					<div className="omit" style={{ color: 'blue' }}>
+					<div className="omit" style={{ color: 'blue' }} onClick={() => tbClick('name', record)}>
 						{text}
 					</div>
 				</Itooltip>

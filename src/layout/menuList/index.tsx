@@ -59,7 +59,13 @@ export const menuList: router[] = [
 			{
 				title: 'MyUseRef',
 				path: '/use/MyUseRef',
-				key: '23',
+				key: '24',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseRouter',
+				path: '/use/MyUseRouter',
+				key: '25',
 				icon: 'icon-bingtu-huanxing'
 			}
 		]

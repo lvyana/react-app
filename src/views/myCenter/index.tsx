@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { setPhoto } from '@/redux/actions/user';
@@ -35,6 +35,7 @@ const MyCenter: FC = () => {
 	const handleCancel = () => {
 		setIsModalVisible(false);
 	};
+
 	return (
 		<>
 			<div className="myCenter animate__animated animate__fadeIn">

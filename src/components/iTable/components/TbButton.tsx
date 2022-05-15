@@ -17,7 +17,7 @@ interface Iprops {
 	name: string;
 	btType?: Itype;
 	record: object;
-	tbClick?: ItbClick;
+	tbClick?: ItbClick<unknown>;
 }
 const TbButton: FC<Iprops> = ({ type, name, record, tbClick, btType = 'link' }) => {
 	return (

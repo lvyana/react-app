@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { Rule, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
@@ -7,6 +8,17 @@ interface FormType {
 	passWord: string;
 }
 const ResetPassword = () => {
+	const location = useLocation();
+
+	useEffect(() => {
+		console.log(location);
+		if (location.state) {
+			form.setFieldsValue({ userName: (location.state as { name: string })?.name });
+		} else {
+			form.setFieldsValue({ userName: undefined });
+		}
+	}, [location.state]);
+
 	const [form] = Form.useForm();
 	const onFinish = (values: FormType) => {
 		console.log('Success:', values);
