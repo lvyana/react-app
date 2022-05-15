@@ -3,7 +3,7 @@ import Iform, { FORMITEM, FormInstance } from '@/components/iForm';
 
 interface Iprops {
 	form: FormInstance;
-	onFinish: () => void;
+	onFinish: (type?: string) => void;
 }
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const formList: FORMITEM[] = [
@@ -35,8 +35,8 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			key: 14,
 			span: 12,
 			option: [
-				{ type: 'submit', name: '搜索' },
-				{ type: 'onReset', name: '重置' }
+				{ BTtype: 'primary', type: 'primary', name: '搜索', iconType: 'icon-sousuo1' },
+				{ type: 'onReset', name: '重置', iconType: 'icon-zhongzhi-' }
 			],
 			style: { marginLeft: '10px' }
 		}
@@ -44,7 +44,7 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 
 	return (
 		<div>
-			<Iform form={form} formList={formList} onFinish={onFinish} setReset={onFinish}></Iform>
+			<Iform form={form} formList={formList} onFinish={onFinish}></Iform>
 		</div>
 	);
 };

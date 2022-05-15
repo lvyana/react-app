@@ -1,4 +1,4 @@
-import { PHOTO, setPhotoType, TOKEN, setTokenType, setPermissType, PERMISS, FORM_KEEP_ALIVE, setFormKeepAliveType } from '../constant/user';
+import { PHOTO, setPhotoType, TOKEN, setTokenType, setPermissType, PERMISS, KEEP_ALIVE, setKeepAliveType } from '../constant/user';
 
 // 头像
 export const setPhoto: setPhotoType = (value) => {
@@ -16,6 +16,6 @@ export const setPermiss: setPermissType = (value) => {
 };
 
 // 缓存
-export const setFormKeepAlive: setFormKeepAliveType = (value) => {
-	return { type: FORM_KEEP_ALIVE, value };
+export const setKeepAlive: setKeepAliveType = (value) => {
+	return { type: KEEP_ALIVE, value };
 };
