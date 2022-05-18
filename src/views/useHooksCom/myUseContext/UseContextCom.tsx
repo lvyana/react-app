@@ -5,13 +5,22 @@ import React, { FC, useContext } from 'react';
  * ly
  * 日期：2020年4月27日
  */
-export const MyContext = React.createContext(0);
+export const MyContext = React.createContext<MyUseContextProps | null>(null);
 
-interface MyUseContextProps {
+export interface sumProps {
+	count: number;
+	sum?: number;
+}
+export interface dispatchProps {
+	type: string;
 	value: number;
 }
-const UseContextCom: FC<MyUseContextProps> = ({ children, value }) => {
-	return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
+interface MyUseContextProps {
+	sum: sumProps;
+	dispatch: React.Dispatch<dispatchProps>;
+}
+const UseContextCom: FC<MyUseContextProps> = ({ children, sum, dispatch }) => {
+	return <MyContext.Provider value={{ sum, dispatch }}>{children}</MyContext.Provider>;
 };
 
 export default UseContextCom;
