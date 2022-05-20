@@ -11,10 +11,11 @@ export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事�
  * loadingName 那个按钮需要加载直接传名字
  * editBtn 按钮事件
  */
-export interface IBUTTON {
+export interface IbuttonProps {
 	buttonList: BUTTONITEM[];
 	loadingName?: string;
 	editBtn?: BTeditBtn;
+	style?: React.CSSProperties;
 }
 /**
  *

@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
-import { IBUTTON } from './type';
+import { IbuttonProps } from './type';
 
-const Ibutton = ({ buttonList, loadingName, editBtn }: IBUTTON) => {
+const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 	const size = useSelector((state: RootState) => state.layout.size);
 	const { getPermiss } = useHasPermiss();
 	return (
@@ -19,7 +19,7 @@ const Ibutton = ({ buttonList, loadingName, editBtn }: IBUTTON) => {
 						disabled={item.disabled === true}
 						loading={loadingName === item.name}
 						size={size}
-						style={{ marginRight: '20px' }}>
+						style={{ ...style }}>
 						{item.name}
 					</Button>
 				) : (
