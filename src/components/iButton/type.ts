@@ -1,4 +1,5 @@
-import { MouseEventHandler } from 'react';
+import { ReactNode } from 'react';
+
 /**
  *
  * 按钮集合
@@ -17,14 +18,11 @@ export interface IbuttonProps {
 	editBtn?: BTeditBtn;
 	style?: React.CSSProperties;
 }
-/**
- *
- * 按钮接口
- */
+
 export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
 
 /**
- * 每个按钮参数
+ * 按钮接口
  * name 名称
  * type 类型
  * disabled 开启禁用模式 true  否则 false
@@ -33,9 +31,10 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
 export interface BUTTONITEM {
 	name: string;
 	type: string;
-	btType: BTtype;
+	btType?: BTtype;
 	disabled?: boolean;
 	hasPermiss?: string;
+	iconFont?: ReactNode;
 }
 
 /**

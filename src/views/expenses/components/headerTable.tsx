@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/components/iTooltip';
-import Idropdown, { IbtFunItem } from '@/components/iDropdown';
+import Idropdown, { BUTTONITEM } from '@/components/iDropdown';
 import { ItbClick, AlignType } from '@/components/iTable';
 import { useNavigate } from 'react-router-dom';
 export interface tableProps {
@@ -32,15 +32,15 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		console.log(visible, record);
 		if (visible) {
 			setBtFun([
-				{ type: '修改', name: '修改' },
-				{ type: '删除', name: '删除' }
+				{ type: '修改', name: '修改', btType: 'primary' },
+				{ type: '删除', name: '删除', btType: 'primary' }
 			]);
 		} else {
 			setBtFun([]);
 		}
 	};
 	// 初始化按钮
-	const [btFun, setBtFun] = useState<IbtFunItem[]>([]);
+	const [btFun, setBtFun] = useState<BUTTONITEM[]>([]);
 
 	const columns = [
 		{

@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
-import { IbuttonProps } from './type';
+import { IbuttonProps, BUTTONITEM } from './type';
 
+/**
+ * 按钮权限控制
+ */
 const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 	const size = useSelector((state: RootState) => state.layout.size);
 	const { getPermiss } = useHasPermiss();
@@ -20,6 +23,7 @@ const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 						loading={loadingName === item.name}
 						size={size}
 						style={{ ...style }}>
+						{item.iconFont}
 						{item.name}
 					</Button>
 				) : (
@@ -30,3 +34,4 @@ const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 	);
 };
 export default Ibutton;
+export type { IbuttonProps, BUTTONITEM };
