@@ -1,7 +1,6 @@
 import React from 'react';
 import { Result, Button } from 'antd';
-import { QKhistory } from '@/actions/history';
-
+import { useNavigate } from 'react-router-dom';
 interface ErrorBoundaryProps {}
 interface ErrorBoundaryState {
 	hasError: boolean;
@@ -19,7 +18,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		// 将报错发送到Fundebug
 	}
 	backHome() {
-		QKhistory(`/index`);
+		const navigate = useNavigate();
+		navigate('/login');
 	}
 	render() {
 		if (this.state.hasError) {
