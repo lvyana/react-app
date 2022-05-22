@@ -7,14 +7,19 @@ interface ActionFuncType<T> {
 const MyUseReducer = () => {
 	const initValue = {
 		count: 0,
-		sum: undefined
+		sum: 10
 	};
 	const myActions: ActionFuncType<sumProps> = (state, action) => {
 		const { type, value } = action;
 		if (type === 'add') {
 			return {
 				...state,
-				conut: state.count + value
+				count: state.count + value
+			};
+		} else if (type === 'sub') {
+			return {
+				...state,
+				count: state.count - value
 			};
 		}
 		return state;

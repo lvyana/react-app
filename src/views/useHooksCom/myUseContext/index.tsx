@@ -7,11 +7,16 @@ import { sumProps, dispatchProps } from './UseContextCom';
 const MyUseContext = () => {
 	const [value, setvalue] = useState(10);
 	const [sum, dispatch] = MyUseReducer();
+	console.log(sum);
+
 	return (
 		<div>
-			{'我是父组件: ' + value}
-			<Button type="link" onClick={() => setvalue(value + 1)}>
-				+
+			{'我是父组件: ' + (sum as sumProps).count + '和' + (sum as sumProps).sum}
+			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'add', value: 1 })}>
+				+1
+			</Button>
+			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'sub', value: 1 })}>
+				-1
 			</Button>
 			{'tips: 可以结合useReduce实现redux'}
 			<UseContextCom sum={sum as sumProps} dispatch={dispatch as React.Dispatch<dispatchProps>}>
