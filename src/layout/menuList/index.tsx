@@ -29,7 +29,7 @@ export const menuList: router[] = [
 	{
 		title: 'use',
 		path: '/use',
-		key: '2',
+		key: '3',
 		icon: 'icon-bingtu-huanxing',
 		children: [
 			{
@@ -73,7 +73,13 @@ export const menuList: router[] = [
 	{
 		title: '富文本',
 		path: '/richtextedit',
-		key: '9',
+		key: '4',
+		icon: 'icon-chuangyepeixunxiangmu'
+	},
+	{
+		title: 'pdf',
+		path: '/pdf',
+		key: '4=5',
 		icon: 'icon-chuangyepeixunxiangmu'
 	},
 	// 不显示在菜单中中
