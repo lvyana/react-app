@@ -1,7 +1,6 @@
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { clearToken } from './storage';
-import actions from '@/actions';
 const { confirm } = Modal;
 
 export const errorCode = (code: number | string) => {
@@ -37,7 +36,6 @@ export const logonFailure = () => {
 			onOk() {
 				clearToken();
 				console.log('OK');
-				actions.setGlobalState({ token: '' });
 				// window.location.href = '/login';
 				isModal = true;
 			},

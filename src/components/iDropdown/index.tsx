@@ -1,20 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { Menu, Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-
-/**
- * 按钮
- * type 唯一标识
- * name 名称
- * iconFont 图标
- * Btype 类型
- */
-export interface IbtFunItem {
-	type: string | number;
-	name?: string;
-	iconFont?: ReactNode;
-	Btype?: 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed';
-}
+import Ibutton, { BUTTONITEM } from '@/components/iButton';
 
 export type IbuttonEvent = (type: string | number) => void;
 /**
@@ -23,7 +10,7 @@ export type IbuttonEvent = (type: string | number) => void;
  * IbuttonEvent 点击事件
  */
 interface IbtFun {
-	btFun: IbtFunItem[];
+	btFun: BUTTONITEM[];
 	buttonEvent: IbuttonEvent;
 }
 /**
@@ -40,10 +27,7 @@ const Menus = ({ btFun, buttonEvent }: IbtFun) => {
 			{btFun?.map((item, i) => {
 				return (
 					<Menu.Item key={i} onClick={() => buttonEvent(item.type)}>
-						<Button type={item.Btype ? item.Btype : 'link'}>
-							{item.iconFont}
-							{item.name}
-						</Button>
+						<Ibutton buttonList={[item]}></Ibutton>
 					</Menu.Item>
 				);
 			})}
@@ -63,3 +47,4 @@ const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
 };
 
 export default Idropdown;
+export type { BUTTONITEM };

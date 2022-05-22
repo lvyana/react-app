@@ -1,4 +1,5 @@
-import { MouseEventHandler } from 'react';
+import { ReactNode } from 'react';
+
 /**
  *
  * 按钮集合
@@ -11,19 +12,17 @@ export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事�
  * loadingName 那个按钮需要加载直接传名字
  * editBtn 按钮事件
  */
-export interface IBUTTON {
+export interface IbuttonProps {
 	buttonList: BUTTONITEM[];
 	loadingName?: string;
 	editBtn?: BTeditBtn;
+	style?: React.CSSProperties;
 }
-/**
- *
- * 按钮接口
- */
+
 export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
 
 /**
- * 每个按钮参数
+ * 按钮接口
  * name 名称
  * type 类型
  * disabled 开启禁用模式 true  否则 false
@@ -32,9 +31,10 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
 export interface BUTTONITEM {
 	name: string;
 	type: string;
-	btType: BTtype;
+	btType?: BTtype;
 	disabled?: boolean;
 	hasPermiss?: string;
+	iconFont?: ReactNode;
 }
 
 /**
