@@ -26,9 +26,12 @@ const Pdf = () => {
 			alert('后面没有了');
 		}
 	};
-
+	//阻止右键默认事件(禁止下载)
+	const onPreventDefault = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		e.preventDefault();
+	};
 	return (
-		<div>
+		<div className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
 			<Document
 				file={'https://malong.cn/prod-api/file/previewFile?fileRelativePath=2022/05/20/c22ab2dfae784c7995e7976d5b3f5da9.pdf'}
 				onLoadSuccess={onDocumentLoadSuccess}>
