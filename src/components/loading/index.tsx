@@ -3,7 +3,7 @@ import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import moduleCss from './index.module.scss';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+export const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 /**
  * Loading

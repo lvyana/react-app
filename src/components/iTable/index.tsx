@@ -4,6 +4,7 @@ import { RootState } from '@/redux/store';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
 import { ColumnsType } from 'antd/es/table';
+import { antIcon } from '@/components/loading';
 /**
  *
  * 表格接口
@@ -41,7 +42,7 @@ const Itable: FC<Iprops> = ({ columns = [], data = [], rowSelection, rowKey = 'k
 			columns={columns}
 			rowSelection={rowSelection && { ...rowSelection }}
 			dataSource={data}
-			loading={loading}
+			loading={{ indicator: antIcon, spinning: loading }}
 			pagination={false}
 			rowKey={rowKey}
 			bordered={bordered}
