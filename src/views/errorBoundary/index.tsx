@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ErrorInfo } from 'react';
 import { Result, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 interface ErrorBoundaryProps {}
@@ -11,9 +11,9 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		this.state = { hasError: false };
 	}
 
-	componentDidCatch(error: any, info: any) {
+	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
 		this.setState({ hasError: true });
-		console.log(error, info);
+		console.log(error, errorInfo);
 
 		// 将报错发送到Fundebug
 	}

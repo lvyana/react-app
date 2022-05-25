@@ -2,8 +2,9 @@ import React from 'react';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
+interface IProps {}
 export default class Nprogress extends React.Component {
-	constructor(props: any) {
+	constructor(props: IProps) {
 		super(props);
 		// console.log(0);
 		nprogress.start();

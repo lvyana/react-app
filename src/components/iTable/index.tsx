@@ -14,9 +14,9 @@ import { antIcon } from '@/components/loading';
  * rowSelection 事件回调对象
  * rowKey 定义唯一key字段
  */
-interface Iprops {
-	columns?: ColumnsType<any>; //表头
-	data?: any[]; //表内容
+interface Iprops<T> {
+	columns?: ColumnsType<T>; //表头
+	data?: T[]; //表内容
 	loading?: boolean;
 	rowSelection?: object;
 	rowKey?: string;
@@ -31,7 +31,7 @@ export type ItbClick<T> = (type: string, record: T) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 
-const Itable: FC<Iprops> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading, bordered = false }) => {
+const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading, bordered = false }) => {
 	const size = useSelector((state: RootState) => state.layout.size);
 	console.log(size);
 

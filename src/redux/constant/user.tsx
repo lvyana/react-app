@@ -30,8 +30,8 @@ export interface reSetKeepAliveValue {
 }
 export interface reSetKeepAliveAction {
 	type: 'keepAlive';
-	value: reSetKeepAliveValue;
+	value: reSetKeepAliveValue[];
 }
-export type setKeepAliveType = (value: reSetKeepAliveValue) => reSetKeepAliveAction;
+export type setKeepAliveType = (value: reSetKeepAliveValue[]) => reSetKeepAliveAction;
 
 export type userActions = reSetPhotoAction | reSetTokenAction | reSetPermissAction | reSetKeepAliveAction;
