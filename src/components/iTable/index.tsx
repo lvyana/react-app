@@ -31,7 +31,7 @@ export type ItbClick<T> = (type: string, record: T) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 
-const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading, bordered = false }) => {
+const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading = false, bordered = false }) => {
 	const size = useSelector((state: RootState) => state.layout.size);
 	console.log(size);
 

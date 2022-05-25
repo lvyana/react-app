@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Iform, { FORMITEM, FormInstance } from '@/components/iForm';
-
+import AnimateComponent from '@/components/animateComponent';
 interface Iprops {
 	form: FormInstance;
 	onFinish: (type?: string) => void;
@@ -43,9 +43,9 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	];
 
 	return (
-		<div>
+		<AnimateComponent>
 			<Iform form={form} formList={formList} onFinish={onFinish}></Iform>
-		</div>
+		</AnimateComponent>
 	);
 };
 

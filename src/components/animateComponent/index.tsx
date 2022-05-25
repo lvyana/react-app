@@ -25,8 +25,6 @@ const AnimateComponent: FC = ({ children }) => {
 		// }, 1500);
 	};
 
-	let [Width] = useWidth(270);
-
 	return (
 		<div className={ainimateCoponentStyle.animateComponentPosition}>
 			<div style={{ textAlign: 'center', display: flag ? 'block' : 'none' }}>
@@ -37,7 +35,7 @@ const AnimateComponent: FC = ({ children }) => {
 				// onMouseEnter={onMouseEnter}
 				// onMouseLeave={onMouseLeave}
 				className="animate__animated animate__backInDown"
-				style={{ width: Width, display: flag ? 'none' : 'block' }}>
+				style={{ display: flag ? 'none' : 'block' }}>
 				<Icard styles={{ boxShadow: '0 3px 6px 0 rgb(195 195 195)' }}>
 					{children}
 					<div>

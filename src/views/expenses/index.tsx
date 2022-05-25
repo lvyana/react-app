@@ -40,10 +40,9 @@ const Expenses = () => {
 	};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Icard styles={{ paddingBottom: 0 }}>
-				<SeachForm form={form} onFinish={onFinish}></SeachForm>
-			</Icard>
-			<Icard styles={{ marginTop: '10px' }}>
+			<SeachForm form={form} onFinish={onFinish}></SeachForm>
+
+			<Icard styles={{ marginTop: '40px' }}>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
 				<Paginations
 					total={total}
