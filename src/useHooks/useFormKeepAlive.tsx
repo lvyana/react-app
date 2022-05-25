@@ -18,7 +18,7 @@ const useKeepAlive = () => {
 	const [value, setValue] = useState(getData.find((value) => value.path === location.pathname)?.data);
 
 	// 白名单
-	let routerData = ['/interviewer', '/configureInterviewers', '/project'];
+	let routerData = ['/expree'];
 
 	// 去到即将要做缓存的页面
 	let lastRouter = ['/contacts'];

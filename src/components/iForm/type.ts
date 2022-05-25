@@ -34,7 +34,7 @@ export interface FORMITEM {
 	name: string;
 	label?: string;
 	tooltip?: ReactNode | (TooltipProps & { icon: ReactNode });
-	rules?: Rule[] | undefined;
+	rules?: Rule[];
 	validateTrigger?: string | string[];
 	key: string | number;
 	disabled?: boolean;
@@ -46,7 +46,7 @@ export interface FORMITEM {
 	placeholder?: string;
 	labelAlign?: FormLabelAlign;
 	show?: boolean;
-	option?: any[] | undefined;
+	option?: any[];
 	checkbox?: boolean;
 	fieldNames?: fieldNamesType;
 	maxLength?: number;

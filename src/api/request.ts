@@ -95,7 +95,7 @@ export function downloadGet(url: string, filename: string) {
 			responseType: 'blob'
 		})
 		.then((data) => {
-			const content: any = data;
+			const content: BlobPart = data as unknown as BlobPart;
 			const blob = new Blob([content]);
 			if ('download' in document.createElement('a')) {
 				const elink = document.createElement('a');
@@ -107,7 +107,7 @@ export function downloadGet(url: string, filename: string) {
 				URL.revokeObjectURL(elink.href);
 				document.body.removeChild(elink);
 			} else {
-				(navigator as any).msSaveBlob(blob, filename);
+				(navigator as unknown as { msSaveBlob: (blob: Blob, filename: string) => void }).msSaveBlob(blob, filename);
 			}
 		})
 		.catch((r) => {
