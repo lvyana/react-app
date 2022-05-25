@@ -1,0 +1,9 @@
+.animateComponentPosition {
+	position: absolute;
+	// pointer-events: none;
+	z-index: 5;
+	// width: 99%;
+	top: 8px;
+	left: 50%;
+	transform: translate(-50%, 0px);
+}

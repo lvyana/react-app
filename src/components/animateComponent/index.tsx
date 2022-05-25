@@ -1,0 +1,56 @@
+import React, { FC, useState, useRef } from 'react';
+import { Button, Tooltip } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import ainimateCoponentStyle from './index.module.scss';
+import { useWidth } from '@/useHooks/useScreenSize';
+import { UpOutlined } from '@ant-design/icons';
+import Icard from '@/components/iCard';
+
+const AnimateComponent: FC = ({ children }) => {
+	let timer = useRef<NodeJS.Timeout>();
+
+	const [flag, setflag] = useState(true);
+	const onMouseEnter = () => {
+		console.log('移入');
+		if (timer.current) clearTimeout(timer.current);
+		setTimeout(() => {
+			setflag(false);
+		}, 300);
+	};
+
+	const onMouseLeave = () => {
+		console.log('移除');
+		// timer.current = setTimeout(() => {
+		setflag(true);
+		// }, 1500);
+	};
+
+	let [Width] = useWidth(270);
+
+	return (
+		<div className={ainimateCoponentStyle.animateComponentPosition}>
+			<div style={{ textAlign: 'center', display: flag ? 'block' : 'none' }}>
+				<Button shape="circle" icon={<SearchOutlined style={{ color: '#6454ef' }} />} onClick={onMouseEnter} />
+			</div>
+
+			<div
+				// onMouseEnter={onMouseEnter}
+				// onMouseLeave={onMouseLeave}
+				className="animate__animated animate__backInDown"
+				style={{ width: Width, display: flag ? 'none' : 'block' }}>
+				<Icard styles={{ boxShadow: '0 3px 6px 0 rgb(195 195 195)' }}>
+					{children}
+					<div>
+						<Button
+							type="link"
+							onClick={onMouseLeave}
+							style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)' }}>
+							<UpOutlined />
+						</Button>
+					</div>
+				</Icard>
+			</div>
+		</div>
+	);
+};
+export default AnimateComponent;
