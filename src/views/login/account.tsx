@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FromType } from './index';
+import styles from './index.module.scss';
 
 interface methodProps {
 	onFinish: (value: FromType) => void;
@@ -24,7 +25,7 @@ const Account = ({ onFinish, onFinishFailed }: methodProps) => {
 			</Form.Item>
 
 			<Form.Item wrapperCol={{ span: 24 }}>
-				<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+				<Button type="primary" htmlType="submit" style={{ width: '100%' }} className={styles.LogonBtn}>
 					Submit
 				</Button>
 			</Form.Item>
