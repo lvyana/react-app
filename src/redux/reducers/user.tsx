@@ -3,13 +3,13 @@ interface initialStateType {
 	photo: string;
 	token: string;
 	permiss: string[];
-	keepAlive: reSetKeepAliveValue;
+	keepAlive: reSetKeepAliveValue[];
 }
 export let initialState: initialStateType = {
 	photo: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
 	token: '',
 	permiss: ['*:*:*'],
-	keepAlive: { path: '', data: {} }
+	keepAlive: []
 };
 const user = (state = initialState, action: userActions) => {
 	let newState: initialStateType = JSON.parse(JSON.stringify(state));
@@ -25,7 +25,7 @@ const user = (state = initialState, action: userActions) => {
 			newState[PERMISS] = value as string[];
 			return newState;
 		case KEEP_ALIVE:
-			newState[KEEP_ALIVE] = value as reSetKeepAliveValue;
+			newState[KEEP_ALIVE] = value as reSetKeepAliveValue[];
 			return newState;
 		default:
 			return newState;
