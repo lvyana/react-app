@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notification, Tabs, Row, Col } from 'antd';
 import { setToken } from '@/utils/storage';
@@ -46,8 +46,16 @@ const Login = () => {
 	return (
 		<div className={loginLess.login}>
 			<Row align="middle" justify="center" style={{ height: '100%' }}>
-				<Col flex="280px">
-					<Tabs defaultActiveKey="1" centered>
+				<Col flex="300px">
+					<Tabs
+						defaultActiveKey="1"
+						centered
+						style={{
+							background: 'rgba(16 18 27 / 40%)',
+							backdropFilter: 'blur(10px)',
+							padding: '0 20px',
+							borderRadius: '8px'
+						}}>
 						<TabPane tab="账号登录" key="1">
 							<Account onFinish={onFinish} onFinishFailed={onFinishFailed} />
 						</TabPane>

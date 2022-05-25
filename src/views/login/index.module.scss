@@ -1,6 +1,9 @@
 .login {
+	background: linear-gradient(-45deg, #d38e79, #c9668c, #5fb7d7, #89dfcb);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
 	height: 100vh;
-	background-image: url('../../assets/svg/login.svg');
+	// background-image: url('../../assets/svg/login.svg');
 
 	.ant-tabs {
 		position: absolute;
@@ -39,3 +42,18 @@
 .LogonBtn:active {
 	top: 2px;
 }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+

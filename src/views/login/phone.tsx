@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col, Checkbox } from 'antd';
 import { MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-
+import styles from './index.module.scss';
 interface methodProps {
 	onFinish: (value: FromType) => void;
 	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;
@@ -53,7 +53,7 @@ const Phone = ({ onFinish, onFinishFailed }: methodProps) => {
 				<Checkbox>记住密码</Checkbox>
 			</Form.Item>
 			<Form.Item wrapperCol={{ span: 24 }}>
-				<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+				<Button type="primary" htmlType="submit" style={{ width: '100%' }} className={styles.LogonBtn}>
 					Submit
 				</Button>
 			</Form.Item>
