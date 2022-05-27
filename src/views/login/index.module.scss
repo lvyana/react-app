@@ -6,10 +6,11 @@
 	// background-image: url('../../assets/svg/login.svg');
 
 	.ant-tabs {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		// position: absolute;
+		// top: 50%;
+		// left: 50%;
+		// transform: translate(-50%, -50%);
+		// animation: loginAnimate 15s ease infinite;
 	}
 }
 
@@ -55,5 +56,31 @@
 	}
 }
 
-
-
+// 弹框动画
+.loginAnimate {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	animation: Animate 2s ease infinite;
+	animation-iteration-count: 1;
+}
+@keyframes Animate {
+	0% {
+		opacity: 0;
+	}
+	// 20% {
+	// 	top: 10%;
+	// }
+	// 40% {
+	// 	top: 20%;
+	// }
+	// 60% {
+	// 	top: 30%;
+	// }
+	// 80% {
+	// 	top: 40%;
+	// }
+	100% {
+		opacity: 1;
+	}
+}

@@ -4,7 +4,7 @@ import { notification, Tabs, Row, Col } from 'antd';
 import { setToken } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
-import loginLess from './index.module.scss';
+import styles from './index.module.scss';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { login } from './service';
 const { TabPane } = Tabs;
@@ -44,10 +44,11 @@ const Login = () => {
 	};
 
 	return (
-		<div className={loginLess.login}>
-			<Row align="middle" justify="center" style={{ height: '100%' }}>
+		<div className={styles.login}>
+			<Row justify="center" style={{ height: '100%' }}>
 				<Col flex="300px">
 					<Tabs
+						className={styles.loginAnimate}
 						defaultActiveKey="1"
 						centered
 						style={{
