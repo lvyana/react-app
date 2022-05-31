@@ -8,9 +8,10 @@
 	.contentAll {
 		margin-top: 110px;
 		background-color: #f0f2f5 !important;
+		padding: 8px;
 		.contentBot {
 			position: relative;
-			padding: 8px;
+			
 			overflow: auto;
 			overflow-x: hidden;
 		}
