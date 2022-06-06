@@ -4,6 +4,7 @@ import { MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import styles from './index.module.scss';
+
 interface methodProps {
 	onFinish: (value: FromType) => void;
 	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;

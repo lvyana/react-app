@@ -72,7 +72,7 @@ module.exports = {
 			// 配置打包后的文件位置 js、css会打包到dist目录下
 			// config.output.path = path.join(path.dirname(config.output.path), 'dist');
 			// config.output.publicPath = path.join(path.dirname(config.output.path), 'dist/');
-
+			config.output.path = path.resolve(__dirname, 'dist');
 			return config;
 		},
 		// fixBabelImports('import', { //配置按需加载
@@ -107,28 +107,28 @@ module.exports = {
 		}),
 		// 注意是production环境启动该plugin
 		process.env.NODE_ENV === 'production' &&
-		addWebpackPlugin(
-			new UglifyJsPlugin({
-				// 开启打包缓存
-				cache: true,
-				// 开启多线程打包
-				parallel: true,
-				uglifyOptions: {
-					// 删除警告
-					warnings: false,
-					// 压缩
-					compress: {
-						// 移除console
-						drop_console: true,
-						// 移除debugger
-						drop_debugger: true
+			addWebpackPlugin(
+				new UglifyJsPlugin({
+					// 开启打包缓存
+					cache: true,
+					// 开启多线程打包
+					parallel: true,
+					uglifyOptions: {
+						// 删除警告
+						warnings: false,
+						// 压缩
+						compress: {
+							// 移除console
+							drop_console: true,
+							// 移除debugger
+							drop_debugger: true
+						}
 					}
-				}
-			})
-		),
+				})
+			),
 		// 判断环境变量ANALYZER参数的值
 		process.env.REACT_APP_ANALYZER === 'true' &&
-		addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.1', analyzerPort: 8999 })),
+			addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.1', analyzerPort: 8999 })),
 		addWebpackPlugin(new ProgressBarPlugin())
-	),
+	)
 };

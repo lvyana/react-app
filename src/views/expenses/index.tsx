@@ -7,8 +7,12 @@ import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
 import Paginations from '@/components/pagination';
 import { tabelData } from './service';
+import THREE from './components/three';
 
 const Expenses = () => {
+	useEffect(() => {
+		document.querySelector('#canvas')?.append(THREE());
+	}, []);
 	const buttonEvent = (type: string | number, value: tableProps) => {
 		console.log(type, value);
 	};
@@ -51,6 +55,7 @@ const Expenses = () => {
 					pageNum={pageNum}
 					setPageNum={setPageNum}></Paginations>
 			</Icard>
+			<div id="canvas"></div>
 		</div>
 	);
 };
