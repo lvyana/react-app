@@ -8,7 +8,8 @@ const {
 	addWebpackExternals,
 	overrideDevServer,
 	watchAll,
-	useBabelRc
+	useBabelRc,
+	adjustStyleLoaders
 } = require('customize-cra');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -72,22 +73,34 @@ module.exports = {
 			config.output.clean = true;
 			return config;
 		},
-		// fixBabelImports('import', { //配置按需加载
-		// 	libraryName: 'antd',
-		// 	libraryDirectory: 'es',
-		// 	style: true,
-		// }),
 		fixBabelImports('import', {
+			//配置按需加载
 			libraryName: 'antd',
 			libraryDirectory: 'es',
-			style: 'css'
+			style: true
 		}),
+		// fixBabelImports('import', {
+		// 	libraryName: 'antd',
+		// 	libraryDirectory: 'es',
+		// 	style: 'css'
+		// }),
 		useBabelRc(),
 		addLessLoader({
 			// 这里可以添加less的其他配置
 			lessOptions: {
 				// 根据自己需要配置即可~
+				modifyVars: {
+					'primary-color': '#1DA57A',
+					'link-color': 'red',
+					'border-radius-base': '2px'
+				},
+				javascriptEnabled: true,
+				localIdentName: '[local]--[hash:base64:5]'
 			}
+		}),
+		adjustStyleLoaders(({ use: [, , postcss] }) => {
+			const postcssOptions = postcss.options;
+			postcss.options = { postcssOptions };
 		}),
 		addCustomize(),
 		// alias

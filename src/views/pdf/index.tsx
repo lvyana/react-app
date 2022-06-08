@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
-import styles from './index.module.scss';
+import styles from './index.module.less';
 
 const Pdf = () => {
 	const [numPages, setNumPages] = useState(0);

@@ -5,7 +5,7 @@ import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
 import useIntro from '@/useHooks/useIntro';
-import './index.scss';
+import './index.less';
 const { Header, Content, Sider } = Layout;
 
 const List = () => {

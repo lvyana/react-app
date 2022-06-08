@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FromType } from './index';
-import styles from './index.module.scss';
+import styles from './index.module.less';
 
 interface methodProps {
 	onFinish: (value: FromType) => void;

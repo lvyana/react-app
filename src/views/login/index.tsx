@@ -4,7 +4,7 @@ import { notification, Tabs, Row, Col } from 'antd';
 import { setToken } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
-import styles from './index.module.scss';
+import styles from './index.module.less';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { login } from './service';
 const { TabPane } = Tabs;
