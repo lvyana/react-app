@@ -60,7 +60,7 @@ module.exports = {
 		(config) => {
 			config.output.library = `${name}-[name]`;
 			config.output.libraryTarget = 'umd';
-			// output.jsonpFunction 更名为 output.chunkLoadingGlobal​​​​​​​
+			// output.jsonpFunction 更名为 output.chunkLoadingGlobal
 			config.output.chunkLoadingGlobal = `webpackJsonp_${name}`;
 			config.output.globalObject = 'window';
 
@@ -90,7 +90,7 @@ module.exports = {
 			lessOptions: {
 				// 根据自己需要配置即可~
 				modifyVars: {
-					'primary-color': '#1DA57A',
+					'primary-color': 'skyblue',
 					'link-color': 'red',
 					'border-radius-base': '2px'
 				},

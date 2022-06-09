@@ -17,7 +17,7 @@ axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
  */
 
 // 创建axios实例
-var instance = axios.create({
+let instance = axios.create({
 	timeout: 1000 * 12
 });
 // 设置post请求头

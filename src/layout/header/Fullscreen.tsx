@@ -15,7 +15,7 @@ const Fullscreen = () => {
 
 	//进入全屏
 	const requestFullScreen = () => {
-		var de: any;
+		let de: any;
 		de = document.documentElement;
 		if (de.requestFullscreen) {
 			de.requestFullscreen();
@@ -29,7 +29,7 @@ const Fullscreen = () => {
 
 	//退出全屏
 	const exitFullscreen = () => {
-		var de: any = document;
+		let de: any = document;
 		if (de.exitFullScreen) {
 			de.exitFullScreen();
 		} else if (de.mozCancelFullScreen) {
