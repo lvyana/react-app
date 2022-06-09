@@ -6,7 +6,10 @@ import { useWidth } from '@/useHooks/useScreenSize';
 import { UpOutlined } from '@ant-design/icons';
 import Icard from '@/components/iCard';
 
-const AnimateComponent: FC = ({ children }) => {
+interface AnimateComponentProps {
+	children: React.ReactNode;
+}
+const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	let timer = useRef<NodeJS.Timeout>();
 
 	const [flag, setflag] = useState(true);

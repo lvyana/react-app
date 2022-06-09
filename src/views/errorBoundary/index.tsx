@@ -1,7 +1,9 @@
 import React, { ErrorInfo } from 'react';
 import { Result, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-interface ErrorBoundaryProps {}
+interface ErrorBoundaryProps {
+	children: React.ReactNode;
+}
 interface ErrorBoundaryState {
 	hasError: boolean;
 }
@@ -18,6 +20,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		// 将报错发送到Fundebug
 	}
 	backHome() {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const navigate = useNavigate();
 		navigate('/login');
 	}

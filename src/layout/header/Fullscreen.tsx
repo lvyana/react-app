@@ -29,7 +29,7 @@ const Fullscreen = () => {
 
 	//退出全屏
 	const exitFullscreen = () => {
-		let de: any = document;
+		const de: any = document;
 		if (de.exitFullScreen) {
 			de.exitFullScreen();
 		} else if (de.mozCancelFullScreen) {
@@ -47,12 +47,12 @@ const Fullscreen = () => {
 	}, []);
 	//监听fullscreenchange事件
 	const watchFullScreen = () => {
-		let de: any = document;
+		const de: any = document;
 		document.addEventListener(
 			'fullscreenchange',
 			function () {
 				console.log(11);
-				let FullScreen = de.fullScreen || de.mozFullScreen || de.webkitIsFullScreen;
+				const FullScreen = de.fullScreen || de.mozFullScreen || de.webkitIsFullScreen;
 				if (FullScreen) {
 					//  进入全屏
 				} else {

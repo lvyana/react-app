@@ -96,7 +96,7 @@ const Menulist = () => {
 	useEffect(() => {
 		onOpenChange([openpent(location.pathname)]);
 	}, [location.pathname]);
-	let [openKeys, setopenKeys] = useState<Array<string>>([]);
+	const [openKeys, setopenKeys] = useState<Array<string>>([]);
 	const onOpenChange = (key: string[]) => {
 		setopenKeys(key);
 	};
@@ -121,7 +121,7 @@ const Menulist = () => {
 	};
 
 	const openpent = (data: string) => {
-		let a = data.split('/');
+		const a = data.split('/');
 		a.splice(a.length - 1, 1);
 		return a.join('/');
 	};

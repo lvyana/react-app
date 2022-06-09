@@ -43,7 +43,8 @@ interface MyUseCallbackItemProps {
 	addFunc: () => void;
 	item: number;
 }
-const MyUseCallbackItem: FC<MyUseCallbackItemProps> = memo(({ item, addFunc }) => {
+// eslint-disable-next-line react/display-name
+const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
 	console.log('子组件我更新了');
 
 	return (

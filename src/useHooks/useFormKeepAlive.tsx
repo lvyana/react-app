@@ -18,17 +18,17 @@ const useKeepAlive = () => {
 	const [value, setValue] = useState(getData.find((value) => value.path === location.pathname)?.data);
 
 	// 白名单
-	let routerData = ['/expree'];
+	const routerData = ['/expree'];
 
 	// 去到即将要做缓存的页面
-	let lastRouter = ['/contacts'];
+	// const lastRouter = ['/contacts'];
 
 	useEffect(() => {
 		// 存入数据
 		if (routerData.indexOf(location.pathname) > -1) {
-			let isAdd = getData.findIndex((item) => item.path === location.pathname) > -1;
+			const isAdd = getData.findIndex((item) => item.path === location.pathname) > -1;
 			if (isAdd) {
-				let newData = getData.map((item) => {
+				const newData = getData.map((item) => {
 					if (item.path === location.pathname) {
 						return { path: location.pathname, data: value };
 					} else {

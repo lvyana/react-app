@@ -18,6 +18,7 @@ export interface dispatchProps {
 interface MyUseContextProps {
 	sum: sumProps;
 	dispatch: React.Dispatch<dispatchProps>;
+	children?: React.ReactNode;
 }
 const UseContextCom: FC<MyUseContextProps> = ({ children, sum, dispatch }) => {
 	return <MyContext.Provider value={{ sum, dispatch }}>{children}</MyContext.Provider>;

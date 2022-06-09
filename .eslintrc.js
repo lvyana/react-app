@@ -9,6 +9,7 @@ module.exports = {
 		sourceType: 'module'
 	},
 	parser: '@typescript-eslint/parser',
+	extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
 	// 为我们提供运行环境，一个环境定义了一组预定义的全局变量
 	env: {
 		browser: true,
@@ -33,9 +34,14 @@ module.exports = {
 		'no-nested-ternary': 0, // 不允许使用嵌套的三元表达式
 		'no-plusplus': 0, // 禁止使用一元操作符 ++ 和 --
 		'no-trailing-spaces': 2, // 禁用行尾空格
-		'no-var': 1 // 要求使用 let 或 const 而不是 var
+		'no-var': 1, // 要求使用 let 或 const 而不是 var
+		'prefer-const': 0, // 要求使用const
+		eqeqeq: 2 //必须使用 === 和 !==
 	}
 };
+
+// # 安装 eslint
+// npm i eslint -D
 
 // # 使用 ts 的解析器
 // npm i @typescript-eslint/parser -D

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Rule } from 'rc-field-form/lib/interface';
 import moment, { Moment } from 'moment';
-import { TooltipProps } from 'antd';
+import { LabelTooltipType } from 'antd/lib/form/FormItemLabel';
 
 /**
  * 动态表单集合
@@ -33,7 +33,7 @@ export interface FORMITEM {
 	type: string;
 	name: string;
 	label?: string;
-	tooltip?: ReactNode | (TooltipProps & { icon: ReactNode });
+	tooltip?: LabelTooltipType;
 	rules?: Rule[];
 	validateTrigger?: string | string[];
 	key: string | number;
@@ -65,8 +65,8 @@ export type MODE = 'multiple' | 'tags';
  * lable 和 value 宽度比例
  */
 export interface LAYOUT {
-	labelCol: Object;
-	wrapperCol: Object;
+	labelCol: object;
+	wrapperCol: object;
 }
 
 /**

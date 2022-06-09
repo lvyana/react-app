@@ -43,7 +43,7 @@ const RichTextEdit = () => {
 		console.log(editor);
 
 		return () => {
-			if (editor == null) return;
+			if (editor === null) return;
 			editor.destroy();
 			setEditor(null);
 		};
