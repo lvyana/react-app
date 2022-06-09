@@ -15,10 +15,10 @@ import moment from 'moment';
 const { confirm } = Modal;
 
 export interface ISingleMenuConfig {
-	[key: string]: any;
+	server: string;
 }
 export interface IMenuConfig {
-	[key: string]: ISingleMenuConfig;
+	uploadImage?: ISingleMenuConfig;
 }
 
 const RichTextEdit = () => {

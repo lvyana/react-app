@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { FullscreenOutlined, FontSizeOutlined, FullscreenExitOutlined } from '@ant-design/icons';
-
+/**
+ * 全屏
+ */
 const Fullscreen = () => {
-	// 全屏
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const fullScreen = () => {
 		if (!isFullScreen) {
 			requestFullScreen();
 		} else {
-			exitFullscreen();
+			exitFullScreen();
 		}
 	};
 
@@ -28,10 +29,10 @@ const Fullscreen = () => {
 	};
 
 	//退出全屏
-	const exitFullscreen = () => {
+	const exitFullScreen = () => {
 		const de: any = document;
-		if (de.exitFullScreen) {
-			de.exitFullScreen();
+		if (de.exitFullscreen) {
+			de.exitFullscreen();
 		} else if (de.mozCancelFullScreen) {
 			de.mozCancelFullScreen();
 		} else if (de.webkitExitFullscreen) {
@@ -45,13 +46,13 @@ const Fullscreen = () => {
 	useEffect(() => {
 		watchFullScreen();
 	}, []);
+
 	//监听fullscreenchange事件
 	const watchFullScreen = () => {
 		const de: any = document;
 		document.addEventListener(
 			'fullscreenchange',
-			function () {
-				console.log(11);
+			() => {
 				const FullScreen = de.fullScreen || de.mozFullScreen || de.webkitIsFullScreen;
 				if (FullScreen) {
 					//  进入全屏

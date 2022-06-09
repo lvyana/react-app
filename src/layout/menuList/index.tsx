@@ -136,12 +136,14 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children
 	} as MenuItem;
 };
 
+// 获取菜单数据结构
 const getMenu = (menuArr: router[]): MenuItem[] => {
-	return menuArr.reduce((acc: any[], item) => {
+	return menuArr.reduce((acc: MenuItem[], item) => {
 		if (item.show === false) return [...acc];
+
 		if (item.children && item.children.length > 0) {
-			let newItem = getItem(item.title, item.path, item.icon);
-			return [...acc, { ...newItem, children: getMenu(item.children) }];
+			let newItem = { ...getItem(item.title, item.path, item.icon), children: getMenu(item.children) } as MenuItem;
+			return [...acc, newItem];
 		} else {
 			let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path, item.icon);
 			return [...acc, newItem];

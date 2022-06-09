@@ -24,9 +24,9 @@ export type setPermissType = (value: string[]) => reSetPermissAction;
 
 // 缓存
 export const KEEP_ALIVE = 'keepAlive';
-export interface reSetKeepAliveValue {
+export interface reSetKeepAliveValue<T = unknown> {
 	path: string;
-	data: any;
+	data: T;
 }
 export interface reSetKeepAliveAction {
 	type: 'keepAlive';
