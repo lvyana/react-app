@@ -23,6 +23,7 @@ module.exports = {
 	// "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
 	// "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)。
 	rules: {
+		'react-hooks/rules-of-hooks': 'error',
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'prettier/prettier': 'off', //关闭prettier的提示
@@ -35,3 +36,12 @@ module.exports = {
 		'no-var': 1 // 要求使用 let 或 const 而不是 var
 	}
 };
+
+// # 使用 ts 的解析器
+// npm i @typescript-eslint/parser -D
+
+// # 添加 ts 相关规则
+// npm i @typescript-eslint/eslint-plugin -D
+
+// # 添加 react, hooks 相关的规则
+// npm i eslint-plugin-react eslint-plugin-react-hooks  -D
