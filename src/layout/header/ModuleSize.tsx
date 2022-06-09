@@ -15,21 +15,17 @@ const ModuleSize = () => {
 		dispatch(editorSize(key as SizeType));
 	};
 	const sizeMenu = () => (
-		<Menu onClick={handleSizeChange}>
-			<Menu.Item key="small" disabled={size === 'small'}>
-				small
-			</Menu.Item>
-			<Menu.Item key="middle" disabled={size === 'middle'}>
-				middle
-			</Menu.Item>
-			<Menu.Item key="large" disabled={size === 'large'}>
-				large
-			</Menu.Item>
-		</Menu>
+		<Menu
+			onClick={handleSizeChange}
+			items={[
+				{ key: 'small', label: 'small', disabled: size === 'small' },
+				{ key: 'middle', label: 'middle', disabled: size === 'middle' },
+				{ key: 'large', label: 'large', disabled: size === 'large' }
+			]}></Menu>
 	);
 	return (
 		<>
-			<Dropdown overlay={sizeMenu} placement="bottomCenter" arrow trigger={['click']}>
+			<Dropdown overlay={sizeMenu} placement="bottom" arrow trigger={['click']}>
 				<Tooltip title="布局大小" placement="top" key="leftButton">
 					<Button type="link" icon={<FontSizeOutlined />}></Button>
 				</Tooltip>

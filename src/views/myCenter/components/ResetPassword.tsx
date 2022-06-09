@@ -10,6 +10,8 @@ interface FormType {
 const ResetPassword = () => {
 	const location = useLocation();
 
+	const [form] = Form.useForm();
+
 	useEffect(() => {
 		console.log(location);
 		if (location.state) {
@@ -17,9 +19,8 @@ const ResetPassword = () => {
 		} else {
 			form.setFieldsValue({ userName: undefined });
 		}
-	}, [location.state]);
+	}, [form, location]);
 
-	const [form] = Form.useForm();
 	const onFinish = (values: FormType) => {
 		console.log('Success:', values);
 	};

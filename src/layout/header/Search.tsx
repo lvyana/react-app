@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
+import type { MenuProps } from 'antd';
 import { Input, Button, Dropdown, Menu } from 'antd';
 import { SearchOutlined, DownOutlined } from '@ant-design/icons';
+
+type MenuItem = Required<MenuProps>['items'][number];
 
 const HeaderSearch = () => {
 	const [search, setSearch] = useState(false);
@@ -68,19 +71,29 @@ const menu = (searchList: object[] | null) => {
 	return (
 		<>
 			{searchList?.length ? (
-				<Menu>
-					<Menu.Item>
-						<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-							1st menu item
-						</a>
-					</Menu.Item>
-					<Menu.Item disabled>
-						<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-							3rd menu item (disabled)
-						</a>
-					</Menu.Item>
-					<Menu.Item danger>a danger item</Menu.Item>
-				</Menu>
+				<Menu
+					items={[
+						{
+							key: '1',
+							label: (
+								<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+									1st menu item
+								</a>
+							)
+						},
+						{
+							key: '2',
+							label: (
+								<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+									3rd menu item (disabled)
+								</a>
+							)
+						},
+						{
+							key: '3',
+							label: 'a danger item'
+						}
+					]}></Menu>
 			) : (
 				''
 			)}

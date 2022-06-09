@@ -38,6 +38,7 @@ const router: RouteObject[] = [
 			{
 				path: 'use',
 				children: [
+					{ index: true, element: <Navigate to="MyUseReduce" /> },
 					{
 						path: 'MyUseReduce',
 						element: <Auth element={SuspenseLoad(<MyUseReduce />)} title="MyUseReduce" />

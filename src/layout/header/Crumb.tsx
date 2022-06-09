@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb, Menu } from 'antd';
+import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
 import { menuList, router, excludeMenu } from '../menuList/index';
+
+type MenuItem = Required<MenuProps>['items'][number];
 
 const Crumb = () => {
 	const location = useLocation();
@@ -26,26 +29,6 @@ const Crumb = () => {
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
 
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<a target="_blank" rel="noopener noreferrer">
-					General
-				</a>
-			</Menu.Item>
-			<Menu.Item>
-				<a target="_blank" rel="noopener noreferrer">
-					Layout
-				</a>
-			</Menu.Item>
-			<Menu.Item>
-				<a target="_blank" rel="noopener noreferrer">
-					Navigation
-				</a>
-			</Menu.Item>
-		</Menu>
-	);
-
 	return (
 		<div style={{ paddingLeft: '27px' }}>
 			<Breadcrumb>
@@ -66,17 +49,27 @@ export default Crumb;
 
 const CrumbMenus = (menu: router[], current: string) => {
 	console.log(menu, current);
+
 	return (
-		<Menu selectedKeys={[current]}>
-			{menu?.map((item) => {
-				return item.show === false ? (
-					''
-				) : (
-					<Menu.Item key={item.path}>
-						<Link to={item.path}> {item.title}</Link>
-					</Menu.Item>
-				);
-			})}
-		</Menu>
+		<Menu
+			selectedKeys={[current]}
+			items={menu.reduce((acc: MenuItem[], item) => {
+				if (item.show === false) {
+					return acc;
+				} else {
+					let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path);
+					return [...acc, newItem];
+				}
+			}, [])}></Menu>
 	);
+};
+
+const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
+	return {
+		key,
+		icon,
+		children,
+		label,
+		type
+	} as MenuItem;
 };

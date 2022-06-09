@@ -1,9 +1,13 @@
 import React, { useState, useEffect, memo } from 'react';
+import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 
 const { SubMenu } = Menu;
+
+type MenuItem = Required<MenuProps>['items'][number];
+
 export interface router {
 	title: string;
 	path: string;
@@ -100,31 +104,14 @@ const Menulist = () => {
 	const onOpenChange = (key: string[]) => {
 		setopenKeys(key);
 	};
-	const parentMenu = (item: router) => {
-		return item.show === false ? (
-			''
-		) : (
-			<Menu.Item key={item.path} icon={item.icon && <IconFont type={item.icon} />}>
-				<Link to={item.path}>{item.title}</Link>
-			</Menu.Item>
-		);
-	};
-	const childrenMenu = (item: router) => {
-		return (
-			<SubMenu key={item.path} icon={item.icon && <IconFont type={item.icon} />} title={item.title}>
-				{item.children &&
-					item.children.map((val) => {
-						return val.children && val.children.length > 0 ? childrenMenu(val) : parentMenu(val);
-					})}
-			</SubMenu>
-		);
-	};
 
 	const openpent = (data: string) => {
 		const a = data.split('/');
 		a.splice(a.length - 1, 1);
 		return a.join('/');
 	};
+	console.log(menuList, getMenu(menuList));
+
 	return (
 		<Menu
 			theme="light"
@@ -133,11 +120,31 @@ const Menulist = () => {
 			openKeys={openKeys}
 			onOpenChange={onOpenChange}
 			selectedKeys={[location.pathname]}
-			mode="inline">
-			{menuList.map((item: router) => {
-				return item.children && item.children.length > 0 ? childrenMenu(item) : parentMenu(item);
-			})}
-		</Menu>
+			mode="inline"
+			items={getMenu(menuList)}></Menu>
 	);
 };
 export default memo(Menulist);
+
+const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children?: MenuItem[], type?: 'group'): MenuItem => {
+	return {
+		key,
+		icon: icon && <IconFont type={icon} />,
+		children,
+		label,
+		type
+	} as MenuItem;
+};
+
+const getMenu = (menuArr: router[]): MenuItem[] => {
+	return menuArr.reduce((acc: any[], item) => {
+		if (item.show === false) return [...acc];
+		if (item.children && item.children.length > 0) {
+			let newItem = getItem(item.title, item.path, item.icon);
+			return [...acc, { ...newItem, children: getMenu(item.children) }];
+		} else {
+			let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path, item.icon);
+			return [...acc, newItem];
+		}
+	}, []);
+};

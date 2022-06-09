@@ -58,11 +58,13 @@ const TabsMain = () => {
 		return () => {
 			setactiveKey(location.pathname);
 		};
-	}, [location.pathname]);
+	}, [location, panes]);
+
 	const onChange = (activeKey: string) => {
 		navigate(activeKey);
 		setactiveKey(activeKey);
 	};
+
 	const onEdit = (targetKey: string | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>, action: ACTION): void => {
 		// this[action](targetKey);
 		if (panes.length === 1) return;

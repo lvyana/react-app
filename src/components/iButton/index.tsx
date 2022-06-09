@@ -33,5 +33,6 @@ const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 		</>
 	);
 };
+
 export default Ibutton;
 export type { IbuttonProps, BUTTONITEM };

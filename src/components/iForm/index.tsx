@@ -335,7 +335,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 								<Button
 									type={value.BTtype}
 									onClick={() => onFinish && onFinish(value.type)}
-									icon={<IconFont type={value.iconType} />}>
+									icon={value.iconType && <IconFont type={value.iconType} />}>
 									{value.name}
 								</Button>
 							</Col>

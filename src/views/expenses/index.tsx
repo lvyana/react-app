@@ -19,10 +19,6 @@ const Expenses = () => {
 	const [pageNum, setPageNum] = useState(1);
 	const [total, setTotal] = useState(0);
 
-	useEffect(() => {
-		getTabelData();
-	}, [pageSize, pageNum]);
-
 	const getTabelData = async () => {
 		let params = form.getFieldsValue();
 		const res = await tabelData({ ...params, pageSize, pageNum });
@@ -31,6 +27,10 @@ const Expenses = () => {
 		setExpensesTableData(data);
 		setTotal(total);
 	};
+
+	useEffect(() => {
+		getTabelData();
+	}, [pageSize, pageNum]);
 
 	const onFinish = () => {
 		if (pageNum === 1) {

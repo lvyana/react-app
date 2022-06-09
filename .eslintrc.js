@@ -27,8 +27,9 @@ module.exports = {
 		'react-hooks/rules-of-hooks': 'error',
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-		'prettier/prettier': 'off', //关闭prettier的提示
-		'no-unused-vars': 'off',
+		'prettier/prettier': 'off', // 关闭prettier的提示
+		'no-unused-vars': 'off', // 关闭未使用的变量
+		"@typescript-eslint/no-unused-vars": ["off"],
 		'no-console': 'off',
 		'no-empty': 2, // 禁止空语句块
 		'no-nested-ternary': 0, // 不允许使用嵌套的三元表达式
