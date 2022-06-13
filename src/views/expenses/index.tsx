@@ -30,6 +30,7 @@ const Expenses = () => {
 
 	useEffect(() => {
 		getTabelData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pageSize, pageNum]);
 
 	const onFinish = () => {

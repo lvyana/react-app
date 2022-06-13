@@ -4,7 +4,6 @@
 	"private": true,
 	"dependencies": {
 		"@types/three": "^0.140.0",
-		"animate.css": "^4.1.1",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",
 		"intro.js": "4.3.0",
