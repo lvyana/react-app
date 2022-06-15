@@ -7,10 +7,10 @@ interface RULES {
 // 手机号码和座机验证
 export const validatePhoneTwo: RULES = (rule, value) => {
 	const reg = /^((0\d{2,3}-\d{7,8})|(1[34578]\d{9}))$/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.resolve();
 	} else {
-		if (!reg.test(value) && value != '') {
+		if (!reg.test(value) && value !== '') {
 			return Promise.reject(new Error('请输入正确的电话号码或者固话号码'));
 		} else {
 			return Promise.resolve();
@@ -21,10 +21,10 @@ export const validatePhoneTwo: RULES = (rule, value) => {
 // 是否固话
 export const validateTelphone: RULES = (rule, value) => {
 	const reg = /0\d{2,3}-\d{7,8}/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.resolve();
 	} else {
-		if (!reg.test(value) && value != '') {
+		if (!reg.test(value) && value !== '') {
 			return Promise.reject(new Error('请输入正确的固定电话）'));
 		} else {
 			return Promise.resolve();
@@ -35,10 +35,10 @@ export const validateTelphone: RULES = (rule, value) => {
 // 是否手机号码
 export const validatePhone: RULES = (rule, value) => {
 	const reg = /^[1][3-9][0-9]{9}$/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.resolve();
 	} else {
-		if (!reg.test(value) && value != '') {
+		if (!reg.test(value) && value !== '') {
 			return Promise.reject(new Error('请输入正确的电话号码'));
 		} else {
 			return Promise.resolve();
@@ -49,10 +49,10 @@ export const validatePhone: RULES = (rule, value) => {
 // 是否身份证号码
 export const validateIdNo: RULES = (rule, value) => {
 	const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.reject(new Error('身份证不能为空'));
 	} else {
-		if (!reg.test(value) && value != '') {
+		if (!reg.test(value) && value !== '') {
 			return Promise.reject(new Error('请输入正确的身份证号码'));
 		} else {
 			return Promise.resolve();
@@ -64,7 +64,7 @@ export const validateIdNo: RULES = (rule, value) => {
 export const validateEMail: RULES = (rule, value) => {
 	// const reg = /^([a-zA-Z0-9]+[-_]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
 	const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.reject(new Error('邮箱不能为空'));
 	} else {
 		if (!reg.test(value)) {
@@ -78,7 +78,7 @@ export const validateEMail: RULES = (rule, value) => {
 // 验证内容是否包含英文数字以及下划线
 export const isPassword: RULES = (rule, value) => {
 	const reg = /^[_a-zA-Z0-9]+$/;
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.resolve();
 	} else {
 		if (!reg.test(value)) {
@@ -91,7 +91,7 @@ export const isPassword: RULES = (rule, value) => {
 
 // 自动检验数值的范围
 export const checkMax20000: RULES = (rule, value) => {
-	if (value == '' || value == undefined || value == null) {
+	if (value === '' || value === undefined || value === null) {
 		return Promise.resolve();
 	} else if (!Number(value)) {
 		return Promise.reject(new Error('请输入[1,20000]之间的数字'));

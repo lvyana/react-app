@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+### 添加提交校验
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 添加 `husky`
 
-## Available Scripts
+-   [husky 官方文档](https://typicode.github.io/husky/#/)
 
-In the project directory, you can run:
+1. 安装 `husky` 并启用 `git hooks`
 
-### `npm start`
+```
+npx husky add .husky/pre-commit "npm run lint"
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. 修改 `package.json` 文件
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+// package.json
+{
+    scripts: {
+        ...,
+        "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore",
+        "prepare": "husky install"
+    },
+}
+```
 
-### `npm test`
+3. 添加 `commit` 提交内容规范 `git hooks`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npx husky add .husky/commit-msg 'yarn commitlint --edit "$1"'
+```
 
-### `npm run build`
+4. 添加 `commitlint.config.js` 及相关依赖
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+// 依赖
+yarn add @commitlint/cli @commitlint/config-conventional -D
+// commitlint.config.js
+module.exports = {
+    extends: ['@commitlint/config-conventional'],
+    rules: {
+        'type-enum': [
+            2,
+            'always',
+            ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore'],
+        ],
+        'subject-full-stop': [0, 'never'],
+        'subject-case': [0, 'never'],
+    },
+};
+// commit 的内容，只允许使用下面7个标识。
+// feat: 新功能
+// fix: 修补bug
+// docs: 文档（documentation）
+// style: 样式/格式（不影响代码运行的变动）
+// refactor: 重构（即不是新增功能，也不是修改bug的代码变动）
+// test: 增加测试
+// chore: 构建过程或辅助工具的变动
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 添加 `lint-staged`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   [lint-staged 官方文档](https://www.npmjs.com/package/lint-staged)
+-   `lint-staged` 在我们提交代码时，只会对修改的文件进行检查、修复处理，以保证提交的代码没有语法错误，不会影响其他伙伴在更新代码无法运行的问题。
 
-### `npm run eject`
+1. 安装
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+yarn add lint-staged -D
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. 添加 `.lintstagedrc` 配置文件及依赖
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   [stylelint 规则文档](https://stylelint.io/user-guide/usage/cli)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+// 依赖
+yarn add husky -D
+yarn add -D stylelint stylelint-config-standard
+// .lintstagedrc
+{
+  "*.{js,ts,vue}": ["npm run lint"],
+  "*.{html,vue,css,scss,sass,less}": ["stylelint --fix"]
+}
+```
 
-## Learn More
+3. 修改 `pre-commit` 文件
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+// .husky/pre-commit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+- npm run lint
++ yarn lint-staged --allow-empty "$1"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 测试代码检查及提交规范
+
+-   [VS Code 配置](https://github.com/detanx/Vue3-Element-Plus/blob/main/vscode-setting.json)
+
+1. 代码检查
+   ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd4e85d7f8d240108049ef3bc9b59afd~tplv-k3u1fbpfcp-watermark.image)
+2. `git` 提交规范
+   ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24f9246dee4247039d9afbd416848e78~tplv-k3u1fbpfcp-watermark.image)

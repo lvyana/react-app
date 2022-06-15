@@ -1,0 +1,8 @@
+{
+	"*.{js,ts,tsx}": [
+		"npm run lint"
+	],
+	"*.{html,css,scss,sass,less}": [
+		"stylelint --fix"
+	]
+}

@@ -29,6 +29,8 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
+		"lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore",
+		"prepare": "husky install",
 		"dev": "cross-env PORT=3002 REACT_APP_BASE_API=/dev-api REACT_APP_ENV=development react-app-rewired start",
 		"build:sit": "cross-env REACT_APP_BASE_API=/sit-api REACT_APP_ENV=sit react-app-rewired build",
 		"build": "cross-env REACT_APP_ANALYZER=true react-app-rewired build",
@@ -49,6 +51,8 @@
 	},
 	"devDependencies": {
 		"@antv/g2plot": "^2.4.15",
+		"@commitlint/cli": "^17.0.2",
+		"@commitlint/config-conventional": "^17.0.2",
 		"@testing-library/jest-dom": "^5.16.2",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/user-event": "^13.5.0",
@@ -76,9 +80,13 @@
 		"eslint": "^8.17.0",
 		"eslint-plugin-react": "^7.30.0",
 		"eslint-plugin-react-hooks": "^4.5.0",
+		"husky": "^8.0.1",
 		"less-loader": "^11.0.0",
+		"lint-staged": "^13.0.1",
 		"progress-bar-webpack-plugin": "^2.1.0",
 		"react-app-rewired": "^2.1.11",
+		"stylelint": "^14.9.1",
+		"stylelint-config-standard": "^26.0.0",
 		"uglifyjs-webpack-plugin": "^2.2.0",
 		"webpack-bundle-analyzer": "^4.5.0"
 	}

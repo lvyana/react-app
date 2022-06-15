@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 
-export const useHeight = (subtractHeight: number = 0) => {
+export const useHeight = (subtractHeight = 0) => {
 	const [scrollHeight, setScrollHeight] = useState(0);
 
 	useEffect(() => {
@@ -21,7 +21,7 @@ export const useHeight = (subtractHeight: number = 0) => {
 	return [scrollHeight];
 };
 
-export const useWidth = (subtractWidth: number = 0) => {
+export const useWidth = (subtractWidth = 0) => {
 	const [scrollWidth, setScrollWidth] = useState(0);
 
 	useEffect(() => {
