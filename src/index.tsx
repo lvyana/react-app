@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import App from './App';
+import ErrorBoundary from '@/views/errorBoundary';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -24,7 +25,9 @@ function render() {
 		<ConfigProvider locale={zhCN}>
 			<Provider store={store}>
 				<BrowserRouter basename={'/'}>
-					<App />
+					<ErrorBoundary>
+						<App />
+					</ErrorBoundary>
 				</BrowserRouter>
 			</Provider>
 		</ConfigProvider>,
