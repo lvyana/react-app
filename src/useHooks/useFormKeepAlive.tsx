@@ -41,7 +41,7 @@ const useKeepAlive = () => {
 			}
 		}
 	}, [value]);
-	1;
+
 	return [initValue, setValue];
 };
 

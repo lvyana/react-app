@@ -32,7 +32,10 @@ const SearchTag: FC<IpropsTag> = ({ selectedTags, setSelectedTags, tagsData, onC
 		}
 
 		setSelectedTags(nextSelectedTags);
-		onChange && onChange(nextSelectedTags);
+
+		if (onChange) {
+			onChange(nextSelectedTags);
+		}
 	};
 	return (
 		<div style={{ marginBottom: '10px', marginLeft: '50px' }}>
