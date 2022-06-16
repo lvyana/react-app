@@ -50,7 +50,17 @@ module.exports = {
 		'no-trailing-spaces': 2, // 禁用行尾空格
 		'no-var': 1, // 要求使用 let 或 const 而不是 var
 		'prefer-const': 0, // 要求使用const
-		eqeqeq: 2 //必须使用 === 和 !==
+		eqeqeq: 2, //必须使用 === 和 !==
+		'no-constant-condition': 2, //禁止在条件中使用常量表达式 if(true) if(1)
+		'no-multiple-empty-lines': [1, { max: 2 }], //空行最多不能超过2行
+		'no-redeclare': 2, //禁止重复声明变量
+		'no-unneeded-ternary': 2, //禁止不必要的嵌套 var isYes = answer === 1 ? true : false
+		'no-unused-expressions': 2, //禁止无用的表达式
+		camelcase: 2, //强制驼峰法命名
+		'callback-return': 1, //避免多次调用回调什么的
+		complexity: [0, 11], //循环复杂度
+		'max-depth': [0, 4], //嵌套块深度
+		'max-nested-callbacks': [0, 2] //回调嵌套深度
 	}
 };
 

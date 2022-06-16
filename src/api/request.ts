@@ -36,8 +36,9 @@ instance.interceptors.request.use(
 
 		// 全局配置axios ，注冊token、
 		const token = getToken();
-
-		token && config.headers && (config.headers.Authorization = token);
+		if (token && config.headers) {
+			config.headers.Authorization = token;
+		}
 		return config;
 	},
 	(error: AxiosError) => Promise.reject(error)
