@@ -1,4 +1,6 @@
 {
+	"file": [],
+	//编译器的选项
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
@@ -10,6 +12,14 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"strict": true,
+		//严格模式 false默认  没有严格模式
+		"alwaysStrict": false,
+		//不允许隐式的any类型
+		"noImplicitAny": true,
+		//不允许不明确的类型的this
+		"noImplicitThis": true,
+		//严格检查空值
+		"strictNullChecks": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"module": "esnext",
@@ -20,6 +30,10 @@
 		"jsx": "react-jsx",
 		"downlevelIteration": true
 	},
+	//需要被监视编译的文件 scr下面的全部文件
+	//**表示任意目录
+	//* 表示任意文件
 	"include": ["src", "src/static", "mock"],
+	//不需要被编译的ts(一般不写）
 	"exclude": ["node_modules"]
 }
