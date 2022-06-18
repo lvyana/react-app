@@ -9,9 +9,7 @@ import Paginations from '@/components/pagination';
 import { tabelData } from './service';
 
 const Expenses = () => {
-	const buttonEvent = (type: string | number, value: tableProps) => {
-		console.log(type, value);
-	};
+	const buttonEvent = (type: string | number, value: tableProps) => {};
 	const { columns } = useHeaderTable({ buttonEvent });
 	const [form] = Form.useForm();
 	const [expensesTableData, setExpensesTableData] = useState<tableProps[]>([]);
@@ -22,7 +20,7 @@ const Expenses = () => {
 	const getTabelData = async () => {
 		let params = form.getFieldsValue();
 		const res = await tabelData({ ...params, pageSize, pageNum });
-		console.log(res);
+
 		const { data, total } = res.data;
 		setExpensesTableData(data);
 		setTotal(total);

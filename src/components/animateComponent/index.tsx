@@ -14,7 +14,6 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 
 	const [flag, setflag] = useState(true);
 	const onMouseEnter = () => {
-		console.log('移入');
 		if (timer.current) clearTimeout(timer.current);
 		setTimeout(() => {
 			setflag(false);
@@ -22,7 +21,6 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	};
 
 	const onMouseLeave = () => {
-		console.log('移除');
 		// timer.current = setTimeout(() => {
 		setflag(true);
 		// }, 1500);

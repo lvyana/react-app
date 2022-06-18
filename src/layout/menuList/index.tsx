@@ -110,7 +110,6 @@ const Menulist = () => {
 		a.splice(a.length - 1, 1);
 		return a.join('/');
 	};
-	console.log(menuList, getMenu(menuList));
 
 	return (
 		<Menu

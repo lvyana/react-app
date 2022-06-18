@@ -43,7 +43,6 @@ module.exports = {
 		'no-debugger': 'warn',
 		'prettier/prettier': 'off', // 关闭prettier的提示
 		'no-unused-vars': 'off', // 关闭未使用的变量
-		'no-console': 'off',
 		'no-empty': ['error', { allowEmptyCatch: true }], // 禁止空语句块 允许空catch子句
 		'no-nested-ternary': 'off', // 不允许使用嵌套的三元表达式
 		'no-plusplus': 'off', // 禁止使用一元操作符 ++ 和 --

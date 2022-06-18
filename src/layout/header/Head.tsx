@@ -17,7 +17,6 @@ const Head = () => {
 			]}></Menu>
 	);
 	const handleMenuClick = (e: { key: string }) => {
-		console.log('click', e);
 		if (e.key === '1') {
 			navigate('/mycenter');
 		} else if (e.key === '2') {

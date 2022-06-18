@@ -8,8 +8,6 @@ import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 
 // 请求拦截器 引入加载圈
-console.log(process.env.REACT_APP_BASE_API);
-
 axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
 /**
  * 请求失败后的错误统一处理
@@ -75,7 +73,6 @@ instance.interceptors.response.use(
 	},
 	// 请求失败
 	(error: AxiosError) => {
-		console.log('err', error.message);
 		let { message } = error;
 		if (message === 'Network Error') {
 			message = '后端接口连接异常';
@@ -111,9 +108,7 @@ export function downloadGet(url: string, filename: string) {
 				(navigator as unknown as { msSaveBlob: (blob: Blob, filename: string) => void }).msSaveBlob(blob, filename);
 			}
 		})
-		.catch((r) => {
-			console.error(r);
-		});
+		.catch((r) => {});
 }
 
 export default instance;

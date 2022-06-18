@@ -5,9 +5,7 @@ import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 const Dynamicform = () => {
-	const selectOnChange = (value: number) => {
-		console.log(value);
-	};
+	const selectOnChange = (value: number) => {};
 	// 参数
 	const formList = [
 		{
@@ -268,7 +266,7 @@ const Dynamicform = () => {
 	//表单
 	const [form] = Form.useForm();
 	const onFinish = () => {
-		console.log(1);
+
 	};
 	return (
 		<div className="animate__animated animate__fadeIn">

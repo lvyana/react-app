@@ -33,10 +33,8 @@ export const useWidth = (subtractWidth = 0) => {
 	}, []);
 
 	const resize = debounce(() => {
-		console.log('我更新了');
-
 		let width = document.documentElement.clientWidth - subtractWidth;
-		// console.log(width);
+
 		setScrollWidth(width);
 	}, 500);
 	return [scrollWidth];

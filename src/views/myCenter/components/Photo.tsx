@@ -15,7 +15,6 @@ const Photo: FC<Props> = ({ updatepPhoto, setPhotoFinish }) => {
 	const onCrop = () => {
 		const imageElement: HTMLImageElement | ReactCropperElement | null = cropperRef?.current;
 		const cropper = (imageElement as ReactCropperElement)?.cropper;
-		console.log(cropper.getCroppedCanvas().toDataURL());
 		setPhotoFinish(cropper.getCroppedCanvas().toDataURL());
 		setLoading(false);
 	};

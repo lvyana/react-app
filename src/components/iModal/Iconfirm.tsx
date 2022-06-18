@@ -29,11 +29,9 @@ const useIconfirm = () => {
 					} catch (error) {
 						reject();
 					}
-				}).catch(() => console.log('Oops errors!'));
+				}).catch(() => {});
 			},
-			onCancel() {
-				console.log('Cancel');
-			}
+			onCancel() {}
 		});
 	};
 	return { onConfirm };

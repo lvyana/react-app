@@ -15,7 +15,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
 		this.setState({ hasError: true });
-		console.log(error, errorInfo);
 
 		// 将报错发送到Fundebug
 	}

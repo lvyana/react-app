@@ -12,7 +12,7 @@ const MyUseMemo = () => {
 	const [first, setFirst] = useState(0);
 
 	const count = useMemo(() => {
-		console.log('mome更新');
+		// console.log('mome更新');
 
 		let initNum = 0;
 		for (let i = 0; i < 100000; i++) {

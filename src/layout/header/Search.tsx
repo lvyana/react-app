@@ -15,7 +15,6 @@ const HeaderSearch = () => {
 
 	useEffect(() => {
 		if (search) {
-			console.log(searchRef.current);
 			(searchRef.current as unknown as HTMLInputElement).focus();
 		}
 	}, [search]);
@@ -26,7 +25,6 @@ const HeaderSearch = () => {
 	};
 
 	const searchChange = (e: ChangeEvent) => {
-		console.log((e.target as HTMLInputElement).value);
 		// 随便赋一个值
 		if ((e.target as HTMLInputElement).value) {
 			setSearchList([{ value: 1, id: 1 }]);

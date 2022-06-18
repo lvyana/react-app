@@ -36,12 +36,10 @@ export const logonFailure = () => {
 			okText: '重新登陆',
 			onOk() {
 				clearToken();
-				console.log('OK');
 				// window.location.href = '/login';
 				isModal = true;
 			},
 			onCancel() {
-				console.log('Cancel');
 				isModal = true;
 			}
 		});
