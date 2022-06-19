@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
 import Iform, { FORMITEM, FormInstance } from '@/components/iForm';
 import AnimateComponent from '@/components/animateComponent';
+import { useHooksStatus } from '@/api/usePublicApi';
 interface Iprops {
 	form: FormInstance;
 	onFinish: (type?: string) => void;
 }
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
+	const { statusData } = useHooksStatus();
+
 	const formList: FORMITEM[] = [
 		{
 			type: 'input',
@@ -30,10 +33,23 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			span: 6
 		},
 		{
+			type: 'select',
+			name: 'status',
+			label: '状态',
+			option: statusData,
+			fieldNames: { label: 'name', value: 'status' },
+			key: 3,
+			layout: {
+				labelCol: { span: 6 },
+				wrapperCol: { span: 18 }
+			},
+			span: 6
+		},
+		{
 			type: 'button',
 			name: 'button',
 			key: 14,
-			span: 12,
+			span: 6,
 			option: [
 				{ BTtype: 'primary', type: 'primary', name: '搜索', iconType: 'icon-sousuo1' },
 				{ type: 'onReset', name: '重置', iconType: 'icon-zhongzhi-' }
