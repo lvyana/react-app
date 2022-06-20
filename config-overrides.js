@@ -19,10 +19,12 @@ const { name } = require('./package');
 
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
+const devMode = process.env.NODE_ENV === 'production';
+
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
-	if (process.env.NODE_ENV === 'production') {
+	if (devMode) {
 		// 关闭sourceMap
 		config.devtool = false;
 
@@ -116,29 +118,29 @@ module.exports = {
 			'@wangeditor/editor': 'wangEditor'
 		}),
 		// 注意是production环境启动该plugin
-		process.env.NODE_ENV === 'production' &&
-			addWebpackPlugin(
-				new UglifyJsPlugin({
-					// 开启打包缓存
-					cache: true,
-					// 开启多线程打包
-					parallel: true,
-					uglifyOptions: {
-						// 删除警告
-						warnings: false,
-						// 压缩
-						compress: {
-							// 移除console
-							drop_console: true,
-							// 移除debugger
-							drop_debugger: true
-						}
+		devMode &&
+		addWebpackPlugin(
+			new UglifyJsPlugin({
+				// 开启打包缓存
+				cache: true,
+				// 开启多线程打包
+				parallel: true,
+				uglifyOptions: {
+					// 删除警告
+					warnings: false,
+					// 压缩
+					compress: {
+						// 移除console
+						drop_console: true,
+						// 移除debugger
+						drop_debugger: true
 					}
-				})
-			),
+				}
+			}),
+		),
 		// 判断环境变量ANALYZER参数的值
-		process.env.REACT_APP_ANALYZER === 'true' &&
-			addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
+		devMode &&
+		addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
 		addWebpackPlugin(new ProgressBarPlugin())
-	)
+	),
 };
