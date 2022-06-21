@@ -40,8 +40,6 @@ const RichTextEdit = () => {
 
 	// 及时销毁 editor ，重要！
 	useEffect(() => {
-		console.log(editor);
-
 		return () => {
 			if (editor === null) return;
 			editor.destroy();
@@ -52,25 +50,22 @@ const RichTextEdit = () => {
 	const [content, setContent] = useState('');
 	const [visible, setVisible] = useState(false);
 	const onSubmit = () => {
-		console.log(editor?.children); // 节点对象
-		console.log(editor?.getHtml()); //获取非格式化的 html
+		// console.log(editor?.children); // 节点对象
+		// console.log(editor?.getHtml()); //获取非格式化的 html
 		let time = moment().format('YYYY-MM-DD');
-		console.log(time);
+		// console.log(time);
 
 		confirm({
 			title: 'Do you Want to delete these items?',
 			icon: <ExclamationCircleOutlined />,
 			content: 'Some descriptions',
 			onOk() {
-				console.log('OK');
 			},
 			onCancel() {
-				console.log('Cancel');
 			}
 		});
 	};
 	const onPreview = () => {
-		console.log(editor?.getHtml());
 
 		setContent(editor?.getHtml() as string);
 		setVisible(true);

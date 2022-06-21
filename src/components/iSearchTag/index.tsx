@@ -26,7 +26,6 @@ const SearchTag: FC<IpropsTag> = ({ selectedTags, setSelectedTags, tagsData, onC
 		if (multiple) {
 			// 多选
 			nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter((t) => t !== tag);
-			console.log('You are interested in: ', nextSelectedTags);
 		} else {
 			nextSelectedTags = checked ? [tag] : [];
 		}

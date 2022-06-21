@@ -11,7 +11,6 @@ const Crumb = () => {
 	const [currentRouter, SetcurrentRouter] = useState<router[]>([]);
 
 	useEffect(() => {
-		console.log(location.pathname);
 		if (location.pathname.indexOf(excludeMenu[0]) !== -1) return;
 		let routerArr: router[] = [];
 		location.pathname.split('/').map((item, i) => {
@@ -24,7 +23,6 @@ const Crumb = () => {
 				if (is) routerArr[i] = is;
 			}
 		});
-		console.log(routerArr);
 
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
@@ -48,8 +46,6 @@ const Crumb = () => {
 export default Crumb;
 
 const CrumbMenus = (menu: router[], current: string) => {
-	console.log(menu, current);
-
 	return (
 		<Menu
 			selectedKeys={[current]}

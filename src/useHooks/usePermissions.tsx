@@ -4,7 +4,6 @@ import { RootState } from '@/redux/store';
 
 const useHasPermiss = () => {
 	const permissList = useSelector((state: RootState) => state.user.permiss);
-	console.log(permissList);
 
 	const getPermiss = (hasPermiss?: string) => {
 		if (!hasPermiss || permissList.indexOf('*:*:*') > -1) return true;

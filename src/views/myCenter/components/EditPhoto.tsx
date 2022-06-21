@@ -12,7 +12,6 @@ const EditPhoto: FC<Props> = ({ photoFinish, setPhotoFinish }) => {
 	const [updatepPhoto, setUpdatepPhoto] = useState(photoFinish);
 
 	function beforeUpload(file: File) {
-		console.log(file);
 		getBase64(file, (base64Url) => {
 			setUpdatepPhoto(base64Url as string);
 		});
@@ -43,6 +42,6 @@ export default EditPhoto;
 const getBase64 = (img: File, callback: (base64Url: string | ArrayBuffer | null) => void): void => {
 	const reader = new FileReader();
 	reader.addEventListener('load', () => callback(reader.result));
-	console.log(reader.readAsDataURL(img));
+
 	reader.readAsDataURL(img);
 };

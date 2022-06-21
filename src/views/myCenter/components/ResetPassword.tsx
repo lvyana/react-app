@@ -13,7 +13,6 @@ const ResetPassword = () => {
 	const [form] = Form.useForm();
 
 	useEffect(() => {
-		console.log(location);
 		if (location.state) {
 			form.setFieldsValue({ userName: (location.state as { name: string })?.name });
 		} else {
@@ -22,11 +21,9 @@ const ResetPassword = () => {
 	}, [form, location]);
 
 	const onFinish = (values: FormType) => {
-		console.log('Success:', values);
 	};
 
 	const onFinishFailed = (errorInfo: ValidateErrorEntity<FormType>) => {
-		console.log('Failed:', errorInfo);
 	};
 
 	const confirPassWord = (rule: Rule, value: string | number): Promise<void> => {

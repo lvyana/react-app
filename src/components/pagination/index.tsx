@@ -19,7 +19,6 @@ interface PaginationProps {
 
 const Paginations: FC<PaginationProps> = ({ total, pageNum, setPageSize, pageSize, setPageNum }) => {
 	const onChange = (page: number, pageSize: number | undefined) => {
-		console.log(page, pageSize);
 		setPageSize(pageSize as number);
 		setPageNum(page);
 	};

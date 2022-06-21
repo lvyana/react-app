@@ -21,7 +21,9 @@ const MyUseRouter = () => {
 				scrollContainer={document.getElementById('body') as HTMLDivElement}
 				offset={100}
 				overflow={true}
-				onContentVisible={() => console.log('看我已经被延迟加载了！')}
+				onContentVisible={() => {
+					// console.log('看我已经被延迟加载了！');
+				}}
 				placeholder={
 					<img
 						width="100%"
@@ -42,7 +44,9 @@ const MyUseRouter = () => {
 				overflow={true}
 				scrollContainer={document.getElementById('body') as HTMLDivElement}
 				offsetTop={10000}
-				onContentVisible={() => console.log('看我已经被延迟加载了！')}
+				onContentVisible={() => {
+					// console.log('看我已经被延迟加载了！');
+				}}
 				placeholder={
 					<img
 						width="100%"

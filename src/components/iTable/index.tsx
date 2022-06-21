@@ -33,7 +33,6 @@ export type AlignType = 'left' | 'right' | 'center';
 
 const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading = false, bordered = false }) => {
 	const size = useSelector((state: RootState) => state.layout.size);
-	console.log(size);
 
 	return (
 		<Table

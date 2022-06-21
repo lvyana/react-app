@@ -21,7 +21,6 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	//表格单元里面的功能回调
 	const tbClick: ItbClick<tableProps> = (type, record) => {
-		console.log(type, record);
 		if (type === 'name') {
 			navigate('/mycenter', { state: { name: record.name } });
 		}
@@ -29,7 +28,6 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	// 表格图表移入移出功能
 	const onVisibleChange = (visible: boolean, record: tableProps) => {
-		console.log(visible, record);
 		if (visible) {
 			setBtFun([
 				{ type: '修改', name: '修改', btType: 'primary' },

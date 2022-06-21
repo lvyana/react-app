@@ -6,19 +6,19 @@ import { Button } from 'antd';
  * 日期：2022-4-27
  */
 const MyUseCallback = () => {
-	console.log('父组件更新了');
+	// console.log('父组件更新了');
 
 	const [item, setItem] = useState(0);
 
 	const [count, setCount] = useState(1);
 
 	const addFunc = useCallback(() => {
-		console.log('addFunc');
+		// console.log('addFunc');
 		setItem(item + 1);
 	}, [item]);
 
 	const jianFunc = () => {
-		console.log('jianFunc');
+		// console.log('jianFunc');
 		setCount(count - 1);
 	};
 	return (
@@ -45,7 +45,7 @@ interface MyUseCallbackItemProps {
 }
 // eslint-disable-next-line react/display-name
 const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
-	console.log('子组件我更新了');
+	// console.log('子组件我更新了');
 
 	return (
 		<div>

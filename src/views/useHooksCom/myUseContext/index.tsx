@@ -7,7 +7,6 @@ import { sumProps, dispatchProps } from './UseContextCom';
 const MyUseContext = () => {
 	const [value, setvalue] = useState(10);
 	const [sum, dispatch] = MyUseReducer();
-	console.log(sum);
 
 	return (
 		<div>
@@ -30,7 +29,6 @@ export default MyUseContext;
 
 const UseContextComItem = () => {
 	const value = useContext(MyContext);
-	console.log(value);
 
 	return (
 		<div>

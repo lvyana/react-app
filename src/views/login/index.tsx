@@ -30,8 +30,6 @@ const Login = () => {
 		});
 	};
 	const onFinish = async (values: FromType) => {
-		console.log('Success:', values);
-
 		let { token } = { token: '11' };
 		// 存token
 		setToken(token);
@@ -40,7 +38,7 @@ const Login = () => {
 	};
 
 	const onFinishFailed = (errorInfo: ValidateErrorEntity<FromType>) => {
-		console.log('Failed:', errorInfo);
+
 	};
 
 	return (

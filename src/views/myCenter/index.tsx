@@ -23,7 +23,6 @@ const MyCenter: FC = () => {
 	};
 
 	const handleOk = () => {
-		console.log(photoFinish);
 		setConfirmLoading(true);
 		setTimeout(() => {
 			dispatch(setPhoto(photoFinish));

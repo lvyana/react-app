@@ -8,7 +8,7 @@ import { Button } from 'antd';
  * 日期：2022-4-27
  */
 const MyUseRef = () => {
-	console.log('组件刷新');
+	// console.log('组件刷新');
 
 	const [count, setcount] = useState(0);
 	const [first, setfirst] = useState(1);
@@ -16,7 +16,7 @@ const MyUseRef = () => {
 	const Ref = useRef(0);
 
 	const addFunc = () => {
-		console.log('触发了');
+		// console.log('触发了');
 
 		// useRef不会触发render
 		Ref.current = count;

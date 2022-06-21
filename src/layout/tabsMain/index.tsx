@@ -15,19 +15,15 @@ const TabsMain = () => {
 	const navigate = useNavigate();
 	// 监听地址变化 tag新增
 	useEffect(() => {
-		console.log(location);
 		// 数组扁平化
 		const router: router[] = menuList.reduce((pre: router[], cur) => {
 			return cur.children ? pre.concat(cur.children) : pre.concat(cur);
 		}, []);
-		console.log(router);
 		let currentRouter = router.find((item) => {
-			console.log(location.pathname, item.path);
 			// 判断不显示在菜单的组件
 			if (item.show === false) return location.pathname.indexOf(item.path) !== -1;
 			return item.path === location.pathname;
 		});
-		console.log(currentRouter);
 
 		if (!currentRouter) return;
 		if (panes.length < 1) {

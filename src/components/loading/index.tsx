@@ -15,8 +15,6 @@ interface Iprops {
 	children?: ReactNode | null;
 }
 const Loading: FC<Iprops> = ({ children, loading }) => {
-	console.log(typeof loading === 'boolean');
-
 	// 判断 children 是否空对象
 	return typeof loading === 'boolean' ? (
 		<Spin indicator={antIcon} spinning={loading} delay={200}>
