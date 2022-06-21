@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu, Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton, { BUTTONITEM } from '@/components/iButton';
+import Ibutton, { ButtonItemParam } from '@/components/iButton';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -12,7 +12,7 @@ export type IbuttonEvent = (type: string | number) => void;
  * @param IbuttonEvent 点击事件
  */
 interface IbtFun {
-	btFun: BUTTONITEM[];
+	btFun: ButtonItemParam[];
 	buttonEvent: IbuttonEvent;
 }
 /**
@@ -53,7 +53,7 @@ const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
 };
 
 export default Idropdown;
-export type { BUTTONITEM };
+export type { ButtonItemParam };
 
 /**
  *

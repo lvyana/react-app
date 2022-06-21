@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
-import { IbuttonProps, BUTTONITEM } from './type';
+import { IbuttonProps, ButtonItemParam } from './type';
 
 /**
  * @return 按钮权限控制
@@ -35,4 +35,4 @@ const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 };
 
 export default Ibutton;
-export type { IbuttonProps, BUTTONITEM };
+export type { IbuttonProps, ButtonItemParam };

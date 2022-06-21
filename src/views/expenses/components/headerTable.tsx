@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/components/iTooltip';
-import Idropdown, { BUTTONITEM } from '@/components/iDropdown';
+import Idropdown, { ButtonItemParam } from '@/components/iDropdown';
 import { ItbClick, AlignType } from '@/components/iTable';
 import { useNavigate } from 'react-router-dom';
 export interface tableProps {
@@ -38,7 +38,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		}
 	};
 	// 初始化按钮
-	const [btFun, setBtFun] = useState<BUTTONITEM[]>([]);
+	const [btFun, setBtFun] = useState<ButtonItemParam[]>([]);
 
 	const columns = [
 		{

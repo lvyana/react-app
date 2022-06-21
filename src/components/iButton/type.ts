@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
  *
  * 按钮集合
  */
-export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事件
+export type BTeditBtn = (type: string, value: ButtonItemParam) => void; //点击事件
 
 /**
  *
@@ -13,7 +13,7 @@ export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事�
  * @param editBtn 按钮事件
  */
 export interface IbuttonProps {
-	buttonList: BUTTONITEM[];
+	buttonList: ButtonItemParam[];
 	loadingName?: string;
 	editBtn?: BTeditBtn;
 	style?: React.CSSProperties;
@@ -28,7 +28,7 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
  * @param disabled 开启禁用模式 true  否则 false
  * @param hasPermiss 权限
  */
-export interface BUTTONITEM {
+export interface ButtonItemParam {
 	name: string;
 	type: string;
 	btType?: BTtype;
@@ -42,7 +42,7 @@ export interface BUTTONITEM {
  * @param btnList 数组['删除','新增']
  * @param is 设置true禁用 false启用
  */
-type setDisDataType = (data: BUTTONITEM[], btnList: string[], is: boolean) => BUTTONITEM[];
+type setDisDataType = (data: ButtonItemParam[], btnList: string[], is: boolean) => ButtonItemParam[];
 
 export const setDisData: setDisDataType = (data, btnList, is) => {
 	return data.map((item) => {
