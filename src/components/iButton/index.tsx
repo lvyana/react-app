@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import { IbuttonProps, BUTTONITEM } from './type';
 
 /**
- * 按钮权限控制
+ * @return 按钮权限控制
  */
 const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 	const size = useSelector((state: RootState) => state.layout.size);

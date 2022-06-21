@@ -28,6 +28,11 @@ const { SHOW_PARENT } = TreeSelect;
 
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 export type { FormInstance, FORMITEM };
+
+/**
+ * @param formList 表单json
+ * @param form
+ */
 interface PropsType {
 	formList?: FORMITEM[];
 	form: FormInstance;
@@ -35,6 +40,11 @@ interface PropsType {
 	formLayout?: IformLayout;
 	self?: boolean;
 }
+/**
+ *
+ * @param PropsType
+ * @returns 表单组件
+ */
 const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
 	// input
 	const formInputItem = (item: FORMITEM) => {

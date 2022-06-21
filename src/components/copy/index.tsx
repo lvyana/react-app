@@ -3,6 +3,11 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 
+/**
+ *
+ * @param  value传入的内容
+ * @returns 复制组件
+ */
 const Copy: FC<{ value: string }> = ({ value }) => {
 	return (
 		<span>

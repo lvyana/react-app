@@ -6,9 +6,17 @@ import { useWidth } from '@/useHooks/useScreenSize';
 import { UpOutlined } from '@ant-design/icons';
 import Icard from '@/components/iCard';
 
+/**
+ * @parmas children 子组件
+ */
 interface AnimateComponentProps {
 	children: React.ReactNode;
 }
+/**
+ *
+ * @props  AnimateComponentProps
+ * @returns 表单动画
+ */
 const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	let timer = useRef<NodeJS.Timeout>();
 
@@ -23,9 +31,7 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 
 	const onMouseLeave = () => {
 		console.log('移除');
-		// timer.current = setTimeout(() => {
 		setflag(true);
-		// }, 1500);
 	};
 
 	return (
@@ -34,11 +40,7 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 				<Button shape="circle" icon={<SearchOutlined style={{ color: '#6454ef' }} />} onClick={onMouseEnter} />
 			</div>
 
-			<div
-				// onMouseEnter={onMouseEnter}
-				// onMouseLeave={onMouseLeave}
-				className="animate__animated animate__backInDown"
-				style={{ display: flag ? 'none' : 'block' }}>
+			<div className="animate__animated animate__backInDown" style={{ display: flag ? 'none' : 'block' }}>
 				<Icard styles={{ boxShadow: '0 3px 6px 0 rgb(195 195 195)' }}>
 					{children}
 					<div>

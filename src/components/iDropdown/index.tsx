@@ -8,22 +8,24 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export type IbuttonEvent = (type: string | number) => void;
 /**
- * 按钮
- * btFun 数据集合
- * IbuttonEvent 点击事件
+ * @param btFun 数据集合
+ * @param IbuttonEvent 点击事件
  */
 interface IbtFun {
 	btFun: BUTTONITEM[];
 	buttonEvent: IbuttonEvent;
 }
 /**
- *
- * onVisibleChange 移入移除
+ * @param onVisibleChange 移入移除
  */
 interface Iprops extends IbtFun {
 	onVisibleChange: (visible: boolean) => void;
 }
 
+/**
+ * @param IbtFun
+ * @return 下拉菜单
+ */
 const Menus = ({ btFun, buttonEvent }: IbtFun) => {
 	return (
 		<Menu
@@ -34,6 +36,11 @@ const Menus = ({ btFun, buttonEvent }: IbtFun) => {
 	);
 };
 
+/**
+ *
+ * @props Iprops
+ * @returns 下拉菜单组件
+ */
 const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
 	return (
 		<>
@@ -48,6 +55,15 @@ const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
 export default Idropdown;
 export type { BUTTONITEM };
 
+/**
+ *
+ * @param label 名字
+ * @param key 键
+ * @param icon 图标
+ * @param children 子级
+ * @param type menu组件类型
+ * @returns 处理菜单数据
+ */
 const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
 	return {
 		key,

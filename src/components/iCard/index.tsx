@@ -2,14 +2,17 @@ import React, { FC, ReactNode } from 'react';
 import { Card } from 'antd';
 
 /**
- *
- * children 传入内容
- * styles 样式
+ * @param children 传入内容
+ * @param styles 样式
  */
 interface Iprops {
 	children?: ReactNode;
 	styles?: object;
 }
+/**
+ * @props Iprops
+ * @return 卡片
+ */
 const Icard: FC<Iprops> = ({ children, styles = {} }) => {
 	return (
 		<>
