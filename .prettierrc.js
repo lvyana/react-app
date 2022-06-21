@@ -11,3 +11,5 @@ module.exports = {
 	arrowParens: 'always', // 箭头函数，单个参数添加括号
 	bracketSpacing: true // 大括号有空格 { name: 'rose' }
 };
+
+// yarn add prettier -D

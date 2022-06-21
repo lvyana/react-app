@@ -18,7 +18,7 @@ module.exports = {
 	},
 	// ESLint 支持使用第三方插件。在使用插件之前，你必须使用 npm 安装它。
 	// 在配置文件里配置插件时，可以使用 plugins 关键字来存放插件名字的列表。插件名称可以省略 eslint-plugin- 前缀。
-	plugins: ['react', 'react-hooks', '@typescript-eslint'],
+	plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
 	settings: {
 		react: {
 			version: '17.0.2'
@@ -41,7 +41,7 @@ module.exports = {
 		// ---
 		'no-console': 'warn',
 		'no-debugger': 'warn',
-		'prettier/prettier': 'off', // 关闭prettier的提示
+		'prettier/prettier': 'warn', // 关闭prettier的提示
 		'no-unused-vars': 'off', // 关闭未使用的变量
 		'no-empty': ['error', { allowEmptyCatch: true }], // 禁止空语句块 允许空catch子句
 		'no-nested-ternary': 'off', // 不允许使用嵌套的三元表达式
@@ -74,3 +74,12 @@ module.exports = {
 
 // # 添加 react, hooks 相关的规则
 // npm i eslint-plugin-react eslint-plugin-react-hooks  -D
+
+// prettier
+// yarn add prettier -D
+
+// prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题。
+// yarn add eslint-config-prettier -D
+
+// prettier 官方提供了一个 ESLint 插件 eslint-plugin-prettier。
+// yarn add eslint-plugin-prettier -D
