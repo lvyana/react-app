@@ -37,9 +37,7 @@ const Login = () => {
 		openNotification();
 	};
 
-	const onFinishFailed = (errorInfo: ValidateErrorEntity<FromType>) => {
-
-	};
+	const onFinishFailed = (errorInfo: ValidateErrorEntity<FromType>) => {};
 
 	return (
 		<div className={styles.login}>

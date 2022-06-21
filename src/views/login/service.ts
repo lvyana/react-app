@@ -7,9 +7,9 @@ import axios from '@/api/request'; // 导入http中创建的axios实例
 import { FromType } from './index';
 // 登录
 export const login = (data: FromType) => {
-  return axios({
-    url: `/login`,
-    method: 'post',
-    data,
-  });
+	return axios({
+		url: `/login`,
+		method: 'post',
+		data
+	});
 };

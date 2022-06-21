@@ -265,9 +265,7 @@ const Dynamicform = () => {
 
 	//表单
 	const [form] = Form.useForm();
-	const onFinish = () => {
-
-	};
+	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Iform formList={formList} form={form} onFinish={onFinish} />

@@ -9,7 +9,12 @@ module.exports = {
 		sourceType: 'module'
 	},
 	parser: '@typescript-eslint/parser',
-	extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
+	extends: [
+		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:prettier/recommended'
+	],
 	// 为我们提供运行环境，一个环境定义了一组预定义的全局变量
 	env: {
 		browser: true,
@@ -18,7 +23,7 @@ module.exports = {
 	},
 	// ESLint 支持使用第三方插件。在使用插件之前，你必须使用 npm 安装它。
 	// 在配置文件里配置插件时，可以使用 plugins 关键字来存放插件名字的列表。插件名称可以省略 eslint-plugin- 前缀。
-	plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+	plugins: ['react', 'react-hooks', '@typescript-eslint'],
 	settings: {
 		react: {
 			version: '17.0.2'
@@ -39,9 +44,9 @@ module.exports = {
 		'no-empty-function': 'off',
 		'react-hooks/exhaustive-deps': 'off',
 		// ---
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'no-console': 'warn',
 		'no-debugger': 'warn',
-		'prettier/prettier': 'warn', // 关闭prettier的提示
 		'no-unused-vars': 'off', // 关闭未使用的变量
 		'no-empty': ['error', { allowEmptyCatch: true }], // 禁止空语句块 允许空catch子句
 		'no-nested-ternary': 'off', // 不允许使用嵌套的三元表达式

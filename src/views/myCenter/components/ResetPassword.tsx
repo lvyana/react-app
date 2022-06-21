@@ -20,11 +20,9 @@ const ResetPassword = () => {
 		}
 	}, [form, location]);
 
-	const onFinish = (values: FormType) => {
-	};
+	const onFinish = (values: FormType) => {};
 
-	const onFinishFailed = (errorInfo: ValidateErrorEntity<FormType>) => {
-	};
+	const onFinishFailed = (errorInfo: ValidateErrorEntity<FormType>) => {};
 
 	const confirPassWord = (rule: Rule, value: string | number): Promise<void> => {
 		if (!value || value === form.getFieldValue('passWord')) {
