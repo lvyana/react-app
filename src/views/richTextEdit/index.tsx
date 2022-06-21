@@ -59,14 +59,11 @@ const RichTextEdit = () => {
 			title: 'Do you Want to delete these items?',
 			icon: <ExclamationCircleOutlined />,
 			content: 'Some descriptions',
-			onOk() {
-			},
-			onCancel() {
-			}
+			onOk() {},
+			onCancel() {}
 		});
 	};
 	const onPreview = () => {
-
 		setContent(editor?.getHtml() as string);
 		setVisible(true);
 	};

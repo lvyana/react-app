@@ -8,9 +8,9 @@ export type BTeditBtn = (type: string, value: BUTTONITEM) => void; //点击事�
 
 /**
  *
- * buttonList 按钮集合
- * loadingName 那个按钮需要加载直接传名字
- * editBtn 按钮事件
+ * @param buttonList 按钮集合
+ * @param loadingName 那个按钮需要加载直接传名字
+ * @param editBtn 按钮事件
  */
 export interface IbuttonProps {
 	buttonList: BUTTONITEM[];
@@ -22,11 +22,11 @@ export interface IbuttonProps {
 export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
 
 /**
- * 按钮接口
- * name 名称
- * type 类型
- * disabled 开启禁用模式 true  否则 false
- * hasPermiss 权限
+ * @param 按钮接口
+ * @param name 名称
+ * @param type 类型
+ * @param disabled 开启禁用模式 true  否则 false
+ * @param hasPermiss 权限
  */
 export interface BUTTONITEM {
 	name: string;
@@ -38,10 +38,9 @@ export interface BUTTONITEM {
 }
 
 /**
- *
- * data 数据
- * btnList 数组['删除','新增']
- * is 设置true禁用 false启用
+ * @param data 数据
+ * @param btnList 数组['删除','新增']
+ * @param is 设置true禁用 false启用
  */
 type setDisDataType = (data: BUTTONITEM[], btnList: string[], is: boolean) => BUTTONITEM[];
 

@@ -19,7 +19,6 @@ const useHooksStatus = (deep = []) => {
 
 	const getStatus = async () => {
 		const res = await status();
-		console.log(res);
 		const { data } = res.data;
 		setStatusData(data);
 	};

@@ -9,7 +9,12 @@ module.exports = {
 		sourceType: 'module'
 	},
 	parser: '@typescript-eslint/parser',
-	extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
+	extends: [
+		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:prettier/recommended'
+	],
 	// 为我们提供运行环境，一个环境定义了一组预定义的全局变量
 	env: {
 		browser: true,
@@ -39,9 +44,9 @@ module.exports = {
 		'no-empty-function': 'off',
 		'react-hooks/exhaustive-deps': 'off',
 		// ---
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'no-console': 'warn',
 		'no-debugger': 'warn',
-		'prettier/prettier': 'off', // 关闭prettier的提示
 		'no-unused-vars': 'off', // 关闭未使用的变量
 		'no-empty': ['error', { allowEmptyCatch: true }], // 禁止空语句块 允许空catch子句
 		'no-nested-ternary': 'off', // 不允许使用嵌套的三元表达式
@@ -74,3 +79,12 @@ module.exports = {
 
 // # 添加 react, hooks 相关的规则
 // npm i eslint-plugin-react eslint-plugin-react-hooks  -D
+
+// prettier
+// yarn add prettier -D
+
+// prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题。
+// yarn add eslint-config-prettier -D
+
+// prettier 官方提供了一个 ESLint 插件 eslint-plugin-prettier。
+// yarn add eslint-plugin-prettier -D
