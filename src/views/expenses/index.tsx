@@ -6,36 +6,31 @@ import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
 import Paginations from '@/components/pagination';
-import { tabelData } from './service';
+import { useTabelData } from './useHooksApi';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: tableProps) => {};
 	const { columns } = useHeaderTable({ buttonEvent });
 	const [form] = Form.useForm();
-	const [expensesTableData, setExpensesTableData] = useState<tableProps[]>([]);
+
 	const [pageSize, setPageSize] = useState(10);
 	const [pageNum, setPageNum] = useState(1);
-	const [total, setTotal] = useState(0);
 
-	const getTabelData = async () => {
-		let params = form.getFieldsValue();
-		const res = await tabelData({ ...params, pageSize, pageNum });
-
-		const { data, total } = res.data;
-		setExpensesTableData(data);
-		setTotal(total);
-	};
+	const { expensesTableData, total, getTabelData } = useTabelData();
 
 	useEffect(() => {
-		getTabelData();
+		let params = form.getFieldsValue();
+		getTabelData({ ...params, pageSize, pageNum });
 	}, [pageSize, pageNum]);
 
 	const onFinish = () => {
 		if (pageNum === 1) {
-			return getTabelData();
+			let params = form.getFieldsValue();
+			return getTabelData({ ...params, pageSize, pageNum });
 		}
 		setPageNum(1);
 	};
+
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
