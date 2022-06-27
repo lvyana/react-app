@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Form, Tag, Space } from 'antd';
 import { Column } from '@antv/g2plot';
-import useHeaderTable, { tableProps } from './components/headerTable';
+import useHeaderTable from './components/headerTable';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
 import Paginations from '@/components/pagination';
 import { useTabelData } from './useHooksApi';
+import { TabelDataResponse } from './service';
 
 const Expenses = () => {
-	const buttonEvent = (type: string | number, value: tableProps) => {};
+	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
 	const { columns } = useHeaderTable({ buttonEvent });
 	const [form] = Form.useForm();
 

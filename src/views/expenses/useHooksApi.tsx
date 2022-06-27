@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { tableProps } from './components/headerTable';
+import { TabelDataResponse } from './service';
 import { tabelData } from './service';
+import { TabelDataParams } from './service';
 
+// 查询表格数据
 const useTabelData = () => {
-	const [expensesTableData, setExpensesTableData] = useState<tableProps[]>([]);
+	const [expensesTableData, setExpensesTableData] = useState<TabelDataResponse[]>([]);
 
 	const [total, setTotal] = useState(0);
 
-	const getTabelData = async (params: any) => {
+	const getTabelData = async (params: TabelDataParams) => {
 		const res = await tabelData({ ...params });
 		const { data, total } = res.data;
 		setExpensesTableData(data);

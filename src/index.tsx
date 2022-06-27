@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import App from './App';
-import ErrorBoundary from '@/views/errorBoundary';
+import ErrorBoundary from '@/components/errorBoundary';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
