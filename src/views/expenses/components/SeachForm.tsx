@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Iform, { FORMITEM, FormInstance } from '@/components/iForm';
+import Iform, { FormItemParam, FormInstance } from '@/components/iForm';
 import AnimateComponent from '@/components/animateComponent';
 import { useHooksStatus } from '@/api/usePublicApi';
 interface Iprops {
@@ -9,7 +9,7 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: FORMITEM[] = [
+	const formList: FormItemParam[] = [
 		{
 			type: 'input',
 			name: 'name',

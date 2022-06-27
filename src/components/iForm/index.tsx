@@ -21,20 +21,20 @@ import IconFont from '@/utils/iconfont';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
-import { FORMITEM } from './type';
+import { FormItemParam } from './type';
 
 const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
 
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
-export type { FormInstance, FORMITEM };
+export type { FormInstance, FormItemParam };
 
 /**
  * @param formList 表单json
  * @param form
  */
-interface PropsType {
-	formList?: FORMITEM[];
+interface IProps {
+	formList?: FormItemParam[];
 	form: FormInstance;
 	onFinish?: (type?: string) => void;
 	formLayout?: IformLayout;
@@ -45,9 +45,9 @@ interface PropsType {
  * @param PropsType
  * @returns 表单组件
  */
-const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
+const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
 	// input
-	const formInputItem = (item: FORMITEM) => {
+	const formInputItem = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				label={item.label}
@@ -69,7 +69,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 文本框
-	const formInputTextArea = (item: FORMITEM) => {
+	const formInputTextArea = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				label={item.label}
@@ -89,7 +89,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// Select
-	const formSelect = (item: FORMITEM) => {
+	const formSelect = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -121,7 +121,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 	};
 
 	// 远程搜索
-	const formSeachSelect = (item: FORMITEM) => {
+	const formSeachSelect = (item: FormItemParam) => {
 		return (
 			<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 				<Select
@@ -142,7 +142,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 	};
 
 	// 树形下拉
-	const formTreeSelect = (item: FORMITEM) => {
+	const formTreeSelect = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -164,7 +164,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 联级
-	const formCascader = (item: FORMITEM) => {
+	const formCascader = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -184,7 +184,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 日期
-	const formDatePicker = (item: FORMITEM) => {
+	const formDatePicker = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -198,7 +198,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 区间日期
-	const formRangePicker = (item: FORMITEM) => {
+	const formRangePicker = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -212,7 +212,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 时间
-	const formTimePicker = (item: FORMITEM) => {
+	const formTimePicker = (item: FormItemParam) => {
 		const format = 'HH:mm';
 		return (
 			<Form.Item
@@ -233,7 +233,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 时间区间
-	const formTimeRangePicker = (item: FORMITEM) => {
+	const formTimeRangePicker = (item: FormItemParam) => {
 		const format = 'HH:mm';
 		return (
 			<Form.Item
@@ -254,7 +254,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 数字
-	const formInputNumber = (item: FORMITEM) => {
+	const formInputNumber = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -268,7 +268,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 是否
-	const formSwitch = (item: FORMITEM) => {
+	const formSwitch = (item: FormItemParam) => {
 		return (
 			<Form.Item
 				name={item.name}
@@ -284,7 +284,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 	};
 
 	// 图标单选
-	const formRadioIcon = (item: FORMITEM) => {
+	const formRadioIcon = (item: FormItemParam) => {
 		return (
 			<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 				<Radio.Group onChange={item.onChange}>
@@ -301,7 +301,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 单选
-	const formRadio = (item: FORMITEM) => {
+	const formRadio = (item: FormItemParam) => {
 		return (
 			<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 				<Radio.Group onChange={item.onChange}>
@@ -318,7 +318,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 多选
-	const formCheckbox = (item: FORMITEM) => {
+	const formCheckbox = (item: FormItemParam) => {
 		return (
 			<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 				<Checkbox.Group options={item.option} onChange={item.onChange} />
@@ -326,7 +326,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 		);
 	};
 	// 评分
-	const formRate = (item: FORMITEM) => {
+	const formRate = (item: FormItemParam) => {
 		return (
 			<Form.Item name={item.name} label={item.label} tooltip={item.tooltip} rules={item.rules} {...item.layout}>
 				<Rate tooltips={item.option} onChange={item.onChange} />
@@ -335,7 +335,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 	};
 
 	//按钮
-	const formButton = (item: FORMITEM) => {
+	const formButton = (item: FormItemParam) => {
 		return (
 			<Form.Item {...item.layout}>
 				<Row style={{ ...item.style }} wrap={false}>
@@ -357,11 +357,11 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 	};
 
 	// 自定义组件
-	const userDefined = (item: FORMITEM) => {
+	const userDefined = (item: FormItemParam) => {
 		return item.children;
 	};
 
-	const formItem = (item: FORMITEM) => {
+	const formItem = (item: FormItemParam) => {
 		if (item.show === false) return;
 		switch (item.type) {
 			case 'input':
@@ -413,7 +413,7 @@ const Iform: FC<PropsType> = ({ formList, form, onFinish, formLayout = 'horizont
 			<Form form={form} layout={formLayout} size={size as SizeType}>
 				<Row>
 					{formList &&
-						formList.map((item: FORMITEM, i) => {
+						formList.map((item: FormItemParam, i) => {
 							return (
 								<Col
 									{...(self

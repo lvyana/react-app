@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Iform from '@/components/iForm';
-import { FORMITEM } from '@/components/iForm/type';
+import { FormItemParam } from '@/components/iForm/type';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 

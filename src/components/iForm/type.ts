@@ -29,7 +29,7 @@ import { LabelTooltipType } from 'antd/lib/form/FormItemLabel';
  * children 自定义组件内容
  */
 
-export interface FORMITEM {
+export interface FormItemParam {
 	type: string;
 	name: string;
 	label?: string;
