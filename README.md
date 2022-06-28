@@ -1,4 +1,10 @@
-### 初始化项目
+### 初始化React项目
+js
+npx create-react-app <项目名>
+ts
+npx create-react-app <项目名> --template typescript
+
+### react-app-rewired customize-cra来完成配置的扩展
 一、为啥不建议执行eject
 1.执行eject产生了什么变化？
 create-react-app框架本身将webpack、babel的相关配置封装在了react-scripts中，执行yarneject后，会将webpack、babel等配置暴露在config目录下，同时scripts目录下会有新的命令文件更新，package.json文件中scripts命令同步更新。
@@ -171,7 +177,7 @@ fixBabelImports('import', {
 			libraryDirectory: 'es',
 			style: true
 		}),
-        
+
 这里有个问题postcss
 adjustStyleLoaders(({ use: [, , postcss] }) => {
 	const postcssOptions = postcss.options;
