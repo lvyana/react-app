@@ -16,7 +16,7 @@ const useTabelData = () => {
 		setTotal(total);
 	};
 
-	return { expensesTableData, total, getTabelData };
+	return { expensesTableData, setExpensesTableData, total, getTabelData };
 };
 
 export { useTabelData };

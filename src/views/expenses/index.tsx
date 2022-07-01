@@ -17,11 +17,14 @@ const Expenses = () => {
 	const [pageSize, setPageSize] = useState(10);
 	const [pageNum, setPageNum] = useState(1);
 
-	const { expensesTableData, total, getTabelData } = useTabelData();
+	const { expensesTableData, setExpensesTableData, total, getTabelData } = useTabelData();
 
 	useEffect(() => {
 		let params = form.getFieldsValue();
 		getTabelData({ ...params, pageSize, pageNum });
+		return () => {
+			setExpensesTableData([]);
+		};
 	}, [pageSize, pageNum]);
 
 	const onFinish = () => {
@@ -45,7 +48,6 @@ const Expenses = () => {
 					pageNum={pageNum}
 					setPageNum={setPageNum}></Paginations>
 			</Icard>
-			<div id="canvas"></div>
 		</div>
 	);
 };

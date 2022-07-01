@@ -15,6 +15,9 @@ const useHooksStatus = (deep = []) => {
 
 	useEffect(() => {
 		getStatus();
+		return () => {
+			setStatusData([]);
+		};
 	}, deep);
 
 	const getStatus = async () => {
