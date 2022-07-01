@@ -1,18 +1,17 @@
 import { SIZE, SizeType, layoutActions } from '../constant/layout';
 
-export interface TabPaneListType {
-	path: string;
-	key: string;
-	closable: boolean;
-}
-interface initialStateType {
+/**
+ * @param size 组件尺寸类型
+ */
+interface initialStateParams {
 	size: SizeType;
 }
-let initialState: initialStateType = {
+let initialState: initialStateParams = {
 	size: 'middle'
 };
+
 const layout = (state = initialState, action: layoutActions) => {
-	let newState: initialStateType = JSON.parse(JSON.stringify(state));
+	let newState: initialStateParams = JSON.parse(JSON.stringify(state));
 	let { type, value } = action;
 	switch (type) {
 		case SIZE:
