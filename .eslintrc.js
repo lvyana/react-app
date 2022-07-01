@@ -5,7 +5,7 @@ module.exports = {
 		ecmaFeatures: {
 			jsx: true
 		},
-		ecmaVersion: 2018,
+		ecmaVersion: 2020,
 		sourceType: 'module'
 	},
 	parser: '@typescript-eslint/parser',
@@ -26,6 +26,7 @@ module.exports = {
 	plugins: ['react', 'react-hooks', '@typescript-eslint'],
 	settings: {
 		react: {
+			pragma: 'React',
 			version: '17.0.2'
 		}
 	},
