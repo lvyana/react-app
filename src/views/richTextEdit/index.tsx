@@ -83,7 +83,7 @@ const RichTextEdit = () => {
 				</Button>
 			</div>
 
-			<ILookModal title="预览模板" visible={visible} handleCancel={handleCancel}>
+			<ILookModal title="预览模板" width="1000px" visible={visible} handleCancel={handleCancel}>
 				<Preview content={content}></Preview>
 			</ILookModal>
 		</div>

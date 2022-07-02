@@ -19,7 +19,7 @@ interface Iprops {
 	handleOk?: () => void;
 	handleCancel?: () => void;
 	footer?: ReactNode[];
-	width?: string;
+	width?: string | number;
 	destroyOnClose?: boolean;
 }
 const ILookModal: FC<Iprops> = ({
