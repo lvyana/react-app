@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
@@ -10,8 +10,13 @@ interface methodProps {
 	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;
 }
 const Account = ({ onFinish, onFinishFailed }: methodProps) => {
+	const [form] = Form.useForm();
+
+	useEffect(() => {
+		form.setFieldsValue({ userName: 'admin', password: '123456' });
+	}, []);
 	return (
-		<Form onFinish={onFinish} onFinishFailed={onFinishFailed} initialValues={{ remember: true }}>
+		<Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed} initialValues={{ remember: true }}>
 			<Form.Item name="userName" rules={[{ required: true, message: '请输入账号!' }]}>
 				<Input prefix={<UserOutlined />} placeholder="账号" />
 			</Form.Item>
