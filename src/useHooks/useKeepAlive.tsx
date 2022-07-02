@@ -5,6 +5,10 @@ import { useLocation } from 'react-router-dom';
 import { RootState } from '@/redux/store';
 import { reSetKeepAliveValue } from '@/redux/constant/user';
 
+/**
+ *
+ * @returns 缓存hooks
+ */
 const useKeepAlive = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
@@ -18,7 +22,7 @@ const useKeepAlive = () => {
 	const [value, setValue] = useState(getData.find((value) => value.path === location.pathname)?.data);
 
 	// 白名单
-	const routerData = ['/expree'];
+	const routerData = ['/expenses'];
 
 	// 去到即将要做缓存的页面
 	// const lastRouter = ['/contacts'];
@@ -42,7 +46,7 @@ const useKeepAlive = () => {
 		}
 	}, [value]);
 
-	return [initValue, setValue];
+	return { initValue, setValue };
 };
 
 export default useKeepAlive;

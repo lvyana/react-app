@@ -1,4 +1,11 @@
 import { PHOTO, TOKEN, PERMISS, KEEP_ALIVE, reSetKeepAliveValue, userActions } from '../constant/user';
+
+/**
+ * @param photo 头像url
+ * @param token
+ * @param permiss 权限
+ * @param keepAlive 缓存
+ */
 interface initialStateType {
 	photo: string;
 	token: string;

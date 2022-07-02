@@ -7,19 +7,34 @@ import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
 import Paginations from '@/components/pagination';
 import { useTabelData } from './useHooksApi';
+import useKeepAlive from '@/useHooks/useKeepAlive';
 import { TabelDataResponse } from './service';
+import type { TabelDataParams } from './service';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
 	const { columns } = useHeaderTable({ buttonEvent });
 	const [form] = Form.useForm();
-
-	const [pageSize, setPageSize] = useState(10);
-	const [pageNum, setPageNum] = useState(1);
-
 	const { expensesTableData, setExpensesTableData, total, getTabelData } = useTabelData();
 
+	// 缓存
+	const { initValue, setValue } = useKeepAlive();
+
+	const [pageSize, setPageSize] = useState(() => {
+		return (initValue as TabelDataParams | undefined)?.pageSize || 10;
+	});
+	const [pageNum, setPageNum] = useState(() => {
+		return (initValue as TabelDataParams | undefined)?.pageNum || 1;
+	});
+
+	// 更新缓存数据
 	useEffect(() => {
+		const params = form.getFieldsValue();
+		setValue({ ...params, pageSize, pageNum });
+	}, [form.getFieldValue('name'), form.getFieldValue('age'), form.getFieldValue('status'), pageSize, pageNum]);
+
+	useEffect(() => {
+		form.setFieldsValue({ ...(initValue as TabelDataParams | undefined) });
 		let params = form.getFieldsValue();
 		getTabelData({ ...params, pageSize, pageNum });
 		return () => {
