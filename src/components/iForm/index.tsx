@@ -417,8 +417,18 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 							return (
 								<Col
 									{...(self
-										? { xxl: { span: item.span }, xl: { span: 6 }, lg: { span: 8 }, md: { span: 12 }, xs: { span: 24 } }
-										: { lg: { span: item.span }, md: { span: item.span }, xs: { span: 24 } })}
+										? {
+												xxl: { span: item.span },
+												xl: { span: 6 },
+												lg: { span: 8 },
+												md: { span: 12 },
+												xs: { span: 24 }
+										  }
+										: {
+												lg: { span: item.span },
+												md: { span: item.span },
+												xs: { span: 24 }
+										  })}
 									key={item.key}>
 									{formItem(item)}
 								</Col>
