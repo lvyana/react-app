@@ -1,6 +1,6 @@
 module.exports = {
 	printWidth: 140, // 超过最大值换行
-	tabWidth: 4, // tab键宽度，默认为4
+	tabWidth: 2, // tab键宽度，默认为4
 	useTabs: true, // 使用tab（制表符）缩进而非空格
 	singleQuote: true, // 用单引号代替双引号
 	semi: true, // 行末是否加分号

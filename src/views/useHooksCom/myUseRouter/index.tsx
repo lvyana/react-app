@@ -25,12 +25,7 @@ const MyUseRouter = () => {
 					// console.log('看我已经被延迟加载了！');
 				}}
 				placeholder={
-					<img
-						width="100%"
-						height="100%"
-						src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'}
-						alt="logo"
-					/>
+					<img width="100%" height="100%" src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'} alt="logo" />
 				}>
 				<img src={img} />
 			</LazyLoad>
@@ -48,12 +43,7 @@ const MyUseRouter = () => {
 					// console.log('看我已经被延迟加载了！');
 				}}
 				placeholder={
-					<img
-						width="100%"
-						height="100%"
-						src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'}
-						alt="logo"
-					/>
+					<img width="100%" height="100%" src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'} alt="logo" />
 				}>
 				<img src={img4} />
 			</LazyLoad>

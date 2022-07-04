@@ -222,13 +222,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 				rules={item.rules}
 				{...item.layout}
 				labelAlign={item.labelAlign}>
-				<TimePicker
-					minuteStep={15}
-					onChange={item.onChange}
-					format={format}
-					disabledDate={item.disabledDate}
-					style={{ width: '100%' }}
-				/>
+				<TimePicker minuteStep={15} onChange={item.onChange} format={format} disabledDate={item.disabledDate} style={{ width: '100%' }} />
 			</Form.Item>
 		);
 	};

@@ -56,12 +56,7 @@ const Expenses = () => {
 
 			<Icard styles={{ marginTop: '40px' }}>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
-				<Paginations
-					total={total}
-					pageSize={pageSize}
-					setPageSize={setPageSize}
-					pageNum={pageNum}
-					setPageNum={setPageNum}></Paginations>
+				<Paginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Paginations>
 			</Icard>
 		</div>
 	);

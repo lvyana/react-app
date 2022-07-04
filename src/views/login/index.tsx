@@ -22,8 +22,7 @@ const Login = () => {
 		const key = `open${Date.now()}`;
 		notification.open({
 			message: '欢迎登录',
-			description:
-				'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+			description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
 			key,
 			duration: 1.5,
 			placement: 'bottomRight'
