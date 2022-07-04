@@ -253,7 +253,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
-	// 数字
+	// 数字1
 	const formInputNumber = (item: FormItemParam) => {
 		return (
 			<Form.Item
