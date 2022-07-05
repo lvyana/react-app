@@ -11,7 +11,9 @@ const Expenses = lazy(() => import('@/views/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const Error404 = lazy(() => import('@/views/Error404'));
 // react一些钩子函数用法
-const MyUseReduce = lazy(() => import('@/views/useHooksCom/myUseReduce'));
+const MyUseState = lazy(() => import('@/views/useHooksCom/myUseState'));
+const MyUseEffect = lazy(() => import('@/views/useHooksCom/myUseEffect'));
+const MyUseReducer = lazy(() => import('@/views/useHooksCom/myUseReducer'));
 const MyUseContext = lazy(() => import('@/views/useHooksCom/myUseContext'));
 const MyUseMemo = lazy(() => import('@/views/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/useHooksCom/myUseCallback'));
@@ -40,8 +42,16 @@ const router: RouteObject[] = [
 				children: [
 					{ index: true, element: <Navigate to="MyUseReduce" /> },
 					{
-						path: 'MyUseReduce',
-						element: <Auth element={SuspenseLoad(<MyUseReduce />)} title="MyUseReduce" />
+						path: 'MyUseState',
+						element: <Auth element={SuspenseLoad(<MyUseState />)} title="MyUseState" />
+					},
+					{
+						path: 'MyUseEffect',
+						element: <Auth element={SuspenseLoad(<MyUseEffect />)} title="MyUseEffect" />
+					},
+					{
+						path: 'MyUseReducer',
+						element: <Auth element={SuspenseLoad(<MyUseReducer />)} title="MyUseReducer" />
 					},
 					{
 						path: 'MyUseContext',

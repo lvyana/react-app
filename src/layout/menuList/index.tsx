@@ -37,8 +37,20 @@ export const menuList: router[] = [
 		icon: 'icon-bingtu-huanxing',
 		children: [
 			{
-				title: 'MyUseReduce',
-				path: '/use/MyUseReduce',
+				title: 'MyUseState',
+				path: '/use/MyUseState',
+				key: '19',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseEffect',
+				path: '/use/MyUseEffect',
+				key: '20',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyUseReducer',
+				path: '/use/MyUseReducer',
 				key: '21',
 				icon: 'icon-bingtu-huanxing'
 			},

@@ -7,7 +7,7 @@ type ActionFuncType = (state: number, action: { type: string; value: number }) =
  * ly
  * 日期：2020年4月27日
  */
-const MyUseReduce = () => {
+const MyUseReducer = () => {
 	// reduce实现加减乘除
 
 	const computerAction: ActionFuncType = (state, action) => {
@@ -24,9 +24,14 @@ const MyUseReduce = () => {
 		return state;
 	};
 
-	const initCount = 0;
+	const initCount = '0';
 
-	const [count, dispatch] = useReducer(computerAction, initCount);
+	// 处理初始化数据
+	const init = (initialCount: string) => {
+		return Number(initialCount);
+	};
+
+	const [count, dispatch] = useReducer(computerAction, initCount, init);
 
 	return (
 		<div>
@@ -47,4 +52,4 @@ const MyUseReduce = () => {
 	);
 };
 
-export default MyUseReduce;
+export default MyUseReducer;
