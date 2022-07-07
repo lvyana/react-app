@@ -40,7 +40,7 @@ const List = () => {
 		}
 	}, [collapsed]);
 	return (
-		<Layout className="myLayout" style={{ minHeight: '100vh' }}>
+		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
 			<Sider
 				collapsible
 				collapsed={collapsed}
@@ -61,8 +61,8 @@ const List = () => {
 					</Header>
 					<TabsMain></TabsMain>
 				</div>
-				<Content className="site-layout-background contentAll">
-					<div className="contentBot">
+				<Content className="site-layout-background content-All">
+					<div className="content-Bot">
 						<Outlet />
 					</div>
 				</Content>
