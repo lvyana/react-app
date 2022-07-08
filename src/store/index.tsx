@@ -11,7 +11,8 @@ const store = configureStore({
 		user,
 		log
 	},
-	middleware: [logger]
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+	devTools: process.env.NODE_ENV !== 'production'
 });
 
 /**

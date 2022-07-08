@@ -30,6 +30,7 @@ const user = createSlice({
 	initialState,
 	reducers: {
 		SET_PHOTO: (state, { payload, type }) => {
+			// action 里面有 type 和 payload 两个属性，所有的传参都在payload里面
 			state.photo = payload;
 		},
 		SET_TOKEN: (state, { payload, type }) => {
@@ -45,6 +46,7 @@ const user = createSlice({
 });
 
 export const { SET_PHOTO, SET_TOKEN, SET_PERMISS, SET_KEEP_ALIVE } = user.actions;
+
 export const GET_SELECTOR_PHOTO = (state: RootState) => state.user.photo;
 export const GET_SELECTOR_TOKEN = (state: RootState) => state.user.token;
 export const GET_SELECTOR_PERMISS = (state: RootState) => state.user.permiss;
