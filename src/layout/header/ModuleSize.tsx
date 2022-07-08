@@ -3,12 +3,12 @@ import { Button, Dropdown, Tooltip, Menu } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { editorSize } from '@/redux/actions/layout';
-import { RootState } from '@/redux/store';
+import { editorSize, getSize } from '@/redux/reducers/layout';
+
 const ModuleSize = () => {
 	// 尺寸
 	const dispatch = useDispatch();
-	const sizeR = useSelector((state: RootState) => state.layout.size);
+	const sizeR = useSelector(getSize);
 	const [size, setsize] = useState(sizeR);
 	const handleSizeChange = ({ key }: { key: string }) => {
 		setsize(key as SizeType);

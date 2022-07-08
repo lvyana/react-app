@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@reduxjs/toolkit": "^1.8.3",
 		"@types/three": "^0.140.0",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",

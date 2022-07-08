@@ -1,4 +1,10 @@
-import { VERY_ONE, logValue, setLogActions } from '../constant/log';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+
+export interface logValue {
+	time: string;
+	text: string;
+}
 
 interface initialStateType {
 	evryOne: logValue[];
@@ -6,15 +12,17 @@ interface initialStateType {
 let initialState: initialStateType = {
 	evryOne: []
 };
-const log = (state = initialState, action: setLogActions) => {
-	let newState: initialStateType = JSON.parse(JSON.stringify(state));
-	let { type, value } = action;
-	switch (type) {
-		case VERY_ONE:
-			newState[VERY_ONE] = value;
-			return newState;
-		default:
-			return newState;
+const log = createSlice({
+	name: 'log',
+	initialState,
+	reducers: {
+		setLog: (state, { payload, type }) => {
+			state.evryOne = payload;
+		}
 	}
-};
-export default log;
+});
+
+export const { setLog } = log.actions;
+export const getEvryOne = (state: RootState) => state.log.evryOne;
+
+export default log.reducer;

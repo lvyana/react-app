@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { getSelectPhoto } from '@/redux/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
 
 const Head = () => {
 	const navigate = useNavigate();
-	const photo = useSelector((state: RootState) => state.user.photo);
+	const photo = useSelector(getSelectPhoto);
 	// 头像功能
 	const menu = () => (
 		<Menu

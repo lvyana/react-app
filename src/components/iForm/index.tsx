@@ -20,6 +20,7 @@ import {
 import IconFont from '@/utils/iconfont';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { getSize } from '@/redux/reducers/layout';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { FormItemParam } from './type';
 
@@ -400,7 +401,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 	};
 
 	// 尺寸
-	const size = useSelector((state: RootState) => state.layout.size);
+	const size = useSelector(getSize);
 
 	return (
 		<div>

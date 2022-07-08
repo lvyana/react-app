@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { getPermiss } from '@/redux/reducers/user';
 
 const useHasPermiss = () => {
-	const permissList = useSelector((state: RootState) => state.user.permiss);
+	const permissList = useSelector(getPermiss);
 
-	const getPermiss = (hasPermiss?: string) => {
+	const hasPermiss = (hasPermiss?: string) => {
 		if (!hasPermiss || permissList.indexOf('*:*:*') > -1) return true;
 		if (permissList.indexOf(hasPermiss) > -1) {
 			return true;
@@ -14,7 +14,7 @@ const useHasPermiss = () => {
 		}
 	};
 	return {
-		getPermiss
+		hasPermiss
 	};
 };
 export default useHasPermiss;

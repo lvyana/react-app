@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { getSize } from '@/redux/reducers/layout';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
 import { IbuttonProps, ButtonItemParam } from './type';
@@ -9,12 +9,12 @@ import { IbuttonProps, ButtonItemParam } from './type';
  * @return 按钮权限控制
  */
 const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
-	const size = useSelector((state: RootState) => state.layout.size);
-	const { getPermiss } = useHasPermiss();
+	const size = useSelector(getSize);
+	const { hasPermiss } = useHasPermiss();
 	return (
 		<>
 			{buttonList.map((item, i) =>
-				getPermiss(item.hasPermiss) ? (
+				hasPermiss(item.hasPermiss) ? (
 					<Button
 						key={i}
 						type={item.btType}

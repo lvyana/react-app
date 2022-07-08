@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/redux/store';
-import { setPhoto } from '@/redux/actions/user';
+import { setPhoto, getSelectPhoto } from '@/redux/reducers/user';
 import { Avatar } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
 import EditPhoto from './components/EditPhoto';
@@ -12,7 +11,7 @@ const MyCenter: FC = () => {
 	const dispatch = useDispatch();
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
-	const initImg = useSelector((state: RootState) => state.user.photo);
+	const initImg = useSelector(getSelectPhoto);
 
 	// 修改完的图片传入
 	const [photoFinish, setPhotoFinish] = useState(initImg as string);

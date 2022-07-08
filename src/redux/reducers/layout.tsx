@@ -1,4 +1,6 @@
-import { SIZE, SizeType, layoutActions } from '../constant/layout';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 /**
  * @param size 组件尺寸类型
@@ -10,15 +12,17 @@ let initialState: initialStateParams = {
 	size: 'middle'
 };
 
-const layout = (state = initialState, action: layoutActions) => {
-	let newState: initialStateParams = JSON.parse(JSON.stringify(state));
-	let { type, value } = action;
-	switch (type) {
-		case SIZE:
-			newState[SIZE] = value;
-			return newState;
-		default:
-			return newState;
+const layout = createSlice({
+	name: 'layout',
+	initialState,
+	reducers: {
+		editorSize: (state, { payload, type }) => {
+			state.size = payload;
+		}
 	}
-};
-export default layout;
+});
+
+export const { editorSize } = layout.actions;
+export const getSize = (state: RootState) => state.layout.size;
+
+export default layout.reducer;
