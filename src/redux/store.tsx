@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import logger from 'redux-logger';
 import layout from './reducers/layout';
 import user from './reducers/user';
 import log from './reducers/log';
@@ -9,7 +10,8 @@ const store = configureStore({
 		layout,
 		user,
 		log
-	}
+	},
+	middleware: [logger]
 });
 
 /**
