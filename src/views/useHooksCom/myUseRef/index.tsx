@@ -29,13 +29,12 @@ const MyUseRef = () => {
 		// setTimeout(() => setfirst((first) => first + 1), 1000);
 
 		// 同步更新render一次 会合并处理
-		// setcount(count + 1);
+		setcount(count + 1);
 		// setfirst(first + 1);
 	};
 	return (
 		<div>
-			add:{count}
-			{Ref.current}
+			add:{count}----- ref:{Ref.current}
 			<Button onClick={addFunc}>+</Button>
 		</div>
 	);

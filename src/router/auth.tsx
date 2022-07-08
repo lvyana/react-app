@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 
 export interface WrapperRouteProps {
 	/** document title locale id */
-	title: string;
 	/** authorization？ */
 	auth?: boolean;
 	element: ReactNode;
@@ -14,12 +13,19 @@ interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
 }
 
-const Auth = ({ element, title, auth, ...props }: WrapperRouteProps) => {
+const Auth = ({ element, auth }: WrapperRouteProps) => {
 	// 判断用那个token
 	const isToken = () => {
 		return getToken();
 	};
-	return auth ? <>{element}</> : isToken() ? <>{element}</> : <Navigate to="/login" />;
+	if (auth) {
+		return <>{element}</>;
+	}
+	if (isToken()) {
+		return <>{element}</>;
+	} else {
+		return <Navigate to="/login" />;
+	}
 };
 
 export default Auth;

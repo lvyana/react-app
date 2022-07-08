@@ -49,6 +49,12 @@ export const menuList: router[] = [
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
+				title: 'MyUseLayoutEffect',
+				path: '/use/MyUseLayoutEffect',
+				key: '222',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
 				title: 'MyUseReducer',
 				path: '/use/MyUseReducer',
 				key: '21',
