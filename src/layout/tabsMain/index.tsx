@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
 import { menuList, router } from '@/layout/menuList/index';
 import { useSelector } from 'react-redux';
-import { getSize } from '@/redux/reducers/layout';
+import { GET_SIZE } from '@/store/reducers/layout';
 
 const { TabPane } = Tabs;
 type ACTION = 'add' | 'remove';
@@ -75,7 +75,7 @@ const TabsMain = () => {
 	useEffect(() => {
 		if (!panes.length) return;
 	}, [panes]);
-	const size = useSelector(getSize);
+	const size = useSelector(GET_SIZE);
 	return (
 		<>
 			<Tabs hideAdd onChange={onChange} activeKey={activeKey} type="editable-card" onEdit={onEdit} size={size}>

@@ -3,16 +3,16 @@ import { Button, Dropdown, Tooltip, Menu } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { editorSize, getSize } from '@/redux/reducers/layout';
+import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
 
 const ModuleSize = () => {
 	// 尺寸
 	const dispatch = useDispatch();
-	const sizeR = useSelector(getSize);
+	const sizeR = useSelector(GET_SIZE);
 	const [size, setsize] = useState(sizeR);
 	const handleSizeChange = ({ key }: { key: string }) => {
 		setsize(key as SizeType);
-		dispatch(editorSize(key as SizeType));
+		dispatch(SET_SIZE(key as SizeType));
 	};
 	const sizeMenu = () => (
 		<Menu

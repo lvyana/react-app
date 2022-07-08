@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import store from './redux/store';
+import store from './store';
 // import reportWebVitals from './reportWebVitals';
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '..';
 
 export interface logValue {
 	time: string;
@@ -7,22 +7,22 @@ export interface logValue {
 }
 
 interface initialStateType {
-	evryOne: logValue[];
+	everyOne: logValue[];
 }
 let initialState: initialStateType = {
-	evryOne: []
+	everyOne: []
 };
 const log = createSlice({
 	name: 'log',
 	initialState,
 	reducers: {
-		setLog: (state, { payload, type }) => {
-			state.evryOne = payload;
+		SET_EVERY_ONE: (state, { payload, type }) => {
+			state.everyOne = payload;
 		}
 	}
 });
 
-export const { setLog } = log.actions;
-export const getEvryOne = (state: RootState) => state.log.evryOne;
+export const { SET_EVERY_ONE } = log.actions;
+export const GET_EVERY_ONE = (state: RootState) => state.log.everyOne;
 
 export default log.reducer;

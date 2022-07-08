@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setKeepAlive, getKeepAlive } from '@/redux/reducers/user';
+import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';
 import { useLocation } from 'react-router-dom';
-import { reSetKeepAliveValue } from '@/redux/reducers/user';
+import { reSetKeepAliveValue } from '@/store/reducers/user';
 
 /**
  *
@@ -12,7 +12,7 @@ const useKeepAlive = () => {
 	const location = useLocation();
 	const dispatch = useDispatch();
 	// 取出redux数据
-	const getData = useSelector(getKeepAlive);
+	const getData = useSelector(GET_SELECTOR_KEEP_ALIVE);
 
 	// 获取初始化数据
 	const [initValue, setInitValue] = useState(getData.find((value) => value.path === location.pathname)?.data);
@@ -38,9 +38,9 @@ const useKeepAlive = () => {
 						return item;
 					}
 				});
-				dispatch(setKeepAlive(newData));
+				dispatch(SET_KEEP_ALIVE(newData));
 			} else {
-				dispatch(setKeepAlive([...getData, { path: location.pathname, data: value }]));
+				dispatch(SET_KEEP_ALIVE([...getData, { path: location.pathname, data: value }]));
 			}
 		}
 	}, [value]);

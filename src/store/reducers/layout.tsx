@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '..';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 /**
@@ -16,13 +16,13 @@ const layout = createSlice({
 	name: 'layout',
 	initialState,
 	reducers: {
-		editorSize: (state, { payload, type }) => {
+		SET_SIZE: (state, { payload, type }) => {
 			state.size = payload;
 		}
 	}
 });
 
-export const { editorSize } = layout.actions;
-export const getSize = (state: RootState) => state.layout.size;
+export const { SET_SIZE } = layout.actions;
+export const GET_SIZE = (state: RootState) => state.layout.size;
 
 export default layout.reducer;
