@@ -299,9 +299,9 @@ adjustStyleLoaders(({ use: [, , postcss] }) => {
 以上就是我们实现几个需求的配置。
 
 
-### 添加提交校验
+# 添加提交校验
 
-#### 添加 `husky`
+## 添加 `husky`
 
 -   [husky 官方文档](https://typicode.github.io/husky/#/)
 
@@ -358,7 +358,7 @@ module.exports = {
 // chore: 构建过程或辅助工具的变动
 ```
 
-#### 添加 `lint-staged`
+## 添加 `lint-staged`
 
 -   [lint-staged 官方文档](https://www.npmjs.com/package/lint-staged)
 -   `lint-staged` 在我们提交代码时，只会对修改的文件进行检查、修复处理，以保证提交的代码没有语法错误，不会影响其他伙伴在更新代码无法运行的问题。
@@ -394,7 +394,7 @@ yarn add -D stylelint stylelint-config-standard
 + yarn lint-staged --allow-empty "$1"
 ```
 
-#### 测试代码检查及提交规范
+## 测试代码检查及提交规范
 
 -   [VS Code 配置](https://github.com/detanx/Vue3-Element-Plus/blob/main/vscode-setting.json)
 
