@@ -24,7 +24,7 @@ const getMovieListApi = () =>
 // thunk函数允许执行异步逻辑, 通常用于发出异步请求。
 // createAsyncThunk 创建一个异步action，方法触发的时候会有三种状态：
 // pending（进行中）、fulfilled（成功）、rejected（失败）
-export const getMovieData = createAsyncThunk('movie/getMovie', async () => {
+export const getMovieData = createAsyncThunk('log/getMovie', async () => {
 	const res = await getMovieListApi();
 	return res;
 });
@@ -47,15 +47,15 @@ const log = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(getMovieData.pending, (state) => {
-				console.log('🚀 ~ 进行中！');
+				// console.log('🚀 ~ 进行中！');
 			})
 			.addCase(getMovieData.fulfilled, (state, { payload }) => {
-				console.log('🚀 ~ fulfilled', payload);
+				// console.log('🚀 ~ fulfilled', payload);
 				state.list = payload.data.list;
 				state.totals = payload.data.list.length;
 			})
 			.addCase(getMovieData.rejected, (state, err) => {
-				console.log('🚀 ~ rejected', err);
+				// console.log('🚀 ~ rejected', err);
 			});
 	}
 });

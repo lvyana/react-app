@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.less';
 import App from './App';
 import ErrorBoundary from '@/components/errorBoundary';
@@ -7,6 +7,7 @@ import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+// RTX
 import store from './store';
 // import reportWebVitals from './reportWebVitals';
 
@@ -15,13 +16,15 @@ import store from './store';
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 // import enUS from 'antd/lib/locale/en_US';
+// 中文
 import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 moment.locale('en');
 
 function render() {
-	ReactDOM.render(
+	const root = document.querySelector('#root');
+	ReactDOM.createRoot(root as Element).render(
 		<ConfigProvider locale={zhCN}>
 			<Provider store={store}>
 				<BrowserRouter basename={'/'}>
@@ -30,8 +33,7 @@ function render() {
 					</ErrorBoundary>
 				</BrowserRouter>
 			</Provider>
-		</ConfigProvider>,
-		document.querySelector('#root')
+		</ConfigProvider>
 	);
 }
 
