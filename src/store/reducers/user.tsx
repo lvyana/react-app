@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
 // 缓存
@@ -29,17 +29,17 @@ const user = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		SET_PHOTO: (state, { payload, type }) => {
+		SET_PHOTO: (state, { payload, type }: PayloadAction<string>) => {
 			// action 里面有 type 和 payload 两个属性，所有的传参都在payload里面
 			state.photo = payload;
 		},
-		SET_TOKEN: (state, { payload, type }) => {
+		SET_TOKEN: (state, { payload, type }: PayloadAction<string>) => {
 			state.token = payload;
 		},
-		SET_PERMISS: (state, { payload, type }) => {
+		SET_PERMISS: (state, { payload, type }: PayloadAction<string[]>) => {
 			state.permiss = payload;
 		},
-		SET_KEEP_ALIVE: (state, { payload, type }) => {
+		SET_KEEP_ALIVE: (state, { payload, type }: PayloadAction<reSetKeepAliveValue[]>) => {
 			state.keepAlive = payload;
 		}
 	}

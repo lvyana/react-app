@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
 export interface logValue {
@@ -8,7 +8,7 @@ export interface logValue {
 
 interface initialStateType {
 	everyOne: logValue[];
-	list: object;
+	list: [];
 	totals: number;
 }
 let initialState: initialStateType = {
@@ -33,11 +33,11 @@ const log = createSlice({
 	name: 'log',
 	initialState,
 	reducers: {
-		SET_EVERY_ONE: (state, { payload, type }) => {
+		SET_EVERY_ONE: (state, { payload, type }: PayloadAction<[]>) => {
 			state.everyOne = payload;
 		},
 		// 数据请求完触发
-		loadDataEnd: (state, { payload }) => {
+		loadDataEnd: (state, { payload }: PayloadAction<[]>) => {
 			state.list = payload;
 			state.totals = payload.length;
 		}

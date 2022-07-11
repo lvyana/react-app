@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 /**
  * @param size 组件尺寸类型
  */
-interface initialStateParams {
+interface layoutParams {
 	size: SizeType;
 }
-let initialState: initialStateParams = {
+let initialState: layoutParams = {
 	size: 'middle'
 };
 
@@ -16,7 +16,7 @@ const layout = createSlice({
 	name: 'layout',
 	initialState,
 	reducers: {
-		SET_SIZE: (state, { payload, type }) => {
+		SET_SIZE: (state, { payload, type }: PayloadAction<SizeType>) => {
 			state.size = payload;
 		}
 	}
