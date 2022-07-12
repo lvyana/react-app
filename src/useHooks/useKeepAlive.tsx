@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';
 import { useLocation } from 'react-router-dom';
 import { reSetKeepAliveValue } from '@/store/reducers/user';
@@ -10,9 +10,9 @@ import { reSetKeepAliveValue } from '@/store/reducers/user';
  */
 const useKeepAlive = () => {
 	const location = useLocation();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	// 取出redux数据
-	const getData = useSelector(GET_SELECTOR_KEEP_ALIVE);
+	const getData = useAppSelector(GET_SELECTOR_KEEP_ALIVE);
 
 	// 获取初始化数据
 	const [initValue, setInitValue] = useState(getData.find((value) => value.path === location.pathname)?.data);

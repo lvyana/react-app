@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
@@ -32,7 +32,7 @@ export type ItbClick<T> = (type: string, record: T) => void;
 export type AlignType = 'left' | 'right' | 'center';
 
 const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading = false, bordered = false }) => {
-	const size = useSelector(GET_SIZE);
+	const size = useAppSelector(GET_SIZE);
 
 	return (
 		<Table

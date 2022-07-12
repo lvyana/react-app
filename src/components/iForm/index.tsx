@@ -18,7 +18,7 @@ import {
 	TimePicker
 } from 'antd';
 import IconFont from '@/utils/iconfont';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { FormItemParam } from './type';
@@ -400,7 +400,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 	};
 
 	// 尺寸
-	const size = useSelector(GET_SIZE);
+	const size = useAppSelector(GET_SIZE);
 
 	return (
 		<div>

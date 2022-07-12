@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_PHOTO, GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { Avatar } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
@@ -8,10 +8,10 @@ import ResetPassword from './components/ResetPassword';
 import Imodal from '@/components/iModal';
 
 const MyCenter: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
-	const initImg = useSelector(GET_SELECTOR_PHOTO);
+	const initImg = useAppSelector(GET_SELECTOR_PHOTO);
 
 	// 修改完的图片传入
 	const [photoFinish, setPhotoFinish] = useState(initImg as string);

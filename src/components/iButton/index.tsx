@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
@@ -9,7 +9,7 @@ import { IbuttonProps, ButtonItemParam } from './type';
  * @return 按钮权限控制
  */
 const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
-	const size = useSelector(GET_SIZE);
+	const size = useAppSelector(GET_SIZE);
 	const { hasPermiss } = useHasPermiss();
 	return (
 		<>

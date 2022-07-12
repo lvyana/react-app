@@ -3,7 +3,7 @@ import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import styles from './index.module.less';
 
 // 引入相关的hooks
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch } from '@/store/hooks';
 // 引入对应的方法
 import { GET_LIST, getMovieData } from '@/store/reducers/log';
 
@@ -12,7 +12,7 @@ const Pdf = () => {
 	const [pageNumber, setPageNumber] = useState(1);
 
 	// 通过useDispatch 派发事件
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(getMovieData());
 	}, []);
