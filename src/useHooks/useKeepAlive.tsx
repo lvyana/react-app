@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';
 import { useLocation } from 'react-router-dom';
-import { reSetKeepAliveValue } from '@/store/reducers/user';
+import type { KeepAliveParams } from '@/store/reducers/user';
 
 /**
  *
@@ -51,7 +51,7 @@ const useKeepAlive = () => {
 export default useKeepAlive;
 
 // 获取对应页面数据
-export const getDataItem = (value: reSetKeepAliveValue[], pathname: string) => {
+export const getDataItem = (value: KeepAliveParams[], pathname: string) => {
 	return value.find((item) => {
 		return item.path === pathname;
 	});

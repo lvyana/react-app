@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
-export interface logValue {
+export interface LogValue {
 	time: string;
 	text: string;
 }
 
-interface initialStateType {
-	everyOne: logValue[];
+export interface InitLogParams {
+	everyOne: LogValue[];
 	list: [];
 	totals: number;
 }
-let initialState: initialStateType = {
+let initialState: InitLogParams = {
 	everyOne: [],
 	list: [],
 	totals: 0

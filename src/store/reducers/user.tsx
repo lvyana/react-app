@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
 // 缓存
-export interface reSetKeepAliveValue<T = unknown> {
+export interface KeepAliveParams<T = unknown> {
 	path: string;
 	data: T;
 }
@@ -13,13 +13,13 @@ export interface reSetKeepAliveValue<T = unknown> {
  * @param permiss 权限
  * @param keepAlive 缓存
  */
-interface initialStateType {
+export interface InitUserParams {
 	photo: string;
 	token: string;
 	permiss: string[];
-	keepAlive: reSetKeepAliveValue[];
+	keepAlive: KeepAliveParams[];
 }
-export let initialState: initialStateType = {
+export let initialState: InitUserParams = {
 	photo: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
 	token: '',
 	permiss: ['*:*:*'],
@@ -39,7 +39,7 @@ const user = createSlice({
 		SET_PERMISS: (state, { payload, type }: PayloadAction<string[]>) => {
 			state.permiss = payload;
 		},
-		SET_KEEP_ALIVE: (state, { payload, type }: PayloadAction<reSetKeepAliveValue[]>) => {
+		SET_KEEP_ALIVE: (state, { payload, type }: PayloadAction<KeepAliveParams[]>) => {
 			state.keepAlive = payload;
 		}
 	}

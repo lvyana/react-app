@@ -5,10 +5,10 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext';
 /**
  * @param size 组件尺寸类型
  */
-interface layoutParams {
+export interface InitLayoutParams {
 	size: SizeType;
 }
-let initialState: layoutParams = {
+let initialState: InitLayoutParams = {
 	size: 'middle'
 };
 

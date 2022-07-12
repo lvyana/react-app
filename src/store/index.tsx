@@ -1,9 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import logger from 'redux-logger';
-import layout from './reducers/layout';
-import user from './reducers/user';
-import log from './reducers/log';
+import layout, { InitLayoutParams } from './reducers/layout';
+import user, { InitUserParams } from './reducers/user';
+import log, { InitLogParams } from './reducers/log';
+import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+
+// 环境区分中间件
+const ENV = process.env.NODE_ENV === 'production';
+const middlewareConfig = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => {
+	if (ENV) {
+		return getDefaultMiddleware();
+	} else {
+		return getDefaultMiddleware().concat(logger);
+	}
+};
 
 const store = configureStore({
 	reducer: {
@@ -11,8 +22,8 @@ const store = configureStore({
 		user,
 		log
 	},
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-	devTools: process.env.NODE_ENV !== 'production'
+	middleware: (getDefaultMiddleware) => middlewareConfig(getDefaultMiddleware),
+	devTools: !ENV
 });
 
 /**
