@@ -10,6 +10,7 @@ const Layout = lazy(() => import('@/layout')); // Layout
 const Expenses = lazy(() => import('@/views/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const Error404 = lazy(() => import('@/views/Error404'));
+
 // react一些钩子函数用法
 const MyUseState = lazy(() => import('@/views/useHooksCom/myUseState'));
 const MyUseEffect = lazy(() => import('@/views/useHooksCom/myUseEffect'));
@@ -20,8 +21,11 @@ const MyUseMemo = lazy(() => import('@/views/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/useHooksCom/myUseCallback'));
 const MyUseRef = lazy(() => import('@/views/useHooksCom/myUseRef'));
 const MyUseRouter = lazy(() => import('@/views/useHooksCom/myUseRouter'));
+
 // pdf
 const Pdf = lazy(() => import('@/views/pdf'));
+
+const Rtk = lazy(() => import('@/views/rtk'));
 
 const router: RouteObject[] = [
 	{ path: '/login', element: SuspenseLoad(<Login />) },
@@ -80,7 +84,7 @@ const router: RouteObject[] = [
 					}
 				]
 			},
-
+			{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> },
 			{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
 			{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> },
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },

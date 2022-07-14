@@ -8,7 +8,7 @@ export interface LogValue {
 
 export interface InitLogParams {
 	everyOne: LogValue[];
-	list: [];
+	list: { name: string }[];
 	totals: number;
 }
 let initialState: InitLogParams = {

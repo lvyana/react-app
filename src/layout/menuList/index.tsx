@@ -101,7 +101,13 @@ export const menuList: router[] = [
 	{
 		title: 'pdf',
 		path: '/pdf',
-		key: '4=5',
+		key: '5',
+		icon: 'icon-chuangyepeixunxiangmu'
+	},
+	{
+		title: 'Rtk',
+		path: '/Rtk',
+		key: '7',
 		icon: 'icon-chuangyepeixunxiangmu'
 	},
 	// 不显示在菜单中中
