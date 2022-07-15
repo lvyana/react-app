@@ -108,6 +108,12 @@ export const menuList: router[] = [
 		key: '7',
 		icon: 'icon-chuangyepeixunxiangmu'
 	},
+	{
+		title: 'Player',
+		path: '/Player',
+		key: '8',
+		icon: 'icon-chuangyepeixunxiangmu'
+	},
 	// 不显示在菜单中中
 	{
 		title: '个人中心',

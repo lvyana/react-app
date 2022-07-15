@@ -4,6 +4,10 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 // 引入对应的方法
 import { GET_LIST, getMovieData } from '@/store/reducers/log';
 
+/**
+ *
+ * @returns RTK数据管理
+ */
 const Rtk = () => {
 	// 通过useDispatch 派发事件
 	const dispatch = useAppDispatch();
