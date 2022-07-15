@@ -28,6 +28,8 @@ const Pdf = lazy(() => import('@/views/pdf'));
 const Rtk = lazy(() => import('@/views/rtk'));
 //ReactPlayer
 const Player = lazy(() => import('@/views/player'));
+//GridLayout
+const DemoGridLayout = lazy(() => import('@/views/gridLayout'));
 
 const router: RouteObject[] = [
 	{ path: '/login', element: SuspenseLoad(<Login />) },
@@ -88,6 +90,7 @@ const router: RouteObject[] = [
 			},
 			{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> },
 			{ path: 'Player', element: <Auth element={SuspenseLoad(<Player />)} /> },
+			{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
 			{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
 			{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> },
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
