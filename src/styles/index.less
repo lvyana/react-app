@@ -1,34 +1,37 @@
-@import './antd-ui.less'; // 修改antd组件样式
-@import './marginAndPadding.less'; // 内外边距
+/* 修改antd组件样式 */
+@import './antd-ui.less';
+
+/* 内外边距 */
+@import './marginAndPadding.less';
 
 *,
-*:before,
-*:after {
-	box-sizing: inherit;
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 .omit {
-	// width: 100%;
-	overflow: hidden; /*超出部分隐藏*/
-	white-space: nowrap; /*不换行*/
-	text-overflow: ellipsis; /*超出部分文字以...显示*/
+  /* width: 100%; */
+  overflow: hidden; /* 超出部分隐藏 */
+  text-overflow: ellipsis; /* 超出部分文字以...显示 */
+  white-space: nowrap; /* 不换行 */
 }
 
-// 大标题
+/* 大标题 */
 .title-react {
-	color: rgba(0, 0, 0, 0.85);
-	font-weight: bold;
-	font-size: 16px;
-	line-height: 1.5715;
-	margin-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5715;
+  color: rgb(0 0 0 / 85%);
 }
 
-// /n 不能换行 加上这个样式
+/* /n 不能换行 加上这个样式 */
 .lineFeed {
-	white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
-// hover 75, 171, 252
+/* hover 75,171,252 */
 .hoveBlue:hover {
-	color: rgb(75, 171, 252);
+  color: rgb(75 171 252);
 }

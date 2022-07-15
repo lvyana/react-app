@@ -4,8 +4,6 @@ import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 
-const { SubMenu } = Menu;
-
 type MenuItem = Required<MenuProps>['items'][number];
 
 export interface router {

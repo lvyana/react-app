@@ -31,7 +31,10 @@ export type { FormInstance, FormItemParam };
 
 /**
  * @param formList 表单json
- * @param form
+ * @param form 表单实例
+ * @param onFinish 表单确认
+ * @param formLayout 表单格式
+ * @param self 是否自适应
  */
 interface IProps {
 	formList?: FormItemParam[];
