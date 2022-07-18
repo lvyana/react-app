@@ -17,76 +17,91 @@ export interface router {
 export const excludeMenu = ['role/allocation'];
 export const menuList: router[] = [
 	{
-		title: 'expenses',
-		path: '/expenses',
-		key: '1',
-		icon: 'icon-tiaoxingtu-duidie'
+		title: 'antd',
+		path: '/antd',
+		key: '3',
+		icon: 'icon-bingtu-huanxing',
+		children: [
+			{
+				title: 'expenses',
+				path: '/antd/expenses',
+				key: '1',
+				icon: 'icon-tiaoxingtu-duidie'
+			},
+			{
+				title: '动态表单',
+				path: '/antd/dynamicform',
+				key: '2',
+				icon: 'icon-bingtu-huanxing'
+			}
+		]
 	},
+
 	{
-		title: '动态表单',
-		path: '/dynamicform',
-		key: '2',
-		icon: 'icon-bingtu-huanxing'
-	},
-	{
-		title: 'use',
-		path: '/use',
+		title: 'react',
+		path: '/react',
 		key: '3',
 		icon: 'icon-bingtu-huanxing',
 		children: [
 			{
 				title: 'MyUseState',
-				path: '/use/MyUseState',
+				path: '/react/MyUseState',
 				key: '19',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseEffect',
-				path: '/use/MyUseEffect',
+				path: '/react/MyUseEffect',
 				key: '20',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseLayoutEffect',
-				path: '/use/MyUseLayoutEffect',
+				path: '/react/MyUseLayoutEffect',
 				key: '222',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseReducer',
-				path: '/use/MyUseReducer',
+				path: '/react/MyUseReducer',
 				key: '21',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseContext',
-				path: '/use/MyUseContext',
+				path: '/react/MyUseContext',
 				key: '22',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseMemo',
-				path: '/use/MyUseMemo',
+				path: '/react/MyUseMemo',
 				key: '23',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseCallback',
-				path: '/use/MyUseCallback',
+				path: '/react/MyUseCallback',
 				key: '23',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseRef',
-				path: '/use/MyUseRef',
+				path: '/react/MyUseRef',
 				key: '24',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
 				title: 'MyUseRouter',
-				path: '/use/MyUseRouter',
+				path: '/react/MyUseRouter',
 				key: '25',
 				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'Rtk',
+				path: '/react/Rtk',
+				key: '7',
+				icon: 'icon-chuangyepeixunxiangmu'
 			}
 		]
 	},
@@ -102,12 +117,7 @@ export const menuList: router[] = [
 		key: '5',
 		icon: 'icon-chuangyepeixunxiangmu'
 	},
-	{
-		title: 'Rtk',
-		path: '/Rtk',
-		key: '7',
-		icon: 'icon-chuangyepeixunxiangmu'
-	},
+
 	{
 		title: 'Player',
 		path: '/Player',

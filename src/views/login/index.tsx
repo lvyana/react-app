@@ -9,6 +9,9 @@ import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { login } from './service';
 const { TabPane } = Tabs;
 
+/**
+ * @return 登录
+ */
 export interface FromType {
 	userName?: string;
 	password?: string;

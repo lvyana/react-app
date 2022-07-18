@@ -7,6 +7,10 @@ import EditPhoto from './components/EditPhoto';
 import ResetPassword from './components/ResetPassword';
 import Imodal from '@/components/iModal';
 
+/**
+ *
+ * @returns 个人中心
+ */
 const MyCenter: FC = () => {
 	const dispatch = useAppDispatch();
 	const [isModalVisible, setIsModalVisible] = useState(false);
