@@ -41,16 +41,7 @@ const List = () => {
 	}, [collapsed]);
 	return (
 		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
-			<Sider
-				collapsible
-				collapsed={collapsed}
-				onCollapse={onCollapse}
-				style={{
-					overflow: 'auto',
-					height: '100vh',
-					position: 'fixed',
-					left: 0
-				}}>
+			<Sider className="layout-sider" collapsible collapsed={collapsed} onCollapse={onCollapse} style={{}}>
 				<div className="logo" />
 				<Menulist />
 			</Sider>

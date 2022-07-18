@@ -114,6 +114,12 @@ export const menuList: router[] = [
 		key: '8',
 		icon: 'icon-chuangyepeixunxiangmu'
 	},
+	{
+		title: 'gridLayout',
+		path: '/DemoGridLayout',
+		key: '8',
+		icon: 'icon-chuangyepeixunxiangmu'
+	},
 	// 不显示在菜单中中
 	{
 		title: '个人中心',
