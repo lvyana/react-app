@@ -5,6 +5,9 @@ import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import styles from './index.module.less';
 
+/**
+ * @return 手机号登录
+ */
 interface methodProps {
 	onFinish: (value: FromType) => void;
 	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;

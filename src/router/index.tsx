@@ -3,33 +3,95 @@ import { RouteObject, Navigate } from 'react-router-dom';
 import SuspenseLoad from './suspenseLoad';
 import Auth from './auth';
 
-const RichTextEdit = lazy(() => import('@/views/richTextEdit')); //富文本编辑
+const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit')); //富文本编辑
 const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
-const Dynamicform = lazy(() => import('@/views/dynamicform')); //动态表单
+const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态表单
 const Layout = lazy(() => import('@/layout')); // Layout
-const Expenses = lazy(() => import('@/views/expenses'));
+const Expenses = lazy(() => import('@/views/antdCom/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const Error404 = lazy(() => import('@/views/Error404'));
 
 // react一些钩子函数用法
-const MyUseState = lazy(() => import('@/views/useHooksCom/myUseState'));
-const MyUseEffect = lazy(() => import('@/views/useHooksCom/myUseEffect'));
-const MyUseLayoutEffect = lazy(() => import('@/views/useHooksCom/myUseLayoutEffect'));
-const MyUseReducer = lazy(() => import('@/views/useHooksCom/myUseReducer'));
-const MyUseContext = lazy(() => import('@/views/useHooksCom/myUseContext'));
-const MyUseMemo = lazy(() => import('@/views/useHooksCom/myUseMemo'));
-const MyUseCallback = lazy(() => import('@/views/useHooksCom/myUseCallback'));
-const MyUseRef = lazy(() => import('@/views/useHooksCom/myUseRef'));
-const MyUseRouter = lazy(() => import('@/views/useHooksCom/myUseRouter'));
+const MyUseState = lazy(() => import('@/views/reactCom/useHooksCom/myUseState'));
+const MyUseEffect = lazy(() => import('@/views/reactCom/useHooksCom/myUseEffect'));
+const MyUseLayoutEffect = lazy(() => import('@/views/reactCom/useHooksCom/myUseLayoutEffect'));
+const MyUseReducer = lazy(() => import('@/views/reactCom/useHooksCom/myUseReducer'));
+const MyUseContext = lazy(() => import('@/views/reactCom/useHooksCom/myUseContext'));
+const MyUseMemo = lazy(() => import('@/views/reactCom/useHooksCom/myUseMemo'));
+const MyUseCallback = lazy(() => import('@/views/reactCom/useHooksCom/myUseCallback'));
+const MyUseRef = lazy(() => import('@/views/reactCom/useHooksCom/myUseRef'));
+const MyUseRouter = lazy(() => import('@/views/reactCom/useHooksCom/myUseRouter'));
 
 // pdf
-const Pdf = lazy(() => import('@/views/pdf'));
+const Pdf = lazy(() => import('@/views/funCom/pdf'));
 // RTK
-const Rtk = lazy(() => import('@/views/rtk'));
+const Rtk = lazy(() => import('@/views/reactCom/rtk'));
 //ReactPlayer
-const Player = lazy(() => import('@/views/player'));
+const Player = lazy(() => import('@/views/funCom/player'));
 //GridLayout
-const DemoGridLayout = lazy(() => import('@/views/gridLayout'));
+const DemoGridLayout = lazy(() => import('@/views/funCom/gridLayout'));
+
+// antd组件封装
+const antdCom = [
+	{
+		path: 'expenses',
+		element: <Auth element={SuspenseLoad(<Expenses />)} />
+	},
+	{
+		path: 'dynamicform',
+		element: <Auth element={SuspenseLoad(<Dynamicform />)} />
+	}
+];
+
+// react API Rtk 相关等
+const reactCom = [
+	{ index: true, element: <Navigate to="MyUseReduce" /> },
+	{
+		path: 'MyUseState',
+		element: <Auth element={SuspenseLoad(<MyUseState />)} />
+	},
+	{
+		path: 'MyUseEffect',
+		element: <Auth element={SuspenseLoad(<MyUseEffect />)} />
+	},
+	{
+		path: 'MyUseLayoutEffect',
+		element: <Auth element={SuspenseLoad(<MyUseLayoutEffect />)} />
+	},
+	{
+		path: 'MyUseReducer',
+		element: <Auth element={SuspenseLoad(<MyUseReducer />)} />
+	},
+	{
+		path: 'MyUseContext',
+		element: <Auth element={SuspenseLoad(<MyUseContext />)} />
+	},
+	{
+		path: 'MyUseMemo',
+		element: <Auth element={SuspenseLoad(<MyUseMemo />)} />
+	},
+	{
+		path: 'MyUseCallback',
+		element: <Auth element={SuspenseLoad(<MyUseCallback />)} />
+	},
+	{
+		path: 'MyUseRef',
+		element: <Auth element={SuspenseLoad(<MyUseRef />)} />
+	},
+	{
+		path: 'MyUseRouter',
+		element: <Auth element={SuspenseLoad(<MyUseRouter />)} />
+	},
+	{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> }
+];
+
+// 插件的使用
+const funCom = [
+	{ path: 'Player', element: <Auth element={SuspenseLoad(<Player />)} /> },
+	{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
+	{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
+	{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> }
+];
 
 const router: RouteObject[] = [
 	{ path: '/login', element: SuspenseLoad(<Login />) },
@@ -37,62 +99,16 @@ const router: RouteObject[] = [
 		path: '/',
 		element: <Auth element={SuspenseLoad(<Layout />)} />,
 		children: [
-			// { index: true, element: <Navigate to="home" /> },
+			{ index: true, element: <Navigate to="expenses" /> },
 			{
-				path: 'expenses',
-				element: <Auth element={SuspenseLoad(<Expenses />)} />
+				path: 'antd',
+				children: [...antdCom]
 			},
 			{
-				path: 'dynamicform',
-				element: <Auth element={SuspenseLoad(<Dynamicform />)} />
+				path: 'react',
+				children: [...reactCom]
 			},
-			{
-				path: 'use',
-				children: [
-					{ index: true, element: <Navigate to="MyUseReduce" /> },
-					{
-						path: 'MyUseState',
-						element: <Auth element={SuspenseLoad(<MyUseState />)} />
-					},
-					{
-						path: 'MyUseEffect',
-						element: <Auth element={SuspenseLoad(<MyUseEffect />)} />
-					},
-					{
-						path: 'MyUseLayoutEffect',
-						element: <Auth element={SuspenseLoad(<MyUseLayoutEffect />)} />
-					},
-					{
-						path: 'MyUseReducer',
-						element: <Auth element={SuspenseLoad(<MyUseReducer />)} />
-					},
-					{
-						path: 'MyUseContext',
-						element: <Auth element={SuspenseLoad(<MyUseContext />)} />
-					},
-					{
-						path: 'MyUseMemo',
-						element: <Auth element={SuspenseLoad(<MyUseMemo />)} />
-					},
-					{
-						path: 'MyUseCallback',
-						element: <Auth element={SuspenseLoad(<MyUseCallback />)} />
-					},
-					{
-						path: 'MyUseRef',
-						element: <Auth element={SuspenseLoad(<MyUseRef />)} />
-					},
-					{
-						path: 'MyUseRouter',
-						element: <Auth element={SuspenseLoad(<MyUseRouter />)} />
-					}
-				]
-			},
-			{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> },
-			{ path: 'Player', element: <Auth element={SuspenseLoad(<Player />)} /> },
-			{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
-			{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
-			{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> },
+			...funCom,
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
 			{ path: '*', element: <Error404 /> }
 		]
