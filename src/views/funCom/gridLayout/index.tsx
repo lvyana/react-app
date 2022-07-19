@@ -3,6 +3,10 @@ import GridLayout, { Layout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
+/**
+ *
+ * @returns 布局
+ */
 const DemoGridLayout = () => {
 	// x 在x轴位置 从0开始
 	// y 在y轴位置 从0开始

@@ -30,6 +30,8 @@ const Rtk = lazy(() => import('@/views/reactCom/rtk'));
 const Player = lazy(() => import('@/views/funCom/player'));
 //GridLayout
 const DemoGridLayout = lazy(() => import('@/views/funCom/gridLayout'));
+// Responsive响应式
+const Responsive = lazy(() => import('@/views/funCom/responsive'));
 
 // antd组件封装
 const antdCom = [
@@ -90,7 +92,8 @@ const funCom = [
 	{ path: 'Player', element: <Auth element={SuspenseLoad(<Player />)} /> },
 	{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
 	{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
-	{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> }
+	{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> },
+	{ path: 'Responsive', element: <Auth element={SuspenseLoad(<Responsive />)} /> }
 ];
 
 const router: RouteObject[] = [

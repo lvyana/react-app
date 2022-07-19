@@ -135,6 +135,12 @@ export const menuList: router[] = [
 				path: '/funCom/DemoGridLayout',
 				key: '8',
 				icon: 'icon-chuangyepeixunxiangmu'
+			},
+			{
+				title: 'Responsive',
+				path: '/funCom/Responsive',
+				key: '8',
+				icon: 'icon-chuangyepeixunxiangmu'
 			}
 		]
 	},
