@@ -36,9 +36,10 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	const columns = [
 		{
-			title: '名字',
+			title: <>名字</>,
 			dataIndex: 'name',
 			key: 'name',
+			width: 100,
 			align: 'center' as AlignType,
 			render: (text: string, record: TabelDataResponse) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -65,6 +66,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: '体重',
 			dataIndex: 'weight',
 			key: 'weight',
+			width: 400,
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -78,6 +80,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: '身高',
 			dataIndex: 'height',
 			key: 'height',
+			width: 400,
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -90,6 +93,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		{
 			title: 'Action',
 			key: 'action',
+			width: 200,
 			align: 'center' as AlignType,
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (

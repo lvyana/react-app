@@ -5,7 +5,7 @@ import { TabelDataParams } from './service';
 
 // 查询表格数据
 const useTabelData = () => {
-	const [expensesTableData, setExpensesTableData] = useState<TabelDataResponse[]>([]);
+	const [expensesTableData, setExpensesTableData] = useState<TabelDataResponse[]>([{ name: '0', key: '1', age: 1, weight: 1, height: 1 }]);
 
 	const [total, setTotal] = useState(0);
 

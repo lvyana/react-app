@@ -75,7 +75,7 @@
 		"@typescript-eslint/parser": "^5.27.1",
 		"@wangeditor/editor": "^0.15.11",
 		"@wangeditor/editor-for-react": "^0.6.23",
-		"antd": "^4.21.0",
+		"antd": "^4.21.7",
 		"compression-webpack-plugin": "^9.2.0",
 		"cross-env": "^7.0.3",
 		"customize-cra": "^1.0.0",
