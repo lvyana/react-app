@@ -108,7 +108,10 @@ const router: RouteObject[] = [
 				path: 'react',
 				children: [...reactCom]
 			},
-			...funCom,
+			{
+				path: 'funCom',
+				children: [...funCom]
+			},
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
 			{ path: '*', element: <Error404 /> }
 		]

@@ -106,30 +106,39 @@ export const menuList: router[] = [
 		]
 	},
 	{
-		title: '富文本',
-		path: '/richtextedit',
-		key: '4',
-		icon: 'icon-chuangyepeixunxiangmu'
-	},
-	{
-		title: 'pdf',
-		path: '/pdf',
-		key: '5',
-		icon: 'icon-chuangyepeixunxiangmu'
+		title: 'funCom',
+		path: '/funCom',
+		key: '3',
+		icon: 'icon-bingtu-huanxing',
+		children: [
+			{
+				title: '富文本',
+				path: '/funCom/richtextedit',
+				key: '4',
+				icon: 'icon-chuangyepeixunxiangmu'
+			},
+			{
+				title: 'pdf',
+				path: '/funCom/pdf',
+				key: '5',
+				icon: 'icon-chuangyepeixunxiangmu'
+			},
+
+			{
+				title: 'Player',
+				path: '/funCom/Player',
+				key: '8',
+				icon: 'icon-chuangyepeixunxiangmu'
+			},
+			{
+				title: 'gridLayout',
+				path: '/funCom/DemoGridLayout',
+				key: '8',
+				icon: 'icon-chuangyepeixunxiangmu'
+			}
+		]
 	},
 
-	{
-		title: 'Player',
-		path: '/Player',
-		key: '8',
-		icon: 'icon-chuangyepeixunxiangmu'
-	},
-	{
-		title: 'gridLayout',
-		path: '/DemoGridLayout',
-		key: '8',
-		icon: 'icon-chuangyepeixunxiangmu'
-	},
 	// 不显示在菜单中中
 	{
 		title: '个人中心',
