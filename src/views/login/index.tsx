@@ -35,7 +35,7 @@ const Login = () => {
 		let { token } = { token: '11' };
 		// 存token
 		setToken(token);
-		navigate('/expenses');
+		navigate('/antd/expenses');
 		openNotification();
 	};
 

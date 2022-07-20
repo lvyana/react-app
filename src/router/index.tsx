@@ -35,6 +35,7 @@ const Responsive = lazy(() => import('@/views/funCom/responsive'));
 
 // antd组件封装
 const antdCom = [
+	{ index: true, element: <Navigate to="expenses" /> },
 	{
 		path: 'expenses',
 		element: <Auth element={SuspenseLoad(<Expenses />)} />
@@ -89,6 +90,7 @@ const reactCom = [
 
 // 插件的使用
 const funCom = [
+	{ index: true, element: <Navigate to="Player" /> },
 	{ path: 'Player', element: <Auth element={SuspenseLoad(<Player />)} /> },
 	{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
 	{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
