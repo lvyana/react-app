@@ -1,10 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState, useRef, Key } from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
 import { ColumnsType } from 'antd/es/table';
 import { antIcon } from '@/components/loading';
+
 /**
  *
  * 表格接口
@@ -15,13 +16,15 @@ import { antIcon } from '@/components/loading';
  * rowKey 定义唯一key字段
  */
 interface Iprops<T> {
-	columns?: ColumnsType<T>; //表头
+	columns?: IcolumnsType; //表头
 	data?: T[]; //表内容
 	loading?: boolean;
 	rowSelection?: object;
 	rowKey?: string;
 	bordered?: boolean;
 }
+
+export type IcolumnsType = ColumnsType<any>; //表头
 
 /**
  *
@@ -44,7 +47,6 @@ const Itable: FC<Iprops<any>> = ({ columns = [], data = [], rowSelection, rowKey
 			loading={{ indicator: antIcon, spinning: loading }}
 			pagination={false}
 			rowKey={rowKey}
-			bordered={bordered}
 		/>
 	);
 };
