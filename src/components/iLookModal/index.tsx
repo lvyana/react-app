@@ -22,6 +22,9 @@ interface Iprops {
 	width?: string | number;
 	destroyOnClose?: boolean;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const ILookModal: FC<Iprops> = ({
 	children,
 	visible,

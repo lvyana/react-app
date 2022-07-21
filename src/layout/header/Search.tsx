@@ -3,8 +3,6 @@ import type { MenuProps } from 'antd';
 import { Input, Button, Dropdown, Menu } from 'antd';
 import { SearchOutlined, DownOutlined } from '@ant-design/icons';
 
-type MenuItem = Required<MenuProps>['items'][number];
-
 const HeaderSearch = () => {
 	const [search, setSearch] = useState(false);
 	const searchRef = useRef(null);

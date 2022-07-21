@@ -10,6 +10,8 @@ interface Iprops {
 	buttonEvent: (type: string | number, value: TabelDataResponse) => void;
 }
 
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const navigate = useNavigate();
 

@@ -6,7 +6,10 @@ import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 
 const { TabPane } = Tabs;
+
 type ACTION = 'add' | 'remove';
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TabsMain = () => {
 	const [panes, setpanes] = useState<Array<{ path: string; key: string; closable: boolean }>>([]);

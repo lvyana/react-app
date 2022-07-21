@@ -25,6 +25,12 @@ export let initialState: InitUserParams = {
 	permiss: ['*:*:*'],
 	keepAlive: []
 };
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+/**
+ * @name user reducers
+ */
 const user = createSlice({
 	name: 'user',
 	initialState,

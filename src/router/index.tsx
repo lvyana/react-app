@@ -122,4 +122,5 @@ const router: RouteObject[] = [
 		]
 	}
 ];
+
 export default router;

@@ -13,6 +13,8 @@ interface Window {
 	__POWERED_BY_QIANKUN__?: boolean;
 }
 
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Auth = ({ element, auth }: WrapperRouteProps) => {
 	// 判断用那个token
 	const isToken = () => {

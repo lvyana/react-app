@@ -2,9 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
-/**
- * @param size 组件尺寸类型
- */
 export interface InitLayoutParams {
 	size: SizeType;
 }
@@ -12,6 +9,11 @@ let initialState: InitLayoutParams = {
 	size: 'middle'
 };
 
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+/**
+ * @name layout reducers
+ */
 const layout = createSlice({
 	name: 'layout',
 	initialState,

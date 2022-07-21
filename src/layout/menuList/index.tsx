@@ -14,7 +14,10 @@ export interface router {
 	show?: boolean;
 	children?: router[];
 }
-export const excludeMenu = ['role/allocation'];
+export const EXCLUDE_MENU = ['role/allocation'];
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 export const menuList: router[] = [
 	{
 		title: 'antd',

@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
-import { menuList, router, excludeMenu } from '../menuList/index';
+import { menuList, router, EXCLUDE_MENU } from '../menuList/index';
 
 type MenuItem = Required<MenuProps>['items'][number];
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Crumb = () => {
 	const location = useLocation();
 	const [currentRouter, SetcurrentRouter] = useState<router[]>([]);
 
 	useEffect(() => {
-		if (location.pathname.indexOf(excludeMenu[0]) !== -1) return;
+		if (location.pathname.indexOf(EXCLUDE_MENU[0]) !== -1) return;
 		let routerArr: router[] = [];
 		location.pathname.split('/').map((item, i) => {
 			if (i === 0) {

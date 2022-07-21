@@ -6,6 +6,9 @@ interface Iprops {
 	form: FormInstance;
 	onFinish: (type?: string) => void;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
