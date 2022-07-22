@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import Iform, { FormItemParam, FormInstance } from '@/components/iForm';
-import AnimateComponent from '@/components/animateComponent';
+import IsearchForm, { FormInstance, FormItemParam } from '@/components/iSearchForm';
 import { useHooksStatus } from '@/api/usePublicApi';
 interface Iprops {
 	form: FormInstance;
@@ -61,11 +60,7 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 		}
 	];
 
-	return (
-		<AnimateComponent>
-			<Iform form={form} formList={formList} onFinish={onFinish}></Iform>
-		</AnimateComponent>
-	);
+	return <IsearchForm form={form} formList={formList} onFinish={onFinish}></IsearchForm>;
 };
 
 export default SeachForm;

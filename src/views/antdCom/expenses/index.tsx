@@ -54,7 +54,7 @@ const Expenses = () => {
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
 
-			<Icard styles={{ marginTop: '40px' }}>
+			<Icard styles={{ marginTop: '10px' }}>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
 				<Paginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Paginations>
 			</Icard>

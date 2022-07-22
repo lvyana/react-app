@@ -409,7 +409,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 	const size = useAppSelector(GET_SIZE);
 
 	return (
-		<div>
+		<>
 			<Form form={form} layout={formLayout} size={size as SizeType}>
 				<Row>
 					{formList &&
@@ -426,7 +426,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 						})}
 				</Row>
 			</Form>
-		</div>
+		</>
 	);
 };
 export default Iform;

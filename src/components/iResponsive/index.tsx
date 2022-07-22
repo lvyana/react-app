@@ -10,8 +10,17 @@ interface IresponsiveMaxProps {
 	MaxWidth: number;
 }
 const IresponsiveMax: FC<IresponsiveMaxProps> = ({ children, MaxWidth }) => {
-	const useTabletAndBelowMediaQuery = useMediaQuery({ query: `(max-width: ${MaxWidth}px)` });
-	return useTabletAndBelowMediaQuery ? children : null;
+	const isShow = useMediaQuery({ query: `(max-width: ${MaxWidth}px)` });
+	return isShow ? children : null;
+};
+
+/**
+ * @param MaxWidth 最大宽度
+ * @return 响应式 大于最大宽度 隐藏
+ */
+const useResponsiveMax = (MaxWidth: number) => {
+	const isShow = useMediaQuery({ query: `(max-width: ${MaxWidth}px)` });
+	return { isShow };
 };
 
 /**
@@ -23,8 +32,17 @@ interface IresponsiveMinProps {
 	MinWidth: number;
 }
 const IresponsiveMin: FC<IresponsiveMinProps> = ({ children, MinWidth }) => {
-	const useTabletAndBelowMediaQuery = useMediaQuery({ query: `(min-width: ${MinWidth}px)` });
-	return useTabletAndBelowMediaQuery ? children : null;
+	const isShow = useMediaQuery({ query: `(min-width: ${MinWidth}px)` });
+	return isShow ? children : null;
 };
 
-export { IresponsiveMax, IresponsiveMin };
+/**
+ * @param MinWidth 最大宽度
+ * @return 响应式 小于最小宽度 隐藏
+ */
+const useResponsiveMin = (MinWidth: number) => {
+	const isShow = useMediaQuery({ query: `(max-width: ${MinWidth}px)` });
+	return { isShow };
+};
+
+export { IresponsiveMax, useResponsiveMax, IresponsiveMin, useResponsiveMin };

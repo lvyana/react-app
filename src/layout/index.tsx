@@ -6,9 +6,20 @@ import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
 import useIntro from '@/useHooks/useIntro';
 import './index.less';
+import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
 const { Header, Content, Sider } = Layout;
 
 const List = () => {
+	const { isShow } = useResponsiveMin(540);
+	console.log(isShow);
+	useEffect(() => {
+		if (isShow) {
+			setCollapsedWidth(0);
+		} else {
+			setCollapsedWidth(200);
+		}
+	}, [isShow]);
+
 	// 用户指导
 	useIntro();
 	// 菜单收齐打开
@@ -17,20 +28,6 @@ const List = () => {
 	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
 		setcollapsed(collapsed);
 	};
-	useEffect(() => {
-		window.onresize = () => {
-			if (window.innerWidth < 1000) {
-				setcollapsed(true);
-			} else {
-				setcollapsed(false);
-			}
-		};
-		if (window.innerWidth < 1000) {
-			setcollapsed(true);
-		} else {
-			setcollapsed(false);
-		}
-	}, []);
 
 	useEffect(() => {
 		if (collapsed) {
@@ -41,11 +38,14 @@ const List = () => {
 	}, [collapsed]);
 	return (
 		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
-			<Sider className="layout-sider" collapsible collapsed={collapsed} onCollapse={onCollapse} style={{}}>
-				<div className="logo" />
-				<Menulist />
-			</Sider>
-			<Layout className="site-layout" style={{ marginLeft: collapsedWidth, transition: 'all 0.2s' }}>
+			<IresponsiveMin MinWidth={540}>
+				<Sider className="layout-sider" collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ transition: 'all 0.2s' }}>
+					<div className="logo" />
+					<Menulist />
+				</Sider>
+			</IresponsiveMin>
+
+			<Layout className="site-layout" style={{ position: 'relative', marginLeft: collapsedWidth, transition: 'all 0.2s' }}>
 				<div style={{ position: 'fixed', zIndex: 1, width: `calc(100vw - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
 					<Header className="site-layout-background" style={{ padding: 0 }}>
 						<Headerregion />
