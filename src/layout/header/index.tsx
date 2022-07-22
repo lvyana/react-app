@@ -11,24 +11,23 @@ const Headerregion = () => {
 	return (
 		<>
 			<Row justify="space-around" align="middle">
-				<Col flex="240px">
+				<Col flex="280px">
 					{/* 菜单 */}
 					<Crumb></Crumb>
 				</Col>
 				<Col flex="auto">
 					<Row justify="end">
-						<Col>
-							<IresponsiveMin MinWidth={660}>
-								<>
-									{/* 搜索 */}
-									<Search></Search>
-									{/* 全屏 */}
-									<Fullscreen></Fullscreen>
-									{/* 组件大小 */}
-									<ModuleSize></ModuleSize>
-								</>
-							</IresponsiveMin>
-						</Col>
+						<IresponsiveMin MinWidth={800}>
+							<Col>
+								{/* 搜索 */}
+								<Search></Search>
+								{/* 全屏 */}
+								<Fullscreen></Fullscreen>
+								{/* 组件大小 */}
+								<ModuleSize></ModuleSize>
+							</Col>
+						</IresponsiveMin>
+
 						<Col>
 							{/* 用户头像 */}
 							<Head></Head>

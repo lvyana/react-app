@@ -48,7 +48,7 @@ const antdCom = [
 
 // react API Rtk 相关等
 const reactCom = [
-	{ index: true, element: <Navigate to="MyUseReduce" /> },
+	{ index: true, element: <Navigate to="MyUseReducer" /> },
 	{
 		path: 'MyUseState',
 		element: <Auth element={SuspenseLoad(<MyUseState />)} />

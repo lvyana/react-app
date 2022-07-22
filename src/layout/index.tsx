@@ -10,7 +10,7 @@ import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
 const { Header, Content, Sider } = Layout;
 
 const List = () => {
-	const { isShow } = useResponsiveMin(540);
+	const { isShow } = useResponsiveMin(600);
 	console.log(isShow);
 	useEffect(() => {
 		if (isShow) {
@@ -24,12 +24,14 @@ const List = () => {
 	useIntro();
 	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
-	const [collapsedWidth, setCollapsedWidth] = useState(200);
+	const [collapsedWidth, setCollapsedWidth] = useState(isShow ? 0 : 200);
 	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
 		setcollapsed(collapsed);
 	};
 
 	useEffect(() => {
+		console.log(collapsed);
+		if (isShow) return;
 		if (collapsed) {
 			setCollapsedWidth(80);
 		} else {
@@ -38,7 +40,7 @@ const List = () => {
 	}, [collapsed]);
 	return (
 		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
-			<IresponsiveMin MinWidth={540}>
+			<IresponsiveMin MinWidth={600}>
 				<Sider className="layout-sider" collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ transition: 'all 0.2s' }}>
 					<div className="logo" />
 					<Menulist />
