@@ -1,13 +1,22 @@
-import React, { useRef, useState } from 'react';
-import { Button } from 'antd';
-
 /**
  * useRef tips: useRef.current的值修改不会重新渲染组件
  * useState 更新处理
  * ly
  * 日期：2022-4-27
  */
+import React, { FC, LegacyRef, useEffect, useRef, useState } from 'react';
+import { Button } from 'antd';
+
+interface SonProps {
+	sonRef: LegacyRef<HTMLDivElement>;
+}
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const MyUseRef = () => {
+	const sonRef = useRef<HTMLDivElement | null>(null);
+	useEffect(() => {
+		// console.log(sonRef);
+	}, []);
 	// console.log('组件刷新');
 
 	const [count, setcount] = useState(0);
@@ -37,8 +46,12 @@ const MyUseRef = () => {
 		<div>
 			add:{count}----- ref:{Ref.current}
 			<Button onClick={addFunc}>+</Button>
+			<Son sonRef={sonRef}></Son>
 		</div>
 	);
 };
 
+const Son: FC<SonProps> = ({ sonRef }) => {
+	return <div ref={sonRef}>son</div>;
+};
 export default MyUseRef;

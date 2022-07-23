@@ -18,14 +18,9 @@ interface AnimateComponentProps {
  * @returns 表单动画
  */
 const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
-	let timer = useRef<NodeJS.Timeout>();
-
 	const [flag, setflag] = useState(true);
 	const onMouseEnter = () => {
-		if (timer.current) clearTimeout(timer.current);
-		setTimeout(() => {
-			setflag(false);
-		}, 300);
+		setflag(false);
 	};
 
 	const onMouseLeave = () => {
@@ -39,7 +34,7 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 			</div>
 
 			<div className="animate__animated animate__backInDown" style={{ display: flag ? 'none' : 'block' }}>
-				<Icard styles={{ boxShadow: '0 3px 6px 0 rgb(195 195 195)' }}>
+				<Icard style={{ boxShadow: '0 3px 6px 0 rgb(195 195 195)' }}>
 					{children}
 					<div>
 						<Button

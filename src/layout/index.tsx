@@ -11,7 +11,7 @@ const { Header, Content, Sider } = Layout;
 
 const List = () => {
 	const { isShow } = useResponsiveMin(600);
-	console.log(isShow);
+
 	useEffect(() => {
 		if (isShow) {
 			setCollapsedWidth(0);
@@ -24,13 +24,12 @@ const List = () => {
 	useIntro();
 	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
-	const [collapsedWidth, setCollapsedWidth] = useState(isShow ? 0 : 200);
+	const [collapsedWidth, setCollapsedWidth] = useState(() => (isShow ? 0 : 200));
 	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
 		setcollapsed(collapsed);
 	};
 
 	useEffect(() => {
-		console.log(collapsed);
 		if (isShow) return;
 		if (collapsed) {
 			setCollapsedWidth(80);

@@ -24,6 +24,8 @@ const devMode = process.env.NODE_ENV === 'production';
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
+	config.devtool = 'eval-source-map';
+
 	if (devMode) {
 		// 关闭sourceMap
 		config.devtool = false;

@@ -13,8 +13,11 @@ import type { TabelDataParams } from './service';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
+
 	const { columns } = useHeaderTable({ buttonEvent });
+
 	const [form] = Form.useForm();
+
 	const { expensesTableData, setExpensesTableData, total, getTabelData } = useTabelData();
 
 	// 缓存
@@ -30,13 +33,18 @@ const Expenses = () => {
 	// 更新缓存数据
 	useEffect(() => {
 		const params = form.getFieldsValue();
-		setValue({ ...params, pageSize, pageNum });
-	}, [form.getFieldValue('name'), form.getFieldValue('age'), form.getFieldValue('status'), pageSize, pageNum]);
+		setKeepAlive({ ...params, pageSize, pageNum });
+	}, [pageSize, pageNum]);
+
+	const setKeepAlive = (params: unknown) => {
+		setValue(params);
+	};
 
 	useEffect(() => {
 		form.setFieldsValue({ ...(initValue as TabelDataParams | undefined) });
 		let params = form.getFieldsValue();
 		getTabelData({ ...params, pageSize, pageNum });
+
 		return () => {
 			setExpensesTableData([]);
 		};
@@ -45,6 +53,7 @@ const Expenses = () => {
 	const onFinish = () => {
 		if (pageNum === 1) {
 			let params = form.getFieldsValue();
+			setKeepAlive({ ...params, pageSize, pageNum });
 			return getTabelData({ ...params, pageSize, pageNum });
 		}
 		setPageNum(1);
@@ -54,7 +63,7 @@ const Expenses = () => {
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
 
-			<Icard styles={{ marginTop: '10px' }}>
+			<Icard style={{ marginTop: '10px' }}>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
 				<Paginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Paginations>
 			</Icard>

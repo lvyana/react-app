@@ -22,7 +22,7 @@ const IsearchForm: FC<IsearchFormProps> = ({ form, formList, onFinish }) => {
 			</IresponsiveMax>
 
 			<IresponsiveMin MinWidth={1540}>
-				<Icard>
+				<Icard style={{ paddingBottom: 0 }}>
 					<Iform form={form} formList={formList} onFinish={onFinish}></Iform>
 				</Icard>
 			</IresponsiveMin>
