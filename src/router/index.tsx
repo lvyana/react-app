@@ -20,7 +20,12 @@ const MyUseContext = lazy(() => import('@/views/reactCom/useHooksCom/myUseContex
 const MyUseMemo = lazy(() => import('@/views/reactCom/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/reactCom/useHooksCom/myUseCallback'));
 const MyUseRef = lazy(() => import('@/views/reactCom/useHooksCom/myUseRef'));
-const MyUseRouter = lazy(() => import('@/views/reactCom/useHooksCom/myUseRouter'));
+const MyUseRouter = lazy(() => import('@/views/routerCom/myUseRouter'));
+
+// react-router-dom
+const RouterDemo = lazy(() => import('@/views/routerCom/routerDemo'));
+const Test = lazy(() => import('@/views/routerCom/routerDemo/Test'));
+const List = lazy(() => import('@/views/routerCom/routerDemo/List'));
 
 // pdf
 const Pdf = lazy(() => import('@/views/funCom/pdf'));
@@ -81,11 +86,25 @@ const reactCom = [
 		path: 'MyUseRef',
 		element: <Auth element={SuspenseLoad(<MyUseRef />)} />
 	},
+
+	{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> }
+];
+
+// react-router-dom
+const RouterCom = [
+	{ index: true, element: <Navigate to="RouterDemo" /> },
+	{
+		path: 'RouterDemo',
+		element: <Auth element={SuspenseLoad(<RouterDemo />)} />,
+		children: [
+			{ path: ':id', element: <Auth element={SuspenseLoad(<Test />)} /> },
+			{ path: 'list', element: <Auth element={SuspenseLoad(<List />)} /> }
+		]
+	},
 	{
 		path: 'MyUseRouter',
 		element: <Auth element={SuspenseLoad(<MyUseRouter />)} />
-	},
-	{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> }
+	}
 ];
 
 // 插件的使用
@@ -112,6 +131,10 @@ const router: RouteObject[] = [
 			{
 				path: 'react',
 				children: [...reactCom]
+			},
+			{
+				path: 'router',
+				children: [...RouterCom]
 			},
 			{
 				path: 'funCom',

@@ -94,17 +94,32 @@ export const menuList: router[] = [
 				key: '24',
 				icon: 'icon-bingtu-huanxing'
 			},
-			{
-				title: 'MyUseRouter',
-				path: '/react/MyUseRouter',
-				key: '25',
-				icon: 'icon-bingtu-huanxing'
-			},
+
 			{
 				title: 'Rtk',
 				path: '/react/Rtk',
 				key: '7',
 				icon: 'icon-chuangyepeixunxiangmu'
+			}
+		]
+	},
+	{
+		title: 'Router',
+		path: '/router',
+		key: '99',
+		icon: 'icon-chuangyepeixunxiangmu',
+		children: [
+			{
+				title: 'RouterDemo',
+				path: '/router/RouterDemo',
+				key: '4',
+				icon: 'icon-chuangyepeixunxiangmu'
+			},
+			{
+				title: 'MyUseRouter',
+				path: '/router/MyUseRouter',
+				key: '25',
+				icon: 'icon-bingtu-huanxing'
 			}
 		]
 	},

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import LazyLoad from 'react-lazy-load';
 
 import img from '@/assets/images/11.png';

@@ -26,8 +26,9 @@ module.exports = {
 	plugins: ['react', 'react-hooks', '@typescript-eslint'],
 	settings: {
 		react: {
-			pragma: 'React',
-			version: '17.0.2'
+			version: 'detect' // Tells eslint-plugin-react to automatically detect the version of React to use
+			// pragma: 'React',
+			// version: '17.0.2'
 		}
 	},
 	// ESLint 附带有大量的规则。你可以使用注释或配置文件修改你项目中要使用的规则。要改变一个规则设置，你必须将规则 ID 设置为下列值之一：
