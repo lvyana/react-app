@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
 import { menuList, router } from '@/layout/menuList/index';
@@ -9,81 +9,74 @@ const { TabPane } = Tabs;
 
 type ACTION = 'add' | 'remove';
 
+interface PanesParams {
+	title: string | undefined;
+	path: string;
+	closable: boolean;
+}
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TabsMain = () => {
-	const [panes, setpanes] = useState<Array<{ path: string; key: string; closable: boolean }>>([]);
-	const [activeKey, setactiveKey] = useState('');
+	const [panes, setPanes] = useState<Array<PanesParams>>([]);
+	const [activeKey, setActiveKey] = useState<string>();
 	const location = useLocation();
 	const navigate = useNavigate();
-	// 监听地址变化 tag新增
-	useEffect(() => {
-		// 数组扁平化
-		const router: router[] = menuList.reduce((pre: router[], cur) => {
-			return cur.children ? pre.concat(cur.children) : pre.concat(cur);
+
+	// 扁平化菜单数据
+	const getMenuArr = (arr: router[]): router[] => {
+		return arr.reduce((pre: router[], item) => {
+			if (item.children && item.children.length > 0) {
+				return [...pre, ...getMenuArr(item.children)];
+			} else {
+				return [...pre, item];
+			}
 		}, []);
-		let currentRouter = router.find((item) => {
-			// 判断不显示在菜单的组件
-			if (item.show === false) return location.pathname.indexOf(item.path) !== -1;
-			return item.path === location.pathname;
-		});
+	};
 
-		if (!currentRouter) return;
-		if (panes.length < 1) {
-			setpanes([
-				{
-					path: currentRouter.title,
-					key: location.pathname,
-					closable: false
-				}
-			]);
+	const menuArr = useMemo(() => {
+		return getMenuArr(menuList);
+	}, []);
+
+	// 监听地址变化 生成tabs
+	useEffect(() => {
+		const { pathname } = location;
+		setActiveKey(pathname);
+
+		const { title } = menuArr.find((item) => item.path === pathname) || { title: '名字待优化' };
+
+		if (panes.length === 0) {
+			setPanes([{ title, path: pathname, closable: false }]);
 		} else {
-			let a = panes.find((item) => {
-				return item.key === location.pathname;
-			});
+			const isRepetition = panes.findIndex((item) => item.path === pathname);
 
-			if (a === undefined) {
-				setpanes([
-					...panes,
-					{
-						path: currentRouter.title,
-						key: location.pathname,
-						closable: true
-					}
-				]);
+			if (isRepetition === -1) {
+				setPanes([...panes, { title, path: pathname, closable: true }]);
 			}
 		}
-		setactiveKey(location.pathname);
-		return () => {
-			setactiveKey(location.pathname);
-		};
-	}, [location, panes]);
+	}, [location]);
 
 	const onChange = (activeKey: string) => {
 		navigate(activeKey);
-		setactiveKey(activeKey);
+		setActiveKey(activeKey);
 	};
 
 	const onEdit = (targetKey: string | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>, action: ACTION): void => {
-		// this[action](targetKey);
-		if (panes.length === 1) return;
+		// if (panes.length === 1) return;
 		let a = panes.filter((item) => {
-			return item.key !== targetKey;
+			return item.path !== targetKey;
 		});
-		setpanes(a);
+		setPanes(a);
 		if (targetKey === location.pathname) {
-			onChange(a[a.length - 1].key);
+			onChange(a[a.length - 1].path);
 		}
 	};
-	useEffect(() => {
-		if (!panes.length) return;
-	}, [panes]);
+
 	const size = useAppSelector(GET_SIZE);
 	return (
 		<>
 			<Tabs hideAdd onChange={onChange} activeKey={activeKey} type="editable-card" onEdit={onEdit} size={size}>
 				{panes.map((pane) => (
-					<TabPane tab={pane.path} key={pane.key} closable={pane.closable}></TabPane>
+					<TabPane tab={pane.title} key={pane.path} closable={pane.closable}></TabPane>
 				))}
 			</Tabs>
 		</>
