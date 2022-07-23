@@ -50,6 +50,7 @@ const Login = () => {
 						defaultActiveKey="1"
 						centered
 						style={{
+							width: '100%',
 							background: 'rgba(16 18 27 / 40%)',
 							backdropFilter: 'blur(10px)',
 							padding: '0 20px',

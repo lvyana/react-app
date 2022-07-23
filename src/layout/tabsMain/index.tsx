@@ -43,6 +43,7 @@ const TabsMain = () => {
 		setActiveKey(pathname);
 
 		const { title } = menuArr.find((item) => item.path === pathname) || { title: '名字待优化' };
+		//优化 or (if (!title) return;)
 
 		if (panes.length === 0) {
 			setPanes([{ title, path: pathname, closable: false }]);
