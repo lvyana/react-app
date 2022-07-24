@@ -40,14 +40,16 @@ const List = () => {
 	return (
 		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
-				<Sider className="layout-sider" collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ transition: 'all 0.2s' }}>
+				<Sider className="layout-sider layout-transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
 					<div className="logo" />
 					<Menulist />
 				</Sider>
 			</IresponsiveMin>
 
-			<Layout className="site-layout" style={{ position: 'relative', marginLeft: collapsedWidth, transition: 'all 0.2s' }}>
-				<div style={{ position: 'fixed', zIndex: 1, width: `calc(100vw - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
+			<Layout className="site-layout layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
+				<div
+					className="layout-transition"
+					style={{ position: 'fixed', zIndex: 1, width: `calc(100vw - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
 					<Header className="site-layout-background" style={{ padding: 0 }}>
 						<Headerregion />
 					</Header>
