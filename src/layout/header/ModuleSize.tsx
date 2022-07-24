@@ -4,6 +4,7 @@ import { FontSizeOutlined } from '@ant-design/icons';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
+import styles from './index.module.less';
 
 const ModuleSize = () => {
 	// 尺寸
@@ -12,7 +13,7 @@ const ModuleSize = () => {
 	const [size, setsize] = useState(sizeR);
 	const handleSizeChange = ({ key }: { key: string }) => {
 		setsize(key as SizeType);
-		dispatch(SET_SIZE);
+		dispatch(SET_SIZE(key as SizeType));
 	};
 	const sizeMenu = () => (
 		<Menu
@@ -25,10 +26,8 @@ const ModuleSize = () => {
 	);
 	return (
 		<>
-			<Dropdown overlay={sizeMenu} placement="bottom" arrow trigger={['click']}>
-				<Tooltip title="布局大小" placement="top" key="leftButton">
-					<Button type="link" icon={<FontSizeOutlined />}></Button>
-				</Tooltip>
+			<Dropdown overlay={sizeMenu} placement="bottom" trigger={['click']} overlayClassName={styles['Layout-Dropdown']}>
+				<Button type="link" icon={<FontSizeOutlined />}></Button>
 			</Dropdown>
 		</>
 	);

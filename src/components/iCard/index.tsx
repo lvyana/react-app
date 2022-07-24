@@ -8,15 +8,17 @@ import { Card } from 'antd';
 interface Iprops {
 	children?: ReactNode;
 	style?: object;
+	hoverable?: boolean;
+	className?: string;
 }
 /**
  * @props Iprops
  * @return 卡片
  */
-const Icard: FC<Iprops> = ({ children, style = {} }) => {
+const Icard: FC<Iprops> = ({ children, style = {}, hoverable = false, className }) => {
 	return (
 		<>
-			<Card hoverable bordered={false} bodyStyle={{ padding: '16px', ...style }}>
+			<Card hoverable={hoverable} bordered={false} bodyStyle={{ padding: '16px', ...style }} className={className}>
 				{children}
 			</Card>
 		</>

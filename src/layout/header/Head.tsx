@@ -3,6 +3,7 @@ import { useAppSelector } from '@/store/hooks';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
+import styles from './index.module.less';
 
 const Head = () => {
 	const navigate = useNavigate();
@@ -26,11 +27,14 @@ const Head = () => {
 
 	return (
 		<>
-			<Dropdown overlay={menu} placement="bottom" trigger={['click']} arrow>
-				<Button type="link">
-					<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
-				</Button>
-			</Dropdown>
+			<Button type="link" style={{ padding: '4px 5px' }}>
+				<Dropdown overlay={menu} placement="bottom" trigger={['click']} overlayClassName={styles['Layout-Dropdown']}>
+					<div>
+						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
+						<span className="mr5 ml5">admin</span>
+					</div>
+				</Dropdown>
+			</Button>
 		</>
 	);
 };

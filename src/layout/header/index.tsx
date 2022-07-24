@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
+import { Row, Col } from 'antd';
+import { IresponsiveMin } from '@/components/iResponsive';
 import Fullscreen from './Fullscreen';
 import ModuleSize from './ModuleSize';
 import Crumb from './Crumb';
 import Search from './Search';
 import Head from './Head';
-import { Row, Col } from 'antd';
-import { IresponsiveMin } from '@/components/iResponsive';
+import MessageCenter from './MessageCenter';
 
 const Headerregion = () => {
 	return (
@@ -25,6 +26,8 @@ const Headerregion = () => {
 								<Fullscreen></Fullscreen>
 								{/* 组件大小 */}
 								<ModuleSize></ModuleSize>
+								{/* 组件大小 */}
+								<MessageCenter></MessageCenter>
 							</Col>
 						</IresponsiveMin>
 
