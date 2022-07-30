@@ -1,3 +1,8 @@
+/**
+ *	@name 实现弹框异步加载
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { ReactNode } from 'react';
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -5,14 +10,15 @@ const { confirm } = Modal;
 
 export type Icallback = () => Promise<void>;
 /**
- * Iconfirm
- * title 标题
- * callbackfn 接口回调函数
- * content 内容
+ * @param title 标题
+ * @param callbackfn 接口回调函数
+ * @param content 内容
  */
 type onConfirmType = (title: string, callbackfn: Icallback, content?: ReactNode) => void;
 
-const useIconfirm = () => {
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Iconfirm = () => {
 	const onConfirm: onConfirmType = (title, callbackfn, content) => {
 		confirm({
 			title: title,
@@ -37,4 +43,4 @@ const useIconfirm = () => {
 	return { onConfirm };
 };
 
-export default useIconfirm;
+export default Iconfirm;

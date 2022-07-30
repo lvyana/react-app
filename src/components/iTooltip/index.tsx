@@ -1,3 +1,8 @@
+/**
+ *	@name 鼠标移入出现提示
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { Tooltip } from 'antd';
 
@@ -16,14 +21,13 @@ type Iplacement =
 	| 'rightBottom';
 
 /**
- *
- * children 子集内容
- * overlayInnerStyle 样式
- * placement 位置
- * color 颜色
- * title 显示内容
+ * @param children 子集内容
+ * @param overlayInnerStyle 样式
+ * @param placement 位置
+ * @param color 颜色
+ * @param title 显示内容
  */
-interface Iprops {
+interface ItooltipProps {
 	children: ReactNode;
 	overlayInnerStyle?: CSSProperties;
 	placement?: Iplacement;
@@ -31,7 +35,9 @@ interface Iprops {
 	title: ReactNode;
 }
 
-const Itooltip: FC<Iprops> = ({ children, title, overlayInnerStyle, placement = 'top', color }) => {
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Itooltip: FC<ItooltipProps> = ({ children, title, overlayInnerStyle, placement = 'top', color }) => {
 	return (
 		<>
 			<Tooltip placement={placement} overlayInnerStyle={overlayInnerStyle} color={color} title={title}>

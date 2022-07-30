@@ -1,13 +1,15 @@
+/**
+ *	@name 实现权限按钮
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
-import { IbuttonProps, ButtonItemParam } from './type';
+import { IbuttonProps, ButtonItemParams, BTeditBtn } from './type';
 
-/**
- * @return 按钮权限控制
- */
 const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 	const size = useAppSelector(GET_SIZE);
 	const { hasPermiss } = useHasPermiss();
@@ -35,4 +37,4 @@ const Ibutton = ({ buttonList, loadingName, editBtn, style }: IbuttonProps) => {
 };
 
 export default Ibutton;
-export type { IbuttonProps, ButtonItemParam };
+export type { IbuttonProps, ButtonItemParams, BTeditBtn };

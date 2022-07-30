@@ -1,4 +1,9 @@
-import React, { FC, useState } from 'react';
+/**
+ *	@name 实现表单
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
+import React, { FC } from 'react';
 import {
 	Form,
 	Input,
@@ -27,7 +32,6 @@ const { RangePicker } = DatePicker;
 const { SHOW_PARENT } = TreeSelect;
 
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
-export type { FormInstance, FormItemParam };
 
 /**
  * @param formList 表单json
@@ -36,7 +40,7 @@ export type { FormInstance, FormItemParam };
  * @param formLayout 表单格式
  * @param self 是否自适应
  */
-interface IProps {
+interface IformProps {
 	formList?: FormItemParam[];
 	form: FormInstance;
 	onFinish?: (type?: string) => void;
@@ -46,12 +50,7 @@ interface IProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-/**
- *
- * @param PropsType
- * @returns 表单组件
- */
-const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
+const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
 	// input
 	const formInputItem = (item: FormItemParam) => {
 		return (
@@ -74,6 +73,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 文本框
 	const formInputTextArea = (item: FormItemParam) => {
 		return (
@@ -94,6 +94,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// Select
 	const formSelect = (item: FormItemParam) => {
 		return (
@@ -134,14 +135,13 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 					style={{ width: '100%' }}
 					showSearch
 					allowClear
-					// labelInValue={true}
 					placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 					defaultActiveFirstOption={false}
 					showArrow={false}
 					filterOption={false}
 					onSearch={item.handleSearch}
 					options={item.option}
-					// fieldNames={{ label: 'name', value: 'id' }}
+					fieldNames={item.fieldNames}
 					notFoundContent={null}></Select>
 			</Form.Item>
 		);
@@ -169,6 +169,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 联级
 	const formCascader = (item: FormItemParam) => {
 		return (
@@ -189,6 +190,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 日期
 	const formDatePicker = (item: FormItemParam) => {
 		return (
@@ -203,6 +205,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 区间日期
 	const formRangePicker = (item: FormItemParam) => {
 		return (
@@ -217,6 +220,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 时间
 	const formTimePicker = (item: FormItemParam) => {
 		const format = 'HH:mm';
@@ -232,6 +236,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 时间区间
 	const formTimeRangePicker = (item: FormItemParam) => {
 		const format = 'HH:mm';
@@ -253,6 +258,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 数字
 	const formInputNumber = (item: FormItemParam) => {
 		return (
@@ -267,6 +273,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 是否
 	const formSwitch = (item: FormItemParam) => {
 		return (
@@ -300,6 +307,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 单选
 	const formRadio = (item: FormItemParam) => {
 		return (
@@ -317,6 +325,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 多选
 	const formCheckbox = (item: FormItemParam) => {
 		return (
@@ -325,6 +334,7 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 			</Form.Item>
 		);
 	};
+
 	// 评分
 	const formRate = (item: FormItemParam) => {
 		return (
@@ -429,4 +439,6 @@ const Iform: FC<IProps> = ({ formList, form, onFinish, formLayout = 'horizontal'
 		</>
 	);
 };
+
+export type { FormInstance, FormItemParam };
 export default Iform;

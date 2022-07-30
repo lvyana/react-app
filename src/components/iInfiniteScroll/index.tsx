@@ -1,3 +1,8 @@
+/**
+ *	@name 实现滚动无线加载
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, useState, ReactNode } from 'react';
 import { Avatar, Descriptions, Row, Col, Button, message, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -13,7 +18,7 @@ import styles from './index.module.less';
  * @param height 盒子高度
  * @param loadMoreDataApi 获取数据方法
  */
-interface Iprops {
+interface IinfiniteScrollProps {
 	children: ReactNode;
 	height: number;
 	current: number;
@@ -25,7 +30,7 @@ interface Iprops {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IinfiniteScroll: FC<Iprops> = ({ children, current, total, loading, setLoading, height, loadMoreDataApi }) => {
+const IinfiniteScroll: FC<IinfiniteScrollProps> = ({ children, current, total, loading, setLoading, height, loadMoreDataApi }) => {
 	// 懒加载
 	const loadMoreData = () => {
 		if (loading) {
@@ -37,7 +42,7 @@ const IinfiniteScroll: FC<Iprops> = ({ children, current, total, loading, setLoa
 	return (
 		<div
 			id="scrollableDiv"
-			className={styles.scrollableDiv}
+			className={styles['Scrollable-Div']}
 			style={{
 				height: height
 			}}>

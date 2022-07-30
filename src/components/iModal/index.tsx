@@ -1,16 +1,20 @@
+/**
+ *	@name 实现弹框
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, ReactNode } from 'react';
 import { Modal } from 'antd';
 
 /**
- * 弹框
- * title 标题
- * visible 控制弹框打开关闭
- * confirmLoading 确定按钮loading
- * handleOk 确定事件回调
- * handleCancel 取消事件回调
- * width 宽度
- * maskClosable 点击弹框之外是否关闭
- * destroyOnClose 关闭时销毁 Modal 里的子元素
+ * @param title 标题
+ * @param visible 控制弹框打开关闭
+ * @param confirmLoading 确定按钮loading
+ * @param handleOk 确定事件回调
+ * @param handleCancel 取消事件回调
+ * @param width 宽度
+ * @param maskClosable 点击弹框之外是否关闭
+ * @param destroyOnClose 关闭时销毁 Modal 里的子元素
  */
 export interface ImodalProps {
 	title: string;
@@ -21,11 +25,12 @@ export interface ImodalProps {
 	width?: string | number;
 	maskClosable?: boolean;
 	destroyOnClose?: boolean;
-}
-interface Iprops extends ImodalProps {
 	children: ReactNode;
 }
-const Imodal: FC<Iprops> = ({
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Imodal: FC<ImodalProps> = ({
 	children,
 	title,
 	visible,

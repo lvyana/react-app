@@ -1,25 +1,33 @@
+/**
+ *	@name 实现搜索tag
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, useState } from 'react';
 import { Tag } from 'antd';
 
 const { CheckableTag } = Tag;
 
 export type onChangeType = (val: string | string[]) => void;
+
 /**
- * SearchTag
- * selectedTags 选中数据
- * setSelectedTags 更新选中数据列表
- * multiple 多选true 否则反之
- * tagsData 数据列表
- * onChange 数据更新回调实践
+ * @param selectedTags 选中数据
+ * @param setSelectedTags 更新选中数据列表
+ * @param multiple 多选true 否则反之
+ * @param tagsData 数据列表
+ * @param onChange 数据更新回调实践
  */
-interface IpropsTag {
+interface SearchTagProps {
 	selectedTags: string[];
 	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
 	multiple?: boolean;
 	tagsData: string[];
 	onChange?: onChangeType;
 }
-const SearchTag: FC<IpropsTag> = ({ selectedTags, setSelectedTags, tagsData, onChange, multiple = false }) => {
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const SearchTag: FC<SearchTagProps> = ({ selectedTags, setSelectedTags, tagsData, onChange, multiple = false }) => {
 	const handleChange = (tag: string, checked: boolean) => {
 		let nextSelectedTags: string[] = [];
 

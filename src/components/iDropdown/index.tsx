@@ -1,47 +1,35 @@
+/**
+ *	@name 实现下拉按钮
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, ReactNode } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu, Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton, { ButtonItemParam } from '@/components/iButton';
+import Ibutton, { ButtonItemParams, BTeditBtn } from '@/components/iButton';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-export type IbuttonEvent = (type: string | number) => void;
 /**
  * @param btFun 数据集合
  * @param IbuttonEvent 点击事件
  */
 interface IbtFun {
-	btFun: ButtonItemParam[];
-	buttonEvent: IbuttonEvent;
+	btFun: ButtonItemParams[];
+	buttonEvent: BTeditBtn;
 }
+
 /**
  * @param onVisibleChange 移入移除
  */
-interface Iprops extends IbtFun {
+interface IdropdownProps extends IbtFun {
 	onVisibleChange: (visible: boolean) => void;
 }
 
-/**
- * @param IbtFun
- * @return 下拉菜单
- */
-const Menus = ({ btFun, buttonEvent }: IbtFun) => {
-	return (
-		<Menu
-			items={btFun.reduce((acc: MenuItem[], item, i) => {
-				let newItem = getItem(<Ibutton buttonList={[item]} editBtn={() => buttonEvent(item.type)}></Ibutton>, i);
-				return [...acc, newItem];
-			}, [])}></Menu>
-	);
-};
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-/**
- *
- * @props Iprops
- * @returns 下拉菜单组件
- */
-const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
+const Idropdown: FC<IdropdownProps> = ({ btFun, onVisibleChange, buttonEvent }) => {
 	return (
 		<>
 			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onVisibleChange={onVisibleChange}>
@@ -52,8 +40,18 @@ const Idropdown: FC<Iprops> = ({ btFun, onVisibleChange, buttonEvent }) => {
 	);
 };
 
+const Menus = ({ btFun, buttonEvent }: IbtFun) => {
+	return (
+		<Menu
+			items={btFun.reduce((acc: MenuItem[], item, i) => {
+				let newItem = getItem(<Ibutton buttonList={[item]} editBtn={() => buttonEvent(item.type, item)}></Ibutton>, i);
+				return [...acc, newItem];
+			}, [])}></Menu>
+	);
+};
+
 export default Idropdown;
-export type { ButtonItemParam };
+export type { ButtonItemParams };
 
 /**
  *
