@@ -15,16 +15,37 @@
   }
 }
 
-.Tabs-padding {
+.Layout-Tabs-padding {
   padding: 0 8px 16px;
 }
 
-.Tabs-btn-left {
+.Layout-Tabs-btn-left {
   border-bottom: 0;
   border-left: 0;
+  padding: 22px 15px;
+  line-height: 3px;
 }
 
-.Tabs-btn-Right {
+.Layout-Tabs-btn-Right {
   border-bottom: 0;
   border-right: 0;
+  padding: 22px 15px;
+  line-height: 3px;
+}
+
+.Layout-Tabs-List {
+  :global {
+    .ant-list-bordered {
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .ant-list-item {
+      cursor: pointer;
+    }
+
+    .ant-list-item:hover {
+      background-color: rgb(176 201 211);
+    }
+  }
 }
