@@ -26,8 +26,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	const onVisibleChange = (visible: boolean, record: TabelDataResponse) => {
 		if (visible) {
 			setBtFun([
-				{ type: '修改', name: '修改', btType: 'primary' },
-				{ type: '删除', name: '删除', btType: 'primary' }
+				{ type: '修改', name: '修改', btType: 'link' },
+				{ type: '删除', name: '删除', btType: 'link' }
 			]);
 		} else {
 			setBtFun([]);
@@ -38,7 +38,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 
 	const columns = [
 		{
-			title: <>名字</>,
+			title: '名字',
 			dataIndex: 'name',
 			key: 'name',
 			width: 100,
@@ -55,6 +55,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: '年龄',
 			dataIndex: 'age',
 			key: 'age',
+			width: 100,
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -68,7 +69,6 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: '体重',
 			dataIndex: 'weight',
 			key: 'weight',
-			width: 400,
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -82,7 +82,6 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			title: '身高',
 			dataIndex: 'height',
 			key: 'height',
-			width: 400,
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
@@ -93,9 +92,9 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			)
 		},
 		{
-			title: 'Action',
-			key: 'action',
-			width: 200,
+			title: '操作',
+			key: 'operation',
+			width: 80,
 			align: 'center' as AlignType,
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (

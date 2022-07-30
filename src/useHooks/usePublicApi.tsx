@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { status } from './publicApi';
+
+import { status } from '../api/publicApi';
 
 interface statusDataProps {
 	status: '1' | '2';
@@ -20,11 +21,13 @@ const useHooksStatus = (deep = []) => {
 		};
 	}, deep);
 
+	// 状态
 	const getStatus = async () => {
 		const res = await status();
 		const { data } = res.data;
 		setStatusData(data);
 	};
+
 	return { statusData };
 };
 

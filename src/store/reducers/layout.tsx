@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '..';
+import { RootState } from '../index';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 export interface InitLayoutParams {

@@ -8,6 +8,8 @@ import logger from 'redux-logger';
 import layout from './reducers/layout';
 import user from './reducers/user';
 import log from './reducers/log';
+import globalConfig from './reducers/globalConfig';
+
 import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 // 环境区分中间件
@@ -24,7 +26,8 @@ const store = configureStore({
 	reducer: {
 		layout,
 		user,
-		log
+		log,
+		globalConfig
 	},
 	middleware: (getDefaultMiddleware) => middlewareConfig(getDefaultMiddleware),
 	devTools: !ENV

@@ -10,11 +10,15 @@ import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
 import useIntro from '@/useHooks/useIntro';
-import './index.less';
 import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
+import useApi from '@/useHooks/useApi';
+import './index.less';
+
 const { Header, Content, Sider } = Layout;
 
 const List = () => {
+	useApi();
+
 	const { isShow } = useResponsiveMin(600);
 
 	useEffect(() => {

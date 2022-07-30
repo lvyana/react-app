@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import IsearchForm, { FormInstance, FormItemParam } from '@/components/iSearchForm';
-import { useHooksStatus } from '@/api/usePublicApi';
+import { useHooksStatus } from '@/useHooks/usePublicApi';
 interface Iprops {
 	form: FormInstance;
 	onFinish: (type?: string) => void;
