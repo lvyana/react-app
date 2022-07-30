@@ -1,5 +1,5 @@
 import React, { ReactNode, Suspense } from 'react';
-import Loading from '@/components/loading';
+import Loading from '@/components/iLoading';
 // import Nprogress from './Nprogress';
 // 两种均可
 

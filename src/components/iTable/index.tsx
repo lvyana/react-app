@@ -4,7 +4,7 @@ import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
 import { ColumnsType } from 'antd/es/table';
-import { antIcon } from '@/components/loading';
+import { antIcon } from '@/components/iLoading';
 
 /**
  *

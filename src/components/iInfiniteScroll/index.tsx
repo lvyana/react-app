@@ -1,7 +1,7 @@
 import React, { FC, useState, ReactNode } from 'react';
 import { Avatar, Descriptions, Row, Col, Button, message, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Loading from '@/components/loading';
+import Loading from '@/components/iLoading';
 import styles from './index.module.less';
 
 /**

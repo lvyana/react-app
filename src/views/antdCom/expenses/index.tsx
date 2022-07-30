@@ -5,7 +5,7 @@ import useHeaderTable from './components/headerTable';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
-import Paginations from '@/components/pagination';
+import Paginations from '@/components/iPagination';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import { TabelDataResponse } from './service';
