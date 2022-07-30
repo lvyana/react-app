@@ -1,10 +1,6 @@
 import { ReactNode } from 'react';
 
-/**
- *
- * 按钮集合
- */
-export type BTeditBtn = (type: string, value: ButtonItemParam) => void; //点击事件
+export type BTeditBtn = (type: string, value: ButtonItemParams) => void; //点击事件
 
 /**
  *
@@ -13,7 +9,7 @@ export type BTeditBtn = (type: string, value: ButtonItemParam) => void; //点击
  * @param editBtn 按钮事件
  */
 export interface IbuttonProps {
-	buttonList: ButtonItemParam[];
+	buttonList: ButtonItemParams[];
 	loadingName?: string;
 	editBtn?: BTeditBtn;
 	style?: React.CSSProperties;
@@ -28,7 +24,7 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
  * @param disabled 开启禁用模式 true  否则 false
  * @param hasPermiss 权限
  */
-export interface ButtonItemParam {
+export interface ButtonItemParams {
 	name: string;
 	type: string;
 	btType?: BTtype;
@@ -42,9 +38,9 @@ export interface ButtonItemParam {
  * @param btnList 数组['删除','新增']
  * @param is 设置true禁用 false启用
  */
-type setDisDataType = (data: ButtonItemParam[], btnList: string[], is: boolean) => ButtonItemParam[];
+type SetDisDataType = (data: ButtonItemParams[], btnList: string[], is: boolean) => ButtonItemParams[];
 
-export const setDisData: setDisDataType = (data, btnList, is) => {
+export const setDisData: SetDisDataType = (data, btnList, is) => {
 	return data.map((item) => {
 		if (btnList.indexOf(item.name) > -1) {
 			return {

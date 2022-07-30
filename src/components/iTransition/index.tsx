@@ -1,22 +1,27 @@
+/**
+ *	@name 实现展开收起动画效果
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, ReactNode, useState } from 'react';
 import { Button } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
+
 /**
- *	实现展开收起动画效果
- *	ly
- *  日期：2020年4月27日
- *  title 图标旁的名字
- *  minHeight 最小高度
- *  maxHeight 最大高度
+ *  @param title 图标旁的名字
+ *  @param minHeight 最小高度
+ *  @param maxHeight 最大高度
  */
-interface Iprops {
+interface ItransitionProps {
 	children: ReactNode;
 	title: string;
 	minHeight?: string | number;
 	maxHeight?: string | number;
 }
 
-const Itransition: FC<Iprops> = ({ children, title, minHeight, maxHeight }) => {
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Itransition: FC<ItransitionProps> = ({ children, title, minHeight, maxHeight }) => {
 	// 动画效果
 	const [height, setHeight] = useState(minHeight);
 	const [expand, setExpand] = useState(false);

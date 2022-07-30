@@ -1,3 +1,8 @@
+/**
+ *	@name 实现头像
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';

@@ -1,7 +1,12 @@
+/**
+ *	@name 实现标签页
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
-import { menuList, router } from '@/layout/menuList/index';
+import { menuList, Router } from '@/layout/menuList/index';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 
@@ -23,8 +28,8 @@ const TabsMain = () => {
 	const navigate = useNavigate();
 
 	// 扁平化菜单数据
-	const getMenuArr = (arr: router[]): router[] => {
-		return arr.reduce((pre: router[], item) => {
+	const getMenuArr = (arr: Router[]): Router[] => {
+		return arr.reduce((pre: Router[], item) => {
 			if (item.children && item.children.length > 0) {
 				return [...pre, ...getMenuArr(item.children)];
 			} else {

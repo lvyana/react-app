@@ -1,5 +1,9 @@
+/**
+ *	@name 实现 计算宽度 marign
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState, useEffect, useMemo } from 'react';
-import { useWidth } from '@/useHooks/useScreenSize';
 
 const useCardGutter = () => {
 	// 计算内容卡片width
@@ -16,19 +20,13 @@ const useCardGutter = () => {
 		};
 	}, []);
 
-	let [Width] = useWidth(33);
-
-	if (sidebarWidth && Width > 960) {
-		Width -= sidebarWidth;
-	}
-
 	// 计算margin值
 	let residueWidth = useMemo(() => {
 		return Math.floor(
-			Math.floor(Math.floor(Width % 300) / Math.floor(Width / 300)) *
-				((Math.floor(Width / 300) * 2) / (Math.floor(Width / 300) * 2 - 2 ? Math.floor(Width / 300) * 2 - 2 : 1))
+			Math.floor(Math.floor(sidebarWidth % 300) / Math.floor(sidebarWidth / 300)) *
+				((Math.floor(sidebarWidth / 300) * 2) / (Math.floor(sidebarWidth / 300) * 2 - 2 ? Math.floor(sidebarWidth / 300) * 2 - 2 : 1))
 		);
-	}, [Width]);
+	}, [sidebarWidth]);
 	return residueWidth;
 };
 

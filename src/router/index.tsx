@@ -1,3 +1,8 @@
+/**
+ *	@name 实现router
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
 import SuspenseLoad from './suspenseLoad';
@@ -9,7 +14,7 @@ const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态�
 const Layout = lazy(() => import('@/layout')); // Layout
 const Expenses = lazy(() => import('@/views/antdCom/expenses'));
 const Login = lazy(() => import('@/views/login'));
-const Error404 = lazy(() => import('@/views/Error404'));
+const Error404 = lazy(() => import('@/components/Error404'));
 
 // react一些钩子函数用法
 const MyUseState = lazy(() => import('@/views/reactCom/useHooksCom/myUseState'));

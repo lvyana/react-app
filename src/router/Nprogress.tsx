@@ -1,3 +1,8 @@
+/**
+ *	@name 实现loading
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React from 'react';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';

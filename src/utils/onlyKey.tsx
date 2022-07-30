@@ -1,9 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
 /**
- *
- * 获取唯一key
- * uuid生成
+ *	@name 实现uuid生成id
+ *	@user ly
+ *  @data 日期：2020年4月27日
  */
+import { v4 as uuidv4 } from 'uuid';
+
 const getKey = (): string => {
 	return uuidv4();
 };

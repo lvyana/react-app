@@ -1,3 +1,8 @@
+/**
+ *	@name 实现权限
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { ReactNode, useState } from 'react';
 import { getToken } from '@/utils/storage';
 import { Navigate } from 'react-router-dom';

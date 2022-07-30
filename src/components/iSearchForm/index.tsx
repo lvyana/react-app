@@ -1,6 +1,11 @@
+/**
+ *	@name 实现搜索表单
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC } from 'react';
 import Iform, { FormItemParam, FormInstance } from '@/components/iForm';
-import AnimateComponent from '@/components/animateComponent';
+import AnimateComponent from '@/components/iAnimateComponent';
 import { IresponsiveMin, IresponsiveMax } from '@/components/iResponsive';
 import Icard from '@/components/iCard';
 

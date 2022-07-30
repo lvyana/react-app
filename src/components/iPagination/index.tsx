@@ -1,15 +1,19 @@
+/**
+ *	@name 实现Paginations分页
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, Dispatch, SetStateAction } from 'react';
 import { Pagination } from 'antd';
 
 /**
- * Paginations分页
- * total 总条数
- * pageNum 第几页
- * setPageNum 更新pageNum
- * pageSize 一页显示多少条
- * setPageSize 更新pageSize
+ * @param total 总条数
+ * @param pageNum 第几页
+ * @param setPageNum 更新pageNum
+ * @param pageSize 一页显示多少条
+ * @param setPageSize 更新pageSize
  */
-interface PaginationProps {
+interface IpaginationsProps {
 	total?: number; // 条数
 	pageNum: number;
 	pageSize: number;
@@ -17,7 +21,7 @@ interface PaginationProps {
 	setPageNum: Dispatch<SetStateAction<number>>;
 }
 
-const Paginations: FC<PaginationProps> = ({ total, pageNum, setPageSize, pageSize, setPageNum }) => {
+const Ipaginations: FC<IpaginationsProps> = ({ total, pageNum, setPageSize, pageSize, setPageNum }) => {
 	const onChange = (page: number, pageSize: number | undefined) => {
 		setPageSize(pageSize as number);
 		setPageNum(page);
@@ -38,4 +42,4 @@ const Paginations: FC<PaginationProps> = ({ total, pageNum, setPageSize, pageSiz
 		/>
 	);
 };
-export default Paginations;
+export default Ipaginations;

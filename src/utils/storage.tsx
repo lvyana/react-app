@@ -1,3 +1,9 @@
+/**
+ *	@name 实现 localStorage
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
+
 const TOKEN = 'token';
 
 /**
@@ -5,7 +11,7 @@ const TOKEN = 'token';
  * @returns 存储token
  */
 export const setToken = (val: string): void => {
-	sessionStorage.setItem(TOKEN, val);
+	localStorage.setItem(TOKEN, val);
 };
 
 /**
@@ -13,7 +19,7 @@ export const setToken = (val: string): void => {
  * @returns 获取token
  */
 export const getToken = (): string | null => {
-	return sessionStorage.getItem(TOKEN);
+	return localStorage.getItem(TOKEN);
 };
 
 /**
@@ -21,5 +27,5 @@ export const getToken = (): string | null => {
  * @returns 清空token
  */
 export const clearToken = () => {
-	sessionStorage.removeItem(TOKEN);
+	localStorage.removeItem(TOKEN);
 };

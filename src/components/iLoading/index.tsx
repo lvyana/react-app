@@ -1,12 +1,16 @@
+/**
+ *	@name 实现Loading
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { ReactNode, FC } from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import moduleCss from './index.module.less';
+import styles from './index.module.less';
 
 export const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 /**
- * Loading
  * loading 状态
  * children 子集内容
  */
@@ -21,7 +25,7 @@ const Loading: FC<Iprops> = ({ children, loading }) => {
 			{children}
 		</Spin>
 	) : (
-		<div className={moduleCss.example}>
+		<div className={styles['Loading-Example']}>
 			<Spin indicator={antIcon} delay={200} style={{ backgroundColor: '#f0f2f5' }}></Spin>
 		</div>
 	);

@@ -1,3 +1,8 @@
+/**
+ *	@name 实现copy
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, message } from 'antd';
@@ -6,15 +11,12 @@ import { CopyOutlined } from '@ant-design/icons';
 /**
  * @parmas value 内容
  */
-interface IProps {
+interface CopyProps {
 	value: string;
 }
-/**
- *
- * @param  value传入的内容
- * @returns 复制组件
- */
-const Copy: FC<IProps> = ({ value }) => {
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Copy: FC<CopyProps> = ({ value }) => {
 	return (
 		<span>
 			<CopyToClipboard text={value} onCopy={() => message.success('复制成功~')}>

@@ -1,3 +1,8 @@
+/**
+ *	@name 实现RTK数据管理
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import layout from './reducers/layout';

@@ -1,3 +1,8 @@
+/**
+ *	@name 实现左侧菜单
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState, useEffect, memo } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -6,19 +11,19 @@ import IconFont from '@/utils/iconfont';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-export interface router {
+export interface Router {
 	title: string;
 	path: string;
 	key?: string;
 	icon?: string;
 	show?: boolean;
-	children?: router[];
+	children?: Router[];
 }
 export const EXCLUDE_MENU = ['role/allocation'];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-export const menuList: router[] = [
+export const menuList: Router[] = [
 	{
 		title: 'antd',
 		path: '/antd',
@@ -213,7 +218,7 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children
 };
 
 // 获取菜单数据结构
-const getMenu = (menuArr: router[]): MenuItem[] => {
+const getMenu = (menuArr: Router[]): MenuItem[] => {
 	return menuArr.reduce((acc: MenuItem[], item) => {
 		if (item.show === false) return [...acc];
 
