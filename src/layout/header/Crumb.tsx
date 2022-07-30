@@ -1,8 +1,13 @@
+/**
+ *	@name 实现面包屑
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
-import { menuList, router, EXCLUDE_MENU } from '../menuList/index';
+import { menuList, Router, EXCLUDE_MENU } from '../menuList/index';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -10,11 +15,11 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const Crumb = () => {
 	const location = useLocation();
-	const [currentRouter, SetcurrentRouter] = useState<router[]>([]);
+	const [currentRouter, SetcurrentRouter] = useState<Router[]>([]);
 
 	useEffect(() => {
 		if (location.pathname.indexOf(EXCLUDE_MENU[0]) !== -1) return;
-		let routerArr: router[] = [];
+		let routerArr: Router[] = [];
 		location.pathname.split('/').map((item, i) => {
 			if (i === 0) {
 				routerArr[0] = { path: '/', title: '系统', key: '/', children: menuList };
@@ -45,9 +50,8 @@ const Crumb = () => {
 		</div>
 	);
 };
-export default Crumb;
 
-const CrumbMenus = (menu: router[], current: string) => {
+const CrumbMenus = (menu: Router[], current: string) => {
 	return (
 		<Menu
 			selectedKeys={[current]}
@@ -71,3 +75,5 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 		type
 	} as MenuItem;
 };
+
+export default Crumb;

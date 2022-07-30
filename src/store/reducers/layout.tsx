@@ -1,3 +1,8 @@
+/**
+ *	@name 实现 layout reducers
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
@@ -11,9 +16,6 @@ let initialState: InitLayoutParams = {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-/**
- * @name layout reducers
- */
 const layout = createSlice({
 	name: 'layout',
 	initialState,

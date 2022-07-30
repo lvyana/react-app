@@ -1,3 +1,8 @@
+/**
+ *	@name 实现缓存
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { FC, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';

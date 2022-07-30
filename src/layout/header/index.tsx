@@ -1,3 +1,8 @@
+/**
+ *	@name 实现顶部组件
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { memo } from 'react';
 import { Row, Col } from 'antd';
 import { IresponsiveMin } from '@/components/iResponsive';

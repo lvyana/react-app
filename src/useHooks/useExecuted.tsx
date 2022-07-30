@@ -1,4 +1,8 @@
-// useEffect第一次不执行
+/**
+ *	@name 实现useEffect第一次不执行
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useEffect, useRef } from 'react';
 
 type effectProps = (fn: () => void, deps: (string | number | string[] | number[])[]) => void;
@@ -12,18 +16,6 @@ export const useNoFirstMount: effectProps = (fn, deps) => {
 			fn();
 		} else {
 			ref.current = true;
-		}
-	}, deps);
-};
-
-// useEffect第一次执行
-export const useFirstMount: effectProps = (fn, deps) => {
-	const ref = useRef(true);
-	useEffect(() => {
-		if (ref.current) {
-			fn();
-		} else {
-			ref.current = false;
 		}
 	}, deps);
 };

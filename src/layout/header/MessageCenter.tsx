@@ -1,5 +1,7 @@
 /**
- * 消息中心
+ *	@name 实现消息中心
+ *	@user ly
+ *  @data 日期：2020年4月27日
  */
 import React, { useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
@@ -10,9 +12,7 @@ import styles from './index.module.less';
 const { TabPane } = Tabs;
 
 const MessageCenter = () => {
-	const onChange = (key: string) => {
-		console.log(key);
-	};
+	const onChange = (key: string) => {};
 
 	const list = () => {
 		return (

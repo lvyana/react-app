@@ -1,9 +1,12 @@
+/**
+ *	@name 实现全屏
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { FullscreenOutlined, FontSizeOutlined, FullscreenExitOutlined } from '@ant-design/icons';
-/**
- * 全屏
- */
+
 const Fullscreen = () => {
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const fullScreen = () => {

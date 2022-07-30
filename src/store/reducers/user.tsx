@@ -1,3 +1,8 @@
+/**
+ *	@name 实现 user reducers
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
@@ -28,9 +33,6 @@ export let initialState: InitUserParams = {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-/**
- * @name user reducers
- */
 const user = createSlice({
 	name: 'user',
 	initialState,

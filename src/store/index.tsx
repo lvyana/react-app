@@ -1,9 +1,13 @@
+/**
+ *	@name 实现RTK数据管理
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
 import logger from 'redux-logger';
-import layout, { InitLayoutParams } from './reducers/layout';
-import user, { InitUserParams } from './reducers/user';
-import log, { InitLogParams } from './reducers/log';
+import layout from './reducers/layout';
+import user from './reducers/user';
+import log from './reducers/log';
 import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 // 环境区分中间件

@@ -1,3 +1,8 @@
+/**
+ *	@name 实现 axios fun
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React from 'react';
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';

@@ -1,10 +1,13 @@
+/**
+ *	@name 实现用户指导
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useEffect } from 'react';
 import introJs from 'intro.js';
 import 'intro.js/introjs.css';
 import 'intro.js/themes/introjs-modern.css';
-/**
- * 用户指导
- */
+
 const useIntro = () => {
 	useEffect(() => {
 		introJs()

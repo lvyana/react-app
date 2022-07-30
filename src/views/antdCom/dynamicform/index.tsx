@@ -1,3 +1,8 @@
+/**
+ *	@name 实现表单集合demo
+ *	@user ly
+ *  @data 日期：2020年4月27日
+ */
 import React, { useState } from 'react';
 import Iform from '@/components/iForm';
 import { FormItemParam } from '@/components/iForm/type';
