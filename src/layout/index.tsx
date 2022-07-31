@@ -58,7 +58,7 @@ const List = () => {
 			<Layout className="site-layout layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
 				<div
 					className="layout-transition"
-					style={{ position: 'fixed', zIndex: 1, width: `calc(100vw - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
+					style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
 					<Header className="site-layout-background" style={{ padding: 0 }}>
 						<Headerregion />
 					</Header>

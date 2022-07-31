@@ -1,3 +1,8 @@
+/**
+ * @name 实现编辑表头
+ * @use ly
+ * @data 2022年7月30日
+ */
 import React, { FC, useState, useEffect, Key, memo } from 'react';
 import { useAppDispatch } from '@/store/hooks';
 import { getHeaderConfig } from '@/store/reducers/globalConfig';
@@ -9,22 +14,21 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
 import { updateHeader } from './service';
 
-export type HeaderType = 'interview';
-/**
- *
- * @return 编辑表头
- */
+export type HeaderType = 'expenses';
+
 interface IheaderConfigProps {
 	type: HeaderType;
 	visible: boolean;
 	closeHeader: () => void;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const IheaderConfig: FC<IheaderConfigProps> = ({ type, visible, closeHeader }) => {
 	const dispatch = useAppDispatch();
 
 	// 初始化数据
 	const { headerConfigItem, setHeaderConfigItem, checkedKeys, setCheckedKeys } = useHeaderConfigItem(type, visible);
-	// console.log(headerConfigItem);
 
 	// 更新数据
 	const updateInitData = (newInitData: headerConfigListArrType[]) => {

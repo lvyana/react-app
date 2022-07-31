@@ -62,8 +62,7 @@ export default HeaderSearch;
 const suffix = (
 	<SearchOutlined
 		style={{
-			fontSize: 16,
-			color: '#1890ff'
+			fontSize: 16
 		}}
 	/>
 );

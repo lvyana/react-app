@@ -33,9 +33,9 @@ const TreeMenu: FC<TreeMenuProps> = ({ initData, checkedKeys, updateInitData, up
 
 	// 鼠标放下事件
 	const onDrop: TreeProps['onDrop'] = (info) => {
-		// console.log(info);
 		// 获取到移动的下表
-		const index = initData.findIndex((item) => item.headerFieldKey === info.dragNodesKeys[0]);
+		const index = initData.findIndex((item) => item.headerFieldId === info.dragNodesKeys[0]);
+
 		// 判断下表位置是否移动数据
 		if (info.dropPosition === -1 && index === 0) {
 			return;
@@ -61,7 +61,7 @@ const TreeMenu: FC<TreeMenuProps> = ({ initData, checkedKeys, updateInitData, up
 			className="draggable-tree"
 			checkedKeys={checkedKeys}
 			onCheck={(checkedKeys) => onCheck(checkedKeys as Key[])}
-			// draggable
+			draggable
 			blockNode
 			onDragEnter={onDragEnter}
 			onDrop={onDrop}

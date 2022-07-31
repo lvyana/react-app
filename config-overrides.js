@@ -62,11 +62,11 @@ module.exports = {
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
 		(config) => {
-			config.output.library = `${name}-[name]`;
-			config.output.libraryTarget = 'umd';
+			// config.output.library = `${name}-[name]`;
+			// config.output.libraryTarget = 'umd';
 			// output.jsonpFunction 更名为 output.chunkLoadingGlobal
-			config.output.chunkLoadingGlobal = `webpackJsonp_${name}`;
-			config.output.globalObject = 'window';
+			// config.output.chunkLoadingGlobal = `webpackJsonp_${name}`;
+			// config.output.globalObject = 'window';
 
 			// 配置打包后的文件位置 js、css会打包到dist目录下
 			// config.output.path = path.join(path.dirname(config.output.path), 'dist');
@@ -83,11 +83,6 @@ module.exports = {
 			libraryDirectory: 'es',
 			style: true
 		}),
-		// fixBabelImports('import', {
-		// 	libraryName: 'antd',
-		// 	libraryDirectory: 'es',
-		// 	style: 'css'
-		// }),
 		useBabelRc(),
 		addLessLoader({
 			// 这里可以添加less的其他配置
@@ -95,11 +90,11 @@ module.exports = {
 				// 根据自己需要配置即可~
 				modifyVars: {
 					'primary-color': 'skyblue',
-					'link-color': 'red',
+					'link-color': 'pink',
 					'border-radius-base': '2px'
 				},
-				javascriptEnabled: true,
-				localIdentName: '[local]--[hash:base64:5]'
+				javascriptEnabled: true
+				// localIdentName: '[local]--[hash:base64:5]'
 			}
 		}),
 		adjustStyleLoaders(({ use: [, , postcss] }) => {
@@ -121,28 +116,27 @@ module.exports = {
 		}),
 		// 注意是production环境启动该plugin
 		devMode &&
-		addWebpackPlugin(
-			new UglifyJsPlugin({
-				// 开启打包缓存
-				cache: true,
-				// 开启多线程打包
-				parallel: true,
-				uglifyOptions: {
-					// 删除警告
-					warnings: false,
-					// 压缩
-					compress: {
-						// 移除console
-						drop_console: true,
-						// 移除debugger
-						drop_debugger: true
+			addWebpackPlugin(
+				new UglifyJsPlugin({
+					// 开启打包缓存
+					cache: true,
+					// 开启多线程打包
+					parallel: true,
+					uglifyOptions: {
+						// 删除警告
+						warnings: false,
+						// 压缩
+						compress: {
+							// 移除console
+							drop_console: true,
+							// 移除debugger
+							drop_debugger: true
+						}
 					}
-				}
-			}),
-		),
+				})
+			),
 		// 判断环境变量ANALYZER参数的值
-		devMode &&
-		addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
+		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
 		addWebpackPlugin(new ProgressBarPlugin())
-	),
+	)
 };

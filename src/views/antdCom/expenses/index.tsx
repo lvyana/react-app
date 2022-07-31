@@ -5,7 +5,8 @@ import useHeaderTable from './components/headerTable';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';
-import Paginations from '@/components/iPagination';
+import Ipaginations from '@/components/iPagination';
+import HeaderEdit from '@/components/iTable/HeaderEdit';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import { TabelDataResponse } from './service';
@@ -64,8 +65,9 @@ const Expenses = () => {
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
 
 			<Icard style={{ marginTop: '10px' }}>
+				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
-				<Paginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Paginations>
+				<Ipaginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Ipaginations>
 			</Icard>
 		</div>
 	);

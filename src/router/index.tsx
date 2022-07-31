@@ -128,7 +128,7 @@ const router: RouteObject[] = [
 		path: '/',
 		element: <Auth element={SuspenseLoad(<Layout />)} />,
 		children: [
-			{ index: true, element: <Navigate to="expenses" /> },
+			{ index: true, element: <Navigate to="antd/expenses" /> },
 			{
 				path: 'antd',
 				children: [...antdCom]
