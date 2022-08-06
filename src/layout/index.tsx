@@ -47,24 +47,24 @@ const Layouts = () => {
 		}
 	}, [collapsed]);
 	return (
-		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
+		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
-				<Sider className="layout-transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
-					<div className="logo" />
+				<Sider className="Layout-Transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
+					<div className="Layout-logo" />
 					<Menulist />
 				</Sider>
 			</IresponsiveMin>
 
-			<Layout className="layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
+			<Layout className="Layout-Transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
 				<div
-					className="layout-transition"
+					className="Layout-Transition"
 					style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
-					<Header className="site-layout-background" style={{ padding: 0 }}>
+					<Header className="Layout-Bgc" style={{ padding: 0 }}>
 						<Headerregion />
 					</Header>
 					<TabsMain></TabsMain>
 				</div>
-				<Content className="site-layout-background content-All">
+				<Content className="Layout-Bgc Layout-Content">
 					<Outlet />
 				</Content>
 			</Layout>
