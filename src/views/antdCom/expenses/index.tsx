@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Form, Tag, Space } from 'antd';
-import { Column } from '@antv/g2plot';
-import useHeaderTable from './components/headerTable';
+import React, { useState, useEffect } from 'react';
+import { Form } from 'antd';
+import useHeaderTable from './components/useTable';
 import Itable from '@/components/iTable';
 import Icard from '@/components/iCard';
 import SeachForm from './components/SeachForm';

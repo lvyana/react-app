@@ -16,7 +16,7 @@ import './index.less';
 
 const { Header, Content, Sider } = Layout;
 
-const List = () => {
+const Layouts = () => {
 	useApi();
 
 	const { isShow } = useResponsiveMin(600);
@@ -49,13 +49,13 @@ const List = () => {
 	return (
 		<Layout className="my-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
-				<Sider className="layout-sider layout-transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
+				<Sider className="layout-transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
 					<div className="logo" />
 					<Menulist />
 				</Sider>
 			</IresponsiveMin>
 
-			<Layout className="site-layout layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
+			<Layout className="layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
 				<div
 					className="layout-transition"
 					style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
@@ -65,13 +65,11 @@ const List = () => {
 					<TabsMain></TabsMain>
 				</div>
 				<Content className="site-layout-background content-All">
-					<div className="content-Bot">
-						<Outlet />
-					</div>
+					<Outlet />
 				</Content>
 			</Layout>
 			<BackTop visibilityHeight={200} />
 		</Layout>
 	);
 };
-export default List;
+export default Layouts;

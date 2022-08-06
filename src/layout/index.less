@@ -1,24 +1,11 @@
 .my-Layout {
   .logo {
-    /* margin: 16px; */
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 1;
-    width: 200px;
+    width: 100%;
     height: 64px;
     background: #002140 url('../assets/log/react.svg') no-repeat center;
-  }
-
-  .layout-sider {
-    position: fixed;
-    left: 0;
-    height: calc(100vh - 48px);
-    padding-top: 64px;
-    overflow: auto;
-  }
-
-  .layout-sider::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
   }
 
   .layout-transition {
@@ -26,14 +13,11 @@
   }
 
   .content-All {
+    position: relative;
     padding: 8px;
-    margin-top: 110px;
+    margin-top: 116px;
+    overflow: auto;
     background-color: #f0f2f5 !important;
-
-    .content-Bot {
-      position: relative;
-      overflow: auto;
-    }
   }
 
   .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
@@ -46,12 +30,24 @@
   }
 
   /* header头部颜色 */
-  .site-layout .site-layout-background {
+  .site-layout-background {
     background: #fff;
   }
 
   .ant-layout-sider {
+    position: fixed;
+    left: 0;
     background: #fff;
+  }
+
+  .ant-layout-sider-children {
+    height: calc(100vh - 48px);
+    padding-top: 64px;
+    overflow: auto;
+  }
+
+  .ant-layout-sider-children::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
   }
 
   .ant-tabs {

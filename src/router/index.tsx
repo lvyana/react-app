@@ -11,7 +11,7 @@ import Auth from './auth';
 const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit')); //富文本编辑
 const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
 const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态表单
-const Layout = lazy(() => import('@/layout')); // Layout
+const Layouts = lazy(() => import('@/layout')); // Layouts
 const Expenses = lazy(() => import('@/views/antdCom/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const Error404 = lazy(() => import('@/components/Error404'));
@@ -126,7 +126,7 @@ const router: RouteObject[] = [
 	{ path: '/login', element: SuspenseLoad(<Login />) },
 	{
 		path: '/',
-		element: <Auth element={SuspenseLoad(<Layout />)} />,
+		element: <Auth element={SuspenseLoad(<Layouts />)} />,
 		children: [
 			{ index: true, element: <Navigate to="antd/expenses" /> },
 			{

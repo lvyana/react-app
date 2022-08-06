@@ -12,20 +12,17 @@ const {
 	adjustStyleLoaders
 } = require('customize-cra');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 代码压缩
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
+const ProgressBarPlugin = require('progress-bar-webpack-plugin'); // 打包进度
+const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
 const { name } = require('./package');
-
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'production';
 
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
-	config.devtool = 'eval-source-map';
-
 	if (devMode) {
 		// 关闭sourceMap
 		config.devtool = false;
@@ -37,9 +34,13 @@ const addCustomize = () => (config) => {
 				threshold: 1024
 			})
 		);
+	} else {
+		config.output.clean = true;
+		config.devtool = 'eval-source-map';
 	}
 	return config;
 };
+
 // 开发配置
 const devServerConfig = () => (config) => {
 	// config.host = '127.0.0.1';
@@ -61,22 +62,6 @@ const devServerConfig = () => (config) => {
 module.exports = {
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
-		(config) => {
-			// config.output.library = `${name}-[name]`;
-			// config.output.libraryTarget = 'umd';
-			// output.jsonpFunction 更名为 output.chunkLoadingGlobal
-			// config.output.chunkLoadingGlobal = `webpackJsonp_${name}`;
-			// config.output.globalObject = 'window';
-
-			// 配置打包后的文件位置 js、css会打包到dist目录下
-			// config.output.path = path.join(path.dirname(config.output.path), 'dist');
-			// config.output.publicPath = path.join(path.dirname(config.output.path), 'dist/');
-			// config.output.path = path.resolve(__dirname, 'dist');
-			// // assets文件修改
-			// config.output.assetModuleFilename = 'images/[contenthash][ext]';
-			config.output.clean = true;
-			return config;
-		},
 		fixBabelImports('import', {
 			//配置按需加载
 			libraryName: 'antd',
@@ -137,6 +122,6 @@ module.exports = {
 			),
 		// 判断环境变量ANALYZER参数的值
 		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
-		addWebpackPlugin(new ProgressBarPlugin())
+		devMode && addWebpackPlugin(new ProgressBarPlugin())
 	)
 };

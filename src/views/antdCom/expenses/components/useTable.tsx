@@ -30,7 +30,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 				{ type: '删除', name: '删除', btType: 'link' }
 			]);
 		} else {
-			setBtFun([]);
+			// setBtFun([]);
 		}
 	};
 	// 初始化按钮
