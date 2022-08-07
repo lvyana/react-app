@@ -8,13 +8,13 @@ import { RouteObject, Navigate } from 'react-router-dom';
 import SuspenseLoad from './suspenseLoad';
 import Auth from './auth';
 
-const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit')); //富文本编辑
-const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
-const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态表单
 const Layouts = lazy(() => import('@/layout')); // Layouts
-const Expenses = lazy(() => import('@/views/antdCom/expenses'));
 const Login = lazy(() => import('@/views/login'));
 const Error404 = lazy(() => import('@/components/Error404'));
+const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
+
+const Expenses = lazy(() => import('@/views/antdCom/expenses'));
+const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态表单
 
 // react一些钩子函数用法
 const MyUseState = lazy(() => import('@/views/reactCom/useHooksCom/myUseState'));
@@ -25,23 +25,26 @@ const MyUseContext = lazy(() => import('@/views/reactCom/useHooksCom/myUseContex
 const MyUseMemo = lazy(() => import('@/views/reactCom/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/reactCom/useHooksCom/myUseCallback'));
 const MyUseRef = lazy(() => import('@/views/reactCom/useHooksCom/myUseRef'));
-const MyUseRouter = lazy(() => import('@/views/routerCom/myUseRouter'));
+const Rtk = lazy(() => import('@/views/reactCom/rtk')); // RTK
 
 // react-router-dom
 const RouterDemo = lazy(() => import('@/views/routerCom/routerDemo'));
 const Test = lazy(() => import('@/views/routerCom/routerDemo/Test'));
 const List = lazy(() => import('@/views/routerCom/routerDemo/List'));
+const MyUseRouter = lazy(() => import('@/views/routerCom/myUseRouter'));
 
-// pdf
-const Pdf = lazy(() => import('@/views/funCom/pdf'));
-// RTK
-const Rtk = lazy(() => import('@/views/reactCom/rtk'));
 //ReactPlayer
 const Player = lazy(() => import('@/views/funCom/player'));
 //GridLayout
 const DemoGridLayout = lazy(() => import('@/views/funCom/gridLayout'));
 // Responsive响应式
 const Responsive = lazy(() => import('@/views/funCom/responsive'));
+//富文本编辑
+const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit'));
+// pdf
+const Pdf = lazy(() => import('@/views/funCom/pdf'));
+// i18n
+const I18n = lazy(() => import('@/views/funCom/i18n'));
 
 // antd组件封装
 const antdCom = [
@@ -119,7 +122,8 @@ const funCom = [
 	{ path: 'DemoGridLayout', element: <Auth element={SuspenseLoad(<DemoGridLayout />)} /> },
 	{ path: 'richtextedit', element: <Auth element={SuspenseLoad(<RichTextEdit />)} /> },
 	{ path: 'pdf', element: <Auth element={SuspenseLoad(<Pdf />)} /> },
-	{ path: 'Responsive', element: <Auth element={SuspenseLoad(<Responsive />)} /> }
+	{ path: 'Responsive', element: <Auth element={SuspenseLoad(<Responsive />)} /> },
+	{ path: 'I18n', element: <Auth element={SuspenseLoad(<I18n />)} /> }
 ];
 
 const router: RouteObject[] = [

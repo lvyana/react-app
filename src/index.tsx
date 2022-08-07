@@ -7,6 +7,9 @@ import { ConfigProvider } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+// i18n
+import '@/config/i18n';
+
 // RTX
 import store from './store';
 // import reportWebVitals from './reportWebVitals';

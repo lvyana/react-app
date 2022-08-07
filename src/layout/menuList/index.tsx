@@ -164,6 +164,12 @@ export const menuList: Router[] = [
 				path: '/funCom/Responsive',
 				key: '8',
 				icon: 'icon-chuangyepeixunxiangmu'
+			},
+			{
+				title: 'I18n',
+				path: '/funCom/I18n',
+				key: '8',
+				icon: 'icon-chuangyepeixunxiangmu'
 			}
 		]
 	},
