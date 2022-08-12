@@ -16,8 +16,11 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 代码压缩
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
 const ProgressBarPlugin = require('progress-bar-webpack-plugin'); // 打包进度
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
-const { name } = require('./package');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin'); // 编译速度分析
 
+const smp = new SpeedMeasurePlugin();
+const { name } = require('./package');
+const chalk = require('chalk');
 const devMode = process.env.NODE_ENV === 'production';
 
 // 打包配置
@@ -26,7 +29,6 @@ const addCustomize = () => (config) => {
 	if (devMode) {
 		// 关闭sourceMap
 		config.devtool = false;
-
 		// 添加js打包gzip配置
 		config.plugins.push(
 			new CompressionWebpackPlugin({
@@ -38,6 +40,7 @@ const addCustomize = () => (config) => {
 		config.output.clean = true;
 		config.devtool = 'eval-source-map';
 	}
+
 	return config;
 };
 
@@ -45,6 +48,8 @@ const addCustomize = () => (config) => {
 const devServerConfig = () => (config) => {
 	// config.host = '127.0.0.1';
 	// config.port = 80;
+
+	config.hot = true; // 热更新
 	config.compress = true;
 	config.proxy = {
 		[process.env.REACT_APP_BASE_API]: {
@@ -59,7 +64,7 @@ const devServerConfig = () => (config) => {
 	return config;
 };
 
-module.exports = {
+module.exports = smp.wrap({
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
 		fixBabelImports('import', {
@@ -78,8 +83,8 @@ module.exports = {
 					'link-color': 'pink',
 					'border-radius-base': '2px'
 				},
-				javascriptEnabled: true
-				// localIdentName: '[local]--[hash:base64:5]'
+				javascriptEnabled: true,
+				localIdentName: '[local]--[hash:base64:5]'
 			}
 		}),
 		adjustStyleLoaders(({ use: [, , postcss] }) => {
@@ -122,6 +127,10 @@ module.exports = {
 			),
 		// 判断环境变量ANALYZER参数的值
 		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
-		devMode && addWebpackPlugin(new ProgressBarPlugin())
+		addWebpackPlugin(
+			new ProgressBarPlugin({
+				format: `  :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
+			})
+		)
 	)
-};
+});
