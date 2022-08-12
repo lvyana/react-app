@@ -32,7 +32,7 @@ interface IdropdownProps extends IbtFun {
 const Idropdown: FC<IdropdownProps> = ({ btFun, onVisibleChange, buttonEvent }) => {
 	return (
 		<>
-			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onVisibleChange={onVisibleChange}>
+			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onVisibleChange={onVisibleChange} trigger={['click']}>
 				{/* <EllipsisOutlined /> */}
 				<Button type="link" icon={<EllipsisOutlined />} />
 			</Dropdown>

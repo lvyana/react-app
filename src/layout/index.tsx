@@ -34,6 +34,7 @@ const Layouts = () => {
 	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
 	const [collapsedWidth, setCollapsedWidth] = useState(() => (isShow ? 0 : 200));
+
 	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
 		setcollapsed(collapsed);
 	};
