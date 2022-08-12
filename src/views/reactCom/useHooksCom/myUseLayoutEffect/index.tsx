@@ -5,7 +5,7 @@ const MyUseLayoutEffect = () => {
 
 	// useEffect(() => {
 	// 	// console.log('useEffect');
-	// 	// 因为是异步操作 会初始化0->2会闪烁
+	// 	// 浏览器渲染之后执行
 	// 	let i = 0;
 	// 	while (i <= 100000000) {
 	// 		i++;
@@ -15,7 +15,7 @@ const MyUseLayoutEffect = () => {
 
 	useLayoutEffect(() => {
 		// console.log('useLayoutEffect', '我比useEffect先执行');
-		// 同步操作 不会闪烁 但是会堵塞
+		// 浏览器渲染页面之前 dom修改之后 执行
 		let i = 0;
 		while (i <= 100000000) {
 			i++;
