@@ -99,11 +99,16 @@ export const menuList: Router[] = [
 				key: '24',
 				icon: 'icon-bingtu-huanxing'
 			},
-
+			{
+				title: 'MySuspense',
+				path: '/react/MySuspense',
+				key: '24',
+				icon: 'icon-bingtu-huanxing'
+			},
 			{
 				title: 'Rtk',
 				path: '/react/Rtk',
-				key: '7',
+				key: '25',
 				icon: 'icon-chuangyepeixunxiangmu'
 			}
 		]

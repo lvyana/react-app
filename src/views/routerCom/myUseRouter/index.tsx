@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
+// https://www.npmjs.com/package/react-lazy-load-image-component
 import img from '@/assets/images/11.png';
 import img2 from '@/assets/images/22.png';
 import img3 from '@/assets/images/33.png';
