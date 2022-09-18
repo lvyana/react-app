@@ -1,6 +1,12 @@
 import { Button } from 'antd';
 import React from 'react';
-
+// constructor; 初始化数据 改变this指向
+// static getDerivedStateFromProps(props, state); state props 改变触发 返回一个对象来更新 state
+// componentDidMount; 渲染之前 dom更新之后 commit(Layout)阶段 类比useLayoutEffect
+// shouldComponentUpdate(nextProps, nextState); 是否更新 true更新否则反之
+// getSnapshotBeforeUpdate(prevProps, prevState); 快照 dom更新之前  commit(before Mutation)阶段 返回值将作为参数传递给 componentDidUpdate()
+// componentDidUpdate(prevProps, prevState, snapshot); 渲染之前 dom更新之后 commit(Layout)阶段
+// componentWillUnmount; 销毁 dom更新之前  commit(before Mutation)阶段
 class ClassCom extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
@@ -9,7 +15,7 @@ class ClassCom extends React.Component<any, any> {
 		console.log('constructor');
 	}
 	static getDerivedStateFromProps(nextProps: any, newState: any) {
-		console.log(nextProps, newState, 'getDerivedStateFormProps', this);
+		console.log(nextProps, newState, 'getDerivedStateFromProps', this);
 		return { a: 2, ...newState };
 	}
 	componentDidMount() {
