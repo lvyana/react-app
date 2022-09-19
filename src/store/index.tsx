@@ -18,7 +18,8 @@ const middlewareConfig = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => 
 	if (ENV) {
 		return getDefaultMiddleware();
 	} else {
-		return getDefaultMiddleware().concat(logger);
+		return getDefaultMiddleware();
+		// .concat(logger);
 	}
 };
 

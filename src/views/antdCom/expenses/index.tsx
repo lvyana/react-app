@@ -10,6 +10,7 @@ import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import { TabelDataResponse } from './service';
 import type { TabelDataParams } from './service';
+import ClassCom from './components/classCom';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
@@ -62,7 +63,7 @@ const Expenses = () => {
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
-
+			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
