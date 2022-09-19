@@ -33,10 +33,7 @@ const store = configureStore({
 	devTools: !ENV
 });
 
-/**
- *
- * useState 参数类型
- */
+// useState 参数类型
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
