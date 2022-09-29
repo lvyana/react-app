@@ -36,7 +36,7 @@ const Test: FC<TestProps> = ({ rdata, age }) => {
 	);
 };
 
-const getData = () => {
+const getData = (): Promise<TestProps['rdata']> => {
 	return new Promise((resolve) => {
 		//模拟异步
 		setTimeout(() => {
@@ -54,7 +54,7 @@ const getData = () => {
  * @param {*} api        请求数据接口,返回Promise，可以再then中获取与后端交互的数据
  * @returns
  */
-const AysncComponent = (Component: React.FC<TestProps>, api: any) => {
+const AysncComponent = (Component: React.FC<TestProps>, api: () => Promise<TestProps['rdata']>) => {
 	const AysncComponentPromise = (): Promise<{ default: ComponentType }> =>
 		new Promise(async (resolve) => {
 			const data = await api();

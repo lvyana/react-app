@@ -63,7 +63,7 @@ const Expenses = () => {
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
-			{/* <ClassCom hh={1}></ClassCom> */}
+			<ClassCom hh={1}></ClassCom>
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
