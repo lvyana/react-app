@@ -14,13 +14,8 @@ const {
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 代码压缩
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
-const ProgressBarPlugin = require('progress-bar-webpack-plugin'); // 打包进度
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin'); // 编译速度分析
 
-const smp = new SpeedMeasurePlugin();
-const { name } = require('./package');
-const chalk = require('chalk');
 const devMode = process.env.NODE_ENV === 'production';
 
 // 打包配置
@@ -40,7 +35,6 @@ const addCustomize = () => (config) => {
 		config.output.clean = true;
 		config.devtool = 'eval-source-map';
 	}
-
 	return config;
 };
 
@@ -64,7 +58,7 @@ const devServerConfig = () => (config) => {
 	return config;
 };
 
-module.exports = smp.wrap({
+module.exports = {
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
 		fixBabelImports('import', {
@@ -126,11 +120,6 @@ module.exports = smp.wrap({
 				})
 			),
 		// 判断环境变量ANALYZER参数的值
-		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
-		addWebpackPlugin(
-			new ProgressBarPlugin({
-				format: `  :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
-			})
-		)
+		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 }))
 	)
-});
+};

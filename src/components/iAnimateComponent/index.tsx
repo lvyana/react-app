@@ -30,7 +30,7 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	return (
 		<div className={ainimateCoponentStyle.animateComponentPosition}>
 			<div style={{ textAlign: 'center', display: flag ? 'block' : 'none' }}>
-				<Button shape="circle" icon={<SearchOutlined style={{ color: '#6454ef' }} />} onClick={onMouseEnter} />
+				<Button shape="circle" icon={<SearchOutlined />} onClick={onMouseEnter} />
 			</div>
 
 			<div className="animate__animated animate__backInDown" style={{ display: flag ? 'none' : 'block' }}>
