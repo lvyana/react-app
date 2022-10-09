@@ -14,6 +14,7 @@ const Rtk = () => {
 	useEffect(() => {
 		dispatch(getMovieData());
 	}, []);
+
 	const list = useAppSelector(GET_LIST);
 
 	return (

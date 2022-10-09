@@ -12,6 +12,7 @@ import TabsMain from './tabsMain';
 import useIntro from '@/useHooks/useIntro';
 import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
 import useApi from '@/useHooks/useApi';
+import useAysncComponent from './useAsyncComponent';
 import './index.less';
 
 const { Header, Content, Sider } = Layout;
@@ -47,7 +48,8 @@ const Layouts = () => {
 			setCollapsedWidth(200);
 		}
 	}, [collapsed]);
-	return (
+
+	const LayoutComponent = () => (
 		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
 				<Sider className="Layout-Transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -72,5 +74,7 @@ const Layouts = () => {
 			<BackTop visibilityHeight={200} />
 		</Layout>
 	);
+	return useAysncComponent(LayoutComponent);
 };
+
 export default Layouts;

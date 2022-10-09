@@ -7,7 +7,9 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
-import { menuList, Router, EXCLUDE_MENU } from '../menuList/index';
+import { Router, EXCLUDE_MENU } from '../menuList/index';
+import { useAppSelector } from '@/store/hooks';
+import { GET_ROUTER } from '@/store/reducers/globalConfig';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -15,6 +17,9 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const Crumb = () => {
 	const location = useLocation();
+
+	const menuList = useAppSelector(GET_ROUTER);
+
 	const [currentRouter, SetcurrentRouter] = useState<Router[]>([]);
 
 	useEffect(() => {
@@ -33,7 +38,6 @@ const Crumb = () => {
 
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
-
 	return (
 		<div style={{ paddingLeft: '27px' }}>
 			<Breadcrumb>
