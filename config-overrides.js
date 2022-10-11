@@ -12,7 +12,7 @@ const {
 	adjustStyleLoaders
 } = require('customize-cra');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 代码压缩
+const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
 
@@ -101,20 +101,15 @@ module.exports = {
 		// 注意是production环境启动该plugin
 		devMode &&
 			addWebpackPlugin(
-				new UglifyJsPlugin({
-					// 开启打包缓存
-					cache: true,
-					// 开启多线程打包
-					parallel: true,
-					uglifyOptions: {
-						// 删除警告
-						warnings: false,
-						// 压缩
+				new TerserPlugin({
+					terserOptions: {
+						// https://github.com/terser/terser#minify-options
 						compress: {
-							// 移除console
-							drop_console: true,
-							// 移除debugger
-							drop_debugger: true
+							warnings: false, // 删除无用代码时是否给出警告
+							drop_debugger: true, // 删除所有的debugger
+							drop_console: true, // 删除所有的console.*
+							pure_funcs: ['']
+							// pure_funcs: ['console.log'], // 删除所有的console.log
 						}
 					}
 				})
