@@ -7,19 +7,25 @@ import { message } from 'antd';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 
+interface AxiosConfig {
+	timeout: number;
+	headers: {
+		'Content-Type': string;
+	};
+}
+
 // 请求拦截器 引入加载圈
 axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
-/**
- * 请求失败后的错误统一处理
- * @param {Number} status 请求失败的状态码
- */
+
+const config: AxiosConfig = {
+	timeout: 1000 * 12,
+	headers: {
+		'Content-Type': 'application/json;charset=utf-8'
+	}
+};
 
 // 创建axios实例
-let instance = axios.create({
-	timeout: 1000 * 12
-});
-// 设置post请求头
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+let instance = axios.create(config);
 
 /**
  * 请求拦截器
@@ -45,7 +51,7 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
 	// 请求成功
-	(res: AxiosResponse) => {
+	(res: AxiosRequestConfig) => {
 		// 未设置状态码则默认成功状态
 		const code = res.data.code || 200;
 		const bizCode = res.data.bizCode || 20000;
@@ -67,7 +73,7 @@ instance.interceptors.response.use(
 				message.error(msg);
 				return Promise.reject('error');
 			} else {
-				return res;
+				return res.data;
 			}
 		}
 	},
