@@ -4,9 +4,9 @@ import { Button } from 'antd';
 const MyUseEffect = () => {
 	const [value, setValue] = useState(0);
 	useEffect(() => {
-		console.log('我没有参数', value);
+		// console.log('我没有参数', value);
 		return () => {
-			console.log('return我没有参数', value);
+			// console.log('return我没有参数', value);
 		};
 	});
 
@@ -41,9 +41,9 @@ export default MyUseEffect;
 
 const Son = () => {
 	useEffect(() => {
-		console.log('son effect');
+		// console.log('son effect');
 		return () => {
-			console.log('son effect return');
+			// console.log('son effect return');
 		};
 	});
 	return <>1</>;

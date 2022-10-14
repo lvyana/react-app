@@ -21,20 +21,25 @@ export type headerConfigListType = {
 };
 export interface InitGlobalConfigParams {
 	headerConfigList: headerConfigListType[];
+	router: any[];
 }
 
 let initialState: InitGlobalConfigParams = {
-	headerConfigList: []
+	headerConfigList: [],
+	router: []
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const log = createSlice({
+const globalConfig = createSlice({
 	name: 'globalConfig',
 	initialState,
 	reducers: {
 		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<[]>) => {
 			state.headerConfigList = payload;
+		},
+		SET_ROUTER: (state, { payload, type }: PayloadAction<[]>) => {
+			state.router = payload;
 		}
 	},
 	// extraReducers 字段让 slice 处理在别处定义的 actions，
@@ -67,8 +72,9 @@ export const getHeaderConfig = createAsyncThunk('globalConfig/getHeaderConfig', 
 	}
 });
 
-export const { SET_HEADER_CONFIG } = log.actions;
+export const { SET_HEADER_CONFIG, SET_ROUTER } = globalConfig.actions;
 
 export const GET_HEADER_CONFIG = (state: RootState) => state.globalConfig.headerConfigList;
+export const GET_ROUTER = (state: RootState) => state.globalConfig.router;
 
-export default log.reducer;
+export default globalConfig.reducer;

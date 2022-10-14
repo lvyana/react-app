@@ -10,7 +10,7 @@ import Auth from './auth';
 
 const Layouts = lazy(() => import('@/layout')); // Layouts
 const Login = lazy(() => import('@/views/login'));
-const Error404 = lazy(() => import('@/components/Error404'));
+const NotFound = lazy(() => import('@/components/NotFound'));
 const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
 
 const Expenses = lazy(() => import('@/views/antdCom/expenses'));
@@ -155,7 +155,7 @@ const router: RouteObject[] = [
 				children: [...funCom]
 			},
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
-			{ path: '*', element: <Error404 /> }
+			{ path: '*', element: <NotFound /> }
 		]
 	}
 ];

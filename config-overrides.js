@@ -12,15 +12,10 @@ const {
 	adjustStyleLoaders
 } = require('customize-cra');
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 代码压缩
+const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
-const ProgressBarPlugin = require('progress-bar-webpack-plugin'); // 打包进度
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin'); // 编译速度分析
 
-const smp = new SpeedMeasurePlugin();
-const { name } = require('./package');
-const chalk = require('chalk');
 const devMode = process.env.NODE_ENV === 'production';
 
 // 打包配置
@@ -40,7 +35,6 @@ const addCustomize = () => (config) => {
 		config.output.clean = true;
 		config.devtool = 'eval-source-map';
 	}
-
 	return config;
 };
 
@@ -64,7 +58,7 @@ const devServerConfig = () => (config) => {
 	return config;
 };
 
-module.exports = smp.wrap({
+module.exports = {
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
 		fixBabelImports('import', {
@@ -107,30 +101,20 @@ module.exports = smp.wrap({
 		// 注意是production环境启动该plugin
 		devMode &&
 			addWebpackPlugin(
-				new UglifyJsPlugin({
-					// 开启打包缓存
-					cache: true,
-					// 开启多线程打包
-					parallel: true,
-					uglifyOptions: {
-						// 删除警告
-						warnings: false,
-						// 压缩
+				new TerserPlugin({
+					terserOptions: {
+						// https://github.com/terser/terser#minify-options
 						compress: {
-							// 移除console
-							drop_console: true,
-							// 移除debugger
-							drop_debugger: true
+							warnings: false, // 删除无用代码时是否给出警告
+							drop_debugger: true, // 删除所有的debugger
+							drop_console: true, // 删除所有的console.*
+							pure_funcs: ['']
+							// pure_funcs: ['console.log'], // 删除所有的console.log
 						}
 					}
 				})
 			),
 		// 判断环境变量ANALYZER参数的值
-		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })),
-		addWebpackPlugin(
-			new ProgressBarPlugin({
-				format: `  :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`
-			})
-		)
+		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 }))
 	)
-});
+};

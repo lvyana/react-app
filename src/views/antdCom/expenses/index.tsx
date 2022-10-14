@@ -8,8 +8,7 @@ import Ipaginations from '@/components/iPagination';
 import HeaderEdit from '@/components/iTable/HeaderEdit';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
-import { TabelDataResponse } from './service';
-import type { TabelDataParams } from './service';
+import type { TabelDataParams, TabelDataResponse } from './service';
 import ClassCom from './components/classCom';
 
 const Expenses = () => {

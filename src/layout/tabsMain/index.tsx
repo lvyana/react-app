@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
-import { menuList, Router } from '@/layout/menuList/index';
+import menuList, { Router } from '@/layout/menuList/routerData';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 
@@ -78,6 +78,7 @@ const TabsMain = () => {
 	};
 
 	const size = useAppSelector(GET_SIZE);
+
 	return (
 		<>
 			<Tabs hideAdd onChange={onChange} activeKey={activeKey} type="editable-card" onEdit={onEdit} size={size}>

@@ -90,14 +90,12 @@
 		"less-loader": "^11.0.0",
 		"lint-staged": "^13.0.1",
 		"prettier": "^2.7.1",
-		"progress-bar-webpack-plugin": "^2.1.0",
 		"react-app-rewired": "^2.1.11",
-		"speed-measure-webpack-plugin": "^1.5.0",
 		"stylelint": "^14.9.1",
 		"stylelint-config-css-modules": "^4.1.0",
 		"stylelint-config-standard": "^26.0.0",
 		"stylelint-order": "^5.0.0",
-		"uglifyjs-webpack-plugin": "^2.2.0",
+		"terser-webpack-plugin": "^5.3.6",
 		"webpack-bundle-analyzer": "^4.5.0"
 	}
 }

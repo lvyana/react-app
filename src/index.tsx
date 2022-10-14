@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.less';
-import App from './App';
-import ErrorBoundary from '@/components/errorBoundary';
 import { ConfigProvider } from 'antd';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import ErrorBoundary from '@/components/errorBoundary';
+import App from './App';
+import './index.less';
 
 // i18n
 import '@/config/i18n';
@@ -26,8 +26,11 @@ import 'moment/locale/zh-cn';
 moment.locale('en');
 
 function render() {
-	const root = document.querySelector('#root');
-	ReactDOM.createRoot(root as Element).render(
+	const container = document.querySelector('#root') as Element;
+
+	const root = ReactDOM.createRoot(container);
+
+	root.render(
 		<ConfigProvider locale={zhCN}>
 			<Provider store={store}>
 				<BrowserRouter basename={'/'}>
