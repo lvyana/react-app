@@ -35,7 +35,7 @@ const globalConfig = createSlice({
 	name: 'globalConfig',
 	initialState,
 	reducers: {
-		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<[]>) => {
+		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<headerConfigListType[]>) => {
 			state.headerConfigList = payload;
 		},
 		SET_ROUTER: (state, { payload, type }: PayloadAction<[]>) => {
@@ -65,7 +65,8 @@ const globalConfig = createSlice({
 export const getHeaderConfig = createAsyncThunk('globalConfig/getHeaderConfig', async () => {
 	try {
 		const res = await headerConfig();
-		const { data } = res.data;
+		const { data } = res;
+
 		return data;
 	} catch (error) {
 		return [];

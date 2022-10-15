@@ -2,7 +2,8 @@
  * axios封装
  * 请求拦截、响应拦截、错误统一处理
  */
-import axios, { AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
+import axios from 'axios';
+import type { AxiosResponse, AxiosRequestConfig, AxiosError, Method } from 'axios';
 import { message } from 'antd';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
@@ -116,5 +117,32 @@ export function downloadGet(url: string, filename: string) {
 		})
 		.catch((r) => {});
 }
+/**
+ * 请求
+ */
+interface RequestParams<T> {
+	url: string;
+	method: Method;
+	data?: object;
+	config?: AxiosRequestConfig;
+}
+/**
+ * 响应
+ */
+type Data<T> = {
+	code: number;
+	message: string;
+	data: T;
+	total: number;
+};
 
-export default instance;
+const request = <T>({ url, method, data, config }: RequestParams<T>) => {
+	return instance.request<T, Data<T>>({
+		url,
+		method,
+		[method.toLowerCase() === 'get' ? 'params' : 'data']: data,
+		...config
+	});
+};
+
+export default request;

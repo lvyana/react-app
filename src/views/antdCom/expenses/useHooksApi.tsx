@@ -11,7 +11,7 @@ const useTabelData = () => {
 
 	const getTabelData = async (params: TabelDataParams) => {
 		const res = await tabelData({ ...params });
-		const { data, total } = res.data;
+		const { data, total } = res;
 		setExpensesTableData(data);
 		setTotal(total);
 	};

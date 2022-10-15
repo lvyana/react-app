@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { status } from '../api/publicApi';
+import { status, statusDataProps } from '../api/publicApi';
 
-interface statusDataProps {
-	status: '1' | '2';
-	name: string;
-}
 /**
  * 获取状态数据
  * @param deep 能改变状态参数
@@ -24,7 +20,7 @@ const useHooksStatus = (deep = []) => {
 	// 状态
 	const getStatus = async () => {
 		const res = await status();
-		const { data } = res.data;
+		const { data } = res;
 		setStatusData(data);
 	};
 

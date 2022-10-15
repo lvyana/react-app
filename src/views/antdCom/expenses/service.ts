@@ -33,7 +33,7 @@ export interface TabelDataResponse {
 
 // 查询表格数据
 export const tabelData = (data: TabelDataParams) => {
-	return request({
+	return request<TabelDataResponse[]>({
 		url: '/expenses/tabelData',
 		method: 'post',
 		data

@@ -30,7 +30,24 @@ import { LabelTooltipType } from 'antd/lib/form/FormItemLabel';
  */
 
 export interface FormItemParam {
-	type: string;
+	type:
+		| 'input'
+		| 'select'
+		| 'treeselect'
+		| 'cascader'
+		| 'datePicker'
+		| 'rangePicker'
+		| 'TimePicker'
+		| 'timeRangePicker'
+		| 'inputNumber'
+		| 'switch'
+		| 'button'
+		| 'radio'
+		| 'checkbox'
+		| 'rate'
+		| 'textArea'
+		| 'seachSelect'
+		| 'userDefined';
 	name: string;
 	label?: string;
 	tooltip?: LabelTooltipType;
