@@ -73,7 +73,7 @@ module.exports = {
 			lessOptions: {
 				// 根据自己需要配置即可~
 				modifyVars: {
-					'primary-color': 'skyblue',
+					'primary-color': 'pink',
 					'link-color': 'pink',
 					'border-radius-base': '2px'
 				},
