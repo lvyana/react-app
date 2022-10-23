@@ -31,6 +31,20 @@ let initialState: InitGlobalConfigParams = {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
+// thunk函数允许执行异步逻辑, 通常用于发出异步请求。
+// createAsyncThunk 创建一个异步action，方法触发的时候会有三种状态：
+// pending（进行中）、fulfilled（成功）、rejected（失败）
+export const getHeaderConfig = createAsyncThunk('globalConfig/getHeaderConfig', async () => {
+	try {
+		const res = await headerConfig();
+		const { data } = res;
+		return data;
+	} catch (error) {
+		return [];
+	}
+});
+
+// Slice
 const globalConfig = createSlice({
 	name: 'globalConfig',
 	initialState,
@@ -56,20 +70,6 @@ const globalConfig = createSlice({
 			.addCase(getHeaderConfig.rejected, (state, err) => {
 				// console.log('🚀 ~ rejected', err);
 			});
-	}
-});
-
-// thunk函数允许执行异步逻辑, 通常用于发出异步请求。
-// createAsyncThunk 创建一个异步action，方法触发的时候会有三种状态：
-// pending（进行中）、fulfilled（成功）、rejected（失败）
-export const getHeaderConfig = createAsyncThunk('globalConfig/getHeaderConfig', async () => {
-	try {
-		const res = await headerConfig();
-		const { data } = res;
-
-		return data;
-	} catch (error) {
-		return [];
 	}
 });
 
