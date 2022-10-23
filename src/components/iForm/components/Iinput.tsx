@@ -34,5 +34,5 @@ export const formInputTextArea = (item: FormItemCom) => {
 
 // 数字
 export const formInputNumber = (item: FormItemCom) => {
-	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} style={{ width: '100%', ...item.style }} />;
+	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} style={{ ...item.style }} />;
 };

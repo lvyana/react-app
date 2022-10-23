@@ -226,8 +226,8 @@ const Dynamicform = () => {
 			key: 11,
 			span: 24,
 			layout: {
-				labelCol: { span: 4 },
-				wrapperCol: { span: 20 }
+				labelCol: { span: 6 },
+				wrapperCol: { span: 18 }
 			}
 		},
 		{
@@ -260,7 +260,7 @@ const Dynamicform = () => {
 			key: 14,
 			span: 24,
 			option: [
-				{ type: 'submit', name: '搜索' },
+				{ type: 'submit', name: '搜索', BTtype: 'primary' },
 				{ type: 'onReset', name: '重置' }
 			],
 			style: { float: 'right' }

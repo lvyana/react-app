@@ -37,7 +37,7 @@ export const formTimeRangePicker = (item: FormItemCom) => {
 			minuteStep={15}
 			format={format}
 			disabledDate={item.disabledDate}
-			style={{ width: '100%', ...item.style }}
+			style={{ ...item.style }}
 			disabled={item.disabled}
 		/>
 	);
