@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Input, InputNumber } from 'antd';
-import { FormItemParam } from '../type';
+import type { FormItemCom } from '../type';
 
 // input
-export const formInputItem = (item: FormItemParam) => {
+export const formInputItem = (item: FormItemCom) => {
 	return (
 		// getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}
 		<Input
@@ -12,12 +12,13 @@ export const formInputItem = (item: FormItemParam) => {
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			disabled={item.disabled}
 			allowClear
+			style={{ width: '100%', ...item.style }}
 		/>
 	);
 };
 
 // 文本框
-export const formInputTextArea = (item: FormItemParam) => {
+export const formInputTextArea = (item: FormItemCom) => {
 	return (
 		<Input.TextArea
 			showCount={!!item.maxLength}
@@ -25,11 +26,13 @@ export const formInputTextArea = (item: FormItemParam) => {
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			maxLength={item.maxLength}
 			allowClear
+			disabled={item.disabled}
+			style={{ width: '100%', ...item.style }}
 		/>
 	);
 };
 
 // 数字
-export const formInputNumber = (item: FormItemParam) => {
-	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} />;
+export const formInputNumber = (item: FormItemCom) => {
+	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} style={{ width: '100%', ...item.style }} />;
 };

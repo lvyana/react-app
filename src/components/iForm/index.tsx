@@ -4,31 +4,13 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC } from 'react';
-import {
-	Form,
-	Input,
-	Button,
-	Row,
-	Col,
-	Select,
-	TreeSelect,
-	Cascader,
-	DatePicker,
-	InputNumber,
-	Switch,
-	Radio,
-	Checkbox,
-	Rate,
-	FormInstance,
-	TimePicker
-} from 'antd';
+import { Form, Row, Col, FormInstance } from 'antd';
 
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
-import { FormItemParam } from './type';
 import FORM_ITEM_MAP from './components/formItemMap';
-
+import type { FormItemParam, FormItem } from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
 /**
@@ -76,7 +58,7 @@ const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizon
 			</Form.Item>
 		);
 	};
-	const formItemCom = (item: FormItemParam) => {
+	const formItemCom = (item: FormItem) => {
 		if (item.show === false) return;
 
 		return FORM_ITEM_MAP[item.type](item, onFinish);

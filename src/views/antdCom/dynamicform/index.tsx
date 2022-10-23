@@ -5,14 +5,13 @@
  */
 import React, { useState } from 'react';
 import Iform from '@/components/iForm';
-import { FormItemParam } from '@/components/iForm/type';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-
+import type { FormItemParam } from '@/components/iForm';
 const Dynamicform = () => {
 	const selectOnChange = (value: number) => {};
 	// 参数
-	const formList = [
+	const formList: FormItemParam[] = [
 		{
 			type: 'input' as const,
 			name: 'name',

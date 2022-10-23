@@ -9,26 +9,26 @@ import { formSelect, formSeachSelect } from './Iselect';
 import { formSwitch } from './Iswitch';
 import { formTreeSelect } from './ItreeSelect';
 import { formUserDefined } from './IuserDefined';
-import { FormItemParam } from '../type';
+import { FormItemCom } from '../type';
 
 const FORM_ITEM_MAP = {
-	input: (item: FormItemParam) => formInputItem(item),
-	select: (item: FormItemParam) => formSelect(item),
-	treeselect: (item: FormItemParam) => formTreeSelect(item),
-	cascader: (item: FormItemParam) => formCascader(item),
-	datePicker: (item: FormItemParam) => formDatePicker(item),
-	rangePicker: (item: FormItemParam) => formRangePicker(item),
-	TimePicker: (item: FormItemParam) => formTimePicker(item),
-	timeRangePicker: (item: FormItemParam) => formTimeRangePicker(item),
-	inputNumber: (item: FormItemParam) => formInputNumber(item),
-	switch: (item: FormItemParam) => formSwitch(item),
-	button: (item: FormItemParam, onFinish?: (value: string) => void) => formButton(item, onFinish),
-	radio: (item: FormItemParam) => formRadio(item),
-	checkbox: (item: FormItemParam) => formCheckbox(item),
-	rate: (item: FormItemParam) => formRate(item),
-	textArea: (item: FormItemParam) => formInputTextArea(item),
-	seachSelect: (item: FormItemParam) => formSeachSelect(item),
-	userDefined: (item: FormItemParam) => formUserDefined(item)
+	input: (item: FormItemCom) => formInputItem(item),
+	select: (item: FormItemCom) => formSelect(item),
+	treeselect: (item: FormItemCom) => formTreeSelect(item),
+	cascader: (item: FormItemCom) => formCascader(item),
+	datePicker: (item: FormItemCom) => formDatePicker(item),
+	rangePicker: (item: FormItemCom) => formRangePicker(item),
+	TimePicker: (item: FormItemCom) => formTimePicker(item),
+	timeRangePicker: (item: FormItemCom) => formTimeRangePicker(item),
+	inputNumber: (item: FormItemCom) => formInputNumber(item),
+	switch: (item: FormItemCom) => formSwitch(item),
+	button: (item: FormItemCom, onFinish?: (value: string) => void) => formButton(item, onFinish),
+	radio: (item: FormItemCom) => formRadio(item),
+	checkbox: (item: FormItemCom) => formCheckbox(item),
+	rate: (item: FormItemCom) => formRate(item),
+	textArea: (item: FormItemCom) => formInputTextArea(item),
+	seachSelect: (item: FormItemCom) => formSeachSelect(item),
+	userDefined: (item: FormItemCom) => formUserDefined(item)
 };
 
 export default FORM_ITEM_MAP;

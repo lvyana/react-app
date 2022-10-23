@@ -6,6 +6,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { headerConfig } from '@/api/publicApi';
+import type { Router } from '@/layout/menuList/routerData';
 
 export type headerConfigListArrType = {
 	headerFieldId: string;
@@ -21,7 +22,7 @@ export type headerConfigListType = {
 };
 export interface InitGlobalConfigParams {
 	headerConfigList: headerConfigListType[];
-	router: any[];
+	router: Router[];
 }
 
 let initialState: InitGlobalConfigParams = {
@@ -52,7 +53,7 @@ const globalConfig = createSlice({
 		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<headerConfigListType[]>) => {
 			state.headerConfigList = payload;
 		},
-		SET_ROUTER: (state, { payload, type }: PayloadAction<[]>) => {
+		SET_ROUTER: (state, { payload, type }: PayloadAction<Router[]>) => {
 			state.router = payload;
 		}
 	},

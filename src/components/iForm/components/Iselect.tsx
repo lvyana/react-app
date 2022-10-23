@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Form, Select } from 'antd';
-import { FormItemParam } from '../type';
+import type { FormItemCom } from '../type';
 
 // Select
-export const formSelect = (item: FormItemParam) => {
+export const formSelect = (item: FormItemCom) => {
 	return (
 		<Select
 			showSearch
@@ -17,6 +17,8 @@ export const formSelect = (item: FormItemParam) => {
 			filterOption={(input, option) =>
 				option[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase().indexOf(input.toLowerCase()) >= 0
 			}
+			disabled={item.disabled}
+			style={{ width: '100%', ...item.style }}
 			// filterSort={(optionA, optionB) =>
 			// 	optionA[item.fieldNames?.label ? item.fieldNames?.label : 'label']
 			// 		.toLowerCase()
@@ -27,10 +29,9 @@ export const formSelect = (item: FormItemParam) => {
 };
 
 // 远程搜索
-export const formSeachSelect = (item: FormItemParam) => {
+export const formSeachSelect = (item: FormItemCom) => {
 	return (
 		<Select
-			style={{ width: '100%' }}
 			showSearch
 			allowClear
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
@@ -40,6 +41,8 @@ export const formSeachSelect = (item: FormItemParam) => {
 			onSearch={item.handleSearch}
 			options={item.option}
 			fieldNames={item.fieldNames}
-			notFoundContent={null}></Select>
+			notFoundContent={null}
+			disabled={item.disabled}
+			style={{ width: '100%', ...item.style }}></Select>
 	);
 };

@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Button, Row, Col } from 'antd';
 import IconFont from '@/utils/iconfont';
-import { FormItemParam } from '../type';
+import type { FormItemCom } from '../type';
 
 //按钮
-export const formButton = (item: FormItemParam, onFinish?: (value: string) => void) => {
+export const formButton = (item: FormItemCom, onFinish?: (value: string) => void) => {
 	return (
 		<Row style={{ ...item.style }} wrap={false}>
 			{item.option?.map((value, i) => {

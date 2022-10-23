@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { TreeSelect } from 'antd';
-import { FormItemParam } from '../type';
+import type { FormItemCom } from '../type';
 
 const { SHOW_PARENT } = TreeSelect;
 
 // 树形下拉
-export const formTreeSelect = (item: FormItemParam) => {
+export const formTreeSelect = (item: FormItemCom) => {
 	return (
 		<TreeSelect
 			treeData={item.option}
@@ -15,6 +15,8 @@ export const formTreeSelect = (item: FormItemParam) => {
 			allowClear
 			onChange={item.onChange}
 			placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}
+			disabled={item.disabled}
+			style={{ width: '100%', ...item.style }}
 		/>
 	);
 };

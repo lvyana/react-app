@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Rate } from 'antd';
-import { FormItemParam } from '../type';
+import type { FormItemCom } from '../type';
 
 // 评分
-export const formRate = (item: FormItemParam) => {
-	return <Rate tooltips={item.option} onChange={item.onChange} />;
+export const formRate = (item: FormItemCom) => {
+	return <Rate tooltips={item.option} onChange={item.onChange} disabled={item.disabled} style={{ width: '100%', ...item.style }} />;
 };

@@ -49,7 +49,7 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 	};
 
 	// 把路由存入redux
-	const setRedux = (data: any) => {
+	const setRedux = (data: Router[]) => {
 		dispatch(SET_ROUTER(data));
 	};
 
