@@ -7,6 +7,7 @@ import Phone from './phone';
 import styles from './index.module.less';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { login } from './service';
+import { encrypt } from '@/utils/jsencrypt';
 const { TabPane } = Tabs;
 
 /**
@@ -19,6 +20,10 @@ export interface FromType {
 	code?: string;
 }
 const Login = () => {
+	useEffect(() => {
+		console.log(encrypt('123'));
+	}, []);
+
 	const navigate = useNavigate();
 	// 登录弹框
 	const openNotification = () => {
