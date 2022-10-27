@@ -59,7 +59,7 @@ const useHeaderConfig = (type: string, columns: IcolumnsType) => {
  * @param type 对应表头
  * @returns 返回后端对应表头 渲染编辑表格组件
  */
-const useHeaderConfigItem = (type: string, visible: boolean) => {
+const useHeaderConfigItem = (type: string, open: boolean) => {
 	const headerConfig = useAppSelector(GET_HEADER_CONFIG);
 
 	// 拿到对应的后端表头数据
@@ -80,14 +80,14 @@ const useHeaderConfigItem = (type: string, visible: boolean) => {
 	};
 
 	useEffect(() => {
-		if (visible) {
+		if (open) {
 			const NewHeaderConfigItem = getHeaderConfigItem(type, headerConfig);
 			setHeaderConfigItem(NewHeaderConfigItem);
 
 			const NewCheckedKeys = getCheckedKeys(NewHeaderConfigItem);
 			setCheckedKeys(NewCheckedKeys);
 		}
-	}, [headerConfig, visible]);
+	}, [headerConfig, open]);
 
 	return { headerConfigItem, setHeaderConfigItem, checkedKeys, setCheckedKeys };
 };

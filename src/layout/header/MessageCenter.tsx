@@ -10,25 +10,18 @@ import Icard from '@/components/iCard';
 import Lists from './compoment/Lists';
 import styles from './index.module.less';
 
-const { TabPane } = Tabs;
-
 const MessageCenter = () => {
 	const onChange = (key: string) => {};
 
 	const tabsList = () => {
+		const items = [
+			{ label: '通知', key: 'item-1', children: '内容 1' },
+			{ label: '消息', key: 'item-2', children: '内容 2' }
+		];
+
 		return (
 			<Icard className={`${styles['Layout-Tabs-center']} Box-Shadow`} style={{ padding: 0 }}>
-				<Tabs defaultActiveKey="1" onChange={onChange}>
-					<TabPane tab="通知" key="1" className={`${styles['Layout-Tabs-padding']}`}>
-						<Lists></Lists>
-					</TabPane>
-					<TabPane tab="消息" key="2" className={`${styles['Layout-Tabs-padding']}`}>
-						<Lists></Lists>
-					</TabPane>
-					<TabPane tab="待办" key="3" className={`${styles['Layout-Tabs-padding']}`}>
-						<Lists></Lists>
-					</TabPane>
-				</Tabs>
+				<Tabs defaultActiveKey="1" onChange={onChange} items={items}></Tabs>
 				<Row>
 					<Col span={12}>
 						<Button style={{ width: '100%' }} className={`${styles['Layout-Tabs-btn-left']}`}>
@@ -45,17 +38,17 @@ const MessageCenter = () => {
 		);
 	};
 
-	const [visible, setVisible] = useState(false);
+	const [open, setOpen] = useState(false);
 
-	const handleVisibleChange = (flag: boolean) => {
-		setVisible(flag);
+	const handleOpenChange = (flag: boolean) => {
+		setOpen(flag);
 	};
 
 	return (
 		<>
 			<Dropdown
-				visible={visible}
-				onVisibleChange={handleVisibleChange}
+				open={open}
+				onOpenChange={handleOpenChange}
 				overlay={tabsList}
 				overlayClassName={`${styles['Layout-Dropdown']} ${styles['Layout-Dropdown-Widht']}`}
 				placement="bottomLeft"

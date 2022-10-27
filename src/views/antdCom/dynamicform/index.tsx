@@ -245,6 +245,7 @@ const Dynamicform = () => {
 		{
 			type: 'switch' as const,
 			name: 'switch',
+			valuePropName: 'checked',
 			label: '是否',
 			rules: [],
 			key: 13,

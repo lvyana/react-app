@@ -8,7 +8,7 @@ import { Modal } from 'antd';
 
 /**
  * @param title 标题
- * @param visible 控制弹框打开关闭
+ * @param open 控制弹框打开关闭
  * @param confirmLoading 确定按钮loading
  * @param handleOk 确定事件回调
  * @param handleCancel 取消事件回调
@@ -18,7 +18,7 @@ import { Modal } from 'antd';
  */
 export interface ImodalProps {
 	title: string;
-	visible: boolean;
+	open: boolean;
 	confirmLoading: boolean;
 	handleOk: () => void;
 	handleCancel: () => void;
@@ -33,7 +33,7 @@ export interface ImodalProps {
 const Imodal: FC<ImodalProps> = ({
 	children,
 	title,
-	visible,
+	open,
 	handleOk,
 	confirmLoading,
 	handleCancel,
@@ -45,7 +45,7 @@ const Imodal: FC<ImodalProps> = ({
 		<div>
 			<Modal
 				title={title}
-				visible={visible}
+				open={open}
 				confirmLoading={confirmLoading}
 				onOk={handleOk}
 				onCancel={handleCancel}

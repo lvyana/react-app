@@ -48,7 +48,7 @@ const RichTextEdit = () => {
 	}, [editor]);
 
 	const [content, setContent] = useState('');
-	const [visible, setVisible] = useState(false);
+	const [open, setOpen] = useState(false);
 	const onSubmit = () => {
 		// console.log(editor?.children); // 节点对象
 		// console.log(editor?.getHtml()); //获取非格式化的 html
@@ -65,10 +65,10 @@ const RichTextEdit = () => {
 	};
 	const onPreview = () => {
 		setContent(editor?.getHtml() as string);
-		setVisible(true);
+		setOpen(true);
 	};
 	const handleCancel = () => {
-		setVisible(false);
+		setOpen(false);
 	};
 	return (
 		<div className="animate__animated animate__fadeIn">
@@ -83,7 +83,7 @@ const RichTextEdit = () => {
 				</Button>
 			</div>
 
-			<ILookModal title="预览模板" width="1000px" visible={visible} handleCancel={handleCancel}>
+			<ILookModal title="预览模板" width="1000px" open={open} handleCancel={handleCancel}>
 				<Preview content={content}></Preview>
 			</ILookModal>
 		</div>

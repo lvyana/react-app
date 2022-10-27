@@ -3,21 +3,19 @@
  *	@user ly
  *  @data 日期：2020年4月27日
  */
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
 import menuList, { Router } from '@/layout/menuList/routerData';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 
-const { TabPane } = Tabs;
-
 type ACTION = 'add' | 'remove';
 
 interface PanesParams {
 	title: string | undefined;
 	path: string;
-	closable: boolean;
+	disabled: boolean;
 }
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -51,12 +49,12 @@ const TabsMain = () => {
 		//优化 or (if (!title) return;)
 
 		if (panes.length === 0) {
-			setPanes([{ title, path: pathname, closable: false }]);
+			setPanes([{ title, path: pathname, disabled: false }]);
 		} else {
 			const isRepetition = panes.findIndex((item) => item.path === pathname);
 
 			if (isRepetition === -1) {
-				setPanes([...panes, { title, path: pathname, closable: true }]);
+				setPanes([...panes, { title, path: pathname, disabled: true }]);
 			}
 		}
 	}, [location]);
@@ -81,12 +79,19 @@ const TabsMain = () => {
 
 	return (
 		<>
-			<Tabs hideAdd onChange={onChange} activeKey={activeKey} type="editable-card" onEdit={onEdit} size={size}>
-				{panes.map((pane) => (
-					<TabPane tab={pane.title} key={pane.path} closable={pane.closable}></TabPane>
-				))}
-			</Tabs>
+			<Tabs
+				hideAdd
+				onChange={onChange}
+				activeKey={activeKey}
+				type="editable-card"
+				onEdit={onEdit}
+				size={size}
+				items={panes.map((item) => getTabs(item.title, item.path, item.disabled))}></Tabs>
 		</>
 	);
 };
 export default TabsMain;
+
+const getTabs = (label: ReactNode, key: string, disabled: boolean) => {
+	return { label, key, disabled };
+};

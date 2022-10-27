@@ -38,6 +38,7 @@ const Crumb = () => {
 
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
+
 	return (
 		<div style={{ paddingLeft: '27px' }}>
 			<Breadcrumb>

@@ -13,7 +13,7 @@ import Imodal from '@/components/iModal';
  */
 const MyCenter: FC = () => {
 	const dispatch = useAppDispatch();
-	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [confirmLoading, setConfirmLoading] = useState(false);
 	const initImg = useAppSelector(GET_SELECTOR_PHOTO);
 
@@ -22,20 +22,20 @@ const MyCenter: FC = () => {
 
 	const openPhoto = () => {
 		setPhotoFinish(initImg as string);
-		setIsModalVisible(true);
+		setIsModalOpen(true);
 	};
 
 	const handleOk = () => {
 		setConfirmLoading(true);
 		setTimeout(() => {
 			dispatch(SET_PHOTO(photoFinish));
-			setIsModalVisible(false);
+			setIsModalOpen(false);
 			setConfirmLoading(false);
 		}, 1000);
 	};
 
 	const handleCancel = () => {
-		setIsModalVisible(false);
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -50,7 +50,7 @@ const MyCenter: FC = () => {
 			</div>
 			<Imodal
 				title="修改头像"
-				visible={isModalVisible}
+				open={isModalOpen}
 				confirmLoading={confirmLoading}
 				handleOk={handleOk}
 				handleCancel={handleCancel}

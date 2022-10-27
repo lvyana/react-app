@@ -23,8 +23,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 	};
 
 	// 表格图表移入移出功能
-	const onVisibleChange = (visible: boolean, record: TabelDataResponse) => {
-		if (visible) {
+	const onOpenChange = (open: boolean, record: TabelDataResponse) => {
+		if (open) {
 			setBtFun([
 				{ type: '修改', name: '修改', btType: 'link' },
 				{ type: '删除', name: '删除', btType: 'link' }
@@ -100,7 +100,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 				return (
 					<Idropdown
 						btFun={btFun}
-						onVisibleChange={(visible) => onVisibleChange(visible, record)}
+						onOpenChange={(open) => onOpenChange(open, record)}
 						buttonEvent={(type) => buttonEvent(type, record)}></Idropdown>
 				);
 			}

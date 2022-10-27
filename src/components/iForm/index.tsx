@@ -36,6 +36,7 @@ const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizon
 			return (
 				<Form.Item
 					name={item.name}
+					valuePropName={item.valuePropName}
 					label={item.label}
 					tooltip={item.tooltip}
 					rules={item.rules}
@@ -49,6 +50,7 @@ const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizon
 		return (
 			<Form.Item
 				name={item.name}
+				valuePropName={item.valuePropName}
 				label={item.label}
 				tooltip={item.tooltip}
 				rules={item.rules}

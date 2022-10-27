@@ -10,14 +10,14 @@ interface HeaderEditProps {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const HeaderEdit: FC<HeaderEditProps> = ({ children, type }) => {
-	const [headerVisible, setheaderVisible] = useState(false);
+	const [headerOpen, setheaderOpen] = useState(false);
 	const editHeader = () => {
-		setheaderVisible(true);
+		setheaderOpen(true);
 	};
 
 	const closeHeader = useCallback(() => {
-		setheaderVisible(false);
-	}, [headerVisible]);
+		setheaderOpen(false);
+	}, [headerOpen]);
 
 	return (
 		<>
@@ -31,7 +31,7 @@ const HeaderEdit: FC<HeaderEditProps> = ({ children, type }) => {
 					</Row>
 				</Col>
 			</Row>
-			<IheaderConfig type={type} visible={headerVisible} closeHeader={closeHeader}></IheaderConfig>
+			<IheaderConfig type={type} open={headerOpen} closeHeader={closeHeader}></IheaderConfig>
 		</>
 	);
 };

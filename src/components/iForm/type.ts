@@ -29,6 +29,7 @@ export interface FormItem {
 	span?: number;
 	key: string | number;
 	name: string;
+	valuePropName?: string;
 	label?: string;
 	layout?: LAYOUT;
 	labelAlign?: FormLabelAlign;

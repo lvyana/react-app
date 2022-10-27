@@ -18,17 +18,17 @@ export type HeaderType = 'expenses';
 
 interface IheaderConfigProps {
 	type: HeaderType;
-	visible: boolean;
+	open: boolean;
 	closeHeader: () => void;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IheaderConfig: FC<IheaderConfigProps> = ({ type, visible, closeHeader }) => {
+const IheaderConfig: FC<IheaderConfigProps> = ({ type, open, closeHeader }) => {
 	const dispatch = useAppDispatch();
 
 	// 初始化数据
-	const { headerConfigItem, setHeaderConfigItem, checkedKeys, setCheckedKeys } = useHeaderConfigItem(type, visible);
+	const { headerConfigItem, setHeaderConfigItem, checkedKeys, setCheckedKeys } = useHeaderConfigItem(type, open);
 
 	// 更新数据
 	const updateInitData = (newInitData: headerConfigListArrType[]) => {
@@ -114,7 +114,7 @@ const IheaderConfig: FC<IheaderConfigProps> = ({ type, visible, closeHeader }) =
 	};
 
 	return (
-		<Imodal title={'编辑表头'} visible={visible} handleOk={handleOk} handleCancel={handleCancel} confirmLoading={confirmLoading}>
+		<Imodal title={'编辑表头'} open={open} handleOk={handleOk} handleCancel={handleCancel} confirmLoading={confirmLoading}>
 			<Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
 				全选
 			</Checkbox>

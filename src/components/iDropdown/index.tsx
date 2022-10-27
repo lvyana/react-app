@@ -21,18 +21,18 @@ interface IbtFun {
 }
 
 /**
- * @param onVisibleChange 移入移除
+ * @param onOpenChange 移入移除
  */
 interface IdropdownProps extends IbtFun {
-	onVisibleChange: (visible: boolean) => void;
+	onOpenChange: (open: boolean) => void;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Idropdown: FC<IdropdownProps> = ({ btFun, onVisibleChange, buttonEvent }) => {
+const Idropdown: FC<IdropdownProps> = ({ btFun, onOpenChange, buttonEvent }) => {
 	return (
 		<>
-			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onVisibleChange={onVisibleChange} trigger={['click']}>
+			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onOpenChange={onOpenChange} trigger={['click']}>
 				{/* <EllipsisOutlined /> */}
 				<Button type="link" icon={<EllipsisOutlined />} />
 			</Dropdown>

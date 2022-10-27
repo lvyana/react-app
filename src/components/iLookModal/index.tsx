@@ -8,7 +8,7 @@ import { Modal } from 'antd';
 
 /**
  * @param children 传入内容
- * @param visible 打开 关闭
+ * @param open 打开 关闭
  * @param title 标题
  * @param handleOk 确定事件
  * @param handleCancel 关闭事件
@@ -18,7 +18,7 @@ import { Modal } from 'antd';
  */
 interface ILookModalProps {
 	children: ReactNode;
-	visible: boolean;
+	open: boolean;
 	title: string;
 	handleOk?: () => void;
 	handleCancel?: () => void;
@@ -31,7 +31,7 @@ interface ILookModalProps {
 
 const ILookModal: FC<ILookModalProps> = ({
 	children,
-	visible,
+	open,
 	title,
 	handleOk,
 	handleCancel,
@@ -42,7 +42,7 @@ const ILookModal: FC<ILookModalProps> = ({
 	return (
 		<div>
 			<Modal
-				visible={visible}
+				open={open}
 				title={title}
 				onOk={handleOk}
 				onCancel={handleCancel}
