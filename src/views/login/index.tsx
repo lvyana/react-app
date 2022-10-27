@@ -21,7 +21,7 @@ export interface FromType {
 }
 const Login = () => {
 	useEffect(() => {
-		console.log(encrypt('123'));
+		// console.log(encrypt('123'));
 	}, []);
 
 	const navigate = useNavigate();
