@@ -49,12 +49,12 @@ const TabsMain = () => {
 		//优化 or (if (!title) return;)
 
 		if (panes.length === 0) {
-			setPanes([{ title, path: pathname, disabled: false }]);
+			setPanes([{ title, path: pathname, disabled: true }]);
 		} else {
 			const isRepetition = panes.findIndex((item) => item.path === pathname);
 
 			if (isRepetition === -1) {
-				setPanes([...panes, { title, path: pathname, disabled: true }]);
+				setPanes([...panes, { title, path: pathname, disabled: false }]);
 			}
 		}
 	}, [location]);
