@@ -74,6 +74,7 @@ const Layouts = () => {
 			<BackTop visibilityHeight={200} />
 		</Layout>
 	);
+
 	return useAysncComponent(LayoutComponent);
 };
 

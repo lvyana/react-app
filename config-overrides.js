@@ -9,7 +9,8 @@ const {
 	overrideDevServer,
 	watchAll,
 	useBabelRc,
-	adjustStyleLoaders
+	adjustStyleLoaders,
+	setWebpackPublicPath
 } = require('customize-cra');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
@@ -114,6 +115,8 @@ module.exports = {
 					}
 				})
 			),
+		// 加上这一行，假设打包后的路径为 /console/....
+		devMode && setWebpackPublicPath('https://react-1308388249.cos.ap-nanjing.myqcloud.com/'),
 		// 判断环境变量ANALYZER参数的值
 		devMode && addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 }))
 	)

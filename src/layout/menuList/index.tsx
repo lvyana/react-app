@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store/hooks';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
+import useRouterHooks from '@/router/useHooks';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -28,6 +29,8 @@ export const EXCLUDE_MENU = ['role/allocation'];
 
 const Menulist = () => {
 	const location = useLocation();
+
+	const { selectMenuPath } = useRouterHooks();
 
 	useEffect(() => {
 		onOpenChange([openpent(location.pathname)]);
@@ -51,10 +54,10 @@ const Menulist = () => {
 		<Menu
 			theme="light"
 			defaultOpenKeys={[openpent(location.pathname)]}
-			defaultSelectedKeys={[location.pathname]}
+			defaultSelectedKeys={[selectMenuPath || location.pathname]}
 			openKeys={openKeys}
 			onOpenChange={onOpenChange}
-			selectedKeys={[location.pathname]}
+			selectedKeys={[selectMenuPath || location.pathname]}
 			mode="inline"
 			items={getMenu(menuList)}></Menu>
 	);

@@ -9,7 +9,7 @@ import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getToken } from '@/utils/storage';
 import { Router } from '@/layout/menuList';
-
+import useRouterHooks from './useHooks';
 export interface AuthProps {
 	element: ReactNode;
 }
@@ -17,33 +17,17 @@ export interface AuthProps {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Auth: FC<AuthProps> = ({ element }) => {
-	const location = useLocation();
-	const { pathname } = location;
+	const { isMenu } = useRouterHooks();
 
 	// 获取token
 	const isToken = () => {
 		return getToken();
 	};
 
-	const routers = useSelector(GET_ROUTER);
-	// 路由扁平化
-	const flatRouters = useMemo(() => {
-		const getFlat = (routers: Router[]): Router[] => {
-			return routers.reduce((prev: Router[], cru) => {
-				if (cru.children && cru.children.length > 0) {
-					return [...prev, ...getFlat(cru.children)];
-				}
-				return [...prev, cru];
-			}, []);
-		};
-
-		return getFlat(routers);
-	}, [routers]);
-
 	// token权限
 	if (isToken()) {
 		// 鉴定是否有菜单权限
-		if (flatRouters.findIndex((item) => item.path === pathname) > -1 || flatRouters.length === 0 || pathname === '/404') {
+		if (isMenu) {
 			return <>{element}</>;
 		} else {
 			return <Navigate to="/404" />;
