@@ -8,24 +8,24 @@ import { Pagination } from 'antd';
 
 /**
  * @param total 总条数
- * @param pageNum 第几页
- * @param setPageNum 更新pageNum
- * @param pageSize 一页显示多少条
- * @param setPageSize 更新pageSize
+ * @param page 页码
  */
 interface IpaginationsProps {
 	total?: number; // 条数
-	pageNum: number;
-	pageSize: number;
-	setPageSize: Dispatch<SetStateAction<number>>;
-	setPageNum: Dispatch<SetStateAction<number>>;
+	page: React.MutableRefObject<{
+		pageSize: number;
+		pageNum: number;
+	}>;
+	onPaginationChange: () => void;
 }
 
-const Ipaginations: FC<IpaginationsProps> = ({ total, pageNum, setPageSize, pageSize, setPageNum }) => {
-	const onChange = (page: number, pageSize: number | undefined) => {
-		setPageSize(pageSize as number);
-		setPageNum(page);
+const Ipaginations: FC<IpaginationsProps> = ({ total, page, onPaginationChange }) => {
+	const onChange = (pageNum: number, pageSize: number) => {
+		page.current = { pageSize, pageNum };
+		onPaginationChange();
 	};
+
+	const { pageNum, pageSize } = page.current;
 	return (
 		<Pagination
 			style={{ marginTop: '30px', float: 'right' }}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Form } from 'antd';
 import useHeaderTable from './components/useTable';
 import Itable from '@/components/iTable';
@@ -23,18 +23,10 @@ const Expenses = () => {
 	// 缓存
 	const { initValue, setValue } = useKeepAlive();
 
-	const [pageSize, setPageSize] = useState(() => {
-		return (initValue as TabelDataParams | undefined)?.pageSize || 10;
+	const page = useRef({
+		pageSize: (initValue as TabelDataParams | undefined)?.pageSize || 10,
+		pageNum: (initValue as TabelDataParams | undefined)?.pageNum || 1
 	});
-	const [pageNum, setPageNum] = useState(() => {
-		return (initValue as TabelDataParams | undefined)?.pageNum || 1;
-	});
-
-	// 更新缓存数据
-	useEffect(() => {
-		const params = form.getFieldsValue();
-		setKeepAlive({ ...params, pageSize, pageNum });
-	}, [pageSize, pageNum]);
 
 	const setKeepAlive = (params: unknown) => {
 		setValue(params);
@@ -42,31 +34,23 @@ const Expenses = () => {
 
 	useEffect(() => {
 		form.setFieldsValue({ ...(initValue as TabelDataParams | undefined) });
-		let params = form.getFieldsValue();
-		getTabelData({ ...params, pageSize, pageNum });
-
-		return () => {
-			setExpensesTableData([]);
-		};
-	}, [pageSize, pageNum]);
+		onFinish();
+	}, []);
 
 	const onFinish = () => {
-		if (pageNum === 1) {
-			let params = form.getFieldsValue();
-			setKeepAlive({ ...params, pageSize, pageNum });
-			return getTabelData({ ...params, pageSize, pageNum });
-		}
-		setPageNum(1);
+		let params = form.getFieldsValue();
+		setKeepAlive({ ...params, ...page.current });
+		getTabelData({ ...params, ...page.current });
 	};
 
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
-			<ClassCom hh={1}></ClassCom>
+			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable rowKey="key" columns={columns} data={expensesTableData} />
-				<Ipaginations total={total} pageSize={pageSize} setPageSize={setPageSize} pageNum={pageNum} setPageNum={setPageNum}></Ipaginations>
+				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
 			</Icard>
 		</div>
 	);
