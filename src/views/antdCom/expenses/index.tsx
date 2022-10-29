@@ -16,7 +16,7 @@ const Expenses = () => {
 
 	const { columns } = useHeaderTable({ buttonEvent });
 
-	const [form] = Form.useForm();
+	const [form] = Form.useForm<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>();
 
 	const { expensesTableData, setExpensesTableData, total, getTabelData } = useTabelData();
 
@@ -49,7 +49,7 @@ const Expenses = () => {
 			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
-				<Itable rowKey="key" columns={columns} data={expensesTableData} />
+				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} />
 				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
 			</Icard>
 		</div>

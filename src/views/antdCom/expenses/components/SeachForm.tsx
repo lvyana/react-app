@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 import IsearchForm, { FormInstance, FormItemParam } from '@/components/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
+import { statusDataProps } from '@/api/publicApi';
+import { IformButton } from '@/components/iForm/components/ibutton';
+import { TabelDataParams } from '../service';
+
 interface Iprops {
-	form: FormInstance;
+	form: FormInstance<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>;
 	onFinish: (type?: string) => void;
 }
 
@@ -11,7 +15,12 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: FormItemParam[] = [
+	const formList: [
+		FormItemParam<never, never>,
+		FormItemParam<never, never>,
+		FormItemParam<statusDataProps, never>,
+		FormItemParam<IformButton, never>
+	] = [
 		{
 			type: 'input',
 			name: 'name',

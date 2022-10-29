@@ -20,9 +20,9 @@ export type IformLayout = 'horizontal' | 'vertical' | 'inline';
  * @param formLayout 表单格式
  * @param self 是否自适应
  */
-interface IformProps {
-	formList?: FormItemParam[];
-	form: FormInstance;
+interface IformProps<T, F> {
+	formList?: T;
+	form: FormInstance<F>;
 	onFinish?: (type?: string) => void;
 	formLayout?: IformLayout;
 	self?: boolean;
@@ -30,8 +30,14 @@ interface IformProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizontal', self = false }) => {
-	const formItem = (item: FormItemParam) => {
+const Iform = <T extends FormItem[], F extends object>({
+	formList,
+	form,
+	onFinish,
+	formLayout = 'horizontal',
+	self = false
+}: IformProps<T, F>) => {
+	const formItem = (item: FormItem) => {
 		if (item.type === 'input') {
 			return (
 				<Form.Item
@@ -60,10 +66,61 @@ const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizon
 			</Form.Item>
 		);
 	};
+
 	const formItemCom = (item: FormItem) => {
 		if (item.show === false) return;
-
-		return FORM_ITEM_MAP[item.type](item, onFinish);
+		if (item.type === 'input') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'select') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'treeselect') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'cascader') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'datePicker') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'rangePicker') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'TimePicker') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'timeRangePicker') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'inputNumber') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'switch') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'button') {
+			return FORM_ITEM_MAP[item.type](item, onFinish);
+		}
+		if (item.type === 'radio') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'checkbox') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'rate') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'textArea') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'seachSelect') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		if (item.type === 'userDefined') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
+		// return FORM_ITEM_MAP[item.type](item, onFinish);
 	};
 
 	// 尺寸
@@ -74,7 +131,7 @@ const Iform: FC<IformProps> = ({ formList, form, onFinish, formLayout = 'horizon
 			<Form form={form} layout={formLayout} size={size as SizeType}>
 				<Row>
 					{formList &&
-						formList.map((item: FormItemParam, i) => {
+						formList.map((item) => {
 							return (
 								<Col
 									{...(self

@@ -1,20 +1,25 @@
 import React, { FC } from 'react';
 import { DatePicker, TimePicker } from 'antd';
 import type { FormItemCom } from '../type';
+import type { Moment } from 'moment';
+import { FormItemMap } from '../type';
 
 const { RangePicker } = DatePicker;
 // 日期
-export const formDatePicker = (item: FormItemCom) => {
+export const formDatePicker: FormItemMap['datePicker'] = (item) => {
 	return <DatePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
 
+type EventValue<DateType> = DateType | null;
+export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null;
+
 // 区间日期
-export const formRangePicker = (item: FormItemCom) => {
+export const formRangePicker: FormItemMap['rangePicker'] = (item) => {
 	return <RangePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
 
 // 时间
-export const formTimePicker = (item: FormItemCom) => {
+export const formTimePicker = <T, E extends ((value: Moment | null, dateString: string) => void) | undefined>(item: FormItemCom<T, E>) => {
 	const format = 'HH:mm';
 	return (
 		<TimePicker
@@ -29,7 +34,7 @@ export const formTimePicker = (item: FormItemCom) => {
 };
 
 // 时间区间
-export const formTimeRangePicker = (item: FormItemCom) => {
+export const formTimeRangePicker: FormItemMap['timeRangePicker'] = (item) => {
 	const format = 'HH:mm';
 	return (
 		<TimePicker.RangePicker

@@ -19,19 +19,21 @@ import { antIcon } from '@/components/iLoading';
  * @param rowKey 定义唯一key字段
  */
 interface ItableProps<T> {
-	columns?: IcolumnsType; //表头
-	data?: T[]; //表内容
+	columns?: ColumnsType<T>; //表头
+	data: T[]; //表内容
 	loading?: boolean;
 	rowSelection?: object;
 	rowKey?: string;
 	bordered?: boolean;
 }
 
-export type IcolumnsType = ColumnsType<any>; //表头
+export type IcolumnsType<T> = ColumnsType<T>; //表头
 
 /**
  *
- * 表格内事件
+ * @Function ItbClick 表格内事件
+ * @params type 类型
+ * @retrun void
  */
 export type ItbClick<T> = (type: string, record: T) => void;
 
@@ -39,7 +41,14 @@ export type AlignType = 'left' | 'right' | 'center';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Itable: FC<ItableProps<any>> = ({ columns = [], data = [], rowSelection, rowKey = 'key', loading = false, bordered = false }) => {
+const Itable = <T extends object>({
+	columns = [],
+	data = [],
+	rowSelection,
+	rowKey = 'key',
+	loading = false,
+	bordered = false
+}: ItableProps<T>) => {
 	const size = useAppSelector(GET_SIZE);
 
 	return (

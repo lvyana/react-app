@@ -10,9 +10,9 @@ import type { headerConfigListType, headerConfigListArrType } from '@/store/redu
  * @param btFun 表格操作下拉数据 监听更新
  * @returns 返回排序、筛选后的表头 渲染表格组件
  */
-const useHeaderConfig = (type: string, columns: IcolumnsType) => {
+const useHeaderConfig = <T,>(type: string, columns: IcolumnsType<T>) => {
 	// 处理后 模板数据
-	const [headerConfigItem, setHeaderConfigItem] = useState<IcolumnsType>([]);
+	const [headerConfigItem, setHeaderConfigItem] = useState<IcolumnsType<T>>([]);
 
 	// 后端返回模板
 	const headerConfig = useAppSelector(GET_HEADER_CONFIG);
@@ -32,7 +32,7 @@ const useHeaderConfig = (type: string, columns: IcolumnsType) => {
 	const getSortShow = () => {
 		const headerConfigItem = getHeaderConfigItem(type, headerConfig);
 
-		return headerConfigItem.reduce((pre: IcolumnsType, item) => {
+		return headerConfigItem.reduce((pre: IcolumnsType<T>, item) => {
 			const newColumns = columns.find((value) => value.key === item.headerFieldKey);
 			if (newColumns && item.headerSelected === 'true') {
 				return [...pre, newColumns];
@@ -42,7 +42,7 @@ const useHeaderConfig = (type: string, columns: IcolumnsType) => {
 		}, []);
 	};
 
-	const getHeaderWidth = (NewHeaderConfigItem: IcolumnsType) => {
+	const getHeaderWidth = (NewHeaderConfigItem: IcolumnsType<T>) => {
 		return NewHeaderConfigItem.reduce((pre, item) => {
 			if (typeof item.width === 'number') {
 				return (pre += item.width as number);
