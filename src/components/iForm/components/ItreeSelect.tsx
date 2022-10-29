@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { TreeSelect } from 'antd';
-import type { FormItemCom } from '../type';
+import type { ChangeEventExtra } from 'rc-tree-select/lib/TreeSelect';
+import { FormItemMap } from '../type';
 
 const { SHOW_PARENT } = TreeSelect;
 
 // 树形下拉
-export const formTreeSelect = (item: FormItemCom) => {
+export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
 	return (
 		<TreeSelect
 			treeData={item.option}
@@ -20,3 +21,5 @@ export const formTreeSelect = (item: FormItemCom) => {
 		/>
 	);
 };
+
+export type { ChangeEventExtra };

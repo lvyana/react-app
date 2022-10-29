@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Cascader } from 'antd';
-import type { FormItemCom } from '../type';
+import { FormItemMap } from '../type';
 
 // 联级
-export const formCascader = (item: FormItemCom) => {
+export const formCascader: FormItemMap['cascader'] = (item) => {
 	return (
 		<Cascader
 			fieldNames={item.fieldNames}

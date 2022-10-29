@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Input, InputNumber } from 'antd';
-import type { FormItemCom } from '../type';
+import { FormItemMap } from '../type';
 
 // input
-export const formInputItem = (item: FormItemCom) => {
+export const formInputItem: FormItemMap['input'] = (item) => {
 	return (
 		// getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}
 		<Input
@@ -18,7 +18,7 @@ export const formInputItem = (item: FormItemCom) => {
 };
 
 // 文本框
-export const formInputTextArea = (item: FormItemCom) => {
+export const formInputTextArea: FormItemMap['textArea'] = (item) => {
 	return (
 		<Input.TextArea
 			showCount={!!item.maxLength}
@@ -33,6 +33,6 @@ export const formInputTextArea = (item: FormItemCom) => {
 };
 
 // 数字
-export const formInputNumber = (item: FormItemCom) => {
+export const formInputNumber: FormItemMap['inputNumber'] = (item) => {
 	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} style={{ ...item.style }} />;
 };

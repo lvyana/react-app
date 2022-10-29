@@ -8,10 +8,77 @@ import Iform from '@/components/iForm';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import type { FormItemParam } from '@/components/iForm';
+
+type FormListType = [
+	FormItemParam<never, never>,
+	FormItemParam<
+		{
+			name: string;
+			value: string;
+			key: number;
+		},
+		(value: string) => void
+	>,
+	FormItemParam<
+		{
+			icon: string;
+			value: string;
+			key: number;
+		},
+		never
+	>,
+	FormItemParam<
+		{
+			name: string;
+			value: string;
+			key: number;
+		},
+		never
+	>,
+	FormItemParam<
+		{
+			label: string;
+			value: string;
+			key: number;
+		},
+		never
+	>,
+	FormItemParam<string, never>,
+	FormItemParam<
+		{
+			title: string;
+			value: string;
+			children?: {
+				title: string;
+				value: string;
+				children?: number;
+			}[];
+		},
+		never
+	>,
+	FormItemParam<
+		{
+			label: string;
+			value: string;
+			children?: {
+				label: string;
+				value: string;
+				children?: number;
+			}[];
+		},
+		never
+	>,
+	FormItemParam<never, never>,
+	FormItemParam<never, never>,
+	FormItemParam<never, never>,
+	FormItemParam<never, never>,
+	FormItemParam<never, never>,
+	FormItemParam<{ type: string; name: string; BTtype?: string }, never>
+];
 const Dynamicform = () => {
-	const selectOnChange = (value: number) => {};
+	const selectOnChange = (value: string) => {};
 	// 参数
-	const formList: FormItemParam[] = [
+	const formList: FormListType = [
 		{
 			type: 'input' as const,
 			name: 'name',
@@ -32,7 +99,6 @@ const Dynamicform = () => {
 			key: 2,
 			span: 24,
 			onChange: selectOnChange,
-
 			fieldNames: {
 				label: 'name',
 				value: 'value'
@@ -273,7 +339,7 @@ const Dynamicform = () => {
 	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Iform formList={formList} form={form} onFinish={onFinish} />
+			<Iform<FormListType, object> formList={formList} form={form} onFinish={onFinish} />
 		</div>
 	);
 };

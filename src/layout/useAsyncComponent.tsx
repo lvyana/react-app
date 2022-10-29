@@ -8,7 +8,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
 import menuList, { Router } from '@/layout/menuList/routerData';
 // 异步路由
-const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, setRedux: (data: any) => void) => {
+const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, setRedux: (data: Router[]) => void) => {
 	const AysncComponentPromise = (): Promise<{ default: ComponentType }> =>
 		new Promise(async (resolve, reject) => {
 			try {

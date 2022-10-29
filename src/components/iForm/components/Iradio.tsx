@@ -1,10 +1,16 @@
 import React, { FC } from 'react';
 import { Radio } from 'antd';
 import IconFont from '@/utils/iconfont';
-import type { FormItemCom } from '../type';
+import { FormItemMap } from '../type';
 
+export interface formRadioOptionsParams {
+	key: string | number;
+	value: string | number;
+	icon?: string;
+	name?: string;
+}
 // 单选
-export const formRadio = (item: FormItemCom) => {
+export const formRadio: FormItemMap['radio'] = (item) => {
 	return (
 		<Radio.Group onChange={item.onChange}>
 			{item.option &&

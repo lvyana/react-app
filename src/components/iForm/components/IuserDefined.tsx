@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import type { FormItemCom } from '../type';
+import { FormItemMap } from '../type';
 
 // 自定义组件
-export const formUserDefined = (item: FormItemCom) => {
+export const formUserDefined: FormItemMap['userDefined'] = (item) => {
 	return item.children;
 };

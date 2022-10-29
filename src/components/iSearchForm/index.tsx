@@ -4,20 +4,20 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC } from 'react';
-import Iform, { FormItemParam, FormInstance } from '@/components/iForm';
+import Iform, { FormItem, FormInstance, FormItemParam } from '@/components/iForm';
 import AnimateComponent from '@/components/iAnimateComponent';
 import { IresponsiveMin, IresponsiveMax } from '@/components/iResponsive';
 import Icard from '@/components/iCard';
 
-interface IsearchFormProps {
+interface IsearchFormProps<T> {
 	form: FormInstance;
-	formList: FormItemParam[];
+	formList: T;
 	onFinish: (type?: string) => void;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IsearchForm: FC<IsearchFormProps> = ({ form, formList, onFinish }) => {
+const IsearchForm = <T extends FormItem[]>({ form, formList, onFinish }: IsearchFormProps<T>) => {
 	return (
 		<>
 			<IresponsiveMax MaxWidth={1540}>
@@ -34,5 +34,5 @@ const IsearchForm: FC<IsearchFormProps> = ({ form, formList, onFinish }) => {
 		</>
 	);
 };
-export type { FormInstance, FormItemParam };
+export type { FormInstance, FormItem, FormItemParam };
 export default IsearchForm;
