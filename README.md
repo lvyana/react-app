@@ -318,7 +318,7 @@ npx husky add .husky/pre-commit "npm run lint"
 {
     scripts: {
         ...,
-        "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore",
+        "lint": "eslint . --ext .js,.ts,.tsx src --ignore-path .gitignore",
         "prepare": "husky install"
     },
 }
@@ -379,8 +379,8 @@ yarn add husky -D
 yarn add -D stylelint stylelint-config-standard
 // .lintstagedrc
 {
-  "*.{js,ts,vue}": ["npm run lint"],
-  "*.{html,vue,css,scss,sass,less}": ["stylelint --fix"]
+  "*.{js,ts,tsx}": ["npm run lint"],
+  "*.{css,less}": ["stylelint --fix"]
 }
 ```
 
@@ -393,12 +393,3 @@ yarn add -D stylelint stylelint-config-standard
 - npm run lint
 + yarn lint-staged --allow-empty "$1"
 ```
-
-## 测试代码检查及提交规范
-
--   [VS Code 配置](https://github.com/detanx/Vue3-Element-Plus/blob/main/vscode-setting.json)
-
-1. 代码检查
-   ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd4e85d7f8d240108049ef3bc9b59afd~tplv-k3u1fbpfcp-watermark.image)
-2. `git` 提交规范
-   ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24f9246dee4247039d9afbd416848e78~tplv-k3u1fbpfcp-watermark.image)
