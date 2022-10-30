@@ -71,16 +71,16 @@ module.exports = {
 };
 
 // # 安装 eslint
-// npm i eslint -D
+// yarn add eslint -D
 
 // # 使用 ts 的解析器
-// npm i @typescript-eslint/parser -D
+// yarn add @typescript-eslint/parser -D
 
 // # 添加 ts 相关规则
-// npm i @typescript-eslint/eslint-plugin -D
+// yarn add @typescript-eslint/eslint-plugin -D
 
 // # 添加 react, hooks 相关的规则
-// npm i eslint-plugin-react eslint-plugin-react-hooks  -D
+// yarn add eslint-plugin-react eslint-plugin-react-hooks  -D
 
 // prettier
 // yarn add prettier -D
