@@ -1,12 +1,14 @@
 # 初始化React项目
 
 ## js
-
+```
 npx create-react-app <项目名>
+```
 
 ## ts
-
+```
 npx create-react-app <项目名> --template typescript
+```
 
 # react-app-rewired customize-cra来完成配置的扩展
 
@@ -56,6 +58,7 @@ yarn add react-app-rewired customize-cra来完成配置的扩展~
 
 配置package.json的命令
 
+```
 "scripts": {
 
 \-   "start": "react-scripts start",
@@ -67,10 +70,13 @@ yarn add react-app-rewired customize-cra来完成配置的扩展~
 \+   "build": "react-app-rewired build",
 
 }
+```
 
 在根目录下配置config-overrides.js文件
 
+```
 module.exports = {}
+```
 
 完成了基础配置后，我们在config-overrides.js中进行详细配置，解决我们上面的需求问题。
 
@@ -80,6 +86,7 @@ module.exports = {}
 
 配置
 
+```
 cosnt { override, fixBabelImports } = require('customize-cra');
 
 module.exports = override(
@@ -101,6 +108,7 @@ module.exports = override(
   )
 
 )
+```
 
 #### 3、配置css预处理器-less
 
@@ -120,6 +128,7 @@ less-loader的最新版本其实是为了配合webpack@5.0使用的。
 
 配置
 
+```
 const { override, addLessLoader } = require('customize-cra');
 
 module.exports = override(
@@ -137,9 +146,11 @@ lessOptions: {
 })
 
 );
+```
 
 #### **4、设置alias、externals；**
 
+```
 const { override, addWebpackAlias } = require('customize-cra');
 
 const path = require('path');
@@ -167,6 +178,7 @@ addWebpackAlias({
   })
 
 )
+```
 
 #### 5、生产环境打包-去除console.log、debugger；
 
@@ -176,6 +188,7 @@ addWebpackAlias({
 
 配置
 
+```
 const { override, addWebpackPlugin } = require('customize-cra');
 
 const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
@@ -200,6 +213,7 @@ module.exports = override(
 				})
 
 )
+```
 
 #### 6、打包结果优化分析
 
@@ -213,6 +227,7 @@ cross-env用于配置环境变量
 
 // package.json文件
 
+```
 "scripts": { "build:analyzer": "cross-env ANALYZER=true react-app-rewired build" }
 
 // config-overrides.js
@@ -228,6 +243,7 @@ module.exports = override(
 ​    process.env.ANALYZER && addWebpackPlugin(new BundleAnalyzerPlugin())
 
 )
+```
 
 #### 7、打包增加进度条提示
 
@@ -235,6 +251,7 @@ module.exports = override(
 
 **yarn add progress-bar-webpack-plugin -D**
 
+```
 const { override, addWebpackPlugin } = require('customize-cra');
 
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -244,9 +261,11 @@ module.exports = override(
 ​    addWebpackPlugin(new ProgressBarPlugin())
 
 )
+```
 
 #### 8、安装babel-plugin-import, babel-plugin-import 是一个用于按需加载组件代码和样式的 babel 插件，现在我们尝试安装它并修改 config-overrides.js 文件。
 
+```
 yarn add babel-plugin-import -D
 
 const { fixBabelImports } = require('customize-cra');
@@ -262,9 +281,11 @@ fixBabelImports('import', {
 ​            style: true
 
 ​        }),
+```
 
 **这里有个问题postcss**
 
+```
 adjustStyleLoaders(({ use: [, , postcss] }) => {
 
 ​    const postcssOptions = postcss.options;
@@ -272,6 +293,7 @@ adjustStyleLoaders(({ use: [, , postcss] }) => {
 ​    postcss.options = { postcssOptions };
 
 }),
+```
 
 以上就是我们实现几个需求的配置。
 
