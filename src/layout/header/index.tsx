@@ -31,7 +31,7 @@ const Headerregion = () => {
 								<Fullscreen></Fullscreen>
 								{/* 组件大小 */}
 								<ModuleSize></ModuleSize>
-								{/* 组件大小 */}
+								{/* 消息 */}
 								<MessageCenter></MessageCenter>
 							</Col>
 						</IresponsiveMin>

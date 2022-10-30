@@ -15,8 +15,8 @@ const MessageCenter = () => {
 
 	const tabsList = () => {
 		const items = [
-			{ label: '通知', key: 'item-1', children: '内容 1' },
-			{ label: '消息', key: 'item-2', children: '内容 2' }
+			{ label: '通知', key: 'item-1', children: <Lists></Lists> },
+			{ label: '消息', key: 'item-2', children: <Lists></Lists> }
 		];
 
 		return (
