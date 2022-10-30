@@ -31,6 +31,7 @@ const Menulist = () => {
 	const location = useLocation();
 
 	const { selectMenuPath } = useRouterHooks();
+	console.log(selectMenuPath);
 
 	useEffect(() => {
 		onOpenChange([openpent(location.pathname)]);
