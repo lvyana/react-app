@@ -184,7 +184,7 @@ addWebpackAlias({
 
 安装依赖
 
-**yarn add uglifyjs-webpack-plugin -D**
+**yarn add terser-webpack-plugin -D**
 
 配置
 
