@@ -24,10 +24,16 @@ const useRouterHooks = () => {
 	}, [routers]);
 
 	// 判断是否有菜单权限
-	const isMenu = useMemo(
-		() => flatRouters.findIndex((item) => pathname.indexOf(item.path) > -1) > -1 || flatRouters.length === 0 || pathname === '/404',
-		[flatRouters]
-	);
+	const isMenu = useMemo(() => {
+		{
+			return (
+				flatRouters.findIndex((item) => pathname.indexOf(item.path) > -1) > -1 ||
+				flatRouters.length === 0 ||
+				pathname === '/404' ||
+				pathname === '/'
+			);
+		}
+	}, [flatRouters]);
 
 	// 获取选中的path
 	const selectMenuPath = useMemo(() => flatRouters.find((item) => pathname.indexOf(item.path) > -1)?.path, [flatRouters, pathname]);
