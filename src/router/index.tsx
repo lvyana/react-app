@@ -157,7 +157,9 @@ const router: RouteObject[] = [
 			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
 			{ path: '*', element: <NotFound /> }
 		]
-	}
+	},
+	{},
+	{ path: '*', element: <NotFound /> }
 ];
 
 export default router;
