@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import React, { FC, useEffect } from 'react';
+import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FromType } from './index';
@@ -8,18 +8,18 @@ import styles from './index.module.less';
 /**
  * @return 账号登录
  */
-interface methodProps {
+interface AccountProps {
 	onFinish: (value: FromType) => void;
 	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;
+	form: FormInstance<FromType>;
 }
-const Account = ({ onFinish, onFinishFailed }: methodProps) => {
-	const [form] = Form.useForm();
+const Account: FC<AccountProps> = ({ onFinish, onFinishFailed, form }) => {
+	// useEffect(() => {
+	// 	form.setFieldsValue({ userName: 'admin', password: '123456' });
+	// }, []);
 
-	useEffect(() => {
-		form.setFieldsValue({ userName: 'admin', password: '123456' });
-	}, []);
 	return (
-		<Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed} initialValues={{ remember: true }}>
+		<Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
 			<Form.Item name="userName" rules={[{ required: true, message: '请输入账号!' }]}>
 				<Input prefix={<UserOutlined />} placeholder="账号" />
 			</Form.Item>
