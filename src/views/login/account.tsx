@@ -10,16 +10,15 @@ import styles from './index.module.less';
  */
 interface AccountProps {
 	onFinish: (value: FromType) => void;
-	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;
 	form: FormInstance<FromType>;
 }
-const Account: FC<AccountProps> = ({ onFinish, onFinishFailed, form }) => {
+const Account: FC<AccountProps> = ({ onFinish, form }) => {
 	// useEffect(() => {
 	// 	form.setFieldsValue({ userName: 'admin', password: '123456' });
 	// }, []);
 
 	return (
-		<Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+		<Form form={form} onFinish={onFinish}>
 			<Form.Item name="userName" rules={[{ required: true, message: '请输入账号!' }]}>
 				<Input prefix={<UserOutlined />} placeholder="账号" />
 			</Form.Item>

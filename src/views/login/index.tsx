@@ -29,7 +29,6 @@ const Login = () => {
 	useEffect(() => {
 		// console.log(encrypt('123'));
 		const remember = Boolean(getRemember());
-		console.log(remember);
 
 		if (remember === true) {
 			const jsencryptUserName = getUserName();
@@ -81,13 +80,16 @@ const Login = () => {
 		openNotificationWithIcon('error', '密码错误');
 	};
 
-	const onFinishFailed = (errorInfo: ValidateErrorEntity<FromType>) => {};
-
+	const items = [
+		{ label: '账号登录', key: '1', children: <Account form={accountForm} onFinish={onFinish} /> },
+		{ label: '手机号登录', key: '2', children: <Phone onFinish={onFinish} /> }
+	];
 	return (
 		<div className={styles.login}>
 			<Row justify="center" style={{ height: '100%' }}>
 				<Col flex="300px">
 					<Tabs
+						items={items}
 						className={styles.loginAnimate}
 						defaultActiveKey="1"
 						centered
@@ -97,14 +99,7 @@ const Login = () => {
 							backdropFilter: 'blur(10px)',
 							padding: '0 20px',
 							borderRadius: '8px'
-						}}>
-						<TabPane tab="账号登录" key="1">
-							<Account form={accountForm} onFinish={onFinish} onFinishFailed={onFinishFailed} />
-						</TabPane>
-						<TabPane tab="手机号登录" key="2">
-							<Phone onFinish={onFinish} onFinishFailed={onFinishFailed} />
-						</TabPane>
-					</Tabs>
+						}}></Tabs>
 				</Col>
 			</Row>
 		</div>

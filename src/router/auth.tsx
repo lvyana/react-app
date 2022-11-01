@@ -26,8 +26,6 @@ const Auth: FC<AuthProps> = ({ element }) => {
 
 	// token权限
 	if (isToken()) {
-		console.log(isMenu);
-
 		// 鉴定是否有菜单权限
 		if (isMenu) {
 			return <>{element}</>;
