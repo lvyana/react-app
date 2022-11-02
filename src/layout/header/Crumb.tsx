@@ -29,7 +29,7 @@ const Crumb = () => {
 			if (i === 0) {
 				routerArr[0] = { path: '/', title: '系统', key: '/', children: menuList };
 			} else {
-				let is = routerArr[i - 1].children?.find((val) => {
+				let is = routerArr[i - 1]?.children?.find((val) => {
 					return val.path.indexOf(item) !== -1;
 				});
 				if (is) routerArr[i] = is;

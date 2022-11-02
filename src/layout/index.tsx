@@ -49,7 +49,7 @@ const Layouts = () => {
 		}
 	}, [collapsed]);
 
-	const LayoutComponent = () => (
+	return (
 		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
 				<Sider className="Layout-Transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -74,8 +74,11 @@ const Layouts = () => {
 			<BackTop visibilityHeight={200} />
 		</Layout>
 	);
-
-	return useAysncComponent(LayoutComponent);
 };
 
-export default Layouts;
+const AsyncLayout = () => {
+	// 异步组件会导致useEffect先执行 并且拿不到dom
+	return useAysncComponent(Layouts);
+};
+
+export default AsyncLayout;

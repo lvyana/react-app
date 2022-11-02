@@ -58,7 +58,7 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 	// 只做一次权限判断
 	if (isApi.current === 0) {
 		return (
-			<Suspense fallback={<>loading.....1</>}>
+			<Suspense fallback={<>loading.....我是异步组件 拦截</>}>
 				<LazyComponent></LazyComponent>
 			</Suspense>
 		);

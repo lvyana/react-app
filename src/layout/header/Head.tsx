@@ -8,6 +8,7 @@ import { useAppSelector } from '@/store/hooks';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
+import { clearPassword, clearRemember, clearToken, clearUserName } from '@/utils/storage';
 import styles from './index.module.less';
 
 const Head = () => {
@@ -26,6 +27,10 @@ const Head = () => {
 		if (e.key === '1') {
 			navigate('/mycenter');
 		} else if (e.key === '2') {
+			// clearToken();
+			// clearUserName();
+			// clearPassword();
+			// clearRemember();
 			navigate('/login');
 		}
 	};

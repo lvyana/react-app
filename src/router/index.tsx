@@ -131,6 +131,9 @@ const funCom = [
 	{ path: 'I18n', element: <Auth element={SuspenseLoad(<I18n />)} /> }
 ];
 
+// today
+const ToDay = lazy(() => import('@/views/toDay'));
+
 const router: RouteObject[] = [
 	{ path: '/login', element: SuspenseLoad(<Login />) },
 	{
@@ -154,10 +157,12 @@ const router: RouteObject[] = [
 				path: 'funCom',
 				children: [...funCom]
 			},
-			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> },
-			{ path: '*', element: <NotFound /> }
+			{ path: 'mycenter', element: <Auth element={SuspenseLoad(<MyCenter />)} /> }
+			// { path: '*', element: <NotFound /> }
 		]
-	}
+	},
+	{ path: 'today', element: SuspenseLoad(<ToDay />) },
+	{ path: '*', element: <NotFound /> }
 ];
 
 export default router;

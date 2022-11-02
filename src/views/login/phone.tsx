@@ -10,10 +10,9 @@ import styles from './index.module.less';
  */
 interface methodProps {
 	onFinish: (value: FromType) => void;
-	onFinishFailed: (value: ValidateErrorEntity<FromType>) => void;
 }
 
-const Phone = ({ onFinish, onFinishFailed }: methodProps) => {
+const Phone = ({ onFinish }: methodProps) => {
 	// 按钮状态
 	const [disabled, setDisabled] = useState(false);
 	let timer: NodeJS.Timer;
@@ -37,7 +36,7 @@ const Phone = ({ onFinish, onFinishFailed }: methodProps) => {
 		}, 1000);
 	};
 	return (
-		<Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+		<Form onFinish={onFinish}>
 			<Form.Item name="phone" rules={[{ required: true, message: '请输入手机号!' }]}>
 				<Input prefix={<MobileOutlined />} placeholder="手机号" />
 			</Form.Item>
