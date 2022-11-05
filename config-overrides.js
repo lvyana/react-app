@@ -10,7 +10,8 @@ const {
 	watchAll,
 	useBabelRc,
 	adjustStyleLoaders,
-	setWebpackPublicPath
+	setWebpackPublicPath,
+	addPostcssPlugins
 } = require('customize-cra');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
@@ -66,32 +67,33 @@ module.exports = {
 			//配置按需加载
 			libraryName: 'antd',
 			libraryDirectory: 'es',
-			style: true
+			style: 'css'
 		}),
 		useBabelRc(),
-		addLessLoader({
-			// 这里可以添加less的其他配置
-			lessOptions: {
-				// 根据自己需要配置即可~
-				modifyVars: {
-					'primary-color': 'pink',
-					'link-color': 'pink',
-					'border-radius-base': '2px'
-				},
-				javascriptEnabled: true,
-				localIdentName: '[local]--[hash:base64:5]'
-			}
-		}),
-		adjustStyleLoaders(({ use: [, , postcss] }) => {
-			const postcssOptions = postcss.options;
-			postcss.options = { postcssOptions };
-		}),
+		// addLessLoader({
+		// 	// 这里可以添加less的其他配置
+		// 	lessOptions: {
+		// 		// 根据自己需要配置即可~
+		// 		modifyVars: {
+		// 			'primary-color': 'pink',
+		// 			'link-color': 'pink',
+		// 			'border-radius-base': '2px'
+		// 		},
+		// 		javascriptEnabled: true,
+		// 		localIdentName: '[local]--[hash:base64:5]'
+		// 	}
+		// }),
+		// adjustStyleLoaders(({ use: [, , postcss] }) => {
+		// 	const postcssOptions = postcss.options;
+		// 	postcss.options = { postcssOptions };
+		// }),
 		addCustomize(),
 		// alias
 		addWebpackAlias({
 			// 加载模块的时候，可以使用“@”符号来进行简写啦~
 			'@': path.resolve(__dirname, './src/')
 		}),
+		addPostcssPlugins([require('tailwindcss'), require('autoprefixer')]),
 		// externals
 		addWebpackExternals({
 			// 注意对应的在public/index.html引入jquery的远程文件地址

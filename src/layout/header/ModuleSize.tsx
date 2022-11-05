@@ -9,7 +9,7 @@ import { FontSizeOutlined } from '@ant-design/icons';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 const ModuleSize = () => {
 	// 尺寸

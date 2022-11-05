@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { List } from 'antd';
-import styles from '../index.module.less';
+import styles from '../index.module.scss';
 
 const Lists = () => {
 	const data = [

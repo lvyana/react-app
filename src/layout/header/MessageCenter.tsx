@@ -8,7 +8,7 @@ import { BellOutlined } from '@ant-design/icons';
 import { Button, Col, Dropdown, MenuProps, Row, Tabs } from 'antd';
 import Icard from '@/components/iCard';
 import Lists from './compoment/Lists';
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 const MessageCenter = () => {
 	const onChange = (key: string) => {};

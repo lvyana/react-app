@@ -13,7 +13,7 @@ import useIntro from '@/useHooks/useIntro';
 import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
-import './index.less';
+import './index.scss';
 
 const { Header, Content, Sider } = Layout;
 

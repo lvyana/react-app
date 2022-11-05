@@ -1,8 +1,8 @@
 /* 修改antd组件样式 */
-@import './antd-ui.less';
+@import './antd-ui.scss';
 
 /* 内外边距 */
-@import './marginAndPadding.less';
+@import './marginAndPadding.scss';
 
 *,
 *::before,
@@ -24,7 +24,7 @@
 
 /* hover 75,171,252 */
 .hoveBlue:hover {
-  color: rgb(75 171 252);
+  color: rgb(75, 171, 252);
 }
 
 ::-webkit-scrollbar {
@@ -33,7 +33,7 @@
   height: 10px;
 }
 
-@bgcImg:-webkit-linear-gradient(
+$bgcImg:-webkit-linear-gradient(
   45deg,
   rgba(255, 255, 255, 20%) 25%,
   transparent 25%,
@@ -49,7 +49,8 @@
   background-color: #a6d6ea;
   border-radius: 10px;
   border-style: dashed;
-  background-image: @bgcImg;
+
+  /* background-image: $bgcImg; */
   border-color: transparent;
   border-width: 1.5px;
 }
@@ -71,5 +72,5 @@
 }
 
 .Box-Shadow {
-  box-shadow: 0 3px 6px 0 rgb(195 195 195);
+  box-shadow: 0 3px 6px 0 rgb(195, 195, 195);
 }

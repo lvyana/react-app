@@ -9,7 +9,7 @@ import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
 import { clearPassword, clearRemember, clearToken, clearUserName } from '@/utils/storage';
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 const Head = () => {
 	const navigate = useNavigate();

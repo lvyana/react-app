@@ -36,7 +36,7 @@ const HeaderSearch = () => {
 		}
 	};
 	return (
-		<span style={{ width: '200px', display: 'inline-block' }}>
+		<>
 			{search ? (
 				<Dropdown overlay={menu(searchList)}>
 					<Input
@@ -45,15 +45,13 @@ const HeaderSearch = () => {
 						suffix={suffix}
 						onBlur={inputOnBlur}
 						onChange={searchChange}
-						style={{ borderRadius: '32px' }}
+						style={{ maxWidth: '200px', borderRadius: '32px' }}
 					/>
 				</Dropdown>
 			) : (
-				<Button type="link" style={{ marginLeft: '157px' }} onClick={checkbox}>
-					{suffix}
-				</Button>
+				<Button type="link" onClick={checkbox} icon={suffix}></Button>
 			)}
-		</span>
+		</>
 	);
 };
 

@@ -6,7 +6,7 @@
 import React, { ReactNode, FC } from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 export const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 

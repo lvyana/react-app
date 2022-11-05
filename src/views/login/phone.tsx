@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col, Checkbox } from 'antd';
 import { MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import styles from './index.module.less';
+import styles from './index.module.scss';
 
 /**
  * @return 手机号登录

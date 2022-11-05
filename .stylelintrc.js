@@ -11,6 +11,7 @@ module.exports = {
 			}
 		],
 		'string-quotes': 'single', // 单引号
+		'color-function-notation': 'legacy',
 		'at-rule-empty-line-before': null,
 		'at-rule-no-unknown': null,
 		'at-rule-name-case': 'lower', // 指定@规则名的大小写

@@ -6,7 +6,7 @@
 import React from 'react';
 
 const index = () => {
-	return <div>index</div>;
+	return <div className="text-4xl">2323344</div>;
 };
 
 export default index;
