@@ -18,13 +18,13 @@ const LeftCalendar = () => {
 	const dateCellRender = (value: Moment) => {
 		const listData = getListData(value);
 		return (
-			<ul className="events">
+			<div className="events">
 				{listData.map((item) => (
-					<li key={item.content}>
+					<div key={item.content}>
 						<Badge status={item.type as BadgeProps['status']} text={<span className="text-xs">{item.content}</span>} />
-					</li>
+					</div>
 				))}
-			</ul>
+			</div>
 		);
 	};
 
@@ -41,21 +41,21 @@ const getListData = (value: Moment) => {
 	switch (value.date()) {
 		case 8:
 			listData = [
-				{ type: 'processing', content: '进行中 2.' },
+				{ type: 'processing', content: '进行中 2' },
 				{ type: 'error', content: '超时 5' },
 				{ type: 'success', content: '已完成 5' }
 			];
 			break;
 		case 10:
 			listData = [
-				{ type: 'processing', content: '进行中 2.' },
+				{ type: 'processing', content: '进行中 2' },
 				{ type: 'error', content: '超时 5' },
 				{ type: 'success', content: '已完成 5' }
 			];
 			break;
 		case 15:
 			listData = [
-				{ type: 'processing', content: '进行中 2.' },
+				{ type: 'processing', content: '进行中 2' },
 				{ type: 'error', content: '超时 5' },
 				{ type: 'success', content: '已完成 5' }
 			];

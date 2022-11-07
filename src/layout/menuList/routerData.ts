@@ -33,12 +33,12 @@ const menuList: Router[] = [
 		key: '3',
 		icon: 'icon-bingtu-huanxing',
 		children: [
-			// {
-			// 	title: 'MyUseState',
-			// 	path: '/react/MyUseState',
-			// 	key: '19',
-			// 	icon: 'icon-bingtu-huanxing'
-			// },
+			{
+				title: 'MyUseState',
+				path: '/react/MyUseState',
+				key: '19',
+				icon: 'icon-bingtu-huanxing'
+			},
 			{
 				title: 'MyUseEffect',
 				path: '/react/MyUseEffect',
@@ -85,6 +85,12 @@ const menuList: Router[] = [
 				title: 'MySuspense',
 				path: '/react/MySuspense',
 				key: '24',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
+				title: 'MyForwardRef',
+				path: '/react/MyForwardRef',
+				key: '26',
 				icon: 'icon-bingtu-huanxing'
 			},
 			{

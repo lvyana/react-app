@@ -26,6 +26,8 @@ const MyUseMemo = lazy(() => import('@/views/reactCom/useHooksCom/myUseMemo'));
 const MyUseCallback = lazy(() => import('@/views/reactCom/useHooksCom/myUseCallback'));
 const MyUseRef = lazy(() => import('@/views/reactCom/useHooksCom/myUseRef'));
 const MySuspense = lazy(() => import('@/views/reactCom/useHooksCom/mySuspense'));
+const MyForwardRef = lazy(() => import('@/views/reactCom/useHooksCom/myForwardRef'));
+
 const Rtk = lazy(() => import('@/views/reactCom/rtk')); // RTK
 
 // react-router-dom
@@ -98,6 +100,10 @@ const reactCom = [
 	{
 		path: 'MySuspense',
 		element: <Auth element={SuspenseLoad(<MySuspense />)} />
+	},
+	{
+		path: 'MyForwardRef',
+		element: <Auth element={SuspenseLoad(<MyForwardRef />)} />
 	},
 
 	{ path: 'Rtk', element: <Auth element={SuspenseLoad(<Rtk />)} /> }

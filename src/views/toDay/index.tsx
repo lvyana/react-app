@@ -9,7 +9,7 @@ import RightContent from './components/RightContent';
 
 const index = () => {
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between gap-x-8">
 			<div className="w-2/5  h-full">
 				<LeftCalendar></LeftCalendar>
 			</div>

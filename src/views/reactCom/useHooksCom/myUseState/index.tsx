@@ -10,7 +10,13 @@ const MyUseState = () => {
 
 	const add = () => {
 		setValue(value + 1);
+
 		setfirst((value) => value + 1);
+		setfirst((value) => {
+			console.log(value);
+
+			return value + 1;
+		});
 		// console.log(value);
 		// console.log(first);
 	};
