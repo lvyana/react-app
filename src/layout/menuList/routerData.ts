@@ -88,6 +88,12 @@ const menuList: Router[] = [
 				icon: 'icon-bingtu-huanxing'
 			},
 			{
+				title: 'MyForwardRef',
+				path: '/react/MyForwardRef',
+				key: '26',
+				icon: 'icon-bingtu-huanxing'
+			},
+			{
 				title: 'Rtk',
 				path: '/react/Rtk',
 				key: '25',
