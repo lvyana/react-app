@@ -1,6 +1,7 @@
 import React from 'react';
 import { Badge, BadgeProps, Calendar } from 'antd';
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar';
+import TeamMembers from './TeamMembers';
 import type { Moment } from 'moment';
 
 const LeftCalendar = () => {
@@ -28,7 +29,8 @@ const LeftCalendar = () => {
 	};
 
 	return (
-		<div className="fixed w-2/5 ">
+		<div className="fixed w-2/5  p-2">
+			<TeamMembers></TeamMembers>
 			<Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
 		</div>
 	);

@@ -7,7 +7,7 @@ import React from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, Badge, List, Space, Tooltip } from 'antd';
 
-const Content = () => {
+const RightContent = () => {
 	return (
 		<div>
 			<List
@@ -93,4 +93,4 @@ const IconText = ({ icon, text, isTooltip = false }: { icon: React.FC; text: str
 	</Space>
 );
 
-export default Content;
+export default RightContent;

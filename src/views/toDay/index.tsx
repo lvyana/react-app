@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import LeftCalendar from './components/LeftCalendar';
-import Content from './components/Content';
+import RightContent from './components/RightContent';
 
 const index = () => {
 	return (
@@ -14,7 +14,7 @@ const index = () => {
 				<LeftCalendar></LeftCalendar>
 			</div>
 			<div className="w-3/5">
-				<Content></Content>
+				<RightContent></RightContent>
 			</div>
 		</div>
 	);
