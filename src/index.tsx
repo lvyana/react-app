@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './tailwind.css';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ErrorBoundary from '@/components/errorBoundary';
-import './App.css';
+
 import App from './App';
 // import 'antd/dist/antd.css';
 import './index.scss';
