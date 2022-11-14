@@ -3,7 +3,7 @@
  *	@user ly
  *  @data 日期：2020年4月27日
  */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { FullscreenOutlined, FontSizeOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 

@@ -36,8 +36,8 @@ OrdinaryForWard.displayName = 'OrdinaryForWard';
 
 // HOC转发
 const hocForWardRef = (Component: ({ hoc }: { hoc: LegacyRef<HTMLDivElement> }) => JSX.Element) => {
-	class LogCom extends React.Component<{ hoc: any }> {
-		constructor(props: any) {
+	class LogCom extends React.Component<{ hoc: LegacyRef<HTMLDivElement> }> {
+		constructor(props: { hoc: LegacyRef<HTMLDivElement> }) {
 			super(props);
 		}
 		render(): React.ReactNode {
@@ -45,7 +45,7 @@ const hocForWardRef = (Component: ({ hoc }: { hoc: LegacyRef<HTMLDivElement> }) 
 			return <Component hoc={hoc}></Component>;
 		}
 	}
-	const hocForWardRefCom = forwardRef((props, ref) => <LogCom {...props} hoc={ref}></LogCom>);
+	const hocForWardRefCom = forwardRef<HTMLDivElement>((props, ref) => <LogCom {...props} hoc={ref}></LogCom>);
 	hocForWardRefCom.displayName = 'hocForWardRefCom';
 	return hocForWardRefCom;
 };

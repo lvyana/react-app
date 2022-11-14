@@ -13,7 +13,8 @@ module.exports = {
 		'plugin:react/recommended',
 		'plugin:react-hooks/recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended'
+		'plugin:prettier/recommended',
+		'plugin:react/jsx-runtime' // 顶部不需要导入React
 	],
 	// 为我们提供运行环境，一个环境定义了一组预定义的全局变量
 	env: {
