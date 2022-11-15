@@ -1,7 +1,12 @@
 import { Avatar, Tooltip } from 'antd';
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
+import { OnOkOrCancelType } from '@/components/iModal/index';
+import { toDayContext } from '../context/index';
+import AddPersonnel from './AddPersonnel';
 
 const TeamMembers = () => {
+	const toDayContextValue = useContext(toDayContext);
+
 	const avatars = Array.from({ length: 5 }).map((item) => {
 		return 'https://joeschmoe.io/api/v1/random';
 	});
@@ -11,6 +16,24 @@ const TeamMembers = () => {
 	const onAvatar = (i: number) => {
 		setSelectAvatar(i);
 	};
+
+	// 新增人员
+	const [addPersonnelOpen, setAddPersonnelOpen] = useState(false);
+
+	const [addPersonnelLoading, setAddPersonnelLoading] = useState(false);
+
+	const addPersonnel = () => {
+		setAddPersonnelOpen(true);
+	};
+
+	const onOkOrCancel: OnOkOrCancelType = (type) => {
+		if (type === 'ok') {
+			setAddPersonnelOpen(false);
+		} else if (type === 'cancel') {
+			setAddPersonnelOpen(false);
+		}
+	};
+
 	return (
 		<div className="my-4 p-4 border-2 border-blue-100 shadow-xl">
 			{avatars.map((item, i) => {
@@ -24,7 +47,13 @@ const TeamMembers = () => {
 					</Tooltip>
 				);
 			})}
-			<Avatar className="cursor-pointer">+</Avatar>
+			<Avatar className="cursor-pointer" onClick={addPersonnel}>
+				+
+			</Avatar>
+			<AddPersonnel
+				addPersonnelOpen={addPersonnelOpen}
+				addPersonnelLoading={addPersonnelLoading}
+				onOkOrCancel={onOkOrCancel}></AddPersonnel>
 		</div>
 	);
 };

@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, Badge, List, Space, Tooltip } from 'antd';
+import { Avatar, Badge, List, Progress, Space, Tooltip } from 'antd';
 import Commoent from './Comment';
 
 const RightContent = () => {
@@ -15,8 +15,12 @@ const RightContent = () => {
 		setOpenComment(true);
 	};
 
-	const closeComment = () => {
-		setOpenComment(false);
+	const onCommoentOkOrCancel = (type: string) => {
+		if (type === 'ok') {
+			setOpenComment(false);
+		} else if (type === 'cancel') {
+			setOpenComment(false);
+		}
 	};
 
 	return (
@@ -46,34 +50,30 @@ const RightContent = () => {
 							description={item.description}
 						/>
 
-						<div className="bg-blue-100 mb-2 flex justify-between px-2">
-							<div>1、sdfsdf</div>
-							<div>
-								<span className="mr-4">ly</span> 90%
+						<div className="bg-blue-100 mb-2 flex justify-between px-2 p-2">
+							<div>1、</div>
+							<div className="flex-1">
+								是的是的多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多所多
 							</div>
-						</div>
-						<div className="bg-blue-100 mb-2 flex justify-between px-2">
-							<div>1、sdfsdf</div>
-							<div>
-								<span className="mr-4">ly</span> 90%
-							</div>
-						</div>
-						<div className="bg-blue-100 mb-2 flex justify-between px-2">
-							<div>1、sdfsdf</div>
-							<div>
-								<span className="mr-4">ly</span> 90%
-							</div>
-						</div>
-						<div className="bg-blue-100 mb-2 flex justify-between px-2">
-							<div>1、sdfsdf</div>
-							<div>
-								<span className="mr-4">ly</span> 90%
+							<div className="w-16 text-center">
+								<span className="mr-4">ly</span>
+								<span>
+									<Progress
+										type="circle"
+										strokeColor={{
+											'0%': '#108ee9',
+											'100%': '#87d068'
+										}}
+										width={30}
+										percent={90}
+									/>
+								</span>
 							</div>
 						</div>
 					</List.Item>
 				)}
 			/>
-			<Commoent openComment={openComment} loadingComment={loadingComment} handleCancel={closeComment} />
+			<Commoent openComment={openComment} loadingComment={loadingComment} onOkOrCancel={onCommoentOkOrCancel} />
 		</div>
 	);
 };

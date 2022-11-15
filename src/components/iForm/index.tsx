@@ -21,7 +21,7 @@ export type IformLayout = 'horizontal' | 'vertical' | 'inline';
  * @param self 是否自适应
  */
 interface IformProps<T, F> {
-	formList?: T;
+	formList: T;
 	form: FormInstance<F>;
 	onFinish?: (type?: string) => void;
 	formLayout?: IformLayout;

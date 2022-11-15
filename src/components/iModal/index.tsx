@@ -20,13 +20,17 @@ export interface ImodalProps {
 	title: string;
 	open: boolean;
 	confirmLoading: boolean;
-	handleOk: () => void;
-	handleCancel: () => void;
+	onOkOrCancel: OnOkOrCancelType;
 	width?: string | number;
 	maskClosable?: boolean;
 	destroyOnClose?: boolean;
 	children: ReactNode;
 }
+
+export type OnOkOrCancelType = (type: 'ok' | 'cancel') => void;
+
+const OK = 'ok';
+const CANCEL = 'cancel';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -34,13 +38,18 @@ const Imodal: FC<ImodalProps> = ({
 	children,
 	title,
 	open,
-	handleOk,
 	confirmLoading,
-	handleCancel,
+	onOkOrCancel,
 	width = '500px',
 	maskClosable = false,
 	destroyOnClose = true
 }) => {
+	const handleOk = () => {
+		onOkOrCancel(OK);
+	};
+	const handleCancel = () => {
+		onOkOrCancel(CANCEL);
+	};
 	return (
 		<div>
 			<Modal

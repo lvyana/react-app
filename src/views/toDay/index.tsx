@@ -6,17 +6,20 @@
 import React from 'react';
 import LeftCalendar from './components/LeftCalendar';
 import RightContent from './components/RightContent';
+import ToDayReducer from './context';
 
 const index = () => {
 	return (
-		<div className="flex justify-between gap-x-8">
-			<div className="w-2/5  h-full">
-				<LeftCalendar></LeftCalendar>
+		<ToDayReducer>
+			<div className="flex justify-between gap-x-8">
+				<div className="w-2/5  h-full">
+					<LeftCalendar></LeftCalendar>
+				</div>
+				<div className="w-3/5">
+					<RightContent></RightContent>
+				</div>
 			</div>
-			<div className="w-3/5">
-				<RightContent></RightContent>
-			</div>
-		</div>
+		</ToDayReducer>
 	);
 };
 
