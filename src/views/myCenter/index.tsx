@@ -5,7 +5,7 @@ import { Avatar } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
 import EditPhoto from './components/EditPhoto';
 import ResetPassword from './components/ResetPassword';
-import Imodal from '@/components/iModal';
+import Imodal, { OnOkOrCancelType } from '@/components/iModal';
 
 /**
  *
@@ -24,7 +24,13 @@ const MyCenter: FC = () => {
 		setPhotoFinish(initImg as string);
 		setIsModalOpen(true);
 	};
-
+	const onOkOrCancel: OnOkOrCancelType = (type) => {
+		if (type === 'ok') {
+			handleOk();
+		} else if (type === 'cancel') {
+			handleCancel();
+		}
+	};
 	const handleOk = () => {
 		setConfirmLoading(true);
 		setTimeout(() => {
@@ -48,13 +54,7 @@ const MyCenter: FC = () => {
 				</div>
 				<ResetPassword></ResetPassword>
 			</div>
-			<Imodal
-				title="修改头像"
-				open={isModalOpen}
-				confirmLoading={confirmLoading}
-				handleOk={handleOk}
-				handleCancel={handleCancel}
-				width={800}>
+			<Imodal title="修改头像" open={isModalOpen} confirmLoading={confirmLoading} onOkOrCancel={onOkOrCancel} width={800}>
 				<EditPhoto photoFinish={photoFinish} setPhotoFinish={setPhotoFinish}></EditPhoto>
 			</Imodal>
 		</>

@@ -7,7 +7,7 @@ import React, { FC, useState, useEffect, Key, memo } from 'react';
 import { useAppDispatch } from '@/store/hooks';
 import { getHeaderConfig } from '@/store/reducers/globalConfig';
 import { Checkbox } from 'antd';
-import Imodal from '@/components/iModal';
+import Imodal, { OnOkOrCancelType } from '@/components/iModal';
 import TreeMenu from './TreeMenu';
 import { useHeaderConfigItem } from '@/useHooks/useHeaderConfig';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
@@ -37,6 +37,13 @@ const IheaderConfig: FC<IheaderConfigProps> = ({ type, open, closeHeader }) => {
 
 	const [confirmLoading, setConfirmLoading] = useState(false);
 
+	const onOkOrCancel: OnOkOrCancelType = (type) => {
+		if (type === 'ok') {
+			handleOk();
+		} else if (type === 'cancel') {
+			handleCancel();
+		}
+	};
 	const handleOk = async () => {
 		// console.log(headerConfigItem);
 		// console.log(checkedKeys);
@@ -114,7 +121,7 @@ const IheaderConfig: FC<IheaderConfigProps> = ({ type, open, closeHeader }) => {
 	};
 
 	return (
-		<Imodal title={'编辑表头'} open={open} handleOk={handleOk} handleCancel={handleCancel} confirmLoading={confirmLoading}>
+		<Imodal title={'编辑表头'} open={open} onOkOrCancel={onOkOrCancel} confirmLoading={confirmLoading}>
 			<Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
 				全选
 			</Checkbox>
