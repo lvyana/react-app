@@ -29,7 +29,7 @@ const AddPersonnel: FC<AddPersonnelProps> = ({ addPersonnelOpen, addPersonnelLoa
 			type: 'input',
 			name: 'name',
 			key: 1,
-			label: '姓名',
+			label: '姓名q',
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
