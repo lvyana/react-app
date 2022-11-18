@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { DatePicker, TimePicker } from 'antd';
 import type { FormItemCom } from '../type';
-import type { Moment } from 'moment';
+import type { Dayjs } from 'dayjs';
 import { FormItemMap } from '../type';
 
 const { RangePicker } = DatePicker;
@@ -19,7 +19,7 @@ export const formRangePicker: FormItemMap['rangePicker'] = (item) => {
 };
 
 // 时间
-export const formTimePicker = <T, E extends ((value: Moment | null, dateString: string) => void) | undefined>(item: FormItemCom<T, E>) => {
+export const formTimePicker = <T, E extends ((value: Dayjs | null, dateString: string) => void) | undefined>(item: FormItemCom<T, E>) => {
 	const format = 'HH:mm';
 	return (
 		<TimePicker

@@ -63,12 +63,12 @@ const devServerConfig = () => (config) => {
 module.exports = {
 	devServer: overrideDevServer(watchAll(), devServerConfig()),
 	webpack: override(
-		fixBabelImports('import', {
-			//配置按需加载
-			libraryName: 'antd',
-			libraryDirectory: 'es',
-			style: 'css'
-		}),
+		// fixBabelImports('import', {
+		// 	//配置按需加载
+		// 	libraryName: 'antd',
+		// 	libraryDirectory: 'es',
+		// 	style: 'css'
+		// }),
 		useBabelRc(),
 		// addLessLoader({
 		// 	// 这里可以添加less的其他配置

@@ -5,10 +5,8 @@
  */
 import React, { FC } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
-
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import FORM_ITEM_MAP from './components/formItemMap';
 import type { FormItemParam, FormItem } from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
@@ -87,7 +85,7 @@ const Iform = <T extends FormItem[], F extends object>({
 		if (item.type === 'rangePicker') {
 			return FORM_ITEM_MAP[item.type](item);
 		}
-		if (item.type === 'TimePicker') {
+		if (item.type === 'timePicker') {
 			return FORM_ITEM_MAP[item.type](item);
 		}
 		if (item.type === 'timeRangePicker') {
@@ -128,7 +126,7 @@ const Iform = <T extends FormItem[], F extends object>({
 
 	return (
 		<>
-			<Form form={form} layout={formLayout} size={size as SizeType}>
+			<Form form={form} layout={formLayout} size={size}>
 				<Row>
 					{formList &&
 						formList.map((item) => {

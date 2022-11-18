@@ -18,7 +18,18 @@ interface FormParams {
 	name: string;
 }
 
-type FormList = [FormItemParam<never, never>];
+type FormList = [FormItemParam<never, never>, FormItemParam<PostOptions, never>];
+type PostOptions = {
+	value: number;
+	label: string;
+};
+
+const POST_OPTIONS: PostOptions[] = [
+	{
+		value: 1,
+		label: '前端'
+	}
+];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const AddPersonnel: FC<AddPersonnelProps> = ({ addPersonnelOpen, addPersonnelLoading, onOkOrCancel }) => {
@@ -29,7 +40,20 @@ const AddPersonnel: FC<AddPersonnelProps> = ({ addPersonnelOpen, addPersonnelLoa
 			type: 'input',
 			name: 'name',
 			key: 1,
-			label: '姓名q',
+			label: '姓名',
+			span: 12,
+			layout: {
+				labelCol: { span: 6 },
+				wrapperCol: { span: 18 }
+			}
+		},
+		{
+			type: 'select',
+			name: 'post',
+			key: 1,
+			label: '岗位',
+			option: POST_OPTIONS,
+			span: 12,
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }

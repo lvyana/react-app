@@ -1,15 +1,16 @@
 import React, { ReactNode, ChangeEventHandler } from 'react';
 import { Rule } from 'rc-field-form/lib/interface';
-import { LabelTooltipType } from 'antd/lib/form/FormItemLabel';
-import type { Moment } from 'moment';
-import { BaseOptionType, DefaultOptionType } from 'antd/lib/select';
-import { CheckboxOptionType, RadioChangeEvent } from 'antd';
-import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { SwitchChangeEventHandler } from 'antd/lib/switch';
+import type { Dayjs } from 'dayjs';
+import { CheckboxOptionType, RadioChangeEvent, TooltipProps } from 'antd';
 import { RangeValue } from './components/Idate';
 import { IformButton } from './components/ibutton';
 import { formRadioOptionsParams } from './components/Iradio';
 import { ChangeEventExtra } from './components/ItreeSelect';
+import { BaseOptionType } from 'antd/es/cascader';
+import { CheckboxValueType } from 'antd/es/checkbox/Group';
+import { DefaultOptionType } from 'antd/es/select';
+import { SwitchChangeEventHandler } from 'antd/es/switch';
+import { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 
 /**
  * @FormItemMap 表单组件集合
@@ -20,7 +21,7 @@ export interface FormItemMap {
 		item: FormItemCom<T, E>
 	) => JSX.Element;
 	treeselect: <
-		T extends DefaultOptionType,
+		T extends BaseOptionType | DefaultOptionType,
 		E extends ((value: (string | number)[], labelList: ReactNode[], extra: ChangeEventExtra) => void) | undefined
 	>(
 		item: FormItemCom<T, E>
@@ -28,16 +29,12 @@ export interface FormItemMap {
 	cascader: <T extends BaseOptionType, E extends (value: unknown[], selectedOptions: BaseOptionType) => void>(
 		item: FormItemCom<T, E>
 	) => JSX.Element;
-	datePicker: <T, E extends ((value: moment.Moment | null, dateString: string) => void) | undefined>(
+	datePicker: <T, E extends ((value: Dayjs | null, dateString: string) => void) | undefined>(item: FormItemCom<T, E>) => JSX.Element;
+	rangePicker: <T, E extends (dates: RangeValue<Dayjs>, dateStrings: [string, string]) => void | undefined>(
 		item: FormItemCom<T, E>
 	) => JSX.Element;
-	rangePicker: <T, E extends (dates: RangeValue<moment.Moment>, dateStrings: [string, string]) => void | undefined>(
-		item: FormItemCom<T, E>
-	) => JSX.Element;
-	TimePicker: <T, E extends ((value: moment.Moment | null, dateString: string) => void) | undefined>(
-		item: FormItemCom<T, E>
-	) => JSX.Element;
-	timeRangePicker: <T, E extends ((values: RangeValue<moment.Moment>, formatString: [string, string]) => void) | undefined>(
+	timePicker: <T, E extends ((value: Dayjs | null, dateString: string) => void) | undefined>(item: FormItemCom<T, E>) => JSX.Element;
+	timeRangePicker: <T, E extends ((values: RangeValue<Dayjs>, formatString: [string, string]) => void) | undefined>(
 		item: FormItemCom<T, E>
 	) => JSX.Element;
 	inputNumber: <T, E extends ((value: 0 | null) => void) | undefined>(item: FormItemCom<T, E>) => JSX.Element;
@@ -87,7 +84,7 @@ export interface FormItemCom<T, E> {
 	fieldNames?: fieldNamesType;
 	maxLength?: number;
 	style?: React.CSSProperties;
-	disabledDate?: (currentDate: Moment) => boolean;
+	disabledDate?: (currentDate: Dayjs) => boolean;
 	handleSearch?: (value: string) => void;
 	children?: ReactNode;
 }

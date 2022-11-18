@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { Button, Dropdown, Tooltip, Menu } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
 import styles from './index.module.scss';

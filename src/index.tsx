@@ -23,10 +23,10 @@ import store from './store';
 // reportWebVitals();
 // import enUS from 'antd/lib/locale/en_US';
 // 中文
-import zhCN from 'antd/lib/locale/zh_CN';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-moment.locale('en');
+import zhCN from 'antd/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('en');
 
 function render() {
 	const container = document.querySelector('#root') as Element;

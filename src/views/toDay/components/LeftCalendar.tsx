@@ -2,10 +2,10 @@ import React from 'react';
 import { Badge, BadgeProps, Calendar } from 'antd';
 import type { CalendarMode } from 'antd/es/calendar/generateCalendar';
 import TeamMembers from './TeamMembers';
-import type { Moment } from 'moment';
+import type { Dayjs } from 'dayjs';
 
 const LeftCalendar = () => {
-	const monthCellRender = (value: Moment) => {
+	const monthCellRender = (value: Dayjs) => {
 		const num = getMonthData(value);
 		return num ? (
 			<div className="notes-month">
@@ -15,7 +15,7 @@ const LeftCalendar = () => {
 		) : null;
 	};
 
-	const dateCellRender = (value: Moment) => {
+	const dateCellRender = (value: Dayjs) => {
 		const listData = getListData(value);
 		return (
 			<div className="events">
@@ -36,7 +36,7 @@ const LeftCalendar = () => {
 	);
 };
 
-const getListData = (value: Moment) => {
+const getListData = (value: Dayjs) => {
 	let listData;
 	switch (value.date()) {
 		case 8:
@@ -68,7 +68,7 @@ const getListData = (value: Moment) => {
 	return listData || [];
 };
 
-const getMonthData = (value: Moment) => {
+const getMonthData = (value: Dayjs) => {
 	if (value.month() === 8) {
 		return 1394;
 	}
