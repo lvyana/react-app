@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout, BackTop } from 'antd';
+import { Layout, FloatButton, theme } from 'antd';
 import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
@@ -15,9 +15,13 @@ import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
 import './index.scss';
 
+const { useToken } = theme;
+
 const { Header, Content, Sider } = Layout;
 
 const Layouts = () => {
+	const { token } = useToken();
+
 	useApi();
 
 	const { isShow } = useResponsiveMin(600);
@@ -52,17 +56,21 @@ const Layouts = () => {
 	return (
 		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
-				<Sider className="Layout-Transition" collapsible collapsed={collapsed} onCollapse={onCollapse}>
+				<Sider
+					className="Layout-Transition"
+					zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
+					style={{ backgroundColor: token.colorBgBase }}
+					collapsible
+					collapsed={collapsed}
+					onCollapse={onCollapse}>
 					<div className="Layout-logo" />
 					<Menulist />
 				</Sider>
 			</IresponsiveMin>
 
 			<Layout className="Layout-Transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
-				<div
-					className="Layout-Transition"
-					style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)`, backgroundColor: '#f0f2f5' }}>
-					<Header className="Layout-Bgc" style={{ padding: 0 }}>
+				<div className="Layout-Transition" style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)` }}>
+					<Header className="Layout-Bgc" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>
 					<TabsMain></TabsMain>
@@ -71,7 +79,7 @@ const Layouts = () => {
 					<Outlet />
 				</Content>
 			</Layout>
-			<BackTop visibilityHeight={200} />
+			<FloatButton.BackTop visibilityHeight={200} />
 		</Layout>
 	);
 };

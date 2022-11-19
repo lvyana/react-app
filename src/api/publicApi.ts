@@ -14,7 +14,7 @@ export interface statusDataProps {
 }
 
 export const status = () => {
-	return axios<statusDataProps[]>({
+	return axios<never, statusDataProps[]>({
 		url: `/status`,
 		method: 'get'
 	});
@@ -24,7 +24,7 @@ export const status = () => {
  * 获取表头配置
  */
 export const headerConfig = () => {
-	return axios<headerConfigListType[]>({
+	return axios<never, headerConfigListType[]>({
 		url: `/getHeader`,
 		method: 'get'
 	});

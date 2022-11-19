@@ -44,7 +44,7 @@ const Crumb = () => {
 			<Breadcrumb>
 				{currentRouter.map((item, i) => {
 					return item.children ? (
-						<Breadcrumb.Item key={item.path} overlay={CrumbMenus(item.children, currentRouter[i + 1]?.path)}>
+						<Breadcrumb.Item key={item.path} menu={{ items: CrumbMenus(item.children), selectedKeys: [currentRouter[i + 1]?.path] }}>
 							<a>{item.title}</a>
 						</Breadcrumb.Item>
 					) : (
@@ -56,19 +56,15 @@ const Crumb = () => {
 	);
 };
 
-const CrumbMenus = (menu: Router[], current: string) => {
-	return (
-		<Menu
-			selectedKeys={[current]}
-			items={menu.reduce((acc: MenuItem[], item) => {
-				if (item.show === false) {
-					return acc;
-				} else {
-					let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path);
-					return [...acc, newItem];
-				}
-			}, [])}></Menu>
-	);
+const CrumbMenus = (menu: Router[]) => {
+	return menu.reduce((acc: MenuItem[], item) => {
+		if (item.show === false) {
+			return acc;
+		} else {
+			let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path);
+			return [...acc, newItem];
+		}
+	}, []);
 };
 
 const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {

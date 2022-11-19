@@ -9,6 +9,7 @@ import { Tabs } from 'antd';
 import menuList, { Router } from '@/layout/menuList/routerData';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
+import useThemeHooks from '@/theme/useThemeHooks';
 
 type ACTION = 'add' | 'remove';
 
@@ -16,10 +17,14 @@ interface PanesParams {
 	title: string | undefined;
 	path: string;
 	disabled: boolean;
+	closable: boolean;
 }
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TabsMain = () => {
+	const [token] = useThemeHooks();
+
 	const [panes, setPanes] = useState<Array<PanesParams>>([]);
 	const [activeKey, setActiveKey] = useState<string>();
 	const location = useLocation();
@@ -49,12 +54,12 @@ const TabsMain = () => {
 		//优化 or (if (!title) return;)
 
 		if (panes.length === 0) {
-			setPanes([{ title, path: pathname, disabled: true }]);
+			setPanes([{ title, path: pathname, disabled: false, closable: false }]);
 		} else {
 			const isRepetition = panes.findIndex((item) => item.path === pathname);
 
 			if (isRepetition === -1) {
-				setPanes([...panes, { title, path: pathname, disabled: false }]);
+				setPanes([...panes, { title, path: pathname, disabled: false, closable: true }]);
 			}
 		}
 	}, [location]);
@@ -80,18 +85,19 @@ const TabsMain = () => {
 	return (
 		<>
 			<Tabs
+				style={{ color: token.colorTextBase }}
 				hideAdd
 				onChange={onChange}
 				activeKey={activeKey}
 				type="editable-card"
 				onEdit={onEdit}
 				size={size}
-				items={panes.map((item) => getTabs(item.title, item.path, item.disabled))}></Tabs>
+				items={panes.map((item) => getTabs(item.title, item.path, item.disabled, item.closable))}></Tabs>
 		</>
 	);
 };
 export default TabsMain;
 
-const getTabs = (label: ReactNode, key: string, disabled: boolean) => {
-	return { label, key, disabled };
+const getTabs = (label: ReactNode, key: string, disabled: boolean, closable: boolean) => {
+	return { label, key, disabled, closable };
 };

@@ -32,7 +32,7 @@ interface IdropdownProps extends IbtFun {
 const Idropdown: FC<IdropdownProps> = ({ btFun, onOpenChange, buttonEvent }) => {
 	return (
 		<>
-			<Dropdown overlay={Menus({ btFun, buttonEvent })} placement="bottom" arrow onOpenChange={onOpenChange} trigger={['click']}>
+			<Dropdown menu={{ items: Menus({ btFun, buttonEvent }) }} placement="bottom" arrow onOpenChange={onOpenChange} trigger={['click']}>
 				{/* <EllipsisOutlined /> */}
 				<Button type="link" icon={<EllipsisOutlined />} />
 			</Dropdown>
@@ -41,13 +41,10 @@ const Idropdown: FC<IdropdownProps> = ({ btFun, onOpenChange, buttonEvent }) => 
 };
 
 const Menus = ({ btFun, buttonEvent }: IbtFun) => {
-	return (
-		<Menu
-			items={btFun.reduce((acc: MenuItem[], item, i) => {
-				let newItem = getItem(<Ibutton buttonList={[item]} editBtn={() => buttonEvent(item.type, item)}></Ibutton>, i);
-				return [...acc, newItem];
-			}, [])}></Menu>
-	);
+	return btFun.reduce((acc: MenuItem[], item, i) => {
+		let newItem = getItem(<Ibutton buttonList={[item]} editBtn={() => buttonEvent(item.type, item)}></Ibutton>, i);
+		return [...acc, newItem];
+	}, []);
 };
 
 export default Idropdown;

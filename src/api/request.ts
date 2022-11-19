@@ -120,10 +120,10 @@ export function downloadGet(url: string, filename: string) {
 /**
  * 请求
  */
-interface RequestParams<T> {
+interface RequestParams<R> {
 	url: string;
 	method: Method;
-	data?: object;
+	data?: R;
 	config?: AxiosRequestConfig;
 }
 /**
@@ -136,8 +136,8 @@ type Data<T> = {
 	total: number;
 };
 
-const request = <T>({ url, method, data, config }: RequestParams<T>) => {
-	return instance.request<T, Data<T>>({
+const request = <T, R>({ url, method, data, config }: RequestParams<T>) => {
+	return instance.request<R, Data<R>>({
 		url,
 		method,
 		[method.toLowerCase() === 'get' ? 'params' : 'data']: data,

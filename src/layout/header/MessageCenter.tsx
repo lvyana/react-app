@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
-import { Button, Col, Dropdown, MenuProps, Row, Tabs } from 'antd';
+import { Button, Col, Popover, Row, Tabs } from 'antd';
 import Icard from '@/components/iCard';
 import Lists from './compoment/Lists';
 import styles from './index.module.scss';
@@ -13,16 +13,16 @@ import styles from './index.module.scss';
 const MessageCenter = () => {
 	const onChange = (key: string) => {};
 
-	const tabsList = () => {
+	const TabsList = () => {
 		const items = [
 			{ label: '通知', key: 'item-1', children: <Lists></Lists> },
 			{ label: '消息', key: 'item-2', children: <Lists></Lists> }
 		];
 
 		return (
-			<Icard className={`${styles['Layout-Tabs-center']} Box-Shadow`} style={{ padding: 0 }}>
+			<div className={`${styles['Layout-Tabs-center']}`}>
 				<Tabs defaultActiveKey="1" onChange={onChange} items={items}></Tabs>
-				<Row>
+				<Row className="mt-1">
 					<Col span={12}>
 						<Button style={{ width: '100%' }} className={`${styles['Layout-Tabs-btn-left']}`}>
 							全部已读
@@ -34,7 +34,7 @@ const MessageCenter = () => {
 						</Button>
 					</Col>
 				</Row>
-			</Icard>
+			</div>
 		);
 	};
 
@@ -46,15 +46,9 @@ const MessageCenter = () => {
 
 	return (
 		<>
-			<Dropdown
-				open={open}
-				onOpenChange={handleOpenChange}
-				overlay={tabsList}
-				overlayClassName={`${styles['Layout-Dropdown']} ${styles['Layout-Dropdown-Widht']}`}
-				placement="bottomLeft"
-				trigger={['click']}>
+			<Popover placement="topLeft" content={<TabsList></TabsList>} trigger="click">
 				<Button type="link" icon={<BellOutlined />}></Button>
-			</Dropdown>
+			</Popover>
 		</>
 	);
 };

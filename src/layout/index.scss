@@ -16,11 +16,6 @@
     position: relative;
     padding: 8px;
     margin-top: 116px;
-    background-color: #f0f2f5 !important;
-  }
-
-  .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
-    background: #fff;
   }
 
   [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-content {
@@ -28,15 +23,9 @@
     margin-top: -8px;
   }
 
-  /* header头部颜色 */
-  .Layout-Bgc {
-    background: #fff;
-  }
-
   .ant-layout-sider {
     position: fixed;
     left: 0;
-    background: #fff;
   }
 
   .ant-layout-sider-children {
@@ -47,10 +36,6 @@
 
   .ant-layout-sider-children::-webkit-scrollbar {
     display: none; /* Chrome Safari */
-  }
-
-  .ant-tabs {
-    margin: 6px;
   }
 
   .ant-tabs-top > .ant-tabs-nav,

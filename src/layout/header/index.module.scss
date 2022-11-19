@@ -42,9 +42,8 @@
 
 .Layout-Tabs-List {
   :global {
-    .ant-list-bordered {
-      border-left: 0;
-      border-right: 0;
+    :where(.css-dev-only-do-not-override-1deae7r).ant-list-bordered {
+      border: 0;
     }
 
     .ant-list-item {

@@ -23,10 +23,7 @@ import store from './store';
 // reportWebVitals();
 // import enUS from 'antd/lib/locale/en_US';
 // 中文
-import zhCN from 'antd/locale/zh_CN';
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
-dayjs.locale('en');
+import Theme from '@/theme';
 
 function render() {
 	const container = document.querySelector('#root') as Element;
@@ -34,15 +31,15 @@ function render() {
 	const root = ReactDOM.createRoot(container);
 
 	root.render(
-		<ConfigProvider locale={zhCN}>
-			<Provider store={store}>
+		<Provider store={store}>
+			<Theme>
 				<BrowserRouter basename={'/'}>
 					<ErrorBoundary>
 						<App />
 					</ErrorBoundary>
 				</BrowserRouter>
-			</Provider>
-		</ConfigProvider>
+			</Theme>
+		</Provider>
 	);
 }
 

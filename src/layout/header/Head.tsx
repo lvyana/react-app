@@ -15,14 +15,11 @@ const Head = () => {
 	const navigate = useNavigate();
 	const photo = useAppSelector(GET_SELECTOR_PHOTO);
 	// 头像功能
-	const menu = () => (
-		<Menu
-			onClick={handleMenuClick}
-			items={[
-				{ key: '1', label: '个人中心' },
-				{ key: '2', label: '退出登录' }
-			]}></Menu>
-	);
+	const menu = [
+		{ key: '1', label: '个人中心' },
+		{ key: '2', label: '退出登录' }
+	];
+
 	const handleMenuClick = (e: { key: string }) => {
 		if (e.key === '1') {
 			navigate('/mycenter');
@@ -38,7 +35,11 @@ const Head = () => {
 	return (
 		<>
 			<Button type="link" style={{ padding: '4px 5px' }}>
-				<Dropdown overlay={menu} placement="bottom" trigger={['click']} overlayClassName={styles['Layout-Dropdown']}>
+				<Dropdown
+					menu={{ items: menu, onClick: handleMenuClick }}
+					placement="bottom"
+					trigger={['click']}
+					overlayClassName={styles['Layout-Dropdown']}>
 					<div>
 						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
 						<span className="mr5 ml5">admin</span>

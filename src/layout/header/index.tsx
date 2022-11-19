@@ -12,6 +12,7 @@ import Crumb from './Crumb';
 import Search from './Search';
 import Head from './Head';
 import MessageCenter from './MessageCenter';
+import ToggleTheme from './ToggleTheme';
 
 const Headerregion = () => {
 	return (
@@ -27,6 +28,8 @@ const Headerregion = () => {
 							<Col>
 								{/* 搜索 */}
 								<Search></Search>
+								{/* 切换颜色主题 */}
+								<ToggleTheme></ToggleTheme>
 								{/* 全屏 */}
 								<Fullscreen></Fullscreen>
 								{/* 组件大小 */}

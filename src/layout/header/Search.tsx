@@ -38,7 +38,7 @@ const HeaderSearch = () => {
 	return (
 		<>
 			{search ? (
-				<Dropdown overlay={menu(searchList)}>
+				<Dropdown menu={{ items: menu(searchList) }}>
 					<Input
 						placeholder="搜索"
 						ref={searchRef}
@@ -66,35 +66,28 @@ const suffix = (
 );
 
 const menu = (searchList: object[] | null) => {
-	return (
-		<>
-			{searchList?.length ? (
-				<Menu
-					items={[
-						{
-							key: '1',
-							label: (
-								<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-									1st menu item
-								</a>
-							)
-						},
-						{
-							key: '2',
-							label: (
-								<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-									3rd menu item (disabled)
-								</a>
-							)
-						},
-						{
-							key: '3',
-							label: 'a danger item'
-						}
-					]}></Menu>
-			) : (
-				''
-			)}
-		</>
-	);
+	return searchList?.length
+		? [
+				{
+					key: '1',
+					label: (
+						<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+							1st menu item
+						</a>
+					)
+				},
+				{
+					key: '2',
+					label: (
+						<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+							3rd menu item (disabled)
+						</a>
+					)
+				},
+				{
+					key: '3',
+					label: 'a danger item'
+				}
+		  ]
+		: [];
 };

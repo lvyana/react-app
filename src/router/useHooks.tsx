@@ -26,7 +26,7 @@ const useRouterHooks = () => {
 	// 判断是否有菜单权限
 	const isMenu = useMemo(() => {
 		return (
-			flatRouters.findIndex((item) => pathname.indexOf(item.path) > -1) > -1 ||
+			flatRouters.findIndex((item) => item.path.indexOf(pathname) > -1) > -1 ||
 			flatRouters.length === 0 ||
 			pathname === '/404' ||
 			pathname === '/'
