@@ -2,9 +2,9 @@ import { Avatar, Badge, Form, Tooltip } from 'antd';
 import React, { useContext, useMemo, useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import { OnOkOrCancelType } from '@/components/iModal/index';
-import { toDayContext } from '../context/index';
+import { toDayContext } from '../../context/index';
 import AddPersonnel, { FormParams } from './AddPersonnel';
-import EditPersonnel from './EditPersonnel';
+import EditPersonnel from '../editPersonnel';
 
 const TeamMembers = () => {
 	const toDayContextValue = useContext(toDayContext);

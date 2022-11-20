@@ -13,7 +13,7 @@ const MyUseState = () => {
 
 		setfirst((value) => value + 1);
 		setfirst((value) => {
-			console.log(value);
+			// console.log(value);
 
 			return value + 1;
 		});
