@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, Badge, List, Progress, Space, Tooltip } from 'antd';
+import { Avatar, Badge, List, Progress, Space, Tag, Tooltip } from 'antd';
 import Commoent from './Comment';
 
 const RightContent = () => {
@@ -55,8 +55,10 @@ const RightContent = () => {
 							<div className="flex-1">
 								是的是的多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多所多
 							</div>
-							<div className="w-16 text-center">
-								<span className="mr-4">ly</span>
+							<div className="w-20 text-center">
+								<span className="mr-1">
+									<Tag color="#3b79d0">ly</Tag>
+								</span>
 								<span>
 									<Progress
 										type="circle"

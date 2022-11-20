@@ -4,8 +4,8 @@
  * @date 2022年11月1日
  */
 import React from 'react';
-import LeftCalendar from './components/LeftCalendar';
-import RightContent from './components/RightContent';
+import LeftCalendar from './components/dateAndPersonnel';
+import RightContent from './components/taskList';
 import ToDayReducer from './context';
 
 const index = () => {

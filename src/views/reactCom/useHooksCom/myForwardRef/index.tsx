@@ -12,9 +12,8 @@ const MyForwardRef = () => {
 	const ordinary = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		console.log(ordinary.current);
-
-		console.log(hoc.current);
+		// console.log(ordinary.current);
+		// console.log(hoc.current);
 	}, []);
 
 	const hoc = useRef<HTMLDivElement>(null);
