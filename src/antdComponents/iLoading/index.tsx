@@ -28,7 +28,7 @@ const Loading: FC<Iprops> = ({ children, loading }) => {
 	} else {
 		return (
 			<div className={styles['Loading-Example']}>
-				<Spin indicator={antIcon} delay={200} style={{ backgroundColor: '#fff' }}></Spin>
+				<Spin indicator={antIcon} delay={200} style={{}}></Spin>
 			</div>
 		);
 	}

@@ -18,7 +18,7 @@ const Expenses = () => {
 
 	const [form] = Form.useForm<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>();
 
-	const { expensesTableData, setExpensesTableData, total, getTabelData } = useTabelData();
+	const { expensesTableData, setExpensesTableData, total, getTabelData, loading } = useTabelData();
 
 	// 缓存
 	const { initValue, setValue } = useKeepAlive();
@@ -49,7 +49,7 @@ const Expenses = () => {
 			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
-				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} />
+				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} loading={loading} />
 				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
 			</Icard>
 		</div>

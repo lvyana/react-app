@@ -24,7 +24,7 @@ const MyUseRouter = () => {
 			<div>useParams()</div>
 			<div>1. 作用：回当前匹配路由的`params`参数，类似于5.x中的`match.params`。</div>
 			<LazyLoadImage
-				effect="blur"
+				// effect="blur"
 				placeholderSrc={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'}
 				src={img88}
 				height={400}
@@ -38,7 +38,7 @@ const MyUseRouter = () => {
 			<div>2. 返回一个包含两个值的数组，内容分别为：当前的seaech参数、更新search的函数。</div>
 
 			<LazyLoadImage
-				effect="blur"
+				// effect="blur"
 				placeholderSrc={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'}
 				src={img4}
 				height={400}

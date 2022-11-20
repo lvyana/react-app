@@ -9,14 +9,18 @@ const useTabelData = () => {
 
 	const [total, setTotal] = useState(0);
 
+	const [loading, setLoading] = useState(false);
+
 	const getTabelData = async (params: TabelDataParams) => {
+		setLoading(true);
 		const res = await tabelData({ ...params });
 		const { data, total } = res;
 		setExpensesTableData(data);
 		setTotal(total);
+		setLoading(false);
 	};
 
-	return { expensesTableData, setExpensesTableData, total, getTabelData };
+	return { expensesTableData, setExpensesTableData, total, getTabelData, loading };
 };
 
 export { useTabelData };
