@@ -16,12 +16,18 @@ export const formButton: FormItemMap['button'] = (item, onFinish) => {
 			{item.option?.map((value, i) => {
 				return (
 					<Col key={i} className="ml10">
-						<Button
-							type={value.BTtype}
-							onClick={() => onFinish && onFinish(value.type)}
-							icon={value.iconType && <IconFont type={value.iconType} />}>
-							{value.name}
-						</Button>
+						{value.iconType ? (
+							<Button
+								type={value.BTtype}
+								onClick={() => onFinish && onFinish(value.type)}
+								icon={value.iconType && <IconFont type={value.iconType} />}>
+								{value.name}
+							</Button>
+						) : (
+							<Button type={value.BTtype} onClick={() => onFinish && onFinish(value.type)}>
+								{value.name}
+							</Button>
+						)}
 					</Col>
 				);
 			})}

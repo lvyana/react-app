@@ -10,19 +10,19 @@ const menuList: Router[] = [
 		title: 'antd',
 		path: '/antd',
 		key: '3',
-		icon: 'icon-bingtu-huanxing',
+		icon: 'icon-baohu',
 		children: [
 			{
 				title: 'expenses',
 				path: '/antd/expenses',
 				key: '1',
-				icon: 'icon-tiaoxingtu-duidie'
+				icon: 'icon-yinle'
 			},
 			{
 				title: '动态表单',
 				path: '/antd/dynamicform',
 				key: '2',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-chongzhizhongxin'
 			}
 		]
 	},
@@ -31,73 +31,73 @@ const menuList: Router[] = [
 		title: 'react',
 		path: '/react',
 		key: '3',
-		icon: 'icon-bingtu-huanxing',
+		icon: 'icon-qianbao',
 		children: [
 			{
 				title: 'MyUseState',
 				path: '/react/MyUseState',
 				key: '19',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-kongjian'
 			},
 			{
 				title: 'MyUseEffect',
 				path: '/react/MyUseEffect',
 				key: '20',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-fenxiangerweima'
 			},
 			{
 				title: 'MyUseLayoutEffect',
 				path: '/react/MyUseLayoutEffect',
 				key: '222',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-wodemaidan'
 			},
 			{
 				title: 'MyUseReducer',
 				path: '/react/MyUseReducer',
 				key: '21',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-gouwu'
 			},
 			{
 				title: 'MyUseContext',
 				path: '/react/MyUseContext',
 				key: '22',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-gouwu'
 			},
 			{
 				title: 'MyUseMemo',
 				path: '/react/MyUseMemo',
 				key: '23',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-zuji'
 			},
 			{
 				title: 'MyUseCallback',
 				path: '/react/MyUseCallback',
 				key: '23',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-ditu'
 			},
 			{
 				title: 'MyUseRef',
 				path: '/react/MyUseRef',
 				key: '24',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-youhuiquan'
 			},
 			{
 				title: 'MySuspense',
 				path: '/react/MySuspense',
 				key: '24',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-dingdan'
 			},
 			{
 				title: 'MyForwardRef',
 				path: '/react/MyForwardRef',
 				key: '26',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-paimai'
 			},
 			{
 				title: 'Rtk',
 				path: '/react/Rtk',
 				key: '25',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-xinpin'
 			}
 		]
 	},
@@ -105,19 +105,19 @@ const menuList: Router[] = [
 		title: 'Router',
 		path: '/router',
 		key: '99',
-		icon: 'icon-chuangyepeixunxiangmu',
+		icon: 'icon-jiushui',
 		children: [
 			{
 				title: 'RouterDemo',
 				path: '/router/RouterDemo',
 				key: '4',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-qiche'
 			},
 			{
 				title: 'MyUseRouter',
 				path: '/router/MyUseRouter',
 				key: '25',
-				icon: 'icon-bingtu-huanxing'
+				icon: 'icon-shangou'
 			}
 		]
 	},
@@ -125,44 +125,44 @@ const menuList: Router[] = [
 		title: 'funCom',
 		path: '/funCom',
 		key: '3',
-		icon: 'icon-bingtu-huanxing',
+		icon: 'icon-yiliao',
 		children: [
 			{
 				title: '富文本',
 				path: '/funCom/richtextedit',
 				key: '4',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-huodong'
 			},
 			{
 				title: 'pdf',
 				path: '/funCom/pdf',
 				key: '5',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-biaoshu'
 			},
 
 			{
 				title: 'Player',
 				path: '/funCom/Player',
 				key: '8',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-shangcheng'
 			},
 			{
 				title: 'gridLayout',
 				path: '/funCom/DemoGridLayout',
 				key: '8',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-jiaoyu'
 			},
 			{
 				title: 'Responsive',
 				path: '/funCom/Responsive',
 				key: '8',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-shenghuo'
 			},
 			{
 				title: 'I18n',
 				path: '/funCom/I18n',
 				key: '8',
-				icon: 'icon-chuangyepeixunxiangmu'
+				icon: 'icon-xinpin'
 			}
 		]
 	},
@@ -172,7 +172,6 @@ const menuList: Router[] = [
 		title: '个人中心',
 		path: '/mycenter',
 		key: '6',
-		icon: 'icon-bingtu-huanxing',
 		show: false
 	}
 ];

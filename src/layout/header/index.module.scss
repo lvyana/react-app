@@ -13,6 +13,10 @@
       justify-content: center;
     }
 
+    :where(.css-dev-only-do-not-override-umqdug).ant-list-bordered {
+      border: 0;
+    }
+
     .ant-tabs-top > .ant-tabs-nav,
     .ant-tabs-bottom > .ant-tabs-nav,
     .ant-tabs-top > div > .ant-tabs-nav,

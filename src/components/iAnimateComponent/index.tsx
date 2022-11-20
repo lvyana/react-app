@@ -40,9 +40,8 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 						<Button
 							type="link"
 							onClick={onMouseLeave}
-							style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)' }}>
-							<UpOutlined />
-						</Button>
+							style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)' }}
+							icon={<UpOutlined />}></Button>
 					</div>
 				</Icard>
 			</div>
