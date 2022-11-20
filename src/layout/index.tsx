@@ -10,7 +10,7 @@ import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
 import useIntro from '@/useHooks/useIntro';
-import { IresponsiveMin, useResponsiveMin } from '@/components/iResponsive';
+import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
 import './index.scss';

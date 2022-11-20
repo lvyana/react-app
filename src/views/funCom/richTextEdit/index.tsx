@@ -7,7 +7,7 @@ import {
 	IEditorConfig, // 编辑器配置
 	IToolbarConfig // 工具栏配置
 } from '@wangeditor/editor';
-import ILookModal from '@/components/iLookModal';
+import ILookModal from '@/antdComponents/iLookModal';
 import Preview from './components/Preview';
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';

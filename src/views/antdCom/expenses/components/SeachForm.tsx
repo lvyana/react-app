@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import IsearchForm, { FormInstance, FormItemParam } from '@/components/iSearchForm';
+import IsearchForm, { FormInstance, FormItemParam } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
-import { IformButton } from '@/components/iForm/components/ibutton';
+import { IformButton } from '@/antdComponents/iForm/components/ibutton';
 import { TabelDataParams } from '../service';
 
 interface Iprops {

@@ -10,7 +10,7 @@ import Auth from './auth';
 
 const Layouts = lazy(() => import('@/layout')); // Layouts
 const Login = lazy(() => import('@/views/login'));
-const NotFound = lazy(() => import('@/components/NotFound'));
+const NotFound = lazy(() => import('@/antdComponents/NotFound'));
 const MyCenter = lazy(() => import('@/views/myCenter')); //个人中心
 
 const Expenses = lazy(() => import('@/views/antdCom/expenses'));

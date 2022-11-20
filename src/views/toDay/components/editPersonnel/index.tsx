@@ -4,8 +4,8 @@
  * @date 2022年11月19日
  */
 import React, { FC } from 'react';
-import Idrawer from '@/components/iDrawer';
-
+import Idrawer from '@/antdComponents/iDrawer';
+import EditPersonnelTable from './EditPersonnelTable';
 interface EditPersonnelProps {
 	open: boolean;
 	onClose: () => void;
@@ -16,9 +16,7 @@ const EditPersonnel: FC<EditPersonnelProps> = ({ open, onClose }) => {
 	return (
 		<>
 			<Idrawer title="调整团队" onClose={onClose} open={open} width={800}>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
+				<EditPersonnelTable></EditPersonnelTable>
 			</Idrawer>
 		</>
 	);

@@ -7,7 +7,7 @@ import React, { FC, useState, useEffect, Key, memo } from 'react';
 import { useAppDispatch } from '@/store/hooks';
 import { getHeaderConfig } from '@/store/reducers/globalConfig';
 import { Checkbox } from 'antd';
-import Imodal, { OnOkOrCancelType } from '@/components/iModal';
+import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 import TreeMenu from './TreeMenu';
 import { useHeaderConfigItem } from '@/useHooks/useHeaderConfig';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';

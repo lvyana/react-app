@@ -4,10 +4,10 @@
  *  @data 日期：2020年4月27日
  */
 import React, { useState } from 'react';
-import Iform from '@/components/iForm';
+import Iform from '@/antdComponents/iForm';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import type { FormItemParam } from '@/components/iForm';
+import type { FormItemParam } from '@/antdComponents/iForm';
 
 type FormListType = [
 	FormItemParam<never, never>,

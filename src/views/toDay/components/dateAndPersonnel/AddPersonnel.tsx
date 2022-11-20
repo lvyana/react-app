@@ -5,8 +5,8 @@
  */
 import React, { FC, useState } from 'react';
 import { Form, FormInstance } from 'antd';
-import Imodal, { OnOkOrCancelType } from '@/components/iModal';
-import Iform, { FormItemParam } from '@/components/iForm';
+import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
+import Iform, { FormItemParam } from '@/antdComponents/iForm';
 
 interface AddPersonnelProps {
 	addPersonnelOpen: boolean;

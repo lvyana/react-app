@@ -4,7 +4,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import ainimateCoponentStyle from './index.module.scss';
 import { useWidth } from '@/useHooks/useScreenSize';
 import { UpOutlined } from '@ant-design/icons';
-import Icard from '@/components/iCard';
+import Icard from '@/antdComponents/iCard';
 
 /**
  * @parmas children 子组件

@@ -4,7 +4,7 @@
  *  @data 日期：2020年11月10日
  */
 import React, { FC } from 'react';
-import Imodal, { OnOkOrCancelType } from '@/components/iModal';
+import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 
 interface CommentProps {
 	openComment: boolean;

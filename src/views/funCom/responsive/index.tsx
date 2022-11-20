@@ -1,5 +1,5 @@
 import React from 'react';
-import { IresponsiveMax, IresponsiveMin } from '@/components/iResponsive';
+import { IresponsiveMax, IresponsiveMin } from '@/pluginComponents/iResponsive';
 /**
  * @url https://github.com/yocontra/react-responsive
  * @returns 响应式

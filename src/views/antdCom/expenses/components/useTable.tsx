@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
-import Itooltip from '@/components/iTooltip';
-import Idropdown, { ButtonItemParams } from '@/components/iDropdown';
-import { ItbClick, AlignType } from '@/components/iTable';
+import Itooltip from '@/antdComponents/iTooltip';
+import Idropdown, { ButtonItemParams } from '@/antdComponents/iDropdown';
+import { ItbClick, AlignType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataResponse } from '../service';
 

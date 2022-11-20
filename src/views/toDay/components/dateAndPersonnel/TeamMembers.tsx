@@ -1,7 +1,7 @@
 import { Avatar, Badge, Form, Tooltip } from 'antd';
 import React, { useContext, useMemo, useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
-import { OnOkOrCancelType } from '@/components/iModal/index';
+import { OnOkOrCancelType } from '@/antdComponents/iModal/index';
 import { toDayContext } from '../../context/index';
 import AddPersonnel, { FormParams } from './AddPersonnel';
 import EditPersonnel from '../editPersonnel';

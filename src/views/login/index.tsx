@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 import { login } from './service';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
-import openNotificationWithIcon from '@/components/iNotification';
+import openNotificationWithIcon from '@/antdComponents/iNotification';
 const { TabPane } = Tabs;
 
 /**

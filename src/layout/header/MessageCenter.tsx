@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
 import { Button, Col, Popover, Row, Tabs } from 'antd';
-import Icard from '@/components/iCard';
+import Icard from '@/antdComponents/iCard';
 import Lists from './compoment/Lists';
 import style from './index.module.scss';
 

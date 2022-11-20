@@ -5,7 +5,7 @@
  */
 import React, { memo } from 'react';
 import { Row, Col } from 'antd';
-import { IresponsiveMin } from '@/components/iResponsive';
+import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 import Fullscreen from './Fullscreen';
 import ModuleSize from './ModuleSize';
 import Crumb from './Crumb';

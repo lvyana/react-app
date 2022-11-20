@@ -9,7 +9,7 @@ import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口
 import { ColumnsType } from 'antd/es/table';
-import { antIcon } from '@/components/iLoading';
+import { antIcon } from '@/antdComponents/iLoading';
 
 /**
  * @param columns 定义表头格式数据
@@ -53,6 +53,7 @@ const Itable = <T extends object>({
 
 	return (
 		<Table
+			bordered={bordered}
 			style={{ marginTop: '10px' }}
 			size={size}
 			columns={columns}

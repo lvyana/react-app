@@ -4,7 +4,7 @@ import './tailwind.css';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ErrorBoundary from '@/components/errorBoundary';
+import ErrorBoundary from '@/antdComponents/errorBoundary';
 
 import App from './App';
 // import 'antd/dist/antd.css';

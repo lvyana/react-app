@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useCallback, useState } from 'react';
 import { Button, Col, Row } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import IheaderConfig, { HeaderType } from '@/components/iEditHeader';
+import IheaderConfig, { HeaderType } from '@/antdComponents/iEditHeader';
 
 interface HeaderEditProps {
 	children?: ReactNode;

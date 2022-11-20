@@ -5,7 +5,7 @@ import { Avatar } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
 import EditPhoto from './components/EditPhoto';
 import ResetPassword from './components/ResetPassword';
-import Imodal, { OnOkOrCancelType } from '@/components/iModal';
+import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 
 /**
  *
