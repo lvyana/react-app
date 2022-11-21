@@ -11,10 +11,13 @@ import FORM_ITEM_MAP from './components/formItemMap';
 import type { FormItemParam, FormItem } from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
+export type OnValuesChange<F> = (changedValues: F, values: F) => void;
 /**
+ * @name 表单参数
  * @param formList 表单json
  * @param form 表单实例
  * @param onFinish 表单确认
+ * @param onValuesChange 表单发生变化
  * @param formLayout 表单格式
  * @param self 是否自适应
  */
@@ -22,6 +25,7 @@ interface IformProps<T, F> {
 	formList: T;
 	form: FormInstance<F>;
 	onFinish?: (type?: string) => void;
+	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
 	self?: boolean;
 }
@@ -33,7 +37,8 @@ const Iform = <T extends FormItem[], F extends object>({
 	form,
 	onFinish,
 	formLayout = 'horizontal',
-	self = false
+	self = false,
+	onValuesChange
 }: IformProps<T, F>) => {
 	const formItem = (item: FormItem) => {
 		if (item.type === 'input') {
@@ -126,7 +131,7 @@ const Iform = <T extends FormItem[], F extends object>({
 
 	return (
 		<>
-			<Form form={form} layout={formLayout} size={size}>
+			<Form form={form} layout={formLayout} size={size} onValuesChange={onValuesChange}>
 				<Row>
 					{formList &&
 						formList.map((item) => {

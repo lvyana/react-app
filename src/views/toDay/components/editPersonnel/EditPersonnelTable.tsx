@@ -3,16 +3,17 @@
  * @user ly
  * @date 2022年11月20日
  */
-import React from 'react';
+import React, { FC } from 'react';
 import Itable, { IcolumnsType } from '@/antdComponents/iTable';
 
-interface DataSourceParams {
+export interface EditPersonnelTableDataParams {
 	key: string;
 	name: string;
 	age: number;
 	address: string;
 }
-const columns: IcolumnsType<DataSourceParams> = [
+
+const columns: IcolumnsType<EditPersonnelTableDataParams> = [
 	{
 		title: '姓名',
 		dataIndex: 'name',
@@ -30,7 +31,7 @@ const columns: IcolumnsType<DataSourceParams> = [
 	}
 ];
 
-const DATA_SOURCE: DataSourceParams[] = [
+const DATA_SOURCE: EditPersonnelTableDataParams[] = [
 	{
 		key: '1',
 		name: '胡彦斌',
@@ -39,12 +40,16 @@ const DATA_SOURCE: DataSourceParams[] = [
 	}
 ];
 
+interface EditPersonnelTableProps {
+	loading: boolean;
+	data: EditPersonnelTableDataParams[];
+}
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const EditPersonnelTable = () => {
+const EditPersonnelTable: FC<EditPersonnelTableProps> = ({ loading, data }) => {
 	return (
 		<div>
-			<Itable<DataSourceParams> columns={columns} data={DATA_SOURCE}></Itable>
+			<Itable<EditPersonnelTableDataParams> rowKey="key" columns={columns} data={data} loading={loading}></Itable>
 		</div>
 	);
 };

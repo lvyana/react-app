@@ -5,6 +5,7 @@
 	"dependencies": {
 		"@antv/g2plot": "^2.4.15",
 		"@reduxjs/toolkit": "^1.8.3",
+		"ahooks": "^3.7.2",
 		"antd": "^5.0.0",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",

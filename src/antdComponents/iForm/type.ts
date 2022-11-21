@@ -1,7 +1,7 @@
 import React, { ReactNode, ChangeEventHandler } from 'react';
 import { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
-import { CheckboxOptionType, RadioChangeEvent, TooltipProps } from 'antd';
+import { CheckboxOptionType, RadioChangeEvent } from 'antd';
 import { RangeValue } from './components/Idate';
 import { IformButton } from './components/ibutton';
 import { formRadioOptionsParams } from './components/Iradio';
@@ -13,7 +13,7 @@ import { SwitchChangeEventHandler } from 'antd/es/switch';
 import { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 
 /**
- * @FormItemMap 表单组件集合
+ * @name 表单组件集合
  */
 export interface FormItemMap {
 	input: <T, E extends ChangeEventHandler<HTMLInputElement> | undefined>(item: FormItemCom<T, E>) => JSX.Element;
@@ -52,7 +52,7 @@ export interface FormItemMap {
 export type FormItemMapType = keyof FormItemMap;
 
 /**
- * @FormItem 表单item参数
+ * @name 表单item参数
  */
 export interface FormItem {
 	show?: boolean;
@@ -62,7 +62,7 @@ export interface FormItem {
 	name: string;
 	valuePropName?: string;
 	label?: string;
-	layout?: LAYOUT;
+	layout?: LayoutParams;
 	labelAlign?: FormLabelAlign;
 	tooltip?: LabelTooltipType;
 	rules?: Rule[];
@@ -77,7 +77,7 @@ export interface FormItemCom<T, E> {
 	disabled?: boolean;
 	onChange?: E;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
-	mode?: MODE;
+	mode?: Mode;
 	placeholder?: string;
 	option?: T[];
 	checkbox?: boolean;
@@ -93,20 +93,20 @@ export interface FormItemParam<T, E> extends FormItemCom<T, E>, FormItem {}
 
 export type FormLabelAlign = 'left' | 'right';
 
-export type MODE = 'multiple' | 'tags';
+export type Mode = 'multiple' | 'tags';
 
 /**
- *
- * lable 和 value 宽度比例
+ * @name 宽度比例
+ * @param lable labelCol: { span: 6 },
+ * @param value wrapperCol: { span: 18 }
  */
-export interface LAYOUT {
+export interface LayoutParams {
 	labelCol: object;
 	wrapperCol: object;
 }
 
 /**
- *
- * 下拉类型
+ * @name 下拉类型
  */
 interface fieldNamesType {
 	label: string;
@@ -115,8 +115,10 @@ interface fieldNamesType {
 }
 
 /**
- *
- * data数据 nameList[]  is:boolean
+ * @name 处理表单显示隐藏
+ * @param data数据
+ * @param nameList[]
+ * @param is:boolean
  */
 export const setIsForm = <T extends { name: string }>(data: T[], nameList: string[], is: boolean): T[] => {
 	return data.map((item) => {
