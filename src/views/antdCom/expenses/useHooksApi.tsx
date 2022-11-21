@@ -12,11 +12,13 @@ const useTabelData = () => {
 	const [loading, setLoading] = useState(false);
 
 	const getTabelData = async (params: TabelDataParams) => {
-		setLoading(true);
-		const res = await tabelData({ ...params });
-		const { data, total } = res;
-		setExpensesTableData(data);
-		setTotal(total);
+		try {
+			setLoading(true);
+			const res = await tabelData({ ...params });
+			const { data, total } = res;
+			setExpensesTableData(data);
+			setTotal(total);
+		} catch (error) {}
 		setLoading(false);
 	};
 

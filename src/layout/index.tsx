@@ -9,7 +9,7 @@ import { Layout, FloatButton, theme } from 'antd';
 import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
-import useIntro from '@/useHooks/useIntro';
+import Itour from '@/antdComponents/iTour';
 import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
@@ -34,8 +34,6 @@ const Layouts = () => {
 		}
 	}, [isShow]);
 
-	// 用户指导
-	useIntro();
 	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
 	const [collapsedWidth, setCollapsedWidth] = useState(() => (isShow ? 0 : 200));
@@ -52,6 +50,17 @@ const Layouts = () => {
 			setCollapsedWidth(200);
 		}
 	}, [collapsed]);
+
+	// 用户指导
+	useEffect(() => {
+		setOpenItour(true);
+	}, []);
+
+	const [openItour, setOpenItour] = useState(false);
+
+	const onCloseItour = () => {
+		setOpenItour(false);
+	};
 
 	return (
 		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
@@ -80,6 +89,7 @@ const Layouts = () => {
 				</Content>
 			</Layout>
 			<FloatButton.BackTop visibilityHeight={200} />
+			<Itour open={openItour} onClose={onCloseItour}></Itour>
 		</Layout>
 	);
 };
