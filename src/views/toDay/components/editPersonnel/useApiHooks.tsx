@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useRequest } from 'ahooks';
 import { editPersonnelTableDataApi } from '../../service';
-import type { EditPersonnelTableDataParams } from './EditPersonnelTable';
-import type { EditPersonnelSearchFormParmas } from './EditPersonnelSearch';
 
 // 获取编辑团队表格信息
 export const useEditPersonnelTable = () => {

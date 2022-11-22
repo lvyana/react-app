@@ -10,6 +10,8 @@ interface Iprops {
 	buttonEvent: (type: string | number, value: TabelDataResponse) => void;
 }
 
+type OnClickBtnType = '修改' | '删除';
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const useHeaderTable = ({ buttonEvent }: Iprops) => {
@@ -34,7 +36,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 		}
 	};
 	// 初始化按钮
-	const [btFun, setBtFun] = useState<ButtonItemParams[]>([]);
+	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([]);
 
 	const columns = [
 		{
@@ -99,9 +101,9 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (
 					<Idropdown
-						btFun={btFun}
+						btArr={btArr}
 						onOpenChange={(open) => onOpenChange(open, record)}
-						buttonEvent={(type) => buttonEvent(type, record)}></Idropdown>
+						onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
 				);
 			}
 		}
