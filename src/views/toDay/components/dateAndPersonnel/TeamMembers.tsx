@@ -1,16 +1,33 @@
 import { Avatar, Badge, Form, Tooltip } from 'antd';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import { OnOkOrCancelType } from '@/antdComponents/iModal/index';
 import { toDayContext } from '../../context/index';
 import AddPersonnel, { FormParams } from './AddPersonnel';
 import EditPersonnel from '../editPersonnel';
+import { teamMembers } from '../../service';
+import { useRequest } from 'ahooks';
+export interface TeamMembersDataParams {
+	name: string;
+	photo: string;
+	key: string;
+}
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TeamMembers = () => {
-	const toDayContextValue = useContext(toDayContext);
+	const [teamMembersData, setTeamMembersData] = useState<TeamMembersDataParams[]>([]);
 
-	const avatars = Array.from({ length: 5 }).map((item) => {
-		return 'https://joeschmoe.io/api/v1/random';
+	useEffect(() => {
+		run();
+	}, []);
+	const { loading, run } = useRequest(teamMembers, {
+		manual: true,
+		onSuccess: (res) => {
+			const { data } = res;
+			setTeamMembersData(data);
+		},
+		onError: (error) => {}
 	});
 
 	const [selectAvatar, setSelectAvatar] = useState(0);
@@ -56,11 +73,12 @@ const TeamMembers = () => {
 	return (
 		<Badge.Ribbon text="team" color="green">
 			<div className="my-4 p-4 border-2 border-blue-100 shadow-xl">
-				{avatars.map((item, i) => {
+				<></>
+				{teamMembersData.map((item, i) => {
 					return (
-						<Tooltip placement="bottom" title={`某某${i}`} key={i}>
+						<Tooltip placement="bottom" title={item.name} key={item.key}>
 							<Avatar
-								src={item}
+								src={item.photo}
 								className={`${
 									selectAvatar === i ? 'border-blue-400 border-2' : ''
 								} mr-2 hover:border-blue-300 hover:border-2 cursor-pointer`}

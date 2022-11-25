@@ -4,8 +4,8 @@
  * @date 2022年11月1日
  */
 import React from 'react';
-import LeftCalendar from './components/dateAndPersonnel';
-import RightContent from './components/taskList';
+import DateAndPersonnel from './components/dateAndPersonnel';
+import TaskList from './components/taskList';
 import ToDayReducer from './context';
 
 const index = () => {
@@ -13,10 +13,10 @@ const index = () => {
 		<ToDayReducer>
 			<div className="flex justify-between gap-x-8">
 				<div className="w-2/5  h-full">
-					<LeftCalendar></LeftCalendar>
+					<DateAndPersonnel></DateAndPersonnel>
 				</div>
 				<div className="w-3/5">
-					<RightContent></RightContent>
+					<TaskList></TaskList>
 				</div>
 			</div>
 		</ToDayReducer>

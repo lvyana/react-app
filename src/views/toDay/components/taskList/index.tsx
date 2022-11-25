@@ -3,12 +3,22 @@
  * @use ly
  * @date 2022年11月6日
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, Badge, List, Progress, Space, Tag, Tooltip } from 'antd';
+import { Image, Badge, List, Progress, Skeleton, Space, Tag, Tooltip } from 'antd';
 import Commoent from './Comment';
+import { useRequest } from 'ahooks';
+import { taskList } from '../../service';
+export interface TaskListParams {
+	title: string;
+	avatar: string;
+	description: { names: string[]; date: string };
+	content: { index: string; title: string; name: string; accomplish: number }[];
+	key: string;
+}
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const RightContent = () => {
+const TaskList = () => {
 	const [openComment, setOpenComment] = useState(false);
 	const [loadingComment, setLoadingComment] = useState(false);
 	const onIcon = () => {
@@ -23,56 +33,76 @@ const RightContent = () => {
 		}
 	};
 
+	// const [contentLoading, setContentLoading] = useState(false);
+	const [taskListData, setTaskListData] = useState<TaskListParams[]>([]);
+
+	const { loading, run, runAsync } = useRequest(taskList, {
+		// manual: true,
+		onSuccess: (res) => {
+			const { data } = res;
+			setTaskListData(data);
+		}
+	});
+
 	return (
 		<div>
 			<List
 				itemLayout="vertical"
 				size="large"
-				dataSource={data}
+				dataSource={taskListData}
 				footer={<></>}
 				renderItem={(item) => (
-					<List.Item
-						className="hover:bg-blue-300 cursor-pointer"
-						key={item.title}
-						actions={[
-							<IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-							<IconText icon={LikeOutlined} isTooltip={true} text="156" key="list-vertical-like-o" />,
-							<IconText icon={MessageOutlined} text="2" key="list-vertical-message" onIcon={onIcon} />
-						]}
-						extra={<img className="w-56 mt-16" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}>
-						<List.Item.Meta
-							avatar={
-								<div>
-									<Badge className="text-xs" status="processing" />
+					<Skeleton loading={loading} active avatar>
+						<List.Item
+							className="hover:bg-blue-300 cursor-pointer rounded-lg"
+							key={item.key}
+							actions={[
+								<IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+								<IconText icon={LikeOutlined} isTooltip={true} text="156" key="list-vertical-like-o" />,
+								<IconText icon={MessageOutlined} text="2" key="list-vertical-message" onIcon={onIcon} />
+							]}
+							extra={
+								<div className="mt-16">
+									<Image className="w-56 " src={item.avatar} placeholder={<Image preview={false} src={item.avatar} className="w-56 " />} />
 								</div>
-							}
-							title={<>{item.title}</>}
-							description={item.description}
-						/>
+							}>
+							<List.Item.Meta
+								avatar={<Badge className="text-xs" status="processing" />}
+								title={<>{item.title}</>}
+								description={
+									<div className="flex justify-between">
+										<div>{item.description.names.join('、')}</div>
+										<div>{item.description.date}</div>
+									</div>
+								}
+							/>
 
-						<div className="bg-blue-100 mb-2 flex justify-between px-2 p-2">
-							<div>1、</div>
-							<div className="flex-1">
-								是的是的多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多所多
-							</div>
-							<div className="w-20 text-center">
-								<span className="mr-1">
-									<Tag color="#3b79d0">ly</Tag>
-								</span>
-								<span>
-									<Progress
-										type="circle"
-										strokeColor={{
-											'0%': '#108ee9',
-											'100%': '#87d068'
-										}}
-										width={30}
-										percent={90}
-									/>
-								</span>
-							</div>
-						</div>
-					</List.Item>
+							{item.content.map((content) => {
+								return (
+									<div className="bg-blue-100 mb-2 flex justify-between px-2 p-2" key={content.index}>
+										<div>{content.index}、</div>
+										<div className="flex-1">{content.title}</div>
+										<div className="w-24 text-center">
+											<span className="mr-1">
+												<Tag color="#3b79d0">{content.name}</Tag>
+											</span>
+											<span>
+												<Progress
+													type="circle"
+													strokeColor={{
+														'0%': '#108ee9',
+														'100%': '#87d068'
+													}}
+													width={30}
+													percent={content.accomplish}
+												/>
+											</span>
+										</div>
+									</div>
+								);
+							})}
+						</List.Item>
+					</Skeleton>
 				)}
 			/>
 			<Commoent openComment={openComment} loadingComment={loadingComment} onOkOrCancel={onCommoentOkOrCancel} />
@@ -120,4 +150,4 @@ const IconText = ({
 	</Space>
 );
 
-export default RightContent;
+export default TaskList;

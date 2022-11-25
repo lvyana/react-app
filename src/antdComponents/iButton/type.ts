@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点击事件
 
-export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed' | undefined;
+export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed';
 
 /**
  * @param 按钮接口
@@ -25,9 +25,9 @@ export interface ButtonItemParams<T> {
  * @param btnList 数组['删除','新增']
  * @param is 设置true禁用 false启用
  */
-export type SetDisDataType<T> = (data: ButtonItemParams<T>[], btnList: string[], is: boolean) => ButtonItemParams<T>[];
+export type SetDisDataType = <T>(data: ButtonItemParams<T>[], btnList: string[], is: boolean) => ButtonItemParams<T>[];
 
-export const setDisData = <T>(data: ButtonItemParams<T>[], btnList: string[], is: boolean) => {
+export const setDisData: SetDisDataType = (data, btnList, is) => {
 	return data.map((item) => {
 		if (btnList.indexOf(item.name) > -1) {
 			return {
