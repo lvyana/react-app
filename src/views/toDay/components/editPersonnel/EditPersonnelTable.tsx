@@ -30,7 +30,7 @@ const EditPersonnelTable: FC<EditPersonnelTableProps> = ({ loading, data }) => {
 	const onOpenChange = (open: boolean) => {};
 
 	const onClickBtn = (type: OnClickBtnType, value: EditPersonnelTableDataParams) => {
-		console.log(type, value);
+		// console.log(type, value);
 	};
 
 	const columns: IcolumnsType<EditPersonnelTableDataParams> = [

@@ -14,6 +14,8 @@ export interface TaskListParams {
 	avatar: string;
 	description: { names: string[]; date: string };
 	content: { index: string; title: string; name: string; accomplish: number }[];
+	collectNum: number;
+	isCollect: boolean;
 	key: string;
 }
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -57,9 +59,14 @@ const TaskList = () => {
 							className="hover:bg-blue-300 cursor-pointer rounded-lg"
 							key={item.key}
 							actions={[
-								<IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-								<IconText icon={LikeOutlined} isTooltip={true} text="156" key="list-vertical-like-o" />,
-								<IconText icon={MessageOutlined} text="2" key="list-vertical-message" onIcon={onIcon} />
+								<IconText
+									icon={StarOutlined}
+									className={item.isCollect ? 'text-blue-900' : ''}
+									text={item.collectNum}
+									key="list-vertical-star-o"
+								/>,
+								<IconText icon={LikeOutlined} isTooltip={true} text={156} key="list-vertical-like-o" />,
+								<IconText icon={MessageOutlined} text={2} key="list-vertical-message" onIcon={onIcon} />
 							]}
 							extra={
 								<div className="mt-16">
@@ -79,7 +86,7 @@ const TaskList = () => {
 
 							{item.content.map((content) => {
 								return (
-									<div className="bg-blue-100 mb-2 flex justify-between px-2 p-2" key={content.index}>
+									<div className="bg-blue-100 mb-2 flex justify-between px-2 p-2 rounded-lg" key={content.index}>
 										<div>{content.index}、</div>
 										<div className="flex-1">{content.title}</div>
 										<div className="w-24 text-center">
@@ -126,24 +133,26 @@ const IconText = ({
 	icon,
 	text,
 	isTooltip = false,
-	onIcon
+	onIcon,
+	className
 }: {
-	icon: React.FC;
-	text: string;
+	icon: React.FC<{ className?: string }>;
+	text: number;
 	isTooltip?: boolean;
 	onIcon?: () => void;
+	className?: string;
 }) => (
-	<Space className="hover:text-black cursor-pointer">
+	<Space className="hover:text-blue-900 cursor-pointer">
 		{isTooltip ? (
 			<Tooltip title="某某1、某某2">
 				<div>
-					{React.createElement(icon)}
+					{React.createElement(icon, { className })}
 					{text}
 				</div>
 			</Tooltip>
 		) : (
 			<div onClick={onIcon}>
-				{React.createElement(icon)}
+				{React.createElement(icon, { className })}
 				{text}
 			</div>
 		)}

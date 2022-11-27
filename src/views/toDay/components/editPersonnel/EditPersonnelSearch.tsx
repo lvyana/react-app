@@ -31,7 +31,6 @@ const EditPersonnelSearch: FC<EditPersonnelSearchProps> = ({ form, onValuesChang
 			}
 		}
 	];
-	console.log(123);
 
 	return <Iform form={form} formList={formList} onValuesChange={onValuesChange}></Iform>;
 };
