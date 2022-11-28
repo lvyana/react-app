@@ -16,6 +16,9 @@ export interface TaskListParams {
 	content: { index: string; title: string; name: string; accomplish: number }[];
 	collectNum: number;
 	isCollect: boolean;
+	likeNum: number;
+	isLike: boolean;
+	commentNum: number;
 	key: string;
 }
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -56,7 +59,7 @@ const TaskList = () => {
 				renderItem={(item) => (
 					<Skeleton loading={loading} active avatar>
 						<List.Item
-							className="hover:bg-blue-300 cursor-pointer rounded-lg"
+							className="hover:bg-blue-300 rounded-lg"
 							key={item.key}
 							actions={[
 								<IconText
@@ -65,8 +68,14 @@ const TaskList = () => {
 									text={item.collectNum}
 									key="list-vertical-star-o"
 								/>,
-								<IconText icon={LikeOutlined} isTooltip={true} text={156} key="list-vertical-like-o" />,
-								<IconText icon={MessageOutlined} text={2} key="list-vertical-message" onIcon={onIcon} />
+								<IconText
+									icon={LikeOutlined}
+									isTooltip={true}
+									className={item.isLike ? 'text-blue-900' : ''}
+									text={item.likeNum}
+									key="list-vertical-like-o"
+								/>,
+								<IconText icon={MessageOutlined} text={item.commentNum} key="list-vertical-message" onIcon={onIcon} />
 							]}
 							extra={
 								<div className="mt-16">
@@ -142,16 +151,16 @@ const IconText = ({
 	onIcon?: () => void;
 	className?: string;
 }) => (
-	<Space className="hover:text-blue-900 cursor-pointer">
+	<Space className="hover:text-blue-900 hover:font-bold cursor-pointer ">
 		{isTooltip ? (
 			<Tooltip title="某某1、某某2">
-				<div>
+				<div className="w-16">
 					{React.createElement(icon, { className })}
 					{text}
 				</div>
 			</Tooltip>
 		) : (
-			<div onClick={onIcon}>
+			<div onClick={onIcon} className="w-16">
 				{React.createElement(icon, { className })}
 				{text}
 			</div>
