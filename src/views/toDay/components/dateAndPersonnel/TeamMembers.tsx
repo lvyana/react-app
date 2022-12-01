@@ -25,7 +25,7 @@ const TeamMembers: FC<TeamMembersProps> = ({ userId, onAvatar }) => {
 		run();
 	}, []);
 
-	const { loading, run } = useRequest(teamMembers, {
+	const { run } = useRequest(teamMembers, {
 		manual: true,
 		onSuccess: (res) => {
 			const { data } = res;

@@ -54,8 +54,7 @@ instance.interceptors.response.use(
 	// 请求成功
 	(res: AxiosRequestConfig) => {
 		// 未设置状态码则默认成功状态
-		const code = res.data.code || 200;
-		const bizCode = res.data.bizCode || 20000;
+		const code = res.data.code;
 
 		// 获取错误信息
 		const msg = errorCode(code) || res.data.msg || errorCode('default');
@@ -66,17 +65,11 @@ instance.interceptors.response.use(
 		} else if (code === 500) {
 			message.error(msg);
 			return Promise.reject(new Error(msg));
-		} else if (code !== 200) {
-			message.error(msg);
-			return Promise.reject('error');
-		} else {
-			if (bizCode !== 20000) {
-				message.error(msg);
-				return Promise.reject('error');
-			} else {
-				return res.data;
-			}
+		} else if (code === 200) {
+			return res.data;
 		}
+		message.error(msg);
+		return Promise.reject('error');
 	},
 	// 请求失败
 	(error: AxiosError) => {

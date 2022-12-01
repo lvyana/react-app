@@ -111,8 +111,8 @@ module.exports = {
 							warnings: false, // 删除无用代码时是否给出警告
 							drop_debugger: true, // 删除所有的debugger
 							drop_console: true, // 删除所有的console.*
-							pure_funcs: ['']
-							// pure_funcs: ['console.log'], // 删除所有的console.log
+							// pure_funcs: ['']
+							pure_funcs: ['console.log'] // 删除所有的console.log
 						}
 					}
 				})
