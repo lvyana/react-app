@@ -4,19 +4,20 @@
  * @date 日期：2020年11月15日
  */
 import React, { createContext, FC, useReducer } from 'react';
-
+import { TaskListParams } from '../components/taskList';
 interface ToDayReducerProps {
 	children: React.ReactNode;
 }
 
 interface InitStateParams {
-	addPersonnelOpen: boolean;
+	taskListData: TaskListParams[];
+	taskListLoading: boolean;
 }
 
 type ActionValueParams = InitStateParams[keyof InitStateParams];
 
 interface ActionParams {
-	type: 'addPersonnelOpen';
+	type: keyof InitStateParams;
 	value: ActionValueParams;
 }
 
@@ -34,19 +35,22 @@ export const toDayContext = createContext<CreateContextParams | null>(null);
 
 // 初始化reducer数据
 const initState: InitStateParams = {
-	addPersonnelOpen: false
+	taskListData: [],
+	taskListLoading: false
 };
 
 // reducer action
 const toDayReducer: ToDayReducerType = (state, action) => {
 	const { type, value } = action;
-	if (type === 'addPersonnelOpen') {
-		return { ...state, addPersonnelOpen: value };
+	if (type === 'taskListData') {
+		return { ...state, taskListData: value as InitStateParams['taskListData'] };
+	} else if (type === 'taskListLoading') {
+		return { ...state, taskListLoading: value as InitStateParams['taskListLoading'] };
 	}
 	return state;
 };
 
-// 套一个外壳
+// hoc
 const ToDayReducer: FC<ToDayReducerProps> = ({ children }) => {
 	const [state, dispatch] = useReducer(toDayReducer, initState);
 

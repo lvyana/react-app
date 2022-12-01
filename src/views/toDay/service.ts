@@ -3,7 +3,7 @@ import type { EditPersonnelSearchFormParmas } from './components/editPersonnel/E
 import type { EditPersonnelTableDataParams } from './components/editPersonnel/EditPersonnelTable';
 import type { TeamMembersDataParams } from './components/dateAndPersonnel/TeamMembers';
 import type { TaskListParams } from './components/taskList';
-
+import type { DateListParams } from './components/dateAndPersonnel/Date';
 // 查询表格数据
 export const editPersonnelTableDataApi = (data: EditPersonnelSearchFormParmas) => {
 	return request<EditPersonnelSearchFormParmas, EditPersonnelTableDataParams[]>({
@@ -25,6 +25,14 @@ export const teamMembers = () => {
 export const taskList = () => {
 	return request<never, TaskListParams[]>({
 		url: '/taskList',
+		method: 'get'
+	});
+};
+
+// 查询所有日期列表
+export const dateList = (useId?: string) => {
+	return request<never, DateListParams[]>({
+		url: `/date/list/${useId}`,
 		method: 'get'
 	});
 };

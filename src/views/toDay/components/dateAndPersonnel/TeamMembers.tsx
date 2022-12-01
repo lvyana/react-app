@@ -1,8 +1,7 @@
 import { Avatar, Badge, Form, Tooltip } from 'antd';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
 import { OnOkOrCancelType } from '@/antdComponents/iModal/index';
-import { toDayContext } from '../../context/index';
 import AddPersonnel, { FormParams } from './AddPersonnel';
 import EditPersonnel from '../editPersonnel';
 import { teamMembers } from '../../service';
@@ -13,14 +12,19 @@ export interface TeamMembersDataParams {
 	key: string;
 }
 
+interface TeamMembersProps {
+	userId?: string;
+	onAvatar: (key: string) => void;
+}
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const TeamMembers = () => {
+const TeamMembers: FC<TeamMembersProps> = ({ userId, onAvatar }) => {
 	const [teamMembersData, setTeamMembersData] = useState<TeamMembersDataParams[]>([]);
 
 	useEffect(() => {
 		run();
 	}, []);
+
 	const { loading, run } = useRequest(teamMembers, {
 		manual: true,
 		onSuccess: (res) => {
@@ -29,12 +33,6 @@ const TeamMembers = () => {
 		},
 		onError: (error) => {}
 	});
-
-	const [selectAvatar, setSelectAvatar] = useState(0);
-
-	const onAvatar = (i: number) => {
-		setSelectAvatar(i);
-	};
 
 	// 新增人员
 	const [AddPersonnelForm] = Form.useForm<FormParams>();
@@ -80,9 +78,9 @@ const TeamMembers = () => {
 							<Avatar
 								src={item.photo}
 								className={`${
-									selectAvatar === i ? 'border-blue-400 border-2' : ''
+									userId === item.key ? 'border-blue-400 border-2' : ''
 								} mr-2 hover:border-blue-300 hover:border-2 cursor-pointer`}
-								onClick={() => onAvatar(i)}
+								onClick={() => onAvatar(item.key)}
 							/>
 						</Tooltip>
 					);

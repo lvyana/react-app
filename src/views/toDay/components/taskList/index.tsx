@@ -3,11 +3,12 @@
  * @use ly
  * @date 2022年11月6日
  */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Image, Badge, List, Progress, Skeleton, Space, Tag, Tooltip } from 'antd';
 import Commoent from './Comment';
 import { useRequest } from 'ahooks';
+import { toDayContext } from '../../context';
 import { taskList } from '../../service';
 export interface TaskListParams {
 	title: string;
@@ -24,6 +25,8 @@ export interface TaskListParams {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TaskList = () => {
+	const toDay = useContext(toDayContext);
+
 	const [openComment, setOpenComment] = useState(false);
 	const [loadingComment, setLoadingComment] = useState(false);
 	const onIcon = () => {
@@ -39,25 +42,17 @@ const TaskList = () => {
 	};
 
 	// const [contentLoading, setContentLoading] = useState(false);
-	const [taskListData, setTaskListData] = useState<TaskListParams[]>([]);
-
-	const { loading, run, runAsync } = useRequest(taskList, {
-		// manual: true,
-		onSuccess: (res) => {
-			const { data } = res;
-			setTaskListData(data);
-		}
-	});
 
 	return (
 		<div>
 			<List
 				itemLayout="vertical"
 				size="large"
-				dataSource={taskListData}
+				dataSource={toDay?.state.taskListData}
 				footer={<></>}
+				locale={{ emptyText: ' ' }}
 				renderItem={(item) => (
-					<Skeleton loading={loading} active avatar>
+					<Skeleton loading={toDay?.state.taskListLoading} active avatar>
 						<List.Item
 							className="hover:bg-blue-300 rounded-lg"
 							key={item.key}
