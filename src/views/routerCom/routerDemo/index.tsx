@@ -18,7 +18,7 @@ const RouterDemo = () => {
 				加载test
 			</Button>
 			<Button type="link" onClick={() => onRender(2)}>
-				加载test
+				加载list
 			</Button>
 			<Outlet />
 		</div>

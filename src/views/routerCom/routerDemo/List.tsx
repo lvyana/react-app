@@ -6,7 +6,10 @@ const List = () => {
 	const params = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 	// console.log(location, params, searchParams.get('ab'));
-	return <div>List{searchParams.get('ab')}</div>;
+	const onSearchParams = () => {
+		setSearchParams('ab=2');
+	};
+	return <div onClick={onSearchParams}>List{searchParams.get('ab')}</div>;
 };
 
 export default List;
