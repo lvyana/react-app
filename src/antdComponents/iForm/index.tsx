@@ -5,10 +5,12 @@
  */
 import React, { FC } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import FORM_ITEM_MAP from './components/formItemMap';
-import type { FormItemParam, FormItem } from './type';
+import type { FormItem } from './type';
+
+export * from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
 export type OnValuesChange<F> = (changedValues: F, values: F) => void;
@@ -151,5 +153,5 @@ const Iform = <T extends FormItem[], F extends object>({
 	);
 };
 
-export type { FormInstance, FormItemParam, FormItem };
+export type { FormInstance };
 export default Iform;

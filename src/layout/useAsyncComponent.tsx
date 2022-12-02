@@ -4,7 +4,7 @@
  * @date 2022年10月10日
  */
 import React, { useRef, Suspense, lazy, ComponentType } from 'react';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch } from '@/store';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
 import menuList, { Router } from '@/layout/menuList/routerData';
 // 异步路由

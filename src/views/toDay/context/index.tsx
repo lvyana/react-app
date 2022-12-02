@@ -36,7 +36,7 @@ export const toDayContext = createContext<CreateContextParams | null>(null);
 // 初始化reducer数据
 const initState: InitStateParams = {
 	taskListData: [],
-	taskListLoading: false
+	taskListLoading: true
 };
 
 // reducer action

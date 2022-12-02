@@ -4,17 +4,16 @@
  *  @data 日期：2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb, Menu } from 'antd';
+import { Breadcrumb } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
 import { Router, EXCLUDE_MENU } from '../menuList/index';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
-
 const Crumb = () => {
 	const location = useLocation();
 
@@ -41,7 +40,7 @@ const Crumb = () => {
 
 	return (
 		<div style={{ paddingLeft: '27px' }}>
-			<Breadcrumb>
+			<Breadcrumb style={{}}>
 				{currentRouter.map((item, i) => {
 					return item.children ? (
 						<Breadcrumb.Item key={item.path} menu={{ items: CrumbMenus(item.children), selectedKeys: [currentRouter[i + 1]?.path] }}>

@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC } from 'react';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
@@ -27,22 +27,21 @@ const Ibutton = <T,>({ buttonList, loadingName, onClickBtn, style }: IbuttonProp
 	const { hasPermiss } = useHasPermiss();
 	return (
 		<>
-			{buttonList.map((item, i) =>
-				hasPermiss(item.hasPermiss) ? (
-					<Button
-						key={i}
-						type={item.btType}
-						onClick={() => onClickBtn && onClickBtn(item.type, item)}
-						disabled={item.disabled === true}
-						loading={loadingName === item.name}
-						size={size}
-						style={{ ...style }}>
-						{item.iconFont}
-						{item.name}
-					</Button>
-				) : (
-					<></>
-				)
+			{buttonList.map(
+				(item, i) =>
+					hasPermiss(item.hasPermiss) && (
+						<Button
+							key={i}
+							type={item.btType}
+							onClick={() => onClickBtn && onClickBtn(item.type, item)}
+							disabled={item.disabled === true}
+							loading={loadingName === item.name}
+							size={size}
+							style={{ ...style }}>
+							{item.iconFont}
+							{item.name}
+						</Button>
+					)
 			)}
 		</>
 	);

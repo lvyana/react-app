@@ -10,7 +10,8 @@ import user from './reducers/user';
 import log from './reducers/log';
 import globalConfig from './reducers/globalConfig';
 
-import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+import type { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
+export * from './hooks';
 
 // 环境区分中间件
 const ENV = process.env.NODE_ENV === 'production';

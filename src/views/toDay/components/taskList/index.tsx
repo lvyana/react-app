@@ -50,7 +50,7 @@ const TaskList = () => {
 				size="large"
 				dataSource={toDay?.state.taskListData}
 				footer={<></>}
-				locale={{ emptyText: ' ' }}
+				// locale={{ emptyText: ' ' }}
 				renderItem={(item) => (
 					<Skeleton loading={toDay?.state.taskListLoading} active avatar>
 						<List.Item
@@ -116,6 +116,7 @@ const TaskList = () => {
 					</Skeleton>
 				)}
 			/>
+
 			<Commoent openComment={openComment} loadingComment={loadingComment} onOkOrCancel={onCommoentOkOrCancel} />
 		</div>
 	);

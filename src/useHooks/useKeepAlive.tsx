@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC, useState, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';
 import { useLocation } from 'react-router-dom';
 import type { KeepAliveParams } from '@/store/reducers/user';

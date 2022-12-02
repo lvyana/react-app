@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Key } from 'react';
 // 引入相关的hooks
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { GET_HEADER_CONFIG } from '@/store/reducers/globalConfig';
 import type { IcolumnsType } from '@/antdComponents/iTable';
 import type { headerConfigListType, headerConfigListArrType } from '@/store/reducers/globalConfig';

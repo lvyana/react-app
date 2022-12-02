@@ -21,6 +21,7 @@ const { Header, Content, Sider } = Layout;
 
 const Layouts = () => {
 	const { token } = useToken();
+	// console.log(token);
 
 	useApi();
 
@@ -88,7 +89,7 @@ const Layouts = () => {
 					<Outlet />
 				</Content>
 			</Layout>
-			<FloatButton.BackTop visibilityHeight={200} />
+			<FloatButton.BackTop visibilityHeight={1000} />
 			<Itour open={openItour} onClose={onCloseItour}></Itour>
 		</Layout>
 	);

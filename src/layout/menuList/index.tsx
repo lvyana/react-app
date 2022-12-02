@@ -8,7 +8,7 @@ import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import useRouterHooks from '@/router/useHooks';
 

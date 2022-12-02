@@ -4,7 +4,7 @@
  * @data 2022年7月30日
  */
 import React, { FC, useState, useEffect, Key, memo } from 'react';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch } from '@/store';
 import { getHeaderConfig } from '@/store/reducers/globalConfig';
 import { Checkbox } from 'antd';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';

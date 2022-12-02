@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC, useEffect, useState, useRef, Key } from 'react';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
 // 表格头部按钮接口

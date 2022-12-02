@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch } from '@/store';
 import { GET_THEME, SET_THEME, ThemeType } from '@/store/reducers/layout';
 import { Button, Dropdown } from 'antd';
 import { BgColorsOutlined } from '@ant-design/icons';

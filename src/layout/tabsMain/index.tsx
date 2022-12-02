@@ -7,7 +7,7 @@ import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
 import menuList, { Router } from '@/layout/menuList/routerData';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useThemeHooks from '@/theme/useThemeHooks';
 
@@ -85,7 +85,7 @@ const TabsMain = () => {
 	return (
 		<>
 			<Tabs
-				style={{ color: token.colorTextBase }}
+				style={{ color: token.colorTextBase, backgroundColor: token.colorBgLayout }}
 				hideAdd
 				onChange={onChange}
 				activeKey={activeKey}

@@ -35,7 +35,7 @@ const Date: FC<DateProps> = ({ userId, dateValue, onchangeDate }) => {
 	});
 	useEffect(() => {
 		run(userId);
-	}, []);
+	}, [userId]);
 
 	const dateCellRender = (value: Dayjs) => {
 		const listData = getListData(value, dateData);

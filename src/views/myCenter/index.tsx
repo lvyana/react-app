@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_PHOTO, GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { Avatar } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
