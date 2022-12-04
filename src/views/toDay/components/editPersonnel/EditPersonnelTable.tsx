@@ -40,14 +40,9 @@ const EditPersonnelTable: FC<EditPersonnelTableProps> = ({ loading, data }) => {
 			key: 'name'
 		},
 		{
-			title: '年龄',
-			dataIndex: 'age',
-			key: 'age'
-		},
-		{
-			title: '地址',
-			dataIndex: 'address',
-			key: 'address'
+			title: '岗位',
+			dataIndex: 'post',
+			key: 'post'
 		},
 		{
 			title: '操作',

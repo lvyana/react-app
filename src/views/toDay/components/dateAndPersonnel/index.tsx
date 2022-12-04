@@ -52,7 +52,7 @@ const DateAndPersonnel: FC<DateAndPersonnelProps> = ({ oldUserId, oldDate }) => 
 	}, [loading]);
 
 	return (
-		<div className="fixed w-2/5  p-2">
+		<div className="  p-2">
 			<TeamMembers userId={userId} onAvatar={onAvatar}></TeamMembers>
 			<Date dateValue={dateValue} userId={userId} onchangeDate={onchangeDate}></Date>
 		</div>

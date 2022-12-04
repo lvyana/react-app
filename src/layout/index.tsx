@@ -80,16 +80,16 @@ const Layouts = () => {
 
 			<Layout className="Layout-Transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
 				<div className="Layout-Transition" style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)` }}>
-					<Header className="Layout-Bgc" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
+					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>
 					<TabsMain></TabsMain>
 				</div>
-				<Content className="Layout-Bgc Layout-Content">
+				<Content className="Layout-Content">
 					<Outlet />
 				</Content>
 			</Layout>
-			<FloatButton.BackTop visibilityHeight={1000} />
+			<FloatButton.BackTop visibilityHeight={600} />
 			<Itour open={openItour} onClose={onCloseItour}></Itour>
 		</Layout>
 	);
