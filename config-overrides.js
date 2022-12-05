@@ -17,6 +17,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin'); // 对js进行压缩
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer'); // 大文件定位
 const CompressionWebpackPlugin = require('compression-webpack-plugin'); // gzip压缩
+const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'production';
 
@@ -101,6 +102,7 @@ module.exports = {
 			'@antv/g2plot': 'G2Plot',
 			'@wangeditor/editor': 'wangEditor'
 		}),
+		addWebpackPlugin(new ProgressBarWebpackPlugin()),
 		// 注意是production环境启动该plugin
 		devMode &&
 			addWebpackPlugin(

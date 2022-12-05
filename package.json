@@ -89,6 +89,7 @@
 		"lint-staged": "^13.0.1",
 		"postcss": "^7",
 		"prettier": "^2.7.1",
+		"progress-bar-webpack-plugin": "^2.1.0",
 		"react-app-rewired": "^2.1.11",
 		"stylelint": "^14.9.1",
 		"stylelint-config-css-modules": "^4.1.0",
