@@ -21,6 +21,10 @@ const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'production';
 
+/* 修改默认的打包后文件夹名称build->dist */
+const paths = require('react-scripts/config/paths');
+paths.appBuild = path.join(path.dirname(paths.appBuild), 'dist');
+
 // 打包配置
 console.log(process.env.NODE_ENV);
 const addCustomize = () => (config) => {
@@ -92,7 +96,7 @@ module.exports = {
 		// alias
 		addWebpackAlias({
 			// 加载模块的时候，可以使用“@”符号来进行简写啦~
-			'@': path.resolve(__dirname, './src/')
+			'@': path.resolve(__dirname, 'src/')
 		}),
 		addPostcssPlugins([require('tailwindcss'), require('autoprefixer')]),
 		// externals
