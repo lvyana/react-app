@@ -1,4 +1,4 @@
 {
 	"*.{ts,tsx}": ["npm run lint"],
-	"*.{css,less}": ["stylelint --fix"]
+	"*.{css,scss}": ["stylelint --fix"]
 }

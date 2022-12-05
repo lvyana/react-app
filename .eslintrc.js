@@ -86,7 +86,7 @@ module.exports = {
 // prettier
 // yarn add prettier -D
 
-// prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题。
+// prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题(eslint和prettier冲突)。
 // yarn add eslint-config-prettier -D
 
 // prettier 官方提供了一个 ESLint 插件 eslint-plugin-prettier。
