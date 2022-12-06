@@ -6,8 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ErrorBoundary from '@/antdComponents/errorBoundary';
 
+// 数据持久化
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from '@/store';
+
 import App from './App';
-// import 'antd/dist/antd.css';
 import './index.scss';
 
 // i18n
@@ -32,13 +35,15 @@ function render() {
 
 	root.render(
 		<Provider store={store}>
-			<Theme>
-				<BrowserRouter basename={'/'}>
-					<ErrorBoundary>
-						<App />
-					</ErrorBoundary>
-				</BrowserRouter>
-			</Theme>
+			<PersistGate loading={null} persistor={persistor}>
+				<Theme>
+					<BrowserRouter basename={'/'}>
+						<ErrorBoundary>
+							<App />
+						</ErrorBoundary>
+					</BrowserRouter>
+				</Theme>
+			</PersistGate>
 		</Provider>
 	);
 }

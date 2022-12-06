@@ -30,6 +30,7 @@
 		"react-router-dom": "6",
 		"react-scripts": "5.0.0",
 		"redux-logger": "^3.0.6",
+		"redux-persist": "^6.0.0",
 		"typescript": "^4.5.5",
 		"web-vitals": "^2.1.4"
 	},
@@ -72,7 +73,7 @@
 		"@types/react-pdf": "^5.7.2",
 		"@types/redux-logger": "^3.0.9",
 		"@types/uuid": "^8.3.4",
-		"@typescript-eslint/eslint-plugin": "5.43.0", 
+		"@typescript-eslint/eslint-plugin": "5.43.0",
 		"@typescript-eslint/parser": "5.43.0",
 		"@wangeditor/editor": "^0.15.11",
 		"@wangeditor/editor-for-react": "^0.6.23",
