@@ -47,19 +47,19 @@ const TabsMain = () => {
 
 	// 监听地址变化 生成tabs
 	useEffect(() => {
-		const { pathname } = location;
-		setActiveKey(pathname);
+		const { pathname, search } = location;
+		setActiveKey(pathname + search);
 
 		const { title } = menuArr.find((item) => item.path === pathname) || { title: '看场景命名' };
 		//优化 or (if (!title) return;)
 
 		if (panes.length === 0) {
-			setPanes([{ title, path: pathname, disabled: false, closable: false }]);
+			setPanes([{ title, path: pathname + search, disabled: false, closable: false }]);
 		} else {
-			const isRepetition = panes.findIndex((item) => item.path === pathname);
+			const isRepetition = panes.findIndex((item) => item.path === pathname + search);
 
 			if (isRepetition === -1) {
-				setPanes([...panes, { title, path: pathname, disabled: false, closable: true }]);
+				setPanes([...panes, { title, path: pathname + search, disabled: false, closable: true }]);
 			}
 		}
 	}, [location]);

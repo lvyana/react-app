@@ -29,12 +29,13 @@ export const EXCLUDE_MENU = ['role/allocation'];
 
 const Menulist = () => {
 	const location = useLocation();
+	const { pathname } = location;
 
 	const { selectMenuPath } = useRouterHooks();
 
 	useEffect(() => {
-		onOpenChange([openpent(location.pathname)]);
-	}, [location.pathname]);
+		onOpenChange([openpent(pathname)]);
+	}, [pathname]);
 
 	const [openKeys, setopenKeys] = useState<Array<string>>([]);
 
@@ -53,11 +54,11 @@ const Menulist = () => {
 	return (
 		<Menu
 			theme="light"
-			defaultOpenKeys={[openpent(location.pathname)]}
-			defaultSelectedKeys={[selectMenuPath || location.pathname]}
+			defaultOpenKeys={[openpent(pathname)]}
+			defaultSelectedKeys={[selectMenuPath || pathname]}
 			openKeys={openKeys}
 			onOpenChange={onOpenChange}
-			selectedKeys={[selectMenuPath || location.pathname]}
+			selectedKeys={[selectMenuPath || pathname]}
 			mode="inline"
 			items={getMenu(menuList)}></Menu>
 	);

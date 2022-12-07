@@ -46,8 +46,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			width: 100,
 			align: 'center' as AlignType,
 			render: (text: string, record: TabelDataResponse) => (
-				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
-					<div className="omit" style={{ color: 'blue' }} onClick={() => tbClick('name', record)}>
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
+					<div className="omit" onClick={() => tbClick('name', record)}>
 						{text}
 					</div>
 				</Itooltip>
@@ -60,10 +60,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			width: 100,
 			align: 'center' as AlignType,
 			render: (text: string) => (
-				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
-					<div className="omit" style={{ color: 'blue' }}>
-						{text}
-					</div>
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
+					<div className="omit">{text}</div>
 				</Itooltip>
 			)
 		},
@@ -73,10 +71,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			key: 'weight',
 			align: 'center' as AlignType,
 			render: (text: string) => (
-				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
-					<div className="omit" style={{ color: 'blue' }}>
-						{text}
-					</div>
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
+					<div className="omit">{text}</div>
 				</Itooltip>
 			)
 		},
@@ -86,10 +82,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			key: 'height',
 			align: 'center' as AlignType,
 			render: (text: string) => (
-				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} color={'purple'} title={<>{text}</>}>
-					<div className="omit" style={{ color: 'blue' }}>
-						{text}
-					</div>
+				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
+					<div className="omit">{text}</div>
 				</Itooltip>
 			)
 		},

@@ -10,7 +10,11 @@ import { layout, user, log, globalConfig } from './reducers';
 import type { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+
+// localStorage
 import storage from 'redux-persist/lib/storage';
+// sessionStorage
+import storageSession from 'redux-persist/lib/storage/session';
 
 // 数据持久化
 // const persistConfig = {

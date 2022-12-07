@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout, FloatButton, theme } from 'antd';
+import { Layout, FloatButton } from 'antd';
 import Menulist from '@/layout/menuList';
 import Headerregion from '@/layout/header';
 import TabsMain from './tabsMain';
@@ -13,15 +13,13 @@ import Itour from '@/antdComponents/iTour';
 import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
+import useThemeHooks from '@/theme/useThemeHooks';
 import './index.scss';
-
-const { useToken } = theme;
 
 const { Header, Content, Sider } = Layout;
 
 const Layouts = () => {
-	const { token } = useToken();
-	// console.log(token);
+	const [token] = useThemeHooks();
 
 	useApi();
 

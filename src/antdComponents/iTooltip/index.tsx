@@ -5,6 +5,7 @@
  */
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { Tooltip } from 'antd';
+import useThemeHooks from '@/theme/useThemeHooks';
 
 type Iplacement =
 	| 'top'
@@ -38,9 +39,11 @@ interface ItooltipProps {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Itooltip: FC<ItooltipProps> = ({ children, title, overlayInnerStyle, placement = 'top', color }) => {
+	const [token] = useThemeHooks();
+
 	return (
 		<>
-			<Tooltip placement={placement} overlayInnerStyle={overlayInnerStyle} color={color} title={title}>
+			<Tooltip placement={placement} overlayInnerStyle={overlayInnerStyle} color={token.colorPrimary} title={title}>
 				{children}
 			</Tooltip>
 		</>

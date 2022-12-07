@@ -4,8 +4,8 @@ module.exports = {
 		'./public/**/*.html',
 		'./src/**/*.{js,jsx,ts,tsx,vue}'
 	],
-	purge: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.jsx'],
-	darkMode: 'media ', // or 'media' or 'class'
+	// purge: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.jsx'],
+	// darkMode: 'media ', // or 'media' or 'class'
 	important: true,
 	theme: {
 		minWidth: {

@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import React, { Children, FC, ReactNode } from 'react';
-import { Card, theme } from 'antd';
+import { Card } from 'antd';
 
 /**
  * @param children 传入内容
@@ -17,12 +17,9 @@ interface IcardProps {
 	className?: string;
 }
 
-const { useToken } = theme;
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Icard: FC<IcardProps> = ({ children, style = {}, hoverable = false, className }) => {
-	const { token } = useToken();
-
 	return (
 		<>
 			<Card hoverable={hoverable} bordered={false} bodyStyle={{ padding: '16px', ...style }} className={className}>
