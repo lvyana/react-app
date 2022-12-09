@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
-import { Button, Col, Popover, Row, Tabs } from 'antd';
+import { Button, Col, Popover, Row, Tabs, Badge } from 'antd';
 import Icard from '@/antdComponents/iCard';
 import Lists from './compoment/Lists';
 import style from './index.module.scss';
@@ -14,7 +14,9 @@ const MessageCenter = () => {
 	return (
 		<>
 			<Popover placement="bottomRight" content={<TabsList></TabsList>} trigger="click">
-				<Button type="link" icon={<BellOutlined />}></Button>
+				<Badge count={5} offset={[-5, 5]} size="small">
+					<Button type="link" icon={<BellOutlined />}></Button>
+				</Badge>
 			</Popover>
 		</>
 	);
