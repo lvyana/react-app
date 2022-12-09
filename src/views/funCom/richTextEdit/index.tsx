@@ -11,7 +11,7 @@ import ILookModal from '@/antdComponents/iLookModal';
 import Preview from './components/Preview';
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import moment from 'moment';
+import dayjs from 'dayjs';
 const { confirm } = Modal;
 
 export interface ISingleMenuConfig {
@@ -52,7 +52,7 @@ const RichTextEdit = () => {
 	const onSubmit = () => {
 		// console.log(editor?.children); // 节点对象
 		// console.log(editor?.getHtml()); //获取非格式化的 html
-		let time = moment().format('YYYY-MM-DD');
+		let time = dayjs().format('YYYY-MM-DD');
 		// console.log(time);
 
 		confirm({
