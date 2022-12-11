@@ -3,12 +3,9 @@
  *	@user ly
  *  @data 日期：2020年4月27日
  */
-import React, { ReactNode, FC, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { GET_ROUTER } from '@/store/reducers/globalConfig';
+import React, { ReactNode, FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getToken } from '@/utils/storage';
-import { Router } from '@/layout/menuList';
 import useRouterHooks from './useHooks';
 export interface AuthProps {
 	element: ReactNode;
@@ -17,6 +14,9 @@ export interface AuthProps {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Auth: FC<AuthProps> = ({ element }) => {
+	const location = useLocation();
+	console.log(location);
+
 	const { isMenu } = useRouterHooks();
 
 	// 获取token

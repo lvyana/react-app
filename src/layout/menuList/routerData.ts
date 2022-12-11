@@ -122,45 +122,45 @@ const menuList: Router[] = [
 		]
 	},
 	{
-		title: 'funCom',
-		path: '/funCom',
+		title: 'plugin',
+		path: '/plugin',
 		key: '3',
 		icon: 'icon-yiliao',
 		children: [
 			{
 				title: '富文本',
-				path: '/funCom/richtextedit',
+				path: '/plugin/richtextedit',
 				key: '4',
 				icon: 'icon-huodong'
 			},
 			{
 				title: 'pdf',
-				path: '/funCom/pdf',
+				path: '/plugin/pdf',
 				key: '5',
 				icon: 'icon-biaoshu'
 			},
 
 			{
 				title: 'Player',
-				path: '/funCom/Player',
+				path: '/plugin/Player',
 				key: '8',
 				icon: 'icon-shangcheng'
 			},
 			{
 				title: 'gridLayout',
-				path: '/funCom/DemoGridLayout',
+				path: '/plugin/DemoGridLayout',
 				key: '8',
 				icon: 'icon-jiaoyu'
 			},
 			{
 				title: 'Responsive',
-				path: '/funCom/Responsive',
+				path: '/plugin/Responsive',
 				key: '8',
 				icon: 'icon-shenghuo'
 			},
 			{
 				title: 'I18n',
-				path: '/funCom/I18n',
+				path: '/plugin/I18n',
 				key: '8',
 				icon: 'icon-xinpin'
 			}
@@ -173,8 +173,13 @@ const menuList: Router[] = [
 		path: '/mycenter',
 		key: '6',
 		show: false
+	},
+	{
+		title: '消息中心',
+		path: '/messgeCenter',
+		key: '7',
+		show: false
 	}
 ];
-
 export type { Router };
 export default menuList;
