@@ -15,7 +15,6 @@ export interface AuthProps {
 
 const Auth: FC<AuthProps> = ({ element }) => {
 	const location = useLocation();
-	console.log(location);
 
 	const { isMenu } = useRouterHooks();
 

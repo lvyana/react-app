@@ -12,15 +12,17 @@ import reactCom from './components/React';
 import RouterCom from './components/RouterDom';
 import Plugin from './components/Plugin';
 
+// login
+const Login = lazy(() => import('@/views/login'));
 // Layouts
 const Layouts = lazy(() => import('@/layout'));
-//login
-const Login = lazy(() => import('@/views/login'));
+// 首页
+const Home = lazy(() => import('@/views/home'));
 // 404
 const NotFound = lazy(() => import('@/antdComponents/NotFound'));
-//个人中心
+// 个人中心
 const MyCenter = lazy(() => import('@/views/myCenter'));
-//消息中心
+// 消息中心
 const MessgeCenter = lazy(() => import('@/views/messageCenter'));
 // today
 const ToDay = lazy(() => import('@/views/toDay'));
@@ -31,7 +33,8 @@ const router: RouteObject[] = [
 		path: '/',
 		element: <Auth element={SuspenseLoad(<Layouts />)} />,
 		children: [
-			{ index: true, element: <Navigate to="antd/expenses" /> },
+			{ index: true, element: <Navigate to="home" /> },
+			{ path: 'home', element: SuspenseLoad(<Home />) },
 			{
 				path: 'antd',
 				children: [...antdCom]

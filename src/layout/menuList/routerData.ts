@@ -7,6 +7,12 @@ import type { Router } from './index';
 
 const menuList: Router[] = [
 	{
+		title: '首页',
+		path: '/home',
+		key: '01',
+		icon: 'icon-baohu'
+	},
+	{
 		title: 'antd',
 		path: '/antd',
 		key: '3',
