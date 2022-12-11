@@ -46,8 +46,8 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			width: 100,
 			align: 'center' as AlignType,
 			render: (text: string, record: TabelDataResponse) => (
-				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
-					<div className="omit" onClick={() => tbClick('name', record)}>
+				<Itooltip placement="top" overlayInnerStyle={{ width: 200 }} title={<>{text}</>}>
+					<div className="truncate" style={{ width: 100 }} onClick={() => tbClick('name', record)}>
 						{text}
 					</div>
 				</Itooltip>
@@ -61,7 +61,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
-					<div className="omit">{text}</div>
+					<div className="truncate">{text}</div>
 				</Itooltip>
 			)
 		},
@@ -72,7 +72,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
-					<div className="omit">{text}</div>
+					<div className="truncate">{text}</div>
 				</Itooltip>
 			)
 		},
@@ -83,7 +83,7 @@ const useHeaderTable = ({ buttonEvent }: Iprops) => {
 			align: 'center' as AlignType,
 			render: (text: string) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
-					<div className="omit">{text}</div>
+					<div className="truncate">{text}</div>
 				</Itooltip>
 			)
 		},

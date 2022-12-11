@@ -12,13 +12,6 @@
   box-sizing: border-box;
 }
 
-.omit {
-  /* width: 100%; */
-  overflow: hidden; /* 超出部分隐藏 */
-  text-overflow: ellipsis; /* 超出部分文字以...显示 */
-  white-space: nowrap; /* 不换行 */
-}
-
 /* /n 不能换行 加上这个样式 */
 .lineFeed {
   white-space: pre-wrap;
