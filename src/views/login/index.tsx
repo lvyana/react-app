@@ -1,3 +1,8 @@
+/**
+ * @name 登录
+ * @user ly
+ * @date 2022年12月11日
+ */
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notification, Tabs, Row, Col, Form } from 'antd';
@@ -9,11 +14,7 @@ import { login } from './service';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
 import openNotificationWithIcon from '@/antdComponents/iNotification';
-const { TabPane } = Tabs;
 
-/**
- * @return 登录
- */
 export interface FromType {
 	userName: string | null;
 	password: string | null;
@@ -21,6 +22,8 @@ export interface FromType {
 	// phone?: string;
 	// code?: string;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Login = () => {
 	const [accountForm] = Form.useForm<FromType>();

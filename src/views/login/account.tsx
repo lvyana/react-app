@@ -1,3 +1,8 @@
+/**
+ * @name 账号登录
+ * @user ly
+ * @date 2022年12月11日
+ */
 import React, { FC, useEffect } from 'react';
 import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -5,13 +10,13 @@ import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FromType } from './index';
 import styles from './index.module.scss';
 
-/**
- * @return 账号登录
- */
 interface AccountProps {
 	onFinish: (value: FromType) => void;
 	form: FormInstance<FromType>;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Account: FC<AccountProps> = ({ onFinish, form }) => {
 	// useEffect(() => {
 	// 	form.setFieldsValue({ userName: 'admin', password: '123456' });

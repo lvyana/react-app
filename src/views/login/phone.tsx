@@ -1,3 +1,8 @@
+/**
+ * @name 手机号登录
+ * @user ly
+ * @date 2022年12月11日
+ */
 import React, { useState } from 'react';
 import { Form, Input, Button, Row, Col, Checkbox } from 'antd';
 import { MobileOutlined, LockOutlined } from '@ant-design/icons';
@@ -5,12 +10,11 @@ import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import styles from './index.module.scss';
 
-/**
- * @return 手机号登录
- */
 interface methodProps {
 	onFinish: (value: FromType) => void;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Phone = ({ onFinish }: methodProps) => {
 	// 按钮状态

@@ -1,3 +1,8 @@
+/**
+ * @name 个人中心
+ * @user ly
+ * @date 2022年12月11日
+ */
 import React, { FC, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_PHOTO, GET_SELECTOR_PHOTO } from '@/store/reducers/user';
@@ -7,10 +12,6 @@ import EditPhoto from './components/EditPhoto';
 import ResetPassword from './components/ResetPassword';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 
-/**
- *
- * @returns 个人中心
- */
 const MyCenter: FC = () => {
 	const dispatch = useAppDispatch();
 	const [isModalOpen, setIsModalOpen] = useState(false);
