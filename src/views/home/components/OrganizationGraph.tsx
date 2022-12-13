@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { OrganizationGraph } from '@ant-design/graphs';
+import useThemeHooks from '@/theme/useThemeHooks';
 
 const DemoOrganizationGraph = () => {
+	const [token] = useThemeHooks();
+
 	const data = {
 		id: 'joel',
 		value: {
@@ -108,6 +111,7 @@ const DemoOrganizationGraph = () => {
 		<div>
 			<OrganizationGraph
 				data={data}
+				style={{ backgroundColor: token.colorBgBase }}
 				nodeCfg={{
 					style: (node: any) => {
 						return node.id === 'joel'
