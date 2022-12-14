@@ -103,7 +103,10 @@ module.exports = {
 		addWebpackExternals({
 			// 注意对应的在public/index.html引入jquery的远程文件地址
 			// jQuery: 'jQuery',
-			'@antv/g2plot': 'G2Plot',
+			react: 'React',
+			'react-dom': 'ReactDOM',
+			'@ant-design/plots': 'Plots',
+			'@ant-design/graphs': 'Graphs',
 			'@wangeditor/editor': 'wangEditor'
 		}),
 		addWebpackPlugin(new ProgressBarWebpackPlugin()),
