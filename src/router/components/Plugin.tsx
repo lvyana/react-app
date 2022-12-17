@@ -9,20 +9,20 @@ import SuspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 
 //ReactPlayer
-const Player = lazy(() => import('@/views/funCom/player'));
+const Player = lazy(() => import('@/views/plugin/player'));
 //GridLayout
-const DemoGridLayout = lazy(() => import('@/views/funCom/gridLayout'));
+const DemoGridLayout = lazy(() => import('@/views/plugin/gridLayout'));
 // Responsive响应式
-const Responsive = lazy(() => import('@/views/funCom/responsive'));
+const Responsive = lazy(() => import('@/views/plugin/responsive'));
 //富文本编辑
-const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit'));
+const RichTextEdit = lazy(() => import('@/views/plugin/richTextEdit'));
 // pdf
-const Pdf = lazy(() => import('@/views/funCom/pdf'));
+const Pdf = lazy(() => import('@/views/plugin/pdf'));
 // i18n
-const I18n = lazy(() => import('@/views/funCom/i18n'));
+const I18n = lazy(() => import('@/views/plugin/i18n'));
 
 // 插件的使用
-const funCom = [
+const plugin = [
 	{ index: true, element: <Navigate to="Player" /> },
 	{ path: 'Player', element: SuspenseLoad(<Player />) },
 	{ path: 'DemoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
@@ -32,4 +32,4 @@ const funCom = [
 	{ path: 'I18n', element: SuspenseLoad(<I18n />) }
 ];
 
-export default funCom;
+export default plugin;
