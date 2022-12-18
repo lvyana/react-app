@@ -17,7 +17,6 @@ type MenuItem = Required<MenuProps>['items'][number];
 export interface Router {
 	title: string;
 	path: string;
-	key?: string;
 	icon?: string;
 	show?: boolean;
 	children?: Router[];

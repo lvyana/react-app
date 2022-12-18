@@ -20,16 +20,19 @@ const RichTextEdit = lazy(() => import('@/views/plugin/richTextEdit'));
 const Pdf = lazy(() => import('@/views/plugin/pdf'));
 // i18n
 const I18n = lazy(() => import('@/views/plugin/i18n'));
+// dnd
+const Dnd = lazy(() => import('@/views/plugin/dnd'));
 
 // 插件的使用
 const plugin = [
 	{ index: true, element: <Navigate to="Player" /> },
-	{ path: 'Player', element: SuspenseLoad(<Player />) },
-	{ path: 'DemoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
+	{ path: 'player', element: SuspenseLoad(<Player />) },
+	{ path: 'demoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
 	{ path: 'richtextedit', element: SuspenseLoad(<RichTextEdit />) },
 	{ path: 'pdf', element: SuspenseLoad(<Pdf />) },
-	{ path: 'Responsive', element: SuspenseLoad(<Responsive />) },
-	{ path: 'I18n', element: SuspenseLoad(<I18n />) }
+	{ path: 'responsive', element: SuspenseLoad(<Responsive />) },
+	{ path: 'i18n', element: SuspenseLoad(<I18n />) },
+	{ path: 'dnd', element: SuspenseLoad(<Dnd />) }
 ];
 
 export default plugin;

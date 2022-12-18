@@ -16,9 +16,9 @@ const MyUseRouter = lazy(() => import('@/views/routerCom/myUseRouter'));
 
 // react-router-dom
 const Plugin = [
-	{ index: true, element: <Navigate to="RouterDemo" /> },
+	{ index: true, element: <Navigate to="routerDemo" /> },
 	{
-		path: 'RouterDemo',
+		path: 'routerDemo',
 		element: SuspenseLoad(<RouterDemo />),
 		children: [
 			{ path: ':id', element: SuspenseLoad(<Test />) },
@@ -26,7 +26,7 @@ const Plugin = [
 		]
 	},
 	{
-		path: 'MyUseRouter',
+		path: 'myUseRouter',
 		element: SuspenseLoad(<MyUseRouter />)
 	}
 ];

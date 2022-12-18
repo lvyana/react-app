@@ -23,49 +23,49 @@ const Rtk = lazy(() => import('@/views/reactCom/rtk')); // RTK
 
 // react API Rtk 相关等
 const reactCom = [
-	{ index: true, element: <Navigate to="MyUseReducer" /> },
+	{ index: true, element: <Navigate to="myUseReducer" /> },
 	{
-		path: 'MyUseState',
+		path: 'myUseState',
 		element: SuspenseLoad(<MyUseState />)
 	},
 	{
-		path: 'MyUseEffect',
+		path: 'myUseEffect',
 		element: SuspenseLoad(<MyUseEffect />)
 	},
 	{
-		path: 'MyUseLayoutEffect',
+		path: 'myUseLayoutEffect',
 		element: SuspenseLoad(<MyUseLayoutEffect />)
 	},
 	{
-		path: 'MyUseReducer',
+		path: 'myUseReducer',
 		element: SuspenseLoad(<MyUseReducer />)
 	},
 	{
-		path: 'MyUseContext',
+		path: 'myUseContext',
 		element: SuspenseLoad(<MyUseContext />)
 	},
 	{
-		path: 'MyUseMemo',
+		path: 'myUseMemo',
 		element: SuspenseLoad(<MyUseMemo />)
 	},
 	{
-		path: 'MyUseCallback',
+		path: 'myUseCallback',
 		element: SuspenseLoad(<MyUseCallback />)
 	},
 	{
-		path: 'MyUseRef',
+		path: 'myUseRef',
 		element: SuspenseLoad(<MyUseRef />)
 	},
 	{
-		path: 'MySuspense',
+		path: 'mySuspense',
 		element: SuspenseLoad(<MySuspense />)
 	},
 	{
-		path: 'MyForwardRef',
+		path: 'myForwardRef',
 		element: SuspenseLoad(<MyForwardRef />)
 	},
 
-	{ path: 'Rtk', element: SuspenseLoad(<Rtk />) }
+	{ path: 'rtk', element: SuspenseLoad(<Rtk />) }
 ];
 
 export default reactCom;
