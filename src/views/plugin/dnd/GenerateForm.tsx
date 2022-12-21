@@ -19,7 +19,7 @@ const GenerateForm = () => {
 	});
 
 	return (
-		<div ref={drop} data-testid="GenerateForm" style={{ height: 500, backgroundColor: 'red' }}>
+		<div ref={drop} data-testid="GenerateForm" className="border-2 border-solid border-indigo-600" style={{ height: 500 }}>
 			index
 		</div>
 	);

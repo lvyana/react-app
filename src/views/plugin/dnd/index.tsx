@@ -16,7 +16,7 @@ import EditForm from './EditForm';
 const Dnd = () => {
 	return (
 		<>
-			<Row>
+			<Row gutter={8}>
 				<DndProvider backend={HTML5Backend}>
 					<Col span={6}>
 						<ExamplesList />
