@@ -9,27 +9,30 @@ import SuspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 
 //ReactPlayer
-const Player = lazy(() => import('@/views/funCom/player'));
+const Player = lazy(() => import('@/views/plugin/player'));
 //GridLayout
-const DemoGridLayout = lazy(() => import('@/views/funCom/gridLayout'));
+const DemoGridLayout = lazy(() => import('@/views/plugin/gridLayout'));
 // Responsive响应式
-const Responsive = lazy(() => import('@/views/funCom/responsive'));
+const Responsive = lazy(() => import('@/views/plugin/responsive'));
 //富文本编辑
-const RichTextEdit = lazy(() => import('@/views/funCom/richTextEdit'));
+const RichTextEdit = lazy(() => import('@/views/plugin/richTextEdit'));
 // pdf
-const Pdf = lazy(() => import('@/views/funCom/pdf'));
+const Pdf = lazy(() => import('@/views/plugin/pdf'));
 // i18n
-const I18n = lazy(() => import('@/views/funCom/i18n'));
+const I18n = lazy(() => import('@/views/plugin/i18n'));
+// dnd
+const Dnd = lazy(() => import('@/views/plugin/dnd'));
 
 // 插件的使用
-const funCom = [
+const plugin = [
 	{ index: true, element: <Navigate to="Player" /> },
-	{ path: 'Player', element: SuspenseLoad(<Player />) },
-	{ path: 'DemoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
+	{ path: 'player', element: SuspenseLoad(<Player />) },
+	{ path: 'demoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
 	{ path: 'richtextedit', element: SuspenseLoad(<RichTextEdit />) },
 	{ path: 'pdf', element: SuspenseLoad(<Pdf />) },
-	{ path: 'Responsive', element: SuspenseLoad(<Responsive />) },
-	{ path: 'I18n', element: SuspenseLoad(<I18n />) }
+	{ path: 'responsive', element: SuspenseLoad(<Responsive />) },
+	{ path: 'i18n', element: SuspenseLoad(<I18n />) },
+	{ path: 'dnd', element: SuspenseLoad(<Dnd />) }
 ];
 
-export default funCom;
+export default plugin;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/antdComponents/iTooltip';
-import Idropdown, { ButtonItemParams } from '@/antdComponents/iDropdown';
+import Ibutton, { ButtonItemParams } from '@/antdComponents/iButton';
 import { ItbClick, AlignType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataResponse } from '../service';
@@ -10,7 +10,7 @@ interface useHeaderTableParams {
 	buttonEvent: (type: string | number, value: TabelDataResponse) => void;
 }
 
-type OnClickBtnType = '修改' | '删除';
+type OnClickBtnType = '去处理';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -24,19 +24,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 		}
 	};
 
-	// 表格图表移入移出功能
-	const onOpenChange = (open: boolean, record: TabelDataResponse) => {
-		if (open) {
-			setBtFun([
-				{ type: '修改', name: '修改', btType: 'link' },
-				{ type: '删除', name: '删除', btType: 'link' }
-			]);
-		} else {
-			// setBtFun([]);
-		}
-	};
 	// 初始化按钮
-	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([]);
+	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([{ type: '去处理', name: '去处理', btType: 'link' }]);
 
 	const columns = [
 		{
@@ -90,14 +79,15 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 		{
 			title: '操作',
 			key: 'operation',
-			width: 80,
+			width: 160,
 			align: 'center' as AlignType,
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (
-					<Idropdown
-						btArr={btArr}
-						onOpenChange={(open) => onOpenChange(open, record)}
-						onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
+					<Ibutton buttonList={btArr}></Ibutton>
+					// <Idropdown
+					// 	btArr={btArr}
+					// 	onOpenChange={(open) => onOpenChange(open, record)}
+					// 	onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
 				);
 			}
 		}

@@ -9,25 +9,21 @@ const menuList: Router[] = [
 	{
 		title: '首页',
 		path: '/home',
-		key: '01',
 		icon: 'icon-baohu'
 	},
 	{
 		title: 'antd',
 		path: '/antd',
-		key: '3',
 		icon: 'icon-baohu',
 		children: [
 			{
 				title: 'expenses',
 				path: '/antd/expenses',
-				key: '1',
 				icon: 'icon-yinle'
 			},
 			{
 				title: '动态表单',
 				path: '/antd/dynamicform',
-				key: '2',
 				icon: 'icon-chongzhizhongxin'
 			}
 		]
@@ -36,73 +32,61 @@ const menuList: Router[] = [
 	{
 		title: 'react',
 		path: '/react',
-		key: '3',
 		icon: 'icon-qianbao',
 		children: [
 			{
 				title: 'MyUseState',
-				path: '/react/MyUseState',
-				key: '19',
+				path: '/react/myUseState',
 				icon: 'icon-kongjian'
 			},
 			{
 				title: 'MyUseEffect',
-				path: '/react/MyUseEffect',
-				key: '20',
+				path: '/react/myUseEffect',
 				icon: 'icon-fenxiangerweima'
 			},
 			{
 				title: 'MyUseLayoutEffect',
-				path: '/react/MyUseLayoutEffect',
-				key: '222',
+				path: '/react/myUseLayoutEffect',
 				icon: 'icon-wodemaidan'
 			},
 			{
 				title: 'MyUseReducer',
-				path: '/react/MyUseReducer',
-				key: '21',
+				path: '/react/myUseReducer',
 				icon: 'icon-gouwu'
 			},
 			{
 				title: 'MyUseContext',
-				path: '/react/MyUseContext',
-				key: '22',
+				path: '/react/myUseContext',
 				icon: 'icon-gouwu'
 			},
 			{
 				title: 'MyUseMemo',
-				path: '/react/MyUseMemo',
-				key: '23',
+				path: '/react/myUseMemo',
 				icon: 'icon-zuji'
 			},
 			{
 				title: 'MyUseCallback',
-				path: '/react/MyUseCallback',
-				key: '23',
+				path: '/react/myUseCallback',
 				icon: 'icon-ditu'
 			},
 			{
 				title: 'MyUseRef',
-				path: '/react/MyUseRef',
-				key: '24',
+				path: '/react/myUseRef',
 				icon: 'icon-youhuiquan'
 			},
 			{
 				title: 'MySuspense',
-				path: '/react/MySuspense',
-				key: '24',
+				path: '/react/mySuspense',
 				icon: 'icon-dingdan'
 			},
 			{
 				title: 'MyForwardRef',
-				path: '/react/MyForwardRef',
-				key: '26',
+				path: '/react/myForwardRef',
 				icon: 'icon-paimai'
 			},
 			{
 				title: 'Rtk',
 				path: '/react/Rtk',
-				key: '25',
 				icon: 'icon-xinpin'
 			}
 		]
@@ -110,19 +94,16 @@ const menuList: Router[] = [
 	{
 		title: 'Router',
 		path: '/router',
-		key: '99',
 		icon: 'icon-jiushui',
 		children: [
 			{
 				title: 'RouterDemo',
-				path: '/router/RouterDemo',
-				key: '4',
+				path: '/router/routerDemo',
 				icon: 'icon-qiche'
 			},
 			{
 				title: 'MyUseRouter',
-				path: '/router/MyUseRouter',
-				key: '25',
+				path: '/router/myUseRouter',
 				icon: 'icon-shangou'
 			}
 		]
@@ -130,44 +111,42 @@ const menuList: Router[] = [
 	{
 		title: 'plugin',
 		path: '/plugin',
-		key: '3',
 		icon: 'icon-yiliao',
 		children: [
 			{
 				title: '富文本',
 				path: '/plugin/richtextedit',
-				key: '4',
 				icon: 'icon-huodong'
 			},
 			{
 				title: 'pdf',
 				path: '/plugin/pdf',
-				key: '5',
 				icon: 'icon-biaoshu'
 			},
 
 			{
 				title: 'Player',
-				path: '/plugin/Player',
-				key: '8',
+				path: '/plugin/player',
 				icon: 'icon-shangcheng'
 			},
 			{
 				title: 'gridLayout',
-				path: '/plugin/DemoGridLayout',
-				key: '8',
+				path: '/plugin/demoGridLayout',
 				icon: 'icon-jiaoyu'
 			},
 			{
 				title: 'Responsive',
-				path: '/plugin/Responsive',
-				key: '8',
+				path: '/plugin/responsive',
 				icon: 'icon-shenghuo'
 			},
 			{
 				title: 'I18n',
-				path: '/plugin/I18n',
-				key: '8',
+				path: '/plugin/i18n',
+				icon: 'icon-xinpin'
+			},
+			{
+				title: 'dnd',
+				path: '/plugin/dnd',
 				icon: 'icon-xinpin'
 			}
 		]
@@ -177,13 +156,11 @@ const menuList: Router[] = [
 	{
 		title: '个人中心',
 		path: '/mycenter',
-		key: '6',
 		show: false
 	},
 	{
 		title: '消息中心',
 		path: '/messgeCenter',
-		key: '7',
 		show: false
 	}
 ];

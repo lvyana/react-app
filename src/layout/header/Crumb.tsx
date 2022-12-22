@@ -26,7 +26,7 @@ const Crumb = () => {
 		let routerArr: Router[] = [];
 		location.pathname.split('/').map((item, i) => {
 			if (i === 0) {
-				routerArr[0] = { path: '/', title: '系统', key: '/', children: menuList };
+				routerArr[0] = { path: '/', title: '系统', children: menuList };
 			} else {
 				let is = routerArr[i - 1]?.children?.find((val) => {
 					return val.path.indexOf(item) !== -1;
