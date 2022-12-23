@@ -3,10 +3,12 @@
  * @user ly
  * @date 2022年12月17日
  */
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Col, Row } from 'antd';
 import { useDrag } from 'react-dnd';
-import { ITEM_TYPES, ItemTypesParams, FORM_ITEM } from './itemTypes';
+import { ITEM_TYPES, FORM_ITEM } from './itemTypes';
+import { Context } from './context';
+import type { ItemTypesParams } from './itemTypes';
 
 export const FORM_TYPE_LIST = [
 	{
@@ -46,6 +48,8 @@ const ExamplesList = () => {
 };
 
 const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
+	const context = useContext(Context);
+
 	const [{ isDragging }, drag] = useDrag(() => ({
 		type: FORM_ITEM,
 		item: { name },
@@ -54,6 +58,9 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 			if (item && dropResult) {
 				// 放入目标
 				console.log(item, dropResult);
+				const { name } = item;
+				const formList = [...(context?.state.formList || []), { type: name as ItemTypesParams }];
+				context?.dispatch({ type: 'formList', value: formList });
 			}
 		},
 		collect: (monitor) => ({

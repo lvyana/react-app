@@ -3,12 +3,16 @@
  * @user ly
  * @date 2022年12月17日
  */
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 import { FORM_ITEM } from './itemTypes';
+import { Context } from './context';
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const GenerateForm = () => {
+	const context = useContext(Context);
+
 	const [{ isOver, canDrop }, drop] = useDrop({
 		accept: FORM_ITEM,
 		drop: () => ({ name: 'GenerateForm' }),
@@ -25,4 +29,7 @@ const GenerateForm = () => {
 	);
 };
 
+const GenerateFormItem = () => {
+	return <></>;
+};
 export default GenerateForm;

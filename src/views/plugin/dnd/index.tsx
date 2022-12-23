@@ -10,12 +10,13 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import ExamplesList from './ExamplesList';
 import GenerateForm from './GenerateForm';
 import EditForm from './EditForm';
+import DndContext from './context';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dnd = () => {
 	return (
-		<>
+		<DndContext>
 			<Row gutter={8}>
 				<DndProvider backend={HTML5Backend}>
 					<Col span={6}>
@@ -29,7 +30,7 @@ const Dnd = () => {
 					<EditForm />
 				</Col>
 			</Row>
-		</>
+		</DndContext>
 	);
 };
 
