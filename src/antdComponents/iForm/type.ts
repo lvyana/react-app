@@ -3,7 +3,7 @@ import { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
 import { CheckboxOptionType, RadioChangeEvent } from 'antd';
 import { RangeValue } from './components/Idate';
-import { IformButton } from './components/ibutton';
+import { IformButton } from './components/Ibutton';
 import { formRadioOptionsParams } from './components/Iradio';
 import { ChangeEventExtra } from './components/ItreeSelect';
 import { BaseOptionType } from 'antd/es/cascader';
@@ -47,6 +47,7 @@ export interface FormItemMap {
 	rate: <T extends string, E extends ((value: number) => void) | undefined>(item: FormItemCom<T, E>) => JSX.Element;
 	textArea: <T, E extends ChangeEventHandler<HTMLTextAreaElement> | undefined>(item: FormItemCom<T, E>) => JSX.Element;
 	seachSelect: <T extends DefaultOptionType, E>(item: FormItemCom<T, E>) => JSX.Element;
+	slider: <T, E>(item: FormItemCom<T, E>) => JSX.Element;
 	userDefined: <T, E>(item: FormItemCom<T, E>) => ReactNode;
 }
 export type FormItemMapType = keyof FormItemMap;

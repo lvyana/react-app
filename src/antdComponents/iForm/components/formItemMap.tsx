@@ -1,6 +1,6 @@
 import { ChangeEventHandler, ReactNode } from 'react';
 import { FormItemMap } from '../type';
-import { formButton, IformButton } from './ibutton';
+import { formButton, IformButton } from './Ibutton';
 import { formCascader } from './Icascader';
 import { formCheckbox } from './Icheckbox';
 import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker, RangeValue } from './Idate';
@@ -10,6 +10,7 @@ import { formRate } from './irate';
 import { formSelect, formSeachSelect } from './Iselect';
 import { formSwitch } from './Iswitch';
 import { ChangeEventExtra, formTreeSelect } from './ItreeSelect';
+import { formslider } from './Islider';
 import { formUserDefined } from './IuserDefined';
 
 const FORM_ITEM_MAP: FormItemMap = {
@@ -29,6 +30,7 @@ const FORM_ITEM_MAP: FormItemMap = {
 	rate: (item) => formRate(item),
 	textArea: (item) => formInputTextArea(item),
 	seachSelect: (item) => formSeachSelect(item),
+	slider: (item) => formslider(item),
 	userDefined: (item) => formUserDefined(item)
 };
 
