@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './tailwind.css';
-import { ConfigProvider } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ErrorBoundary from '@/antdComponents/errorBoundary';
@@ -11,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '@/store';
 
 import App from './App';
-import './index.scss';
+import './index.css';
 
 // i18n
 import '@/config/i18n';

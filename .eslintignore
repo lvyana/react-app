@@ -1,5 +1,5 @@
 build/*.js
 config/*.js
-config-overrides.js
+craco.config.js
 /public/*.js
 /public/*.html
