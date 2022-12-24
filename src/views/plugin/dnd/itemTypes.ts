@@ -1,7 +1,7 @@
 /**
  * @name 左侧有哪些表单类型
  */
-export type ItemTypesParams = 'input' | 'select' | 'textarea' | 'cascader';
+export type ItemTypesParams = 'input' | 'select' | 'textArea' | 'cascader';
 export interface ItemTypes {
 	INPUT: ItemTypesParams;
 	SELECT: ItemTypesParams;
@@ -11,7 +11,7 @@ export interface ItemTypes {
 export const ITEM_TYPES: ItemTypes = {
 	INPUT: 'input',
 	SELECT: 'select',
-	TEXTAREA: 'textarea',
+	TEXTAREA: 'textArea',
 	CASCADER: 'cascader'
 };
 

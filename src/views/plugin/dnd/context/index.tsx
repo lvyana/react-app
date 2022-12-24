@@ -5,12 +5,13 @@
  */
 import React, { FC, createContext, useReducer } from 'react';
 import type { ItemTypesParams } from '../itemTypes';
+import type { FormItemParam } from '@/antdComponents/iForm/type';
 
 interface DndContextProps {
 	children: React.ReactElement;
 }
 
-interface formItemParams {
+interface formItemParams extends FormItemParam<never, never> {
 	type: ItemTypesParams;
 }
 
@@ -46,4 +47,5 @@ const DndContext: FC<DndContextProps> = ({ children }) => {
 };
 
 export { Context };
+export type { formItemParams };
 export default DndContext;

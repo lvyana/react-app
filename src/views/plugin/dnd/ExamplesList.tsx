@@ -3,7 +3,7 @@
  * @user ly
  * @date 2022年12月17日
  */
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useRef, useState } from 'react';
 import { Col, Row } from 'antd';
 import { useDrag } from 'react-dnd';
 import { ITEM_TYPES, FORM_ITEM } from './itemTypes';
@@ -49,25 +49,42 @@ const ExamplesList = () => {
 
 const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 	const context = useContext(Context);
+	const formList = context?.state.formList;
 
-	const [{ isDragging }, drag] = useDrag(() => ({
-		type: FORM_ITEM,
-		item: { name },
-		end: (item, monitor) => {
-			const dropResult = monitor.getDropResult();
-			if (item && dropResult) {
-				// 放入目标
-				console.log(item, dropResult);
-				const { name } = item;
-				const formList = [...(context?.state.formList || []), { type: name as ItemTypesParams }];
-				context?.dispatch({ type: 'formList', value: formList });
-			}
-		},
-		collect: (monitor) => ({
-			isDragging: monitor.isDragging(),
-			handlerId: monitor.getHandlerId()
-		})
-	}));
+	const id = useRef(0);
+
+	const [{ isDragging }, drag] = useDrag(
+		() => ({
+			type: FORM_ITEM,
+			item: { name: type },
+			end: (item, monitor) => {
+				const dropResult = monitor.getDropResult();
+				if (item && dropResult) {
+					// 放入目标
+					console.log(item, dropResult);
+					const { name } = item;
+					const newFormList = [
+						...(formList || []),
+						{
+							type: name as ItemTypesParams,
+							label: 'label',
+							name: 'name' + formList?.length,
+							key: id.current,
+							span: 24,
+							layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+						}
+					];
+					context?.dispatch({ type: 'formList', value: newFormList });
+					id.current = id.current + 1;
+				}
+			},
+			collect: (monitor) => ({
+				isDragging: monitor.isDragging(),
+				handlerId: monitor.getHandlerId()
+			})
+		}),
+		[formList]
+	);
 
 	return (
 		<>
