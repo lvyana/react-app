@@ -90,8 +90,8 @@ module.exports = {
 			webpackConfig.output = {
 				...webpackConfig.output,
 				...{
-					filename: whenDev(() => 'static/js/bundle.js', 'static/js/[name].js'),
-					chunkFilename: 'static/js/[name].js'
+					filename: whenDev(() => 'static/js/bundle.js', 'static/js/[name].[chunkhash].js'),
+					chunkFilename: 'static/js/[name].[chunkhash].js'
 				},
 				path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
 				publicPath: '/'
@@ -111,13 +111,13 @@ module.exports = {
 			/**
 			 * webpack split chunks
 			 */
-			// webpackConfig.optimization.splitChunks = {
-			//   ...webpackConfig.optimization.splitChunks,
-			//   ...{
-			//     chunks: 'all',
-			//     name: true
-			//   }
-			// }
+			webpackConfig.optimization.splitChunks = {
+				...webpackConfig.optimization.splitChunks,
+				...{
+					chunks: 'all',
+					name: false
+				}
+			};
 			// 返回重写后的新配置
 			return webpackConfig;
 		},
