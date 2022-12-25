@@ -70,7 +70,7 @@ module.exports = {
 				changeOrigin: true,
 				// 跨域配置
 				pathRewrite: {
-					['^' + process.env.REACT_APP_BASE_API]: '/mock/544622'
+					['^' + process.env.REACT_APP_BASE_API]: '/m1/544622-0-default'
 				}
 			}
 		}
@@ -102,10 +102,10 @@ module.exports = {
 			webpackConfig.externals = {
 				// 注意对应的在public/index.html引入jquery的远程文件地址
 				// jQuery: 'jQuery',
-				react: 'React',
-				'react-dom': 'ReactDOM',
-				'@ant-design/plots': 'Plots',
-				'@ant-design/graphs': 'Graphs',
+				// react: 'React',
+				// 'react-dom': 'ReactDOM',
+				// '@ant-design/plots': 'Plots',
+				// '@ant-design/graphs': 'Graphs',
 				'@wangeditor/editor': 'wangEditor'
 			};
 			/**
