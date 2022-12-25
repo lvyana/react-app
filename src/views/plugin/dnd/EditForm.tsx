@@ -14,7 +14,7 @@ const EditForm = () => {
 	const [form] = Form.useForm();
 	const formList: FormListType = [
 		{ type: 'slider', key: '1', label: '宽度', name: 'slider', span: 24, layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } } },
-		{ type: 'select', key: '2', label: '宽度', name: 'select', span: 24, layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } } }
+		{ type: 'input', key: '2', label: 'label', name: 'input', span: 24, layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } } }
 	];
 	return (
 		<div>
