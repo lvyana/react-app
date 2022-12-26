@@ -81,43 +81,48 @@ module.exports = {
 			'@': path.resolve(__dirname, 'src')
 		},
 		configure: (webpackConfig, { env, paths }) => {
-			// paths.appPath='public'
-			paths.appBuild = 'dist'; // 配合输出打包修改文件目录
-			// webpackConfig中可以解构出你想要的参数比如mode、devtool、entry等等，更多信息请查看webpackConfig.json文件
-			/**
-			 * 修改 output
-			 */
-			webpackConfig.output = {
-				...webpackConfig.output,
-				...{
-					filename: whenDev(() => 'static/js/bundle.js', 'static/js/[name].[chunkhash].js'),
-					chunkFilename: 'static/js/[name].[chunkhash].js'
-				},
-				path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
-				publicPath: '/'
-			};
-			// 关闭 devtool
-			webpackConfig.devtool = false;
+			if (devMode) {
+				// paths.appPath='public'
+				paths.appBuild = 'dist'; // 配合输出打包修改文件目录
+				// webpackConfig中可以解构出你想要的参数比如mode、devtool、entry等等，更多信息请查看webpackConfig.json文件
+				/**
+				 * 修改 output
+				 */
+				webpackConfig.output = {
+					...webpackConfig.output,
+					...{
+						filename: whenDev(() => 'static/js/bundle.js', 'static/js/[name].[chunkhash].js'),
+						chunkFilename: 'static/js/[name].[chunkhash].js'
+					},
+					path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
+					publicPath: '/'
+				};
+				// 关闭 devtool
+				webpackConfig.devtool = false;
 
-			webpackConfig.externals = {
-				// 注意对应的在public/index.html引入jquery的远程文件地址
-				// jQuery: 'jQuery',
-				// react: 'React',
-				// 'react-dom': 'ReactDOM',
-				// '@ant-design/plots': 'Plots',
-				// '@ant-design/graphs': 'Graphs',
-				'@wangeditor/editor': 'wangEditor'
-			};
-			/**
-			 * webpack split chunks
-			 */
-			webpackConfig.optimization.splitChunks = {
-				...webpackConfig.optimization.splitChunks,
-				...{
-					chunks: 'all',
-					name: false
-				}
-			};
+				webpackConfig.externals = {
+					// 注意对应的在public/index.html引入jquery的远程文件地址
+					// jQuery: 'jQuery',
+					// react: 'React',
+					// 'react-dom': 'ReactDOM',
+					// '@ant-design/plots': 'Plots',
+					// '@ant-design/graphs': 'Graphs',
+					'@wangeditor/editor': 'wangEditor'
+				};
+				/**
+				 * webpack split chunks
+				 */
+				webpackConfig.optimization.splitChunks = {
+					...webpackConfig.optimization.splitChunks,
+					...{
+						chunks: 'all',
+						name: false
+					}
+				};
+			} else {
+				webpackConfig.devtool = 'eval-source-map';
+			}
+
 			// 返回重写后的新配置
 			return webpackConfig;
 		},
