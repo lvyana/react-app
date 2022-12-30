@@ -19,3 +19,8 @@ export const ITEM_TYPES: ItemTypes = {
  * @name 左侧item类型
  */
 export const FORM_ITEM = 'formItem';
+
+/**
+ * @name 中间生成表单中item
+ */
+export const GENERATE_FORM_ITEM = 'GenerateFormItem';

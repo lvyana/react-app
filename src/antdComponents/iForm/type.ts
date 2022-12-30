@@ -88,6 +88,8 @@ export interface FormItemCom<T, E> {
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	handleSearch?: (value: string) => void;
 	children?: ReactNode;
+	max?: number;
+	min?: number;
 }
 
 export interface FormItemParam<T, E> extends FormItemCom<T, E>, FormItem {}

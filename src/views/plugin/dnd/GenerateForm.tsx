@@ -3,16 +3,16 @@
  * @user ly
  * @date 2022年12月17日
  */
-import React, { FC, useContext } from 'react';
-import { useDrop } from 'react-dnd';
+import React, { FC, useCallback, useContext, useMemo } from 'react';
+import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
 import { Button, Col, Form, Row } from 'antd';
 import Iform from '@/antdComponents/iForm';
-import { FORM_ITEM } from './itemTypes';
+import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context } from './context';
-import { CloseCircleOutlined } from '@ant-design/icons';
-
+import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import type { formItemParams } from './context';
 import type { FormItemParam } from '@/antdComponents/iForm';
+import { useRef } from 'react';
 
 interface GenerateFormItemParams {
 	formParams: formItemParams;
@@ -34,26 +34,151 @@ const GenerateForm = () => {
 	});
 
 	return (
-		<div ref={drop} data-testid="GenerateForm" className="p-2 border-2 border-solid border-indigo-600" style={{ minHeight: 500 }}>
-			{context?.state.formList.map((item, i) => {
-				return <GenerateFormItem key={i} formParams={item} index={i}></GenerateFormItem>;
-			})}
+		<div
+			ref={drop}
+			data-testid="GenerateForm"
+			className="rounded-lg p-2 border-2 border-solid border-indigo-600"
+			style={{ minHeight: 500 }}>
+			<Row>
+				{context?.state.formList.map((item, i) => {
+					return (
+						<Col span={item.span} key={item.key}>
+							<GenerateFormItem formParams={item} index={i}></GenerateFormItem>
+						</Col>
+					);
+				})}
+			</Row>
 		</div>
 	);
 };
 
 const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => {
+	const context = useContext(Context);
+	const ref = useRef<HTMLDivElement>(null);
+
+	const [{ handlerId }, drop] = useDrop(
+		{
+			accept: GENERATE_FORM_ITEM,
+			collect(monitor) {
+				return {
+					handlerId: monitor.getHandlerId()
+				};
+			},
+			hover(item, monitor) {
+				if (!ref.current) {
+					return;
+				}
+				const dragIndex = (item as unknown as { index: number }).index;
+				const hoverIndex = index;
+				// Don't replace items with themselves
+				if (dragIndex === hoverIndex) {
+					return;
+				}
+				// Determine rectangle on screen
+				const hoverBoundingRect = ref.current?.getBoundingClientRect();
+				// Get vertical middle
+				const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+				// Determine mouse position
+				const clientOffset = monitor.getClientOffset();
+				// Get pixels to the top
+				if (clientOffset) {
+					const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+					// Only perform the move when the mouse has crossed half of the items height
+					// When dragging downwards, only move when the cursor is below 50%
+					// When dragging upwards, only move when the cursor is above 50%
+					// Dragging downwards
+					if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+						return;
+					}
+					// Dragging upwards
+					if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+						return;
+					}
+				}
+
+				// Time to actually perform the action
+				// moveCard(dragIndex, hoverIndex);
+
+				const newFormList = swapArr(context?.state.formList || [], hoverIndex, dragIndex);
+				console.log(dragIndex, hoverIndex, newFormList);
+				context?.dispatch({ type: 'formList', value: newFormList || [] });
+				// Note: we're mutating the monitor item here!
+				// Generally it's better to avoid mutations,
+				// but it's good here for the sake of performance
+				// to avoid expensive index searches.
+				(item as unknown as { index: number }).index = hoverIndex;
+			}
+		},
+		[context?.state.formList]
+	);
+
+	const swapArr = (arr: formItemParams[], index1: number, index2: number) => {
+		const newArr = JSON.parse(JSON.stringify(arr));
+		newArr[index1] = newArr.splice(index2, 1, newArr[index1])[0];
+		return newArr;
+	};
+
+	const [{ isDragging }, drag, preview] = useDrag(
+		() => ({
+			type: GENERATE_FORM_ITEM,
+			item: () => {
+				return { id: formParams.key, index };
+			},
+			collect: (monitor) => ({
+				handlerId: monitor.getHandlerId(),
+				isDragging: monitor.isDragging()
+			})
+		}),
+		[index]
+	);
+
+	const opacity = isDragging ? 0 : 1;
+	drag(drop(ref));
+
 	const [form] = Form.useForm();
-	console.log(formParams);
 
 	const formList: [FormItemParam<never, never>] = [{ ...formParams }];
+
+	const onEditFormItemParams = () => {
+		context?.dispatch({ type: 'selectFormItemKey', value: formParams.key });
+	};
+
+	// 删除formItem
+	const onDeleteFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.stopPropagation();
+
+		const formList = context?.state.formList.filter((item) => {
+			return item.key !== formParams.key;
+		});
+		context?.dispatch({ type: 'formList', value: formList });
+
+		if (formParams.key === context?.state.selectFormItemKey) {
+			context.dispatch({ type: 'selectFormItemKey', value: undefined });
+		}
+	};
+
+	// 复制formItem
+	const onCopyFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.stopPropagation();
+		console.log(formParams);
+	};
+
 	return (
-		<Row className="p-4 pb-0 mb-2 border border-solid border-indigo-600">
+		<Row
+			onClick={onEditFormItemParams}
+			className={
+				'rounded-lg p-4 pb-0 mb-2 border border-solid border-indigo-600 ' +
+				`${context?.state.selectFormItemKey === formParams.key ? 'shadow-lg bg-purple-200' : ''}`
+			}
+			style={{ opacity, height: 100 }}
+			data-handler-id={handlerId}
+			ref={ref}>
 			<Col flex="auto">
 				<Iform form={form} formList={formList}></Iform>
 			</Col>
-			<Col flex="150px" className="text-center">
-				<Button type="link" icon={<CloseCircleOutlined />}></Button>
+			<Col flex="100px" className="text-center">
+				<Button type="link" icon={<CloseCircleOutlined />} onClick={(e) => onDeleteFormItem(e)}></Button>
+				<Button type="link" icon={<CopyOutlined />} onClick={(e) => onCopyFormItem(e)}></Button>
 			</Col>
 		</Row>
 	);

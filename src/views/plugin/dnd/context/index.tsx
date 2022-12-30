@@ -8,15 +8,17 @@ import type { ItemTypesParams } from '../itemTypes';
 import type { FormItemParam } from '@/antdComponents/iForm/type';
 
 interface DndContextProps {
-	children: React.ReactElement;
+	children: React.ReactNode;
 }
 
-interface formItemParams extends FormItemParam<never, never> {
+interface formItemParams extends Omit<FormItemParam<never, never>, 'key'> {
 	type: ItemTypesParams;
+	key: number;
 }
 
 interface StateParams {
 	formList: formItemParams[];
+	selectFormItemKey?: number;
 }
 
 interface actionParams {
@@ -30,20 +32,23 @@ type ReducerFun = (state: StateParams, action: actionParams) => StateParams;
 const Context = createContext<{ state: StateParams; dispatch: React.Dispatch<actionParams> } | null>(null);
 
 const initState = {
-	formList: []
+	formList: [],
+	selectFormItemKey: undefined
 };
 
 const reducer: ReducerFun = (state, action) => {
 	const { type, value } = action;
 	if (type === 'formList') {
-		return { ...state, formList: value };
+		return { ...state, formList: value as StateParams['formList'] };
+	} else if (type === 'selectFormItemKey') {
+		return { ...state, selectFormItemKey: value as StateParams['selectFormItemKey'] };
 	}
 	return state;
 };
 const DndContext: FC<DndContextProps> = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initState);
 
-	return <Context.Provider value={{ state, dispatch }}>{React.cloneElement(children)}</Context.Provider>;
+	return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>;
 };
 
 export { Context };

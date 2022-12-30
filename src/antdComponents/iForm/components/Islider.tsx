@@ -3,5 +3,5 @@ import { Slider } from 'antd';
 import { FormItemMap } from '../type';
 
 export const formslider: FormItemMap['slider'] = (item) => {
-	return <Slider disabled={item.disabled} />;
+	return <Slider disabled={item.disabled} max={item.max} min={item.min} />;
 };

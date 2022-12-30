@@ -33,11 +33,13 @@ interface ExamplesItemProps {
 	name: string;
 	type: ItemTypesParams;
 }
+
+let ID = 1;
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const ExamplesList = () => {
 	return (
-		<div className="p-2 border-2 border-solid border-indigo-600">
+		<div className="rounded-lg p-2 border-2 border-solid border-indigo-600">
 			<Row gutter={16}>
 				{FORM_TYPE_LIST.map((item) => {
 					return <ExamplesItem name={item.name} type={item.type} key={item.type}></ExamplesItem>;
@@ -51,7 +53,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 	const context = useContext(Context);
 	const formList = context?.state.formList;
 
-	const id = useRef(0);
+	const id = useRef(1);
 
 	const [{ isDragging }, drag] = useDrag(
 		() => ({
@@ -61,7 +63,6 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 				const dropResult = monitor.getDropResult();
 				if (item && dropResult) {
 					// 放入目标
-					console.log(item, dropResult);
 					const { name } = item;
 					const newFormList = [
 						...(formList || []),
@@ -69,13 +70,14 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							type: name as ItemTypesParams,
 							label: 'label',
 							name: 'name' + formList?.length,
-							key: id.current,
+							disabled: false,
+							key: ID,
 							span: 24,
 							layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 						}
 					];
 					context?.dispatch({ type: 'formList', value: newFormList });
-					id.current = id.current + 1;
+					ID++;
 				}
 			},
 			collect: (monitor) => ({
@@ -89,7 +91,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 	return (
 		<>
 			<Col span={12}>
-				<div ref={drag} data-testid={`formItem`} className="p-2 mb-2 border border-solid border-indigo-600">
+				<div ref={drag} data-testid={`formItem`} className="rounded-lg p-2 mb-2 border border-solid border-indigo-600">
 					{name}
 				</div>
 			</Col>
