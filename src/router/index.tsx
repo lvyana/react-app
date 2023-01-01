@@ -53,11 +53,11 @@ const router: RouteObject[] = [
 			},
 			{ path: 'mycenter', element: SuspenseLoad(<MyCenter />) },
 			{ path: 'messgeCenter', element: SuspenseLoad(<MessgeCenter />) }
+			// { path: '*', element: SuspenseLoad(<NotFound />) }
 		]
-		// { path: '*', element: <NotFound /> }
 	},
-	{ path: 'today', element: SuspenseLoad(<ToDay />) },
-	{ path: '*', element: <NotFound /> }
+	{ path: '/today', element: SuspenseLoad(<ToDay />) },
+	{ path: '*', element: SuspenseLoad(<NotFound />) }
 ];
 
 export default router;

@@ -25,7 +25,7 @@ const Dnd = lazy(() => import('@/views/plugin/dnd'));
 
 // 插件的使用
 const plugin = [
-	{ index: true, element: <Navigate to="Player" /> },
+	{ index: true, element: <Navigate to="player" /> },
 	{ path: 'player', element: SuspenseLoad(<Player />) },
 	{ path: 'demoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
 	{ path: 'richtextedit', element: SuspenseLoad(<RichTextEdit />) },

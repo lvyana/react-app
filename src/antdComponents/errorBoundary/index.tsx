@@ -18,30 +18,28 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
 		// 将报错发送到Fundebug
 	}
-	backHome() {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
-		const navigate = useNavigate();
-		navigate('/login');
-	}
+
 	render() {
 		if (this.state.hasError) {
 			// return null;
 			// 也可以在出错的component处展示出错信息
-			return (
-				<Result
-					status="500"
-					title="500"
-					subTitle="Sorry, something went wrong."
-					extra={
-						<Button onClick={this.backHome} type="primary">
-							Back Home
-						</Button>
-					}
-				/>
-			);
+			return <Result status="500" title="500" subTitle="Sorry, something went wrong." extra={<GoErrorView />} />;
 		}
 		return this.props.children;
 	}
 }
 
+const GoErrorView = () => {
+	const navigate = useNavigate();
+
+	const onBackHome = () => {
+		navigate('/home');
+	};
+
+	return (
+		<Button onClick={onBackHome} type="primary">
+			Back Home
+		</Button>
+	);
+};
 export default ErrorBoundary;
