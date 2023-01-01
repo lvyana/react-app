@@ -8,7 +8,7 @@ export const formCascader: FormItemMap['cascader'] = (item) => {
 		<Cascader
 			fieldNames={item.fieldNames}
 			options={item.option}
-			allowClear
+			allowClear={item.allowClear !== false}
 			onChange={item.onChange}
 			placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}
 			disabled={item.disabled}

@@ -76,6 +76,7 @@ export interface FormItemCom<T, E> {
 	label?: FormItem['label'];
 	validateTrigger?: string | string[];
 	disabled?: boolean;
+	allowClear?: boolean;
 	onChange?: E;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
 	mode?: Mode;

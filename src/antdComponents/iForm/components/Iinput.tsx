@@ -11,7 +11,7 @@ export const formInputItem: FormItemMap['input'] = (item) => {
 			onBlur={item.onBlur}
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			disabled={item.disabled}
-			allowClear
+			allowClear={item.allowClear !== false}
 			style={{ width: '100%', ...item.style }}
 		/>
 	);
@@ -25,7 +25,7 @@ export const formInputTextArea: FormItemMap['textArea'] = (item) => {
 			onChange={item.onChange}
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			maxLength={item.maxLength}
-			allowClear
+			allowClear={item.allowClear !== false}
 			disabled={item.disabled}
 			style={{ width: '100%', ...item.style }}
 		/>

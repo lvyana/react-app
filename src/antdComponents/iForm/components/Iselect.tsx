@@ -7,7 +7,7 @@ export const formSelect: FormItemMap['select'] = (item) => {
 	return (
 		<Select
 			showSearch
-			allowClear
+			allowClear={item.allowClear !== false}
 			onChange={item.onChange}
 			fieldNames={item.fieldNames}
 			options={item.option}
@@ -37,7 +37,7 @@ export const formSeachSelect: FormItemMap['seachSelect'] = (item) => {
 	return (
 		<Select
 			showSearch
-			allowClear
+			allowClear={item.allowClear !== false}
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			defaultActiveFirstOption={false}
 			showArrow={false}

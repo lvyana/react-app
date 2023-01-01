@@ -13,7 +13,7 @@ export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
 			showCheckedStrategy={SHOW_PARENT}
 			treeCheckable={item.checkbox}
 			fieldNames={item.fieldNames}
-			allowClear
+			allowClear={item.allowClear !== false}
 			onChange={item.onChange}
 			placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}
 			disabled={item.disabled}
