@@ -43,7 +43,7 @@ const MyUseRouter = () => {
 				src={img4}
 				height={400}
 				width={'100%'}
-				threshold={-100}
+				threshold={-300}
 			/>
 
 			<img src={img5} />

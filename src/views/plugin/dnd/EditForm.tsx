@@ -57,6 +57,7 @@ const EditForm = () => {
 			key: '3',
 			label: 'label',
 			name: 'disabled',
+			allowClear: false,
 			option: DISABLED_OPTIONS,
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }

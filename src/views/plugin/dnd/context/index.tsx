@@ -13,12 +13,12 @@ interface DndContextProps {
 
 interface formItemParams extends Omit<FormItemParam<never, never>, 'key'> {
 	type: ItemTypesParams;
-	key: number;
+	key: string;
 }
 
 interface StateParams {
 	formList: formItemParams[];
-	selectFormItemKey?: number;
+	selectFormItemKey?: string;
 }
 
 interface actionParams {

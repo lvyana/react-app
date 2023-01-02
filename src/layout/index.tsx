@@ -81,7 +81,7 @@ const Layouts = () => {
 					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>
-					<TabsMain></TabsMain>
+					<TabsMain />
 				</div>
 				<Content className="Layout-Content">
 					<Outlet />

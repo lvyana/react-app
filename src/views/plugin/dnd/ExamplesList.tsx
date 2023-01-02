@@ -4,6 +4,7 @@
  * @date 2022年12月17日
  */
 import React, { FC, useContext, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Col, Row } from 'antd';
 import { useDrag } from 'react-dnd';
 import { ITEM_TYPES, FORM_ITEM } from './itemTypes';
@@ -71,7 +72,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							label: 'label',
 							name: 'name' + formList?.length,
 							disabled: false,
-							key: ID,
+							key: uuidv4(),
 							span: 24,
 							layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 						}

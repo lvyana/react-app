@@ -86,7 +86,7 @@ const menuList: Router[] = [
 			},
 			{
 				title: 'Rtk',
-				path: '/react/Rtk',
+				path: '/react/rtk',
 				icon: 'icon-xinpin'
 			}
 		]
