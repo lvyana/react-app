@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Rate } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // 评分
 export const formRate: FormItemMap['rate'] = (item) => {

@@ -5,9 +5,7 @@
  */
 import React from 'react';
 import { InboxOutlined } from '@ant-design/icons';
-import type { UploadProps } from 'antd';
-import { message, Upload } from 'antd';
-import Item from 'antd/es/list/Item';
+import { Upload } from 'antd';
 import type { FormItemMap } from '../type';
 
 const { Dragger } = Upload;

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { DatePicker, TimePicker } from 'antd';
 import type { FormItemCom } from '../type';
 import type { Dayjs } from 'dayjs';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 const { RangePicker } = DatePicker;
 // 日期

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Form, Select } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // Select
 export const formSelect: FormItemMap['select'] = (item) => {

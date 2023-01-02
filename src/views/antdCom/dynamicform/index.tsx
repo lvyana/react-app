@@ -8,6 +8,9 @@ import Iform from '@/antdComponents/iForm';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import type { FormItemParam } from '@/antdComponents/iForm';
+import type { UploadFile } from 'antd/lib/upload/interface';
+
+type FileChangeType = (info: { file: UploadFile; fileList: UploadFile[] }) => void;
 
 type FormListType = [
 	FormItemParam<never, never>,
@@ -73,8 +76,12 @@ type FormListType = [
 	FormItemParam<never, never>,
 	FormItemParam<never, never>,
 	FormItemParam<never, never>,
+	FormItemParam<never, FileChangeType>,
 	FormItemParam<{ type: string; name: string; BTtype?: string }, never>
 ];
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Dynamicform = () => {
 	const selectOnChange = (value: string) => {};
 	// 参数
@@ -320,6 +327,25 @@ const Dynamicform = () => {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
 			}
+		},
+		{
+			type: 'upload',
+			key: 14,
+			label: 'upload',
+			name: 'upload',
+			span: 24,
+			onChange: (info) => {
+				const { status } = info.file;
+				if (status !== 'uploading') {
+					// console.log(info.file, info.fileList);
+				}
+				if (status === 'done') {
+					message.success(`${info.file.name} file uploaded successfully.`);
+				} else if (status === 'error') {
+					message.error(`${info.file.name} file upload failed.`);
+				}
+			},
+			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
 			type: 'button' as const,

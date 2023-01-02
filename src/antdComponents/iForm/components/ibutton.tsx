@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Row, Col } from 'antd';
 import IconFont from '@/utils/iconfont';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 export interface IformButton {
 	BTtype?: 'link' | 'text' | 'dashed' | 'default' | 'ghost' | 'primary' | undefined;

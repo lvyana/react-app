@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Switch } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // 是否
 export const formSwitch: FormItemMap['switch'] = (item) => {

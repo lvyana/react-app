@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Input, InputNumber } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // input
 export const formInputItem: FormItemMap['input'] = (item) => {

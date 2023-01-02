@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Checkbox } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // 多选
 export const formCheckbox: FormItemMap['checkbox'] = (item) => {

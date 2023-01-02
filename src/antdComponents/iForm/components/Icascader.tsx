@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Cascader } from 'antd';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 // 联级
 export const formCascader: FormItemMap['cascader'] = (item) => {

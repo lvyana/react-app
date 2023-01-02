@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TreeSelect } from 'antd';
 import type { ChangeEventExtra } from 'rc-tree-select/lib/TreeSelect';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 const { SHOW_PARENT } = TreeSelect;
 

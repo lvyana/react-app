@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Radio } from 'antd';
 import IconFont from '@/utils/iconfont';
-import { FormItemMap } from '../type';
+import type { FormItemMap } from '../type';
 
 export interface formRadioOptionsParams {
 	key: string | number;
