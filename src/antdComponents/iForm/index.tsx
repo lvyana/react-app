@@ -125,6 +125,9 @@ const Iform = <T extends FormItem[], F extends object>({
 		if (item.type === 'slider') {
 			return FORM_ITEM_MAP[item.type](item);
 		}
+		if (item.type === 'upload') {
+			return FORM_ITEM_MAP[item.type](item);
+		}
 		if (item.type === 'userDefined') {
 			return FORM_ITEM_MAP[item.type](item);
 		}

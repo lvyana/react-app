@@ -12,6 +12,7 @@ import { formSwitch } from './Iswitch';
 import { ChangeEventExtra, formTreeSelect } from './ItreeSelect';
 import { formslider } from './Islider';
 import { formUserDefined } from './IuserDefined';
+import formUpload from './Iupload';
 
 const FORM_ITEM_MAP: FormItemMap = {
 	input: (item) => formInputItem(item),
@@ -31,6 +32,7 @@ const FORM_ITEM_MAP: FormItemMap = {
 	textArea: (item) => formInputTextArea(item),
 	seachSelect: (item) => formSeachSelect(item),
 	slider: (item) => formslider(item),
+	upload: (item) => formUpload(item),
 	userDefined: (item) => formUserDefined(item)
 };
 

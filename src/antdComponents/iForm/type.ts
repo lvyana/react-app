@@ -1,16 +1,17 @@
 import React, { ReactNode, ChangeEventHandler } from 'react';
-import { Rule } from 'rc-field-form/lib/interface';
+import type { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
-import { CheckboxOptionType, RadioChangeEvent } from 'antd';
-import { RangeValue } from './components/Idate';
-import { IformButton } from './components/Ibutton';
-import { formRadioOptionsParams } from './components/Iradio';
-import { ChangeEventExtra } from './components/ItreeSelect';
-import { BaseOptionType } from 'antd/es/cascader';
-import { CheckboxValueType } from 'antd/es/checkbox/Group';
-import { DefaultOptionType } from 'antd/es/select';
-import { SwitchChangeEventHandler } from 'antd/es/switch';
-import { LabelTooltipType } from 'antd/es/form/FormItemLabel';
+import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
+import type { RangeValue } from './components/Idate';
+import type { IformButton } from './components/Ibutton';
+import type { formRadioOptionsParams } from './components/Iradio';
+import type { ChangeEventExtra } from './components/ItreeSelect';
+import type { BaseOptionType } from 'antd/es/cascader';
+import type { CheckboxValueType } from 'antd/es/checkbox/Group';
+import type { DefaultOptionType } from 'antd/es/select';
+import type { SwitchChangeEventHandler } from 'antd/es/switch';
+import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
+import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
 
 /**
  * @name 表单组件集合
@@ -48,6 +49,7 @@ export interface FormItemMap {
 	textArea: <T, E extends ChangeEventHandler<HTMLTextAreaElement> | undefined>(item: FormItemCom<T, E>) => JSX.Element;
 	seachSelect: <T extends DefaultOptionType, E>(item: FormItemCom<T, E>) => JSX.Element;
 	slider: <T, E>(item: FormItemCom<T, E>) => JSX.Element;
+	upload: <T, E extends ((info: UploadChangeParam<UploadFile<any>>) => void) | undefined>(item: FormItemCom<T, E>) => JSX.Element;
 	userDefined: <T, E>(item: FormItemCom<T, E>) => ReactNode;
 }
 export type FormItemMapType = keyof FormItemMap;
@@ -73,6 +75,7 @@ export interface FormItem {
  * FormItem内组件参数
  */
 export interface FormItemCom<T, E> {
+	name: string;
 	label?: FormItem['label'];
 	validateTrigger?: string | string[];
 	disabled?: boolean;
@@ -91,6 +94,8 @@ export interface FormItemCom<T, E> {
 	children?: ReactNode;
 	max?: number;
 	min?: number;
+	multiple?: boolean;
+	action?: string;
 }
 
 export interface FormItemParam<T, E> extends FormItemCom<T, E>, FormItem {}
