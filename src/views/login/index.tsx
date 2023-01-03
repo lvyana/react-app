@@ -70,7 +70,7 @@ const Login = () => {
 		const { password, userName, remember } = values;
 		if (userName === 'admin' && password === '123456') {
 			setUserInfo(userName, password, remember);
-			navigate('/antd/expenses');
+			navigate('/');
 			openNotification();
 			return;
 		} else if (userName === 'today' && password === '123456') {

@@ -16,7 +16,7 @@ import DemoOrganizationGraph from './components/OrganizationGraph';
 
 const Home = () => {
 	return (
-		<div>
+		<>
 			<Row gutter={16}>
 				<Col span={12} className="mb-4">
 					<Icard>
@@ -44,7 +44,7 @@ const Home = () => {
 					</Icard>
 				</Col>
 			</Row>
-		</div>
+		</>
 	);
 };
 
