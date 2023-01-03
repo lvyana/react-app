@@ -24,7 +24,7 @@ import store from './store';
 // reportWebVitals();
 // import enUS from 'antd/lib/locale/en_US';
 // 中文
-import Theme from '@/theme';
+import Theme from '@/config/theme';
 
 function render() {
 	const container = document.querySelector('#root') as Element;

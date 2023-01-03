@@ -1,3 +1,8 @@
+/**
+ * @name 按钮
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { Button, Row, Col } from 'antd';
 import IconFont from '@/utils/iconfont';
@@ -9,7 +14,7 @@ export interface IformButton {
 	name: string;
 	iconType?: string;
 }
-//按钮
+
 export const formButton: FormItemMap['button'] = (item, onFinish) => {
 	return (
 		<Row style={{ ...item.style }} wrap={false}>

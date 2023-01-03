@@ -1,8 +1,12 @@
+/**
+ * @name 联级
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { Cascader } from 'antd';
 import type { FormItemMap } from '../type';
 
-// 联级
 export const formCascader: FormItemMap['cascader'] = (item) => {
 	return (
 		<Cascader

@@ -1,3 +1,8 @@
+/**
+ * @name 树形下拉
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { TreeSelect } from 'antd';
 import type { ChangeEventExtra } from 'rc-tree-select/lib/TreeSelect';
@@ -5,7 +10,6 @@ import type { FormItemMap } from '../type';
 
 const { SHOW_PARENT } = TreeSelect;
 
-// 树形下拉
 export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
 	return (
 		<TreeSelect
