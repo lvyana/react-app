@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { OrganizationGraph } from '@ant-design/graphs';
-import useThemeHooks from '@/theme/useThemeHooks';
+import useThemeHooks from '@/config/theme/useThemeHooks';
 
 const DemoOrganizationGraph = () => {
 	const [token] = useThemeHooks();

@@ -9,7 +9,7 @@ import { Tabs } from 'antd';
 import menuList, { Router } from '@/layout/menuList/routerData';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
-import useThemeHooks from '@/theme/useThemeHooks';
+import useThemeHooks from '@/config/theme/useThemeHooks';
 
 type ACTION = 'add' | 'remove';
 

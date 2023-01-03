@@ -13,7 +13,7 @@ import Itour from '@/antdComponents/iTour';
 import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
-import useThemeHooks from '@/theme/useThemeHooks';
+import useThemeHooks from '@/config/theme/useThemeHooks';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
