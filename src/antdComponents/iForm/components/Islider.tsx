@@ -1,3 +1,8 @@
+/**
+ * @name 滑动输入条
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React from 'react';
 import { Slider } from 'antd';
 import type { FormItemMap } from '../type';

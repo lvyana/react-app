@@ -1,3 +1,8 @@
+/**
+ * @name 单选
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { Radio } from 'antd';
 import IconFont from '@/utils/iconfont';
@@ -9,6 +14,7 @@ export interface formRadioOptionsParams {
 	icon?: string;
 	name?: string;
 }
+
 // 单选
 export const formRadio: FormItemMap['radio'] = (item) => {
 	return (

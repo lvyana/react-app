@@ -1,3 +1,8 @@
+/**
+ * @name input
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { Input, InputNumber } from 'antd';
 import type { FormItemMap } from '../type';

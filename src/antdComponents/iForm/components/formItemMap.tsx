@@ -1,3 +1,8 @@
+/**
+ * @name form对象
+ * @user ly
+ * @date 2023年1月3日
+ */
 import { ChangeEventHandler, ReactNode } from 'react';
 import { FormItemMap } from '../type';
 import { formButton, IformButton } from './Ibutton';
@@ -5,8 +10,8 @@ import { formCascader } from './Icascader';
 import { formCheckbox } from './Icheckbox';
 import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker, RangeValue } from './Idate';
 import { formInputItem, formInputTextArea, formInputNumber } from './Iinput';
-import { formRadio, formRadioOptionsParams } from './Iradio';
-import { formRate } from './irate';
+import { formRadio } from './Iradio';
+import { formRate } from './Irate';
 import { formSelect, formSeachSelect } from './Iselect';
 import { formSwitch } from './Iswitch';
 import { ChangeEventExtra, formTreeSelect } from './ItreeSelect';

@@ -1,3 +1,8 @@
+/**
+ * @name 日期
+ * @user ly
+ * @date 2023年1月3日
+ */
 import React, { FC } from 'react';
 import { DatePicker, TimePicker } from 'antd';
 import type { FormItemCom } from '../type';
