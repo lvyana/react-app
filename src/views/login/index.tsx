@@ -16,9 +16,9 @@ import { setUserName, setPassword, getUserName, getPassword } from '@/utils/stor
 import openNotificationWithIcon from '@/antdComponents/iNotification';
 
 export interface FromType {
-	userName: string | null;
-	password: string | null;
-	remember: boolean | null;
+	userName: string | undefined;
+	password: string | undefined;
+	remember: boolean | undefined;
 	// phone?: string;
 	// code?: string;
 }
@@ -88,7 +88,7 @@ const Login = () => {
 	];
 	return (
 		<div className={styles.login}>
-			<Row justify="center" style={{ height: '100%' }}>
+			{/* <Row justify="center" style={{ height: '100%' }}>
 				<Col flex="300px">
 					<Tabs
 						items={items}
@@ -103,7 +103,8 @@ const Login = () => {
 							borderRadius: '8px'
 						}}></Tabs>
 				</Col>
-			</Row>
+			</Row> */}
+			<Account form={accountForm} onFinish={onFinish} />
 		</div>
 	);
 };
