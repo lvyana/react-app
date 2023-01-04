@@ -35,7 +35,6 @@ interface ExamplesItemProps {
 	type: ItemTypesParams;
 }
 
-let ID = 1;
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const ExamplesList = () => {
@@ -64,11 +63,11 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 				const dropResult = monitor.getDropResult();
 				if (item && dropResult) {
 					// 放入目标
-					const { name } = item;
+					const { name: type } = item;
 					const newFormList = [
 						...(formList || []),
 						{
-							type: name as ItemTypesParams,
+							type: type as ItemTypesParams,
 							label: 'label',
 							name: 'name' + formList?.length,
 							disabled: false,
@@ -78,7 +77,6 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 						}
 					];
 					context?.dispatch({ type: 'formList', value: newFormList });
-					ID++;
 				}
 			},
 			collect: (monitor) => ({

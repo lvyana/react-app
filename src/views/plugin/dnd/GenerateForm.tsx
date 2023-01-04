@@ -3,19 +3,19 @@
  * @user ly
  * @date 2022年12月17日
  */
-import React, { FC, useCallback, useContext, useMemo } from 'react';
+import React, { FC, useCallback, useContext, useRef } from 'react';
 import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 import { Button, Col, Form, Row } from 'antd';
 import Iform from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context } from './context';
 import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
-import type { formItemParams } from './context';
-import type { FormItemParam } from '@/antdComponents/iForm';
-import { useRef } from 'react';
+import type { FormItemParams } from './context';
+import type { ItemTypesParams } from './itemTypes';
 
 interface GenerateFormItemParams {
-	formParams: formItemParams;
+	formParams: FormItemParams;
 	index: number;
 }
 
@@ -112,7 +112,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 		[context?.state.formList]
 	);
 
-	const swapArr = (arr: formItemParams[], index1: number, index2: number) => {
+	const swapArr = (arr: FormItemParams[], index1: number, index2: number) => {
 		const newArr = JSON.parse(JSON.stringify(arr));
 		newArr[index1] = newArr.splice(index2, 1, newArr[index1])[0];
 		return newArr;
@@ -137,7 +137,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 
 	const [form] = Form.useForm();
 
-	const formList: [FormItemParam<never, never>] = [{ ...formParams }];
+	const formList: FormItemParams[] = [{ ...formParams }];
 
 	const onEditFormItemParams = () => {
 		context?.dispatch({ type: 'selectFormItemKey', value: formParams.key });
@@ -160,7 +160,25 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	// 复制formItem
 	const onCopyFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation();
-		console.log(formParams);
+		const newFormList = context?.state.formList.reduce<FormItemParams[]>((prev, item) => {
+			if (formParams.key === item.key) {
+				return [
+					...prev,
+					...[
+						item,
+						{
+							...item,
+							name: 'name' + formList?.length,
+							key: uuidv4()
+						}
+					]
+				];
+			} else {
+				return [...prev, item];
+			}
+		}, []);
+
+		context?.dispatch({ type: 'formList', value: newFormList });
 	};
 
 	return (

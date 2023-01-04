@@ -11,13 +11,13 @@ interface DndContextProps {
 	children: React.ReactNode;
 }
 
-interface formItemParams extends Omit<FormItemParam<never, never>, 'key'> {
+interface FormItemParams extends Omit<FormItemParam<never, never>, 'key'> {
 	type: ItemTypesParams;
 	key: string;
 }
 
 interface StateParams {
-	formList: formItemParams[];
+	formList: FormItemParams[];
 	selectFormItemKey?: string;
 }
 
@@ -52,5 +52,5 @@ const DndContext: FC<DndContextProps> = ({ children }) => {
 };
 
 export { Context };
-export type { formItemParams };
+export type { FormItemParams };
 export default DndContext;
