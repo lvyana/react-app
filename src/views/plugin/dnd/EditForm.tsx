@@ -22,7 +22,7 @@ type DisabledParams = {
 };
 
 const DISABLED_OPTIONS: DisabledParams[] = [
-	{ label: '正常', value: false },
+	{ label: '启用', value: false },
 	{ label: '禁用', value: true }
 ];
 
@@ -55,7 +55,7 @@ const EditForm = () => {
 		{
 			type: 'select',
 			key: '3',
-			label: 'label',
+			label: '是否禁用',
 			name: 'disabled',
 			allowClear: false,
 			option: DISABLED_OPTIONS,
