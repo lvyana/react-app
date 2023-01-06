@@ -59,7 +59,7 @@ const TabsList: FC<TabsListProps> = ({ hide }) => {
 	};
 	return (
 		<div className={`${style['Layout-Tabs-center']}`}>
-			<Tabs defaultActiveKey="1" onChange={onChange} items={items}></Tabs>
+			<Tabs defaultActiveKey="1" onChange={onChange} items={items} className={`${style['Layout-Tabs-List']}`}></Tabs>
 			<Row className="mt-1" gutter={8}>
 				<Col span={12}>
 					<Button type="dashed" style={{ width: '100%' }}>

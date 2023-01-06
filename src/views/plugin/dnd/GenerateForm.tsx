@@ -100,7 +100,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 				// moveCard(dragIndex, hoverIndex);
 
 				const newFormList = swapArr(context?.state.formList || [], hoverIndex, dragIndex);
-				console.log(dragIndex, hoverIndex, newFormList);
+				// console.log(dragIndex, hoverIndex, newFormList);
 				context?.dispatch({ type: 'formList', value: newFormList || [] });
 				// Note: we're mutating the monitor item here!
 				// Generally it's better to avoid mutations,

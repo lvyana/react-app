@@ -6,12 +6,14 @@
 import React, { FC, createContext, useReducer } from 'react';
 import type { ItemTypesParams } from '../itemTypes';
 import type { FormItemParam } from '@/antdComponents/iForm/type';
+import type { OptionsPararms } from '../service';
+import type { FormParams } from '../EditForm';
 
 interface DndContextProps {
 	children: React.ReactNode;
 }
 
-interface FormItemParams extends Omit<FormItemParam<never, never>, 'key'> {
+interface FormItemParams extends Omit<FormItemParam<OptionsPararms, never>, 'key' | 'span' | 'label' | 'disabled'>, FormParams {
 	type: ItemTypesParams;
 	key: string;
 }

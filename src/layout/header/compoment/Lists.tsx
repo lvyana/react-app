@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { List } from 'antd';
 import { useRequest } from 'ahooks';
 import { messgeCenter } from '../service';
-import styles from '../index.module.scss';
+import style from '../index.module.scss';
 
 export interface messgeCenterParams {
 	title: string;
@@ -36,7 +36,7 @@ const Lists = () => {
 	});
 
 	return (
-		<div className={`${styles['Layout-Tabs-List']}`}>
+		<div className={`${style['Layout-Tabs-List']}`}>
 			<List
 				bordered
 				dataSource={messgeCenterData}
