@@ -10,16 +10,10 @@ import style from './index.module.scss';
 
 const Iloading = () => {
 	return (
-		<div className={style['container']}>
-			<div className={style['loader']}>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-dot']}></div>
-				<div className={style['loader-text']}></div>
-			</div>
+		<div className={style['cssload-loader']}>
+			<div className={`${style['cssload-inner']} ${style['cssload-one']}`}></div>
+			<div className={`${style['cssload-inner']} ${style['cssload-two']}`}></div>
+			<div className={`${style['cssload-inner']} ${style['cssload-three']}`}></div>
 		</div>
 	);
 };
