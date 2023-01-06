@@ -7,6 +7,8 @@ import React, { useRef, Suspense, lazy, ComponentType } from 'react';
 import { useAppDispatch } from '@/store';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
 import menuList, { Router } from '@/layout/menuList/routerData';
+import Iloading from '@/pluginComponents/iLoading';
+
 // 异步路由
 const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, setRedux: (data: Router[]) => void) => {
 	const AysncComponentPromise = (): Promise<{ default: ComponentType }> =>
@@ -44,7 +46,7 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 				// console.log(1);
 
 				resolve(menuList);
-			}, 1000);
+			}, 2000);
 		});
 	};
 
@@ -58,7 +60,12 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 	// 只做一次权限判断
 	if (isApi.current === 0) {
 		return (
-			<Suspense fallback={<>loading.....我是异步组件 拦截</>}>
+			<Suspense
+				fallback={
+					<>
+						<Iloading></Iloading>
+					</>
+				}>
 				<LazyComponent></LazyComponent>
 			</Suspense>
 		);
