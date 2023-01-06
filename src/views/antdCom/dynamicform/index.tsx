@@ -350,7 +350,7 @@ const Dynamicform = () => {
 		{
 			type: 'button' as const,
 			name: 'button',
-			key: 14,
+			key: 15,
 			span: 24,
 			option: [
 				{ type: 'submit', name: '搜索', BTtype: 'primary' },
