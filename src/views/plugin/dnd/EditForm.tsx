@@ -58,7 +58,11 @@ const EditForm = () => {
 	// 获取所有label name
 	const formListLabel = useMemo(() => {
 		// 先过滤
-		return context?.state.formList.map((item) => {
+		const filterOneself = context?.state.formList.filter((item) => {
+			return item.key !== context.state.selectFormItemKey;
+		});
+
+		return filterOneself?.map((item) => {
 			return { label: item.label, name: item.name };
 		});
 	}, [context?.state.formList]);
