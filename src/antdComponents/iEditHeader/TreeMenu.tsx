@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect, Key } from 'react';
 import { Tree } from 'antd';
+import { arrIndexExchange } from '@/utils/exchange';
 import type { DataNode, TreeProps } from 'antd/es/tree';
 import type { onSelectAllParam } from './index';
 import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
@@ -73,15 +74,3 @@ const TreeMenu: FC<TreeMenuProps> = ({ initData, checkedKeys, updateInitData, up
 };
 
 export default TreeMenu;
-
-/**
- *
- * @param array 原数组
- * @param x 原位置
- * @param y 要交换的位置
- */
-function arrIndexExchange(array: headerConfigListArrType[], x: number, y: number) {
-	const arr = JSON.parse(JSON.stringify(array));
-	arr.splice(y, 0, ...arr.splice(x, 1));
-	return arr;
-}
