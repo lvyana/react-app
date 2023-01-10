@@ -9,7 +9,7 @@
 /test/
 /dist/
 
-/node_modules/
+/node_modules
 /public/
 
 node_module/*
