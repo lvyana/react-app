@@ -11,6 +11,7 @@ import Iform from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context } from './context';
 import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
+import { arrIndexExchange } from '@/utils/exchange';
 import type { FormItemParams } from './context';
 import type { ItemTypesParams } from './itemTypes';
 
@@ -99,7 +100,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 				// Time to actually perform the action
 				// moveCard(dragIndex, hoverIndex);
 
-				const newFormList = swapArr(context?.state.formList || [], hoverIndex, dragIndex);
+				const newFormList = arrIndexExchange(context?.state.formList || [], hoverIndex, dragIndex);
 				// console.log(dragIndex, hoverIndex, newFormList);
 				context?.dispatch({ type: 'formList', value: newFormList || [] });
 				// Note: we're mutating the monitor item here!
@@ -112,11 +113,11 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 		[context?.state.formList]
 	);
 
-	const swapArr = (arr: FormItemParams[], index1: number, index2: number) => {
-		const newArr = JSON.parse(JSON.stringify(arr));
-		newArr[index1] = newArr.splice(index2, 1, newArr[index1])[0];
-		return newArr;
-	};
+	// const swapArr = (arr: FormItemParams[], index1: number, index2: number) => {
+	// 	const newArr = JSON.parse(JSON.stringify(arr));
+	// 	newArr[index1] = newArr.splice(index2, 1, newArr[index1])[0];
+	// 	return newArr;
+	// };
 
 	const [{ isDragging }, drag, preview] = useDrag(
 		() => ({
@@ -140,6 +141,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	const formList: FormItemParams[] = [{ ...formParams }];
 
 	const onEditFormItemParams = () => {
+		if (formParams.key === context?.state.selectFormItemKey) return;
 		context?.dispatch({ type: 'selectFormItemKey', value: formParams.key });
 	};
 

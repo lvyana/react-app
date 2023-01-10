@@ -12,7 +12,7 @@ export interface DateAndPersonnelProps {
 }
 
 const DateAndPersonnel: FC<DateAndPersonnelProps> = ({ oldUserId, oldDate }) => {
-	console.log(oldUserId, oldDate);
+	// console.log(oldUserId, oldDate);
 
 	const toDay = useContext(toDayContext);
 

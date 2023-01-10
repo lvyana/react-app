@@ -15,15 +15,17 @@ type FormListType = [
 	FormItemParam<DisabledParams, never>,
 	FormItemParam<never, never>,
 	FormItemParam<never, never>,
-	FormItemParam<FormListLabel, never>
+	FormItemParam<FormListLabel, never>,
+	FormItemParam<never, never>
 ];
 
 export type FormParams = {
 	span: number;
 	label: string;
 	disabled: boolean;
-	url: string;
+	url?: string;
 	parent?: string;
+	rule?: string;
 };
 
 type DisabledParams = {
@@ -127,6 +129,14 @@ const EditForm = () => {
 			fieldNames: { label: 'label', value: 'name' },
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'input',
+			key: '4',
+			label: '校验',
+			name: 'rule',
+			span: 24,
+			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		}
 	];
 
@@ -173,7 +183,9 @@ const EditForm = () => {
 
 	// parent
 	useEditFormItemValue('parent', form);
-	console.log(context?.state.formList);
+
+	// rule
+	useEditFormItemValue('rule', form);
 
 	// 获取options数据
 	const [getAnyOptions] = useWatchUrl();

@@ -33,7 +33,6 @@ export const useWatchUrl = () => {
 	const { run: getAnyOptions } = useRequest(anyOptions, {
 		manual: true,
 		onSuccess: (res) => {
-			console.log(res);
 			const { data } = res;
 
 			const newFormList = context?.state.formList.map((item) => {

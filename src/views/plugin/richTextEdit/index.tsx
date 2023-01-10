@@ -29,7 +29,6 @@ const RichTextEdit = () => {
 		placeholder: '请输入内容...',
 		onCreated(editor: IDomEditor) {
 			setEditor(editor);
-			console.log(editor);
 		}, // 记录下 editor 实例，重要！
 		MENU_CONF: {}
 	};
@@ -75,7 +74,7 @@ const RichTextEdit = () => {
 		<div className="animate__animated animate__fadeIn">
 			<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
 			<Editor defaultConfig={editorConfig} defaultHtml={defaultHtml} mode="default" style={{ height: '500px' }} />
-			<div style={{ marginTop: '10px' }}>
+			<div className="mt-2">
 				<Button type="primary" onClick={onSubmit} style={{ marginRight: '5px' }}>
 					提交
 				</Button>
