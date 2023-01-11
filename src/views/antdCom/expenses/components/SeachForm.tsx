@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import IsearchForm, { FormInstance, FormItemParam } from '@/antdComponents/iSearchForm';
+import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
 import { IformButton } from '@/antdComponents/iForm/components/Ibutton';
 import { TabelDataParams } from '../service';
-
+import type { FormInputType, FormSelectType, FormButtonType } from '@/antdComponents/iForm/type';
 interface Iprops {
 	form: FormInstance<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>;
 	onFinish: (type?: string) => void;
@@ -15,12 +15,7 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: [
-		FormItemParam<never, never>,
-		FormItemParam<never, never>,
-		FormItemParam<statusDataProps, never>,
-		FormItemParam<IformButton, never>
-	] = [
+	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<IformButton>] = [
 		{
 			type: 'input',
 			name: 'name',

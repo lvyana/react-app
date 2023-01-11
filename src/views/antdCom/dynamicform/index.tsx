@@ -7,83 +7,79 @@ import React, { useState } from 'react';
 import Iform from '@/antdComponents/iForm';
 import { Form, Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import type { FormItemParam } from '@/antdComponents/iForm';
+import type {
+	FormInputType,
+	FormSelectType,
+	FormRadioType,
+	FormCheckboxType,
+	FormRateType,
+	FormTreeselectType,
+	FormCascaderType,
+	FormAlonePicker,
+	FormBothPicker,
+	FormInputNumberType,
+	FormSwitchType,
+	FormUploadType,
+	FormButtonType
+} from '@/antdComponents/iForm/type';
 import type { UploadFile } from 'antd/lib/upload/interface';
 
 type FileChangeType = (info: { file: UploadFile; fileList: UploadFile[] }) => void;
 
 type FormListType = [
-	FormItemParam<never, never>,
-	FormItemParam<
-		{
-			name: string;
-			value: string;
-			key: number;
-		},
-		(value: string) => void
-	>,
-	FormItemParam<
-		{
-			icon: string;
-			value: string;
-			key: number;
-		},
-		never
-	>,
-	FormItemParam<
-		{
-			name: string;
-			value: string;
-			key: number;
-		},
-		never
-	>,
-	FormItemParam<
-		{
-			label: string;
-			value: string;
-			key: number;
-		},
-		never
-	>,
-	FormItemParam<string, never>,
-	FormItemParam<
-		{
+	FormInputType<never>,
+	FormSelectType<{
+		name: string;
+		value: string;
+		key: number;
+	}>,
+	FormRadioType<{
+		icon: string;
+		value: string;
+		key: number;
+	}>,
+	FormRadioType<{
+		name: string;
+		value: string;
+		key: number;
+	}>,
+	FormCheckboxType<{
+		label: string;
+		value: string;
+		key: number;
+	}>,
+	FormRateType<string>,
+	FormTreeselectType<{
+		title: string;
+		value: string;
+		children?: {
 			title: string;
 			value: string;
-			children?: {
-				title: string;
-				value: string;
-				children?: number;
-			}[];
-		},
-		never
-	>,
-	FormItemParam<
-		{
+			children?: number;
+		}[];
+	}>,
+	FormCascaderType<{
+		label: string;
+		value: string;
+		children?: {
 			label: string;
 			value: string;
-			children?: {
-				label: string;
-				value: string;
-				children?: number;
-			}[];
-		},
-		never
-	>,
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<never, FileChangeType>,
-	FormItemParam<{ type: string; name: string; BTtype?: string }, never>
+			children?: number;
+		}[];
+	}>,
+	FormAlonePicker<never>,
+	FormBothPicker<never>,
+	FormBothPicker<never>,
+	FormInputNumberType<never>,
+	FormSwitchType<never>,
+	FormUploadType,
+	FormButtonType<{ type: string; name: string; BTtype?: string }>
 ];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dynamicform = () => {
-	const selectOnChange = (value: string) => {};
+	const selectOnChange = (value: string | number) => {};
 	// 参数
 	const formList: FormListType = [
 		{

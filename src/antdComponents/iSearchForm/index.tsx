@@ -4,7 +4,7 @@
  *  @data 日期：2020年4月27日
  */
 import React, { FC } from 'react';
-import Iform, { FormItem, FormInstance, FormItemParam } from '@/antdComponents/iForm';
+import Iform, { FormItem, FormInstance } from '@/antdComponents/iForm';
 import AnimateComponent from '@/pluginComponents/iAnimateComponent';
 import { IresponsiveMin, IresponsiveMax } from '@/pluginComponents/iResponsive';
 import Icard from '@/antdComponents/iCard';
@@ -34,5 +34,5 @@ const IsearchForm = <T extends FormItem[]>({ form, formList, onFinish }: Isearch
 		</>
 	);
 };
-export type { FormInstance, FormItem, FormItemParam };
+export type { FormInstance, FormItem };
 export default IsearchForm;

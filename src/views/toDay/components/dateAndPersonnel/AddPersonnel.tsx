@@ -6,7 +6,8 @@
 import React, { FC, useState } from 'react';
 import { Form, FormInstance } from 'antd';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
-import Iform, { FormItemParam } from '@/antdComponents/iForm';
+import Iform from '@/antdComponents/iForm';
+import type { FormInputType, FormSelectType } from '@/antdComponents/iForm/type';
 
 interface AddPersonnelProps {
 	addPersonnelOpen: boolean;
@@ -20,7 +21,7 @@ export interface FormParams {
 	post: number;
 }
 
-type FormList = [FormItemParam<never, never>, FormItemParam<PostOptions, never>];
+type FormList = [FormInputType<never>, FormSelectType<PostOptions>];
 type PostOptions = {
 	value: number;
 	label: string;

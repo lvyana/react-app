@@ -9,7 +9,6 @@ import HeaderEdit from '@/antdComponents/iTable/HeaderEdit';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
-import ClassCom from './components/classCom';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};

@@ -4,19 +4,20 @@
  * @date 2022年12月17日
  */
 import React, { useContext, useEffect, useMemo } from 'react';
-import Iform, { FormItemParam } from '@/antdComponents/iForm';
+import Iform from '@/antdComponents/iForm';
 import { Button, Form } from 'antd';
 import { Context } from './context';
 import { useEditFormItemValue, useWatchUrl } from './useHooks';
+import type { FormSliderType, FormInputType, FormSelectType, FormUserDefinedType } from '@/antdComponents/iForm/type';
 
 type FormListType = [
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<DisabledParams, never>,
-	FormItemParam<never, never>,
-	FormItemParam<never, never>,
-	FormItemParam<FormListLabel, never>,
-	FormItemParam<never, never>
+	FormSliderType,
+	FormInputType<never>,
+	FormSelectType<DisabledParams>,
+	FormInputType<never>,
+	FormUserDefinedType,
+	FormSelectType<FormListLabel>,
+	FormInputType<never>
 ];
 
 export type FormParams = {

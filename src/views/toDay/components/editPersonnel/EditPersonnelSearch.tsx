@@ -4,9 +4,10 @@
  * @date 2022年11月20日
  */
 import React, { FC } from 'react';
-import Iform, { FormItemParam, FormInstance, OnValuesChange } from '@/antdComponents/iForm';
+import Iform, { FormItem, FormInstance, OnValuesChange } from '@/antdComponents/iForm';
+import type { FormInputType } from '@/antdComponents/iForm/type';
 
-type FormListParams = [FormItemParam<never, never>];
+type FormListParams = [FormInputType<never>];
 
 export interface EditPersonnelSearchFormParmas {
 	name: string;
