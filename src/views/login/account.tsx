@@ -54,14 +54,13 @@ const Account: FC<AccountProps> = ({ onFinish, form }) => {
 			<h2>Login</h2>
 			<form>
 				<div className={styles['user-box']}>
-					<input ref={username} type="text" name="" required />
-					<label className={username.current?.value ? styles['user-box-hasValue'] : ''}>Username{username.current?.value}</label>
+					<input ref={username} type="text" name="" required id="Username" autoComplete="on" />
+					<label htmlFor="Username">Username</label>
 				</div>
 				<div className={styles['user-box']}>
-					<input ref={password} type="password" name="" required />
-					<label>Password</label>
+					<input ref={password} type="password" name="" required id="Password" autoComplete="on" />
+					<label htmlFor="Password">Password</label>
 				</div>
-
 				<div className="text-right">
 					<a href="#" onClick={onSubmit}>
 						<span></span>
