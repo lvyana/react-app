@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点击事件
 
@@ -17,7 +17,9 @@ export interface ButtonItemParams<T> {
 	btType?: BTtype;
 	disabled?: boolean;
 	hasPermiss?: string;
-	iconFont?: ReactNode;
+	iconFont?: string;
+	className?: string;
+	style?: CSSProperties;
 }
 
 /**

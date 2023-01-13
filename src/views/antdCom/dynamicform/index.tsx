@@ -73,7 +73,7 @@ type FormListType = [
 	FormInputNumberType<never>,
 	FormSwitchType<never>,
 	FormUploadType,
-	FormButtonType<{ type: string; name: string; BTtype?: string }>
+	FormButtonType<'submit' | 'onReset'>
 ];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -349,7 +349,7 @@ const Dynamicform = () => {
 			key: 15,
 			span: 24,
 			option: [
-				{ type: 'submit', name: '搜索', BTtype: 'primary' },
+				{ type: 'submit', name: '搜索', btType: 'primary' },
 				{ type: 'onReset', name: '重置' }
 			],
 			style: { float: 'right' }
@@ -361,7 +361,7 @@ const Dynamicform = () => {
 	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Iform<FormListType, object> formList={formList} form={form} onFinish={onFinish} />
+			<Iform<FormListType, object> formList={formList} form={form} />
 		</div>
 	);
 };

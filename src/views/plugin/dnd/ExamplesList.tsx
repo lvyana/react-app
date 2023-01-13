@@ -73,6 +73,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							name: 'name' + formList?.length,
 							disabled: false,
 							key: uuidv4(),
+							isRule: 1 as const,
 							span: 24,
 							layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 						}

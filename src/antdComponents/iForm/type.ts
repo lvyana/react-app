@@ -6,7 +6,6 @@ import type { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
 import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
 import type { RangeValue } from './components/Ipicker';
-import type { IformButton } from './components/Ibutton';
 import type { formRadioOptionsParams } from './components/Iradio';
 import type { ChangeEventExtra } from './components/ItreeSelect';
 import type { BaseOptionType } from 'antd/es/cascader';
@@ -15,6 +14,7 @@ import type { DefaultOptionType } from 'antd/es/select';
 import type { SwitchChangeEventHandler } from 'antd/es/switch';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
+import type { ButtonItemParams } from '../iButton';
 
 // input
 type InputType<T> = {
@@ -144,11 +144,14 @@ export type FormSwitchType<T> = FormItem & SwitchType<T>;
 type ButtonType<T> = {
 	name: string;
 	label?: FormItem['label'];
-	option?: T[];
+	option?: ButtonItemParams<T>[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
+	onFinish?: FinishType<T>;
 };
 export type FormButtonType<T> = FormItem & ButtonType<T>;
+
+export type FinishType<T> = ((value: T) => void) | undefined;
 
 // radio
 type RadioType<T> = {
@@ -160,6 +163,7 @@ type RadioType<T> = {
 	option?: T[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
+	optionType?: 'default' | 'button';
 };
 export type FormRadioType<T> = FormItem & RadioType<T>;
 
@@ -202,7 +206,9 @@ type TextAreaType<T> = {
 	option?: T[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
+	rows?: number;
 };
+export type FormTextAreaType<T> = FormItem & TextAreaType<T>;
 
 // seachSelect
 type SeachSelectType<T> = {
@@ -283,7 +289,7 @@ export interface FormItemMap {
 	timeRangePicker: <T>(item: BothPicker<T>) => JSX.Element;
 	inputNumber: <T>(item: InputNumberType<T>) => JSX.Element;
 	switch: <T>(item: SwitchType<T>) => JSX.Element;
-	button: <T extends IformButton>(item: ButtonType<T>, onFinish?: ((value: string) => void) | undefined) => JSX.Element;
+	button: <T>(item: ButtonType<T>) => JSX.Element;
 	radio: <T extends formRadioOptionsParams>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;

@@ -26,7 +26,6 @@ export type OnValuesChange<F> = (changedValues: F, values: F) => void;
 interface IformProps<T, F> {
 	formList: T;
 	form: FormInstance<F>;
-	onFinish?: (type?: string) => void;
 	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
 	self?: boolean;
@@ -37,7 +36,6 @@ interface IformProps<T, F> {
 const Iform = <T extends FormItem[], F extends object>({
 	formList,
 	form,
-	onFinish,
 	formLayout = 'horizontal',
 	self = false,
 	onValuesChange
@@ -105,7 +103,7 @@ const Iform = <T extends FormItem[], F extends object>({
 			return FORM_ITEM_MAP[item.type](item);
 		}
 		if (item.type === 'button') {
-			return FORM_ITEM_MAP[item.type](item, onFinish);
+			return FORM_ITEM_MAP[item.type](item);
 		}
 		if (item.type === 'radio') {
 			return FORM_ITEM_MAP[item.type](item);

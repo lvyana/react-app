@@ -18,11 +18,11 @@ export interface formRadioOptionsParams {
 // 单选
 export const formRadio: FormItemMap['radio'] = (item) => {
 	return (
-		<Radio.Group onChange={item.onChange}>
+		<Radio.Group onChange={item.onChange} optionType={item.optionType}>
 			{item.option &&
 				item.option.map((value) => {
 					return (
-						<Radio key={value.key} value={value.value} disabled={item.disabled} style={{ width: '100%', ...item.style }}>
+						<Radio key={value.key} value={value.value} disabled={item.disabled} style={{ ...item.style }}>
 							{value.icon && <IconFont type={value.icon} />} {value.name}
 						</Radio>
 					);

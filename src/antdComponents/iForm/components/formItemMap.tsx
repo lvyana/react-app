@@ -5,7 +5,7 @@
  */
 import { ChangeEventHandler, ReactNode } from 'react';
 import { FormItemMap } from '../type';
-import { formButton, IformButton } from './Ibutton';
+import { formButton } from './Ibutton';
 import { formCascader } from './Icascader';
 import { formCheckbox } from './Icheckbox';
 import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker, RangeValue } from './Ipicker';
@@ -30,7 +30,7 @@ const FORM_ITEM_MAP: FormItemMap = {
 	timeRangePicker: (item) => formTimeRangePicker(item),
 	inputNumber: (item) => formInputNumber(item),
 	switch: (item) => formSwitch(item),
-	button: (item, onFinish) => formButton(item, onFinish),
+	button: (item) => formButton(item),
 	radio: (item) => formRadio(item),
 	checkbox: (item) => formCheckbox(item),
 	rate: (item) => formRate(item),

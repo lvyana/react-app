@@ -28,6 +28,7 @@ export const formInputTextArea: FormItemMap['textArea'] = (item) => {
 		<Input.TextArea
 			showCount={!!item.maxLength}
 			onChange={item.onChange}
+			rows={item.rows}
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
 			maxLength={item.maxLength}
 			allowClear={item.allowClear !== false}

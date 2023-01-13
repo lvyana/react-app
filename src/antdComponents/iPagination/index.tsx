@@ -18,7 +18,7 @@ interface IpaginationsProps {
 		pageSize: number;
 		pageNum: number;
 	}>;
-	onPaginationChange: () => void;
+	onPaginationChange: (type: 'subimt') => void;
 }
 
 const Ipaginations: FC<IpaginationsProps> = ({ total, page, onPaginationChange }) => {
@@ -35,7 +35,7 @@ const Ipaginations: FC<IpaginationsProps> = ({ total, page, onPaginationChange }
 
 	const onChange = (pageNum: number, pageSize: number) => {
 		page.current = { pageSize, pageNum };
-		onPaginationChange();
+		onPaginationChange('subimt');
 	};
 
 	const { pageNum, pageSize } = page.current;

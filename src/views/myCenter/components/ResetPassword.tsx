@@ -31,6 +31,7 @@ const ResetPassword = () => {
 			return Promise.reject(new Error('密码不一致'));
 		}
 	};
+
 	return (
 		<Form form={form} labelCol={{ span: 4, offset: 4 }} wrapperCol={{ span: 12 }} onFinish={onFinish} onFinishFailed={onFinishFailed}>
 			<Form.Item label="用户名" name="userName" rules={[{ required: true, message: 'Please input your username!' }]}>

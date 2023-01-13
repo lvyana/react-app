@@ -8,6 +8,7 @@ import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useHasPermiss from '@/useHooks/usePermissions';
 import { Button } from 'antd';
+import IconFont from '@/utils/iconfont';
 import { ButtonItemParams, OnClickBtn } from './type';
 
 /**
@@ -22,7 +23,7 @@ export interface IbuttonProps<T> {
 	style?: React.CSSProperties;
 }
 
-const Ibutton = <T,>({ buttonList, loadingName, onClickBtn, style }: IbuttonProps<T>) => {
+const Ibutton = <T,>({ buttonList, loadingName, onClickBtn }: IbuttonProps<T>) => {
 	const size = useAppSelector(GET_SIZE);
 	const { hasPermiss } = useHasPermiss();
 	return (
@@ -37,8 +38,9 @@ const Ibutton = <T,>({ buttonList, loadingName, onClickBtn, style }: IbuttonProp
 							disabled={item.disabled === true}
 							loading={loadingName === item.name}
 							size={size}
-							style={{ ...style }}>
-							{item.iconFont}
+							className={item.className}
+							icon={item.iconFont && <IconFont type={item.iconFont}></IconFont>}
+							style={item.style}>
 							{item.name}
 						</Button>
 					)

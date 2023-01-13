@@ -9,6 +9,7 @@ import HeaderEdit from '@/antdComponents/iTable/HeaderEdit';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
+import type { FinishTypeT } from './components/SeachForm';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
@@ -33,12 +34,19 @@ const Expenses = () => {
 
 	useEffect(() => {
 		form.setFieldsValue({ ...(initValue as TabelDataParams | undefined) });
-		onFinish();
+		onFinish('subimt');
 	}, []);
 
-	const onFinish = () => {
+	const onFinish = (type: FinishTypeT) => {
+		if (type === 'subimt') {
+			let params = form.getFieldsValue();
+			setKeepAlive({ ...params, ...page.current });
+		} else if (type === 'onReset') {
+			form.resetFields();
+			let params = form.getFieldsValue();
+			setKeepAlive({ ...params, ...page.current });
+		}
 		let params = form.getFieldsValue();
-		setKeepAlive({ ...params, ...page.current });
 		getTabelData({ ...params, ...page.current });
 	};
 

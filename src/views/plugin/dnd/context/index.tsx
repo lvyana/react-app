@@ -13,7 +13,7 @@ interface DndContextProps {
 	children: React.ReactNode;
 }
 
-interface FormItemParams extends Omit<FormItem, 'key' | 'span' | 'label' | 'disabled'>, FormParams {
+interface FormItemParams extends Omit<FormItem, 'key' | 'span' | 'label' | 'disabled' | 'name'>, FormParams {
 	type: ItemTypesParams;
 	key: string;
 }

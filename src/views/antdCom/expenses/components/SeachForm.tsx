@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
-import { IformButton } from '@/antdComponents/iForm/components/Ibutton';
 import { TabelDataParams } from '../service';
-import type { FormInputType, FormSelectType, FormButtonType } from '@/antdComponents/iForm/type';
+import type { FormInputType, FormSelectType, FormButtonType, FinishType } from '@/antdComponents/iForm/type';
+
+export type FinishTypeT = 'subimt' | 'onReset';
 interface Iprops {
 	form: FormInstance<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>;
-	onFinish: (type?: string) => void;
+	onFinish: FinishType<'subimt' | 'onReset'>;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -15,7 +16,7 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<IformButton>] = [
+	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<FinishTypeT>] = [
 		{
 			type: 'input',
 			name: 'name',
@@ -57,14 +58,15 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			key: 14,
 			span: 6,
 			option: [
-				{ BTtype: 'primary', type: 'primary', name: '搜索', iconType: 'icon-sousuo' },
-				{ type: 'onReset', name: '重置', iconType: 'icon-zhongzhi' }
+				{ btType: 'primary', type: 'subimt', name: '搜索', iconFont: 'icon-sousuo' },
+				{ type: 'onReset', name: '重置', iconFont: 'icon-zhongzhi', className: 'ml-1' }
 			],
-			style: { marginLeft: '10px' }
+			style: { marginLeft: '10px' },
+			onFinish: onFinish
 		}
 	];
 
-	return <IsearchForm form={form} formList={formList} onFinish={onFinish}></IsearchForm>;
+	return <IsearchForm form={form} formList={formList}></IsearchForm>;
 };
 
 export default SeachForm;
