@@ -56,7 +56,7 @@ const ImportJson: FC<ImportJsonProps> = ({ form, open, onOkOrCancel, confirmLoad
 		}
 	];
 	return (
-		<Imodal width={1000} title={'导入json'} open={open} onOkOrCancel={onOkOrCancel} confirmLoading={confirmLoading}>
+		<Imodal width={1000} title={'导入dnd-json'} open={open} onOkOrCancel={onOkOrCancel} confirmLoading={confirmLoading}>
 			<Iform form={form} formList={formList} />
 		</Imodal>
 	);

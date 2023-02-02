@@ -75,7 +75,8 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							key: uuidv4(),
 							isRule: 1 as const,
 							span: 24,
-							layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+							labelCol: 6
+							// layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 						}
 					];
 					context?.dispatch({ type: 'formList', value: newFormList });

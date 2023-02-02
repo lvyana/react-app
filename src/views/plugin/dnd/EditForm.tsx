@@ -9,11 +9,19 @@ import { Button, Form } from 'antd';
 import { Context } from './context';
 import { useEditFormItemValue, useWatchUrl } from './useHooks';
 import { isPassword } from '@/utils/rules';
-import type { FormSliderType, FormInputType, FormSelectType, FormRadioType, FormUserDefinedType } from '@/antdComponents/iForm/type';
+import type {
+	FormSliderType,
+	FormInputType,
+	FormSelectType,
+	FormRadioType,
+	FormUserDefinedType,
+	FormTextAreaType
+} from '@/antdComponents/iForm/type';
 
 type FormListType = [
 	FormInputType<never>,
 	FormInputType<never>,
+	FormSliderType,
 	FormSliderType,
 	FormSelectType<DisabledParams>,
 	FormInputType<never>,
@@ -25,18 +33,23 @@ type FormListType = [
 		key: number;
 		name: string;
 	}>,
-	FormInputType<never>
+	FormTextAreaType<never>,
+	FormInputType<never>,
+	FormTextAreaType<never>
 ];
 
 export type FormParams = {
 	span: number;
 	label: string;
-	disabled: boolean;
+	disabled?: boolean;
 	url?: string;
 	parent?: string;
 	isRule: 1 | 2;
+	isRuleTitle?: string;
 	rule?: string;
+	ruleTitle?: string;
 	name: string;
+	labelCol: number;
 };
 
 type DisabledParams = {
@@ -106,7 +119,17 @@ const EditForm = () => {
 		{
 			type: 'slider',
 			key: '3',
-			label: '宽度',
+			label: 'label宽度',
+			name: 'labelCol',
+			max: 24,
+			min: 0,
+			span: 24,
+			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'slider',
+			key: '33',
+			label: '总宽度',
 			name: 'span',
 			max: 24,
 			min: 6,
@@ -183,10 +206,26 @@ const EditForm = () => {
 			}
 		},
 		{
-			type: 'input',
+			type: 'textArea',
 			key: '9',
+			label: '是否必填提示语',
+			name: 'isRuleTitle',
+			span: 24,
+			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'textArea',
+			key: '10',
 			label: '校验规则',
 			name: 'rule',
+			span: 24,
+			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'textArea',
+			key: '11',
+			label: '校验规则提示语',
+			name: 'ruleTitle',
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		}
@@ -216,8 +255,8 @@ const EditForm = () => {
 			const newFormListItem = context.state.formList.find((item) => {
 				return context?.state.selectFormItemKey === item.key;
 			});
-			const { span, label, disabled, url, parent, name, rule, isRule } = newFormListItem || {};
-			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule });
+			const { span, label, disabled, url, parent, name, rule, isRule, labelCol } = newFormListItem || {};
+			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol });
 		}
 	}, [context?.state.selectFormItemKey]);
 
@@ -238,10 +277,15 @@ const EditForm = () => {
 
 	// rule
 	useEditFormItemValue('isRule', form);
+	useEditFormItemValue('isRuleTitle', form);
 	useEditFormItemValue('rule', form);
+	useEditFormItemValue('ruleTitle', form);
 
 	// name
 	useEditFormItemValue('name', form);
+
+	// labelCol
+	useEditFormItemValue('labelCol', form);
 
 	// 获取options数据
 	const [getAnyOptions] = useWatchUrl();

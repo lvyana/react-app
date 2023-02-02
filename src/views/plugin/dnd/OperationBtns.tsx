@@ -11,17 +11,26 @@ import ImportJson from './components/ImportJson';
 import { Context } from './context';
 import type { importJsonForm } from './components/ImportJson';
 import type { OnOkOrCancelType } from '@/antdComponents/iModal';
+import TemplateForm from './components/TemplateForm';
+
+type ButtonType = 'JSON' | 'import' | 'template';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const OperationBtns = () => {
 	const context = useContext(Context);
 
-	const buttonList: ButtonItemParams<'JSON' | 'import'>[] = [
+	const buttonList: ButtonItemParams<ButtonType>[] = [
+		{
+			name: '生成示例',
+			type: 'template',
+			btType: 'primary'
+		},
 		{
 			name: '生成JSON',
 			type: 'JSON',
-			btType: 'primary'
+			btType: 'primary',
+			className: 'ml-1'
 		},
 		{
 			name: '导入JSON',
@@ -64,11 +73,26 @@ const OperationBtns = () => {
 		}
 	};
 
-	const onClickBtn: OnClickBtn<'JSON' | 'import'> = (type) => {
+	const onClickBtn: OnClickBtn<ButtonType> = (type) => {
 		if (type === 'JSON') {
 			setJsonViewOpen(true);
 		} else if (type === 'import') {
 			setImportJsonOpen(true);
+		} else if (type === 'template') {
+			setTemplateFormOpen(true);
+		}
+	};
+
+	// TemplateForm
+	const [templateFormOpen, setTemplateFormOpen] = useState(false);
+	const [templateFormLoading, setTemplateFormLoading] = useState(false);
+	const [templateFormForm] = Form.useForm<importJsonForm>();
+
+	const templateFun: OnOkOrCancelType = async (type) => {
+		if (type === 'ok') {
+			setTemplateFormOpen(false);
+		} else {
+			setTemplateFormOpen(false);
 		}
 	};
 
@@ -77,6 +101,11 @@ const OperationBtns = () => {
 			<Ibutton buttonList={buttonList} onClickBtn={onClickBtn}></Ibutton>
 			<JsonView open={jsonViewOpen} onOkOrCancel={jsonViewFun} confirmLoading={jsonViewLoading} />
 			<ImportJson open={importJsonOpen} onOkOrCancel={importJsonFun} confirmLoading={importJsonLoading} form={importJsonForm} />
+			<TemplateForm
+				open={templateFormOpen}
+				onOkOrCancel={templateFun}
+				confirmLoading={templateFormLoading}
+				form={templateFormForm}></TemplateForm>
 		</div>
 	);
 };

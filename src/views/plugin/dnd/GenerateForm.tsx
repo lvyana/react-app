@@ -7,13 +7,14 @@ import React, { FC, useCallback, useContext, useRef } from 'react';
 import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, Col, Form, Row } from 'antd';
-import Iform from '@/antdComponents/iForm';
+import Iform, { FormItem } from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context } from './context';
 import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import { arrIndexExchange } from '@/utils/exchange';
+import { useFormData } from './useHooks';
 import type { FormItemParams } from './context';
-import type { ItemTypesParams } from './itemTypes';
+import { Rule } from 'antd/es/form';
 
 interface GenerateFormItemParams {
 	formParams: FormItemParams;
@@ -55,6 +56,9 @@ const GenerateForm = () => {
 
 const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => {
 	const context = useContext(Context);
+
+	const { getFormData } = useFormData();
+
 	const ref = useRef<HTMLDivElement>(null);
 
 	const [{ handlerId }, drop] = useDrop(
@@ -138,7 +142,8 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 
 	const [form] = Form.useForm();
 
-	const formList: FormItemParams[] = [{ ...formParams }];
+	// 处理回显表单数句
+	const formList: FormItem[] = [{ ...getFormData(formParams), span: 24 }];
 
 	const onEditFormItemParams = () => {
 		if (formParams.key === context?.state.selectFormItemKey) return;
@@ -196,10 +201,10 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 			<Col flex="auto">
 				<Iform form={form} formList={formList}></Iform>
 			</Col>
-			<Col flex="100px" className="text-center">
+			<div className="absolute right-0 bottom-1 text-center">
 				<Button type="link" icon={<CloseCircleOutlined />} onClick={(e) => onDeleteFormItem(e)}></Button>
 				<Button type="link" icon={<CopyOutlined />} onClick={(e) => onCopyFormItem(e)}></Button>
-			</Col>
+			</div>
 		</Row>
 	);
 };
