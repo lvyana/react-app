@@ -1,13 +1,15 @@
 /**
- * @name 下拉
- * @user ly
- * @date 2023年1月3日
+ * @file 下拉
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { Form, Select } from 'antd';
 import type { FormItemMap } from '../type';
 
-// Select
+/**
+ * @method select
+ */
 export const formSelect: FormItemMap['select'] = (item) => {
 	return (
 		<Select
@@ -37,7 +39,9 @@ export const formSelect: FormItemMap['select'] = (item) => {
 	);
 };
 
-// 远程搜索
+/**
+ * @method 远程搜索
+ */
 export const formSeachSelect: FormItemMap['seachSelect'] = (item) => {
 	return (
 		<Select

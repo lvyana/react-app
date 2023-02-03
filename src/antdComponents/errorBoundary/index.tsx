@@ -1,3 +1,8 @@
+/**
+ * @file 边界错误组件
+ * @author ly
+ * @createDate 2023年2月3日
+ */
 import React, { ErrorInfo } from 'react';
 import { Result, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';

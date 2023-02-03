@@ -1,7 +1,7 @@
 /**
- *	@name 实现下拉按钮
- *	@user ly
- *  @data 日期：2020年4月27日
+ *	@file 封装下拉按钮
+ *	@author ly
+ *  @createDate 2020年4月27日
  */
 import React, { FC, ReactNode } from 'react';
 import type { MenuProps } from 'antd';

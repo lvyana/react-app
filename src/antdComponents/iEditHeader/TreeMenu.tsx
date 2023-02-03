@@ -1,17 +1,19 @@
+/**
+ * @file 排序、选中
+ * @author ly
+ * @createDate 2023年2月3日
+ */
 import React, { FC, useState, useEffect, Key } from 'react';
 import { Tree } from 'antd';
 import { arrIndexExchange } from '@/utils/exchange';
 import type { DataNode, TreeProps } from 'antd/es/tree';
-import type { onSelectAllParam } from './index';
 import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
 
 /**
- *
  * @param initData 初始化数据
  * @param checkedKeys 选中数据
  * @param updateInitData 更新初始化数据顺序
  * @param updateCheckedKeys 更新选中数据
- * @return 表格排序、选中
  */
 interface TreeMenuProps {
 	initData: headerConfigListArrType[];

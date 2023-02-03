@@ -1,7 +1,7 @@
 /**
- * @name 实现编辑表头
- * @use ly
- * @data 2022年7月30日
+ * @file 实现编辑表头
+ * @author ly
+ * @createDate 2022年7月30日
  */
 import React, { FC, useState, useEffect, Key, memo } from 'react';
 import { useAppDispatch } from '@/store';
@@ -16,6 +16,11 @@ import { updateHeader } from './service';
 
 export type HeaderType = 'expenses';
 
+/**
+ * @param type 判断开关方法类型
+ * @param open 开关
+ * @param closeHeader 关闭表头
+ */
 interface IheaderConfigProps {
 	type: HeaderType;
 	open: boolean;

@@ -1,7 +1,7 @@
 /**
- * @name 树形下拉
- * @user ly
- * @date 2023年1月3日
+ * @file 树形下拉
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { TreeSelect } from 'antd';

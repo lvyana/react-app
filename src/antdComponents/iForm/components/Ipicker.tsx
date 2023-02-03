@@ -1,7 +1,7 @@
 /**
- * @name 日期
- * @user ly
- * @date 2023年1月3日
+ * @file 日期
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { DatePicker, TimePicker } from 'antd';
@@ -9,7 +9,11 @@ import type { Dayjs } from 'dayjs';
 import type { FormItemMap } from '../type';
 
 const { RangePicker } = DatePicker;
-// 日期
+/**
+ * @method 日期
+ * @param item 组件参数
+ *
+ */
 export const formDatePicker: FormItemMap['datePicker'] = (item) => {
 	return <DatePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
@@ -17,12 +21,20 @@ export const formDatePicker: FormItemMap['datePicker'] = (item) => {
 type EventValue<DateType> = DateType | null;
 export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null;
 
-// 区间日期
+/**
+ * @method 区间日期
+ * @param item 组件参数
+ * @returns 表单内嵌组件
+ */
 export const formRangePicker: FormItemMap['rangePicker'] = (item) => {
 	return <RangePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
 
-// 时间
+/**
+ * @method 时间
+ * @param item 组件参数
+ * @returns 表单内嵌组件
+ */
 export const formTimePicker: FormItemMap['timePicker'] = (item) => {
 	const format = 'HH:mm';
 	return (
@@ -37,7 +49,11 @@ export const formTimePicker: FormItemMap['timePicker'] = (item) => {
 	);
 };
 
-// 时间区间
+/**
+ * @method 时间区间
+ * @param item 组件参数
+ * @returns 表单内嵌组件
+ */
 export const formTimeRangePicker: FormItemMap['timeRangePicker'] = (item) => {
 	const format = 'HH:mm';
 	return (

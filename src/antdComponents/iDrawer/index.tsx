@@ -1,12 +1,21 @@
 /**
- *	@name 抽屉
- *	@user ly
- *  @data 日期：2020年11月15日
+ * @file 抽屉
+ * @author ly
+ * @createDate 日期：2020年11月15日
  */
 import React, { FC } from 'react';
 import { Drawer } from 'antd';
 
 type PlacementType = 'top' | 'right' | 'bottom' | 'left';
+/**
+ * @param children 子组件
+ * @param open 开关
+ * @param title 标题
+ * @param width 宽度
+ * @param maskClosable 点击蒙层是否允许关闭
+ * @param onClose 关闭
+ * @param placement 出现方向
+ */
 interface IdrawerProps {
 	children: React.ReactNode;
 	open: boolean;

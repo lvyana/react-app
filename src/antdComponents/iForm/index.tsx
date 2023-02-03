@@ -1,7 +1,7 @@
 /**
- *	@name 实现表单
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装表单
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
@@ -15,7 +15,7 @@ export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
 export type OnValuesChange<F> = (changedValues: F, values: F) => void;
 /**
- * @name 表单参数
+ * 表单参数
  * @param formList 表单json
  * @param form 表单实例
  * @param onFinish 表单确认

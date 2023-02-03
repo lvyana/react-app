@@ -1,7 +1,7 @@
 /**
- *	@name 实现card
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装card
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { Children, FC, ReactNode } from 'react';
 import { Card } from 'antd';
@@ -9,6 +9,8 @@ import { Card } from 'antd';
 /**
  * @param children 传入内容
  * @param style 样式
+ * @param hoverable 鼠标移过时可浮起
+ * @param className 类名
  */
 interface IcardProps {
 	children?: ReactNode;

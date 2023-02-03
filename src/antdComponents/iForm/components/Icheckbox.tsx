@@ -1,7 +1,7 @@
 /**
- * @name 多选
- * @user ly
- * @date 2023年1月3日
+ * @file 多选
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { Checkbox } from 'antd';

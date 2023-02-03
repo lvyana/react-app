@@ -1,7 +1,7 @@
 /**
- * @name 上传
- * @user ly
- * @date 2023年1月1日
+ * @file 上传
+ * @author ly
+ * @createDate 2023年1月1日
  */
 import React from 'react';
 import { InboxOutlined } from '@ant-design/icons';

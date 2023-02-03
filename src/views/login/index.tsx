@@ -13,7 +13,7 @@ import styles from './index.module.scss';
 import { login } from './service';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
-import openNotificationWithIcon from '@/antdComponents/iNotification';
+import openNotification from '@/antdComponents/iNotification';
 
 export interface FromType {
 	userName: string | undefined;
@@ -43,7 +43,7 @@ const Login = () => {
 
 	const navigate = useNavigate();
 	// 登录弹框
-	const openNotification = () => {
+	const openNotificationFn = () => {
 		const key = `open${Date.now()}`;
 		notification.open({
 			message: '欢迎登录',
@@ -71,15 +71,23 @@ const Login = () => {
 		if (userName === 'admin' && password === '123456') {
 			setUserInfo(userName, password, remember);
 			navigate('/');
-			openNotification();
+			openNotification({
+				type: 'info',
+				message: '欢迎登录',
+				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			});
 			return;
 		} else if (userName === 'today' && password === '123456') {
 			setUserInfo(userName, password, remember);
 			navigate('/today');
-			openNotification();
+			openNotification({
+				type: 'info',
+				message: '欢迎登录',
+				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			});
 			return;
 		}
-		openNotificationWithIcon('error', '密码错误');
+		openNotification({ type: 'error', message: '密码错误' });
 	};
 
 	const items = [

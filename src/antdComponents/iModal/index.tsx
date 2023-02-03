@@ -1,7 +1,7 @@
 /**
- *	@name 实现弹框
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现弹框
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { FC, ReactNode } from 'react';
 import { Modal } from 'antd';
@@ -27,6 +27,10 @@ export interface ImodalProps {
 	children: ReactNode;
 }
 
+/**
+ * @method 确认、取消事件
+ * @param type 事件类型标识
+ */
 export type OnOkOrCancelType = (type: 'ok' | 'cancel') => void;
 
 const OK = 'ok';
