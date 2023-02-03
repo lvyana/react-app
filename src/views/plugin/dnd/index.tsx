@@ -1,7 +1,7 @@
 /**
- * @name react-dnd
- * @user ly
- * @date 2022年12月17日
+ * @file react-dnd 表单生成
+ * @author ly
+ * @createDate 2022年12月17日
  */
 import React from 'react';
 import { Col, Row } from 'antd';

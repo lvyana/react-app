@@ -1,3 +1,8 @@
+/**
+ * @file 头像
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useRef, FC, useState } from 'react';
 import Cropper, { ReactCropperElement } from 'react-cropper';
 import 'cropperjs/dist/cropper.css';

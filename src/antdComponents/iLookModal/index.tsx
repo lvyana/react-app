@@ -1,7 +1,7 @@
 /**
- *	@name 实现查看信息弹框
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现查看信息弹框
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { FC, ReactNode } from 'react';
 import { Modal } from 'antd';

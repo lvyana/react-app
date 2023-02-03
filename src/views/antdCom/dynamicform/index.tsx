@@ -1,7 +1,7 @@
 /**
- *	@name 实现表单集合demo
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现表单集合demo
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState } from 'react';
 import Iform from '@/antdComponents/iForm';

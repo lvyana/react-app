@@ -1,9 +1,9 @@
 /**
- * 登录模块接口列表
+ * @file 登录模块接口列表
+ * @author ly
+ * @createDate 2023年1月3日
  */
-
 import request from '@/api/request'; // 导入http中创建的axios实例
-// import qs from 'qs' // 根据需求是否导入qs模块
 import { FromType } from './index';
 
 interface LoginResponse {

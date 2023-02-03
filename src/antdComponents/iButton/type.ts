@@ -22,13 +22,15 @@ export interface ButtonItemParams<T> {
 	style?: CSSProperties;
 }
 
+export type SetDisDataType = <T>(data: ButtonItemParams<T>[], btnList: string[], is: boolean) => ButtonItemParams<T>[];
+
 /**
+ * @method 设置禁用、非禁用
  * @param data 数据
  * @param btnList 数组['删除','新增']
  * @param is 设置true禁用 false启用
+ * @returns data数据
  */
-export type SetDisDataType = <T>(data: ButtonItemParams<T>[], btnList: string[], is: boolean) => ButtonItemParams<T>[];
-
 export const setDisData: SetDisDataType = (data, btnList, is) => {
 	return data.map((item) => {
 		if (btnList.indexOf(item.name) > -1) {

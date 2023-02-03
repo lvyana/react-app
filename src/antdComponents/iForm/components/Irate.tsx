@@ -1,7 +1,7 @@
 /**
- * @name 评分
- * @user ly
- * @date 2023年1月3日
+ * @file 评分
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { Rate } from 'antd';

@@ -1,3 +1,8 @@
+/**
+ * @file pdf
+ * @author ly
+ * @createDate 2022年6月3日
+ */
 import React, { useState, useEffect } from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import styles from './index.module.scss';

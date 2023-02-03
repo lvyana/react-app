@@ -1,7 +1,7 @@
 /**
- * @name 团队和日期缓存
- * @user ly
- * @date 2022年12月1日
+ * @file 团队和日期缓存
+ * @author ly
+ * @createDate 2022年12月1日
  */
 import React, { FC, lazy, Suspense } from 'react';
 import { DateAndPersonnelProps } from './index';

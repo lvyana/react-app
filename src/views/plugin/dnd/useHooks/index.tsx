@@ -1,3 +1,8 @@
+/**
+ * @file form hooks
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import { useContext, useEffect } from 'react';
 import { Form } from 'antd';
 import { useRequest } from 'ahooks';
@@ -8,7 +13,7 @@ import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
 import { FormItem } from '@/antdComponents/iForm/type';
 
-// 监听左侧变化修改GenerateForm
+// 监听左侧表单变化修改GenerateForm
 export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<FormParams>) => {
 	const context = useContext(Context);
 
@@ -26,6 +31,26 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 			context.dispatch({ type: 'formList', value: newFormList });
 		}
 	}, [nameValue]);
+};
+
+// 监听左侧变化修改GenerateForm
+export const useEditItemValue = () => {
+	const context = useContext(Context);
+
+	const editItemValue = (key: keyof FormParams, value: FormParams[keyof FormParams]) => {
+		if (context?.state.selectFormItemKey) {
+			const newFormList = context.state.formList.map((item) => {
+				if (context?.state.selectFormItemKey === item.key) {
+					return { ...item, [key]: value };
+				}
+				return item;
+			});
+
+			context.dispatch({ type: 'formList', value: newFormList });
+		}
+	};
+
+	return { editItemValue };
 };
 
 // 请求url 修改GenerateForm

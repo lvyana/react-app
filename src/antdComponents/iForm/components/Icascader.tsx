@@ -1,7 +1,7 @@
 /**
- * @name 联级
- * @user ly
- * @date 2023年1月3日
+ * @file 联级
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { Cascader } from 'antd';

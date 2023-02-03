@@ -1,10 +1,11 @@
+/**
+ * @file 视频
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-/**
- *
- * @returns 视频
- */
 const Player = () => {
 	const [playing, setplaying] = useState(false);
 	useEffect(() => {

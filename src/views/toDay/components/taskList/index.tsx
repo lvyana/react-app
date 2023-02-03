@@ -1,7 +1,7 @@
 /**
- * @name 展示内容
- * @use ly
- * @date 2022年11月6日
+ * @file 展示内容
+ * @author ly
+ * @createDate 2022年11月6日
  */
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';

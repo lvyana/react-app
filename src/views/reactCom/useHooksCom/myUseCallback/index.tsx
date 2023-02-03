@@ -1,10 +1,11 @@
+/**
+ * @file useCallback优化子组件 tips: useCallback 一定要搭配memo使用 否则子组件也会更新 props参数会影响更新
+ * @author ly
+ * @createDate 2022年4月27日
+ */
 import React, { FC, useState, memo, useCallback } from 'react';
 import { Button } from 'antd';
-/**
- * useCallback优化子组件 tips: useCallback 一定要搭配memo使用 否则子组件也会更新 props参数会影响更新
- * ly
- * 日期：2022-4-27
- */
+
 const MyUseCallback = () => {
 	// console.log('父组件更新了');
 

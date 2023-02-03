@@ -1,3 +1,8 @@
+/**
+ * @file 搜索组件
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { FC } from 'react';
 import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
@@ -5,10 +10,15 @@ import { statusDataProps } from '@/api/publicApi';
 import { TabelDataParams } from '../service';
 import type { FormInputType, FormSelectType, FormButtonType, FinishType } from '@/antdComponents/iForm/type';
 
-export type FinishTypeT = 'subimt' | 'onReset';
+export type ButtonType = 'subimt' | 'onReset';
+
+/**
+ * @param form 表单实例
+ * @param onFinish
+ */
 interface Iprops {
 	form: FormInstance<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>;
-	onFinish: FinishType<'subimt' | 'onReset'>;
+	onFinish: FinishType<ButtonType>;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -16,7 +26,7 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<FinishTypeT>] = [
+	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<ButtonType>] = [
 		{
 			type: 'input',
 			name: 'name',

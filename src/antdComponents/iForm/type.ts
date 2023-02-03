@@ -302,7 +302,18 @@ export interface FormItemMap {
 export type FormItemMapType = keyof FormItemMap;
 
 /**
- * @name 表单item参数
+ * 表单item参数
+ * @param show 是否显示
+ * @param type 表单类型
+ * @param span 宽度
+ * @param key 唯一标识
+ * @param name 表单标识
+ * @param valuePropName 子节点的值的属性，如 Switch 的是 'checked'。该属性为 getValueProps 的封装，自定义 getValueProps 后会失效
+ * @param label 表单名字
+ * @param layout 表单布局
+ * @param labelAlign 标签文本对齐方式
+ * @param tooltip 配置提示信息
+ * @param rules 校验规则
  */
 export interface FormItem {
 	show?: boolean;
@@ -318,42 +329,12 @@ export interface FormItem {
 	rules?: Rule[];
 }
 
-/**
- * FormItem内组件参数
- */
-// export interface FormItemCom<T, E> {
-// 	name: string;
-// 	label?: FormItem['label'];
-// 	validateTrigger?: string | string[];
-// 	disabled?: boolean;
-// 	allowClear?: boolean;
-// 	onChange?: E;
-// 	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
-// 	mode?: Mode;
-// 	placeholder?: string;
-// 	option?: T[];
-// 	checkbox?: boolean;
-// 	fieldNames?: fieldNamesType;
-// 	maxLength?: number;
-// 	style?: React.CSSProperties;
-// 	disabledDate?: (currentDate: Dayjs) => boolean;
-// 	handleSearch?: (value: string) => void;
-// 	children?: ReactNode;
-// 	max?: number;
-// 	min?: number;
-// 	multiple?: boolean;
-// 	action?: string;
-// 	range?: any;
-// }
-
-// export interface FormItemParam<T, E> extends FormItemCom<T, E>, FormItem {}
-
 export type FormLabelAlign = 'left' | 'right';
 
 export type Mode = 'multiple' | 'tags';
 
 /**
- * @name 宽度比例
+ * 宽度比例
  * @param lable labelCol: { span: 6 },
  * @param value wrapperCol: { span: 18 }
  */
@@ -363,7 +344,10 @@ export interface LayoutParams {
 }
 
 /**
- * @name 下拉类型
+ * 下拉类型
+ * @param lable 名称
+ * @param value 标识
+ * @param children 子集
  */
 interface fieldNamesType {
 	label: string;
@@ -372,7 +356,7 @@ interface fieldNamesType {
 }
 
 /**
- * @name 处理表单显示隐藏
+ * @method 处理表单显示隐藏
  * @param data数据
  * @param nameList[]
  * @param is:boolean

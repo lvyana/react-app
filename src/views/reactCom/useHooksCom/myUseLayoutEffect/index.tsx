@@ -1,3 +1,8 @@
+/**
+ * @file useLayoutEffect
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 
 const MyUseLayoutEffect = () => {

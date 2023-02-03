@@ -1,10 +1,10 @@
+/**
+ * @file MyUseMemo 优化任意组件计算 缓存变量
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from 'antd';
-/**
- * 优化任意组件计算 缓存变量
- * ly
- * 日期：2020年4月27日
- */
 
 const MyUseMemo = () => {
 	const [value, setValue] = useState(10);

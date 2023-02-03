@@ -1,3 +1,8 @@
+/**
+ * @file 头像编辑
+ * @author ly
+ * @createDate 2022年1月3日
+ */
 import React, { FC, useState } from 'react';
 import Photo from './Photo';
 import { Avatar, Row, Col, Upload, Button } from 'antd';

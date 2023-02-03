@@ -1,3 +1,8 @@
+/**
+ * @file 表格组件
+ * @author ly
+ * @createDate 2022年3月26日
+ */
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/antdComponents/iTooltip';
@@ -6,8 +11,16 @@ import { ItbClick, AlignType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataResponse } from '../service';
 
+/**
+ * @method 按钮回调事件
+ * @param type 事件类型标识
+ * @param value 某一条数据
+ * @returns void
+ */
+type ButtonEvent = (type: string | number, value: TabelDataResponse) => void;
+
 interface useHeaderTableParams {
-	buttonEvent: (type: string | number, value: TabelDataResponse) => void;
+	buttonEvent: ButtonEvent;
 }
 
 type OnClickBtnType = '修改' | '删除';

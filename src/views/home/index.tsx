@@ -1,7 +1,7 @@
 /**
- * @name 首页
- * @user ly
- * @date 2022年12月11日
+ * @file 首页
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React from 'react';
 import { Col, Row } from 'antd';

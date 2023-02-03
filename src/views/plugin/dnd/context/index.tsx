@@ -1,7 +1,7 @@
 /**
- * @name dnd Context
- * @user ly
- * @date 2022年12月21日
+ * @file dnd Context
+ * @author ly
+ * @createDate 2022年12月21日
  */
 import React, { FC, createContext, useReducer } from 'react';
 import type { ItemTypesParams } from '../itemTypes';

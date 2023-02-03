@@ -1,7 +1,7 @@
 /**
- * @name 导入JSON
- * @user ly
- * @date 2023年1月12日
+ * @file 导入JSON
+ * @author ly
+ * @createDate 2023年1月12日
  */
 import React, { FC } from 'react';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';

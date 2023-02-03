@@ -1,7 +1,7 @@
 /**
- * 	@name forWardRef
- *  @user ly
- *  @data 日期：2020年11月7日
+ * @file forWardRef
+ * @author ly
+ * @createDate 2020年11月7日
  */
 import React, { forwardRef, LegacyRef, useEffect, useRef } from 'react';
 

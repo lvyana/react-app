@@ -1,7 +1,7 @@
 /**
- * @name 编辑团队搜索
- * @user ly
- * @date 2022年11月20日
+ * @file 编辑团队搜索
+ * @author ly
+ * @createDate 2022年11月20日
  */
 import React, { FC } from 'react';
 import Iform, { FormItem, FormInstance, OnValuesChange } from '@/antdComponents/iForm';

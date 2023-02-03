@@ -1,7 +1,7 @@
 /**
- * @name 账号登录
- * @user ly
- * @date 2022年12月11日
+ * @file 账号登录
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Form, Input, Button, Checkbox, FormInstance } from 'antd';

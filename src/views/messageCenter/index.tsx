@@ -1,3 +1,8 @@
+/**
+ * @file 消息中心
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useState } from 'react';
 import Itable from '@/antdComponents/iTable';
 import { useRequest } from 'ahooks';

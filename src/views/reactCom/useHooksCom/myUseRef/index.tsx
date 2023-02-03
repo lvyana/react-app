@@ -1,8 +1,7 @@
 /**
- * useRef tips: useRef.current的值修改不会重新渲染组件
- * useState 更新处理
- * ly
- * 日期：2022-4-27
+ * @file useRef tips: useRef.current的值修改不会重新渲染组件
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC, LegacyRef, useEffect, useRef, useState } from 'react';
 import { Button } from 'antd';
@@ -10,6 +9,7 @@ import { Button } from 'antd';
 interface SonProps {
 	sonRef: LegacyRef<HTMLDivElement>;
 }
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const MyUseRef = () => {

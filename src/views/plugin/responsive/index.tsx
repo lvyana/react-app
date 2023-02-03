@@ -1,9 +1,11 @@
+/**
+ * @file 响应式 https://github.com/yocontra/react-responsive
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React from 'react';
 import { IresponsiveMax, IresponsiveMin } from '@/pluginComponents/iResponsive';
-/**
- * @url https://github.com/yocontra/react-responsive
- * @returns 响应式
- */
+
 const Responsive = () => {
 	return (
 		<div>

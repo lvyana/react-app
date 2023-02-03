@@ -1,4 +1,9 @@
-// https://www.wangeditor.com/v5/guide/API.html#%E5%86%85%E5%AE%B9%E5%A4%84%E7%90%86
+/**
+ * @file 富文本编辑器 https://www.wangeditor.com/v5/guide/API.html#%E5%86%85%E5%AE%B9%E5%A4%84%E7%90%86
+ * @author ly
+ * @createDate 2022年4月3日
+ */
+
 import React, { useState, useEffect } from 'react';
 import '@wangeditor/editor/dist/css/style.css';
 import { Editor, Toolbar } from '@wangeditor/editor-for-react';

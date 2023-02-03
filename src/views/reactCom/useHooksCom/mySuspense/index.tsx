@@ -1,5 +1,7 @@
 /**
- * @name Suspense 实现异步渲染
+ * @file Suspense 实现异步渲染
+ * @author ly
+ * @createDate 2022年8月3日
  */
 import React, { ComponentType, FC, Suspense } from 'react';
 

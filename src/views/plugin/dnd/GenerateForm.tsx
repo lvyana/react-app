@@ -1,7 +1,7 @@
 /**
- * @name 中间生成表单
- * @user ly
- * @date 2022年12月17日
+ * @file 中间 生成表单
+ * @author ly
+ * @createDate 2022年12月17日
  */
 import React, { FC, useCallback, useContext, useRef } from 'react';
 import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
@@ -16,6 +16,10 @@ import { useFormData } from './useHooks';
 import type { FormItemParams } from './context';
 import { Rule } from 'antd/es/form';
 
+/**
+ * @param formParams 某一项表单数据
+ * @param index 表单下标
+ */
 interface GenerateFormItemParams {
 	formParams: FormItemParams;
 	index: number;

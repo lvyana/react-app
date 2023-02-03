@@ -1,7 +1,7 @@
 /**
- * 	@name GridLayout 布局
- *  @user ly
- *  @data 日期：2020年11月10日
+ * @file GridLayout 布局
+ * @author ly
+ * @createDate 2020年11月10日
  */
 import React, { FC } from 'react';
 import GridLayout, { Layout } from 'react-grid-layout';

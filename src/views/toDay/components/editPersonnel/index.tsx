@@ -1,7 +1,7 @@
 /**
- * @name 编辑团队
- * @user ly
- * @date 2022年11月19日
+ * @file 编辑团队
+ * @author ly
+ * @createDate 2022年11月19日
  */
 import React, { FC, useEffect } from 'react';
 import { Form } from 'antd';

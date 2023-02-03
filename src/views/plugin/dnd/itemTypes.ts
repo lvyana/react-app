@@ -1,18 +1,20 @@
 /**
  * @name 左侧有哪些表单类型
  */
-export type ItemTypesParams = 'input' | 'select' | 'textArea' | 'cascader';
+export type ItemTypesParams = 'input' | 'select' | 'textArea' | 'cascader' | 'button';
 export interface ItemTypes {
 	INPUT: ItemTypesParams;
 	SELECT: ItemTypesParams;
 	TEXTAREA: ItemTypesParams;
 	CASCADER: ItemTypesParams;
+	BUTTON: ItemTypesParams;
 }
 export const ITEM_TYPES: ItemTypes = {
 	INPUT: 'input',
 	SELECT: 'select',
 	TEXTAREA: 'textArea',
-	CASCADER: 'cascader'
+	CASCADER: 'cascader',
+	BUTTON: 'button'
 };
 
 /**

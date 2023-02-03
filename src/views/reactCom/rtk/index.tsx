@@ -1,7 +1,7 @@
 /**
- * @name RTK数据管理
- * @user ly
- * @date 2022年12月11日
+ * @file RTK数据管理
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { useEffect } from 'react';
 // 引入相关的hooks

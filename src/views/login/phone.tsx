@@ -1,7 +1,7 @@
 /**
- * @name 手机号登录
- * @user ly
- * @date 2022年12月11日
+ * @file 手机号登录
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { useState } from 'react';
 import { Form, Input, Button, Row, Col, Checkbox } from 'antd';
@@ -10,13 +10,19 @@ import { FromType } from './index';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import styles from './index.module.scss';
 
-interface methodProps {
-	onFinish: (value: FromType) => void;
+/**
+ * @method 提交事件
+ * @param value 表单对象
+ * @returns void
+ */
+type OnFinish = (value: FromType) => void;
+interface PhoneProps {
+	onFinish: OnFinish;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Phone = ({ onFinish }: methodProps) => {
+const Phone = ({ onFinish }: PhoneProps) => {
 	// 按钮状态
 	const [disabled, setDisabled] = useState(false);
 	let timer: NodeJS.Timer;

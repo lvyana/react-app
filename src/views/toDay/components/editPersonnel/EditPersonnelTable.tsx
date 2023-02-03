@@ -1,7 +1,7 @@
 /**
- * @name 编辑团队表格信息
- * @user ly
- * @date 2022年11月20日
+ * @file 编辑团队表格信息
+ * @author ly
+ * @createDate 2022年11月20日
  */
 import React, { FC } from 'react';
 import Itable, { IcolumnsType } from '@/antdComponents/iTable';

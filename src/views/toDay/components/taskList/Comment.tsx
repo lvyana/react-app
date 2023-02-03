@@ -1,7 +1,7 @@
 /**
- * 	@name 评论
- *  @user ly
- *  @data 日期：2020年11月10日
+ * @file 评论
+ * @author ly
+ * @createDate 2020年11月10日
  */
 import React, { FC } from 'react';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';

@@ -1,3 +1,8 @@
+/**
+ * @file 消息中心表格
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/antdComponents/iTooltip';
@@ -5,6 +10,7 @@ import Ibutton, { ButtonItemParams } from '@/antdComponents/iButton';
 import { ItbClick, AlignType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataResponse } from '../service';
+import Idropdown from '@/antdComponents/iDropdown';
 
 interface useHeaderTableParams {
 	buttonEvent: (type: string | number, value: TabelDataResponse) => void;
@@ -26,6 +32,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 
 	// 初始化按钮
 	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([{ type: '去处理', name: '去处理', btType: 'link' }]);
+
+	const onOpenChange = (open: boolean) => {};
 
 	const columns = [
 		{
@@ -83,11 +91,13 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			align: 'center' as AlignType,
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (
-					<Ibutton buttonList={btArr}></Ibutton>
-					// <Idropdown
-					// 	btArr={btArr}
-					// 	onOpenChange={(open) => onOpenChange(open, record)}
-					// 	onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
+					<>
+						<Ibutton buttonList={btArr}></Ibutton>
+						<Idropdown
+							btArr={btArr}
+							onOpenChange={(open) => onOpenChange(open)}
+							onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
+					</>
 				);
 			}
 		}

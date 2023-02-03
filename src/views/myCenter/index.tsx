@@ -1,7 +1,7 @@
 /**
- * @name 个人中心
- * @user ly
- * @date 2022年12月11日
+ * @file 个人中心
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { FC, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';

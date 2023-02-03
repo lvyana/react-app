@@ -1,3 +1,8 @@
+/**
+ * @file 英汉切换
+ * @author ly
+ * @createDate 2022年6月3日
+ */
 import React from 'react';
 import { useTranslation, Trans, Translation } from 'react-i18next';
 

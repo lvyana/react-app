@@ -1,3 +1,8 @@
+/**
+ * @file expenses
+ * @author ly
+ * @createDate 2023年1月3日
+ */
 import React, { useEffect, useRef } from 'react';
 import { Form } from 'antd';
 import useHeaderTable from './components/useTable';
@@ -9,7 +14,7 @@ import HeaderEdit from '@/antdComponents/iTable/HeaderEdit';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
-import type { FinishTypeT } from './components/SeachForm';
+import type { ButtonType } from './components/SeachForm';
 
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
@@ -37,7 +42,7 @@ const Expenses = () => {
 		onFinish('subimt');
 	}, []);
 
-	const onFinish = (type: FinishTypeT) => {
+	const onFinish = (type: ButtonType) => {
 		if (type === 'subimt') {
 			let params = form.getFieldsValue();
 			setKeepAlive({ ...params, ...page.current });

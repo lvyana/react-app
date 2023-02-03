@@ -1,7 +1,7 @@
 /**
- * @name form对象
- * @user ly
- * @date 2023年1月3日
+ * @file form对象
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import { ChangeEventHandler, ReactNode } from 'react';
 import { FormItemMap } from '../type';

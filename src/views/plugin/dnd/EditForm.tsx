@@ -1,13 +1,13 @@
 /**
- * @name 右侧编辑表单
- * @user ly
- * @date 2022年12月17日
+ * @file 右侧编辑表单
+ * @author ly
+ * @createDate 2022年12月17日
  */
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import Iform from '@/antdComponents/iForm';
-import { Button, Form } from 'antd';
+import { Button, Form, Tabs, TabsProps } from 'antd';
 import { Context } from './context';
-import { useEditFormItemValue, useWatchUrl } from './useHooks';
+import { useEditFormItemValue, useEditItemValue, useWatchUrl } from './useHooks';
 import { isPassword } from '@/utils/rules';
 import type {
 	FormSliderType,
@@ -24,6 +24,7 @@ type FormListType = [
 	FormSliderType,
 	FormSliderType,
 	FormSelectType<DisabledParams>,
+	FormUserDefinedType,
 	FormInputType<never>,
 	FormUserDefinedType,
 	FormSelectType<FormListLabel>,
@@ -38,20 +39,36 @@ type FormListType = [
 	FormTextAreaType<never>
 ];
 
+/**
+ * @param span 宽度
+ * @param label 名称
+ * @param disabled 禁用
+ * @param url 请求数据路径
+ * @param parent 关联父级id
+ * @param isRule 是否必填
+ * @param ruleTitle 必填提示
+ * @param name 字段名
+ * @param labelCol 字段名宽度
+ */
 export type FormParams = {
 	span: number;
-	label: string;
+	label?: string;
 	disabled?: boolean;
 	url?: string;
 	parent?: string;
-	isRule: 1 | 2;
+	isRule?: 1 | 2;
 	isRuleTitle?: string;
 	rule?: string;
 	ruleTitle?: string;
 	name: string;
-	labelCol: number;
+	labelCol?: number;
+	qiehuan?: string;
 };
 
+/**
+ * @param label 名称
+ * @param value 标识
+ */
 type DisabledParams = {
 	label: string;
 	value: boolean;
@@ -62,6 +79,11 @@ const DISABLED_OPTIONS: DisabledParams[] = [
 	{ label: '禁用', value: true }
 ];
 
+/**
+ * 父级集合
+ * @param label 名称
+ * @param name 标识
+ */
 type FormListLabel = {
 	label?: string;
 	name: string;
@@ -72,6 +94,8 @@ const URL_TYPE = ['select', 'treeselect', 'cascader', 'seachSelect'];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const EditForm = () => {
+	const { editItemValue } = useEditItemValue();
+
 	const context = useContext(Context);
 
 	const [form] = Form.useForm<FormParams>();
@@ -92,6 +116,25 @@ const EditForm = () => {
 			return { label: item.label, name: item.name };
 		});
 	}, [context?.state.formList]);
+
+	// 静态、动态模式切换
+	const [staticPattern, setStaticPattern] = useState('1');
+
+	const items: TabsProps['items'] = [
+		{
+			key: '1',
+			label: `静态数据`
+		},
+		{
+			key: '2',
+			label: `动态数据`
+		}
+	];
+	const onChangeStatic = (value: string) => {
+		console.log(value);
+		editItemValue('qiehuan', value);
+		setStaticPattern(value);
+	};
 
 	const formList: FormListType = [
 		{
@@ -145,6 +188,16 @@ const EditForm = () => {
 			option: DISABLED_OPTIONS,
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'userDefined',
+			name: 'qiehuan',
+			children: (
+				<>
+					<Tabs activeKey={staticPattern} items={items} onChange={onChangeStatic} />
+				</>
+			),
+			key: '44'
 		},
 		{
 			type: 'input',
@@ -242,7 +295,7 @@ const EditForm = () => {
 				if (URL_TYPE.indexOf(selectFormItem?.type) > -1) {
 					return true;
 				} else {
-					return item.name !== 'url' && item.name !== 'urlBtn';
+					return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'qiehuan';
 				}
 			});
 		} else {
@@ -255,8 +308,11 @@ const EditForm = () => {
 			const newFormListItem = context.state.formList.find((item) => {
 				return context?.state.selectFormItemKey === item.key;
 			});
-			const { span, label, disabled, url, parent, name, rule, isRule, labelCol } = newFormListItem || {};
+			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, qiehuan } = newFormListItem || {};
 			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol });
+			if (qiehuan) {
+				setStaticPattern(qiehuan);
+			}
 		}
 	}, [context?.state.selectFormItemKey]);
 

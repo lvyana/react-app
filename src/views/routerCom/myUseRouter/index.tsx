@@ -1,3 +1,8 @@
+/**
+ * @file useRouter
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -31,8 +36,8 @@ const MyUseRouter = () => {
 				width={'100%'}
 			/>
 
-			<img src={img2} />
-			<img src={img3} />
+			<img src={img2} alt="" />
+			<img src={img3} alt="" />
 			<div> useSearchParams()</div>
 			<div>1. 作用：用于读取和修改当前位置的 URL 中的查询字符串。</div>
 			<div>2. 返回一个包含两个值的数组，内容分别为：当前的seaech参数、更新search的函数。</div>
@@ -46,14 +51,14 @@ const MyUseRouter = () => {
 				threshold={-300}
 			/>
 
-			<img src={img5} />
+			<img src={img5} alt="" />
 			<div>useLocation()</div>
 			<div>1. 作用：获取当前 location 信息，对标5.x中的路由组件的`location`属性。</div>
-			<img src={img6} />
-			<img src={img7} />
+			<img src={img6} alt="" />
+			<img src={img7} alt="" />
 			<div>useMatch()</div>
 			<div>1. 作用：返回当前匹配信息，对标5.x中的路由组件的`match`属性。</div>
-			<img src={img8} />
+			<img src={img8} alt="" />
 		</div>
 	);
 };

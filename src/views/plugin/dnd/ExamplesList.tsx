@@ -1,7 +1,7 @@
 /**
- * @name 左侧示例表单
- * @user ly
- * @date 2022年12月17日
+ * @file 左侧示例表单组件
+ * @author ly
+ * @createDate 2022年12月17日
  */
 import React, { FC, useContext, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -27,8 +27,17 @@ export const FORM_TYPE_LIST = [
 	{
 		name: '联级框',
 		type: ITEM_TYPES.CASCADER
+	},
+	{
+		name: '按钮集合',
+		type: ITEM_TYPES.BUTTON
 	}
 ];
+
+/**
+ * @param name 表单名称
+ * @param type 表单类型
+ */
 
 interface ExamplesItemProps {
 	name: string;
@@ -65,9 +74,16 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 					// 放入目标
 					const { name: type } = item;
 					// 生成formItem
-					const newFormList = [
-						...(formList || []),
-						{
+					let newFormList = formList;
+					if (type === 'button') {
+						newFormList?.push({
+							type: type as ItemTypesParams,
+							name: 'name' + formList?.length,
+							key: uuidv4(),
+							span: 24
+						});
+					} else {
+						newFormList?.push({
 							type: type as ItemTypesParams,
 							label: 'label',
 							name: 'name' + formList?.length,
@@ -75,10 +91,12 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							key: uuidv4(),
 							isRule: 1 as const,
 							span: 24,
-							labelCol: 6
+							labelCol: 6,
+							qiehuan: '1'
 							// layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
-						}
-					];
+						});
+					}
+					// const newFormList = [...(formList || []), {}];
 					context?.dispatch({ type: 'formList', value: newFormList });
 				}
 			},

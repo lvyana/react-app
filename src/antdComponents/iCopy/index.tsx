@@ -1,7 +1,7 @@
 /**
- *	@name 实现copy
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现copy
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -9,11 +9,12 @@ import { Button, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 
 /**
- * @parmas value 内容
+ * @parma value 内容
  */
 interface CopyProps {
 	value: string;
 }
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Copy: FC<CopyProps> = ({ value }) => {

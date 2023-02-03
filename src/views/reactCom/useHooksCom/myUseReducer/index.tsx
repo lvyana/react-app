@@ -1,12 +1,15 @@
+/**
+ * @file useReduce
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React, { useReducer } from 'react';
 import { Button } from 'antd';
 
 type ActionFuncType = (state: number, action: { type: string; value: number }) => number;
-/**
- * useReduce 使用
- * ly
- * 日期：2020年4月27日
- */
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const MyUseReducer = () => {
 	// reduce实现加减乘除
 

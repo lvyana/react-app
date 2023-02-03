@@ -1,7 +1,7 @@
 /**
- *	@name 新增人员
- *	@user ly
- *  @data 日期：2020年11月15日
+ * @file 新增人员
+ * @author ly
+ * @createDate 2020年11月15日
  */
 import React, { FC, useState } from 'react';
 import { Form, FormInstance } from 'antd';

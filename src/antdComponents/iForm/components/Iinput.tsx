@@ -1,7 +1,7 @@
 /**
- * @name input
- * @user ly
- * @date 2023年1月3日
+ * @file input
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
 import { Input, InputNumber } from 'antd';

@@ -1,7 +1,7 @@
 /**
- * @name 日期列表
- * @user ly
- * @date 2022年11月30日
+ * @file 日期列表
+ * @author ly
+ * @createDate 2022年11月30日
  */
 import React, { useState, useContext, useEffect, FC } from 'react';
 import { Badge, BadgeProps, Calendar } from 'antd';

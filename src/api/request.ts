@@ -1,6 +1,7 @@
 /**
- * axios封装
- * 请求拦截、响应拦截、错误统一处理
+ * @file axios封装 请求拦截、响应拦截、错误统一处理
+ * @author ly
+ * @createDate 2023年2月3日
  */
 import axios from 'axios';
 import type { AxiosResponse, AxiosRequestConfig, AxiosError, Method } from 'axios';
@@ -8,6 +9,11 @@ import { message } from 'antd';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 
+/**
+ * AxiosConfig
+ * @param timeout 超时
+ * @param headers 请求头配置
+ */
 interface AxiosConfig {
 	timeout: number;
 	headers: {
@@ -110,8 +116,13 @@ export function downloadGet(url: string, filename: string) {
 		})
 		.catch((r) => {});
 }
+
 /**
- * 请求
+ * 请求配置
+ * @param url 路径
+ * @param method 请求类型
+ * @param data 请求参数
+ * @param config 参数配置
  */
 interface RequestParams<R> {
 	url: string;
@@ -120,7 +131,11 @@ interface RequestParams<R> {
 	config?: AxiosRequestConfig;
 }
 /**
- * 响应
+ * 响应参数
+ * @param code 状态码
+ * @param message 提示语
+ * @param data 响应数据
+ * @param total 条数
  */
 type Data<T> = {
 	code: number;
@@ -129,6 +144,11 @@ type Data<T> = {
 	total: number;
 };
 
+/**
+ * @method
+ * @param RequestParams 请求配置
+ * @returns instance 返回实例
+ */
 const request = <T, R>({ url, method, data, config }: RequestParams<T>) => {
 	return instance.request<R, Data<R>>({
 		url,

@@ -1,7 +1,7 @@
 /**
- * @name 滑动输入条
- * @user ly
- * @date 2023年1月3日
+ * @file 滑动输入条
+ * @author ly
+ * @createDate 2023年1月3日
  */
 import React from 'react';
 import { Slider } from 'antd';
