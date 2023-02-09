@@ -1,14 +1,13 @@
 /**
- *	@name 实现头像
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 头像
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React from 'react';
 import { useAppSelector } from '@/store';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
-import { clearPassword, clearRemember, clearToken, clearUserName } from '@/utils/storage';
 import styles from './index.module.scss';
 
 const Head = () => {

@@ -1,7 +1,7 @@
 /**
- * @name layout鉴权(异步)
- * @user ly
- * @date 2022年10月10日
+ * @file layout鉴权(异步)
+ * @author ly
+ * @createDate 2022年10月10日
  */
 import React, { useRef, Suspense, lazy, ComponentType } from 'react';
 import { useAppDispatch } from '@/store';

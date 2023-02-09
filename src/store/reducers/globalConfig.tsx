@@ -1,13 +1,20 @@
 /**
- *	@name 实现 log reducers
- *	@user ly
- *  @data 日期：2022年7月30日
+ * @file 实现 log reducers
+ * @author ly
+ * @createDate 日期：2022年7月30日
  */
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { headerConfig } from '@/api/publicApi';
 import type { Router } from '@/layout/menuList/routerData';
 
+/**
+ * @param headerFieldId 唯一标识
+ * @param headerFieldKey 标识
+ * @param headerFieldName 名称
+ * @param headerSelected 是否选中
+ * @param key
+ */
 export type headerConfigListArrType = {
 	headerFieldId: string;
 	headerFieldKey: string;
@@ -16,15 +23,28 @@ export type headerConfigListArrType = {
 	key: string;
 };
 
+/**
+ * @param type 表头某一项标识
+ * @param headerField 表头集合参数
+ */
 export type headerConfigListType = {
 	type: string;
 	headerField: headerConfigListArrType[];
 };
+
+/**
+ * @param headerConfigList
+ * @param router
+ */
 export interface InitGlobalConfigParams {
 	headerConfigList: headerConfigListType[];
 	router: Router[];
 }
 
+/**
+ * @param headerConfigList
+ * @param router
+ */
 let initialState: InitGlobalConfigParams = {
 	headerConfigList: [],
 	router: []

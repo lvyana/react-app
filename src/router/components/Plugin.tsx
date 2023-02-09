@@ -1,7 +1,7 @@
 /**
- * @name 一些插件相关页面
- * @user ly
- * @date 2022年12月11日
+ * @file 一些插件相关页面
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';

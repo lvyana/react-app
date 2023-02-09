@@ -1,7 +1,7 @@
 /**
- *	@name 实现标签页
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现标签页
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,6 +13,12 @@ import useThemeHooks from '@/config/theme/useThemeHooks';
 
 type ACTION = 'add' | 'remove';
 
+/**
+ * @param title 名称
+ * @param path 路径
+ * @param disabled 禁用某一项
+ * @param closable 是否能关闭某一项
+ */
 interface PanesParams {
 	title: string | undefined;
 	path: string;

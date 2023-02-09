@@ -1,5 +1,7 @@
 /**
- * 消息中心列表
+ * @file 消息中心列表
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
 import { List } from 'antd';
@@ -7,6 +9,10 @@ import { useRequest } from 'ahooks';
 import { messgeCenter } from '../service';
 import style from '../index.module.scss';
 
+/**
+ * @param title 标题
+ * @param isRead 是否已读
+ */
 export interface messgeCenterParams {
 	title: string;
 	isRead: boolean;

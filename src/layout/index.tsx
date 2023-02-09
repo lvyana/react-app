@@ -1,7 +1,7 @@
 /**
- *	@name 实现Layout
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现Layout
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';

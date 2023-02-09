@@ -1,13 +1,12 @@
 /**
- *	@name 实现表格封装
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现表格封装
+ * @author ly
+ * @createDate 2020年4月27日
  */
-import React, { FC, useEffect, useState, useRef, Key } from 'react';
+import React from 'react';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import { Table, Pagination, Switch } from 'antd';
-// 表格头部按钮接口
 import { ColumnsType } from 'antd/es/table';
 import { antIcon } from '@/antdComponents/iLoading';
 
@@ -17,6 +16,7 @@ import { antIcon } from '@/antdComponents/iLoading';
  * @param loading 加载状态
  * @param rowSelection 事件回调对象
  * @param rowKey 定义唯一key字段
+ * @param bordered 边框
  */
 interface ItableProps<T> {
 	columns?: ColumnsType<T>; //表头
@@ -30,10 +30,10 @@ interface ItableProps<T> {
 export type IcolumnsType<T> = ColumnsType<T>; //表头
 
 /**
- *
- * @Function ItbClick 表格内事件
- * @params type 类型
- * @retrun void
+ * @method 表格内事件
+ * @param type 类型
+ * @param record 选中数据
+ * @retruns void
  */
 export type ItbClick<T> = (type: string, record: T) => void;
 

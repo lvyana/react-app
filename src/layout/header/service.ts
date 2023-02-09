@@ -1,7 +1,7 @@
 /**
- * @name 头部功能api
- * @user ly
- * @date 2022年12月9日
+ * @file 顶部功能api
+ * @author ly
+ * @createDate 2022年12月9日
  */
 import request from '@/api/request';
 import type { messgeCenterParams } from './compoment/Lists';

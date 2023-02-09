@@ -1,7 +1,7 @@
 /**
- * @name 切换颜色主题
- * @user ly
- * @date 2022年11月19日
+ * @file 切换颜色主题
+ * @author ly
+ * @createDate 2022年11月19日
  */
 import React from 'react';
 import { useSelector } from 'react-redux';

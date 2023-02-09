@@ -1,7 +1,7 @@
 /**
- * @name antd定制主题 第二套
- * @user ly
- * @date 2022年11月19日
+ * @file antd定制主题 第二套
+ * @author ly
+ * @createDate 2022年11月19日
  */
 export default {
 	token: {

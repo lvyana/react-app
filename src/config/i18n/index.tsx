@@ -1,7 +1,12 @@
+/**
+ * @file 封装多种语言
+ * @author ly
+ * @createDate 2023年2月5日
+ */
 import LanguageDetector from 'i18next-browser-languagedetector';
 import i18n from 'i18next';
-import enUsTrans from '@/assets/locales/en-us.json';
-import zhCnTrans from '@/assets/locales/zh-cn.json';
+import enUsTrans from './locales/en-us.json';
+import zhCnTrans from './locales/zh-cn.json';
 import { initReactI18next } from 'react-i18next';
 
 i18n

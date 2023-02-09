@@ -1,7 +1,7 @@
 /**
- *	@name 实现面包屑
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装面包屑
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
@@ -14,6 +14,7 @@ import { GET_ROUTER } from '@/store/reducers/globalConfig';
 type MenuItem = Required<MenuProps>['items'][number];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Crumb = () => {
 	const location = useLocation();
 
@@ -55,6 +56,11 @@ const Crumb = () => {
 	);
 };
 
+/**
+ * @method 路由数据->menu数据
+ * @param menu 路由数据
+ * @returns menu数据
+ */
 const CrumbMenus = (menu: Router[]) => {
 	return menu.reduce((acc: MenuItem[], item) => {
 		if (item.show === false) {
@@ -66,6 +72,15 @@ const CrumbMenus = (menu: Router[]) => {
 	}, []);
 };
 
+/**
+ * @method 调整menu数据
+ * @param label 名称
+ * @param key 唯一标志
+ * @param icon 图标
+ * @param children 子菜单的菜单项
+ * @param type
+ * @returns menu数据
+ */
 const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
 	return {
 		key,

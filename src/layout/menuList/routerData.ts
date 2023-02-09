@@ -1,7 +1,7 @@
 /**
- * @name 路由数据
- * @user ly
- * @data 2022年10月10日
+ * @file 路由数据
+ * @author ly
+ * @createDate 2022年10月10日
  */
 import type { Router } from './index';
 

@@ -1,7 +1,7 @@
 /**
- *	@name 实现Paginations分页
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装Paginations分页
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC, Dispatch, SetStateAction, useMemo } from 'react';
 import { Pagination } from 'antd';
@@ -11,6 +11,7 @@ import { GET_SIZE } from '@/store/reducers/layout';
 /**
  * @param total 总条数
  * @param page 页码
+ * @param onPaginationChange change事件回调
  */
 interface IpaginationsProps {
 	total?: number; // 条数
@@ -20,6 +21,8 @@ interface IpaginationsProps {
 	}>;
 	onPaginationChange: (type: 'subimt') => void;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Ipaginations: FC<IpaginationsProps> = ({ total, page, onPaginationChange }) => {
 	const size = useAppSelector(GET_SIZE);

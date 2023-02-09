@@ -10,7 +10,7 @@ import Itable from '@/antdComponents/iTable';
 import Icard from '@/antdComponents/iCard';
 import SeachForm from './components/SeachForm';
 import Ipaginations from '@/antdComponents/iPagination';
-import HeaderEdit from '@/antdComponents/iTable/HeaderEdit';
+import HeaderEdit from '@/antdComponents/iEditTableHeader';
 import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';

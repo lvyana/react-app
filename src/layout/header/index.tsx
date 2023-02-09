@@ -1,7 +1,7 @@
 /**
- *	@name 实现顶部组件
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现顶部组件
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { memo } from 'react';
 import { Row, Col } from 'antd';

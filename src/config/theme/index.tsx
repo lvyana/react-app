@@ -1,7 +1,7 @@
 /**
- * @name antd 定制主题 中文
- * @user ly
- * @date 2022年11月19日
+ * @file antd 定制主题 中文
+ * @author ly
+ * @createDate 2022年11月19日
  */
 import React, { FC, useMemo } from 'react';
 import { ConfigProvider } from 'antd';

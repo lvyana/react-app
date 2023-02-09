@@ -1,7 +1,7 @@
 /**
- * @name 模板
- * @user ly
- * @date
+ * @file 模板
+ * @author ly
+ * @createDate
  */
 import React from 'react';
 

@@ -1,7 +1,7 @@
 /**
- *	@name 鼠标移入出现提示
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 鼠标移入出现提示
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { Tooltip } from 'antd';

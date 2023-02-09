@@ -12,6 +12,9 @@ interface ErrorBoundaryProps {
 interface ErrorBoundaryState {
 	hasError: boolean;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
 	constructor(props: ErrorBoundaryProps | Readonly<ErrorBoundaryProps>) {
 		super(props);

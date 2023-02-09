@@ -1,7 +1,7 @@
 /**
- *	@name 实现左侧菜单
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现左侧菜单
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState, useEffect, memo } from 'react';
 import type { MenuProps } from 'antd';
@@ -14,6 +14,13 @@ import useRouterHooks from '@/router/useHooks';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
+/**
+ * @param title 标题
+ * @param path 路径
+ * @param icon 图标
+ * @param show 显示、隐藏
+ * @param children 子级
+ */
 export interface Router {
 	title: string;
 	path: string;
@@ -64,6 +71,15 @@ const Menulist = () => {
 };
 export default memo(Menulist);
 
+/**
+ * @method 调整menu数据
+ * @param label 名称
+ * @param key 唯一标志
+ * @param icon 图标
+ * @param children 子菜单的菜单项
+ * @param type
+ * @returns menu数据
+ */
 const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children?: MenuItem[], type?: 'group'): MenuItem => {
 	return {
 		key,
@@ -74,7 +90,11 @@ const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children
 	} as MenuItem;
 };
 
-// 获取菜单数据结构
+/**
+ * @method 获取菜单数据结构
+ * @param menu 路由数据
+ * @returns menu数据
+ */
 const getMenu = (menuArr: Router[]): MenuItem[] => {
 	return menuArr.reduce((acc: MenuItem[], item) => {
 		if (item.show === false) return [...acc];
