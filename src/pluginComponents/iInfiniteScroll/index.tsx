@@ -1,7 +1,7 @@
 /**
- *	@name 实现滚动无线加载
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装滚动无线加载
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { FC, useState, ReactNode } from 'react';
 import { Avatar, Descriptions, Row, Col, Button, message, Skeleton, Divider } from 'antd';
@@ -10,7 +10,7 @@ import Loading from '@/antdComponents/iLoading';
 import styles from './index.module.scss';
 
 /**
- * @name 滚动加载
+ * 滚动加载
  * @param current 当前数据长度
  * @param total 总条数
  * @param loading 下面加载效果

@@ -1,7 +1,7 @@
 /**
- *	@name 实现权限
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现权限
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { ReactNode, FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';

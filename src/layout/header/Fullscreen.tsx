@@ -1,7 +1,7 @@
 /**
- *	@name 实现全屏
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装全屏
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import { useState, useEffect } from 'react';
 import { Button } from 'antd';

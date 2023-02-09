@@ -1,7 +1,7 @@
 /**
- * @name loading
- * @user ly
- * @date
+ * @file loading动画
+ * @author ly
+ * @createDate 2023年2月5日
  */
 import React from 'react';
 import style from './index.module.scss';

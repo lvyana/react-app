@@ -1,3 +1,8 @@
+/**
+ * @file 路由鉴权
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';

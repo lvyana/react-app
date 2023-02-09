@@ -1,7 +1,7 @@
 /**
- *	@name 实现router
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现router
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';

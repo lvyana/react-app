@@ -141,7 +141,7 @@ type Data<T> = {
 	code: number;
 	message: string;
 	data: T;
-	total?: number;
+	total: number;
 };
 
 /**

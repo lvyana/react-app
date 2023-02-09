@@ -1,7 +1,7 @@
 /**
- *	@name 实现表格、表单组件大小
- *	@user ly
- *  @data 日期：2020年4月27日
+ *	@file 表格、表单组件大小
+ *	@author ly
+ *  @createDate 2020年4月27日
  */
 import React, { useState } from 'react';
 import { Button, Dropdown, Tooltip, Menu } from 'antd';

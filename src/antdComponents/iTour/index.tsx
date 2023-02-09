@@ -1,7 +1,7 @@
 /**
- *	@name 实现用户指导
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 封装用户指导
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { FC, useEffect, useState } from 'react';
 import { Tour } from 'antd';
@@ -23,6 +23,11 @@ const STEPS: TourStepProps[] = [
 	}
 ];
 
+/**
+ * @param open 开关
+ * @param steps 引导数据
+ * @param onClose 关闭引导时的回调函数
+ */
 interface ItourProps {
 	open: boolean;
 	steps?: TourProps['steps'];

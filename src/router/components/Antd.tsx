@@ -1,7 +1,7 @@
 /**
- * @name antd组件相关页面
- * @user ly
- * @date 2022年12月11日
+ * @file antd组件相关页面
+ * @author ly
+ * @createDate 2022年12月11日
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';

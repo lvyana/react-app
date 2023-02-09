@@ -1,3 +1,8 @@
+/**
+ * @file 封装theme hooks实例参数
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React from 'react';
 import { Tabs, theme } from 'antd';
 

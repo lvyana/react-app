@@ -1,7 +1,7 @@
 /**
- *	@name 实现搜索tag
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现搜索tag
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC, useState } from 'react';
 import { Tag } from 'antd';

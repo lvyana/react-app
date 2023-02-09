@@ -1,7 +1,7 @@
 /**
- * @file 实现权限按钮
+ * @file 封装权限按钮
  * @author ly
- * @createDate 日期：2020年4月27日
+ * @createDate 2020年4月27日
  */
 import React, { FC } from 'react';
 import { useAppSelector } from '@/store';
@@ -22,6 +22,8 @@ export interface IbuttonProps<T> {
 	onClickBtn?: OnClickBtn<T>;
 	style?: React.CSSProperties;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Ibutton = <T,>({ buttonList, loadingName, onClickBtn }: IbuttonProps<T>) => {
 	const size = useAppSelector(GET_SIZE);

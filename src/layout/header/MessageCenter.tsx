@@ -1,7 +1,7 @@
 /**
- *	@name 实现消息中心
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现消息中心
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC, useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
@@ -11,6 +11,9 @@ import Lists from './compoment/Lists';
 import style from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * @param hide 关闭TabsList
+ */
 interface TabsListProps {
 	hide: () => void;
 }

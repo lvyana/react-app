@@ -1,3 +1,8 @@
+/**
+ * @file 动画组件
+ * @author ly
+ * @createDate 2020年4月27日
+ */
 import React, { FC, useState, useRef } from 'react';
 import { Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -7,16 +12,14 @@ import { UpOutlined } from '@ant-design/icons';
 import Icard from '@/antdComponents/iCard';
 
 /**
- * @parmas children 子组件
+ * @param children 子组件
  */
 interface AnimateComponentProps {
 	children: React.ReactNode;
 }
-/**
- *
- * @props  AnimateComponentProps
- * @returns 表单动画
- */
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	const [flag, setflag] = useState(true);
 	const onMouseEnter = () => {
