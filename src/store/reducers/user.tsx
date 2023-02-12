@@ -5,6 +5,7 @@
  */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
+import menuLogo from '@/assets/images/menu.png';
 
 // 缓存
 export interface KeepAliveParams<T = unknown> {
@@ -25,7 +26,7 @@ export interface InitUserParams {
 	keepAlive: KeepAliveParams[];
 }
 export let initialState: InitUserParams = {
-	photo: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+	photo: menuLogo,
 	token: '',
 	permiss: ['*:*:*'],
 	keepAlive: []

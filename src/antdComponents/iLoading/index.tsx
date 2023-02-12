@@ -30,7 +30,7 @@ const Loading: FC<LoadingProps> = ({ children, loading }) => {
 		);
 	} else {
 		return (
-			<div className={styles['Loading-Example']}>
+			<div className={styles['loading-example']}>
 				<Spin indicator={antIcon} delay={200} style={{}}></Spin>
 			</div>
 		);

@@ -125,27 +125,27 @@ const menuList: Router[] = [
 			},
 
 			{
-				title: 'Player',
+				title: '视频',
 				path: '/plugin/player',
 				icon: 'icon-shangcheng'
 			},
 			{
-				title: 'gridLayout',
+				title: 'grid布局',
 				path: '/plugin/demoGridLayout',
 				icon: 'icon-jiaoyu'
 			},
 			{
-				title: 'Responsive',
+				title: '响应式',
 				path: '/plugin/responsive',
 				icon: 'icon-shenghuo'
 			},
 			{
-				title: 'I18n',
+				title: '语言切换',
 				path: '/plugin/i18n',
 				icon: 'icon-xinpin'
 			},
 			{
-				title: 'dnd',
+				title: '表单生成',
 				path: '/plugin/dnd',
 				icon: 'icon-xinpin'
 			}

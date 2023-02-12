@@ -42,7 +42,7 @@ const Lists = () => {
 	});
 
 	return (
-		<div className={`${style['Layout-Tabs-List']}`}>
+		<div className={`${style['layout-tabs-List']}`}>
 			<List
 				bordered
 				dataSource={messgeCenterData}

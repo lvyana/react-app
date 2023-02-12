@@ -38,7 +38,7 @@ const Head = () => {
 					menu={{ items: menu, onClick: handleMenuClick }}
 					placement="bottom"
 					trigger={['click']}
-					overlayClassName={styles['Layout-Dropdown']}>
+					overlayClassName={styles['layout-dropdown']}>
 					<div>
 						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
 						<span className="mr5 ml5">admin</span>

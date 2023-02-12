@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2022年12月11日
  */
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
@@ -22,6 +22,13 @@ const Account: FC<AccountProps> = ({ onFinish, form }) => {
 
 	const username = useRef<HTMLInputElement>(null);
 	const password = useRef<HTMLInputElement>(null);
+
+	useLayoutEffect(() => {
+		if (username.current && password.current) {
+			username.current.value = 'admin';
+			password.current.value = '123456';
+		}
+	}, []);
 
 	const onSubmit = () => {
 		onFinish({

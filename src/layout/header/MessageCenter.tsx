@@ -61,8 +61,8 @@ const TabsList: FC<TabsListProps> = ({ hide }) => {
 		navigate('messgeCenter');
 	};
 	return (
-		<div className={`${style['Layout-Tabs-center']}`}>
-			<Tabs defaultActiveKey="1" onChange={onChange} items={items} className={`${style['Layout-Tabs-List']}`}></Tabs>
+		<div className={`${style['layout-tabs-center']}`}>
+			<Tabs defaultActiveKey="1" onChange={onChange} items={items} className={`${style['layout-tabs-List']}`}></Tabs>
 			<Row className="mt-1" gutter={8}>
 				<Col span={12}>
 					<Button type="dashed" style={{ width: '100%' }}>

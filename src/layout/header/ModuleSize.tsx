@@ -32,7 +32,7 @@ const ModuleSize = () => {
 				menu={{ items: sizeMenu, onClick: handleSizeChange }}
 				placement="bottom"
 				trigger={['click']}
-				overlayClassName={style['Layout-Dropdown']}>
+				overlayClassName={style['layout-dropdown']}>
 				<Button type="link" icon={<FontSizeOutlined />}></Button>
 			</Dropdown>
 		</>

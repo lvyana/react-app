@@ -1,7 +1,7 @@
 /**
  * @file 实现Layout
  * @author ly
- * @createDate 日期：2020年4月27日
+ *  @createDate 日期：2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -14,6 +14,7 @@ import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive
 import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
 import useThemeHooks from '@/config/theme/useThemeHooks';
+import menuLogo from '@/assets/images/menu.png';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
@@ -61,29 +62,41 @@ const Layouts = () => {
 		setOpenItour(false);
 	};
 
+	const LayoutLogo: React.CSSProperties = {
+		position: 'absolute',
+		top: 0,
+		zIndex: 1,
+		width: '100%',
+		height: '64px',
+		backgroundColor: `${token.colorBgBase}`,
+		background: `url(${menuLogo}) no-repeat center`,
+		backgroundSize: 'contain',
+		boxShadow: '0 3px 6px 0 rgb(195, 195, 195)'
+	};
+
 	return (
-		<Layout className="My-Layout" style={{ minHeight: '100vh' }}>
+		<Layout className="my-layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
 				<Sider
-					className="Layout-Transition"
+					className="layout-transition"
 					zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
 					style={{ backgroundColor: token.colorBgBase }}
 					collapsible
 					collapsed={collapsed}
 					onCollapse={onCollapse}>
-					<div className="Layout-logo" />
+					<div style={LayoutLogo} />
 					<Menulist />
 				</Sider>
 			</IresponsiveMin>
 
-			<Layout className="Layout-Transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
-				<div className="Layout-Transition" style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)` }}>
+			<Layout className="layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
+				<div className="layout-transition" style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)` }}>
 					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>
 					<TabsMain />
 				</div>
-				<Content className="Layout-Content">
+				<Content className="layout-content">
 					<Outlet />
 				</Content>
 			</Layout>

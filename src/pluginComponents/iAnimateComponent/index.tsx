@@ -37,7 +37,7 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 			</div>
 
 			<div className="animate__animated animate__backInDown" style={{ display: flag ? 'none' : 'block' }}>
-				<Icard className={`Box-Shadow`}>
+				<Icard className={`box-shadow`}>
 					{children}
 					<div>
 						<Button

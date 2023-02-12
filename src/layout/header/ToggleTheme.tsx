@@ -30,7 +30,7 @@ const ToggleTheme = () => {
 				menu={{ items: themeMenu, onClick: handleSizeChange }}
 				placement="bottom"
 				trigger={['click']}
-				overlayClassName={style['Layout-Dropdown']}>
+				overlayClassName={style['layout-dropdown']}>
 				<Button type="link" icon={<BgColorsOutlined />}></Button>
 			</Dropdown>
 		</>

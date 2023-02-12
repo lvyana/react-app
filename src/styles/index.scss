@@ -18,7 +18,7 @@
 }
 
 /* hover 75,171,252 */
-.hoveBlue:hover {
+.hove-blue:hover {
   color: rgb(75, 171, 252);
 }
 
@@ -61,11 +61,6 @@ $bgcImg:-webkit-linear-gradient(
   border-radius: 10px;
 }
 
-/* 移入变小手 */
-.Xiao-Shou {
-  cursor: pointer;
-}
-
-.Box-Shadow {
+.box-shadow {
   box-shadow: 0 3px 6px 0 rgb(195, 195, 195);
 }
