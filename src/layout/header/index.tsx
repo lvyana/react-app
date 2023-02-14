@@ -4,15 +4,16 @@
  * @createDate 2020年4月27日
  */
 import React, { memo } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Button, Avatar } from 'antd';
 import { IresponsiveMin } from '@/pluginComponents/iResponsive';
-import Fullscreen from './Fullscreen';
-import ModuleSize from './ModuleSize';
-import Crumb from './Crumb';
-import Search from './Search';
-import Head from './Head';
-import MessageCenter from './MessageCenter';
-import ToggleTheme from './ToggleTheme';
+import Fullscreen from './fullscreen';
+import ComponentSize from './componentSize';
+import Crumb from './crumb';
+import Search from './search';
+import UserAvatar from './userAvatar';
+import MessageCenter from './messageCenter';
+import ToggleTheme from './toggleTheme';
+import Warehouse from './warehouse';
 
 const Headerregion = () => {
 	return (
@@ -33,15 +34,17 @@ const Headerregion = () => {
 								{/* 全屏 */}
 								<Fullscreen></Fullscreen>
 								{/* 组件大小 */}
-								<ModuleSize></ModuleSize>
+								<ComponentSize></ComponentSize>
 								{/* 消息 */}
 								<MessageCenter></MessageCenter>
+								{/* 仓库地址 */}
+								<Warehouse></Warehouse>
 							</Col>
 						</IresponsiveMin>
 
 						<Col>
 							{/* 用户头像 */}
-							<Head></Head>
+							<UserAvatar></UserAvatar>
 						</Col>
 					</Row>
 				</Col>

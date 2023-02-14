@@ -9,7 +9,7 @@ import { useAppDispatch } from '@/store';
 import { GET_THEME, SET_THEME, ThemeType } from '@/store/reducers/layout';
 import { Button, Dropdown } from 'antd';
 import { BgColorsOutlined } from '@ant-design/icons';
-import style from './index.module.scss';
+import style from '../index.module.scss';
 
 const ToggleTheme = () => {
 	const dispatch = useAppDispatch();

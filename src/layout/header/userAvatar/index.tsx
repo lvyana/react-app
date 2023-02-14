@@ -8,9 +8,9 @@ import { useAppSelector } from '@/store';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
-import styles from './index.module.scss';
+import styles from '../index.module.scss';
 
-const Head = () => {
+const UserAvatar = () => {
 	const navigate = useNavigate();
 	const photo = useAppSelector(GET_SELECTOR_PHOTO);
 	// 头像功能
@@ -49,4 +49,4 @@ const Head = () => {
 	);
 };
 
-export default Head;
+export default UserAvatar;

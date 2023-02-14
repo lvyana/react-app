@@ -9,9 +9,9 @@ import { FontSizeOutlined } from '@ant-design/icons';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
-import style from './index.module.scss';
+import style from '../index.module.scss';
 
-const ModuleSize = () => {
+const ComponentSize = () => {
 	// 尺寸
 	const dispatch = useAppDispatch();
 	const size = useAppSelector(GET_SIZE);
@@ -38,4 +38,4 @@ const ModuleSize = () => {
 		</>
 	);
 };
-export default ModuleSize;
+export default ComponentSize;
