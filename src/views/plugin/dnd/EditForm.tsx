@@ -8,6 +8,7 @@ import Iform from '@/antdComponents/iForm';
 import { Button, Form, Tabs, TabsProps } from 'antd';
 import { Context } from './context';
 import { useEditFormItemValue, useEditItemValue, useWatchUrl } from './useHooks';
+import StaticOptions from './components/StaticOptions';
 import { isPassword } from '@/utils/rules';
 import type {
 	FormSliderType,
@@ -24,6 +25,7 @@ type FormListType = [
 	FormSliderType,
 	FormSliderType,
 	FormSelectType<DisabledParams>,
+	FormUserDefinedType,
 	FormUserDefinedType,
 	FormInputType<never>,
 	FormUserDefinedType,
@@ -62,7 +64,7 @@ export type FormParams = {
 	ruleTitle?: string;
 	name: string;
 	labelCol?: number;
-	qiehuan?: string;
+	trigger?: string;
 };
 
 /**
@@ -132,7 +134,8 @@ const EditForm = () => {
 	];
 	const onChangeStatic = (value: string) => {
 		console.log(value);
-		editItemValue('qiehuan', value);
+
+		editItemValue('trigger', value);
 		setStaticPattern(value);
 	};
 
@@ -191,7 +194,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'userDefined',
-			name: 'qiehuan',
+			name: 'trigger',
 			children: (
 				<>
 					<Tabs activeKey={staticPattern} items={items} onChange={onChangeStatic} />
@@ -200,11 +203,21 @@ const EditForm = () => {
 			key: '44'
 		},
 		{
+			type: 'userDefined',
+			key: 'staticOptions',
+			name: 'staticOptions',
+			span: 24,
+			show: staticPattern === '1',
+			children: <StaticOptions />,
+			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
+		},
+		{
 			type: 'input',
 			key: '5',
 			label: 'url',
 			name: 'url',
 			span: 18,
+			show: staticPattern === '2',
 			layout: { labelCol: { span: 8 }, wrapperCol: { span: 16 } }
 		},
 		{
@@ -212,6 +225,7 @@ const EditForm = () => {
 			key: '6',
 			name: 'urlBtn',
 			span: 6,
+			// show: staticPattern === '1',
 			children: (
 				<div className="flex justify-end">
 					<Button type="primary" onClick={onGetOption}>
@@ -284,18 +298,19 @@ const EditForm = () => {
 		}
 	];
 
-	// 是否需要url获取option
+	// 表单集合
 	const newFormList = useMemo(() => {
 		const selectFormItem = context?.state.formList.find((item) => {
 			return item.key === context?.state.selectFormItemKey;
 		});
 
+		// 是否需要url获取option
 		if (selectFormItem?.type) {
 			return formList.filter((item) => {
 				if (URL_TYPE.indexOf(selectFormItem?.type) > -1) {
 					return true;
 				} else {
-					return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'qiehuan';
+					return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'trigger';
 				}
 			});
 		} else {
@@ -308,10 +323,11 @@ const EditForm = () => {
 			const newFormListItem = context.state.formList.find((item) => {
 				return context?.state.selectFormItemKey === item.key;
 			});
-			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, qiehuan } = newFormListItem || {};
+
+			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger } = newFormListItem || {};
 			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol });
-			if (qiehuan) {
-				setStaticPattern(qiehuan);
+			if (trigger) {
+				setStaticPattern(trigger);
 			}
 		}
 	}, [context?.state.selectFormItemKey]);

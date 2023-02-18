@@ -92,7 +92,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							isRule: 1 as const,
 							span: 24,
 							labelCol: 6,
-							qiehuan: '1'
+							trigger: '1'
 							// layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 						});
 					}

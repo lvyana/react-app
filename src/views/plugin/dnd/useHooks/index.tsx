@@ -13,7 +13,7 @@ import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
 import { FormItem } from '@/antdComponents/iForm/type';
 
-// 监听左侧表单变化修改GenerateForm
+// 监听绑定表单的变化 修改GenerateForm
 export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<FormParams>) => {
 	const context = useContext(Context);
 
@@ -33,7 +33,7 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 	}, [nameValue]);
 };
 
-// 监听左侧变化修改GenerateForm
+// 监听没有绑定表单的变化 修改GenerateForm
 export const useEditItemValue = () => {
 	const context = useContext(Context);
 
