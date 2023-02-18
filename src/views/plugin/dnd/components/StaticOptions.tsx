@@ -6,50 +6,70 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { v4 as uuidv4 } from 'uuid';
 
-interface Options {
+/**
+ * @param value option value
+ * @param label option label
+ * @param id 唯一key
+ */
+export interface Options {
 	value: string;
-	lable: string;
-	id: number;
+	label: string;
+	id: string;
 }
 
+/**
+ * @param options 集合
+ * @param key 对应key值
+ * @param value 修改内容
+ * @param id 唯一id
+ */
 type GetNewOptionsParams = {
 	options: Options[];
-	key: 'value' | 'lable';
+	key: 'value' | 'label';
 	value: string;
-	id: number;
+	id: string;
 };
+
+/**
+ * @param options 静态数据
+ * @param updateOptions 更新回调
+ */
+interface StaticOptionsProps {
+	options: Options[];
+	updateOptions: (data: Options[]) => void;
+}
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const StaticOptions: React.FC = () => {
-	const onFinish = (values: any) => {
-		console.log('Received values of form:', values);
-	};
-
-	const [options, setoptions] = useState([{ value: '', lable: '', id: 0 }]);
-
-	const add = (id: number) => {
+const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions }) => {
+	// 添加表单行
+	const add = (id: string) => {
 		const addOption = options.find((option) => option.id === id);
 		if (addOption) {
-			setoptions([...options, { ...addOption, id: id + 1 }]);
+			updateOptions([...options, { ...addOption, id: uuidv4() }]);
 		}
 	};
 
-	const subtract = (id: number) => {
+	// 删除表单行
+	const subtract = (id: string) => {
 		if (options.length === 1) return;
 		const subtractOption = options.filter((option) => option.id !== id);
-		setoptions(subtractOption);
+		updateOptions(subtractOption);
 	};
 
-	const lableChange = (value: React.ChangeEvent<HTMLInputElement>, id: number) => {
+	// label内容
+	const labelChange = (value: React.ChangeEvent<HTMLInputElement>, id: string) => {
 		console.log(value.target.value);
-		const newOptions = getNewOptions({ options, key: 'lable', value: value.target.value, id });
-		setoptions(newOptions);
+		const newOptions = getNewOptions({ options, key: 'label', value: value.target.value, id });
+		updateOptions(newOptions);
 	};
 
-	const valueChange = (value: React.ChangeEvent<HTMLInputElement>, id: number) => {
+	// value内容
+	const valueChange = (value: React.ChangeEvent<HTMLInputElement>, id: string) => {
 		const newOptions = getNewOptions({ options, key: 'value', value: value.target.value, id });
-		setoptions(newOptions);
+		updateOptions(newOptions);
 	};
 
 	const getNewOptions = ({ options, key, value, id }: GetNewOptionsParams) => {
@@ -67,7 +87,7 @@ const StaticOptions: React.FC = () => {
 				return (
 					<Row key={option.id}>
 						<Col span={8}>
-							<Input placeholder="lable" value={option.lable} onChange={(value) => lableChange(value, option.id)} />
+							<Input placeholder="label" value={option.label} onChange={(value) => labelChange(value, option.id)} />
 						</Col>
 						<Col span={8}>
 							<Input placeholder="value" value={option.value} onChange={(value) => valueChange(value, option.id)} />

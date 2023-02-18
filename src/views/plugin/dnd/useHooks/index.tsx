@@ -12,6 +12,7 @@ import { Context, FormItemParams } from '../context';
 import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
 import { FormItem } from '@/antdComponents/iForm/type';
+import type { Options } from '../components/StaticOptions';
 
 // 监听绑定表单的变化 修改GenerateForm
 export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<FormParams>) => {
@@ -79,8 +80,8 @@ export const useWatchUrl = () => {
 // 拖拽数据转成标准表单数据
 export const useFormData = () => {
 	const getFormData = (dndFormData: FormItemParams): FormItem => {
-		const { type, key, span, label, disabled, url, parent, isRule, isRuleTitle, rule, ruleTitle, name, labelCol } = dndFormData;
-		let newFormList: FormItem & { disabled?: boolean } = { type, key, span, label, name, disabled };
+		const { type, key, span, label, disabled, option, isRule, isRuleTitle, rule, ruleTitle, name, labelCol } = dndFormData;
+		let newFormList: FormItem & { disabled?: boolean; option?: Options[] } = { type, key, span, label, name, disabled, option };
 
 		if (isRule === 2) {
 			newFormList = {

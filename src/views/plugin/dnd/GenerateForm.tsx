@@ -58,6 +58,7 @@ const GenerateForm = () => {
 	);
 };
 
+// 表单子组件
 const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => {
 	const context = useContext(Context);
 
@@ -120,12 +121,6 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 		},
 		[context?.state.formList]
 	);
-
-	// const swapArr = (arr: FormItemParams[], index1: number, index2: number) => {
-	// 	const newArr = JSON.parse(JSON.stringify(arr));
-	// 	newArr[index1] = newArr.splice(index2, 1, newArr[index1])[0];
-	// 	return newArr;
-	// };
 
 	const [{ isDragging }, drag, preview] = useDrag(
 		() => ({

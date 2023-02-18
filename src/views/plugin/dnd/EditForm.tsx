@@ -10,6 +10,7 @@ import { Context } from './context';
 import { useEditFormItemValue, useEditItemValue, useWatchUrl } from './useHooks';
 import StaticOptions from './components/StaticOptions';
 import { isPassword } from '@/utils/rules';
+import { v4 as uuidv4 } from 'uuid';
 import type {
 	FormSliderType,
 	FormInputType,
@@ -18,6 +19,7 @@ import type {
 	FormUserDefinedType,
 	FormTextAreaType
 } from '@/antdComponents/iForm/type';
+import type { Options } from './components/StaticOptions';
 
 type FormListType = [
 	FormInputType<never>,
@@ -65,6 +67,7 @@ export type FormParams = {
 	name: string;
 	labelCol?: number;
 	trigger?: string;
+	option?: Options[];
 };
 
 /**
@@ -93,6 +96,8 @@ type FormListLabel = {
 
 const URL_TYPE = ['select', 'treeselect', 'cascader', 'seachSelect'];
 
+const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const EditForm = () => {
@@ -102,9 +107,17 @@ const EditForm = () => {
 
 	const [form] = Form.useForm<FormParams>();
 
-	const onGetOption = () => {
-		const url = form.getFieldValue('url');
-		getAnyOptions(url);
+	// 点击发送
+	const onGetOption = async () => {
+		if (staticPattern === '1') {
+			editItemValue('option', staticOptions);
+		} else if (staticPattern === '2') {
+			try {
+				await form.validateFields(['url']);
+				const url = form.getFieldValue('url');
+				getAnyOptions(url);
+			} catch (error) {}
+		}
 	};
 
 	// 获取所有label name
@@ -132,11 +145,25 @@ const EditForm = () => {
 			label: `动态数据`
 		}
 	];
-	const onChangeStatic = (value: string) => {
-		console.log(value);
 
+	const onChangeStatic = (value: string) => {
 		editItemValue('trigger', value);
 		setStaticPattern(value);
+
+		if (value === '1') {
+			form.setFieldValue('url', '');
+		} else if (value === '2') {
+			setStaticOptions(OPTIONS);
+		}
+
+		// 清空option数据
+		editItemValue('option', []);
+	};
+
+	// 静态数据模板
+	const [staticOptions, setStaticOptions] = useState(OPTIONS);
+	const updateStaticOptions = (data: Options[]) => {
+		setStaticOptions(data);
 	};
 
 	const formList: FormListType = [
@@ -208,7 +235,7 @@ const EditForm = () => {
 			name: 'staticOptions',
 			span: 24,
 			show: staticPattern === '1',
-			children: <StaticOptions />,
+			children: <StaticOptions options={staticOptions} updateOptions={updateStaticOptions} />,
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
 		{
@@ -216,6 +243,7 @@ const EditForm = () => {
 			key: '5',
 			label: 'url',
 			name: 'url',
+			rules: [{ required: true, message: '请输入url' }],
 			span: 18,
 			show: staticPattern === '2',
 			layout: { labelCol: { span: 8 }, wrapperCol: { span: 16 } }
@@ -316,7 +344,7 @@ const EditForm = () => {
 		} else {
 			return [];
 		}
-	}, [context?.state.selectFormItemKey, context?.state.formList]);
+	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions]);
 
 	useEffect(() => {
 		if (context?.state.selectFormItemKey) {
