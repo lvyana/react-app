@@ -29,6 +29,7 @@ const ComponentSize = () => {
 	return (
 		<>
 			<Dropdown
+				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				menu={{ items: sizeMenu, onClick: handleSizeChange }}
 				placement="bottom"
 				trigger={['click']}

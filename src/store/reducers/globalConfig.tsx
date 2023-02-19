@@ -1,7 +1,7 @@
 /**
- * @file 实现 log reducers
+ * @file 功能参数配置
  * @author ly
- * @createDate 日期：2022年7月30日
+ * @createDate 2022年7月30日
  */
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
@@ -42,8 +42,8 @@ export interface InitGlobalConfigParams {
 }
 
 /**
- * @param headerConfigList
- * @param router
+ * @param headerConfigList 编辑表头
+ * @param router 路由
  */
 let initialState: InitGlobalConfigParams = {
 	headerConfigList: [],

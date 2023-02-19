@@ -69,7 +69,10 @@ const Layouts = () => {
 		width: '100%',
 		height: '64px',
 		backgroundColor: `${token.colorBgBase}`,
-		background: `url(${menuLogo}) no-repeat center`,
+		backgroundImage: ` url(${menuLogo})`,
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
+		// background: `${token.colorBgBase} url(${menuLogo}) no-repeat center`,
 		backgroundSize: 'contain',
 		boxShadow: '0 3px 6px 0 rgb(195, 195, 195)'
 	};

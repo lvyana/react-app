@@ -41,8 +41,6 @@ const Iform = <T extends FormItem[], F extends object>({
 	onValuesChange
 }: IformProps<T, F>) => {
 	const formItem = (item: FormItem) => {
-		if (item.show === false) return;
-
 		if (item.type === 'input') {
 			return (
 				<Form.Item
@@ -141,6 +139,7 @@ const Iform = <T extends FormItem[], F extends object>({
 				<Row>
 					{formList &&
 						formList.map((item) => {
+							if (item.show === false) return <></>;
 							return (
 								<Col
 									{...(self

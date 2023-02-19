@@ -27,6 +27,7 @@ const ToggleTheme = () => {
 	return (
 		<>
 			<Dropdown
+				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				menu={{ items: themeMenu, onClick: handleSizeChange }}
 				placement="bottom"
 				trigger={['click']}

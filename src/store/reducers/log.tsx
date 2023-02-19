@@ -1,7 +1,7 @@
 /**
- *	@name 实现 log reducers
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file log
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
@@ -30,12 +30,12 @@ const log = createSlice({
 	reducers: {
 		SET_EVERY_ONE: (state, { payload, type }: PayloadAction<[]>) => {
 			state.everyOne = payload;
-		},
-		// 数据请求完触发
-		loadDataEnd: (state, { payload }: PayloadAction<[]>) => {
-			state.list = payload;
-			state.totals = payload.length;
 		}
+		// 数据请求完触发
+		// loadDataEnd: (state, { payload }: PayloadAction<[]>) => {
+		// 	state.list = payload;
+		// 	state.totals = payload.length;
+		// }
 	},
 	// extraReducers 字段让 slice 处理在别处定义的 actions，
 	// 包括由 createAsyncThunk 或其他slice生成的actions。
@@ -67,7 +67,7 @@ export const getMovieData = createAsyncThunk('log/getMovie', async () => {
 	return res;
 });
 
-export const { SET_EVERY_ONE, loadDataEnd } = log.actions;
+export const { SET_EVERY_ONE } = log.actions;
 
 export const GET_EVERY_ONE = (state: RootState) => state.log.everyOne;
 export const GET_LIST = (state: RootState) => state.log.list;

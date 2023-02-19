@@ -35,6 +35,7 @@ const UserAvatar = () => {
 		<>
 			<Button type="link" style={{ padding: '4px 5px' }}>
 				<Dropdown
+					getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 					menu={{ items: menu, onClick: handleMenuClick }}
 					placement="bottom"
 					trigger={['click']}

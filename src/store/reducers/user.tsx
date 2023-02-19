@@ -1,7 +1,7 @@
 /**
- *	@name 实现 user reducers
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 用户信息
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';

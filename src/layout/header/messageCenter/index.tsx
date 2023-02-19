@@ -33,6 +33,7 @@ const MessageCenter = () => {
 	return (
 		<>
 			<Popover
+				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				open={open}
 				onOpenChange={handleOpenChange}
 				placement="bottomRight"
