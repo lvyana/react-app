@@ -94,7 +94,13 @@ type FormListLabel = {
 	name: string;
 };
 
-const URL_TYPE = ['select', 'treeselect', 'cascader', 'seachSelect'];
+// options类型对应form类型
+const HAS_SELECT_TYPE = ['select', 'cascader'];
+const HAS_SELECT_NAME = 'all';
+
+// 通用类型
+const HAS_COMMON_TYPE = ['input', 'textArea'];
+const HAS_COMMON_NAME = ['label', 'name', 'labelCol', 'span', 'disabled', 'parent', 'isRule', 'isRuleTitle', 'rule', 'ruleTitle'];
 
 const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
 
@@ -332,14 +338,18 @@ const EditForm = () => {
 			return item.key === context?.state.selectFormItemKey;
 		});
 
-		// 是否需要url获取option
 		if (selectFormItem?.type) {
 			return formList.filter((item) => {
-				if (URL_TYPE.indexOf(selectFormItem?.type) > -1) {
-					return true;
-				} else {
-					return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'trigger';
+				if (HAS_SELECT_TYPE.indexOf(selectFormItem?.type) > -1) {
+					// 读取下拉类型所需要的form类型
+					return HAS_SELECT_NAME === 'all';
+				} else if (HAS_COMMON_TYPE.indexOf(selectFormItem?.type) > -1) {
+					// 读取通用类型所需要的form类型
+					return HAS_COMMON_NAME.indexOf(item.name) > -1;
 				}
+				// else {
+				// 	return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'trigger' && item.name !== 'staticOptions';
+				// }
 			});
 		} else {
 			return [];
