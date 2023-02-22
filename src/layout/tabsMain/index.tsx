@@ -53,12 +53,24 @@ const TabsMain = () => {
 
 	// 监听地址变化 生成tabs
 	useEffect(() => {
-		const { pathname, search } = location;
+		console.log(location);
+
+		const { pathname, search, state } = location;
+		console.log(pathname, search);
+
 		if (pathname !== '/') {
 			setActiveKey(pathname + search);
 
-			const { title } = menuArr.find((item) => item.path === pathname) || { title: '看场景命名' };
-			//优化 or (if (!title) return;)
+			let title: string | undefined = '';
+			if (search || state) {
+				title = '场景';
+			} else {
+				const menuItem = menuArr.find((item) => item.path === pathname);
+				title = menuItem?.title;
+			}
+			// const { title } = menuArr.find((item) => item.path === pathname) || { title: '' };
+			// 优化 or(if (!title) return;)
+			if (!title) return;
 
 			if (panes.length === 0) {
 				setPanes([{ title, path: pathname + search, disabled: false, closable: false }]);

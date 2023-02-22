@@ -37,9 +37,7 @@ const Pdf = () => {
 	};
 	return (
 		<div className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
-			<Document
-				file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/c22ab2dfae784c7995e7976d5b3f5da9.pdf'}
-				onLoadSuccess={onDocumentLoadSuccess}>
+			<Document file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'} onLoadSuccess={onDocumentLoadSuccess}>
 				<Page pageNumber={pageNumber} height={500} />
 			</Document>
 			<div className={styles.pdfBtn}>
