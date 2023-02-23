@@ -13,21 +13,18 @@
 
 	<title>ly-admin</title>
 	<!-- 使用cdncss -->
- 
-	<!-- 编辑器 -->
-	<link href="https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css" rel="stylesheet" />
-	<!-- css动画 -->
-	<link rel="stylesheet" href="https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/animate.min.css" />
+	<% htmlWebpackPlugin.options.cdn.css.forEach(cdnURL=> { %>
+		<link rel="stylesheet" href="<%= cdnURL %>"></link>
+		<% }) %>
 </head>
 
 <body>
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root"></div>
 	<!-- 使用cdn -->
-
-	<!-- 编辑器 -->
-	<script defer src="https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js"></script>
-	<!-- <script defer src="https://unpkg.com/@wangeditor/editor@5.1.22/dist/index.js"></script> -->
+	<% htmlWebpackPlugin.options.cdn.js.forEach(cdnURL=> { %>
+		<script defer src="<%= cdnURL %>"></script>
+		<% }) %>
 </body>
 
 </html>

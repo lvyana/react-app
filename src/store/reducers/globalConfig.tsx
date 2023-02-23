@@ -7,7 +7,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { headerConfig } from '@/api/publicApi';
 import type { Router } from '@/layout/menuList/routerData';
-
+import { SET_SIZE } from './layout';
 /**
  * @param headerFieldId 唯一标识
  * @param headerFieldKey 标识
@@ -80,6 +80,10 @@ const globalConfig = createSlice({
 	// extraReducers 字段让 slice 处理在别处定义的 actions，
 	// 包括由 createAsyncThunk 或其他slice生成的actions。
 	extraReducers(builder) {
+		builder.addCase(SET_SIZE, (state, { payload }) => {
+			// increment方法触发时的处理
+			// console.log(payload);
+		});
 		builder
 			.addCase(getHeaderConfig.pending, (state) => {
 				// console.log('🚀 ~ 进行中！');
