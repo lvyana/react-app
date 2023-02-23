@@ -53,10 +53,7 @@ const TabsMain = () => {
 
 	// 监听地址变化 生成tabs
 	useEffect(() => {
-		console.log(location);
-
 		const { pathname, search, state } = location;
-		console.log(pathname, search);
 
 		if (pathname !== '/') {
 			setActiveKey(pathname + search);

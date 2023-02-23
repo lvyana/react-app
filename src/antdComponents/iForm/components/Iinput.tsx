@@ -40,5 +40,13 @@ export const formInputTextArea: FormItemMap['textArea'] = (item) => {
 
 // 数字
 export const formInputNumber: FormItemMap['inputNumber'] = (item) => {
-	return <InputNumber min={0} onChange={item.onChange} disabled={item.disabled} style={{ ...item.style }} />;
+	return (
+		<InputNumber
+			min={0}
+			onChange={item.onChange}
+			disabled={item.disabled}
+			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
+			style={{ ...item.style }}
+		/>
+	);
 };
