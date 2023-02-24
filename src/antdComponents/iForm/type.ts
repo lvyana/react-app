@@ -17,7 +17,7 @@ import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import type { ButtonItemParams } from '../iButton';
 
 // input
-type InputType<T> = {
+export type InputType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -33,7 +33,7 @@ type InputType<T> = {
 export type FormInputType<T> = FormItem & InputType<T>;
 
 // select
-type SelectType<T> = {
+export type SelectType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -50,7 +50,7 @@ type SelectType<T> = {
 export type FormSelectType<T> = FormItem & SelectType<T>;
 
 // treeselect
-type TreeselectType<T> = {
+export type TreeselectType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -66,7 +66,7 @@ type TreeselectType<T> = {
 export type FormTreeselectType<T> = FormItem & TreeselectType<T>;
 
 // cascader
-type CascaderType<T> = {
+export type CascaderType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	validateTrigger?: string | string[];
@@ -84,7 +84,6 @@ export type FormCascaderType<T> = FormItem & CascaderType<T>;
 // alonePicker 单个
 export type AlonePicker<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: Dayjs | null, dateString: string) => void) | undefined;
@@ -97,9 +96,8 @@ export type AlonePicker<T> = {
 export type FormAlonePicker<T> = FormItem & AlonePicker<T>;
 
 // bothPicker 双个
-type BothPicker<T> = {
+export type BothPicker<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: (dates: RangeValue<Dayjs>, dateStrings: [string, string]) => void | undefined;
@@ -112,7 +110,7 @@ type BothPicker<T> = {
 export type FormBothPicker<T> = FormItem & BothPicker<T>;
 
 // inputNumber
-type InputNumberType<T> = {
+export type InputNumberType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -127,9 +125,8 @@ type InputNumberType<T> = {
 export type FormInputNumberType<T> = FormItem & InputNumberType<T>;
 
 // switch
-type SwitchType<T> = {
+export type SwitchType<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: SwitchChangeEventHandler | undefined;
@@ -141,9 +138,8 @@ type SwitchType<T> = {
 export type FormSwitchType<T> = FormItem & SwitchType<T>;
 
 // button
-type ButtonType<T> = {
+export type ButtonType<T> = {
 	name: string;
-	label?: FormItem['label'];
 	option?: ButtonItemParams<T>[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
@@ -154,9 +150,8 @@ export type FormButtonType<T> = FormItem & ButtonType<T>;
 export type FinishType<T> = ((value: T) => void) | undefined;
 
 // radio
-type RadioType<T> = {
+export type RadioType<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((e: RadioChangeEvent) => void) | undefined;
@@ -168,9 +163,8 @@ type RadioType<T> = {
 export type FormRadioType<T> = FormItem & RadioType<T>;
 
 // checkbox
-type CheckboxType<T> = {
+export type CheckboxType<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((checkedValue: CheckboxValueType[]) => void) | undefined;
@@ -181,9 +175,8 @@ type CheckboxType<T> = {
 export type FormCheckboxType<T> = FormItem & CheckboxType<T>;
 
 // rate
-type RateType<T> = {
+export type RateType<T> = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: number) => void) | undefined;
@@ -195,7 +188,7 @@ type RateType<T> = {
 export type FormRateType<T> = FormItem & RateType<T>;
 
 // textArea
-type TextAreaType<T> = {
+export type TextAreaType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -211,7 +204,7 @@ type TextAreaType<T> = {
 export type FormTextAreaType<T> = FormItem & TextAreaType<T>;
 
 // seachSelect
-type SeachSelectType<T> = {
+export type SeachSelectType<T> = {
 	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
@@ -231,37 +224,32 @@ interface SliderRange {
 	draggableTrack?: boolean;
 }
 
-type SliderType = {
+export type SliderType = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: [number, number]) => void) | undefined;
 	range?: true | SliderRange;
 	style?: React.CSSProperties;
-	children?: ReactNode;
 	max?: number;
 	min?: number;
 };
 
-type SliderSingleType = {
+export type SliderSingleType = {
 	name: string;
-	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: number) => void) | undefined;
 	range?: false;
 	style?: React.CSSProperties;
-	children?: ReactNode;
 	max?: number;
 	min?: number;
 };
 export type FormSliderType = FormItem & (SliderType | SliderSingleType);
 
 // upload
-type UploadType = {
+export type UploadType = {
 	name: string;
-	label?: FormItem['label'];
 	onChange?: ((info: UploadChangeParam<UploadFile<any>>) => void) | undefined;
 	mode?: Mode;
 	style?: React.CSSProperties;
@@ -272,7 +260,7 @@ type UploadType = {
 export type FormUploadType = FormItem & UploadType;
 
 // userDefined
-type UserDefinedType = {
+export type UserDefinedType = {
 	name: string;
 	children?: ReactNode;
 };

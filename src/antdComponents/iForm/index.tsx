@@ -16,9 +16,10 @@ export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 export type OnValuesChange<F> = (changedValues: F, values: F) => void;
 /**
  * 表单参数
+ * @param T 表单渲染数据
+ * @param F 表单对象
  * @param formList 表单json
  * @param form 表单实例
- * @param onFinish 表单确认
  * @param onValuesChange 表单发生变化
  * @param formLayout 表单格式
  * @param self 是否自适应

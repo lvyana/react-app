@@ -22,24 +22,42 @@ import type {
 import type { Options } from './components/StaticOptions';
 
 type FormListType = [
+	// 标签
 	FormInputType<never>,
+	// 数据字段
 	FormInputType<never>,
+	// label宽度
 	FormSliderType,
+	// 总宽度
 	FormSliderType,
+	// 是否禁用
 	FormSelectType<DisabledParams>,
+	// option获取类型
 	FormUserDefinedType,
+	// 静态数据
 	FormUserDefinedType,
+	// url
 	FormInputType<never>,
+	// urlLabel
+	FormInputType<never>,
+	// urlValue
+	FormInputType<never>,
+	// 发送
 	FormUserDefinedType,
+	// 关联父级
 	FormSelectType<FormListLabel>,
+	// 是否必填
 	FormRadioType<{
 		// icon: string;
 		value: number;
 		key: number;
 		name: string;
 	}>,
+	// 是否必填提示语
 	FormTextAreaType<never>,
+	// 校验规则
 	FormInputType<never>,
+	// 校验规则提示语
 	FormTextAreaType<never>
 ];
 
@@ -246,13 +264,34 @@ const EditForm = () => {
 		},
 		{
 			type: 'input',
-			key: '5',
-			label: 'url',
+			key: 'url',
+			label: '',
 			name: 'url',
+			placeholder: '请输入url',
 			rules: [{ required: true, message: '请输入url' }],
-			span: 18,
+			span: 16,
 			show: staticPattern === '2',
-			layout: { labelCol: { span: 8 }, wrapperCol: { span: 16 } }
+			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
+		},
+		{
+			type: 'input',
+			key: 'urlLabel',
+			label: '',
+			name: 'urlLabel',
+			rules: [{ required: true, message: '请输入label' }],
+			span: 4,
+			show: staticPattern === '2',
+			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
+		},
+		{
+			type: 'input',
+			key: 'urlValue',
+			label: '',
+			name: 'urlValue',
+			rules: [{ required: true, message: '请输入value' }],
+			span: 4,
+			show: staticPattern === '2',
+			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
 		{
 			type: 'userDefined',
