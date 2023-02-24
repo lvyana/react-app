@@ -27,6 +27,7 @@ const ToggleTheme = () => {
 	return (
 		<>
 			<Dropdown
+				arrow={{ pointAtCenter: true }}
 				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				menu={{ items: themeMenu, onClick: handleSizeChange }}
 				placement="bottom"

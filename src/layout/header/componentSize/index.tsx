@@ -29,6 +29,7 @@ const ComponentSize = () => {
 	return (
 		<>
 			<Dropdown
+				arrow={{ pointAtCenter: true }}
 				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				menu={{ items: sizeMenu, onClick: handleSizeChange }}
 				placement="bottom"

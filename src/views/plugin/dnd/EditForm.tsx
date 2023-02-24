@@ -86,6 +86,8 @@ export type FormParams = {
 	labelCol?: number;
 	trigger?: string;
 	option?: Options[];
+	urlLabel?: string;
+	urlValue?: string;
 };
 
 /**
@@ -176,6 +178,8 @@ const EditForm = () => {
 
 		if (value === '1') {
 			form.setFieldValue('url', '');
+			form.setFieldValue('urlLabel', '');
+			form.setFieldValue('urlValue', '');
 		} else if (value === '2') {
 			setStaticOptions(OPTIONS);
 		}
@@ -269,7 +273,7 @@ const EditForm = () => {
 			name: 'url',
 			placeholder: '请输入url',
 			rules: [{ required: true, message: '请输入url' }],
-			span: 16,
+			span: 12,
 			show: staticPattern === '2',
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
@@ -279,7 +283,7 @@ const EditForm = () => {
 			label: '',
 			name: 'urlLabel',
 			rules: [{ required: true, message: '请输入label' }],
-			span: 4,
+			span: 6,
 			show: staticPattern === '2',
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
@@ -289,7 +293,7 @@ const EditForm = () => {
 			label: '',
 			name: 'urlValue',
 			rules: [{ required: true, message: '请输入value' }],
-			span: 4,
+			span: 6,
 			show: staticPattern === '2',
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
@@ -401,8 +405,8 @@ const EditForm = () => {
 				return context?.state.selectFormItemKey === item.key;
 			});
 
-			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger } = newFormListItem || {};
-			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol });
+			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue } = newFormListItem || {};
+			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue });
 			if (trigger) {
 				setStaticPattern(trigger);
 			}
@@ -438,6 +442,12 @@ const EditForm = () => {
 
 	// 获取options数据
 	const [getAnyOptions] = useWatchUrl();
+
+	// urlLabel
+	useEditFormItemValue('urlLabel', form);
+
+	// urlValue
+	useEditFormItemValue('urlValue', form);
 
 	return <div>{context?.state.selectFormItemKey && <Iform form={form} formList={newFormList}></Iform>}</div>;
 };
