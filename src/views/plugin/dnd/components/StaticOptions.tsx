@@ -61,7 +61,6 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 
 	// label内容
 	const labelChange = (value: React.ChangeEvent<HTMLInputElement>, id: string) => {
-		console.log(value.target.value);
 		const newOptions = getNewOptions({ options, key: 'label', value: value.target.value, id });
 		updateOptions(newOptions);
 	};

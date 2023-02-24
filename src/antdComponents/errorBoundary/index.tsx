@@ -41,8 +41,6 @@ const GoErrorView = () => {
 	const navigate = useNavigate();
 
 	const onBackHome = () => {
-		console.log('/home');
-
 		navigate('/home');
 	};
 

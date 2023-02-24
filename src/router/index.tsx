@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
-import SuspenseLoad from './suspenseLoad';
+import suspenseLoad from './suspenseLoad';
 import Auth from './auth';
 import antdCom from './components/Antd';
 import reactCom from './components/React';
@@ -28,13 +28,13 @@ const MessgeCenter = lazy(() => import('@/views/messageCenter'));
 const ToDay = lazy(() => import('@/views/toDay'));
 
 const router: RouteObject[] = [
-	{ path: '/login', element: SuspenseLoad(<Login />) },
+	{ path: '/login', element: suspenseLoad(<Login />) },
 	{
 		path: '/',
-		element: <Auth element={SuspenseLoad(<Layouts />)} />,
+		element: <Auth element={suspenseLoad(<Layouts />)} />,
 		children: [
 			{ index: true, element: <Navigate to="home" /> },
-			{ path: 'home', element: SuspenseLoad(<Home />) },
+			{ path: 'home', element: suspenseLoad(<Home />) },
 			{
 				path: 'antd',
 				children: [...antdCom]
@@ -51,13 +51,13 @@ const router: RouteObject[] = [
 				path: 'plugin',
 				children: [...Plugin]
 			},
-			{ path: 'mycenter', element: SuspenseLoad(<MyCenter />) },
-			{ path: 'messgeCenter', element: SuspenseLoad(<MessgeCenter />) }
-			// { path: '*', element: SuspenseLoad(<NotFound />) }
+			{ path: 'mycenter', element: suspenseLoad(<MyCenter />) },
+			{ path: 'messgeCenter', element: suspenseLoad(<MessgeCenter />) }
+			// { path: '*', element: suspenseLoad(<NotFound />) }
 		]
 	},
-	{ path: '/today', element: SuspenseLoad(<ToDay />) },
-	{ path: '*', element: SuspenseLoad(<NotFound />) }
+	{ path: '/today', element: suspenseLoad(<ToDay />) },
+	{ path: '*', element: suspenseLoad(<NotFound />) }
 ];
 
 export default router;

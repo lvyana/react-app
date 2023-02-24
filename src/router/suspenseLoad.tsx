@@ -9,8 +9,8 @@ import Iloading from '@/pluginComponents/iLoading';
 // import Nprogress from './Nprogress';
 // 两种均可
 
-const SuspenseLoad = (element: ReactNode) => {
+const suspenseLoad = (element: ReactNode) => {
 	return <Suspense fallback={<Iloading />}>{element}</Suspense>;
 };
 
-export default SuspenseLoad;
+export default suspenseLoad;

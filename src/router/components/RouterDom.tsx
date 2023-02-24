@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import SuspenseLoad from '../suspenseLoad';
+import suspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 
 // react-router-dom
@@ -19,15 +19,15 @@ const Plugin = [
 	{ index: true, element: <Navigate to="routerDemo" /> },
 	{
 		path: 'routerDemo',
-		element: SuspenseLoad(<RouterDemo />),
+		element: suspenseLoad(<RouterDemo />),
 		children: [
-			{ path: ':id', element: SuspenseLoad(<Test />) },
-			{ path: 'list', element: SuspenseLoad(<List />) }
+			{ path: ':id', element: suspenseLoad(<Test />) },
+			{ path: 'list', element: suspenseLoad(<List />) }
 		]
 	},
 	{
 		path: 'myUseRouter',
-		element: SuspenseLoad(<MyUseRouter />)
+		element: suspenseLoad(<MyUseRouter />)
 	}
 ];
 

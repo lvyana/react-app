@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import SuspenseLoad from '../suspenseLoad';
+import suspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 
 // react一些钩子函数用法
@@ -26,46 +26,46 @@ const reactCom = [
 	{ index: true, element: <Navigate to="myUseReducer" /> },
 	{
 		path: 'myUseState',
-		element: SuspenseLoad(<MyUseState />)
+		element: suspenseLoad(<MyUseState />)
 	},
 	{
 		path: 'myUseEffect',
-		element: SuspenseLoad(<MyUseEffect />)
+		element: suspenseLoad(<MyUseEffect />)
 	},
 	{
 		path: 'myUseLayoutEffect',
-		element: SuspenseLoad(<MyUseLayoutEffect />)
+		element: suspenseLoad(<MyUseLayoutEffect />)
 	},
 	{
 		path: 'myUseReducer',
-		element: SuspenseLoad(<MyUseReducer />)
+		element: suspenseLoad(<MyUseReducer />)
 	},
 	{
 		path: 'myUseContext',
-		element: SuspenseLoad(<MyUseContext />)
+		element: suspenseLoad(<MyUseContext />)
 	},
 	{
 		path: 'myUseMemo',
-		element: SuspenseLoad(<MyUseMemo />)
+		element: suspenseLoad(<MyUseMemo />)
 	},
 	{
 		path: 'myUseCallback',
-		element: SuspenseLoad(<MyUseCallback />)
+		element: suspenseLoad(<MyUseCallback />)
 	},
 	{
 		path: 'myUseRef',
-		element: SuspenseLoad(<MyUseRef />)
+		element: suspenseLoad(<MyUseRef />)
 	},
 	{
 		path: 'mySuspense',
-		element: SuspenseLoad(<MySuspense />)
+		element: suspenseLoad(<MySuspense />)
 	},
 	{
 		path: 'myForwardRef',
-		element: SuspenseLoad(<MyForwardRef />)
+		element: suspenseLoad(<MyForwardRef />)
 	},
 
-	{ path: 'rtk', element: SuspenseLoad(<Rtk />) }
+	{ path: 'rtk', element: suspenseLoad(<Rtk />) }
 ];
 
 export default reactCom;

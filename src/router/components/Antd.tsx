@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
-import SuspenseLoad from '../suspenseLoad';
+import suspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 const Expenses = lazy(() => import('@/views/antdCom/expenses'));
 const Dynamicform = lazy(() => import('@/views/antdCom/dynamicform')); //动态表单
@@ -15,11 +15,11 @@ const antdCom = [
 	{ index: true, element: <Navigate to="expenses" /> },
 	{
 		path: 'expenses',
-		element: SuspenseLoad(<Expenses />)
+		element: suspenseLoad(<Expenses />)
 	},
 	{
 		path: 'dynamicform',
-		element: SuspenseLoad(<Dynamicform />)
+		element: suspenseLoad(<Dynamicform />)
 	}
 ];
 

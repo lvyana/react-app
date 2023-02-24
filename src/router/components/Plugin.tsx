@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import SuspenseLoad from '../suspenseLoad';
+import suspenseLoad from '../suspenseLoad';
 import Auth from '../auth';
 
 //ReactPlayer
@@ -26,13 +26,13 @@ const Dnd = lazy(() => import('@/views/plugin/dnd'));
 // 插件的使用
 const plugin = [
 	{ index: true, element: <Navigate to="player" /> },
-	{ path: 'player', element: SuspenseLoad(<Player />) },
-	{ path: 'demoGridLayout', element: SuspenseLoad(<DemoGridLayout />) },
-	{ path: 'richtextedit', element: SuspenseLoad(<RichTextEdit />) },
-	{ path: 'pdf', element: SuspenseLoad(<Pdf />) },
-	{ path: 'responsive', element: SuspenseLoad(<Responsive />) },
-	{ path: 'i18n', element: SuspenseLoad(<I18n />) },
-	{ path: 'dnd', element: SuspenseLoad(<Dnd />) }
+	{ path: 'player', element: suspenseLoad(<Player />) },
+	{ path: 'demoGridLayout', element: suspenseLoad(<DemoGridLayout />) },
+	{ path: 'richtextedit', element: suspenseLoad(<RichTextEdit />) },
+	{ path: 'pdf', element: suspenseLoad(<Pdf />) },
+	{ path: 'responsive', element: suspenseLoad(<Responsive />) },
+	{ path: 'i18n', element: suspenseLoad(<I18n />) },
+	{ path: 'dnd', element: suspenseLoad(<Dnd />) }
 ];
 
 export default plugin;
