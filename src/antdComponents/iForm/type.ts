@@ -18,7 +18,8 @@ import type { ButtonItemParams } from '../iButton';
 
 // input
 export type InputType<T> = {
-	name: string;
+	value?: string;
+	name?: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -139,11 +140,11 @@ export type FormSwitchType<T> = FormItem & SwitchType<T>;
 
 // button
 export type ButtonType<T> = {
-	name: string;
+	name?: string;
 	option?: ButtonItemParams<T>[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
-	onFinish?: FinishType<T>;
+	onClick?: FinishType<T>;
 };
 export type FormButtonType<T> = FormItem & ButtonType<T>;
 

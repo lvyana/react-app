@@ -12,7 +12,7 @@ import { Context, FormItemParams } from '../context';
 import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
 import { FormItem } from '@/antdComponents/iForm/type';
-import type { Options } from '../components/StaticOptions';
+import type { Options } from '../itemTypes';
 
 // 监听绑定表单的变化 修改GenerateForm
 export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<FormParams>) => {

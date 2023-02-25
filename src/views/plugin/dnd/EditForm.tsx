@@ -19,7 +19,7 @@ import type {
 	FormUserDefinedType,
 	FormTextAreaType
 } from '@/antdComponents/iForm/type';
-import type { Options } from './components/StaticOptions';
+import type { Options } from './itemTypes';
 
 type FormListType = [
 	// 标签
@@ -122,6 +122,10 @@ const HAS_SELECT_NAME = 'all';
 const HAS_COMMON_TYPE = ['input', 'textArea'];
 const HAS_COMMON_NAME = ['label', 'name', 'labelCol', 'span', 'disabled', 'parent', 'isRule', 'isRuleTitle', 'rule', 'ruleTitle'];
 
+// 按钮
+const HAS_BUTTON_TYPE = ['button'];
+const HAS_BUTTON_NAME = ['name', 'span'];
+
 const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -146,7 +150,7 @@ const EditForm = () => {
 		}
 	};
 
-	// 获取所有label name
+	// 获取所有label name(不包括自己 关联父级)
 	const formListLabel = useMemo(() => {
 		// 先过滤
 		const filterOneself = context?.state.formList.filter((item) => {
@@ -282,6 +286,7 @@ const EditForm = () => {
 			key: 'urlLabel',
 			label: '',
 			name: 'urlLabel',
+			placeholder: 'label',
 			rules: [{ required: true, message: '请输入label' }],
 			span: 6,
 			show: staticPattern === '2',
@@ -292,6 +297,7 @@ const EditForm = () => {
 			key: 'urlValue',
 			label: '',
 			name: 'urlValue',
+			placeholder: 'value',
 			rules: [{ required: true, message: '请输入value' }],
 			span: 6,
 			show: staticPattern === '2',
@@ -389,6 +395,8 @@ const EditForm = () => {
 				} else if (HAS_COMMON_TYPE.indexOf(selectFormItem?.type) > -1) {
 					// 读取通用类型所需要的form类型
 					return HAS_COMMON_NAME.indexOf(item.name) > -1;
+				} else if (HAS_BUTTON_TYPE.indexOf(selectFormItem?.type) > -1) {
+					return HAS_BUTTON_NAME.indexOf(item.name) > -1;
 				}
 				// else {
 				// 	return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'trigger' && item.name !== 'staticOptions';

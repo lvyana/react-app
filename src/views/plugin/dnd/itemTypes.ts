@@ -26,3 +26,14 @@ export const FORM_ITEM = 'formItem';
  * @name 中间生成表单中item
  */
 export const GENERATE_FORM_ITEM = 'GenerateFormItem';
+
+/**
+ * @param value option value
+ * @param label option label
+ * @param id 唯一key
+ */
+export interface Options {
+	value: string;
+	label: string;
+	id: string;
+}

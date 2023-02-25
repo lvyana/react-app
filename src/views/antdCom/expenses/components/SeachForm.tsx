@@ -72,7 +72,7 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 				{ type: 'onReset', name: '重置', iconFont: 'icon-zhongzhi', className: 'ml-1' }
 			],
 			style: { marginLeft: '10px' },
-			onFinish: onFinish
+			onClick: onFinish
 		}
 	];
 

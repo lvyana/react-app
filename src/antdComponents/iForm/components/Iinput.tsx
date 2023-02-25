@@ -12,6 +12,7 @@ export const formInputItem: FormItemMap['input'] = (item) => {
 	return (
 		// getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}
 		<Input
+			value={item?.value}
 			onChange={item.onChange}
 			onBlur={item.onBlur}
 			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}

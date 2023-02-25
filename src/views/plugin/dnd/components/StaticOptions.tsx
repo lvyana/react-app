@@ -6,19 +6,10 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { formInputItem } from '@/antdComponents/iForm/components/Iinput';
+import { formButton } from '@/antdComponents/iForm/components/Ibutton';
 import { v4 as uuidv4 } from 'uuid';
-
-/**
- * @param value option value
- * @param label option label
- * @param id 唯一key
- */
-export interface Options {
-	value: string;
-	label: string;
-	id: string;
-}
-
+import type { Options } from '../itemTypes';
 /**
  * @param options 集合
  * @param key 对应key值
@@ -86,16 +77,47 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 				return (
 					<Row key={option.id}>
 						<Col span={8}>
-							<Input placeholder="label" value={option.label} onChange={(value) => labelChange(value, option.id)} />
+							{formInputItem({
+								placeholder: 'label',
+								value: option.label,
+								onChange: (value) => labelChange(value, option.id)
+							})}
+							{/* <Input placeholder="label" value={option.label} onChange={(value) => labelChange(value, option.id)} /> */}
 						</Col>
 						<Col span={8}>
-							<Input placeholder="value" value={option.value} onChange={(value) => valueChange(value, option.id)} />
+							{formInputItem({
+								placeholder: 'value',
+								value: option.value,
+								onChange: (value) => valueChange(value, option.id)
+							})}
+							{/* <Input placeholder="value" value={option.value} onChange={(value) => valueChange(value, option.id)} /> */}
 						</Col>
 						<Col span={4}>
-							<Button type="dashed" onClick={() => add(option.id)} block icon={<PlusOutlined />}></Button>
+							{formButton({
+								option: [{ name: '', type: 'add', block: true, btType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
+								onClick: () => {
+									add(option.id);
+								}
+							})}
+							{/* <Button type="dashed" block icon={<PlusOutlined />}></Button> */}
 						</Col>
 						<Col span={4}>
-							<Button type="dashed" onClick={() => subtract(option.id)} block icon={<MinusOutlined />}></Button>
+							{formButton({
+								option: [
+									{
+										name: '',
+										type: 'subtract',
+										block: true,
+										btType: 'dashed',
+										iconFont: <MinusOutlined />,
+										span: 24
+									}
+								],
+								onClick: () => {
+									subtract(option.id);
+								}
+							})}
+							{/* <Button type="dashed" onClick={() => subtract(option.id)} block icon={<MinusOutlined />}></Button> */}
 						</Col>
 					</Row>
 				);

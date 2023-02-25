@@ -42,7 +42,7 @@ const Idropdown = <T,>({ btArr, onOpenChange, onClickBtn }: IdropdownProps<T>) =
 
 const getMenus = <T,>({ btArr, onClickBtn }: IbtFun<T>) => {
 	return btArr.reduce((acc: MenuItem[], item, i) => {
-		let newItem = getItem(<Ibutton buttonList={[item]} onClickBtn={() => onClickBtn(item.type, item)}></Ibutton>, i);
+		let newItem = getItem(<Ibutton buttonList={[item]} onClick={() => onClickBtn(item.type, item)}></Ibutton>, i);
 		return [...acc, newItem];
 	}, []);
 };

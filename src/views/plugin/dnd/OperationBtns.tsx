@@ -98,7 +98,7 @@ const OperationBtns = () => {
 
 	return (
 		<div className="mb-2">
-			<Ibutton buttonList={buttonList} onClickBtn={onClickBtn}></Ibutton>
+			<Ibutton buttonList={buttonList} onClick={onClickBtn}></Ibutton>
 			<JsonView open={jsonViewOpen} onOkOrCancel={jsonViewFun} confirmLoading={jsonViewLoading} />
 			<ImportJson open={importJsonOpen} onOkOrCancel={importJsonFun} confirmLoading={importJsonLoading} form={importJsonForm} />
 			<TemplateForm
