@@ -233,7 +233,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'slider',
-			key: '33',
+			key: '4',
 			label: '总宽度',
 			name: 'span',
 			max: 24,
@@ -243,7 +243,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'select',
-			key: '4',
+			key: '5',
 			label: '是否禁用',
 			name: 'disabled',
 			allowClear: false,
@@ -259,11 +259,11 @@ const EditForm = () => {
 					<Tabs activeKey={staticPattern} items={items} onChange={onChangeStatic} />
 				</>
 			),
-			key: '44'
+			key: '6'
 		},
 		{
 			type: 'userDefined',
-			key: 'staticOptions',
+			key: '7777',
 			name: 'staticOptions',
 			span: 24,
 			show: staticPattern === '1',
@@ -272,7 +272,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'input',
-			key: 'url',
+			key: '88',
 			label: '',
 			name: 'url',
 			placeholder: '请输入url',
@@ -283,7 +283,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'input',
-			key: 'urlLabel',
+			key: '98',
 			label: '',
 			name: 'urlLabel',
 			placeholder: 'label',
@@ -294,7 +294,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'input',
-			key: 'urlValue',
+			key: '108',
 			label: '',
 			name: 'urlValue',
 			placeholder: 'value',
@@ -305,7 +305,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'userDefined',
-			key: '6',
+			key: '11',
 			name: 'urlBtn',
 			span: 6,
 			// show: staticPattern === '1',
@@ -320,7 +320,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'select',
-			key: '7',
+			key: '12',
 			label: '关联父级',
 			name: 'parent',
 			option: formListLabel,
@@ -333,7 +333,7 @@ const EditForm = () => {
 			name: 'isRule',
 			label: '是否必填',
 			rules: [],
-			key: '8',
+			key: '13',
 			span: 24,
 			option: [
 				{
@@ -357,7 +357,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'textArea',
-			key: '9',
+			key: '14',
 			label: '是否必填提示语',
 			name: 'isRuleTitle',
 			span: 24,
@@ -365,7 +365,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'textArea',
-			key: '10',
+			key: '15',
 			label: '校验规则',
 			name: 'rule',
 			span: 24,
@@ -373,7 +373,7 @@ const EditForm = () => {
 		},
 		{
 			type: 'textArea',
-			key: '11',
+			key: '16',
 			label: '校验规则提示语',
 			name: 'ruleTitle',
 			span: 24,

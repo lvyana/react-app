@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
@@ -140,7 +140,7 @@ const Iform = <T extends FormItem[], F extends object>({
 				<Row>
 					{formList &&
 						formList.map((item) => {
-							if (item.show === false) return <></>;
+							if (item.show === false) return <Fragment key={item.key}></Fragment>;
 							return (
 								<Col
 									{...(self
