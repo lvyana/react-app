@@ -9,7 +9,7 @@
 		"@wangeditor/editor": "^5.1.23",
 		"@wangeditor/editor-for-react": "^1.0.6",
 		"ahooks": "^3.7.2",
-		"antd": "^5.0.0",
+		"antd": "^5.2.2",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",
 		"html2canvas": "^1.4.1",
