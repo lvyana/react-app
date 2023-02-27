@@ -7,7 +7,7 @@ import React, { FC } from 'react';
 import Iform, { FormItem, FormInstance, OnValuesChange } from '@/antdComponents/iForm';
 import type { FormInputType } from '@/antdComponents/iForm/type';
 
-type FormListParams = [FormInputType<never>];
+type FormListParams = [FormInputType];
 
 export interface EditPersonnelSearchFormParmas {
 	name: string;

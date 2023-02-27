@@ -27,7 +27,7 @@ import type { UploadFile } from 'antd/lib/upload/interface';
 type FileChangeType = (info: { file: UploadFile; fileList: UploadFile[] }) => void;
 
 type FormListType = [
-	FormInputType<never>,
+	FormInputType,
 	FormSelectType<{
 		name: string;
 		value: string;
@@ -67,11 +67,11 @@ type FormListType = [
 			children?: number;
 		}[];
 	}>,
-	FormAlonePicker<never>,
-	FormBothPicker<never>,
-	FormBothPicker<never>,
-	FormInputNumberType<never>,
-	FormSwitchType<never>,
+	FormAlonePicker,
+	FormBothPicker,
+	FormBothPicker,
+	FormInputNumberType,
+	FormSwitchType,
 	FormUploadType,
 	FormButtonType<'submit' | 'onReset'>
 ];

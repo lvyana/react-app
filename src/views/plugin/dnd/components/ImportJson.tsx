@@ -21,7 +21,7 @@ export type importJsonForm = {
 	json: string;
 };
 
-type formListParams = [FormTextAreaType<never>];
+type formListParams = [FormTextAreaType];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -36,7 +36,7 @@ const ImportJson: FC<ImportJsonProps> = ({ form, open, onOkOrCancel, confirmLoad
 			span: 24,
 			rules: [
 				{
-					validator: (rule: Rule, str) => {
+					validator: (rule: Rule, str: string) => {
 						if (typeof str === 'string') {
 							try {
 								let obj = JSON.parse(str);

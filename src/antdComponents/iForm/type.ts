@@ -1,5 +1,7 @@
 /**
- * @name 表单组件集合
+ * @file 表单组件type
+ * @author ly
+ * @createDate 2023年12月27日
  */
 import React, { ReactNode, ChangeEventHandler } from 'react';
 import type { Rule } from 'rc-field-form/lib/interface';
@@ -17,25 +19,21 @@ import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import type { ButtonItemParams } from '../iButton';
 
 // input
-export type InputType<T> = {
+export type InputType = {
 	value?: string;
-	name?: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
 	placeholder?: string;
-	option?: T[];
-	checkbox?: boolean;
 	maxLength?: number;
 	style?: React.CSSProperties;
 };
-export type FormInputType<T> = FormItem & InputType<T>;
+export type FormInputType = FormItem & InputType;
 
 // select
 export type SelectType<T> = {
-	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -45,14 +43,12 @@ export type SelectType<T> = {
 	option?: T[];
 	fieldNames?: fieldNamesType;
 	style?: React.CSSProperties;
-	handleSearch?: (value: string) => void;
 	children?: ReactNode;
 };
 export type FormSelectType<T> = FormItem & SelectType<T>;
 
 // treeselect
 export type TreeselectType<T> = {
-	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -68,7 +64,6 @@ export type FormTreeselectType<T> = FormItem & TreeselectType<T>;
 
 // cascader
 export type CascaderType<T> = {
-	name: string;
 	label?: FormItem['label'];
 	validateTrigger?: string | string[];
 	disabled?: boolean;
@@ -83,64 +78,59 @@ export type CascaderType<T> = {
 export type FormCascaderType<T> = FormItem & CascaderType<T>;
 
 // alonePicker 单个
-export type AlonePicker<T> = {
-	name: string;
+export type AlonePicker = {
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: Dayjs | null, dateString: string) => void) | undefined;
 	placeholder?: string;
-	option?: T[];
+
 	style?: React.CSSProperties;
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	children?: ReactNode;
 };
-export type FormAlonePicker<T> = FormItem & AlonePicker<T>;
+export type FormAlonePicker = FormItem & AlonePicker;
 
 // bothPicker 双个
-export type BothPicker<T> = {
-	name: string;
+export type BothPicker = {
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: (dates: RangeValue<Dayjs>, dateStrings: [string, string]) => void | undefined;
 	placeholder?: string;
-	option?: T[];
 	style?: React.CSSProperties;
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	children?: ReactNode;
 };
-export type FormBothPicker<T> = FormItem & BothPicker<T>;
+export type FormBothPicker = FormItem & BothPicker;
 
 // inputNumber
-export type InputNumberType<T> = {
-	name: string;
+export type InputNumberType = {
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: 0 | null) => void) | undefined;
 	placeholder?: string;
-	option?: T[];
+
 	checkbox?: boolean;
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormInputNumberType<T> = FormItem & InputNumberType<T>;
+export type FormInputNumberType = FormItem & InputNumberType;
 
 // switch
-export type SwitchType<T> = {
-	name: string;
+export type SwitchType = {
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: SwitchChangeEventHandler | undefined;
 	placeholder?: string;
-	option?: T[];
+
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormSwitchType<T> = FormItem & SwitchType<T>;
+export type FormSwitchType = FormItem & SwitchType;
 
 // button
 export type ButtonType<T> = {
-	name?: string;
+	// name?: string;
 	option?: ButtonItemParams<T>[];
 	style?: React.CSSProperties;
 	children?: ReactNode;
@@ -152,7 +142,6 @@ export type FinishType<T> = ((value: T) => void) | undefined;
 
 // radio
 export type RadioType<T> = {
-	name: string;
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((e: RadioChangeEvent) => void) | undefined;
@@ -165,7 +154,6 @@ export type FormRadioType<T> = FormItem & RadioType<T>;
 
 // checkbox
 export type CheckboxType<T> = {
-	name: string;
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((checkedValue: CheckboxValueType[]) => void) | undefined;
@@ -177,7 +165,6 @@ export type FormCheckboxType<T> = FormItem & CheckboxType<T>;
 
 // rate
 export type RateType<T> = {
-	name: string;
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: number) => void) | undefined;
@@ -189,24 +176,22 @@ export type RateType<T> = {
 export type FormRateType<T> = FormItem & RateType<T>;
 
 // textArea
-export type TextAreaType<T> = {
-	name: string;
+export type TextAreaType = {
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ChangeEventHandler<HTMLTextAreaElement> | undefined;
 	maxLength?: number;
 	placeholder?: string;
-	option?: T[];
+
 	style?: React.CSSProperties;
 	children?: ReactNode;
 	rows?: number;
 };
-export type FormTextAreaType<T> = FormItem & TextAreaType<T>;
+export type FormTextAreaType = FormItem & TextAreaType;
 
 // seachSelect
 export type SeachSelectType<T> = {
-	name: string;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -226,7 +211,6 @@ interface SliderRange {
 }
 
 export type SliderType = {
-	name: string;
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: [number, number]) => void) | undefined;
@@ -237,7 +221,6 @@ export type SliderType = {
 };
 
 export type SliderSingleType = {
-	name: string;
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: number) => void) | undefined;
@@ -262,27 +245,26 @@ export type FormUploadType = FormItem & UploadType;
 
 // userDefined
 export type UserDefinedType = {
-	name: string;
 	children?: ReactNode;
 };
 export type FormUserDefinedType = FormItem & UserDefinedType;
 
 export interface FormItemMap {
-	input: <T>(item: InputType<T>) => JSX.Element;
+	input: (item: InputType) => JSX.Element;
 	select: <T extends DefaultOptionType>(item: SelectType<T>) => JSX.Element;
 	treeselect: <T extends DefaultOptionType>(item: TreeselectType<T>) => JSX.Element;
 	cascader: <T extends BaseOptionType>(item: CascaderType<T>) => JSX.Element;
-	datePicker: <T>(item: AlonePicker<T>) => JSX.Element;
-	rangePicker: <T>(item: BothPicker<T>) => JSX.Element;
-	timePicker: <T>(item: AlonePicker<T>) => JSX.Element;
-	timeRangePicker: <T>(item: BothPicker<T>) => JSX.Element;
-	inputNumber: <T>(item: InputNumberType<T>) => JSX.Element;
-	switch: <T>(item: SwitchType<T>) => JSX.Element;
+	datePicker: (item: AlonePicker) => JSX.Element;
+	rangePicker: (item: BothPicker) => JSX.Element;
+	timePicker: (item: AlonePicker) => JSX.Element;
+	timeRangePicker: (item: BothPicker) => JSX.Element;
+	inputNumber: (item: InputNumberType) => JSX.Element;
+	switch: <T>(item: SwitchType) => JSX.Element;
 	button: <T>(item: ButtonType<T>) => JSX.Element;
 	radio: <T extends formRadioOptionsParams>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;
-	textArea: <T>(item: TextAreaType<T>) => JSX.Element;
+	textArea: <T>(item: TextAreaType) => JSX.Element;
 	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
 	slider: (item: SliderType & SliderSingleType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;

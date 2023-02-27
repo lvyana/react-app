@@ -21,7 +21,7 @@ export interface FormParams {
 	post: number;
 }
 
-type FormList = [FormInputType<never>, FormSelectType<PostOptions>];
+type FormList = [FormInputType, FormSelectType<PostOptions>];
 type PostOptions = {
 	value: number;
 	label: string;

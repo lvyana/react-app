@@ -26,7 +26,7 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: [FormInputType<never>, FormInputType<never>, FormSelectType<statusDataProps>, FormButtonType<ButtonType>] = [
+	const formList: [FormInputType, FormInputType, FormSelectType<statusDataProps>, FormButtonType<ButtonType>] = [
 		{
 			type: 'input',
 			name: 'name',

@@ -23,9 +23,9 @@ import type { Options } from './itemTypes';
 
 type FormListType = [
 	// 标签
-	FormInputType<never>,
+	FormInputType,
 	// 数据字段
-	FormInputType<never>,
+	FormInputType,
 	// label宽度
 	FormSliderType,
 	// 总宽度
@@ -37,11 +37,11 @@ type FormListType = [
 	// 静态数据
 	FormUserDefinedType,
 	// url
-	FormInputType<never>,
+	FormInputType,
 	// urlLabel
-	FormInputType<never>,
+	FormInputType,
 	// urlValue
-	FormInputType<never>,
+	FormInputType,
 	// 发送
 	FormUserDefinedType,
 	// 关联父级
@@ -54,11 +54,11 @@ type FormListType = [
 		name: string;
 	}>,
 	// 是否必填提示语
-	FormTextAreaType<never>,
+	FormTextAreaType,
 	// 校验规则
-	FormInputType<never>,
+	FormInputType,
 	// 校验规则提示语
-	FormTextAreaType<never>
+	FormTextAreaType
 ];
 
 /**

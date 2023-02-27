@@ -8,7 +8,31 @@ import { Form, Row, Col, FormInstance } from 'antd';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import FORM_ITEM_MAP from './components/formItemMap';
-import type { FormItem } from './type';
+import type {
+	AlonePicker,
+	BothPicker,
+	ButtonType,
+	CascaderType,
+	CheckboxType,
+	FormItem,
+	InputNumberType,
+	InputType,
+	RadioType,
+	RateType,
+	SeachSelectType,
+	SelectType,
+	SliderSingleType,
+	SliderType,
+	SwitchType,
+	TextAreaType,
+	TreeselectType,
+	UploadType,
+	UserDefinedType
+} from './type';
+import type { formRadioOptionsParams } from './components/Iradio';
+import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
+import { DefaultOptionType } from 'antd/es/select';
+import { BaseOptionType } from 'antd/es/cascader';
 
 export * from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
@@ -25,12 +49,16 @@ export type OnValuesChange<F> = (changedValues: F, values: F) => void;
  * @param self 是否自适应
  */
 interface IformProps<T, F> {
-	formList: T;
+	formList: FormItemAndCom<T>;
 	form: FormInstance<F>;
 	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
 	self?: boolean;
 }
+
+type FormItemAndCom<T> = {
+	[K in keyof T]: T[K] & FormItem; // keyof T 返回联合类型 in 再遍历该联合类型
+};
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -73,61 +101,147 @@ const Iform = <T extends FormItem[], F extends object>({
 
 	const formItemCom = (item: FormItem) => {
 		if (item.type === 'input') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style } = item as InputType;
+			return FORM_ITEM_MAP[item.type]({ value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style });
 		}
+
 		if (item.type === 'select') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, disabled, allowClear, onChange, mode, placeholder, option, fieldNames, style, children } =
+				item as SelectType<DefaultOptionType>;
+			return FORM_ITEM_MAP[item.type]({
+				label,
+				disabled,
+				allowClear,
+				onChange,
+				mode,
+				placeholder,
+				option,
+				fieldNames,
+				style,
+				children
+			});
 		}
+
 		if (item.type === 'treeselect') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, disabled, allowClear, onChange, placeholder, option, checkbox, fieldNames, style, children } =
+				item as TreeselectType<DefaultOptionType>;
+			return FORM_ITEM_MAP[item.type]({
+				label,
+				disabled,
+				allowClear,
+				onChange,
+				placeholder,
+				option,
+				checkbox,
+				fieldNames,
+				style,
+				children
+			});
 		}
+
 		if (item.type === 'cascader') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, validateTrigger, disabled, allowClear, onChange, placeholder, option, fieldNames, style, children } =
+				item as CascaderType<BaseOptionType>;
+			return FORM_ITEM_MAP[item.type]({
+				label,
+				validateTrigger,
+				disabled,
+				allowClear,
+				onChange,
+				placeholder,
+				option,
+				fieldNames,
+				style,
+				children
+			});
 		}
+
 		if (item.type === 'datePicker') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as AlonePicker;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
+
 		if (item.type === 'rangePicker') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as BothPicker;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
+
 		if (item.type === 'timePicker') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as AlonePicker;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
+
 		if (item.type === 'timeRangePicker') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as BothPicker;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
+
 		if (item.type === 'inputNumber') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, disabled, allowClear, onChange, placeholder, checkbox, style, children } = item as InputNumberType;
+			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, placeholder, checkbox, style, children });
 		}
+
 		if (item.type === 'switch') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, style, children } = item as SwitchType;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, children });
 		}
+
 		if (item.type === 'button') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { option, style, children, onClick } = item as ButtonType<unknown>;
+			return FORM_ITEM_MAP[item.type]({ option, style, children, onClick });
 		}
+
 		if (item.type === 'radio') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, option, style, children, optionType } = item as RadioType<formRadioOptionsParams>;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children, optionType });
 		}
+
 		if (item.type === 'checkbox') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, option, style, children } = item as CheckboxType<CheckboxOptionType>;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children });
 		}
+
 		if (item.type === 'rate') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, placeholder, option, style, children } = item as RateType<string>;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, option, style, children });
 		}
+
 		if (item.type === 'textArea') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows } = item as TextAreaType;
+			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows });
 		}
+
 		if (item.type === 'seachSelect') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { label, disabled, allowClear, mode, placeholder, option, checkbox, fieldNames, style, handleSearch, children } =
+				item as SeachSelectType<DefaultOptionType>;
+			return FORM_ITEM_MAP[item.type]({
+				label,
+				disabled,
+				allowClear,
+				mode,
+				placeholder,
+				option,
+				checkbox,
+				fieldNames,
+				style,
+				handleSearch,
+				children
+			});
 		}
+
 		if (item.type === 'slider') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { disabled, allowClear, onChange, range, style, max, min } = item as SliderType & SliderSingleType;
+			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, range, style, max, min });
 		}
+
 		if (item.type === 'upload') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { name, onChange, mode, style, children, multiple, action } = item as UploadType;
+			return FORM_ITEM_MAP[item.type]({ name, onChange, mode, style, children, multiple, action });
 		}
+
 		if (item.type === 'userDefined') {
-			return FORM_ITEM_MAP[item.type](item);
+			const { children } = item as UserDefinedType;
+			return FORM_ITEM_MAP[item.type]({ children });
 		}
 	};
 
