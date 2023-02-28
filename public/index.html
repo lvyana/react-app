@@ -23,7 +23,7 @@
 	<div id="root"></div>
 	<!-- 使用cdn -->
 	<% htmlWebpackPlugin.options.cdn.js.forEach(cdnURL=> { %>
-		<script defer src="<%= cdnURL %>"></script>
+		<script type="text/javascript" src="<%= cdnURL %>"></script>
 		<% }) %>
 </body>
 

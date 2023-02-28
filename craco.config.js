@@ -29,7 +29,7 @@ const whenDevPlugin = whenDev(() => {
 	return [
 		// 循环依赖检查
 		new CircularDependencyPlugin({
-			exclude: /node_modules/,
+			exclude: /a\.js|node_modules/,
 			include: /src/,
 			failOnError: true,
 			allowAsyncCycles: false,
@@ -123,6 +123,17 @@ module.exports = {
 				// 实际开发的时候 用公司自己花钱买的cdn服务器
 				cdn = {
 					js: [
+						// antv 依赖react
+						// 'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
+						// 'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
+						// Plots 相关的图表
+						// 'https://unpkg.com/@ant-design/plots@latest/dist/plots.min.js',
+						// Flowchart 相关的图
+						// 'https://unpkg.com/@ant-design/flowchart@latest/dist/flowchart.min.js"',
+						// Maps 相关的图表
+						// 'https://unpkg.com/@ant-design/maps@latest/dist/maps.min.js'
+						// Graphs 相关的图表
+						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
 						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js'
 					],

@@ -45,9 +45,10 @@ const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 									if (item.iconFont) {
 										if (typeof item.iconFont === 'string') {
 											return <IconFont type={item.iconFont}></IconFont>;
-										} else {
+										} else if (React.isValidElement(item.iconFont)) {
 											return item.iconFont;
 										}
+										return <></>;
 									}
 								})()}
 								block={item.block}
