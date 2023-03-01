@@ -12,7 +12,7 @@ import type { formRadioOptionsParams } from './components/Iradio';
 import type { ChangeEventExtra } from './components/ItreeSelect';
 import type { BaseOptionType } from 'antd/es/cascader';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
-import type { DefaultOptionType } from 'antd/es/select';
+import type { DefaultOptionType, LabeledValue } from 'antd/es/select';
 import type { SwitchChangeEventHandler } from 'antd/es/switch';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
@@ -34,6 +34,7 @@ export type FormInputType = FormItem & InputType;
 
 // select
 export type SelectType<T> = {
+	value?: string | string[] | number | number[] | LabeledValue | LabeledValue[];
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -251,7 +252,7 @@ export type FormUserDefinedType = FormItem & UserDefinedType;
 
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
-	select: <T extends DefaultOptionType>(item: SelectType<T>) => JSX.Element;
+	select: <T extends BaseOptionType>(item: SelectType<T>) => JSX.Element;
 	treeselect: <T extends DefaultOptionType>(item: TreeselectType<T>) => JSX.Element;
 	cascader: <T extends BaseOptionType>(item: CascaderType<T>) => JSX.Element;
 	datePicker: (item: AlonePicker) => JSX.Element;

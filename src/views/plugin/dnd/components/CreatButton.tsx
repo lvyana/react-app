@@ -10,6 +10,7 @@ import { formInputItem, formInputNumber } from '@/antdComponents/iForm/component
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import type { ButtonOptionsParams } from '../EditForm';
+import { formSelect } from '@/antdComponents/iForm/components/Iselect';
 
 /**
  * @param options 集合
@@ -33,6 +34,19 @@ interface CreatButtonProps {
 	updateOptions: (data: ButtonOptionsParams[]) => void;
 }
 
+// 按钮类型
+type ButtonTypeOptionsParams = {
+	type: string;
+	value: string;
+};
+const BUTTON_TYPE_OPTIONS = [
+	{ type: 'primary', value: 'primary' },
+	{ type: 'ghost', value: 'ghost' },
+	{ type: 'dashed', value: 'dashed' },
+	{ type: 'link', value: 'link' },
+	{ type: 'text', value: 'text' },
+	{ type: 'default', value: 'default' }
+];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
@@ -61,6 +75,11 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 		updateOptions(newOptions);
 	};
 
+	const onSelectChange = (value: string | number, key: GetNewOptionsParams['key'], id: string) => {
+		const newOptions = getNewOptions({ options, key, value: value, id });
+		updateOptions(newOptions);
+	};
+
 	const getNewOptions = ({ options, key, value, id }: GetNewOptionsParams) => {
 		return options.map((option) => {
 			if (option.id === id) {
@@ -73,7 +92,7 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 		<>
 			{options.map((option, i) => {
 				return (
-					<Row key={option.id} className="m-4">
+					<Row key={option.id} className="m-4" gutter={16}>
 						<Col span={12}>
 							{formInputItem({
 								placeholder: '名字',
@@ -89,10 +108,15 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 							})}
 						</Col>
 						<Col span={12}>
-							{formInputItem({
+							{formSelect<ButtonTypeOptionsParams>({
 								placeholder: '组件类型',
 								value: option.btType,
-								onChange: (value) => onChange(value, 'btType', option.id)
+								option: BUTTON_TYPE_OPTIONS,
+								fieldNames: {
+									label: 'type',
+									value: 'value'
+								},
+								onChange: (value) => onSelectChange(value, 'btType', option.id)
 							})}
 						</Col>
 						<Col span={12}>

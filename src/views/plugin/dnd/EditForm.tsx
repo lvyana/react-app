@@ -123,15 +123,15 @@ export type ButtonOptionsParams = {
 };
 
 const BUTTON_OPTIONS: ButtonOptionsParams[] = [
-	{
-		name: '确认',
-		type: 'ok',
-		btType: 'primary',
-		span: 12,
-		hasPermiss: '',
-		iconFont: '',
-		id: '0'
-	}
+	// {
+	// 	name: '确认',
+	// 	type: 'ok',
+	// 	btType: 'primary',
+	// 	span: 12,
+	// 	hasPermiss: '',
+	// 	iconFont: '',
+	// 	id: '0'
+	// }
 ];
 
 /**
@@ -170,7 +170,7 @@ const EditForm = () => {
 	// 点击发送
 	const onGetOption = async () => {
 		if (staticPattern === '1') {
-			editItemValue('option', staticOptions);
+			editItemValue({ option: staticOptions });
 		} else if (staticPattern === '2') {
 			try {
 				await form.validateFields(['url']);
@@ -207,7 +207,6 @@ const EditForm = () => {
 	];
 
 	const onChangeStatic = (value: string) => {
-		editItemValue('trigger', value);
 		setStaticPattern(value);
 
 		if (value === '1') {
@@ -219,7 +218,7 @@ const EditForm = () => {
 		}
 
 		// 清空option数据
-		editItemValue('option', []);
+		editItemValue({ option: [], trigger: value });
 	};
 
 	// 静态数据模板
@@ -232,6 +231,7 @@ const EditForm = () => {
 	const [buttonOptions, setButtonOptions] = useState(BUTTON_OPTIONS);
 	const updateButtonOptions = (data: ButtonOptionsParams[]) => {
 		setButtonOptions(data);
+		editItemValue({ option: data });
 	};
 
 	const formList: FormListType = [
@@ -420,7 +420,6 @@ const EditForm = () => {
 			key: 'button',
 			name: 'button',
 			span: 24,
-			// show: staticPattern === '1',
 			children: <CreatButton options={buttonOptions} updateOptions={updateButtonOptions} />,
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		}
@@ -442,9 +441,6 @@ const EditForm = () => {
 				} else if (HAS_BUTTON_TYPE.indexOf(selectFormItem?.type) > -1) {
 					return HAS_BUTTON_NAME.indexOf(item.name) > -1;
 				}
-				// else {
-				// 	return item.name !== 'url' && item.name !== 'urlBtn' && item.name !== 'trigger' && item.name !== 'staticOptions';
-				// }
 			});
 		} else {
 			return [];
@@ -457,14 +453,19 @@ const EditForm = () => {
 				return context?.state.selectFormItemKey === item.key;
 			});
 
-			const { span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue } = newFormListItem || {};
-			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue });
+			const { type, span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue, option } =
+				newFormListItem || {};
+			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue, option });
+			console.log(trigger, 'trigger');
+
 			if (trigger) {
 				setStaticPattern(trigger);
 			}
-		}
 
-		// editItemValue('option', buttonOptions);
+			if (type === 'button') {
+				setButtonOptions(option as ButtonOptionsParams[]);
+			}
+		}
 	}, [context?.state.selectFormItemKey]);
 
 	// span

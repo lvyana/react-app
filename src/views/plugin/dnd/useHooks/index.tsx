@@ -19,7 +19,6 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 	const context = useContext(Context);
 
 	const nameValue = Form.useWatch([key], form);
-	console.log(nameValue, key);
 
 	useEffect(() => {
 		if (context?.state.selectFormItemKey) {
@@ -29,7 +28,6 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 				}
 				return item;
 			});
-			console.log(newFormList);
 
 			context.dispatch({ type: 'formList', value: newFormList });
 		}
@@ -39,12 +37,12 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 // 监听没有绑定表单的变化 修改GenerateForm
 export const useEditItemValue = () => {
 	const context = useContext(Context);
-
-	const editItemValue = (key: keyof FormParams, value: FormParams[keyof FormParams]) => {
+	//
+	const editItemValue = (params: Partial<FormItemParams>) => {
 		if (context?.state.selectFormItemKey) {
 			const newFormList = context.state.formList.map((item) => {
 				if (context?.state.selectFormItemKey === item.key) {
-					return { ...item, [key]: value };
+					return { ...item, ...params };
 				}
 				return item;
 			});
