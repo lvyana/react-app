@@ -43,6 +43,7 @@ export const formInputTextArea: FormItemMap['textArea'] = (item) => {
 export const formInputNumber: FormItemMap['inputNumber'] = (item) => {
 	return (
 		<InputNumber
+			value={item?.value}
 			min={0}
 			onChange={item.onChange}
 			disabled={item.disabled}

@@ -6,22 +6,21 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
-import Auth from '../auth';
 
 //ReactPlayer
-const Player = lazy(() => import('@/views/plugin/player'));
+const Player = lazy(() => import(/* webpackChunkName: "Player" */ '@/views/plugin/player'));
 //GridLayout
-const DemoGridLayout = lazy(() => import('@/views/plugin/gridLayout'));
+const DemoGridLayout = lazy(() => import(/* webpackChunkName: "DemoGridLayout" */ '@/views/plugin/gridLayout'));
 // Responsive响应式
-const Responsive = lazy(() => import('@/views/plugin/responsive'));
+const Responsive = lazy(() => import(/* webpackChunkName: "Responsive" */ '@/views/plugin/responsive'));
 //富文本编辑
-const RichTextEdit = lazy(() => import('@/views/plugin/richTextEdit'));
+const RichTextEdit = lazy(() => import(/* webpackChunkName: "RichTextEdit" */ '@/views/plugin/richTextEdit'));
 // pdf
-const Pdf = lazy(() => import('@/views/plugin/pdf'));
+const Pdf = lazy(() => import(/* webpackChunkName: "Pdf" */ '@/views/plugin/pdf'));
 // i18n
-const I18n = lazy(() => import('@/views/plugin/i18n'));
+const I18n = lazy(() => import(/* webpackChunkName: "I18n" */ '@/views/plugin/i18n'));
 // dnd
-const Dnd = lazy(() => import('@/views/plugin/dnd'));
+const Dnd = lazy(() => import(/* webpackChunkName: "Dnd" */ '@/views/plugin/dnd'));
 
 // 插件的使用
 const plugin = [

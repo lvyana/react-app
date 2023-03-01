@@ -8,8 +8,10 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
  * @param 按钮接口
  * @param name 名称
  * @param type 类型
+ * @param btType 按钮类型
  * @param disabled 开启禁用模式 true  否则 false
- * @param hasPermiss 权限
+ * @param hasPermiss 权限标识
+ * @param iconFont 图标
  */
 export interface ButtonItemParams<T> {
 	name: string;

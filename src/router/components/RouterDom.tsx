@@ -6,13 +6,12 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
-import Auth from '../auth';
 
 // react-router-dom
-const RouterDemo = lazy(() => import('@/views/routerCom/routerDemo'));
-const Test = lazy(() => import('@/views/routerCom/routerDemo/Test'));
-const List = lazy(() => import('@/views/routerCom/routerDemo/List'));
-const MyUseRouter = lazy(() => import('@/views/routerCom/myUseRouter'));
+const RouterDemo = lazy(() => import(/* webpackChunkName: "RouterDemo" */ '@/views/routerCom/routerDemo'));
+const Test = lazy(() => import(/* webpackChunkName: "Test" */ '@/views/routerCom/routerDemo/Test'));
+const List = lazy(() => import(/* webpackChunkName: "List" */ '@/views/routerCom/routerDemo/List'));
+const MyUseRouter = lazy(() => import(/* webpackChunkName: "MyUseRouter" */ '@/views/routerCom/myUseRouter'));
 
 // react-router-dom
 const Plugin = [

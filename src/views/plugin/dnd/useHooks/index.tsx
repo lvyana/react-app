@@ -7,7 +7,7 @@ import { useContext, useEffect } from 'react';
 import { Form } from 'antd';
 import { useRequest } from 'ahooks';
 import type { FormInstance } from 'antd/es/form';
-import type { FormParams } from '../EditForm';
+import type { ButtonOptionsParams, FormParams } from '../EditForm';
 import { Context, FormItemParams } from '../context';
 import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
@@ -19,6 +19,7 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 	const context = useContext(Context);
 
 	const nameValue = Form.useWatch([key], form);
+	console.log(nameValue, key);
 
 	useEffect(() => {
 		if (context?.state.selectFormItemKey) {
@@ -28,6 +29,7 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 				}
 				return item;
 			});
+			console.log(newFormList);
 
 			context.dispatch({ type: 'formList', value: newFormList });
 		}
@@ -81,7 +83,15 @@ export const useWatchUrl = () => {
 export const useFormData = () => {
 	const getFormData = (dndFormData: FormItemParams): FormItem => {
 		const { type, key, span, label, disabled, option, isRule, isRuleTitle, rule, ruleTitle, name, labelCol } = dndFormData;
-		let newFormList: FormItem & { disabled?: boolean; option?: Options[] } = { type, key, span, label, name, disabled, option };
+		let newFormList: FormItem & { disabled?: boolean; option?: Options[] | ButtonOptionsParams[] } = {
+			type,
+			key,
+			span,
+			label,
+			name,
+			disabled,
+			option
+		};
 
 		if (isRule === 2) {
 			newFormList = {

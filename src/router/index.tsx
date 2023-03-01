@@ -13,19 +13,19 @@ import RouterCom from './components/RouterDom';
 import Plugin from './components/Plugin';
 
 // login
-const Login = lazy(() => import('@/views/login'));
+const Login = lazy(() => import(/* webpackChunkName: "Login" */ '@/views/login'));
 // Layouts
-const Layouts = lazy(() => import('@/layout'));
+const Layouts = lazy(() => import(/* webpackChunkName: "Layouts" */ '@/layout'));
 // 首页
-const Home = lazy(() => import('@/views/home'));
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/views/home'));
 // 404
-const NotFound = lazy(() => import('@/antdComponents/NotFound'));
+const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '@/antdComponents/NotFound'));
 // 个人中心
-const MyCenter = lazy(() => import('@/views/myCenter'));
+const MyCenter = lazy(() => import(/* webpackChunkName: "MyCenter" */ '@/views/myCenter'));
 // 消息中心
-const MessgeCenter = lazy(() => import('@/views/messageCenter'));
+const MessgeCenter = lazy(() => import(/* webpackChunkName: "MessgeCenter" */ '@/views/messageCenter'));
 // today
-const ToDay = lazy(() => import('@/views/toDay'));
+const ToDay = lazy(() => import(/* webpackChunkName: "ToDay" */ '@/views/toDay'));
 
 const router: RouteObject[] = [
 	{ path: '/login', element: suspenseLoad(<Login />) },

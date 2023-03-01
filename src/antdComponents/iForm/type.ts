@@ -107,9 +107,9 @@ export type InputNumberType = {
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
-	onChange?: ((value: 0 | null) => void) | undefined;
+	onChange?: ((value: number | string | null) => void) | undefined;
 	placeholder?: string;
-
+	value?: number | string | null;
 	checkbox?: boolean;
 	style?: React.CSSProperties;
 	children?: ReactNode;

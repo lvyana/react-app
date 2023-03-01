@@ -80,7 +80,18 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							type: type as ItemTypesParams,
 							name: 'name' + formList?.length,
 							key: uuidv4(),
-							span: 24
+							span: 24,
+							option: [
+								{
+									name: '确认',
+									type: 'ok',
+									btType: 'primary',
+									span: 12,
+									hasPermiss: '',
+									iconFont: '',
+									id: '0'
+								}
+							]
 						});
 					} else {
 						newFormList?.push({

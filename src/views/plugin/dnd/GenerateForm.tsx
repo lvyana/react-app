@@ -141,7 +141,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 
 	const [form] = Form.useForm();
 
-	// 处理回显表单数句
+	// 处理回显表单数据
 	const formList: FormItem[] = [{ ...getFormData(formParams), span: 24 }];
 
 	const onEditFormItemParams = () => {

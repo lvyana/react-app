@@ -9,6 +9,7 @@ import { Button, Form, Tabs, TabsProps } from 'antd';
 import { Context } from './context';
 import { useEditFormItemValue, useEditItemValue, useWatchUrl } from './useHooks';
 import StaticOptions from './components/StaticOptions';
+import CreatButton from './components/CreatButton';
 import { isPassword } from '@/utils/rules';
 import { v4 as uuidv4 } from 'uuid';
 import type {
@@ -58,7 +59,9 @@ type FormListType = [
 	// 校验规则
 	FormInputType,
 	// 校验规则提示语
-	FormTextAreaType
+	FormTextAreaType,
+	// 生成按钮
+	FormUserDefinedType
 ];
 
 /**
@@ -85,9 +88,10 @@ export type FormParams = {
 	name: string;
 	labelCol?: number;
 	trigger?: string;
-	option?: Options[];
+	option?: Options[] | ButtonOptionsParams[];
 	urlLabel?: string;
 	urlValue?: string;
+	// button?: ;
 };
 
 /**
@@ -102,6 +106,32 @@ type DisabledParams = {
 const DISABLED_OPTIONS: DisabledParams[] = [
 	{ label: '启用', value: false },
 	{ label: '禁用', value: true }
+];
+
+/**
+ * @param label 名称
+ * @param value 标识
+ */
+export type ButtonOptionsParams = {
+	name: string;
+	type: string;
+	btType: string;
+	span: number | string | null;
+	hasPermiss: string;
+	iconFont: string;
+	id: string;
+};
+
+const BUTTON_OPTIONS: ButtonOptionsParams[] = [
+	{
+		name: '确认',
+		type: 'ok',
+		btType: 'primary',
+		span: 12,
+		hasPermiss: '',
+		iconFont: '',
+		id: '0'
+	}
 ];
 
 /**
@@ -124,7 +154,7 @@ const HAS_COMMON_NAME = ['label', 'name', 'labelCol', 'span', 'disabled', 'paren
 
 // 按钮
 const HAS_BUTTON_TYPE = ['button'];
-const HAS_BUTTON_NAME = ['name', 'span'];
+const HAS_BUTTON_NAME = ['name', 'span', 'button'];
 
 const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
 
@@ -196,6 +226,12 @@ const EditForm = () => {
 	const [staticOptions, setStaticOptions] = useState(OPTIONS);
 	const updateStaticOptions = (data: Options[]) => {
 		setStaticOptions(data);
+	};
+
+	// 生成按钮
+	const [buttonOptions, setButtonOptions] = useState(BUTTON_OPTIONS);
+	const updateButtonOptions = (data: ButtonOptionsParams[]) => {
+		setButtonOptions(data);
 	};
 
 	const formList: FormListType = [
@@ -378,6 +414,15 @@ const EditForm = () => {
 			name: 'ruleTitle',
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
+		},
+		{
+			type: 'userDefined',
+			key: 'button',
+			name: 'button',
+			span: 24,
+			// show: staticPattern === '1',
+			children: <CreatButton options={buttonOptions} updateOptions={updateButtonOptions} />,
+			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		}
 	];
 
@@ -386,7 +431,6 @@ const EditForm = () => {
 		const selectFormItem = context?.state.formList.find((item) => {
 			return item.key === context?.state.selectFormItemKey;
 		});
-
 		if (selectFormItem?.type) {
 			return formList.filter((item) => {
 				if (HAS_SELECT_TYPE.indexOf(selectFormItem?.type) > -1) {
@@ -405,7 +449,7 @@ const EditForm = () => {
 		} else {
 			return [];
 		}
-	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions]);
+	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions, buttonOptions]);
 
 	useEffect(() => {
 		if (context?.state.selectFormItemKey) {
@@ -419,6 +463,8 @@ const EditForm = () => {
 				setStaticPattern(trigger);
 			}
 		}
+
+		// editItemValue('option', buttonOptions);
 	}, [context?.state.selectFormItemKey]);
 
 	// span
