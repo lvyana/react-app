@@ -13,12 +13,12 @@ import { ButtonItemParams, OnClickBtn } from './type';
 
 /**
  * @param buttonList 按钮集合
- * @param loadingName 那个按钮需要加载直接传名字
+ * @param loadingName 那个按钮需要加载直接传type
  * @param onClick 按钮事件
  */
 export interface IbuttonProps<T> {
 	buttonList: ButtonItemParams<T>[];
-	loadingName?: string;
+	loadingName?: T;
 	onClick?: OnClickBtn<T>;
 	style?: React.CSSProperties;
 }
@@ -38,7 +38,7 @@ const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 								type={item.btType}
 								onClick={() => onClick && onClick(item.type, item)}
 								disabled={item.disabled === true}
-								loading={loadingName === item.name}
+								loading={loadingName === item.type}
 								size={size}
 								className={item.className}
 								icon={(() => {

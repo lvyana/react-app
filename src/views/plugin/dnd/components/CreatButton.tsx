@@ -7,10 +7,11 @@ import React, { FC, useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { formButton } from '@/antdComponents/iForm/components/Ibutton';
 import { formInputItem, formInputNumber } from '@/antdComponents/iForm/components/Iinput';
+import { formSelect } from '@/antdComponents/iForm/components/Iselect';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import type { ButtonOptionsParams } from '../EditForm';
-import { formSelect } from '@/antdComponents/iForm/components/Iselect';
+import type { SelectValueType } from '@/antdComponents/iForm/type';
 
 /**
  * @param options 集合
@@ -21,7 +22,7 @@ import { formSelect } from '@/antdComponents/iForm/components/Iselect';
 type GetNewOptionsParams = {
 	options: ButtonOptionsParams[];
 	key: 'name' | 'type' | 'btType' | 'span' | 'hasPermiss' | 'iconFont';
-	value: number | string | null;
+	value: number | string | null | SelectValueType;
 	id: string;
 };
 
@@ -75,7 +76,7 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 		updateOptions(newOptions);
 	};
 
-	const onSelectChange = (value: string | number, key: GetNewOptionsParams['key'], id: string) => {
+	const onSelectChange = (value: SelectValueType, key: GetNewOptionsParams['key'], id: string) => {
 		const newOptions = getNewOptions({ options, key, value: value, id });
 		updateOptions(newOptions);
 	};

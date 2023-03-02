@@ -4,7 +4,7 @@
  * @createDate 2022年12月17日
  */
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import Iform from '@/antdComponents/iForm';
+import Iform, { OnValuesChange } from '@/antdComponents/iForm';
 import { Button, Form, Tabs, TabsProps } from 'antd';
 import { Context } from './context';
 import { useEditFormItemValue, useEditItemValue, useWatchUrl } from './useHooks';
@@ -21,6 +21,7 @@ import type {
 	FormTextAreaType
 } from '@/antdComponents/iForm/type';
 import type { Options } from './itemTypes';
+import { ButtonItemParams } from '@/antdComponents/iButton/type';
 
 type FormListType = [
 	// 标签
@@ -73,7 +74,11 @@ type FormListType = [
  * @param isRule 是否必填
  * @param ruleTitle 必填提示
  * @param name 字段名
- * @param labelCol 字段名宽度
+ * @param labelCol label宽度
+ * @param trigger option切换类型
+ * @param option options数据
+ * @param urlLabel options label
+ * @param urlValue options value
  */
 export type FormParams = {
 	span: number;
@@ -91,7 +96,6 @@ export type FormParams = {
 	option?: Options[] | ButtonOptionsParams[];
 	urlLabel?: string;
 	urlValue?: string;
-	// button?: ;
 };
 
 /**
@@ -113,14 +117,14 @@ const DISABLED_OPTIONS: DisabledParams[] = [
  * @param value 标识
  */
 export type ButtonOptionsParams = {
-	name: string;
-	type: string;
-	btType: string;
-	span: number | string | null;
-	hasPermiss: string;
-	iconFont: string;
+	// name: string;
+	// type: string;
+	// btType: string;
+	// span: number | string | null;
+	// hasPermiss: string;
+	iconFont?: string;
 	id: string;
-};
+} & Omit<ButtonItemParams<string>, 'iconFont'>;
 
 const BUTTON_OPTIONS: ButtonOptionsParams[] = [
 	// {
@@ -146,7 +150,24 @@ type FormListLabel = {
 
 // options类型对应form类型
 const HAS_SELECT_TYPE = ['select', 'cascader'];
-const HAS_SELECT_NAME = 'all';
+const HAS_SELECT_NAME = [
+	'label',
+	'name',
+	'labelCol',
+	'span',
+	'disabled',
+	'trigger',
+	'staticOptions',
+	'url',
+	'urlLabel',
+	'urlValue',
+	'urlBtn',
+	'parent',
+	'isRule',
+	'isRuleTitle',
+	'rule',
+	'ruleTitle'
+];
 
 // 通用类型
 const HAS_COMMON_TYPE = ['input', 'textArea'];
@@ -166,6 +187,9 @@ const EditForm = () => {
 	const context = useContext(Context);
 
 	const [form] = Form.useForm<FormParams>();
+
+	// 获取options数据
+	const [getAnyOptions] = useWatchUrl();
 
 	// 点击发送
 	const onGetOption = async () => {
@@ -425,7 +449,7 @@ const EditForm = () => {
 		}
 	];
 
-	// 表单集合
+	// 匹配类型 生成表单
 	const newFormList = useMemo(() => {
 		const selectFormItem = context?.state.formList.find((item) => {
 			return item.key === context?.state.selectFormItemKey;
@@ -434,7 +458,7 @@ const EditForm = () => {
 			return formList.filter((item) => {
 				if (HAS_SELECT_TYPE.indexOf(selectFormItem?.type) > -1) {
 					// 读取下拉类型所需要的form类型
-					return HAS_SELECT_NAME === 'all';
+					return HAS_SELECT_NAME.indexOf(item.name) > -1;
 				} else if (HAS_COMMON_TYPE.indexOf(selectFormItem?.type) > -1) {
 					// 读取通用类型所需要的form类型
 					return HAS_COMMON_NAME.indexOf(item.name) > -1;
@@ -447,6 +471,7 @@ const EditForm = () => {
 		}
 	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions, buttonOptions]);
 
+	// 初始化表单数据
 	useEffect(() => {
 		if (context?.state.selectFormItemKey) {
 			const newFormListItem = context.state.formList.find((item) => {
@@ -456,7 +481,6 @@ const EditForm = () => {
 			const { type, span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue, option } =
 				newFormListItem || {};
 			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue, option });
-			console.log(trigger, 'trigger');
 
 			if (trigger) {
 				setStaticPattern(trigger);
@@ -494,9 +518,6 @@ const EditForm = () => {
 
 	// labelCol
 	useEditFormItemValue('labelCol', form);
-
-	// 获取options数据
-	const [getAnyOptions] = useWatchUrl();
 
 	// urlLabel
 	useEditFormItemValue('urlLabel', form);

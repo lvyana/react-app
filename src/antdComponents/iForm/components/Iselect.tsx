@@ -13,6 +13,7 @@ import type { FormItemMap } from '../type';
 export const formSelect: FormItemMap['select'] = (item) => {
 	return (
 		<Select
+			value={item?.value}
 			showSearch
 			allowClear={item.allowClear !== false}
 			onChange={item.onChange}

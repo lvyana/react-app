@@ -1,5 +1,5 @@
 /**
- * @name 左侧有哪些表单类型
+ * @param 左侧有哪些表单类型
  */
 export type ItemTypesParams = 'input' | 'select' | 'textArea' | 'cascader' | 'button';
 export interface ItemTypes {

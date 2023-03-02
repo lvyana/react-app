@@ -34,11 +34,11 @@ export type FormInputType = FormItem & InputType;
 
 // select
 export type SelectType<T> = {
-	value?: string | string[] | number | number[] | LabeledValue | LabeledValue[];
+	value?: SelectValueType;
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
-	onChange?: ((value: string | number, option: T | T[]) => void) | undefined;
+	onChange?: ((value: SelectValueType, option: T | T[]) => void) | undefined;
 	mode?: Mode;
 	placeholder?: string;
 	option?: T[];
@@ -46,6 +46,7 @@ export type SelectType<T> = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
+export type SelectValueType = string | string[] | number | number[] | LabeledValue | LabeledValue[];
 export type FormSelectType<T> = FormItem & SelectType<T>;
 
 // treeselect

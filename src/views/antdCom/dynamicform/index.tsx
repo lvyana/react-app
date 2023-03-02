@@ -20,7 +20,8 @@ import type {
 	FormInputNumberType,
 	FormSwitchType,
 	FormUploadType,
-	FormButtonType
+	FormButtonType,
+	SelectValueType
 } from '@/antdComponents/iForm/type';
 import type { UploadFile } from 'antd/lib/upload/interface';
 
@@ -79,7 +80,7 @@ type FormListType = [
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dynamicform = () => {
-	const selectOnChange = (value: string | number) => {};
+	const selectOnChange = (value: SelectValueType) => {};
 	// 参数
 	const formList: FormListType = [
 		{
