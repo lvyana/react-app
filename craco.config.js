@@ -75,7 +75,23 @@ module.exports = {
 			}
 		}
 	},
-
+	babel: {
+		presets: [
+			[
+				'@babel/preset-env',
+				{
+					modules: false, // 对ES6的模块文件不做转化，以便使用tree shaking、sideEffects等
+					useBuiltIns: 'entry', // browserslist环境不支持的所有垫片都导入
+					// https://babeljs.io/docs/en/babel-preset-env#usebuiltins
+					// https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md
+					corejs: {
+						version: 3, // 使用core-js@3
+						proposals: true
+					}
+				}
+			]
+		]
+	},
 	webpack: {
 		alias: {
 			'@': path.resolve(__dirname, 'src')
@@ -108,6 +124,22 @@ module.exports = {
 				};
 				// 关闭 devtool
 				webpackConfig.devtool = false;
+
+				// 配置扩展扩展名
+				webpackConfig.resolve.extensions = [...webpackConfig.resolve.extensions, ...['.scss']];
+
+				// 覆盖已经内置的 plugin 配置
+				// webpackConfig.plugins.map((plugin) => {
+				// 	whenProd(() => {
+				// 		if (plugin instanceof MiniCssExtractPlugin) {
+				// 			Object.assign(plugin.options, {
+				// 				filename: 'static/css/[name].css',
+				// 				chunkFilename: 'static/css/[name].css'
+				// 			});
+				// 		}
+				// 	});
+				// 	return plugin;
+				// });
 
 				webpackConfig.externals = {
 					// 注意对应的在public/index.html引入jquery的远程文件地址
