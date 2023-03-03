@@ -3,24 +3,33 @@
  * @author ly
  * @createDate 2020年11月7日
  */
-import React, { forwardRef, LegacyRef, useEffect, useRef } from 'react';
+import React, { Children, cloneElement, FC, forwardRef, LegacyRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
 
+type OnLoginHandler = {
+	login: () => void;
+};
+
+type Ordinary = {
+	text?: string;
+	cloneEl: any;
+};
 // 1、ref 不会透传
-// 2、函数组建是没有实例 需要转发到dom上
+// 2、函数组件是没有实例 需要转发到dom上
 
 const MyForwardRef = () => {
-	const ordinary = useRef<HTMLDivElement>(null);
+	const ordinary = useRef<Ordinary | null>(null);
 
 	useEffect(() => {
-		// console.log(ordinary.current);
-		// console.log(hoc.current);
+		// console.log(ordinary?.current?.cloneEl());
+		// console.log(onLoginHandler);
 	}, []);
 
-	const hoc = useRef<HTMLDivElement>(null);
+	const onLoginHandler = useRef<OnLoginHandler | null>(null);
 	return (
 		<div>
 			<OrdinaryForWard ref={ordinary}></OrdinaryForWard>
-			<LoginHoc ref={hoc}></LoginHoc>
+			<LoginHoc ref={onLoginHandler}></LoginHoc>
+			<div onClick={() => ordinary?.current?.cloneEl()}>切换</div>
 		</div>
 	);
 };
@@ -28,29 +37,51 @@ const MyForwardRef = () => {
 export default MyForwardRef;
 
 // 普通转发
-const OrdinaryForWard = forwardRef<HTMLDivElement>((props, ref) => {
-	return <div ref={ref}>普通转发ref</div>;
+const OrdinaryForWard = forwardRef<Ordinary | null>((props, ref) => {
+	const el = useRef<HTMLDivElement | null>(null);
+
+	useImperativeHandle(ref, () => {
+		return {
+			text: el.current?.innerText,
+			cloneEl: () => {
+				if (el.current) {
+					el.current.innerText = '我变了';
+				}
+			}
+		};
+	});
+	return <div ref={el}>普通转发ref</div>;
 });
 OrdinaryForWard.displayName = 'OrdinaryForWard';
 
 // HOC转发
-const hocForWardRef = (Component: ({ hoc }: { hoc: LegacyRef<HTMLDivElement> }) => JSX.Element) => {
-	class LogCom extends React.Component<{ hoc: LegacyRef<HTMLDivElement> }> {
-		constructor(props: { hoc: LegacyRef<HTMLDivElement> }) {
-			super(props);
-		}
-		render(): React.ReactNode {
-			const { hoc } = this.props;
-			return <Component hoc={hoc}></Component>;
-		}
-	}
-	const hocForWardRefCom = forwardRef<HTMLDivElement>((props, ref) => <LogCom {...props} hoc={ref}></LogCom>);
+const hocForWardRef = (Component: FC<{ onLoginHandler: Ref<OnLoginHandler> }>) => {
+	const LogCom: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) => {
+		return <Component onLoginHandler={onLoginHandler}></Component>;
+	};
+
+	const hocForWardRefCom = forwardRef<OnLoginHandler>((props, ref) => {
+		return <LogCom {...props} onLoginHandler={ref}></LogCom>;
+	});
 	hocForWardRefCom.displayName = 'hocForWardRefCom';
 	return hocForWardRefCom;
 };
 
-const Login = ({ hoc }: { hoc: LegacyRef<HTMLDivElement> }) => {
-	return <div ref={hoc}>登录</div>;
+const Login: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) => {
+	const el = useRef<HTMLDivElement | null>(null);
+
+	useImperativeHandle(
+		onLoginHandler,
+		() => {
+			return {
+				login: () => {
+					// console.log(el.current?.innerText);
+				}
+			};
+		},
+		[]
+	);
+	return <div ref={el}>登录</div>;
 };
 
 const LoginHoc = hocForWardRef(Login);
