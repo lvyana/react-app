@@ -9,42 +9,23 @@ import { Button } from 'antd';
 const MyUseMemo = () => {
 	const [value, setValue] = useState(10);
 
-	const [name, setName] = useState('tt');
+	const [name, setName] = useState('0');
 
-	const getProductName = () => {
-		// console.log('getProductName触发了', name);
-
-		return name;
-	};
-	const memoGetProductName = useMemo(() => {
-		// console.log('memo_getProductName触发了', name);
-
-		return name;
-	}, [name]);
-
-	useEffect(() => {
-		// console.log('name触发');
-		getProductName();
-	}, [name]);
-
-	useEffect(() => {
-		// console.log('value触发');
-	}, [value]);
-
+	const date = useMemo(() => Date.now(), [name]);
 	return (
 		<div>
-			{getProductName()}
+			name改变触发:{date}
 			<div>
 				<Button type="link" onClick={() => setValue(value + 1)}>
-					value+
+					value
 				</Button>
 				{value}
 			</div>
 			<div>
 				<Button type="link" onClick={() => setName(Math.floor(Math.random() * 100) + '1')}>
-					name+
+					name
 				</Button>
-				{name}-{memoGetProductName}
+				{name}
 			</div>
 		</div>
 	);

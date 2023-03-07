@@ -6,33 +6,41 @@
 import React, { FC, useState, memo, useCallback } from 'react';
 import { Button } from 'antd';
 
+interface MyUseCallbackItemProps {
+	addFunc: () => void;
+	item: string | null;
+}
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const MyUseCallback = () => {
-	// console.log('父组件更新了');
+	const [count, setCount] = useState<string | null>(null);
 
-	const [item, setItem] = useState(0);
+	const [callbackCount, setCallbackCount] = useState<string | null>(null);
 
-	const [count, setCount] = useState(1);
+	const onCallbackClick = useCallback(() => {
+		const date = new Date(Date.now()).toString();
+		setCallbackCount(date);
+	}, []);
 
-	const addFunc = useCallback(() => {
-		// console.log('addFunc');
-		setItem(item + 1);
-	}, [item]);
-
-	const jianFunc = () => {
-		// console.log('jianFunc');
-		setCount(count - 1);
+	const onClick = () => {
+		const date = new Date(Date.now()).toString();
+		setCount(date);
 	};
 	return (
 		<div>
 			<div>
-				我是父组件: {count}
-				<Button type="link" onClick={jianFunc}>
-					-
+				<Button type="link" onClick={onClick}>
+					普通点击
+				</Button>
+				<Button type="link" onClick={onCallbackClick}>
+					useCallback点击
 				</Button>
 			</div>
 
 			<div>
-				<MyUseCallbackItem item={item} addFunc={addFunc}></MyUseCallbackItem>
+				<MyItem item={count} addFunc={onClick}></MyItem>
+				<MyUseCallbackItem item={callbackCount} addFunc={onCallbackClick}></MyUseCallbackItem>
 			</div>
 		</div>
 	);
@@ -40,20 +48,30 @@ const MyUseCallback = () => {
 
 export default MyUseCallback;
 
-interface MyUseCallbackItemProps {
-	addFunc: () => void;
-	item: number;
-}
-// eslint-disable-next-line react/display-name
-const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
-	// console.log('子组件我更新了');
+const MyItem = ({ item, addFunc }: MyUseCallbackItemProps) => {
+	console.log('普通子组件我更新了');
 
 	return (
 		<div>
-			我是子组件: {item}
+			我是子组件: {Date.now()}
+			<Button type="link" onClick={addFunc}>
+				+
+			</Button>
+		</div>
+	);
+};
+
+const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
+	console.log('useCallback子组件我更新了');
+
+	return (
+		<div>
+			我是子组件: {Date.now()}
 			<Button type="link" onClick={addFunc}>
 				+
 			</Button>
 		</div>
 	);
 });
+
+MyUseCallbackItem.displayName = 'MyUseCallbackItem';

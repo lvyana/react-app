@@ -148,6 +148,11 @@ const menuList: Router[] = [
 				title: '表单生成',
 				path: '/plugin/dnd',
 				icon: 'icon-xinpin'
+			},
+			{
+				title: '数据切片',
+				path: '/plugin/burst',
+				icon: 'icon-xinpin'
 			}
 		]
 	},

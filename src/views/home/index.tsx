@@ -38,11 +38,11 @@ const Home = () => {
 						<DemoPie></DemoPie>
 					</Icard>
 				</Col>
-				<Col span={24} className="mt-4">
+				{/* <Col span={24} className="mt-4">
 					<Icard>
 						<DemoOrganizationGraph></DemoOrganizationGraph>
 					</Icard>
-				</Col>
+				</Col> */}
 			</Row>
 		</>
 	);

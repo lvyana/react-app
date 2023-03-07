@@ -77,6 +77,14 @@ const Layouts = () => {
 		boxShadow: '0 3px 6px 0 rgb(195, 195, 195)'
 	};
 
+	const layoutContent: React.CSSProperties = {
+		position: 'relative',
+		padding: '8px',
+		marginTop: '105px',
+		overflow: 'auto'
+		// width: `calc(100% - ${collapsedWidth})`
+	};
+
 	return (
 		<Layout className="my-layout" style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={600}>
@@ -99,7 +107,7 @@ const Layouts = () => {
 					</Header>
 					<TabsMain />
 				</div>
-				<Content className="layout-content">
+				<Content style={layoutContent}>
 					<Outlet />
 				</Content>
 			</Layout>

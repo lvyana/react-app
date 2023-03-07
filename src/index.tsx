@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -37,7 +37,9 @@ function render() {
 				<Theme>
 					<BrowserRouter basename={'/'}>
 						<ErrorBoundary>
-							<App />
+							<StrictMode>
+								<App />
+							</StrictMode>
 						</ErrorBoundary>
 					</BrowserRouter>
 				</Theme>

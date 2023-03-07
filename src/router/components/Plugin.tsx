@@ -21,6 +21,8 @@ const Pdf = lazy(() => import(/* webpackChunkName: "Pdf" */ '@/views/plugin/pdf'
 const I18n = lazy(() => import(/* webpackChunkName: "I18n" */ '@/views/plugin/i18n'));
 // dnd
 const Dnd = lazy(() => import(/* webpackChunkName: "Dnd" */ '@/views/plugin/dnd'));
+// dnd
+const Burstd = lazy(() => import(/* webpackChunkName: "Burstd" */ '@/views/plugin/burst'));
 
 // 插件的使用
 const plugin = [
@@ -31,7 +33,8 @@ const plugin = [
 	{ path: 'pdf', element: suspenseLoad(<Pdf />) },
 	{ path: 'responsive', element: suspenseLoad(<Responsive />) },
 	{ path: 'i18n', element: suspenseLoad(<I18n />) },
-	{ path: 'dnd', element: suspenseLoad(<Dnd />) }
+	{ path: 'dnd', element: suspenseLoad(<Dnd />) },
+	{ path: 'burst', element: suspenseLoad(<Burstd />) }
 ];
 
 export default plugin;
