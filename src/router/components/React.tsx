@@ -21,7 +21,7 @@ const MyForwardRef = lazy(() => import(/* webpackChunkName: "MyForwardRef" */ '@
 const Rtk = lazy(() => import(/* webpackChunkName: "Rtk" */ '@/views/reactCom/rtk')); // RTK
 
 // react API Rtk 相关等
-const reactCom = [
+const reactHooksCom = [
 	{ index: true, element: <Navigate to="myUseReducer" /> },
 	{
 		path: 'myUseState',
@@ -62,9 +62,15 @@ const reactCom = [
 	{
 		path: 'myForwardRef',
 		element: suspenseLoad(<MyForwardRef />)
-	},
-
-	{ path: 'rtk', element: suspenseLoad(<Rtk />) }
+	}
 ];
 
+const reactCom = [
+	{ index: true, element: <Navigate to="hooks" /> },
+	{
+		path: 'hooks',
+		children: [...reactHooksCom]
+	},
+	{ path: 'rtk', element: suspenseLoad(<Rtk />) }
+];
 export default reactCom;

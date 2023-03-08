@@ -40,19 +40,57 @@ const Menulist = () => {
 	const { selectMenuPath } = useRouterHooks();
 
 	useEffect(() => {
-		onOpenChange([openpent(pathname)]);
+		onOpenChange(getSelectUrlArr(pathname));
 	}, [pathname]);
 
-	const [openKeys, setopenKeys] = useState<Array<string>>([]);
+	const [openKeys, setOpenKeys] = useState<Array<string>>([]);
 
-	const onOpenChange = (key: string[]) => {
-		setopenKeys(key);
+	const onOpenChange = (keys: string[]) => {
+		setOpenKeys(keys);
 	};
 
-	const openpent = (data: string) => {
-		const a = data.split('/');
-		a.splice(a.length - 1, 1);
-		return a.join('/');
+	/**
+	 * @method 处理路由
+	 * @param url 当前路径 /react/hooks/xxx
+	 * @returns ['/react','/react/hooks']
+	 */
+	const getSelectUrlArr = (url: string) => {
+		console.log(
+			url.split('/')?.reduce<string[]>((prevState, currentState, index, arr) => {
+				// 判空
+				if (!currentState) return prevState;
+				// 删除最后一个
+				if (arr.length - 1 === index) return prevState;
+				let newCurrent = '';
+
+				if (prevState.length === 0) {
+					newCurrent = '/' + currentState;
+				} else {
+					// ['/react', '/react/hooks'] + 'xxxx'
+					newCurrent = [prevState[prevState.length - 1], currentState].join('/');
+				}
+
+				return [...prevState, newCurrent];
+			}, [])
+		);
+
+		return url.split('/')?.reduce<string[]>((prevState, currentState, index, arr) => {
+			// 判空
+			if (!currentState) return prevState;
+			// 删除最后一个
+			if (arr.length - 1 === index) return prevState;
+
+			let newCurrent = '';
+
+			if (prevState.length === 0) {
+				newCurrent = '/' + currentState;
+			} else {
+				// ['/react', '/react/hooks'] + 'xxxx'
+				newCurrent = [prevState[prevState.length - 1], currentState].join('/');
+			}
+
+			return [...prevState, newCurrent];
+		}, []);
 	};
 
 	const menuList = useAppSelector(GET_ROUTER);
@@ -60,7 +98,7 @@ const Menulist = () => {
 	return (
 		<Menu
 			theme="light"
-			defaultOpenKeys={[openpent(pathname)]}
+			defaultOpenKeys={getSelectUrlArr(pathname)}
 			defaultSelectedKeys={[selectMenuPath || pathname]}
 			openKeys={openKeys}
 			onOpenChange={onOpenChange}

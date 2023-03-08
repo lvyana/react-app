@@ -35,54 +35,61 @@ const menuList: Router[] = [
 		icon: 'icon-qianbao',
 		children: [
 			{
-				title: 'MyUseState',
-				path: '/react/myUseState',
-				icon: 'icon-kongjian'
-			},
-			{
-				title: 'MyUseEffect',
-				path: '/react/myUseEffect',
-				icon: 'icon-fenxiangerweima'
-			},
-			{
-				title: 'MyUseLayoutEffect',
-				path: '/react/myUseLayoutEffect',
-				icon: 'icon-wodemaidan'
-			},
-			{
-				title: 'MyUseReducer',
-				path: '/react/myUseReducer',
-				icon: 'icon-gouwu'
-			},
-			{
-				title: 'MyUseContext',
-				path: '/react/myUseContext',
-				icon: 'icon-gouwu'
-			},
-			{
-				title: 'MyUseMemo',
-				path: '/react/myUseMemo',
-				icon: 'icon-zuji'
-			},
-			{
-				title: 'MyUseCallback',
-				path: '/react/myUseCallback',
-				icon: 'icon-ditu'
-			},
-			{
-				title: 'MyUseRef',
-				path: '/react/myUseRef',
-				icon: 'icon-youhuiquan'
-			},
-			{
-				title: 'MySuspense',
-				path: '/react/mySuspense',
-				icon: 'icon-dingdan'
-			},
-			{
-				title: 'MyForwardRef',
-				path: '/react/myForwardRef',
-				icon: 'icon-paimai'
+				title: 'hooks',
+				path: '/react/hooks',
+				icon: 'icon-qianbao',
+				children: [
+					{
+						title: 'MyUseState',
+						path: '/react/hooks/myUseState',
+						icon: 'icon-kongjian'
+					},
+					{
+						title: 'MyUseEffect',
+						path: '/react/hooks/myUseEffect',
+						icon: 'icon-fenxiangerweima'
+					},
+					{
+						title: 'MyUseLayoutEffect',
+						path: '/react/hooks/myUseLayoutEffect',
+						icon: 'icon-wodemaidan'
+					},
+					{
+						title: 'MyUseReducer',
+						path: '/react/hooks/myUseReducer',
+						icon: 'icon-gouwu'
+					},
+					{
+						title: 'MyUseContext',
+						path: '/react/hooks/myUseContext',
+						icon: 'icon-gouwu'
+					},
+					{
+						title: 'MyUseMemo',
+						path: '/react/hooks/myUseMemo',
+						icon: 'icon-zuji'
+					},
+					{
+						title: 'MyUseCallback',
+						path: '/react/hooks/myUseCallback',
+						icon: 'icon-ditu'
+					},
+					{
+						title: 'MyUseRef',
+						path: '/react/hooks/myUseRef',
+						icon: 'icon-youhuiquan'
+					},
+					{
+						title: 'MySuspense',
+						path: '/react/hooks/mySuspense',
+						icon: 'icon-dingdan'
+					},
+					{
+						title: 'MyForwardRef',
+						path: '/react/hooks/myForwardRef',
+						icon: 'icon-paimai'
+					}
+				]
 			},
 			{
 				title: 'Rtk',
