@@ -18,13 +18,15 @@ import menuLogo from '@/assets/images/menu.png';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
+// width小于650 左侧隐藏
+const SIDER_MIN_WIDTH = 650;
 
 const Layouts = () => {
 	const [token] = useThemeHooks();
 
 	useApi();
 
-	const { isShow } = useResponsiveMin(600);
+	const { isShow } = useResponsiveMin(SIDER_MIN_WIDTH);
 
 	useEffect(() => {
 		if (isShow) {
@@ -87,7 +89,7 @@ const Layouts = () => {
 
 	return (
 		<Layout className="my-layout" style={{ minHeight: '100vh' }}>
-			<IresponsiveMin MinWidth={600}>
+			<IresponsiveMin MinWidth={SIDER_MIN_WIDTH}>
 				<Sider
 					className="layout-transition"
 					zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
