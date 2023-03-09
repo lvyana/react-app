@@ -24,9 +24,18 @@ const SIDER_MIN_WIDTH = 650;
 const Layouts = () => {
 	const [token] = useThemeHooks();
 
+	// 初始化api数据
 	useApi();
 
 	const { isShow } = useResponsiveMin(SIDER_MIN_WIDTH);
+
+	useEffect(() => {
+		if (isShow) {
+			setCollapsedWidth(0);
+		} else {
+			setCollapsedWidth(200);
+		}
+	}, [isShow]);
 
 	// 菜单收齐打开
 	const [collapsed, setcollapsed] = useState(false);
