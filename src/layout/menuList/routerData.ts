@@ -105,6 +105,11 @@ const menuList: Router[] = [
 						title: 'reactDom',
 						path: '/react/reactDom/createPortal',
 						icon: 'icon-xinpin'
+					},
+					{
+						title: 'flushSync',
+						path: '/react/reactDom/flushSync',
+						icon: 'icon-xinpin'
 					}
 				]
 			},

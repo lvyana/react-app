@@ -1,7 +1,7 @@
 /**
  * @file createPortal
  * @author ly
- * @createDate
+ * @createDate 2023年3月10日
  */
 import React, { FC, ReactPortal, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -17,6 +17,7 @@ import { createPortal } from 'react-dom';
 const MyCreatePortal = () => {
 	return (
 		<div>
+			<div> createPortal(child, container)的入参： child：任何可渲染的子元素 container：是一个DOM元素 </div>
 			hello
 			<Child>
 				<div>挂载到child身上</div>

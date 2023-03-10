@@ -22,6 +22,7 @@ const MyUseTransition = lazy(() => import(/* webpackChunkName: "MyUseTransition"
 
 // reactDom
 const MyCreatePortal = lazy(() => import(/* webpackChunkName: "MyCreatePortal" */ '@/views/reactCom/reactDom/createPortal'));
+const MyFlushSync = lazy(() => import(/* webpackChunkName: "MyFlushSync" */ '@/views/reactCom/reactDom/flushSync'));
 
 const Rtk = lazy(() => import(/* webpackChunkName: "Rtk" */ '@/views/reactCom/rtk')); // RTK
 
@@ -79,6 +80,10 @@ const reactDomCom = [
 	{
 		path: 'createPortal',
 		element: suspenseLoad(<MyCreatePortal />)
+	},
+	{
+		path: 'flushSync',
+		element: suspenseLoad(<MyFlushSync />)
 	}
 ];
 const reactCom = [
