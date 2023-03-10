@@ -43,8 +43,10 @@ const Menulist = () => {
 		onOpenChange(getSelectUrlArr(pathname));
 	}, [pathname]);
 
+	// 当前展开的 SubMenu 菜单项 key 数组
 	const [openKeys, setOpenKeys] = useState<Array<string>>([]);
 
+	// SubMenu 展开/关闭的回调
 	const onOpenChange = (keys: string[]) => {
 		setOpenKeys(keys);
 	};
@@ -55,25 +57,6 @@ const Menulist = () => {
 	 * @returns ['/react','/react/hooks']
 	 */
 	const getSelectUrlArr = (url: string) => {
-		console.log(
-			url.split('/')?.reduce<string[]>((prevState, currentState, index, arr) => {
-				// 判空
-				if (!currentState) return prevState;
-				// 删除最后一个
-				if (arr.length - 1 === index) return prevState;
-				let newCurrent = '';
-
-				if (prevState.length === 0) {
-					newCurrent = '/' + currentState;
-				} else {
-					// ['/react', '/react/hooks'] + 'xxxx'
-					newCurrent = [prevState[prevState.length - 1], currentState].join('/');
-				}
-
-				return [...prevState, newCurrent];
-			}, [])
-		);
-
 		return url.split('/')?.reduce<string[]>((prevState, currentState, index, arr) => {
 			// 判空
 			if (!currentState) return prevState;
