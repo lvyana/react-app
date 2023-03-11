@@ -19,13 +19,13 @@ const Headerregion = () => {
 	return (
 		<>
 			<Row justify="space-around" align="middle">
-				<Col flex="280px">
-					{/* 菜单 */}
+				<Col flex="350px">
+					{/* 面包屑 */}
 					<Crumb></Crumb>
 				</Col>
 				<Col flex="auto">
 					<Row justify="end" id="header-icon-function">
-						<IresponsiveMin MinWidth={800}>
+						<IresponsiveMin MinWidth={890}>
 							<Col>
 								{/* 搜索 */}
 								<Search></Search>

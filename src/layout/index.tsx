@@ -18,13 +18,16 @@ import menuLogo from '@/assets/images/menu.png';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
+// width小于650 左侧隐藏
+const SIDER_MIN_WIDTH = 650;
 
 const Layouts = () => {
 	const [token] = useThemeHooks();
 
+	// 初始化api数据
 	useApi();
 
-	const { isShow } = useResponsiveMin(600);
+	const { isShow } = useResponsiveMin(SIDER_MIN_WIDTH);
 
 	useEffect(() => {
 		if (isShow) {
@@ -43,13 +46,16 @@ const Layouts = () => {
 	};
 
 	useEffect(() => {
-		if (isShow) return;
-		if (collapsed) {
-			setCollapsedWidth(80);
+		if (isShow) {
+			setCollapsedWidth(0);
 		} else {
-			setCollapsedWidth(200);
+			if (collapsed) {
+				setCollapsedWidth(80);
+			} else {
+				setCollapsedWidth(200);
+			}
 		}
-	}, [collapsed]);
+	}, [isShow, collapsed]);
 
 	// 用户指导
 	useEffect(() => {
@@ -87,7 +93,7 @@ const Layouts = () => {
 
 	return (
 		<Layout className="my-layout" style={{ minHeight: '100vh' }}>
-			<IresponsiveMin MinWidth={600}>
+			<IresponsiveMin MinWidth={SIDER_MIN_WIDTH}>
 				<Sider
 					className="layout-transition"
 					zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
@@ -101,7 +107,7 @@ const Layouts = () => {
 			</IresponsiveMin>
 
 			<Layout className="layout-transition" style={{ position: 'relative', marginLeft: collapsedWidth }}>
-				<div className="layout-transition" style={{ position: 'fixed', zIndex: 1, width: `calc(100% - ${collapsedWidth}px)` }}>
+				<div className="layout-transition" style={{ position: 'fixed', zIndex: 2, width: `calc(100% - ${collapsedWidth}px)` }}>
 					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>

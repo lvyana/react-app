@@ -37,9 +37,9 @@ function render() {
 				<Theme>
 					<BrowserRouter basename={'/'}>
 						<ErrorBoundary>
-							<StrictMode>
-								<App />
-							</StrictMode>
+							{/* <StrictMode> */}
+							<App />
+							{/* </StrictMode> */}
 						</ErrorBoundary>
 					</BrowserRouter>
 				</Theme>
