@@ -1,48 +1,64 @@
 import { Button } from 'antd';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { Fragment, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+
+let arr = Array.from({ length: 40000 }, (v, k) => k);
+const eachRenderNum = 1000; // 每次渲染数量
 
 const Burst = () => {
-	const [list, setList] = useState<number[]>([]);
+	const [list, setList] = useState<ReactNode[]>([]);
 	const count = useRef(0);
 	const time = useRef(0);
 
 	const onGeneral = () => {
-		let arr6 = Array.from({ length: 20000 }, (v, k) => k);
-		setList(arr6);
+		let arr = Array.from({ length: 100000 }, (v, k) => k);
+		setList([ReandList(0, arr)]);
 	};
 
-	useEffect(() => {
-		count.current = list.length;
-	}, [list]);
+	const getArr = () => {
+		const times = Math.ceil(arr.length / eachRenderNum);
+		const listItem = arr.slice(count.current * eachRenderNum, (count.current + 1) * eachRenderNum);
 
-	const getArr = useCallback((length = 5000) => {
-		if (count.current >= 100000) {
+		if (count.current >= times) {
 			time.current = Date.now() - time.current;
-			console.log(time.current);
-
 			return;
 		}
-		let arr6 = Array.from({ length }, (v, k) => k);
+
 		setList((value) => {
-			return [...value, ...arr6];
+			return [...value, ReandList(count.current, listItem)];
 		});
+		count.current += 1;
 		requestIdleCallback(
 			() => {
-				getArr(5000);
+				getArr();
 			},
 			{
 				timeout: 1500
 			}
 		);
-	}, []);
+	};
+
+	const ReandList = (index: number, listItem: number[]) => {
+		return (
+			<Fragment key={index}>
+				{listItem.map((item, i) => {
+					return (
+						<div style={{ border: '1px solid red' }} className="m-1" key={i}>
+							{index} {i}
+						</div>
+					);
+				})}
+			</Fragment>
+		);
+	};
 
 	const onCallback = () => {
 		console.log(Date.now());
 		time.current = Date.now();
-		getArr(5000);
+		getArr();
 	};
+
 	return (
-		<div style={{ height: 500, overflow: 'auto' }}>
+		<>
 			<div>
 				<Button type="primary" onClick={onCallback}>
 					优化渲染
@@ -53,19 +69,15 @@ const Burst = () => {
 				<Button
 					type="primary"
 					onClick={() => {
+						count.current = 0;
 						setList([]);
 					}}>
 					清除数据
 				</Button>
+				<div>渲染时间:{time.current}</div>
 			</div>
-			{list.map((item, index) => {
-				return (
-					<div style={{ border: '1px solid red' }} className="m-1" key={index}>
-						{index}
-					</div>
-				);
-			})}
-		</div>
+			<div style={{ height: 500, overflow: 'auto' }}>{list}</div>
+		</>
 	);
 };
 
