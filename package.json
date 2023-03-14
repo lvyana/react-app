@@ -12,6 +12,7 @@
 		"antd": "^5.2.2",
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",
+		"easy-typer-js": "^2.1.0",
 		"html2canvas": "^1.4.1",
 		"i18next": "^21.8.16",
 		"i18next-browser-languagedetector": "^6.1.4",

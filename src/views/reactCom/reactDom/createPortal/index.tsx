@@ -5,6 +5,7 @@
  */
 import React, { FC, ReactPortal, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import useEasyTyper from '@/pluginComponents/easyTyper';
 
 /**
  * createPortal(child, container)的入参：
@@ -17,7 +18,7 @@ import { createPortal } from 'react-dom';
 const MyCreatePortal = () => {
 	return (
 		<div>
-			<div> createPortal(child, container)的入参： child：任何可渲染的子元素 container：是一个DOM元素 </div>
+			<DynamicText></DynamicText>
 			hello
 			<Child>
 				<div>挂载到child身上</div>
@@ -45,3 +46,8 @@ const Child: FC<{ children: React.ReactNode }> = ({ children }) => {
 	);
 };
 export default MyCreatePortal;
+
+const DynamicText = () => {
+	const { output } = useEasyTyper('createPortal(child, container)的入参： child：任何可渲染的子元素 container：是一个DOM元素');
+	return <div>{output} </div>;
+};
