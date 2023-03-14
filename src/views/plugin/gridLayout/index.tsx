@@ -56,10 +56,20 @@ const urlArr = [
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
@@ -72,6 +82,23 @@ const urlArr = [
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
@@ -79,7 +106,41 @@ const urlArr = [
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
 	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
-	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg'
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/6.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/7.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/4.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/5.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/8.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/1.jpg',
+	'https://project-1308388249.cos.ap-guangzhou.myqcloud.com/3.jpg'
 ];
 
 const CLOS = 8;
@@ -91,11 +152,10 @@ const LAYOUT_WIDTH_ITEM = LAYOUT_WIDTH / CLOS;
 
 const DemoGridLayout: FC<GridLayoutProps> = ({ layout = layouts, onLayoutChange, cols = CLOS, width = LAYOUT_WIDTH }) => {
 	const children = React.useMemo(() => {
-		console.log(layout);
-
-		return layout.map((val) => {
+		return layout.map((val, i) => {
+			const { x, y, w, h } = val;
 			return (
-				<div key={val.id} data-grid={val} className="bg-blue-100">
+				<div key={uuidv4()} data-grid={{ x, y, w, h }} className="bg-blue-100">
 					{val.children}
 				</div>
 			);
@@ -139,7 +199,7 @@ const ImgGrid = () => {
 	};
 
 	const num = useRef(0);
-	const count = 8;
+	const count = 10;
 
 	const a = async () => {
 		num.current += 1;
@@ -151,7 +211,7 @@ const ImgGrid = () => {
 			}
 
 			const h = await ImgEl(urlArr[i + (num.current - 1) * count]);
-			arr.splice(i, 0, {
+			arr.push({
 				x: (i + (num.current - 1) * count) % CLOS,
 				y: Math.floor((i + (num.current - 1) * count) / CLOS),
 				w: 1,
@@ -169,6 +229,10 @@ const ImgGrid = () => {
 			return [...value, ...arr];
 		});
 		if (count * (num.current - 1) >= urlArr.length) return;
+		// requestAnimationFrame(() => {
+		// 	a();
+		// });
+
 		requestIdleCallback(
 			() => {
 				a();
