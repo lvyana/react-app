@@ -12,8 +12,9 @@ import { Context } from './context';
 import type { importJsonForm } from './components/ImportJson';
 import type { OnOkOrCancelType } from '@/antdComponents/iModal';
 import TemplateForm from './components/TemplateForm';
+import GeneratCode from './components/GeneratCode';
 
-type ButtonType = 'JSON' | 'import' | 'template';
+type ButtonType = 'JSON' | 'import' | 'template' | 'generatCode';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -35,6 +36,12 @@ const OperationBtns = () => {
 		{
 			name: '导入JSON',
 			type: 'import',
+			btType: 'primary',
+			className: 'ml-1'
+		},
+		{
+			name: '生成代码',
+			type: 'generatCode',
 			btType: 'primary',
 			className: 'ml-1'
 		}
@@ -73,16 +80,6 @@ const OperationBtns = () => {
 		}
 	};
 
-	const onClickBtn: OnClickBtn<ButtonType> = (type) => {
-		if (type === 'JSON') {
-			setJsonViewOpen(true);
-		} else if (type === 'import') {
-			setImportJsonOpen(true);
-		} else if (type === 'template') {
-			setTemplateFormOpen(true);
-		}
-	};
-
 	// TemplateForm
 	const [templateFormOpen, setTemplateFormOpen] = useState(false);
 	const [templateFormLoading, setTemplateFormLoading] = useState(false);
@@ -96,6 +93,30 @@ const OperationBtns = () => {
 		}
 	};
 
+	// generatCode
+	const [generatCodeOpen, setgeneratCodeOpen] = useState(false);
+	const [generatCodeLoading, setgeneratCode] = useState(false);
+
+	const generatCodeModalBtn: OnOkOrCancelType = (type) => {
+		if (type === 'ok') {
+			setgeneratCodeOpen(false);
+		} else {
+			setgeneratCodeOpen(false);
+		}
+	};
+
+	const onClickBtn: OnClickBtn<ButtonType> = (type) => {
+		if (type === 'JSON') {
+			setJsonViewOpen(true);
+		} else if (type === 'import') {
+			setImportJsonOpen(true);
+		} else if (type === 'template') {
+			setTemplateFormOpen(true);
+		} else if (type === 'generatCode') {
+			setgeneratCodeOpen(true);
+		}
+	};
+
 	return (
 		<div className="mb-2">
 			<Ibutton buttonList={buttonList} onClick={onClickBtn}></Ibutton>
@@ -106,6 +127,7 @@ const OperationBtns = () => {
 				onOkOrCancel={templateFun}
 				confirmLoading={templateFormLoading}
 				form={templateFormForm}></TemplateForm>
+			<GeneratCode open={generatCodeOpen} onOkOrCancel={generatCodeModalBtn} confirmLoading={generatCodeLoading}></GeneratCode>
 		</div>
 	);
 };

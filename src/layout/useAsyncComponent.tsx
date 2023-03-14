@@ -46,7 +46,7 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 				// console.log(1);
 
 				resolve(menuList);
-			}, 200);
+			}, 100);
 		});
 	};
 
