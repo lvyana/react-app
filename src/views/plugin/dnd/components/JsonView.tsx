@@ -1,7 +1,7 @@
 /**
- * @name 模板
+ * @name 生成json
  * @user ly
- * @date
+ * @date 2023年3月13日
  */
 import React, { FC, useContext, useEffect, useState } from 'react';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
@@ -67,7 +67,7 @@ const JsonView: FC<JsonViewProps> = ({ open, onOkOrCancel, confirmLoading }) => 
 	};
 
 	return (
-		<Imodal title={'json视图'} width={800} open={open} onOkOrCancel={onOkOrCancel} confirmLoading={confirmLoading}>
+		<Imodal title={'json'} width={800} open={open} onOkOrCancel={onOkOrCancel} confirmLoading={confirmLoading}>
 			<Segmented options={JSON_OPTIONS} value={selectJsonType} onChange={onJsonChange} />
 			<ReactJson {...propsVal} />
 		</Imodal>
