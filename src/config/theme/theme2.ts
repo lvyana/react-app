@@ -6,7 +6,8 @@
 export default {
 	token: {
 		colorPrimary: '#000000e0',
-		colorBgBase: '#686767',
-		colorTextBase: '#000000e0'
+		colorBgBase: '#1f1f1f',
+		colorTextBase: '#CCCCCC',
+		colorPrimaryText: '#CCCCCC'
 	}
 };
