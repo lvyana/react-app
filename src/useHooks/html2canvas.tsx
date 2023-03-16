@@ -1,7 +1,7 @@
 /**
- * @name html2canvas下载图片
- * @user ly
- * @date 2023年1月10日
+ * @file html2canvas下载图片
+ * @author ly
+ * @createDate 2023年1月10日
  */
 import React from 'react';
 import html2canvas from 'html2canvas';

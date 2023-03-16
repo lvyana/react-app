@@ -1,7 +1,7 @@
 /**
- *	@name 实现 计算宽度 marign
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现 计算宽度 marign
+ * @author ly
+ * @createDate 日期：2020年4月27日
  */
 import React, { useState, useEffect, useMemo } from 'react';
 

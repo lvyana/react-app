@@ -217,6 +217,7 @@ const ImgGrid = () => {
 				w: 1,
 				h: Math.floor(h),
 				children: createElement('img', {
+					key: uuidv4(),
 					width: LAYOUT_WIDTH_ITEM,
 					src: urlArr[i + (num.current - 1) * count],
 					className: i + (num.current - 1) * count
@@ -247,10 +248,6 @@ const ImgGrid = () => {
 
 	const [readerUrlArr, setreaderUrlArr] = useState<LayoutsParams[]>([]);
 
-	return (
-		<div id="img">
-			<DemoGridLayout layout={readerUrlArr}></DemoGridLayout>
-		</div>
-	);
+	return <DemoGridLayout layout={readerUrlArr}></DemoGridLayout>;
 };
 export default ImgGrid;
