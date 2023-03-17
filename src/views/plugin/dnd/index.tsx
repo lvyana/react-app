@@ -12,27 +12,30 @@ import GenerateForm from './GenerateForm';
 import EditForm from './EditForm';
 import DndContext from './context';
 import OperationBtns from './OperationBtns';
+import Icard from '@/antdComponents/iCard';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dnd = () => {
 	return (
-		<DndContext>
-			<OperationBtns />
-			<Row gutter={8}>
-				<DndProvider backend={HTML5Backend}>
+		<Icard>
+			<DndContext>
+				<OperationBtns />
+				<Row gutter={8}>
+					<DndProvider backend={HTML5Backend}>
+						<Col span={6}>
+							<ExamplesList />
+						</Col>
+						<Col span={12}>
+							<GenerateForm />
+						</Col>
+					</DndProvider>
 					<Col span={6}>
-						<ExamplesList />
+						<EditForm />
 					</Col>
-					<Col span={12}>
-						<GenerateForm />
-					</Col>
-				</DndProvider>
-				<Col span={6}>
-					<EditForm />
-				</Col>
-			</Row>
-		</DndContext>
+				</Row>
+			</DndContext>
+		</Icard>
 	);
 };
 

@@ -4,6 +4,7 @@
  * @createDate 2022年8月3日
  */
 import React, { ComponentType, FC, Suspense } from 'react';
+import Icard from '@/antdComponents/iCard';
 
 interface TestProps {
 	age: number;
@@ -30,11 +31,11 @@ const Test: FC<TestProps> = ({ rdata, age }) => {
 	const { name, say } = rdata;
 	// console.log('组件渲染');
 	return (
-		<div>
+		<Icard>
 			<div> hello , my name is {name} </div>
 			<div>age : {age} </div>
 			<div> i want to say {say} </div>
-		</div>
+		</Icard>
 	);
 };
 

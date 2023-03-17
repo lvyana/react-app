@@ -14,7 +14,7 @@ type ResizeParams = {
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const useResize = (Dom?: HTMLElement) => {
+const useResize = (Dom?: HTMLElement | null) => {
 	const [resize, setResize] = useState<ResizeParams>();
 
 	const ro = new ResizeObserver((entries, observer) => {
@@ -23,6 +23,7 @@ const useResize = (Dom?: HTMLElement) => {
 		for (const entry of entries) {
 			const { left, top, width, height } = entry.contentRect;
 			setResize({ left, top, width, height });
+
 			// console.log('Element:', entry.target);
 			// console.log(`Element's size: ${width}px x ${height}px`);
 			// console.log(`Element's paddings: ${top}px ; ${left}px`);
@@ -34,7 +35,7 @@ const useResize = (Dom?: HTMLElement) => {
 		return () => {
 			ro.unobserve(Dom || document.body);
 		};
-	}, []);
+	}, [Dom]);
 
 	return { resize };
 };

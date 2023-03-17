@@ -3,7 +3,8 @@
  * @author ly
  * @createDate 2020年11月7日
  */
-import React, { Children, cloneElement, FC, forwardRef, LegacyRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { FC, forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
+import Icard from '@/antdComponents/iCard';
 
 type OnLoginHandler = {
 	login: () => void;
@@ -26,11 +27,11 @@ const MyForwardRef = () => {
 
 	const onLoginHandler = useRef<OnLoginHandler | null>(null);
 	return (
-		<div>
+		<Icard>
 			<OrdinaryForWard ref={ordinary}></OrdinaryForWard>
 			<LoginHoc ref={onLoginHandler}></LoginHoc>
 			<div onClick={() => ordinary?.current?.cloneEl()}>切换</div>
-		</div>
+		</Icard>
 	);
 };
 

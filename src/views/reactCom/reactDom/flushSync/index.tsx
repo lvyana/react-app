@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Button } from 'antd';
 import { flushSync } from 'react-dom';
 import useEasyTyper from '@/pluginComponents/easyTyper';
+import Icard from '@/antdComponents/iCard';
 
 /**
  * flushSync：可以将回调函数中的更新任务，
@@ -31,7 +32,7 @@ const MyFlushSync = () => {
 	// console.log(count);
 
 	return (
-		<div>
+		<Icard>
 			<div> {output}</div>
 
 			<div style={{ padding: 20 }}>
@@ -40,7 +41,7 @@ const MyFlushSync = () => {
 					点击
 				</Button>
 			</div>
-		</div>
+		</Icard>
 	);
 };
 

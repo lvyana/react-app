@@ -8,6 +8,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
 // 引入对应的方法
 import { GET_LIST, getMovieData } from '@/store/reducers/log';
+import Icard from '@/antdComponents/iCard';
 
 const Rtk = () => {
 	// 通过useDispatch 派发事件
@@ -19,11 +20,11 @@ const Rtk = () => {
 	const list = useAppSelector(GET_LIST);
 
 	return (
-		<div>
+		<Icard>
 			{list.map((item) => {
 				return <div key={item.name}>{item.name}</div>;
 			})}
-		</div>
+		</Icard>
 	);
 };
 

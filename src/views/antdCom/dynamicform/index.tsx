@@ -24,6 +24,7 @@ import type {
 	SelectValueType
 } from '@/antdComponents/iForm/type';
 import type { UploadFile } from 'antd/lib/upload/interface';
+import Icard from '@/antdComponents/iCard';
 
 type FileChangeType = (info: { file: UploadFile; fileList: UploadFile[] }) => void;
 
@@ -362,7 +363,9 @@ const Dynamicform = () => {
 	const onFinish = () => {};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Iform<FormListType, object> formList={formList} form={form} />
+			<Icard>
+				<Iform<FormListType, object> formList={formList} form={form} />
+			</Icard>
 		</div>
 	);
 };

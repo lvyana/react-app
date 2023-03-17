@@ -1,5 +1,11 @@
+/**
+ * @file 数据切片
+ * @author ly
+ * @createDate 2023年3月17日
+ */
 import { Button } from 'antd';
 import React, { Fragment, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import Icard from '@/antdComponents/iCard';
 
 let arr = Array.from({ length: 40000 }, (v, k) => k);
 const eachRenderNum = 1000; // 每次渲染数量
@@ -58,7 +64,7 @@ const Burst = () => {
 	};
 
 	return (
-		<>
+		<Icard>
 			<div>
 				<Button type="primary" onClick={onCallback}>
 					优化渲染
@@ -77,7 +83,7 @@ const Burst = () => {
 				<div>渲染时间:{time.current}</div>
 			</div>
 			<div style={{ height: 500, overflow: 'auto' }}>{list}</div>
-		</>
+		</Icard>
 	);
 };
 

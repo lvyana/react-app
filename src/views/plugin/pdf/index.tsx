@@ -5,6 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
+import Icard from '@/antdComponents/iCard';
 import styles from './index.module.scss';
 
 const Pdf = () => {
@@ -36,15 +37,17 @@ const Pdf = () => {
 		e.preventDefault();
 	};
 	return (
-		<div className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
-			<Document file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'} onLoadSuccess={onDocumentLoadSuccess}>
-				<Page pageNumber={pageNumber} height={500} />
-			</Document>
-			<div className={styles.pdfBtn}>
-				<button onClick={onPreviousPage}>上一页</button> {pageNumber} of {numPages}
-				<button onClick={onNextPage}>下一页</button>
+		<Icard>
+			<div className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
+				<Document file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'} onLoadSuccess={onDocumentLoadSuccess}>
+					<Page pageNumber={pageNumber} height={500} />
+				</Document>
+				<div className={styles.pdfBtn}>
+					<button onClick={onPreviousPage}>上一页</button> {pageNumber} of {numPages}
+					<button onClick={onNextPage}>下一页</button>
+				</div>
 			</div>
-		</div>
+		</Icard>
 	);
 };
 

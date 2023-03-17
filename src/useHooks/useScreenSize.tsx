@@ -42,5 +42,5 @@ export const useWidth = (subtractWidth = 0) => {
 
 		setScrollWidth(width);
 	}, 500);
-	return [scrollWidth];
+	return { scrollWidth };
 };

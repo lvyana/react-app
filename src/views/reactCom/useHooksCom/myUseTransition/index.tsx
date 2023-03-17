@@ -5,6 +5,7 @@
  */
 import React, { useState, useTransition, useCallback } from 'react';
 import { debounce } from 'lodash';
+import Icard from '@/antdComponents/iCard';
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const MyUseTransition = () => {
@@ -25,7 +26,7 @@ const MyUseTransition = () => {
 		[]
 	);
 	return (
-		<div>
+		<Icard>
 			<span>
 				优化后输入框：
 				<input
@@ -51,7 +52,7 @@ const MyUseTransition = () => {
 				/>
 			</span>
 			{isPending ? <div>加载中...</div> : list.map((item, index) => <div key={index}>{item}</div>)}
-		</div>
+		</Icard>
 	);
 };
 
