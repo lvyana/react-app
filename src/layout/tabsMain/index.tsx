@@ -10,6 +10,7 @@ import menuList, { Router } from '@/layout/menuList/routerData';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useThemeHooks from '@/config/theme/useThemeHooks';
+import style from './index.module.scss';
 
 type ACTION = 'add' | 'remove';
 
@@ -100,7 +101,7 @@ const TabsMain = () => {
 	const size = useAppSelector(GET_SIZE);
 
 	return (
-		<>
+		<div className={style['tabs']}>
 			<Tabs
 				style={{ color: token.colorTextBase, backgroundColor: token.colorBgLayout }}
 				hideAdd
@@ -110,7 +111,7 @@ const TabsMain = () => {
 				onEdit={onEdit}
 				size={size}
 				items={panes.map((item) => getTabs(item.title, item.path, item.disabled, item.closable))}></Tabs>
-		</>
+		</div>
 	);
 };
 export default TabsMain;

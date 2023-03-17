@@ -3,9 +3,10 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import { Button } from 'antd';
 import React from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
+import Icard from '@/antdComponents/iCard';
+import { Button } from 'antd';
 
 const RouterDemo = () => {
 	const navigate = useNavigate();
@@ -17,7 +18,7 @@ const RouterDemo = () => {
 		}
 	};
 	return (
-		<div>
+		<Icard>
 			RouterCom
 			<Button type="link" onClick={() => onRender(1)}>
 				加载test
@@ -26,7 +27,7 @@ const RouterDemo = () => {
 				加载list
 			</Button>
 			<Outlet />
-		</div>
+		</Icard>
 	);
 };
 

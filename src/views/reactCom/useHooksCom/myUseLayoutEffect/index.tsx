@@ -4,6 +4,7 @@
  * @createDate 2023年1月3日
  */
 import React, { useState, useLayoutEffect, useEffect } from 'react';
+import Icard from '@/antdComponents/iCard';
 
 const MyUseLayoutEffect = () => {
 	const [first, setfirst] = useState(0);
@@ -27,7 +28,7 @@ const MyUseLayoutEffect = () => {
 		}
 		setfirst(4);
 	}, []);
-	return <div>{first}</div>;
+	return <Icard>{first}</Icard>;
 };
 
 export default MyUseLayoutEffect;

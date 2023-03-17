@@ -5,6 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
+import Icard from '@/antdComponents/iCard';
 
 const Player = () => {
 	const [playing, setplaying] = useState(false);
@@ -15,7 +16,7 @@ const Player = () => {
 	}, []);
 
 	return (
-		<div>
+		<Icard>
 			123
 			<div className="player-wrapper">
 				<ReactPlayer
@@ -40,7 +41,7 @@ const Player = () => {
 				/>
 			</div>
 			<div style={{ height: 1000 }}></div>
-		</div>
+		</Icard>
 	);
 };
 

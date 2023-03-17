@@ -5,6 +5,7 @@
  */
 import React, { FC, LegacyRef, useEffect, useRef, useState } from 'react';
 import { Button } from 'antd';
+import Icard from '@/antdComponents/iCard';
 
 interface SonProps {
 	sonRef: LegacyRef<HTMLDivElement>;
@@ -43,11 +44,11 @@ const MyUseRef = () => {
 		// setfirst(first + 1);
 	};
 	return (
-		<div>
+		<Icard>
 			add:{count}----- ref:{Ref.current}
 			<Button onClick={addFunc}>+</Button>
 			<Son sonRef={sonRef}></Son>
-		</div>
+		</Icard>
 	);
 };
 

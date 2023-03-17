@@ -9,6 +9,7 @@ import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
 import styles from '../index.module.scss';
+import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 
 const UserAvatar = () => {
 	const navigate = useNavigate();
@@ -43,7 +44,9 @@ const UserAvatar = () => {
 					overlayClassName={styles['layout-dropdown']}>
 					<div>
 						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
-						<span className="mr5 ml5">admin</span>
+						<IresponsiveMin MinWidth={890}>
+							<span className="mr5 ml5">admin</span>
+						</IresponsiveMin>
 					</div>
 				</Dropdown>
 			</Button>

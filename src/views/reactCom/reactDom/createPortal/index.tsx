@@ -6,6 +6,7 @@
 import React, { FC, ReactPortal, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import useEasyTyper from '@/pluginComponents/easyTyper';
+import Icard from '@/antdComponents/iCard';
 
 /**
  * createPortal(child, container)的入参：
@@ -37,12 +38,12 @@ const Child: FC<{ children: React.ReactNode }> = ({ children }) => {
 	}, []);
 
 	return (
-		<>
+		<Icard>
 			{com}
 			<div ref={ref} className="bottom-1 border-cyan-500 border-solid">
 				Child
 			</div>
-		</>
+		</Icard>
 	);
 };
 export default MyCreatePortal;

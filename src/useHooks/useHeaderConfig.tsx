@@ -1,14 +1,17 @@
+/**
+ * @file 定制表头
+ * @author ly
+ * @createDate 2022年4月27日
+ */
 import React, { useState, useEffect, Key } from 'react';
-// 引入相关的hooks
 import { useAppDispatch, useAppSelector } from '@/store';
 import { GET_HEADER_CONFIG } from '@/store/reducers/globalConfig';
 import type { IcolumnsType } from '@/antdComponents/iTable';
 import type { headerConfigListType, headerConfigListArrType } from '@/store/reducers/globalConfig';
 /**
- * @param type 对应表头
+ * @param type 表格类型
  * @param columns 前端表头模板
- * @param btFun 表格操作下拉数据 监听更新
- * @returns 返回排序、筛选后的表头 渲染表格组件
+ * @returns 表头
  */
 const useHeaderConfig = <T,>(type: string, columns: IcolumnsType<T>) => {
 	// 处理后 模板数据
@@ -55,9 +58,9 @@ const useHeaderConfig = <T,>(type: string, columns: IcolumnsType<T>) => {
 };
 
 /**
- *
- * @param type 对应表头
- * @returns 返回后端对应表头 渲染编辑表格组件
+ * @param type 表格类型
+ * @param open 开关是否初始化渲染
+ * @returns 表头 转成 拖拽树
  */
 const useHeaderConfigItem = (type: string, open: boolean) => {
 	const headerConfig = useAppSelector(GET_HEADER_CONFIG);

@@ -3,8 +3,9 @@
  * @author ly
  * @createDate 2022年4月27日
  */
-import React, { FC, useState, memo, useCallback } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { Button } from 'antd';
+import Icard from '@/antdComponents/iCard';
 
 interface MyUseCallbackItemProps {
 	addFunc: () => void;
@@ -28,7 +29,7 @@ const MyUseCallback = () => {
 		setCount(date);
 	};
 	return (
-		<div>
+		<Icard>
 			<div>
 				<Button type="link" onClick={onClick}>
 					普通点击
@@ -42,7 +43,7 @@ const MyUseCallback = () => {
 				<MyItem item={count} addFunc={onClick}></MyItem>
 				<MyUseCallbackItem item={callbackCount} addFunc={onCallbackClick}></MyUseCallbackItem>
 			</div>
-		</div>
+		</Icard>
 	);
 };
 

@@ -1,7 +1,7 @@
 /**
- *	@name 实现缓存
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现缓存
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { FC, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';

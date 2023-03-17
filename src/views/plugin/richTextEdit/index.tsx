@@ -17,6 +17,8 @@ import Preview from './components/Preview';
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
+import Icard from '@/antdComponents/iCard';
+
 const { confirm } = Modal;
 
 export interface ISingleMenuConfig {
@@ -25,6 +27,8 @@ export interface ISingleMenuConfig {
 export interface IMenuConfig {
 	uploadImage?: ISingleMenuConfig;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const RichTextEdit = () => {
 	const [editor, setEditor] = useState<IDomEditor | null>(null); // 存储 editor 实例
@@ -77,20 +81,22 @@ const RichTextEdit = () => {
 	};
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
-			<Editor defaultConfig={editorConfig} defaultHtml={defaultHtml} mode="default" style={{ height: '500px' }} />
-			<div className="mt-2">
-				<Button type="primary" onClick={onSubmit} style={{ marginRight: '5px' }}>
-					提交
-				</Button>
-				<Button type="primary" onClick={onPreview}>
-					预览
-				</Button>
-			</div>
+			<Icard>
+				<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
+				<Editor defaultConfig={editorConfig} defaultHtml={defaultHtml} mode="default" style={{ height: '500px' }} />
+				<div className="mt-2">
+					<Button type="primary" onClick={onSubmit} style={{ marginRight: '5px' }}>
+						提交
+					</Button>
+					<Button type="primary" onClick={onPreview}>
+						预览
+					</Button>
+				</div>
 
-			<ILookModal title="预览模板" width="1000px" open={open} handleCancel={handleCancel}>
-				<Preview content={content}></Preview>
-			</ILookModal>
+				<ILookModal title="预览模板" width="1000px" open={open} handleCancel={handleCancel}>
+					<Preview content={content}></Preview>
+				</ILookModal>
+			</Icard>
 		</div>
 	);
 };

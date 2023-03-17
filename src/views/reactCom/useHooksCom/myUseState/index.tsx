@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import useEasyTyper from '@/pluginComponents/easyTyper';
+import Icard from '@/antdComponents/iCard';
 
 const MyUseState = () => {
 	const init = 0;
@@ -39,14 +40,14 @@ const MyUseState = () => {
 	console.log('组件刷新');
 
 	return (
-		<>
+		<Icard>
 			<EasyTyper />
 			<Button type="link" onClick={add}>
 				+1
 			</Button>
 			{value}
 			{first}
-		</>
+		</Icard>
 	);
 };
 

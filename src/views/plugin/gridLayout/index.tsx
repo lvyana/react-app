@@ -3,11 +3,13 @@
  * @author ly
  * @createDate 2020年11月10日
  */
-import React, { createElement, FC, SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react';
+import React, { createElement, FC, useEffect, useMemo, useRef, useState } from 'react';
+import useResize from '@/useHooks/useResize';
 import GridLayout, { Layout } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
+import Icard from '@/antdComponents/iCard';
 
 // x 在x轴位置 从0开始
 // y 在y轴位置 从0开始
@@ -180,7 +182,19 @@ const DemoGridLayout: FC<GridLayoutProps> = ({ layout = layouts, onLayoutChange,
 // export default DemoGridLayout;
 
 const ImgGrid = () => {
-	const ImgEl = (url: string) => {
+	const { resize } = useResize(document.getElementById('DemoGridLayout'));
+
+	const width = useMemo(() => resize?.width, [resize?.width]);
+	// console.log(width);
+
+	const urlWidth = useMemo(() => {
+		if (resize?.width) {
+			return resize.width / CLOS;
+		}
+		return LAYOUT_WIDTH_ITEM;
+	}, [resize?.width]);
+
+	const getImgElWidth = (url: string) => {
 		return new Promise<number>((r) => {
 			// 图片地址 后面加时间戳是为了避免缓存
 			let imgUrl = url;
@@ -193,7 +207,7 @@ const ImgGrid = () => {
 			img.onload = function () {
 				// 打印
 
-				r(img.height / (img.width / LAYOUT_WIDTH_ITEM));
+				r(img.height / (img.width / urlWidth));
 			};
 		});
 	};
@@ -201,7 +215,7 @@ const ImgGrid = () => {
 	const num = useRef(0);
 	const count = 10;
 
-	const a = async () => {
+	const getList = async () => {
 		num.current += 1;
 		const arr: LayoutsParams[] = [];
 
@@ -210,14 +224,15 @@ const ImgGrid = () => {
 				continue;
 			}
 
-			const h = await ImgEl(urlArr[i + (num.current - 1) * count]);
+			const h = await getImgElWidth(urlArr[i + (num.current - 1) * count]);
 			arr.push({
 				x: (i + (num.current - 1) * count) % CLOS,
 				y: Math.floor((i + (num.current - 1) * count) / CLOS),
 				w: 1,
 				h: Math.floor(h),
 				children: createElement('img', {
-					width: LAYOUT_WIDTH_ITEM,
+					key: uuidv4(),
+					width: urlWidth,
 					src: urlArr[i + (num.current - 1) * count],
 					className: i + (num.current - 1) * count
 				}),
@@ -235,22 +250,24 @@ const ImgGrid = () => {
 
 		requestIdleCallback(
 			() => {
-				a();
+				getList();
 			},
 			{ timeout: 20000 }
 		);
 	};
 
 	useEffect(() => {
-		a();
+		getList();
 	}, []);
 
 	const [readerUrlArr, setreaderUrlArr] = useState<LayoutsParams[]>([]);
 
 	return (
-		<div id="img">
-			<DemoGridLayout layout={readerUrlArr}></DemoGridLayout>
-		</div>
+		<Icard>
+			<div id="DemoGridLayout">
+				<DemoGridLayout layout={readerUrlArr} width={width}></DemoGridLayout>
+			</div>
+		</Icard>
 	);
 };
 export default ImgGrid;

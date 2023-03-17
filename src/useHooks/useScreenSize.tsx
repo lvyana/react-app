@@ -1,7 +1,7 @@
 /**
- *	@name 实现监听宽高
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现监听宽高、宽度
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
@@ -42,5 +42,5 @@ export const useWidth = (subtractWidth = 0) => {
 
 		setScrollWidth(width);
 	}, 500);
-	return [scrollWidth];
+	return { scrollWidth };
 };

@@ -5,6 +5,7 @@
  */
 import React, { useReducer } from 'react';
 import { Button } from 'antd';
+import Icard from '@/antdComponents/iCard';
 
 type ActionFuncType = (state: number, action: { type: string; value: number }) => number;
 
@@ -37,7 +38,7 @@ const MyUseReducer = () => {
 	const [count, dispatch] = useReducer(computerAction, initCount, init);
 
 	return (
-		<div>
+		<Icard>
 			{count}
 			<Button type="link" onClick={() => dispatch({ type: 'add', value: 1 })}>
 				+
@@ -51,7 +52,7 @@ const MyUseReducer = () => {
 			<Button type="link" onClick={() => dispatch({ type: 'division', value: 2 })}>
 				/
 			</Button>
-		</div>
+		</Icard>
 	);
 };
 

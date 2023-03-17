@@ -21,6 +21,8 @@ const { Header, Content, Sider } = Layout;
 // width小于650 左侧隐藏
 const SIDER_MIN_WIDTH = 650;
 
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Layouts = () => {
 	const [token] = useThemeHooks();
 

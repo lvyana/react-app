@@ -8,13 +8,14 @@ import UseContextCom, { MyContext } from './UseContextCom';
 import { Button } from 'antd';
 import MyUseReducer from './MyUseReducer';
 import { sumProps, dispatchProps } from './UseContextCom';
+import Icard from '@/antdComponents/iCard';
 
 const MyUseContext = () => {
 	const [value, setvalue] = useState(10);
 	const [sum, dispatch] = MyUseReducer();
 
 	return (
-		<div>
+		<Icard>
 			{'我是父组件: ' + (sum as sumProps).count + '和' + (sum as sumProps).sum}
 			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'add', value: 1 })}>
 				+1
@@ -26,7 +27,7 @@ const MyUseContext = () => {
 			<UseContextCom sum={sum as sumProps} dispatch={dispatch as React.Dispatch<dispatchProps>}>
 				<UseContextComItem></UseContextComItem>
 			</UseContextCom>
-		</div>
+		</Icard>
 	);
 };
 

@@ -1,7 +1,7 @@
 /**
- *	@name 实现useEffect第一次不执行
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现useEffect第一次不执行
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React, { useEffect, useRef } from 'react';
 

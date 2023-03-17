@@ -5,6 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
+import Icard from '@/antdComponents/iCard';
 
 const MyUseEffect = () => {
 	const [value, setValue] = useState(0);
@@ -33,12 +34,12 @@ const MyUseEffect = () => {
 		setValue(value + 1);
 	};
 	return (
-		<div>
+		<Icard>
 			<Button type="link" onClick={add}>
 				+1
 			</Button>
 			<Son></Son>
-		</div>
+		</Icard>
 	);
 };
 

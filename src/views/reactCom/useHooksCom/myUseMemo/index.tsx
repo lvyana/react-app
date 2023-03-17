@@ -5,6 +5,7 @@
  */
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from 'antd';
+import Icard from '@/antdComponents/iCard';
 
 const MyUseMemo = () => {
 	const [value, setValue] = useState(10);
@@ -13,7 +14,7 @@ const MyUseMemo = () => {
 
 	const date = useMemo(() => Date.now(), [name]);
 	return (
-		<div>
+		<Icard>
 			name改变触发:{date}
 			<div>
 				<Button type="link" onClick={() => setValue(value + 1)}>
@@ -27,7 +28,7 @@ const MyUseMemo = () => {
 				</Button>
 				{name}
 			</div>
-		</div>
+		</Icard>
 	);
 };
 
