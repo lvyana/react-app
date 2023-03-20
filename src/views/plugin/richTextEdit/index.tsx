@@ -12,7 +12,7 @@ import {
 	IEditorConfig, // 编辑器配置
 	IToolbarConfig // 工具栏配置
 } from '@wangeditor/editor';
-import ILookModal from '@/antdComponents/iLookModal';
+import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 import Preview from './components/Preview';
 import { Modal, Button, Space } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -57,7 +57,15 @@ const RichTextEdit = () => {
 	}, [editor]);
 
 	const [content, setContent] = useState('');
+
+	// 弹窗
 	const [open, setOpen] = useState(false);
+	const [confirmLoading, setConfirmLoading] = useState(false);
+
+	const onOkOrCancel: OnOkOrCancelType = (type) => {
+		setOpen(false);
+	};
+
 	const onSubmit = () => {
 		// console.log(editor?.children); // 节点对象
 		// console.log(editor?.getHtml()); //获取非格式化的 html
@@ -72,13 +80,13 @@ const RichTextEdit = () => {
 			onCancel() {}
 		});
 	};
+
+	// 预览
 	const onPreview = () => {
 		setContent(editor?.getHtml() as string);
 		setOpen(true);
 	};
-	const handleCancel = () => {
-		setOpen(false);
-	};
+
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Icard>
@@ -93,9 +101,9 @@ const RichTextEdit = () => {
 					</Button>
 				</div>
 
-				<ILookModal title="预览模板" width="1000px" open={open} handleCancel={handleCancel}>
+				<Imodal title="预览模板" width="1000px" open={open} confirmLoading={confirmLoading} onOkOrCancel={onOkOrCancel}>
 					<Preview content={content}></Preview>
-				</ILookModal>
+				</Imodal>
 			</Icard>
 		</div>
 	);

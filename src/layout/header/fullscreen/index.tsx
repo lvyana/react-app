@@ -7,29 +7,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from 'antd';
 import { FullscreenOutlined, FontSizeOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 import { useFullscreen } from 'ahooks';
+import Ifullscreen from '@/pluginComponents/iFullscreen';
 
 const Fullscreen = () => {
-	const ref = useRef(document.body);
-	const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] = useFullscreen(ref);
-
-	const fullScreen = () => {
-		if (isFullscreen) {
-			//退出全屏
-			exitFullscreen();
-		} else {
-			//进入全屏
-			enterFullscreen();
-		}
-	};
-
-	return (
-		<>
-			{isFullscreen ? (
-				<Button type="link" onClick={fullScreen} icon={<FullscreenExitOutlined />}></Button>
-			) : (
-				<Button type="link" onClick={fullScreen} icon={<FullscreenOutlined />}></Button>
-			)}
-		</>
-	);
+	return <Ifullscreen id="root"></Ifullscreen>;
 };
 export default Fullscreen;

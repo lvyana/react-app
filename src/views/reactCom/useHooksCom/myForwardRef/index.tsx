@@ -58,6 +58,7 @@ OrdinaryForWard.displayName = 'OrdinaryForWard';
 // HOC转发
 const hocForWardRef = (Component: FC<{ onLoginHandler: Ref<OnLoginHandler> }>) => {
 	const LogCom: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) => {
+		// 做操作
 		return <Component onLoginHandler={onLoginHandler}></Component>;
 	};
 
