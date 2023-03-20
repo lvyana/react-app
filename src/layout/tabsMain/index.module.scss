@@ -10,6 +10,7 @@
     .ant-tabs-tab-remove {
       position: absolute;
       right: 0;
+      margin: 11px;
       opacity: 0;
       transition: .1s ease-in-out;
     }
@@ -27,7 +28,7 @@
       .ant-tabs-tab-remove {
         top: 1px;
         margin: 11px;
-        opacity: 1 !important;
+        opacity: 1;
       }
 
       .ant-tabs-tab-btn {
