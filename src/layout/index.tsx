@@ -88,8 +88,8 @@ const Layouts = () => {
 	const layoutContent: React.CSSProperties = {
 		position: 'relative',
 		padding: '8px',
-		marginTop: '105px',
-		overflow: 'auto'
+		marginTop: '105px'
+		// overflow: 'auto'
 		// width: `calc(100% - ${collapsedWidth})`
 	};
 

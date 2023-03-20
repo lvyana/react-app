@@ -7,8 +7,8 @@ import React, { FC, useMemo } from 'react';
 import { ConfigProvider } from 'antd';
 import { useSelector } from 'react-redux';
 import { GET_THEME, ThemeType } from '@/store/reducers/layout';
-import theme1 from './theme1';
-import theme2 from './theme2';
+import theme1 from './module/white';
+import theme2 from './module/dark';
 
 // 中文
 import zhCN from 'antd/locale/zh_CN';
