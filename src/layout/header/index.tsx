@@ -29,14 +29,15 @@ const Headerregion = () => {
 							<Col>
 								{/* 搜索 */}
 								<Search></Search>
-								{/* 切换颜色主题 */}
-								<ToggleTheme></ToggleTheme>
+
 								{/* 全屏 */}
 								<Fullscreen></Fullscreen>
 								{/* 组件大小 */}
 								<ComponentSize></ComponentSize>
 								{/* 消息 */}
 								<MessageCenter></MessageCenter>
+								{/* 切换颜色主题 */}
+								<ToggleTheme></ToggleTheme>
 								{/* 仓库地址 */}
 								<Warehouse></Warehouse>
 							</Col>

@@ -4,9 +4,8 @@
  * @createDate 2020年4月27日
  */
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
-import type { MenuProps } from 'antd';
-import { Input, Button, Dropdown, Menu } from 'antd';
-import { SearchOutlined, DownOutlined } from '@ant-design/icons';
+import { Input, Button, Dropdown } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 const HeaderSearch = () => {
 	const [search, setSearch] = useState(false);

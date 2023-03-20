@@ -7,14 +7,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 
-export type ThemeType = 'theme1' | 'theme2';
+export type ThemeType = 'white' | 'dark';
 export interface InitLayoutParams {
 	size: SizeType;
 	color: ThemeType;
 }
 let initialState: InitLayoutParams = {
 	size: 'middle',
-	color: 'theme1'
+	color: 'white'
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

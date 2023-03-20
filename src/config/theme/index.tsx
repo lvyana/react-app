@@ -23,9 +23,9 @@ const Theme: FC<ThemeProps> = ({ children }) => {
 	const theme = useSelector(GET_THEME);
 
 	const themeMeno = useMemo(() => {
-		if (theme === 'theme1') {
+		if (theme === 'white') {
 			return theme1;
-		} else if (theme === 'theme2') {
+		} else if (theme === 'dark') {
 			return theme2;
 		}
 	}, [theme]);
