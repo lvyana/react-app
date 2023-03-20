@@ -36,22 +36,35 @@ const HeaderSearch = () => {
 		}
 	};
 	return (
-		<>
-			{search ? (
-				<Dropdown menu={{ items: menu(searchList) }}>
-					<Input
-						placeholder="搜索"
-						ref={searchRef}
-						suffix={suffix}
-						onBlur={inputOnBlur}
-						onChange={searchChange}
-						style={{ maxWidth: '200px', borderRadius: '32px' }}
-					/>
-				</Dropdown>
-			) : (
-				<Button type="link" onClick={checkbox} icon={suffix}></Button>
+		<div className="inline-block w-48 text-right">
+			<Dropdown menu={{ items: menu(searchList) }}>
+				<Input
+					placeholder="搜索"
+					ref={searchRef}
+					suffix={suffix}
+					onBlur={inputOnBlur}
+					onChange={searchChange}
+					className="rounded-full"
+					style={{
+						width: search ? '192px' : 0,
+						opacity: search ? 1 : 0,
+						transitionProperty: 'width,opacity',
+						transitionDuration: '0.5s,0.2s',
+						transitionTimingFunction: 'ease-out'
+						// transition: 'width,opacity 2s,0.2s'
+					}}
+				/>
+			</Dropdown>
+
+			{!search && (
+				<Button
+					type="link"
+					// className="absolute left-36 top-4"
+					style={{ position: 'absolute', left: 156, top: 17 }}
+					onClick={checkbox}
+					icon={suffix}></Button>
 			)}
-		</>
+		</div>
 	);
 };
 
