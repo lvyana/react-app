@@ -191,7 +191,7 @@ module.exports = {
 
 			// 开发环境配置
 			whenDev(() => {
-				webpackConfig.devtool = 'eval-source-map';
+				webpackConfig.devtool = 'source-map';
 			});
 
 			// 配置 htmlWebpackPlugin插件 将在public/index.html注入
