@@ -38,6 +38,7 @@ type FormListType = [
 	FormRadioType<{
 		icon: string;
 		value: string;
+		name: string;
 		key: number;
 	}>,
 	FormRadioType<{
@@ -85,7 +86,7 @@ const Dynamicform = () => {
 	// 参数
 	const formList: FormListType = [
 		{
-			type: 'input' as const,
+			type: 'input',
 			name: 'name',
 			label: '姓名',
 			rules: [],
@@ -97,7 +98,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'select' as const,
+			type: 'select',
 			name: 'select',
 			label: '下拉框',
 			rules: [],
@@ -126,7 +127,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'radio' as const,
+			type: 'radio',
 			name: 'radioIcon',
 			label: '图标单选框',
 			rules: [],
@@ -134,13 +135,15 @@ const Dynamicform = () => {
 			span: 24,
 			option: [
 				{
-					icon: 'icon-zhuzhuangtu-dashuju',
+					icon: 'icon-taiyang',
 					value: 'icon-zhuzhuangtu-dashuju',
+					name: '太阳',
 					key: 1
 				},
 				{
-					icon: 'icon-drxx91',
+					icon: 'icon-ClearNight-qing-yewan',
 					value: 'icon-drxx91',
+					name: '月亮',
 					key: 2
 				}
 			],
@@ -150,7 +153,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'radio' as const,
+			type: 'radio',
 			name: 'radio',
 			label: '单选框',
 			rules: [],
@@ -174,7 +177,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'checkbox' as const,
+			type: 'checkbox',
 			name: 'checkbox',
 			label: '多选框',
 			rules: [],
@@ -198,7 +201,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'rate' as const,
+			type: 'rate',
 			name: 'rate',
 			label: '评分',
 			rules: [],
@@ -212,7 +215,7 @@ const Dynamicform = () => {
 			option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
 		},
 		{
-			type: 'treeselect' as const,
+			type: 'treeselect',
 			name: 'treeselect',
 			label: '下拉树',
 			rules: [],
@@ -237,7 +240,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'cascader' as const,
+			type: 'cascader',
 			name: 'cascader',
 			label: '联级',
 			rules: [],
@@ -261,7 +264,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'datePicker' as const,
+			type: 'datePicker',
 			name: 'date',
 			label: '时间',
 			rules: [],
@@ -273,7 +276,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'rangePicker' as const,
+			type: 'rangePicker',
 			name: 'rangePicker',
 			label: '时间区间',
 			rules: [],
@@ -285,7 +288,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'timeRangePicker' as const,
+			type: 'timeRangePicker',
 			name: 'timeRangePicker2',
 			label: '可面试时间',
 			rules: [
@@ -302,7 +305,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'inputNumber' as const,
+			type: 'inputNumber',
 			name: 'inputNumber',
 			label: '数字',
 			rules: [],
@@ -314,7 +317,7 @@ const Dynamicform = () => {
 			}
 		},
 		{
-			type: 'switch' as const,
+			type: 'switch',
 			name: 'switch',
 			valuePropName: 'checked',
 			label: '是否',
@@ -346,7 +349,7 @@ const Dynamicform = () => {
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
-			type: 'button' as const,
+			type: 'button',
 			name: 'button',
 			key: 15,
 			span: 24,

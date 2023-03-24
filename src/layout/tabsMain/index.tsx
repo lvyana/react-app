@@ -103,7 +103,7 @@ const TabsMain = () => {
 	return (
 		<div className={style['tabs']}>
 			<Tabs
-				// style={{ color: token.colorTextBase, backgroundColor: token.colorBgLayout }}
+				style={{ color: token.colorTextBase, backgroundColor: token.colorBgLayout }}
 				hideAdd
 				onChange={onChange}
 				activeKey={activeKey}

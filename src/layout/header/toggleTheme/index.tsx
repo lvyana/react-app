@@ -33,18 +33,10 @@ const ToggleTheme = () => {
 	const iconStr = useMemo(() => themeMenu.find((item) => item.key === theme)?.label, [theme]);
 	return (
 		<>
-			{/* <Dropdown
-				arrow={{ pointAtCenter: true }}
-				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
-				menu={{ items: themeMenu, onClick: handleSizeChange }}
-				placement="bottom"
-				trigger={['click']}
-				overlayClassName={style['layout-dropdown']}> */}
 			<Button
 				type="link"
 				icon={<IconFont type={iconStr || 'icon-taiyang'} style={{ transform: 'scale(1.4)' }} />}
 				onClick={handleSizeChange}></Button>
-			{/* </Dropdown> */}
 		</>
 	);
 };

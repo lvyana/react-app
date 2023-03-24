@@ -25,7 +25,7 @@ const Headerregion = () => {
 				</Col>
 				<Col flex="auto">
 					<Row justify="end" id="header-icon-function">
-						<IresponsiveMin MinWidth={890}>
+						<IresponsiveMin MinWidth={1040}>
 							<Col>
 								{/* 搜索 */}
 								<Search></Search>

@@ -18,13 +18,13 @@ import Icard from '@/antdComponents/iCard';
 
 const MyCreatePortal = () => {
 	return (
-		<div>
+		<Icard>
 			<DynamicText></DynamicText>
 			hello
 			<Child>
 				<div>挂载到child身上</div>
 			</Child>
-		</div>
+		</Icard>
 	);
 };
 
@@ -38,12 +38,12 @@ const Child: FC<{ children: React.ReactNode }> = ({ children }) => {
 	}, []);
 
 	return (
-		<Icard>
+		<>
 			{com}
 			<div ref={ref} className="bottom-1 border-cyan-500 border-solid">
 				Child
 			</div>
-		</Icard>
+		</>
 	);
 };
 export default MyCreatePortal;

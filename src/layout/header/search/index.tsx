@@ -59,7 +59,7 @@ const HeaderSearch = () => {
 				<Button
 					type="link"
 					// className="absolute left-36 top-4"
-					style={{ position: 'absolute', left: 156, top: 17 }}
+					style={{ position: 'absolute', left: 156, top: 17, zIndex: 1 }}
 					onClick={checkbox}
 					icon={suffix}></Button>
 			)}
