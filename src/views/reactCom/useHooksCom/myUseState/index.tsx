@@ -28,8 +28,10 @@ const MyUseState = () => {
 		// 17 异步更新会render两次
 		// 18 异步更新会render1次
 		setTimeout(() => setValue(value + 1), 1000);
-		setTimeout(() => setfirst(first + 1), 1000);
+		setTimeout(() => setValue(value + 1), 1000);
+		setTimeout(() => setfirst(first + 1), 2000);
 		// setValue((value) => value + 1);
+		// setTimeout(() => setValue((value) => value + 1), 1000);
 		// setTimeout(() => setValue((value) => value + 1), 1000);
 		// setTimeout(() => setfirst((first) => first + 1), 1000);
 

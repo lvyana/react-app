@@ -7,24 +7,22 @@
 const TOKEN = 'token';
 
 /**
- *
- * @returns 存储token
+ * @method 存储token
+ * @param val token
  */
 export const setToken = (val: string): void => {
 	localStorage.setItem(TOKEN, val);
 };
 
 /**
- *
- * @returns 获取token
+ * @method 获取token
  */
 export const getToken = (): string | null => {
 	return localStorage.getItem(TOKEN);
 };
 
 /**
- *
- * @returns 清空token
+ * @method 清空token
  */
 export const clearToken = () => {
 	localStorage.removeItem(TOKEN);
@@ -33,24 +31,22 @@ export const clearToken = () => {
 const USER_NAME = 'userName';
 
 /**
- *
- * @returns 存储用户账号
+ * @method 存储用户账号
+ * @param val 用户账号
  */
 export const setUserName = (val: string): void => {
 	localStorage.setItem(USER_NAME, val);
 };
 
 /**
- *
- * @returns 获取用户账号
+ * @method 获取用户账号
  */
 export const getUserName = (): string | null => {
 	return localStorage.getItem(USER_NAME);
 };
 
 /**
- *
- * @returns 清空用户账号
+ * @method 清空用户账号
  */
 export const clearUserName = () => {
 	localStorage.removeItem(USER_NAME);
@@ -59,24 +55,22 @@ export const clearUserName = () => {
 const PASSWORD = 'password';
 
 /**
- *
- * @returns 存储用户密码
+ * @method 存储用户密码
+ * @param val 密码
  */
 export const setPassword = (val: string): void => {
 	localStorage.setItem(PASSWORD, val);
 };
 
 /**
- *
- * @returns 获取用户密码
+ * @method 获取用户密码
  */
 export const getPassword = (): string | null => {
 	return localStorage.getItem(PASSWORD);
 };
 
 /**
- *
- * @returns 清空用户密码
+ * @method 清空用户密码
  */
 export const clearPassword = () => {
 	localStorage.removeItem(PASSWORD);
@@ -85,25 +79,45 @@ export const clearPassword = () => {
 const REMEMBER = 'remember';
 
 /**
- *
- * @returns 存储 是否保存账号密码
+ * @method 存储 是否保存账号密码
+ * @param val 是否保存账号密码
  */
 export const setRemember = (val: string): void => {
 	localStorage.setItem(REMEMBER, val);
 };
 
 /**
- *
- * @returns 获取 是否保存账号密码
+ * @method 获取 是否保存账号密码
  */
 export const getRemember = (): string | null => {
 	return localStorage.getItem(REMEMBER);
 };
 
 /**
- *
- * @returns 清空 是否保存账号密码
+ * @method 清空 是否保存账号密码
  */
 export const clearRemember = () => {
 	localStorage.removeItem(REMEMBER);
+};
+
+/**
+ * @method 版本更新
+ * @param val 是否第一次
+ */
+export const setIsItour = (val: '0' | '1') => {
+	localStorage.setItem('Itour', val);
+};
+
+/**
+ * @method 版本更新
+ */
+export const getIsItour = () => {
+	return localStorage.getItem('Itour');
+};
+
+/**
+ * @method 版本更新
+ */
+export const clearIsItour = () => {
+	localStorage.removeItem('Itour');
 };

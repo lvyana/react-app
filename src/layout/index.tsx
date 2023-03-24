@@ -15,6 +15,7 @@ import useApi from '@/useHooks/useApi';
 import useAysncComponent from './useAsyncComponent';
 import useThemeHooks from '@/config/theme/useThemeHooks';
 import menuLogo from '@/assets/images/menu.png';
+import { getIsItour, setIsItour } from '@/utils/storage';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
@@ -61,13 +62,16 @@ const Layouts = () => {
 
 	// 用户指导
 	useEffect(() => {
-		setOpenItour(true);
+		if (getIsItour() === '0') {
+			setOpenItour(true);
+		}
 	}, []);
 
 	const [openItour, setOpenItour] = useState(false);
 
 	const onCloseItour = () => {
 		setOpenItour(false);
+		setIsItour('1');
 	};
 
 	const LayoutLogo: React.CSSProperties = {
