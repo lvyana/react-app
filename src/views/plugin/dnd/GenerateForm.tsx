@@ -7,14 +7,14 @@ import React, { FC, useCallback, useContext, useRef } from 'react';
 import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, Col, Form, Row } from 'antd';
+import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import Iform, { FormItem } from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context } from './context';
-import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import { arrIndexExchange } from '@/utils/exchange';
 import { useFormData } from './useHooks';
 import type { FormItemParams } from './context';
-import { Rule } from 'antd/es/form';
+import useThemeHooks from '@/config/theme/useThemeHooks';
 
 /**
  * @param formParams 某一项表单数据
@@ -28,6 +28,8 @@ interface GenerateFormItemParams {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const GenerateForm = () => {
+	const { token } = useThemeHooks();
+
 	const context = useContext(Context);
 
 	const [{ isOver, canDrop }, drop] = useDrop({
@@ -43,8 +45,8 @@ const GenerateForm = () => {
 		<div
 			ref={drop}
 			data-testid="GenerateForm"
-			className="rounded-lg p-2 border-2 border-solid border-indigo-600"
-			style={{ minHeight: 500 }}>
+			className="rounded-lg p-2 border-2 border-solid  "
+			style={{ minHeight: 500, borderColor: token.colorPrimaryBorder }}>
 			<Row>
 				{context?.state.formList.map((item, i) => {
 					return (
@@ -60,6 +62,8 @@ const GenerateForm = () => {
 
 // 表单子组件
 const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => {
+	const { token } = useThemeHooks();
+
 	const context = useContext(Context);
 
 	const { getFormData } = useFormData();
@@ -191,10 +195,14 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 		<Row
 			onClick={onEditFormItemParams}
 			className={
-				'rounded-lg p-4 pb-0 mb-2 border border-solid border-indigo-600 ' +
-				`${context?.state.selectFormItemKey === formParams.key ? 'shadow-lg bg-purple-200' : ''}`
+				'rounded-lg p-4 pb-0 mb-2 border border-solid ' + `${context?.state.selectFormItemKey === formParams.key ? 'shadow-lg' : ''}`
 			}
-			style={{ opacity, height: 100 }}
+			style={{
+				opacity,
+				height: 100,
+				backgroundColor: context?.state.selectFormItemKey === formParams.key ? token.colorPrimaryBg : '',
+				borderColor: token.colorPrimaryBorder
+			}}
 			data-handler-id={handlerId}
 			ref={ref}>
 			<Col flex="auto">

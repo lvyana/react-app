@@ -25,7 +25,7 @@ const SIDER_MIN_WIDTH = 650;
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Layouts = () => {
-	const [token] = useThemeHooks();
+	const { token } = useThemeHooks();
 
 	// 初始化api数据
 	useApi();
@@ -62,7 +62,7 @@ const Layouts = () => {
 
 	// 用户指导
 	useEffect(() => {
-		if (getIsItour() === '0') {
+		if (getIsItour() === '0' || !getIsItour()) {
 			setOpenItour(true);
 		}
 	}, []);

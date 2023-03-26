@@ -30,7 +30,7 @@ interface PanesParams {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const TabsMain = () => {
-	const [token] = useThemeHooks();
+	const { token } = useThemeHooks();
 
 	const [panes, setPanes] = useState<Array<PanesParams>>([]);
 	const [activeKey, setActiveKey] = useState<string>();

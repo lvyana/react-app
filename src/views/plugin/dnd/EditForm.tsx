@@ -22,6 +22,7 @@ import type {
 } from '@/antdComponents/iForm/type';
 import type { Options } from './itemTypes';
 import { ButtonItemParams } from '@/antdComponents/iButton/type';
+import useThemeHooks from '@/config/theme/useThemeHooks';
 
 type FormListType = [
 	// 标签
@@ -182,6 +183,8 @@ const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const EditForm = () => {
+	const { token } = useThemeHooks();
+
 	const { editItemValue } = useEditItemValue();
 
 	const context = useContext(Context);
@@ -525,7 +528,13 @@ const EditForm = () => {
 	// urlValue
 	useEditFormItemValue('urlValue', form);
 
-	return <div>{context?.state.selectFormItemKey && <Iform form={form} formList={newFormList}></Iform>}</div>;
+	return context?.state.selectFormItemKey ? (
+		<div className="rounded-lg p-2 border-2 border-solid" style={{ borderColor: token.colorPrimaryBorder }}>
+			<Iform form={form} formList={newFormList}></Iform>
+		</div>
+	) : (
+		<></>
+	);
 };
 
 export default EditForm;
