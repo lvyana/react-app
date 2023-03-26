@@ -51,8 +51,13 @@ const LAYOUT_WIDTH = 1200;
 const IgridLayout: FC<IgridLayoutProps> = ({ layout = layouts, onLayoutChange, cols = CLOS, width = LAYOUT_WIDTH }) => {
 	const children = React.useMemo(() => {
 		return layout.map((val, i) => {
-			const { x, y, w, h } = val;
+			const { x, y, w, h, id } = val;
 			return (
+				/**
+				 * key:uuidv4()
+				 * layout每一次更新都会导致重新渲染
+				 * 解决每次更新插入顺序不一致
+				 */
 				<div key={uuidv4()} data-grid={{ x, y, w, h }} className="bg-blue-100">
 					{val.children}
 				</div>
