@@ -4,7 +4,7 @@ import { OrganizationGraph } from '@ant-design/graphs';
 import useThemeHooks from '@/config/theme/useThemeHooks';
 
 const DemoOrganizationGraph = () => {
-	const [token] = useThemeHooks();
+	const { token } = useThemeHooks();
 
 	const data = {
 		id: 'joel',

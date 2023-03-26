@@ -13,7 +13,7 @@ const { useToken } = theme;
 const useThemeHooks = () => {
 	const { token } = useToken();
 	// console.log(token);
-	return [token];
+	return { token };
 };
 
 export default useThemeHooks;
