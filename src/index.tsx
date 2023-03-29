@@ -26,6 +26,8 @@ import store from './store';
 // 中文
 import Theme from '@/config/theme';
 
+const basePath = process.env.NODE_ENV === 'production' ? 'admin' : '/';
+
 function render() {
 	const container = document.querySelector('#root') as Element;
 
@@ -35,7 +37,7 @@ function render() {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<Theme>
-					<BrowserRouter basename={'/'}>
+					<BrowserRouter basename={basePath}>
 						<ErrorBoundary>
 							{/* <StrictMode> */}
 							<App />
