@@ -105,6 +105,8 @@ module.exports = {
 				css: []
 			};
 
+			let public_path = devMode ? 'https://lvyana.github.io/admin' : '';
+
 			// 只有生产环境才配置
 			whenProd(() => {
 				// paths.appPath='public'
@@ -120,7 +122,7 @@ module.exports = {
 						chunkFilename: 'static/js/[name].[chunkhash].js'
 					},
 					path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
-					publicPath: '/'
+					publicPath: public_path + '/'
 				};
 				// 关闭 devtool
 				webpackConfig.devtool = false;
@@ -201,6 +203,7 @@ module.exports = {
 			if (isFound) {
 				// 找到了HtmlWebpackPlugin的插件
 				match.userOptions.cdn = cdn;
+				match.userOptions.public_path = public_path;
 			}
 
 			// 返回重写后的新配置
