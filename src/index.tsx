@@ -26,7 +26,7 @@ import store from './store';
 // 中文
 import Theme from '@/config/theme';
 
-const basePath = process.env.NODE_ENV === 'production' ? 'admin' : '/';
+const basePath = process.env.REACT_APP_BASE_PATH;
 
 function render() {
 	const container = document.querySelector('#root') as Element;
