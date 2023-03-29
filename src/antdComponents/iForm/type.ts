@@ -215,23 +215,13 @@ interface SliderRange {
 export type SliderType = {
 	disabled?: boolean;
 	allowClear?: boolean;
-	onChange?: ((value: [number, number]) => void) | undefined;
-	range?: true | SliderRange;
-	style?: React.CSSProperties;
-	max?: number;
-	min?: number;
-};
-
-export type SliderSingleType = {
-	disabled?: boolean;
-	allowClear?: boolean;
 	onChange?: ((value: number) => void) | undefined;
 	range?: false;
 	style?: React.CSSProperties;
 	max?: number;
 	min?: number;
 };
-export type FormSliderType = FormItem & (SliderType | SliderSingleType);
+export type FormSliderType = FormItem & SliderType;
 
 // upload
 export type UploadType = {
@@ -268,7 +258,7 @@ export interface FormItemMap {
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;
 	textArea: <T>(item: TextAreaType) => JSX.Element;
 	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
-	slider: (item: SliderType & SliderSingleType) => JSX.Element;
+	slider: (item: SliderType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;
 	userDefined: (item: UserDefinedType) => ReactNode;
 }

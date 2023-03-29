@@ -21,7 +21,6 @@ import type {
 	RateType,
 	SeachSelectType,
 	SelectType,
-	SliderSingleType,
 	SliderType,
 	SwitchType,
 	TextAreaType,
@@ -230,7 +229,7 @@ const Iform = <T extends FormItem[], F extends object>({
 		}
 
 		if (item.type === 'slider') {
-			const { disabled, allowClear, onChange, range, style, max, min } = item as SliderType & SliderSingleType;
+			const { disabled, allowClear, onChange, range, style, max, min } = item as SliderType;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, range, style, max, min });
 		}
 
