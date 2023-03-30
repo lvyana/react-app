@@ -14,7 +14,7 @@ const index = () => {
 	return (
 		<ToDayReducer>
 			<div className="flex justify-between min-w-xxl">
-				<div className="w-2/5  h-full relative">
+				<div className="w-2/5 relative">
 					{/* 左侧团队和日期 */}
 					<DateAndPersonnel></DateAndPersonnel>
 				</div>
