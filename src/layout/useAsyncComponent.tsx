@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2022年10月10日
  */
-import React, { useRef, Suspense, lazy, ComponentType } from 'react';
+import React, { useRef, Suspense, lazy, FC } from 'react';
 import { useAppDispatch } from '@/store';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
 import menuList, { Router } from '@/layout/menuList/routerData';
@@ -11,17 +11,18 @@ import Iloading from '@/pluginComponents/iLoading';
 
 // 异步路由
 const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, setRedux: (data: Router[]) => void) => {
-	const AysncComponentPromise = (): Promise<{ default: ComponentType }> =>
+	const AysncComponentPromise = (): Promise<{ default: FC }> =>
 		new Promise(async (resolve, reject) => {
 			try {
 				const data = await api();
 				setRedux(data);
+				console.log(111);
 
 				resolve({
-					default: Component
+					default: () => <Component></Component>
 				});
 			} catch (error) {
-				resolve({
+				reject({
 					default: () => <div>路由没啦....</div>
 				});
 			}
@@ -32,19 +33,11 @@ const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, se
 
 const useAysncComponent = (LayoutComponent: React.FC) => {
 	const dispatch = useAppDispatch();
-
-	// 第一次调用接口
-	const isApi = useRef(0);
-
 	// 获取路由权限
 	const router = () => {
-		isApi.current = isApi.current + 1;
-
 		// 模拟接口
 		return new Promise<Router[]>((resolve, reject) => {
 			setTimeout(() => {
-				// console.log(1);
-
 				resolve(menuList);
 			}, 100);
 		});
@@ -57,21 +50,11 @@ const useAysncComponent = (LayoutComponent: React.FC) => {
 
 	const LazyComponent = AysncComponentHoc(LayoutComponent, router, setRedux);
 
-	// 只做一次权限判断
-	if (isApi.current === 0) {
-		return (
-			<Suspense
-				fallback={
-					<>
-						<Iloading></Iloading>
-					</>
-				}>
-				<LazyComponent></LazyComponent>
-			</Suspense>
-		);
-	} else {
-		return <LayoutComponent></LayoutComponent>;
-	}
+	return (
+		<Suspense fallback={<Iloading></Iloading>}>
+			<LazyComponent></LazyComponent>
+		</Suspense>
+	);
 };
 
 export default useAysncComponent;
