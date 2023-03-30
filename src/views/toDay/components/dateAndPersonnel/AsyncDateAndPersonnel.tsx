@@ -13,6 +13,7 @@ const AsyncDateAndPersonnel = (Component: FC<DateAndPersonnelProps>, api: () => 
 			try {
 				const res = await api();
 				const { oldUserId, oldDate } = res;
+
 				resolve({
 					default: () => <Component oldUserId={oldUserId} oldDate={oldDate}></Component>
 				});
@@ -30,10 +31,8 @@ const DateAndPersonnelHoc = (Component: FC<DateAndPersonnelProps>) => {
 	const api = () => {
 		return new Promise<DateAndPersonnelProps>((resolve, reject) => {
 			setTimeout(() => {
-				// console.log(1);
-
 				resolve({ oldUserId: undefined, oldDate: '2022-11-30' });
-			}, 1000);
+			}, 300);
 		});
 	};
 	const LazyComponent = AsyncDateAndPersonnel(Component, api);

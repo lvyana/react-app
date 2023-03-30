@@ -5,6 +5,9 @@
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
+import Layouts from '@/layout';
+import Login from '@/views/login';
+import ToDay from '@/views/toDay';
 import suspenseLoad from './suspenseLoad';
 import { setRouterAuth } from './auth';
 import antdCom from './components/Antd';
@@ -12,10 +15,14 @@ import reactCom from './components/React';
 import RouterCom from './components/RouterDom';
 import Plugin from './components/Plugin';
 
+/**
+ * lazy Suspense 有嵌套情况 且有接口请求或者模拟请求,时间小于400 会导致重复渲染
+ */
+
 // login
-const Login = lazy(() => import(/* webpackChunkName: "Login" */ '@/views/login'));
+// const Login = lazy(() => import(/* webpackChunkName: "Login" */ '@/views/login'));
 // Layouts
-const Layouts = lazy(() => import(/* webpackChunkName: "Layouts" */ '@/layout'));
+// const Layouts = lazy(() => import(/* webpackChunkName: "Layouts" */ '@/layout'));
 // 首页
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/views/home'));
 // 404
@@ -25,13 +32,13 @@ const MyCenter = lazy(() => import(/* webpackChunkName: "MyCenter" */ '@/views/m
 // 消息中心
 const MessgeCenter = lazy(() => import(/* webpackChunkName: "MessgeCenter" */ '@/views/messageCenter'));
 // today
-const ToDay = lazy(() => import(/* webpackChunkName: "ToDay" */ '@/views/toDay'));
+// const ToDay = lazy(() => import(/* webpackChunkName: "ToDay" */ '@/views/toDay'));
 
 const router: RouteObject[] = [
-	{ path: '/login', element: suspenseLoad(<Login />) },
+	{ path: '/login', element: <Login /> },
 	{
 		path: '/',
-		element: suspenseLoad(<Layouts />),
+		element: <Layouts />,
 		children: setRouterAuth([
 			{ index: true, element: <Navigate to="home" /> },
 			{

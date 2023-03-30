@@ -129,9 +129,6 @@ const Layouts = () => {
 	);
 };
 
-const AsyncLayout = () => {
-	// 异步组件会导致useEffect先执行 并且拿不到dom
-	return useAysncComponent(Layouts);
-};
+const AsyncLayout = () => useAysncComponent(Layouts);
 
 export default AsyncLayout;
