@@ -6,7 +6,7 @@
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
 import suspenseLoad from './suspenseLoad';
-import Auth from './auth';
+import { setRouterAuth } from './auth';
 import antdCom from './components/Antd';
 import reactCom from './components/React';
 import RouterCom from './components/RouterDom';
@@ -31,10 +31,13 @@ const router: RouteObject[] = [
 	{ path: '/login', element: suspenseLoad(<Login />) },
 	{
 		path: '/',
-		element: <Auth element={suspenseLoad(<Layouts />)} />,
-		children: [
+		element: suspenseLoad(<Layouts />),
+		children: setRouterAuth([
 			{ index: true, element: <Navigate to="home" /> },
-			{ path: 'home', element: suspenseLoad(<Home />) },
+			{
+				path: 'home',
+				element: suspenseLoad(<Home />)
+			},
 			{
 				path: 'antd',
 				children: [...antdCom]
@@ -54,10 +57,9 @@ const router: RouteObject[] = [
 			{ path: 'mycenter', element: suspenseLoad(<MyCenter />) },
 			{ path: 'messgeCenter', element: suspenseLoad(<MessgeCenter />) }
 			// { path: '*', element: suspenseLoad(<NotFound />) }
-		]
+		])
 	},
 	{ path: '/today', element: suspenseLoad(<ToDay />) },
 	{ path: '*', element: suspenseLoad(<NotFound />) }
 ];
-
 export default router;
