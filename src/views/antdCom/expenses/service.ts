@@ -9,9 +9,9 @@ import request from '@/api/request';
  * @param pageNum 页码
  */
 export interface TabelDataParams {
-	name: string;
-	age: string;
-	status: '1' | '2';
+	name?: string;
+	age?: string;
+	status?: '1' | '2';
 	pageSize: number;
 	pageNum: number;
 }
