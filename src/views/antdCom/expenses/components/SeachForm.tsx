@@ -7,7 +7,7 @@ import React, { FC } from 'react';
 import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
-import { TabelDataParams } from '../service';
+import type { ExpensesFormParams } from '../index';
 import type { FormInputType, FormSelectType, FormButtonType, FinishType } from '@/antdComponents/iForm/type';
 
 export type ButtonType = 'subimt' | 'onReset';
@@ -17,7 +17,7 @@ export type ButtonType = 'subimt' | 'onReset';
  * @param onFinish
  */
 interface Iprops {
-	form: FormInstance<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>;
+	form: FormInstance<ExpensesFormParams>;
 	onFinish: FinishType<ButtonType>;
 }
 

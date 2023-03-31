@@ -4,9 +4,8 @@
  * @createDate 2023年1月3日
  */
 import React, { useState } from 'react';
-import { TabelDataResponse } from './service';
 import { tabelData } from './service';
-import { TabelDataParams } from './service';
+import type { TabelDataResponse, TabelDataParams } from './service';
 
 // 查询表格数据
 const useTabelData = () => {
@@ -27,7 +26,7 @@ const useTabelData = () => {
 		setLoading(false);
 	};
 
-	return { expensesTableData, setExpensesTableData, total, getTabelData, loading };
+	return { expensesTableData, total, getTabelData, loading };
 };
 
 export { useTabelData };

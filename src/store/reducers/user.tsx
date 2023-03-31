@@ -7,29 +7,20 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import menuLogo from '@/assets/images/menu.png';
 
-// 缓存
-export interface KeepAliveParams<T = unknown> {
-	path: string;
-	data: T;
-}
-
 /**
  * @param photo 头像url
  * @param token
  * @param permiss 权限
- * @param keepAlive 缓存
  */
 export interface InitUserParams {
 	photo: string;
 	token: string;
 	permiss: string[];
-	keepAlive: KeepAliveParams[];
 }
 export let initialState: InitUserParams = {
 	photo: menuLogo,
 	token: '',
-	permiss: ['*:*:*'],
-	keepAlive: []
+	permiss: ['*:*:*']
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -47,18 +38,14 @@ const user = createSlice({
 		},
 		SET_PERMISS: (state, { payload, type }: PayloadAction<string[]>) => {
 			state.permiss = payload;
-		},
-		SET_KEEP_ALIVE: (state, { payload, type }: PayloadAction<KeepAliveParams[]>) => {
-			state.keepAlive = payload;
 		}
 	}
 });
 
-export const { SET_PHOTO, SET_TOKEN, SET_PERMISS, SET_KEEP_ALIVE } = user.actions;
+export const { SET_PHOTO, SET_TOKEN, SET_PERMISS } = user.actions;
 
 export const GET_SELECTOR_PHOTO = (state: RootState) => state.user.photo;
 export const GET_SELECTOR_TOKEN = (state: RootState) => state.user.token;
 export const GET_SELECTOR_PERMISS = (state: RootState) => state.user.permiss;
-export const GET_SELECTOR_KEEP_ALIVE = (state: RootState) => state.user.keepAlive;
 
 export default user.reducer;

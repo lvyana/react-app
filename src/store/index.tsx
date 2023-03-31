@@ -5,7 +5,7 @@
  */
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import { layout, user, log, globalConfig } from './reducers';
+import { layout, user, log, globalConfig, keepAlive } from './reducers';
 
 import type { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
@@ -62,6 +62,15 @@ const persistedReducer = combineReducers({
 			// blacklist: []
 		},
 		globalConfig
+	),
+	keepAlive: persistReducer(
+		{
+			key: 'keepAlive',
+			storage,
+			whitelist: []
+			// blacklist: []
+		},
+		keepAlive
 	)
 });
 
