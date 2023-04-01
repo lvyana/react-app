@@ -41,57 +41,53 @@ const menuList: Router[] = [
 				children: [
 					{
 						title: 'useState',
-						path: '/react/hooks/myUseState',
+						path: '/react/hooks/useState',
 						icon: 'icon-kongjian'
 					},
 					{
 						title: 'useEffect',
-						path: '/react/hooks/myUseEffect',
+						path: '/react/hooks/useEffect',
 						icon: 'icon-fenxiangerweima'
 					},
 					{
 						title: 'useLayoutEffect',
-						path: '/react/hooks/myUseLayoutEffect',
+						path: '/react/hooks/useLayoutEffect',
 						icon: 'icon-wodemaidan'
 					},
 					{
 						title: 'useReducer',
-						path: '/react/hooks/myUseReducer',
+						path: '/react/hooks/useReducer',
 						icon: 'icon-gouwu'
 					},
 					{
 						title: 'useContext',
-						path: '/react/hooks/myUseContext',
+						path: '/react/hooks/useContext',
 						icon: 'icon-gouwu'
 					},
 					{
 						title: 'useMemo',
-						path: '/react/hooks/myUseMemo',
+						path: '/react/hooks/useMemo',
 						icon: 'icon-zuji'
 					},
 					{
 						title: 'useCallback',
-						path: '/react/hooks/myUseCallback',
+						path: '/react/hooks/useCallback',
 						icon: 'icon-ditu'
 					},
 					{
 						title: 'useRef',
-						path: '/react/hooks/myUseRef',
+						path: '/react/hooks/useRef',
 						icon: 'icon-youhuiquan'
 					},
-					{
-						title: 'Suspense',
-						path: '/react/hooks/mySuspense',
-						icon: 'icon-dingdan'
-					},
+
 					{
 						title: 'forwardRef',
-						path: '/react/hooks/myForwardRef',
+						path: '/react/hooks/forwardRef',
 						icon: 'icon-paimai'
 					},
 					{
-						title: 'myUseTransition',
-						path: '/react/hooks/myUseTransition',
+						title: 'useTransition',
+						path: '/react/hooks/useTransition',
 						icon: 'icon-paimai'
 					}
 				]
@@ -110,6 +106,11 @@ const menuList: Router[] = [
 						title: 'flushSync',
 						path: '/react/reactDom/flushSync',
 						icon: 'icon-xinpin'
+					},
+					{
+						title: 'Suspense',
+						path: '/react/reactDom/suspense',
+						icon: 'icon-dingdan'
 					}
 				]
 			},
@@ -132,7 +133,7 @@ const menuList: Router[] = [
 			},
 			{
 				title: 'useRouter',
-				path: '/router/myUseRouter',
+				path: '/router/useRouter',
 				icon: 'icon-shangou'
 			}
 		]

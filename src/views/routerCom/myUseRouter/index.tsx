@@ -18,7 +18,7 @@ import img7 from '@/assets/images/77.png';
 import img8 from '@/assets/images/88.png';
 import Icard from '@/antdComponents/iCard';
 
-const MyUseRouter = () => {
+const IuseRouter = () => {
 	const [img88, setimg88] = useState('');
 	useEffect(() => {
 		setTimeout(() => {
@@ -64,4 +64,4 @@ const MyUseRouter = () => {
 	);
 };
 
-export default MyUseRouter;
+export default IuseRouter;
