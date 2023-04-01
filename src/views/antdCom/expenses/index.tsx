@@ -16,29 +16,35 @@ import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
 import type { ButtonType } from './components/SeachForm';
 
+export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum'>;
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const Expenses = () => {
 	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
 
 	const { columns } = useHeaderTable({ buttonEvent });
 
-	const [form] = Form.useForm<Omit<TabelDataParams, 'pageSize' | 'pageNum '>>();
+	const [form] = Form.useForm<ExpensesFormParams>();
 
-	const { expensesTableData, setExpensesTableData, total, getTabelData, loading } = useTabelData();
+	const { expensesTableData, total, getTabelData, loading } = useTabelData();
 
 	// 缓存
-	const { initValue, setValue } = useKeepAlive();
+	const { initKeepAliveData, setKeepAliveData } = useKeepAlive();
 
 	const page = useRef({
-		pageSize: (initValue as TabelDataParams | undefined)?.pageSize || 10,
-		pageNum: (initValue as TabelDataParams | undefined)?.pageNum || 1
+		pageSize: initKeepAliveData?.pageSize || 10,
+		pageNum: initKeepAliveData?.pageNum || 1
 	});
 
-	const setKeepAlive = (params: unknown) => {
-		setValue(params);
+	const setKeepAlive = (params: TabelDataParams) => {
+		setKeepAliveData(params);
 	};
 
 	useEffect(() => {
-		form.setFieldsValue({ ...(initValue as TabelDataParams | undefined) });
+		const { pageNum, pageSize, name, age, status } = initKeepAliveData || {};
+		form.setFieldsValue({ name, age, status });
+		page.current = { pageNum: pageNum || page.current.pageNum, pageSize: pageSize || page.current.pageSize };
 		onFinish('subimt');
 	}, []);
 

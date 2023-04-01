@@ -3,15 +3,16 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useMemo } from 'react';
+import { message } from 'antd';
 import { useAppSelector, useAppDispatch } from '@/store';
-import { SET_KEEP_ALIVE, GET_SELECTOR_KEEP_ALIVE } from '@/store/reducers/user';
+import { GET_ANT_EXPENSES, SET_ANT_EXPENSES, GET_DEFAULT } from '@/store/reducers/keepAlive';
 import { useLocation } from 'react-router-dom';
-import type { KeepAliveParams } from '@/store/reducers/user';
-
+import type { TabelDataParams } from '@/views/antdCom/expenses/service';
 /**
  * @param 路径或者自定义别名
- * @returns 缓存hooks
+ * @returns initKeepAliveData 获取缓存参数
+ * @returns setKeepAliveData 修改缓存数据方法
  */
 const useKeepAlive = (path?: string) => {
 	const location = useLocation();
@@ -19,48 +20,26 @@ const useKeepAlive = (path?: string) => {
 	const PATH_URL = path || location.pathname;
 
 	const dispatch = useAppDispatch();
-	// 取出redux数据
-	const getData = useAppSelector(GET_SELECTOR_KEEP_ALIVE);
-
-	// 获取初始化数据
-	const [initValue, setInitValue] = useState(getData.find((value) => value.path === PATH_URL)?.data);
-
-	// 更新数据
-	const [value, setValue] = useState(getData.find((value) => value.path === PATH_URL)?.data);
+	// 获取初始化数据 取出redux数据
+	const initValue = useAppSelector(GET_ANT_EXPENSES);
+	const initKeepAliveData = useMemo(() => initValue, []);
 
 	// 白名单
 	const routerData = ['/antd/expenses'];
 
-	// 去到即将要做缓存的页面
-	// const lastRouter = ['/contacts'];
-
-	useEffect(() => {
-		// 存入数据
+	const setKeepAliveData = <T,>(value: T) => {
+		// 白名单是否需要缓存
 		if (routerData.indexOf(PATH_URL) > -1) {
-			const isAdd = getData.findIndex((item) => item.path === PATH_URL) > -1;
-			if (isAdd) {
-				const newData = getData.map((item) => {
-					if (item.path === PATH_URL) {
-						return { path: PATH_URL, data: value };
-					} else {
-						return item;
-					}
-				});
-				dispatch(SET_KEEP_ALIVE(newData));
+			// 存入数据
+			if (PATH_URL === '/antd/expenses') {
+				dispatch(SET_ANT_EXPENSES(value as TabelDataParams));
 			} else {
-				dispatch(SET_KEEP_ALIVE([...getData, { path: PATH_URL, data: value }]));
+				message.error('没有匹配到缓存path');
 			}
 		}
-	}, [value]);
+	};
 
-	return { initValue, setValue };
+	return { initKeepAliveData, setKeepAliveData };
 };
 
 export default useKeepAlive;
-
-// 获取对应页面数据
-export const getDataItem = (value: KeepAliveParams[], pathname: string) => {
-	return value.find((item) => {
-		return item.path === pathname;
-	});
-};

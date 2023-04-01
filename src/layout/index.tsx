@@ -81,7 +81,7 @@ const Layouts = () => {
 		width: '100%',
 		height: '64px',
 		backgroundColor: `${token.colorBgBase}`,
-		backgroundImage: ` url(${menuLogo})`,
+		backgroundImage: `url(${menuLogo})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center',
 		// background: `${token.colorBgBase} url(${menuLogo}) no-repeat center`,
