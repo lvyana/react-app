@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar, Button } from 'antd';
 import gitee from '@/assets/images/gitee.png';
 import github from '@/assets/images/github.png';
+import IconFont from '@/utils/iconfont';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -30,8 +31,8 @@ const Warehouse = () => {
 
 	return (
 		<>
-			<Button type="link" icon={<Avatar style={{ display: 'inline-table' }} src={gitee} size={16} />} onClick={onGoGitee}></Button>
-			<Button type="link" icon={<Avatar style={{ display: 'inline-table' }} src={github} size={16} />} onClick={onGoGithub}></Button>
+			<Button type="link" icon={<IconFont type={'icon-gitee'} />} onClick={onGoGitee}></Button>
+			<Button type="link" icon={<IconFont type={'icon-github'} />} onClick={onGoGithub}></Button>
 		</>
 	);
 };
