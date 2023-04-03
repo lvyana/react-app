@@ -40,19 +40,17 @@ const Crumb = () => {
 	}, [location.pathname]);
 
 	return (
-		<div style={{ paddingLeft: '27px' }}>
-			<Breadcrumb style={{}}>
-				{currentRouter.map((item, i) => {
-					return item.children ? (
-						<Breadcrumb.Item key={item.path} menu={{ items: CrumbMenus(item.children), selectedKeys: [currentRouter[i + 1]?.path] }}>
-							<a>{item.title}</a>
-						</Breadcrumb.Item>
-					) : (
-						<Breadcrumb.Item key={item.path}>{item.title}</Breadcrumb.Item>
-					);
-				})}
-			</Breadcrumb>
-		</div>
+		<Breadcrumb>
+			{currentRouter.map((item, i) => {
+				return item.children ? (
+					<Breadcrumb.Item key={item.path} menu={{ items: CrumbMenus(item.children), selectedKeys: [currentRouter[i + 1]?.path] }}>
+						<a>{item.title}</a>
+					</Breadcrumb.Item>
+				) : (
+					<Breadcrumb.Item key={item.path}>{item.title}</Breadcrumb.Item>
+				);
+			})}
+		</Breadcrumb>
 	);
 };
 
