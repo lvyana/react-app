@@ -6,6 +6,7 @@
 import axios from 'axios';
 import type { AxiosResponse, AxiosRequestConfig, AxiosError, Method } from 'axios';
 import { message } from 'antd';
+import abortController from './abortController';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 
@@ -44,6 +45,7 @@ instance.interceptors.request.use(
 		// 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
 		// 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
 		// 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
+		abortController.addPending(config);
 
 		// 全局配置axios ，注冊token、
 		const token = getToken();
@@ -74,18 +76,22 @@ instance.interceptors.response.use(
 		} else if (code === 200) {
 			return res.data;
 		}
+
 		message.error(msg);
 		return Promise.reject('error');
 	},
+
 	// 请求失败
 	(error: AxiosError) => {
 		let { message } = error;
-		if (message === 'Network Error') {
+		if (message.includes('Network Error')) {
 			message = '后端接口连接异常';
 		} else if (message.includes('timeout')) {
 			message = '系统接口请求超时';
 		} else if (message.includes('Request failed with status code')) {
-			message = '系统接口' + message.substr(message.length - 3) + '异常';
+			message = '系统接口' + message.substring(message.length - 3) + '异常';
+		} else if (message.includes('canceled')) {
+			return Promise.reject(error);
 		}
 		Message('error', message);
 		return Promise.reject(error);
