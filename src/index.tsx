@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ErrorBoundary from '@/antdComponents/errorBoundary';
+import errorBoundaryHoc from '@/hoc/errorBoundaryHoc';
 
 // 数据持久化
 import { PersistGate } from 'redux-persist/integration/react';
@@ -36,11 +36,9 @@ function render() {
 			<PersistGate loading={null} persistor={persistor}>
 				<Theme>
 					<BrowserRouter basename={'/'}>
-						<ErrorBoundary>
-							{/* <StrictMode> */}
-							<App />
-							{/* </StrictMode> */}
-						</ErrorBoundary>
+						{/* <StrictMode> */}
+						{errorBoundaryHoc(App)}
+						{/* </StrictMode> */}
 					</BrowserRouter>
 				</Theme>
 			</PersistGate>
