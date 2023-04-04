@@ -10,10 +10,10 @@ import Login from '@/views/login';
 import ToDay from '@/views/toDay';
 import suspenseLoad from './suspenseLoad';
 import { setRouterAuth } from './auth';
-import antdCom from './components/Antd';
-import reactCom from './components/React';
-import RouterCom from './components/RouterDom';
-import Plugin from './components/Plugin';
+import antdCom from './module/antd';
+import reactCom from './module/react';
+import RouterCom from './module/router';
+import Plugin from './module/plugin';
 
 /**
  * lazy Suspense 有嵌套情况 且有接口请求或者模拟请求,时间小于400 会导致重复渲染

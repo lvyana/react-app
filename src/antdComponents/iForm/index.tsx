@@ -32,11 +32,23 @@ import type { formRadioOptionsParams } from './components/Iradio';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import { DefaultOptionType } from 'antd/es/select';
 import { BaseOptionType } from 'antd/es/cascader';
+import { UploadFile } from 'antd/lib/upload/interface';
+
+/**
+ * React Ant Design Upload 组件在Form中使用的警告,如何排除:
+ * 警告信息 Warning: [antd: Upload] value is not a valid prop, do you mean fileList?
+ *
+ * 解决方法:
+ * 当您在Form.Item中使用Upload时,可能遇到此类警告,解决该问题只需要在Form.Item组件的属性列表中添加如下两个属性即可:
+ * valuePropName="fileList"
+ * getValueFromEvent={normFile}
+ */
 
 export * from './type';
 export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
 export type OnValuesChange<F> = (changedValues: F, values: F) => void;
+
 /**
  * 表单参数
  * @param T 表单渲染数据
@@ -48,15 +60,22 @@ export type OnValuesChange<F> = (changedValues: F, values: F) => void;
  * @param self 是否自适应
  */
 interface IformProps<T, F> {
-	formList: FormItemAndCom<T>;
+	formList: FormListParam<T>;
 	form: FormInstance<F>;
 	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
 	self?: boolean;
 }
 
-type FormItemAndCom<T> = {
+type FormListParam<T> = {
 	[K in keyof T]: T[K] & FormItem; // keyof T 返回联合类型 in 再遍历该联合类型
+};
+
+const normFile = (e: { fileList: UploadFile[] }) => {
+	if (Array.isArray(e)) {
+		return e;
+	}
+	return e?.fileList;
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
@@ -80,6 +99,22 @@ const Iform = <T extends FormItem[], F extends object>({
 					{...item.layout}
 					labelAlign={item.labelAlign}
 					getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}>
+					{formItemCom(item)}
+				</Form.Item>
+			);
+		}
+
+		if (item.type === 'upload') {
+			return (
+				<Form.Item
+					name={item.name}
+					valuePropName={'fileList'}
+					label={item.label}
+					tooltip={item.tooltip}
+					rules={item.rules}
+					{...item.layout}
+					labelAlign={item.labelAlign}
+					getValueFromEvent={normFile}>
 					{formItemCom(item)}
 				</Form.Item>
 			);
@@ -234,8 +269,8 @@ const Iform = <T extends FormItem[], F extends object>({
 		}
 
 		if (item.type === 'upload') {
-			const { name, onChange, mode, style, children, multiple, action } = item as UploadType;
-			return FORM_ITEM_MAP[item.type]({ name, onChange, mode, style, children, multiple, action });
+			const { name, onChange, mode, style, children, multiple, action, headers } = item as UploadType;
+			return FORM_ITEM_MAP[item.type]({ name, onChange, mode, style, children, multiple, action, headers });
 		}
 
 		if (item.type === 'userDefined') {

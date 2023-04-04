@@ -14,14 +14,12 @@ const { Dragger } = Upload;
 
 const formUpload: FormItemMap['upload'] = (item) => {
 	return (
-		<>
-			<Dragger name={item.name} multiple={item.multiple} action={item.action} onChange={item.onChange}>
-				<p className="ant-upload-drag-icon">
-					<InboxOutlined />
-				</p>
-				{item.children}
-			</Dragger>
-		</>
+		<Dragger name={item.name} multiple={item.multiple} action={item.action} headers={item.headers}>
+			<p className="ant-upload-drag-icon">
+				<InboxOutlined />
+			</p>
+			{item.children}
+		</Dragger>
 	);
 };
 

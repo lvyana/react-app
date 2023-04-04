@@ -53,7 +53,6 @@ const JsonView: FC<JsonViewProps> = ({ open, onOkOrCancel, confirmLoading }) => 
 	const [selectJsonType, setSelectJsonType] = useState<SelectJsonType>('dnd');
 
 	const onJsonChange = (value: SegmentedValue) => {
-		console.log(value);
 		setSelectJsonType(value as SelectJsonType);
 		if (value === 'standard') {
 			setJsonData(

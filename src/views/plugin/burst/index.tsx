@@ -58,7 +58,6 @@ const Burst = () => {
 	};
 
 	const onCallback = () => {
-		console.log(Date.now());
 		time.current = Date.now();
 		getArr();
 	};

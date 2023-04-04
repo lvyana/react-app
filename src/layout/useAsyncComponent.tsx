@@ -16,7 +16,6 @@ const AysncComponentHoc = (Component: React.FC, api: () => Promise<Router[]>, se
 			try {
 				const data = await api();
 				setRedux(data);
-				console.log(111);
 
 				resolve({
 					default: () => <Component></Component>

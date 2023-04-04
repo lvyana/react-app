@@ -17,6 +17,8 @@ import type { SwitchChangeEventHandler } from 'antd/es/switch';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
 import type { ButtonItemParams } from '../iButton';
+import type { ResponseData } from '@/api/request';
+import { HttpRequestHeader } from 'antd/lib/upload/interface';
 
 // input
 export type InputType = {
@@ -226,12 +228,13 @@ export type FormSliderType = FormItem & SliderType;
 // upload
 export type UploadType = {
 	name: string;
-	onChange?: ((info: UploadChangeParam<UploadFile<any>>) => void) | undefined;
+	onChange?: ((info: UploadChangeParam<UploadFile<ResponseData<never>>>) => void) | undefined;
 	mode?: Mode;
 	style?: React.CSSProperties;
 	children?: ReactNode;
 	multiple?: boolean;
 	action?: string;
+	headers?: HttpRequestHeader;
 };
 export type FormUploadType = FormItem & UploadType;
 
@@ -256,7 +259,7 @@ export interface FormItemMap {
 	radio: <T extends formRadioOptionsParams>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;
-	textArea: <T>(item: TextAreaType) => JSX.Element;
+	textArea: (item: TextAreaType) => JSX.Element;
 	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
 	slider: (item: SliderType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;
