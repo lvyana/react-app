@@ -6,28 +6,32 @@
 import React, { useState, memo, useCallback } from 'react';
 import { Button } from 'antd';
 import Icard from '@/antdComponents/iCard';
+import dayjs from 'dayjs';
 
 interface MyUseCallbackItemProps {
 	addFunc: () => void;
 	item: string | null;
 }
 
+const getTime = () => {
+	return dayjs().valueOf().toString();
+};
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const IuseCallback = () => {
-	const [count, setCount] = useState<string | null>(null);
+	const [count, setCount] = useState<string>(getTime());
 
-	const [callbackCount, setCallbackCount] = useState<string | null>(null);
+	const [callbackCount, setCallbackCount] = useState<string>(getTime());
 
 	const onCallbackClick = useCallback(() => {
-		const date = new Date(Date.now()).toString();
-		setCallbackCount(date);
+		setCallbackCount(getTime());
 	}, []);
 
 	const onClick = () => {
-		const date = new Date(Date.now()).toString();
-		setCount(date);
+		setCount(getTime());
 	};
+
 	return (
 		<Icard>
 			<div>
@@ -50,26 +54,26 @@ const IuseCallback = () => {
 export default IuseCallback;
 
 const MyItem = ({ item, addFunc }: MyUseCallbackItemProps) => {
-	// console.log('普通子组件我更新了');
+	console.log('普通子组件我更新了');
 
 	return (
 		<div>
-			我是子组件: {Date.now()}
+			我是子组件: {item}-<span className="text-red-600">{getTime()}</span>
 			<Button type="link" onClick={addFunc}>
-				+
+				获取时间戳
 			</Button>
 		</div>
 	);
 };
 
 const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
-	// console.log('useCallback子组件我更新了');
+	console.log('useCallback子组件我更新了');
 
 	return (
 		<div>
-			我是子组件: {Date.now()}
+			我是子组件: {item}-<span className="text-red-600">{getTime()}</span>
 			<Button type="link" onClick={addFunc}>
-				+
+				获取时间戳
 			</Button>
 		</div>
 	);

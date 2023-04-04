@@ -6,16 +6,23 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from 'antd';
 import Icard from '@/antdComponents/iCard';
+import dayjs from 'dayjs';
+
+const getTime = () => {
+	return dayjs().valueOf().toString();
+};
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const IuseMemo = () => {
-	const [value, setValue] = useState(10);
+	const [value, setValue] = useState(0);
 
-	const [name, setName] = useState('0');
+	const [num, setNum] = useState(0);
 
-	const date = useMemo(() => Date.now(), [name]);
+	const date = useMemo(() => getTime(), [num]);
+
 	return (
 		<Icard>
-			name改变触发:{date}
 			<div>
 				<Button type="link" onClick={() => setValue(value + 1)}>
 					value
@@ -23,10 +30,10 @@ const IuseMemo = () => {
 				{value}
 			</div>
 			<div>
-				<Button type="link" onClick={() => setName(Math.floor(Math.random() * 100) + '1')}>
-					name
+				<Button type="link" onClick={() => setNum(num + 1)}>
+					更新时间戳
 				</Button>
-				{name}
+				{date}
 			</div>
 		</Icard>
 	);

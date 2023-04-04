@@ -4,6 +4,9 @@ import { sumProps } from './UseContextCom';
 interface ActionFuncType<T> {
 	(state: T, action: { type: string; value: number }): T;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const IuseReducer = () => {
 	const initValue = {
 		count: 0,
@@ -25,7 +28,7 @@ const IuseReducer = () => {
 		return state;
 	};
 	const [sum, dispatch] = useReducer(myActions, initValue);
-	return [sum, dispatch];
+	return { sum, dispatch };
 };
 
 export default IuseReducer;

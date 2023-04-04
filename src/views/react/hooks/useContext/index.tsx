@@ -10,20 +10,26 @@ import IuseReducer from './IuseReducer';
 import { sumProps, dispatchProps } from './UseContextCom';
 import Icard from '@/antdComponents/iCard';
 
+/**
+ * tips: 可以结合useReduce实现redux
+ */
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const IuseContext = () => {
-	const [value, setvalue] = useState(10);
-	const [sum, dispatch] = IuseReducer();
+	const { sum, dispatch } = IuseReducer();
 
 	return (
 		<Icard>
-			{'我是父组件: ' + (sum as sumProps).count + '和' + (sum as sumProps).sum}
+			<div>{'count: ' + sum.count}</div>
+
 			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'add', value: 1 })}>
 				+1
 			</Button>
 			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'sub', value: 1 })}>
 				-1
 			</Button>
-			{'tips: 可以结合useReduce实现redux'}
+
 			<IuseContextCom sum={sum as sumProps} dispatch={dispatch as React.Dispatch<dispatchProps>}>
 				<UseContextComItem></UseContextComItem>
 			</IuseContextCom>
@@ -34,12 +40,12 @@ const IuseContext = () => {
 export default IuseContext;
 
 const UseContextComItem = () => {
-	const value = useContext(MyContext);
+	const context = useContext(MyContext);
 
 	return (
 		<div>
 			{'我是子组件: '}
-			{/* {value} */}
+			{context?.sum.count}
 		</div>
 	);
 };

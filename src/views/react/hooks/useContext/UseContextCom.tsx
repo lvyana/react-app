@@ -5,8 +5,6 @@
  */
 import React, { FC, useContext } from 'react';
 
-export const MyContext = React.createContext<MyUseContextProps | null>(null);
-
 export interface sumProps {
 	count: number;
 	sum?: number;
@@ -22,6 +20,10 @@ interface MyUseContextProps {
 	dispatch: React.Dispatch<dispatchProps>;
 	children?: React.ReactNode;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+export const MyContext = React.createContext<MyUseContextProps | null>(null);
 
 const IuseContextCom: FC<MyUseContextProps> = ({ children, sum, dispatch }) => {
 	return <MyContext.Provider value={{ sum, dispatch }}>{children}</MyContext.Provider>;
