@@ -3,8 +3,9 @@
  * @author ly
  * @createDate
  */
-import { Input } from 'antd';
 import React, { FC, useDeferredValue, useMemo, useState } from 'react';
+import Icard from '@/antdComponents/iCard';
+import { Input } from 'antd';
 
 type ListProps = {
 	query: string;
@@ -21,10 +22,10 @@ const IuseDeferredValue = () => {
 	};
 
 	return (
-		<div>
+		<Icard>
 			<Input type="number" onChange={handleChange} value={query} />
 			<List query={query} />
-		</div>
+		</Icard>
 	);
 };
 

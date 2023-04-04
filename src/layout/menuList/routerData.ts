@@ -45,15 +45,21 @@ const menuList: Router[] = [
 						icon: 'icon-kongjian'
 					},
 					{
-						title: 'useEffect',
-						path: '/react/hooks/useEffect',
-						icon: 'icon-fenxiangerweima'
+						title: 'useInsertionEffect',
+						path: '/react/hooks/useInsertionEffect',
+						icon: 'icon-wodemaidan'
 					},
 					{
 						title: 'useLayoutEffect',
 						path: '/react/hooks/useLayoutEffect',
 						icon: 'icon-wodemaidan'
 					},
+					{
+						title: 'useEffect',
+						path: '/react/hooks/useEffect',
+						icon: 'icon-fenxiangerweima'
+					},
+
 					{
 						title: 'useReducer',
 						path: '/react/hooks/useReducer',

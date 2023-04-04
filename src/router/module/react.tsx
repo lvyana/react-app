@@ -11,6 +11,7 @@ import suspenseLoad from '../suspenseLoad';
 const IuseState = lazy(() => import(/* webpackChunkName: "IuseState" */ '@/views/react/hooks/useState'));
 const IuseEffect = lazy(() => import(/* webpackChunkName: "IuseEffect" */ '@/views/react/hooks/useEffect'));
 const IuseLayoutEffect = lazy(() => import(/* webpackChunkName: "IuseLayoutEffect" */ '@/views/react/hooks/useLayoutEffect'));
+const IuseInsertionEffect = lazy(() => import(/* webpackChunkName: "IuseInsertionEffect" */ '@/views/react/hooks/useInsertionEffect'));
 const IuseReducer = lazy(() => import(/* webpackChunkName: "IuseReducer" */ '@/views/react/hooks/useReducer'));
 const IuseContext = lazy(() => import(/* webpackChunkName: "IuseContext" */ '@/views/react/hooks/useContext'));
 const IuseMemo = lazy(() => import(/* webpackChunkName: "IuseMemo" */ '@/views/react/hooks/useMemo'));
@@ -36,13 +37,18 @@ const reactHooks = [
 		element: suspenseLoad(<IuseState />)
 	},
 	{
-		path: 'useEffect',
-		element: suspenseLoad(<IuseEffect />)
+		path: 'useInsertionEffect',
+		element: suspenseLoad(<IuseInsertionEffect />)
 	},
 	{
 		path: 'useLayoutEffect',
 		element: suspenseLoad(<IuseLayoutEffect />)
 	},
+	{
+		path: 'useEffect',
+		element: suspenseLoad(<IuseEffect />)
+	},
+
 	{
 		path: 'useReducer',
 		element: suspenseLoad(<IuseReducer />)
