@@ -23,7 +23,8 @@ interface AxiosConfig {
 }
 
 // 请求拦截器 引入加载圈
-axios.defaults.baseURL = process.env.REACT_APP_BASE_API; //服务
+export const baseURL = process.env.REACT_APP_BASE_API; //服务
+axios.defaults.baseURL = baseURL;
 
 const config: AxiosConfig = {
 	timeout: 1000 * 12,
@@ -143,7 +144,7 @@ interface RequestParams<R> {
  * @param data 响应数据
  * @param total 条数
  */
-type Data<T> = {
+export type ResponseData<T> = {
 	code: number;
 	message: string;
 	data: T;
@@ -156,7 +157,7 @@ type Data<T> = {
  * @returns instance 返回实例
  */
 const request = <T, R>({ url, method, data, config }: RequestParams<T>) => {
-	return instance.request<R, Data<R>>({
+	return instance.request<R, ResponseData<R>>({
 		url,
 		method,
 		[method.toLowerCase() === 'get' ? 'params' : 'data']: data,
