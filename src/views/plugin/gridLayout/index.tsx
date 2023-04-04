@@ -131,7 +131,6 @@ const ImgGrid = () => {
 
 		// 计算等比高度
 		const height = Math.floor(clientHeight * (width / CLOS / clientWidth));
-		console.log(clientHeight, clientWidth, width / CLOS, clientHeight * (width / CLOS / clientWidth));
 
 		arrImg.current.push({ clientHeight: height, currentSrc });
 	};
@@ -165,12 +164,6 @@ const ImgGrid = () => {
 			// 寻找对应图片的高度
 			return [
 				...value.map((v) => {
-					console.log(
-						arrImg.current.find((item, i) => {
-							return item.currentSrc === v.url;
-						})
-					);
-
 					return {
 						...v,
 						h:

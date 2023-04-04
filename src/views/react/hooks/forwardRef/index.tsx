@@ -3,8 +3,9 @@
  * @author ly
  * @createDate 2020年11月7日
  */
-import React, { FC, forwardRef, Ref, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { FC, forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import Icard from '@/antdComponents/iCard';
+import Button from 'antd/es/button';
 
 type OnLoginHandler = {
 	login: () => void;
@@ -17,20 +18,31 @@ type Ordinary = {
 // 1、ref 不会透传
 // 2、函数组件是没有实例 需要转发到dom上
 
-const IforwardRef = () => {
-	const ordinary = useRef<Ordinary | null>(null);
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-	useEffect(() => {
-		// console.log(ordinary?.current?.cloneEl());
-		// console.log(onLoginHandler);
-	}, []);
+const IforwardRef = () => {
+	const ordinaryRef = useRef<Ordinary | null>(null);
+
+	const onOrdinary = () => {
+		ordinaryRef.current?.cloneEl();
+	};
 
 	const onLoginHandler = useRef<OnLoginHandler | null>(null);
+
+	const onLogin = () => {
+		onLoginHandler.current?.login();
+	};
+
 	return (
 		<Icard>
-			<OrdinaryForWard ref={ordinary}></OrdinaryForWard>
+			<Button type="primary" onClick={onOrdinary}>
+				普通转发ref
+			</Button>
+			<OrdinaryForWard ref={ordinaryRef}></OrdinaryForWard>
+			<Button type="primary" onClick={onLogin}>
+				登录
+			</Button>
 			<LoginHoc ref={onLoginHandler}></LoginHoc>
-			<div onClick={() => ordinary?.current?.cloneEl()}>切换</div>
 		</Icard>
 	);
 };
@@ -46,7 +58,7 @@ const OrdinaryForWard = forwardRef<Ordinary | null>((props, ref) => {
 			text: el.current?.innerText,
 			cloneEl: () => {
 				if (el.current) {
-					el.current.innerText = '我变了';
+					el.current.innerText = '普通转发ref中....';
 				}
 			}
 		};
@@ -56,17 +68,13 @@ const OrdinaryForWard = forwardRef<Ordinary | null>((props, ref) => {
 OrdinaryForWard.displayName = 'OrdinaryForWard';
 
 // HOC转发
-const hocForWardRef = (Component: FC<{ onLoginHandler: Ref<OnLoginHandler> }>) => {
-	const LogCom: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) => {
+const hocLoginComponent = (Component: FC<{ onLoginHandler: Ref<OnLoginHandler> }>) => {
+	const LoginComponent = forwardRef<OnLoginHandler>((props, ref) => {
 		// 做操作
-		return <Component onLoginHandler={onLoginHandler}></Component>;
-	};
-
-	const hocForWardRefCom = forwardRef<OnLoginHandler>((props, ref) => {
-		return <LogCom {...props} onLoginHandler={ref}></LogCom>;
+		return <Component onLoginHandler={ref}></Component>;
 	});
-	hocForWardRefCom.displayName = 'hocForWardRefCom';
-	return hocForWardRefCom;
+	LoginComponent.displayName = 'hocForWardRefCom';
+	return LoginComponent;
 };
 
 const Login: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) => {
@@ -78,12 +86,15 @@ const Login: FC<{ onLoginHandler: Ref<OnLoginHandler> }> = ({ onLoginHandler }) 
 			return {
 				login: () => {
 					// console.log(el.current?.innerText);
+					if (el.current) {
+						el.current.innerText = '登录中....';
+					}
 				}
 			};
 		},
 		[]
 	);
-	return <div ref={el}>登录</div>;
+	return <div ref={el}>未登录</div>;
 };
 
-const LoginHoc = hocForWardRef(Login);
+const LoginHoc = hocLoginComponent(Login);

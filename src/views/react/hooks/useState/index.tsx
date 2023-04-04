@@ -39,8 +39,6 @@ const IuseState = () => {
 		// console.log(first);
 	};
 
-	console.log('组件刷新');
-
 	return (
 		<Icard>
 			<EasyTyper />

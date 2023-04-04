@@ -50,7 +50,7 @@ const IuseCallback = () => {
 export default IuseCallback;
 
 const MyItem = ({ item, addFunc }: MyUseCallbackItemProps) => {
-	console.log('普通子组件我更新了');
+	// console.log('普通子组件我更新了');
 
 	return (
 		<div>
@@ -63,7 +63,7 @@ const MyItem = ({ item, addFunc }: MyUseCallbackItemProps) => {
 };
 
 const MyUseCallbackItem = memo(({ item, addFunc }: MyUseCallbackItemProps) => {
-	console.log('useCallback子组件我更新了');
+	// console.log('useCallback子组件我更新了');
 
 	return (
 		<div>

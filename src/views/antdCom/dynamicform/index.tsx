@@ -21,12 +21,13 @@ import type {
 	FormSwitchType,
 	FormUploadType,
 	FormButtonType,
-	SelectValueType
+	SelectValueType,
+	FinishType
 } from '@/antdComponents/iForm/type';
-import type { UploadFile } from 'antd/lib/upload/interface';
 import Icard from '@/antdComponents/iCard';
+import { baseURL } from '@/api/request';
 
-type FileChangeType = (info: { file: UploadFile; fileList: UploadFile[] }) => void;
+type SubmitParam = 'submit' | 'onReset';
 
 type FormListType = [
 	FormInputType,
@@ -76,13 +77,18 @@ type FormListType = [
 	FormInputNumberType,
 	FormSwitchType,
 	FormUploadType,
-	FormButtonType<'submit' | 'onReset'>
+	FormButtonType<SubmitParam>
 ];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dynamicform = () => {
 	const selectOnChange = (value: SelectValueType) => {};
+
+	const onSubmit: FinishType<SubmitParam> = (type) => {
+		// console.log(form.getFieldsValue());
+	};
+
 	// 参数
 	const formList: FormListType = [
 		{
@@ -333,10 +339,15 @@ const Dynamicform = () => {
 			type: 'upload',
 			key: 14,
 			label: 'upload',
-			name: 'upload',
+			name: 'file',
+			action: `${baseURL}/file`,
 			span: 24,
+			headers: {
+				Authorization: '{token:00}'
+			},
 			onChange: (info) => {
 				const { status } = info.file;
+
 				if (status !== 'uploading') {
 					// console.log(info.file, info.fileList);
 				}
@@ -357,13 +368,14 @@ const Dynamicform = () => {
 				{ type: 'submit', name: '搜索', btType: 'primary' },
 				{ type: 'onReset', name: '重置' }
 			],
+			onClick: onSubmit,
 			style: { float: 'right' }
 		}
 	];
 
 	//表单
 	const [form] = Form.useForm();
-	const onFinish = () => {};
+
 	return (
 		<div className="animate__animated animate__fadeIn">
 			<Icard>

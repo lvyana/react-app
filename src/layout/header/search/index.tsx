@@ -1,52 +1,87 @@
 /**
- * @file 实现搜索
+ * @file 搜索
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Input, Button, Dropdown } from 'antd';
+import React, { useState, useRef, useEffect, ChangeEventHandler, ChangeEvent } from 'react';
+import { Input, Button, Dropdown, InputRef } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+
+/**
+ * 原理是事件触发顺序的不同 onmousedown => onblur=> onclick
+ */
+
+type OnMouseDownMenuItem = (path: string) => void;
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const HeaderSearch = () => {
-	const [search, setSearch] = useState(false);
-	const searchRef = useRef(null);
+	const navigate = useNavigate();
+
+	// 控制下拉开关
+	const [open, setOpen] = useState(false);
+	// input值
+	const [searchValue, setSearchValue] = useState('');
+	// 搜索框开关
+	const [searchOpen, setSearchOpen] = useState(false);
+	// input Ref
+	const searchRef = useRef<InputRef | null>(null);
+	// 下拉数据集合
 	const [searchList, setSearchList] = useState<object[] | null>(null);
+
 	const checkbox = () => {
-		setSearch(true);
+		setSearchOpen(true);
 	};
 
 	useEffect(() => {
-		if (search) {
-			(searchRef.current as unknown as HTMLInputElement).focus();
+		if (searchOpen) {
+			searchRef.current?.focus();
 		}
-	}, [search]);
+	}, [searchOpen]);
 
 	const inputOnBlur = () => {
-		setSearch(false);
+		setSearchValue('');
 		setSearchList([]);
+		setOpen(false);
+		setSearchOpen(false);
 	};
 
-	const searchChange = (e: ChangeEvent) => {
+	const inputOnFocus = () => {
+		if (searchValue) {
+			setOpen(true);
+		}
+	};
+	const searchChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(e.target.value);
 		// 随便赋一个值
-		if ((e.target as HTMLInputElement).value) {
+		if (e.target.value) {
+			setOpen(true);
 			setSearchList([{ value: 1, id: 1 }]);
 		} else {
 			setSearchList([]);
 		}
 	};
+
+	const onToRouter: OnMouseDownMenuItem = (path) => {
+		navigate(path);
+	};
+
 	return (
 		<div className="inline-block w-48 text-right">
-			<Dropdown menu={{ items: menu(searchList) }}>
+			<Dropdown open={open} menu={{ items: menu(searchList, onToRouter) }}>
 				<Input
 					placeholder="搜索"
 					ref={searchRef}
 					suffix={suffix}
+					value={searchValue}
 					onBlur={inputOnBlur}
+					onFocus={inputOnFocus}
 					onChange={searchChange}
 					className="rounded-full"
 					style={{
-						width: search ? '192px' : 0,
-						opacity: search ? 1 : 0,
+						width: searchOpen ? '192px' : 0,
+						opacity: searchOpen ? 1 : 0,
 						transitionProperty: 'width,opacity',
 						transitionDuration: '0.5s,0.2s',
 						transitionTimingFunction: 'ease-out'
@@ -55,7 +90,7 @@ const HeaderSearch = () => {
 				/>
 			</Dropdown>
 
-			{!search && (
+			{!searchOpen && (
 				<Button
 					type="link"
 					// className="absolute left-36 top-4"
@@ -77,28 +112,20 @@ const suffix = (
 	/>
 );
 
-const menu = (searchList: object[] | null) => {
+const menu = (searchList: object[] | null, onMouseDown: OnMouseDownMenuItem) => {
 	return searchList?.length
 		? [
 				{
 					key: '1',
-					label: (
-						<a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-							1st menu item
-						</a>
-					)
+					label: <div onMouseDown={() => onMouseDown('/react/hooks/useState')}>go to useState</div>
 				},
 				{
 					key: '2',
-					label: (
-						<a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-							3rd menu item (disabled)
-						</a>
-					)
+					label: <div onMouseDown={() => onMouseDown('/react/hooks/useEffect')}>go to useEffect</div>
 				},
 				{
 					key: '3',
-					label: 'a danger item'
+					label: <div onMouseDown={() => onMouseDown('/react/hooks/useLayoutEffect')}>go to useLayoutEffect</div>
 				}
 		  ]
 		: [];
