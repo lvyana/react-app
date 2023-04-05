@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { flushSync } from 'react-dom';
-import useEasyTyper from '@/pluginComponents/easyTyper';
+import useEasyTyper from '@/pluginComponents/iEasyTyper';
 import Icard from '@/antdComponents/iCard';
 
 /**

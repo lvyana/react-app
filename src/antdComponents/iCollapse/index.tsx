@@ -69,7 +69,7 @@ const Icollapse = <T extends string | number>({
 				{styleConfigParams.list.map((item) => {
 					return (
 						<Panel header={item.header} key={item.key} style={item.style}>
-							<p>{item.content}</p>
+							{item.content}
 						</Panel>
 					);
 				})}

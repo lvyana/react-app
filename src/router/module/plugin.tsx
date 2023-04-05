@@ -23,6 +23,8 @@ const I18n = lazy(() => import(/* webpackChunkName: "I18n" */ '@/views/plugin/i1
 const Dnd = lazy(() => import(/* webpackChunkName: "Dnd" */ '@/views/plugin/dnd'));
 // dnd
 const Burstd = lazy(() => import(/* webpackChunkName: "Burstd" */ '@/views/plugin/burst'));
+// EasyTyper
+const EasyTyper = lazy(() => import(/* webpackChunkName: "EasyTyper" */ '@/views/plugin/easyTyper'));
 
 // 插件的使用
 const plugin = [
@@ -34,7 +36,8 @@ const plugin = [
 	{ path: 'responsive', element: suspenseLoad(<Responsive />) },
 	{ path: 'i18n', element: suspenseLoad(<I18n />) },
 	{ path: 'dnd', element: suspenseLoad(<Dnd />) },
-	{ path: 'burst', element: suspenseLoad(<Burstd />) }
+	{ path: 'burst', element: suspenseLoad(<Burstd />) },
+	{ path: 'easyTyper', element: suspenseLoad(<EasyTyper />) }
 ];
 
 export default plugin;

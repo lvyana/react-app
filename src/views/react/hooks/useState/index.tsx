@@ -5,8 +5,8 @@
  */
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import useEasyTyper from '@/pluginComponents/easyTyper';
 import Icard from '@/antdComponents/iCard';
+import Icollapse from '@/antdComponents/iCollapse';
 
 const IuseState = () => {
 	const init = 0;
@@ -14,17 +14,15 @@ const IuseState = () => {
 	const [value, setValue] = useState(init);
 
 	const [first, setfirst] = useState(() => init);
+	console.log('reader');
 
 	const add = () => {
 		// setValue(value + 1);
-
 		// setfirst((value) => value + 1);
 		// setfirst((value) => {
 		// 	// console.log(value);
-
 		// 	return value + 1;
 		// });
-
 		// 17 异步更新会render两次
 		// 18 异步更新会render1次
 		setTimeout(() => setValue(value + 1), 1000);
@@ -34,49 +32,39 @@ const IuseState = () => {
 		// setTimeout(() => setValue((value) => value + 1), 1000);
 		// setTimeout(() => setValue((value) => value + 1), 1000);
 		// setTimeout(() => setfirst((first) => first + 1), 1000);
-
 		// console.log(value);
 		// console.log(first);
 	};
 
+	const list = [
+		{
+			header: 'useState在组件式编程里的基本用处',
+			content: <div>useState 是一个组件定义状态信息,所谓“状态”,就是该组件任意时刻都存放的各种数据</div>,
+			key: '0'
+		},
+		{
+			header: 'useState更新',
+			content: (
+				<>
+					<div>1、当组件更新state时,会触发组件的重新渲染,可以认为发生了局部刷新</div>
+					<div>2、在函数内多次更新,会合并处理</div>
+					<div>3、18之前手动合并处理unstable_batchedUpdates,18之后自动合并处理就不需要了</div>
+				</>
+			),
+			key: '1'
+		}
+	];
+
 	return (
 		<Icard>
-			<EasyTyper />
 			<Button type="link" onClick={add}>
 				+1
 			</Button>
 			{value}
 			{first}
+			<Icollapse styleConfig="1" defaultActiveKey={['0']} list={list}></Icollapse>
 		</Icard>
 	);
 };
 
 export default IuseState;
-
-const EasyTyper = () => {
-	const { output } = useEasyTyper('useState是一个 React Hook，可让您向组件添加状态变量。const [state, setState] = useState(initialState)');
-
-	const { output: initStr } = useEasyTyper(
-		'initialState：您希望状态初始为的值。它可以是任何类型的值，但函数有特殊行为。初始呈现后将忽略此参数。'
-	);
-
-	const { output: initStrOne } = useEasyTyper(
-		'如果将函数传递为 ，则该函数将被视为初始值设定项函数。它应该是纯的，应该不带任何参数，并且应该返回任何类型的值。React 会在初始化组件时调用你的初始值设定项函数，并将其返回值存储为初始状态。'
-	);
-
-	const { output: stateReturn } = useEasyTyper('useState返回一个正好包含两个值的数组：');
-
-	const { output: stateReturnOne } = useEasyTyper('1.当前状态。在第一次渲染期间，它将匹配您经过的内容。initialState');
-	const { output: stateReturnTwo } = useEasyTyper('2.set 函数，允许您将状态更新为不同的值并触发重新呈现。');
-
-	return (
-		<>
-			<div>{output}</div>
-			<div>{initStr}</div>
-			<div>{initStrOne}</div>
-			<div>{stateReturn}</div>
-			<div>{stateReturnOne}</div>
-			<div>{stateReturnTwo}</div>
-		</>
-	);
-};
