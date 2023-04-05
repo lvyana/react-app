@@ -199,6 +199,11 @@ const menuList: Router[] = [
 				title: '数据切片',
 				path: '/plugin/burst',
 				icon: 'icon-xinpin'
+			},
+			{
+				title: 'easyTyper',
+				path: '/plugin/easyTyper',
+				icon: 'icon-xinpin'
 			}
 		]
 	},
