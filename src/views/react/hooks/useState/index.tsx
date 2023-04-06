@@ -14,7 +14,7 @@ const IuseState = () => {
 	const [value, setValue] = useState(init);
 
 	const [first, setfirst] = useState(() => init);
-	console.log('reader');
+	// console.log('reader');
 
 	const add = () => {
 		// setValue(value + 1);
