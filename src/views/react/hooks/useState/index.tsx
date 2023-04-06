@@ -7,6 +7,25 @@ import React, { useState } from 'react';
 import { Button } from 'antd';
 import Icard from '@/antdComponents/iCard';
 import Icollapse from '@/antdComponents/iCollapse';
+import IcodeEditor from '@/pluginComponents/iCodeEditor';
+
+const initCode = `import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
+};`;
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const IuseState = () => {
 	const init = 0;
@@ -52,6 +71,15 @@ const IuseState = () => {
 				</>
 			),
 			key: '1'
+		},
+		{
+			header: '示例',
+			content: (
+				<>
+					<IcodeEditor initCode={initCode}></IcodeEditor>
+				</>
+			),
+			key: '2'
 		}
 	];
 
