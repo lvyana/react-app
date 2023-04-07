@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { ReduerValueParam } from './UseContextCom';
+import { ReduerValueParam } from './Icontext';
 
 interface ActionFuncType<T> {
 	(state: T, action: { type: string; value: number }): T;
