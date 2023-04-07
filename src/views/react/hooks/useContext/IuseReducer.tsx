@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { sumProps } from './UseContextCom';
+import { ReduerValueParam } from './UseContextCom';
 
 interface ActionFuncType<T> {
 	(state: T, action: { type: string; value: number }): T;
@@ -12,7 +12,7 @@ const IuseReducer = () => {
 		count: 0,
 		sum: 10
 	};
-	const myActions: ActionFuncType<sumProps> = (state, action) => {
+	const myActions: ActionFuncType<ReduerValueParam> = (state, action) => {
 		const { type, value } = action;
 		if (type === 'add') {
 			return {
