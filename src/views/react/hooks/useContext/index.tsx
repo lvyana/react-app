@@ -3,11 +3,10 @@
  * @author ly
  * @createDate 2023年1月3日
  */
-import React, { useState, useContext } from 'react';
-import IuseContextCom, { MyContext } from './UseContextCom';
+import React, { useState, useContext, useMemo, memo } from 'react';
+import Icontext, { Context } from './UseContextCom';
 import { Button } from 'antd';
 import IuseReducer from './IuseReducer';
-import { sumProps, dispatchProps } from './UseContextCom';
 import Icard from '@/antdComponents/iCard';
 
 /**
@@ -17,35 +16,56 @@ import Icard from '@/antdComponents/iCard';
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const IuseContext = () => {
-	const { sum, dispatch } = IuseReducer();
+	const [parentValue, setParentValue] = useState(0);
 
 	return (
 		<Icard>
-			<div>{'count: ' + sum.count}</div>
+			{parentValue}
 
-			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'add', value: 1 })}>
+			<Button type="link" onClick={() => setParentValue(parentValue + 1)}>
 				+1
 			</Button>
-			<Button type="link" onClick={() => (dispatch as React.Dispatch<dispatchProps>)({ type: 'sub', value: 1 })}>
-				-1
-			</Button>
 
-			<IuseContextCom sum={sum as sumProps} dispatch={dispatch as React.Dispatch<dispatchProps>}>
-				<UseContextComItem></UseContextComItem>
-			</IuseContextCom>
+			<Icontext>
+				<ChildMemo></ChildMemo>
+			</Icontext>
 		</Icard>
 	);
 };
 
 export default IuseContext;
 
+const ChildMemo = memo(() => {
+	return (
+		<>
+			<UseContextComItem></UseContextComItem>
+			<Child></Child>
+		</>
+	);
+});
+ChildMemo.displayName = 'childMemo';
+
 const UseContextComItem = () => {
-	const context = useContext(MyContext);
+	const context = useContext(Context);
+	// console.log('READER');
 
 	return (
 		<div>
 			{'我是子组件: '}
 			{context?.sum.count}
+			<Button
+				type="link"
+				onClick={() => {
+					context?.dispatch({ type: 'sub', value: 1 });
+				}}>
+				-1
+			</Button>
 		</div>
 	);
+};
+
+const Child = () => {
+	// console.log('Child');
+
+	return <div>Child</div>;
 };

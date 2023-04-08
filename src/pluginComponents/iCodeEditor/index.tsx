@@ -8,6 +8,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-markup';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 type IcodeEditorProps = {

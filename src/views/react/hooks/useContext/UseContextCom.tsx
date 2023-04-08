@@ -3,30 +3,36 @@
  * @user ly
  * @date 日期：2020年4月27日
  */
-import React, { FC, useContext } from 'react';
+import React, { FC, useMemo } from 'react';
+import IuseReducer from './IuseReducer';
 
-export interface sumProps {
+export interface ReduerValueParam {
 	count: number;
 	sum?: number;
 }
 
-export interface dispatchProps {
+export interface dispatchParam {
 	type: string;
 	value: number;
 }
 
-interface MyUseContextProps {
-	sum: sumProps;
-	dispatch: React.Dispatch<dispatchProps>;
+interface IuseContextComProps {
 	children?: React.ReactNode;
 }
 
-// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
-
-export const MyContext = React.createContext<MyUseContextProps | null>(null);
-
-const IuseContextCom: FC<MyUseContextProps> = ({ children, sum, dispatch }) => {
-	return <MyContext.Provider value={{ sum, dispatch }}>{children}</MyContext.Provider>;
+type MyContextParam = {
+	sum: ReduerValueParam;
+	dispatch: React.Dispatch<dispatchParam>;
 };
 
-export default IuseContextCom;
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+export const Context = React.createContext<MyContextParam | null>(null);
+
+const Icontext: FC<IuseContextComProps> = ({ children }) => {
+	const { sum, dispatch } = IuseReducer();
+	const value = useMemo(() => ({ sum, dispatch }), [sum]);
+	return <Context.Provider value={value}>{children}</Context.Provider>;
+};
+
+export default Icontext;

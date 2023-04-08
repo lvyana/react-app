@@ -73,7 +73,7 @@ const IuseState = () => {
 			key: '1'
 		},
 		{
-			header: '示例',
+			header: '代码示例',
 			content: (
 				<>
 					<IcodeEditor initCode={initCode}></IcodeEditor>

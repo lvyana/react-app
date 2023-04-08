@@ -51,10 +51,10 @@ const toDayReducer: ToDayReducerType = (state, action) => {
 };
 
 // hoc
-const ToDayReducer: FC<ToDayReducerProps> = ({ children }) => {
+const ToDayContext: FC<ToDayReducerProps> = ({ children }) => {
 	const [state, dispatch] = useReducer(toDayReducer, initState);
 
 	return <toDayContext.Provider value={{ state, dispatch }}>{children}</toDayContext.Provider>;
 };
 
-export default ToDayReducer;
+export default ToDayContext;
