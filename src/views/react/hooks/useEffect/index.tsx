@@ -7,10 +7,46 @@ import React, { FC, useState, useEffect } from 'react';
 import { Button } from 'antd';
 import Icard from '@/antdComponents/iCard';
 import Icollapse from '@/antdComponents/iCollapse';
+import IcodeEditor from '@/pluginComponents/iCodeEditor';
 
 type SonProps = {
 	value: number;
 };
+
+const initCode = `//闭包陷阱
+function Counter() {
+	const [count, setCount] = useState(0);
+  
+	useEffect(() => {
+	  const id = setInterval(() => {
+		setCount(count + 1);
+	  }, 1000);
+	  return () => clearInterval(id);
+	}, []);
+  
+	return <h1>{count}</h1>;
+  }
+
+  // 解决方案1
+  useEffect(() => {
+	const id = setInterval(() => {
+	  setCount(count + 1);
+	}, 1000);
+	return () => clearInterval(id);
+  }, [count]);
+  //缺陷
+  // 计时器不准了，因为每次 count 变化时都会销毁并重新计时。
+  // 频繁 生成/销毁 定时器带来了一定性能负担。
+
+  // 完美解决方案
+  useEffect(() => {
+	const id = setInterval(() => {
+	  setCount(c => c + 1);
+	}, 1000);
+	return () => clearInterval(id);
+  }, []);
+  
+  `;
 
 const list = [
 	{
@@ -42,6 +78,15 @@ const list = [
 			</div>
 		),
 		key: '4'
+	},
+	{
+		header: '示例代码',
+		content: (
+			<>
+				<IcodeEditor initCode={initCode}></IcodeEditor>
+			</>
+		),
+		key: '5'
 	}
 ];
 
