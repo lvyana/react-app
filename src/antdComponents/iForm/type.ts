@@ -53,6 +53,7 @@ export type FormSelectType<T> = FormItem & SelectType<T>;
 
 // treeselect
 export type TreeselectType<T> = {
+	value?: (string | number)[];
 	label?: FormItem['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -247,14 +248,14 @@ export type FormUserDefinedType = FormItem & UserDefinedType;
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
 	select: <T extends BaseOptionType>(item: SelectType<T>) => JSX.Element;
-	treeselect: <T extends DefaultOptionType>(item: TreeselectType<T>) => JSX.Element;
+	treeselect: <T extends BaseOptionType>(item: TreeselectType<T>) => JSX.Element;
 	cascader: <T extends BaseOptionType>(item: CascaderType<T>) => JSX.Element;
 	datePicker: (item: AlonePicker) => JSX.Element;
 	rangePicker: (item: BothPicker) => JSX.Element;
 	timePicker: (item: AlonePicker) => JSX.Element;
 	timeRangePicker: (item: BothPicker) => JSX.Element;
 	inputNumber: (item: InputNumberType) => JSX.Element;
-	switch: <T>(item: SwitchType) => JSX.Element;
+	switch: (item: SwitchType) => JSX.Element;
 	button: <T>(item: ButtonType<T>) => JSX.Element;
 	radio: <T extends formRadioOptionsParams>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;

@@ -26,18 +26,18 @@ interface Iprops {
 const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 	const { statusData } = useHooksStatus();
 
-	const formList: [FormInputType, FormInputType, FormSelectType<statusDataProps>, FormButtonType<ButtonType>] = [
-		{
-			type: 'input',
-			name: 'name',
-			label: '名称',
-			key: 1,
-			layout: {
-				labelCol: { span: 6 },
-				wrapperCol: { span: 18 }
-			},
-			span: 6
-		},
+	const formList: [FormInputType, FormSelectType<statusDataProps>, FormButtonType<ButtonType>] = [
+		// {
+		// 	type: 'input',
+		// 	name: 'name',
+		// 	label: '名称',
+		// 	key: 1,
+		// 	layout: {
+		// 		labelCol: { span: 6 },
+		// 		wrapperCol: { span: 18 }
+		// 	},
+		// 	span: 6
+		// },
 		{
 			type: 'input',
 			name: 'age',

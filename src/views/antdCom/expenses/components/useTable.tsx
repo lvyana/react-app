@@ -3,13 +3,17 @@
  * @author ly
  * @createDate 2022年3月26日
  */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/antdComponents/iTooltip';
 import Idropdown, { ButtonItemParams } from '@/antdComponents/iDropdown';
-import { ItbClick, AlignType } from '@/antdComponents/iTable';
+import { ItbClick, AlignType, IcolumnsType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
-import { TabelDataResponse } from '../service';
+import { TabelDataParams, TabelDataResponse } from '../service';
+import getColumnSearchProps from '@/antdComponents/iTable/components';
+import { ColumnsSeachValue } from '../index';
+
+type ButtonEventTypeParam = 'name' | OnClickBtnType;
 
 /**
  * @method 按钮回调事件
@@ -17,17 +21,18 @@ import { TabelDataResponse } from '../service';
  * @param value 某一条数据
  * @returns void
  */
-type ButtonEvent = (type: string | number, value: TabelDataResponse) => void;
+type ButtonEvent = (type: ButtonEventTypeParam, value?: TabelDataResponse) => void;
 
 interface useHeaderTableParams {
 	buttonEvent: ButtonEvent;
+	columnsSeachValue: React.MutableRefObject<ColumnsSeachValue>;
 }
 
 type OnClickBtnType = '修改' | '删除';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
+const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams) => {
 	const navigate = useNavigate();
 
 	//表格单元里面的功能回调
@@ -51,18 +56,32 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 	// 初始化按钮
 	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([]);
 
-	const columns = [
+	const columns: IcolumnsType<TabelDataResponse> = [
 		{
 			title: '名字',
 			dataIndex: 'name',
 			key: 'name',
+			...getColumnSearchProps<TabelDataResponse, { title: string; value: string }>({
+				dataIndex: 'name',
+				onSearch: () => buttonEvent('name'),
+				form: columnsSeachValue,
+				option: [
+					{
+						title: 'placeholder',
+						value: 'light'
+					}
+				],
+				fieldNames: { label: 'title', value: 'value' },
+				placeholder: '请选择名字'
+			}),
+
 			width: 100,
-			align: 'center' as AlignType,
-			render: (text: string, record: TabelDataResponse) => (
+			align: 'center',
+			render: (text, record) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: 200 }} title={<>{text}</>}>
-					<div className="truncate" style={{ width: 100 }} onClick={() => tbClick('name', record)}>
+					<Button type="link" className="truncate" style={{ width: 100 }} onClick={() => tbClick('name', record)}>
 						{text}
-					</div>
+					</Button>
 				</Itooltip>
 			)
 		},
@@ -71,8 +90,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			dataIndex: 'age',
 			key: 'age',
 			width: 100,
-			align: 'center' as AlignType,
-			render: (text: string) => (
+			align: 'center',
+			render: (text) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
 					<div className="truncate">{text}</div>
 				</Itooltip>
@@ -82,8 +101,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			title: '体重',
 			dataIndex: 'weight',
 			key: 'weight',
-			align: 'center' as AlignType,
-			render: (text: string) => (
+			align: 'center',
+			render: (text) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
 					<div className="truncate">{text}</div>
 				</Itooltip>
@@ -93,8 +112,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			title: '身高',
 			dataIndex: 'height',
 			key: 'height',
-			align: 'center' as AlignType,
-			render: (text: string) => (
+			align: 'center',
+			render: (text) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
 					<div className="truncate">{text}</div>
 				</Itooltip>
@@ -104,8 +123,8 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			title: '操作',
 			key: 'operation',
 			width: 80,
-			align: 'center' as AlignType,
-			render: (text: unknown, record: TabelDataResponse) => {
+			align: 'center',
+			render: (text, record) => {
 				return (
 					<Idropdown
 						btArr={btArr}

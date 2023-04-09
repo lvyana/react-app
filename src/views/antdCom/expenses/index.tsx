@@ -16,14 +16,24 @@ import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
 import type { ButtonType } from './components/SeachForm';
 
-export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum'>;
+export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum' | 'name'>;
 
+export type ColumnsSeachValue = Pick<TabelDataParams, 'name'>;
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Expenses = () => {
-	const buttonEvent = (type: string | number, value: TabelDataResponse) => {};
+	const columnsSeachValue = useRef<ColumnsSeachValue>({
+		name: []
+	});
 
-	const { columns } = useHeaderTable({ buttonEvent });
+	const buttonEvent = (type: string | number, value?: TabelDataResponse) => {
+		if (type === 'name') {
+			page.current.pageNum = 1;
+			onFinish('subimt');
+		}
+	};
+
+	const { columns } = useHeaderTable({ buttonEvent, columnsSeachValue });
 
 	const [form] = Form.useForm<ExpensesFormParams>();
 
@@ -43,7 +53,8 @@ const Expenses = () => {
 
 	useEffect(() => {
 		const { pageNum, pageSize, name, age, status } = initKeepAliveData || {};
-		form.setFieldsValue({ name, age, status });
+		form.setFieldsValue({ age, status });
+		columnsSeachValue.current.name = name;
 		page.current = { pageNum: pageNum || page.current.pageNum, pageSize: pageSize || page.current.pageSize };
 		onFinish('subimt');
 	}, []);
@@ -51,14 +62,14 @@ const Expenses = () => {
 	const onFinish = (type: ButtonType) => {
 		if (type === 'subimt') {
 			let params = form.getFieldsValue();
-			setKeepAlive({ ...params, ...page.current });
+			setKeepAlive({ ...params, ...page.current, ...columnsSeachValue.current });
 		} else if (type === 'onReset') {
 			form.resetFields();
 			let params = form.getFieldsValue();
-			setKeepAlive({ ...params, ...page.current });
+			setKeepAlive({ ...params, ...page.current, ...columnsSeachValue.current });
 		}
 		let params = form.getFieldsValue();
-		getTabelData({ ...params, ...page.current });
+		getTabelData({ ...params, ...page.current, ...columnsSeachValue.current });
 	};
 
 	return (
