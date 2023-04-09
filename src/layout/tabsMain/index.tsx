@@ -17,12 +17,14 @@ type ACTION = 'add' | 'remove';
 /**
  * @param title 名称
  * @param path 路径
+ * @param key tab选中的key
  * @param disabled 禁用某一项
  * @param closable 是否能关闭某一项
  */
 interface PanesParams {
 	title: string | undefined;
 	path: string;
+	key: string;
 	disabled: boolean;
 	closable: boolean;
 }
@@ -54,31 +56,37 @@ const TabsMain = () => {
 
 	// 监听地址变化 生成tabs
 	useEffect(() => {
-		const { pathname, search, state } = location;
+		const { pathname } = location;
 
 		if (pathname !== '/') {
-			setActiveKey(pathname + search);
-
+			let key: string | undefined = '';
 			let title: string | undefined = '';
-			if (search || state) {
-				title = '场景';
-			} else {
-				const menuItem = menuArr.find((item) => item.path === pathname);
+
+			// 路由表有对应的pathname
+			const menuItem = menuArr.find((item) => item.path === pathname);
+			title = menuItem?.title;
+			key = menuItem?.path || pathname;
+
+			// 路由表没有对应的pathname 取父级的参数
+			if (!menuItem) {
+				const menuItem = menuArr.find((item) => pathname.indexOf(item.path) > -1);
+				key = menuItem?.path || pathname;
 				title = menuItem?.title;
 			}
-			// const { title } = menuArr.find((item) => item.path === pathname) || { title: '' };
-			// 优化 or(if (!title) return;)
-			if (!title) return;
 
 			if (panes.length === 0) {
-				setPanes([{ title, path: pathname + search, disabled: false, closable: false }]);
+				setPanes([{ title, path: pathname, key, disabled: false, closable: false }]);
 			} else {
-				const isRepetition = panes.findIndex((item) => item.path === pathname + search);
+				const isRepetition = panes.findIndex((item) => {
+					return item.key === key;
+				});
 
 				if (isRepetition === -1) {
-					setPanes([...panes, { title, path: pathname + search, disabled: false, closable: true }]);
+					setPanes([...panes, { title, path: pathname, key, disabled: false, closable: true }]);
 				}
 			}
+
+			setActiveKey(key);
 		}
 	}, [location]);
 
@@ -87,6 +95,7 @@ const TabsMain = () => {
 		setActiveKey(activeKey);
 	};
 
+	// 删除
 	const onEdit = (targetKey: string | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>, action: ACTION): void => {
 		// if (panes.length === 1) return;
 		let a = panes.filter((item) => {
@@ -110,7 +119,7 @@ const TabsMain = () => {
 				type="editable-card"
 				onEdit={onEdit}
 				size={size}
-				items={panes.map((item) => getTabs(item.title, item.path, item.disabled, item.closable))}></Tabs>
+				items={panes.map((item) => getTabs(item.title, item.key, item.disabled, item.closable))}></Tabs>
 		</div>
 	);
 };
