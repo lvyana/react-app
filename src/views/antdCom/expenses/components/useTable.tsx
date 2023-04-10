@@ -69,6 +69,10 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 					{
 						title: 'placeholder',
 						value: 'light'
+					},
+					{
+						title: 'placeholder1',
+						value: 'light1'
 					}
 				],
 				fieldNames: { label: 'title', value: 'value' },

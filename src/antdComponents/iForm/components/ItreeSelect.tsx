@@ -8,14 +8,12 @@ import { TreeSelect } from 'antd';
 import type { ChangeEventExtra } from 'rc-tree-select/lib/TreeSelect';
 import type { FormItemMap } from '../type';
 
-const { SHOW_PARENT } = TreeSelect;
-
 export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
 	return (
 		<TreeSelect
 			value={item.value}
 			treeData={item.option}
-			showCheckedStrategy={SHOW_PARENT}
+			showCheckedStrategy={item.showCheckedStrategy}
 			treeCheckable={item.checkbox}
 			fieldNames={item.fieldNames}
 			allowClear={item.allowClear !== false}

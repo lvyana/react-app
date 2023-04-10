@@ -4,6 +4,7 @@
  * @createDate 2023年12月27日
  */
 import React, { ReactNode, ChangeEventHandler } from 'react';
+import { TreeSelect } from 'antd';
 import type { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
 import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
@@ -51,6 +52,8 @@ export type SelectType<T> = {
 export type SelectValueType = string | string[] | number | number[] | LabeledValue | LabeledValue[];
 export type FormSelectType<T> = FormItem & SelectType<T>;
 
+const { SHOW_ALL, SHOW_PARENT, SHOW_CHILD } = TreeSelect;
+type ShowCheckedStrategy = typeof SHOW_ALL | typeof SHOW_PARENT | typeof SHOW_CHILD;
 // treeselect
 export type TreeselectType<T> = {
 	value?: (string | number)[];
@@ -64,6 +67,7 @@ export type TreeselectType<T> = {
 	fieldNames?: fieldNamesType;
 	style?: React.CSSProperties;
 	children?: ReactNode;
+	showCheckedStrategy?: ShowCheckedStrategy;
 };
 export type FormTreeselectType<T> = FormItem & TreeselectType<T>;
 

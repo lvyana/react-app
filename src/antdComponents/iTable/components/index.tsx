@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2023年4月9日
  */
-import { Button, Col, Divider, Row } from 'antd';
+import { Button, Col, Divider, Row, TreeSelect } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { ColumnType } from 'antd/es/table';
@@ -22,6 +22,8 @@ type SearchProps<T, D> = {
 	visible: boolean;
 	placeholder: string;
 };
+
+const { SHOW_PARENT } = TreeSelect;
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -76,7 +78,17 @@ const RowSeach = <T, D extends BaseOptionType>({
 	return (
 		<Row className="p-2">
 			<Col>
-				<div className="w-52">{formTreeSelect({ value: selectValue, option, fieldNames, onChange: onChange, placeholder })}</div>
+				<div className="w-52">
+					{formTreeSelect({
+						value: selectValue,
+						option,
+						fieldNames,
+						onChange: onChange,
+						placeholder,
+						checkbox: true,
+						showCheckedStrategy: SHOW_PARENT
+					})}
+				</div>
 			</Col>
 			<Col>
 				<Button
