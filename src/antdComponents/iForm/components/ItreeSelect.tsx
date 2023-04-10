@@ -13,6 +13,7 @@ const { SHOW_PARENT } = TreeSelect;
 export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
 	return (
 		<TreeSelect
+			value={item.value}
 			treeData={item.option}
 			showCheckedStrategy={SHOW_PARENT}
 			treeCheckable={item.checkbox}
