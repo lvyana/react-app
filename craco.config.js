@@ -18,8 +18,6 @@ const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
 // gzip压缩
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-const devMode = process.env.NODE_ENV === 'production';
-
 /* 修改默认的打包后文件夹名称build->dist */
 const paths = require('react-scripts/config/paths');
 paths.appBuild = path.join(path.dirname(paths.appBuild), 'dist');

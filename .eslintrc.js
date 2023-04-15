@@ -47,6 +47,8 @@ module.exports = {
 		'no-empty-function': 'off',
 		'react-hooks/exhaustive-deps': 'off',
 		// ---
+		'@typescript-eslint/no-var-requires': 'off',
+		camelcase: [0, { properties: 'always' }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'no-console': 'warn',
 		'no-debugger': 'warn',

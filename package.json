@@ -48,7 +48,8 @@
 	},
 	"scripts": {
 		"stylelint": "stylelint --fix \"src/**/*.{css,scss}\"",
-		"lint": "eslint --ext js,ts,tsx",
+		"lint": "eslint --ext .js,.ts,.tsx src/ --ignore-path .gitignore",
+		"lint:fix": "eslint --ext .ts,.tsx src/ --fix",
 		"prepare": "husky install",
 		"lint-staged": "lint-staged",
 		"dev": "cross-env PORT=3003 REACT_APP_BASE_API=/dev-api REACT_APP_ENV=development craco start",
