@@ -10,7 +10,6 @@ import { getRemember, setRemember, setToken } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
 import styles from './index.module.scss';
-import { login } from './service';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
 import openNotification from '@/antdComponents/iNotification';

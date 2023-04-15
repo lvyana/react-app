@@ -47,7 +47,7 @@ const MyCenter: FC = () => {
 
 	return (
 		<>
-			<div className="myCenter animate__animated animate__fadeIn">
+			<div>
 				<div style={{ marginBottom: '20px', textAlign: 'center' }}>
 					<span onClick={openPhoto}>
 						<Avatar src={initImg as string} size={200} icon={<AntDesignOutlined />} />

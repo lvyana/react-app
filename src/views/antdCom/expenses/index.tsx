@@ -15,6 +15,7 @@ import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
 import type { ButtonType } from './components/SeachForm';
+import { motion } from 'framer-motion';
 
 export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum' | 'name'>;
 
@@ -73,7 +74,7 @@ const Expenses = () => {
 	};
 
 	return (
-		<div className="animate__animated animate__fadeIn">
+		<div>
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
 			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>

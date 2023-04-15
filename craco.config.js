@@ -171,9 +171,7 @@ module.exports = {
 					],
 					css: [
 						// 编辑器
-						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css',
-						// animate 动画
-						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/animate.min.css'
+						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css'
 					]
 				};
 

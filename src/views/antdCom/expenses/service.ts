@@ -22,6 +22,7 @@ export interface TabelDataParams {
  * @param age 年龄
  * @param weight 体重
  * @param height 身高
+ * @param remark 备注
  */
 export interface TabelDataResponse {
 	key: string;
@@ -29,6 +30,7 @@ export interface TabelDataResponse {
 	age: number;
 	weight: number;
 	height: number;
+	remark: string;
 }
 
 // 查询表格数据

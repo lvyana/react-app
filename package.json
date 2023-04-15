@@ -13,6 +13,7 @@
 		"axios": "^0.26.0",
 		"babel-plugin-import": "^1.13.3",
 		"easy-typer-js": "^2.1.0",
+		"framer-motion": "^10.12.2",
 		"html2canvas": "^1.4.1",
 		"i18next": "^21.8.16",
 		"i18next-browser-languagedetector": "^6.1.4",
@@ -47,7 +48,7 @@
 	},
 	"scripts": {
 		"stylelint": "stylelint --fix \"src/**/*.{css,scss}\"",
-		"lint": "eslint --ext .js,.ts,.tsx src/ --ignore-path .gitignore",
+		"lint": "eslint --ext js,ts,tsx",
 		"prepare": "husky install",
 		"lint-staged": "lint-staged",
 		"dev": "cross-env PORT=3003 REACT_APP_BASE_API=/dev-api REACT_APP_ENV=development craco start",

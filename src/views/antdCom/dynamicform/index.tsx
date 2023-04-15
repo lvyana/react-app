@@ -377,7 +377,7 @@ const Dynamicform = () => {
 	const [form] = Form.useForm();
 
 	return (
-		<div className="animate__animated animate__fadeIn">
+		<div>
 			<Icard>
 				<Iform<FormListType, object> formList={formList} form={form} />
 			</Icard>

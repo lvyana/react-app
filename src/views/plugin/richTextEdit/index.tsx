@@ -88,7 +88,7 @@ const RichTextEdit = () => {
 	};
 
 	return (
-		<div className="animate__animated animate__fadeIn">
+		<div>
 			<Icard>
 				<Toolbar editor={editor} defaultConfig={toolbarConfig} mode="default" style={{ borderBottom: '1px solid #ccc' }} />
 				<Editor defaultConfig={editorConfig} defaultHtml={defaultHtml} mode="default" style={{ height: '500px' }} />

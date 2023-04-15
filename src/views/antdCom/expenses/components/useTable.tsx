@@ -83,8 +83,10 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 			align: 'center',
 			render: (text, record) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: 200 }} title={<>{text}</>}>
-					<Button type="link" className="truncate" style={{ width: 100 }} onClick={() => tbClick('name', record)}>
-						{text}
+					<Button type="link" style={{ width: 100 }} onClick={() => tbClick('name', record)}>
+						<div className="truncate" style={{ width: 70 }}>
+							{text}
+						</div>
 					</Button>
 				</Itooltip>
 			)
@@ -119,6 +121,17 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 			align: 'center',
 			render: (text) => (
 				<Itooltip placement="top" overlayInnerStyle={{ width: '100px' }} title={<>{text}</>}>
+					<div className="truncate">{text}</div>
+				</Itooltip>
+			)
+		},
+		{
+			title: '备注',
+			dataIndex: 'remark',
+			key: 'remark',
+			align: 'center',
+			render: (text) => (
+				<Itooltip placement="top" overlayInnerStyle={{ width: '180px' }} title={<>{text}</>}>
 					<div className="truncate">{text}</div>
 				</Itooltip>
 			)
