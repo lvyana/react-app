@@ -47,6 +47,8 @@ module.exports = {
 		'no-empty-function': 'off',
 		'react-hooks/exhaustive-deps': 'off',
 		// ---
+		//配置camelcase选项
+		camelcase: [0, { properties: 'always' }],
 		'@typescript-eslint/no-var-requires': 'off',
 		camelcase: [0, { properties: 'always' }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
