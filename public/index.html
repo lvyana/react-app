@@ -13,8 +13,8 @@
 
 	<title>ly-admin</title>
 	<!-- 使用cdncss -->
-	<% htmlWebpackPlugin.options.cdn.css.forEach(cdnURL=> { %>
-		<link rel="stylesheet" href="<%= cdnURL %>"></link>
+	<% htmlWebpackPlugin.options.cdn.css.forEach(v=> { %>
+		<link rel="<%= v.rel %>"   href="<%= v.url %>"></link>
 		<% }) %>
 </head>
 
@@ -22,8 +22,8 @@
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root"></div>
 	<!-- 使用cdn -->
-	<% htmlWebpackPlugin.options.cdn.js.forEach(cdnURL=> { %>
-		<script type="text/javascript" src="<%= cdnURL %>"></script>
+	<% htmlWebpackPlugin.options.cdn.js.forEach(v=> { %>
+		<script type="text/javascript" async="<%= v.async %>" defer="<%= v.defer %>"  src="<%= v.url %>"></script>
 		<% }) %>
 </body>
 

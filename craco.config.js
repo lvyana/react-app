@@ -165,11 +165,18 @@ module.exports = {
 						// Graphs 相关的图表
 						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
-						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js'
+						{
+							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js',
+							rel: 'prefetch'
+						}
 					],
 					css: [
 						// 编辑器
-						'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css'
+						{
+							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css',
+							async: false,
+							defer: true
+						}
 					]
 				};
 
