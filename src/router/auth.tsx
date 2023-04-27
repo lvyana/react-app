@@ -19,7 +19,6 @@ type SetAuth<T> = (router: T) => RouteObject[];
 
 const Auth: FC<AuthProps> = ({ children }) => {
 	const { isMenu } = useRouterHooks();
-	console.log('auth');
 
 	// 获取token
 	const isToken = () => {

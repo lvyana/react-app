@@ -39,7 +39,6 @@ const Crumb = () => {
 
 		SetcurrentRouter(getCrumbList(routerArr));
 	}, [location.pathname]);
-	console.log(currentRouter);
 
 	return <Breadcrumb items={currentRouter}></Breadcrumb>;
 };
