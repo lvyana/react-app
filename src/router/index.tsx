@@ -34,12 +34,16 @@ const MessgeCenter = lazy(() => import(/* webpackChunkName: "MessgeCenter" */ '@
 // today
 // const ToDay = lazy(() => import(/* webpackChunkName: "ToDay" */ '@/views/toDay'));
 
-const router: RouteObject[] = [
-	{ path: '/login', element: <Login /> },
+type Route = { auth?: boolean };
+
+export type Routes = Route & RouteObject;
+
+const router: Routes[] = setRouterAuth([
+	{ path: '/login', element: <Login />, auth: false },
 	{
 		path: '/',
 		element: <Layouts />,
-		children: setRouterAuth([
+		children: [
 			{ index: true, element: <Navigate to="home" /> },
 			{
 				path: 'home',
@@ -64,9 +68,9 @@ const router: RouteObject[] = [
 			{ path: 'mycenter', element: suspenseLoad(<MyCenter />) },
 			{ path: 'messgeCenter', element: suspenseLoad(<MessgeCenter />) }
 			// { path: '*', element: suspenseLoad(<NotFound />) }
-		])
+		]
 	},
-	{ path: '/today', element: suspenseLoad(<ToDay />) },
-	{ path: '*', element: suspenseLoad(<NotFound />) }
-];
+	{ path: '/today', element: suspenseLoad(<ToDay />), auth: false },
+	{ path: '*', element: suspenseLoad(<NotFound />), auth: false }
+]);
 export default router;

@@ -41,7 +41,7 @@ const useRouterHooks = () => {
 	// 获取选中的path
 	const selectMenuPath = useMemo(() => flatRouters.find((item) => pathname.indexOf(item.path) > -1)?.path, [flatRouters, pathname]);
 
-	return { isMenu, selectMenuPath };
+	return { isMenu, selectMenuPath, flatRouters };
 };
 
 export default useRouterHooks;
