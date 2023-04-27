@@ -2,6 +2,7 @@
  * @file 首页
  * @author ly
  * @createDate 2022年12月11日
+ * https://antv.antgroup.com/
  */
 import React from 'react';
 import { Col, Row } from 'antd';
@@ -10,7 +11,6 @@ import DemoLine from './components/Line';
 import DemoArea from './components/Area';
 import DemoColumn from './components/Column';
 import DemoPie from './components/Pie';
-import DemoOrganizationGraph from './components/OrganizationGraph';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -36,11 +36,6 @@ const Home = () => {
 				<Col span={12}>
 					<Icard>
 						<DemoPie></DemoPie>
-					</Icard>
-				</Col>
-				<Col span={24} className="mt-4">
-					<Icard>
-						<DemoOrganizationGraph></DemoOrganizationGraph>
 					</Icard>
 				</Col>
 			</Row>

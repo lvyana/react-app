@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Line } from '@ant-design/plots';
+import React, { useState, useEffect, useRef } from 'react';
+import { Line } from '@antv/g2plot';
+
+type LineData = {
+	Date: string;
+	scales: number;
+};
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const DemoLine = () => {
-	const [data, setData] = useState<
-		{
-			Date: string;
-			scales: number;
-		}[]
-	>([]);
+	const line = useRef<Line | null>(null);
 
 	useEffect(() => {
 		asyncFetch();
@@ -17,21 +18,31 @@ const DemoLine = () => {
 	const asyncFetch = () => {
 		fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
 			.then((response) => response.json())
-			.then((json) => setData(json))
+			.then((json) => {
+				console.log(json);
+
+				initLine(json);
+			})
 			.catch((error) => {});
 	};
-	const config = {
-		data,
-		padding: 'auto' as const,
-		xField: 'Date',
-		yField: 'scales',
-		xAxis: {
-			// type: 'timeCat',
-			tickCount: 5
-		}
+
+	const initLine = (data: LineData[]) => {
+		line.current?.destroy();
+		line.current = new Line('lineDiv', {
+			data,
+			padding: 'auto',
+			xField: 'Date',
+			yField: 'scales',
+			xAxis: {
+				// type: 'timeCat',
+				tickCount: 5
+			}
+		});
+
+		line.current.render();
 	};
 
-	return <Line {...config} />;
+	return <div id="lineDiv"></div>;
 };
 
 export default DemoLine;
