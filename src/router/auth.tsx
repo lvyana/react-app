@@ -5,20 +5,21 @@
  */
 import React, { ReactNode, FC } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-import { message } from 'antd';
+
 import { getToken } from '@/utils/storage';
 import useRouterHooks from './useHooks';
-
+import type { Routes } from './index';
 export interface AuthProps {
 	children: ReactNode;
 }
 
-type SetAuth<T> = (router: T) => T;
+type SetAuth<T> = (router: T) => RouteObject[];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Auth: FC<AuthProps> = ({ children }) => {
 	const { isMenu } = useRouterHooks();
+	console.log('auth');
 
 	// 获取token
 	const isToken = () => {
@@ -43,10 +44,14 @@ const Auth: FC<AuthProps> = ({ children }) => {
  * @param router 路由数据
  * @returns 包裹Auth组件后路由
  */
-export const setRouterAuth: SetAuth<RouteObject[]> = (router) => {
+export const setRouterAuth: SetAuth<Routes[]> = (router) => {
 	return router.reduce<RouteObject[]>((acc, route) => {
 		if (route.children && route.children.length > 0) {
 			return [...acc, { ...route, children: setRouterAuth(route.children) }];
+		}
+
+		if (route.auth === false) {
+			return [...acc, route];
 		}
 
 		return [...acc, { ...route, element: <Auth>{route.element}</Auth> }];

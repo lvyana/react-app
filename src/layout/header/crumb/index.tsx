@@ -24,69 +24,21 @@ const Crumb = () => {
 
 	useEffect(() => {
 		if (location.pathname.indexOf(EXCLUDE_MENU[0]) !== -1) return;
-		let routerArr: Router[] = [];
+		let routerArr: any[] = [];
 		location.pathname.split('/').map((item, i) => {
-			if (i === 0) {
-				routerArr[0] = { path: '/', title: '系统', children: menuList };
-			} else {
-				let is = routerArr[i - 1]?.children?.find((val) => {
-					return val.path.indexOf(item) !== -1;
-				});
-				if (is) routerArr[i] = is;
-			}
+			let is = menuList?.find((val) => {
+				console.log(val, item);
+
+				return val.path.indexOf(item) !== -1;
+			});
+
+			if (is) routerArr[i] = is;
 		});
 
 		SetcurrentRouter(routerArr);
 	}, [location.pathname]);
 
-	return (
-		<Breadcrumb>
-			{currentRouter.map((item, i) => {
-				return item.children ? (
-					<Breadcrumb.Item key={item.path} menu={{ items: CrumbMenus(item.children), selectedKeys: [currentRouter[i + 1]?.path] }}>
-						<a>{item.title}</a>
-					</Breadcrumb.Item>
-				) : (
-					<Breadcrumb.Item key={item.path}>{item.title}</Breadcrumb.Item>
-				);
-			})}
-		</Breadcrumb>
-	);
-};
-
-/**
- * @method 路由数据->menu数据
- * @param menu 路由数据
- * @returns menu数据
- */
-const CrumbMenus = (menu: Router[]) => {
-	return menu.reduce((acc: MenuItem[], item) => {
-		if (item.show === false) {
-			return acc;
-		} else {
-			let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path);
-			return [...acc, newItem];
-		}
-	}, []);
-};
-
-/**
- * @method 调整menu数据
- * @param label 名称
- * @param key 唯一标志
- * @param icon 图标
- * @param children 子菜单的菜单项
- * @param type
- * @returns menu数据
- */
-const getItem = (label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem => {
-	return {
-		key,
-		icon,
-		children,
-		label,
-		type
-	} as MenuItem;
+	return <Breadcrumb items={currentRouter}></Breadcrumb>;
 };
 
 export default Crumb;
