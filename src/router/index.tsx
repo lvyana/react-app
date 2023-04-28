@@ -12,8 +12,8 @@ import suspenseLoad from './suspenseLoad';
 import { setRouterAuth } from './auth';
 import antdCom from './module/antd';
 import reactCom from './module/react';
-import RouterCom from './module/router';
-import Plugin from './module/plugin';
+import routerCom from './module/router';
+import pluginCom from './module/plugin';
 
 /**
  * lazy Suspense 有嵌套情况 且有接口请求或者模拟请求,时间小于400 会导致重复渲染
@@ -59,11 +59,11 @@ const router: Routes[] = setRouterAuth([
 			},
 			{
 				path: 'router',
-				children: [...RouterCom]
+				children: [...routerCom]
 			},
 			{
 				path: 'plugin',
-				children: [...Plugin]
+				children: [...pluginCom]
 			},
 			{ path: 'mycenter', element: suspenseLoad(<MyCenter />) },
 			{ path: 'messgeCenter', element: suspenseLoad(<MessgeCenter />) }

@@ -8,7 +8,7 @@ import { message } from 'antd';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { GET_ANT_EXPENSES, SET_ANT_EXPENSES, GET_DEFAULT } from '@/store/reducers/keepAlive';
 import { useLocation } from 'react-router-dom';
-import type { TabelDataParams } from '@/views/antdCom/expenses/service';
+import type { TabelDataParams } from '@/views/antd/expenses/service';
 /**
  * @param 路径或者自定义别名
  * @returns initKeepAliveData 获取缓存参数

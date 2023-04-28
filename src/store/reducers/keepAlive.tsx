@@ -5,7 +5,7 @@
  */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../index';
-import type { TabelDataParams } from '@/views/antdCom/expenses/service';
+import type { TabelDataParams } from '@/views/antd/expenses/service';
 
 export interface InitLayoutParams {
 	expenses: TabelDataParams | null;
