@@ -4,9 +4,13 @@
  * @createDate 2022年6月3日
  */
 import React, { useState, useEffect } from 'react';
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
+import { pdfjs, Document, Page } from 'react-pdf';
 import Icard from '@/antdComponents/iCard';
 import styles from './index.module.scss';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const Pdf = () => {
 	const [numPages, setNumPages] = useState(0);
