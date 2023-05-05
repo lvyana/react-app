@@ -21,7 +21,9 @@ const Headerregion = () => {
 			<Row justify="space-around" align="middle">
 				<Col flex="345px">
 					{/* 面包屑 */}
-					<Crumb></Crumb>
+					<div className="pl-2">
+						<Crumb></Crumb>
+					</div>
 				</Col>
 				<Col flex="auto">
 					<Row justify="end" id="header-icon-function">

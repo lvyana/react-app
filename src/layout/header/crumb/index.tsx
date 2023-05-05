@@ -45,7 +45,7 @@ const Crumb = () => {
 
 export default Crumb;
 
-const getCrumbList = (routerArr: Router[]) => {
+const getCrumbList = (routerArr: Router[]): ItemType[] => {
 	return routerArr.map((item) => {
 		if (item.children) {
 			return {
