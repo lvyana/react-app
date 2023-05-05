@@ -12,8 +12,6 @@ import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 
-type MenuItem = Required<MenuProps>['items'][number];
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Crumb = () => {
@@ -57,12 +55,14 @@ const getCrumbList = (routerArr: Router[]): ItemType[] => {
 							label: <Link to={r.path}>{r.title}</Link>
 						};
 					})
-				}
+				},
+				dropdownProps: { placement: 'bottomRight' }
 			};
 		}
 		return {
 			key: item.path,
-			title: item.title
+			title: item.title,
+			dropdownProps: { placement: 'bottomRight' }
 		};
 	});
 };
