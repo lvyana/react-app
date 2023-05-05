@@ -56,7 +56,7 @@ const TabsMain = () => {
 
 	// 监听地址变化 生成tabs
 	useEffect(() => {
-		const { pathname } = location;
+		const { pathname, search, state } = location;
 
 		if (pathname !== '/') {
 			let key: string | undefined = '';
@@ -69,9 +69,14 @@ const TabsMain = () => {
 
 			// 路由表没有对应的pathname 取父级的参数
 			if (!menuItem) {
-				const menuItem = menuArr.find((item) => pathname.indexOf(item.path) > -1);
-				key = menuItem?.path || pathname;
-				title = menuItem?.title;
+				// 有参数取父级
+				if (search || state) {
+					const menuItem = menuArr.find((item) => pathname.indexOf(item.path) > -1);
+					key = menuItem?.path || pathname;
+					title = menuItem?.title;
+				} else {
+					return;
+				}
 			}
 
 			if (panes.length === 0) {
