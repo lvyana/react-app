@@ -2,6 +2,7 @@
  * @file pdf
  * @author ly
  * @createDate 2022年6月3日
+ * https://www.5axxw.com/wiki/content/n0gokf 文档说明
  */
 import React, { useState, useEffect } from 'react';
 import { pdfjs, Document, Page } from 'react-pdf';
@@ -9,6 +10,7 @@ import Icard from '@/antdComponents/iCard';
 import styles from './index.module.scss';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+import Iloading from '@/antdComponents/iLoading';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -43,7 +45,10 @@ const Pdf = () => {
 	return (
 		<Icard>
 			<div className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
-				<Document file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'} onLoadSuccess={onDocumentLoadSuccess}>
+				<Document
+					file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'}
+					onLoadSuccess={onDocumentLoadSuccess}
+					loading={<Iloading></Iloading>}>
 					<Page pageNumber={pageNumber} height={500} />
 				</Document>
 				<div className={styles.pdfBtn}>

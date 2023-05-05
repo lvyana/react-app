@@ -21,7 +21,7 @@ interface LoadingProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Loading: FC<LoadingProps> = ({ children, loading }) => {
+const Iloading: FC<LoadingProps> = ({ children, loading }) => {
 	if (typeof loading === 'boolean') {
 		return (
 			<Spin indicator={antIcon} spinning={loading} delay={200}>
@@ -37,4 +37,4 @@ const Loading: FC<LoadingProps> = ({ children, loading }) => {
 	}
 };
 
-export default Loading;
+export default Iloading;
