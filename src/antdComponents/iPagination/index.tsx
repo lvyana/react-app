@@ -30,8 +30,6 @@ const Ipaginations: FC<IpaginationsProps> = ({ total, page, onPaginationChange }
 	const paginationSize = useMemo(() => {
 		if (size === 'small') {
 			return 'small';
-		} else if (size === 'middle' || size === 'large') {
-			return 'default';
 		}
 		return 'default';
 	}, [size]);

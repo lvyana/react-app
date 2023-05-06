@@ -207,7 +207,18 @@ const menuList: Router[] = [
 			}
 		]
 	},
-
+	{
+		title: '文档',
+		path: '/document',
+		icon: 'icon-jiushui',
+		children: [
+			{
+				title: 'volta',
+				path: '/document/volta',
+				icon: 'icon-qiche'
+			}
+		]
+	},
 	// 不显示在菜单中中
 	{
 		title: '个人中心',
