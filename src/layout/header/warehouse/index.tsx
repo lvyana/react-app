@@ -31,8 +31,8 @@ const Warehouse = () => {
 
 	return (
 		<>
-			<Button type="link" icon={<IconFont type={'icon-gitee'} />} onClick={onGoGitee}></Button>
-			<Button type="link" icon={<IconFont type={'icon-github'} />} onClick={onGoGithub}></Button>
+			<Button aria-label="gitee" type="link" icon={<IconFont type={'icon-gitee'} />} onClick={onGoGitee}></Button>
+			<Button aria-label="github" type="link" icon={<IconFont type={'icon-github'} />} onClick={onGoGithub}></Button>
 		</>
 	);
 };

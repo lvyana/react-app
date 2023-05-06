@@ -14,7 +14,8 @@
 	<title>ly-admin</title>
 	<!-- 使用cdncss -->
 	<% htmlWebpackPlugin.options.cdn.css.forEach(v=> { %>
-		<link rel="<%= v.rel %>"   href="<%= v.url %>"></link>
+		<link rel="<%= v.rel %>" href="<%= v.url %>">
+		</link>
 		<% }) %>
 </head>
 
@@ -23,7 +24,7 @@
 	<div id="root"></div>
 	<!-- 使用cdn -->
 	<% htmlWebpackPlugin.options.cdn.js.forEach(v=> { %>
-		<script type="text/javascript" async="<%= v.async %>" defer="<%= v.defer %>"  src="<%= v.url %>"></script>
+		<script type="text/javascript" defer src="<%= v.url %>"></script>
 		<% }) %>
 </body>
 

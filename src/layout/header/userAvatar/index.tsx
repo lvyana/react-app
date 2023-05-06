@@ -43,7 +43,7 @@ const UserAvatar = () => {
 					trigger={['click']}
 					overlayClassName={style['layout-dropdown-widht']}>
 					<div>
-						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
+						<Avatar className="unctionality" alt="头像" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
 						<IresponsiveMin MinWidth={890}>
 							<span className="mr5 ml5">admin</span>
 						</IresponsiveMin>

@@ -34,6 +34,7 @@ const ToggleTheme = () => {
 	return (
 		<>
 			<Button
+				aria-label="ToggleTheme"
 				type="link"
 				icon={<IconFont type={iconStr || 'icon-taiyang'} style={{ transform: 'scale(1.4)' }} />}
 				onClick={handleSizeChange}></Button>

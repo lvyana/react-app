@@ -166,16 +166,14 @@ module.exports = {
 						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
 						{
-							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js',
-							rel: 'prefetch'
+							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js'
 						}
 					],
 					css: [
 						// 编辑器
 						{
 							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css',
-							async: false,
-							defer: true
+							rel: 'prefetch'
 						}
 					]
 				};
