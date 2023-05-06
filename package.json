@@ -1,6 +1,11 @@
 {
 	"name": "react-app",
 	"version": "0.1.0",
+	"volta": {
+		"node": "16.13.0",
+		"npm": "8.1.0",
+		"yarn":"1.22.19"
+	},
 	"private": true,
 	"dependencies": {
 		"@antv/g2plot": "^2.4.29",
