@@ -6,10 +6,9 @@
 import React, { FC, useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
 import { Button, Col, Popover, Row, Tabs, Badge } from 'antd';
-import Icard from '@/antdComponents/iCard';
-import Lists from '../compoment/Lists';
-import style from '../index.module.scss';
+import Lists from './compoment/Lists';
 import { useNavigate } from 'react-router-dom';
+import style from './index.module.scss';
 
 /**
  * @param hide 关闭TabsList
@@ -63,7 +62,7 @@ const TabsList: FC<TabsListProps> = ({ hide }) => {
 	};
 	return (
 		<div className={`${style['layout-tabs-center']}`}>
-			<Tabs defaultActiveKey="1" onChange={onChange} items={items} className={`${style['layout-tabs-List']}`}></Tabs>
+			<Tabs defaultActiveKey="1" onChange={onChange} items={items}></Tabs>
 			<Row className="mt-1" gutter={8}>
 				<Col span={12}>
 					<Button type="dashed" style={{ width: '100%' }}>

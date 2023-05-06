@@ -197,7 +197,7 @@ const ImgGrid = () => {
 	const [readerUrlArr, setreaderUrlArr] = useState<ReaderUrlArrParams[]>([]);
 
 	return (
-		<Icard>
+		<Icard className="overflow-x-auto">
 			<div id="DemoGridLayout" style={{ width: 1000 }}>
 				<IgridLayout layout={readerUrlArr} width={width}></IgridLayout>
 			</div>

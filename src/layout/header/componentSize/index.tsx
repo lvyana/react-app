@@ -4,12 +4,11 @@
  *  @createDate 2020年4月27日
  */
 import React, { useState } from 'react';
-import { Button, Dropdown, Tooltip, Menu } from 'antd';
+import { Button, Dropdown } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
-import style from '../index.module.scss';
 
 const ComponentSize = () => {
 	// 尺寸
@@ -33,8 +32,7 @@ const ComponentSize = () => {
 				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				menu={{ items: sizeMenu, onClick: handleSizeChange }}
 				placement="bottom"
-				trigger={['click']}
-				overlayClassName={style['layout-dropdown']}>
+				trigger={['click']}>
 				<Button type="link" icon={<FontSizeOutlined />}></Button>
 			</Dropdown>
 		</>

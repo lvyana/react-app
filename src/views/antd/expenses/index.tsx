@@ -15,7 +15,6 @@ import { useTabelData } from './useHooksApi';
 import useKeepAlive from '@/useHooks/useKeepAlive';
 import type { TabelDataParams, TabelDataResponse } from './service';
 import type { ButtonType } from './components/SeachForm';
-import { motion } from 'framer-motion';
 
 export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum' | 'name'>;
 
@@ -79,7 +78,7 @@ const Expenses = () => {
 			{/* <ClassCom hh={1}></ClassCom> */}
 			<Icard style={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
-				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} loading={loading} />
+				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} loading={loading} scroll={{ x: '100%' }} />
 				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
 			</Icard>
 		</div>

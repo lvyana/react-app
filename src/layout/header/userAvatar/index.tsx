@@ -7,9 +7,9 @@ import React from 'react';
 import { useAppSelector } from '@/store';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Button, Row, Col, Dropdown, Menu } from 'antd';
-import styles from '../index.module.scss';
+import { Avatar, Button, Dropdown } from 'antd';
 import { IresponsiveMin } from '@/pluginComponents/iResponsive';
+import style from './index.module.scss';
 
 const UserAvatar = () => {
 	const navigate = useNavigate();
@@ -41,7 +41,7 @@ const UserAvatar = () => {
 					menu={{ items: menu, onClick: handleMenuClick }}
 					placement="bottom"
 					trigger={['click']}
-					overlayClassName={styles['layout-dropdown']}>
+					overlayClassName={style['layout-dropdown-widht']}>
 					<div>
 						<Avatar className="unctionality" src={photo as string} style={{ backgroundColor: '#fde3cf' }}></Avatar>
 						<IresponsiveMin MinWidth={890}>

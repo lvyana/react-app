@@ -4,7 +4,7 @@
  * @createDate 2022年12月11日
  */
 import React, { lazy } from 'react';
-import { RouteObject, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 const Expenses = lazy(() => import(/* webpackChunkName: "Expenses" */ '@/views/antd/expenses'));

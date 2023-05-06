@@ -4,7 +4,7 @@
  * @createDate 2022年12月9日
  */
 import request from '@/api/request';
-import type { messgeCenterParams } from './compoment/Lists';
+import type { messgeCenterParams } from './messageCenter/compoment/Lists';
 
 // 消息中心列表
 export const messgeCenter = () => {

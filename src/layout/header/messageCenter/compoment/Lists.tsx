@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { List } from 'antd';
 import { useRequest } from 'ahooks';
-import { messgeCenter } from '../service';
+import { messgeCenter } from '../../service';
 import style from '../index.module.scss';
 
 /**

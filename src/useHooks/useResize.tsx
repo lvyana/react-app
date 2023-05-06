@@ -31,9 +31,14 @@ const useResize = (Dom?: HTMLElement | null) => {
 	});
 
 	useEffect(() => {
-		ro.observe(Dom || document.body);
+		if (Dom) {
+			ro.observe(Dom);
+		}
+
 		return () => {
-			ro.unobserve(Dom || document.body);
+			if (Dom) {
+				ro.unobserve(Dom);
+			}
 		};
 	}, [Dom]);
 

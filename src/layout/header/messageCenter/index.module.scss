@@ -1,9 +1,5 @@
 /* MessageCenter */
 
-.layout-dropdown-widht {
-  width: 340px;
-}
-
 .layout-tabs-center {
   :global {
     .ant-tabs-nav-wrap {
@@ -21,24 +17,6 @@
       margin: 0;
     }
   }
-}
-
-.layout-tabs-padding {
-  padding: 0 8px 16px;
-}
-
-.layout-tabs-btn-left {
-  border-bottom: 0;
-  border-left: 0;
-  padding: 22px 15px;
-  line-height: 3px;
-}
-
-.layout-tabs-btn-Right {
-  border-bottom: 0;
-  border-right: 0;
-  padding: 22px 15px;
-  line-height: 3px;
 }
 
 .layout-tabs-list {

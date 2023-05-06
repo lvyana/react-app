@@ -138,18 +138,18 @@ const menuList: Router[] = [
 		]
 	},
 	{
-		title: 'Router',
+		title: 'router',
 		path: '/router',
 		icon: 'icon-jiushui',
 		children: [
 			{
-				title: 'RouterDemo',
+				title: 'routerDemo',
 				path: '/router/routerDemo',
 				icon: 'icon-qiche'
 			},
 			{
-				title: 'useRouter',
-				path: '/router/useRouter',
+				title: 'routerInfo',
+				path: '/router/routerInfo',
 				icon: 'icon-shangou'
 			}
 		]

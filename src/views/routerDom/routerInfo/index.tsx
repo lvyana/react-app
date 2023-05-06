@@ -18,7 +18,7 @@ import img7 from '@/assets/images/77.png';
 import img8 from '@/assets/images/88.png';
 import Icard from '@/antdComponents/iCard';
 
-const IuseRouter = () => {
+const RouterInfo = () => {
 	const [img88, setimg88] = useState('');
 	useEffect(() => {
 		setTimeout(() => {
@@ -37,8 +37,8 @@ const IuseRouter = () => {
 				width={'100%'}
 			/>
 
-			<img src={img2} alt="" />
-			<img src={img3} alt="" />
+			<img src={img2} alt="" className="w-full" />
+			<img src={img3} alt="" className="w-full" />
 			<div> useSearchParams()</div>
 			<div>1. 作用：用于读取和修改当前位置的 URL 中的查询字符串。</div>
 			<div>2. 返回一个包含两个值的数组，内容分别为：当前的seaech参数、更新search的函数。</div>
@@ -52,16 +52,16 @@ const IuseRouter = () => {
 				threshold={-300}
 			/>
 
-			<img src={img5} alt="" />
+			<img src={img5} alt="" className="w-full" />
 			<div>useLocation()</div>
 			<div>1. 作用：获取当前 location 信息，对标5.x中的路由组件的`location`属性。</div>
-			<img src={img6} alt="" />
-			<img src={img7} alt="" />
+			<img src={img6} alt="" className="w-full" />
+			<img src={img7} alt="" className="w-full" />
 			<div>useMatch()</div>
 			<div>1. 作用：返回当前匹配信息，对标5.x中的路由组件的`match`属性。</div>
-			<img src={img8} alt="" />
+			<img src={img8} alt="" className="w-full" />
 		</Icard>
 	);
 };
 
-export default IuseRouter;
+export default RouterInfo;

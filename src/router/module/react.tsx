@@ -104,7 +104,7 @@ const reactDom = [
 	}
 ];
 
-const react = [
+const reactCom = [
 	{ index: true, element: <Navigate to="hooks" /> },
 	{
 		path: 'hooks',
@@ -117,4 +117,4 @@ const react = [
 	{ path: 'reduxtoolkit', element: suspenseLoad(<Ireduxtoolkit />) }
 ];
 
-export default react;
+export default reactCom;

@@ -18,22 +18,22 @@ const Home = () => {
 	return (
 		<>
 			<Row gutter={16}>
-				<Col span={12} className="mb-4">
+				<Col xs={24} sm={24} md={24} lg={12} xl={12} className="mb-4">
 					<Icard>
 						<DemoLine></DemoLine>
 					</Icard>
 				</Col>
-				<Col span={12} className="mb-4">
+				<Col xs={24} sm={24} md={24} lg={12} xl={12} className="mb-4">
 					<Icard>
 						<DemoArea></DemoArea>
 					</Icard>
 				</Col>
-				<Col span={12}>
+				<Col xs={24} sm={24} md={24} lg={12} xl={12} className="mb-4">
 					<Icard>
 						<DemoColumn></DemoColumn>
 					</Icard>
 				</Col>
-				<Col span={12}>
+				<Col xs={24} sm={24} md={24} lg={12} xl={12} className="mb-4">
 					<Icard>
 						<DemoPie></DemoPie>
 					</Icard>

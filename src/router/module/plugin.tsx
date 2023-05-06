@@ -27,7 +27,7 @@ const Burstd = lazy(() => import(/* webpackChunkName: "Burstd" */ '@/views/plugi
 const EasyTyper = lazy(() => import(/* webpackChunkName: "EasyTyper" */ '@/views/plugin/easyTyper'));
 
 // 插件的使用
-const plugin = [
+const pluginCom = [
 	{ index: true, element: <Navigate to="player" /> },
 	{ path: 'player', element: suspenseLoad(<Player />) },
 	{ path: 'gridLayout', element: suspenseLoad(<IgridLayout />) },
@@ -40,4 +40,4 @@ const plugin = [
 	{ path: 'easyTyper', element: suspenseLoad(<EasyTyper />) }
 ];
 
-export default plugin;
+export default pluginCom;

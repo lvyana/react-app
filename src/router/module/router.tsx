@@ -8,13 +8,13 @@ import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 // react-router-dom
-const RouterDemo = lazy(() => import(/* webpackChunkName: "RouterDemo" */ '@/views/routerCom/routerDemo'));
-const Test = lazy(() => import(/* webpackChunkName: "Test" */ '@/views/routerCom/routerDemo/Test'));
-const List = lazy(() => import(/* webpackChunkName: "List" */ '@/views/routerCom/routerDemo/List'));
-const IuseRouter = lazy(() => import(/* webpackChunkName: "IuseRouter" */ '@/views/routerCom/myUseRouter'));
+const RouterDemo = lazy(() => import(/* webpackChunkName: "RouterDemo" */ '@/views/routerDom/routerDemo'));
+const Test = lazy(() => import(/* webpackChunkName: "Test" */ '@/views/routerDom/routerDemo/Test'));
+const List = lazy(() => import(/* webpackChunkName: "List" */ '@/views/routerDom/routerDemo/List'));
+const RouterInfo = lazy(() => import(/* webpackChunkName: "RouterInfo" */ '@/views/routerDom/routerInfo'));
 
 // react-router-dom
-const Plugin = [
+const routerCom = [
 	{ index: true, element: <Navigate to="routerDemo" /> },
 	{
 		path: 'routerDemo',
@@ -25,9 +25,9 @@ const Plugin = [
 		]
 	},
 	{
-		path: 'useRouter',
-		element: suspenseLoad(<IuseRouter />)
+		path: 'routerInfo',
+		element: suspenseLoad(<RouterInfo />)
 	}
 ];
 
-export default Plugin;
+export default routerCom;

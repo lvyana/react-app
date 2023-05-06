@@ -25,6 +25,7 @@ interface ItableProps<T> {
 	rowSelection?: object;
 	rowKey?: string;
 	bordered?: boolean;
+	scroll?: object;
 }
 
 export type IcolumnsType<T> = ColumnsType<T>; //表头
@@ -47,7 +48,8 @@ const Itable = <T extends object>({
 	rowSelection,
 	rowKey = 'key',
 	loading = false,
-	bordered = false
+	bordered = false,
+	scroll = {}
 }: ItableProps<T>) => {
 	const size = useAppSelector(GET_SIZE);
 
@@ -62,6 +64,7 @@ const Itable = <T extends object>({
 			loading={{ indicator: antIcon, spinning: loading }}
 			pagination={false}
 			rowKey={rowKey}
+			scroll={scroll}
 		/>
 	);
 };
