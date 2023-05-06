@@ -146,7 +146,8 @@ module.exports = {
 					// 'react-dom': 'ReactDOM',
 					// '@ant-design/plots': 'Plots',
 					// '@ant-design/graphs': 'Graphs',
-					'@wangeditor/editor': 'wangEditor'
+					'@wangeditor/editor': 'wangEditor',
+					'@antv/g2plot': 'G2Plot'
 				};
 
 				// 配置现成的cdn 资源数组 现在是公共为了测试
@@ -166,7 +167,11 @@ module.exports = {
 						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
 						{
-							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js'
+							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js',
+							defer: true
+						},
+						{
+							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/g2plot.min.js'
 						}
 					],
 					css: [

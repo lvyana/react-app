@@ -24,8 +24,15 @@
 	<div id="root"></div>
 	<!-- 使用cdn -->
 	<% htmlWebpackPlugin.options.cdn.js.forEach(v=> { %>
-		<script type="text/javascript" defer src="<%= v.url %>"></script>
-		<% }) %>
+		<% if(v.defer){ %>
+			<script type="text/javascript" defer src="<%= v.url %>"></script>
+			<% }else if(v.async){ %>
+				<script type="text/javascript" async src="<%= v.url %>"></script>
+				<% } %>
+					<% }else{ %>
+						<script type="text/javascript" src="<%= v.url %>"></script>
+						<% } %>
+							<% }) %>
 </body>
 
 </html>
