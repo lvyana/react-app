@@ -65,10 +65,11 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 				}}
 				onClick={onShow}
 				drag
+				dragElastic={0}
 				dragConstraints={{
-					top: -200,
+					top: -50,
 					left: -200,
-					right: 200,
+					right: 50,
 					bottom: 200
 				}}
 				style={{ display: flag ? 'block' : 'none', textAlign: 'center', ...animateComponentIcon }}>

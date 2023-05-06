@@ -35,7 +35,7 @@ const MessageCenter = () => {
 				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				open={open}
 				onOpenChange={handleOpenChange}
-				placement="bottomRight"
+				placement="bottom"
 				content={<TabsList hide={hide}></TabsList>}
 				trigger="click">
 				<Badge count={5} offset={[-5, 5]} size="small">

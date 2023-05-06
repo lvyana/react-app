@@ -57,7 +57,9 @@ const getColumnSearchProps = <T, D extends BaseOptionType>({
 		/>
 	),
 	filterIcon: (filtered: boolean) => {
-		return <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />;
+		console.log(filtered);
+
+		return <SearchOutlined style={{ color: form.current[dataIndex]?.length ? '#1890ff' : undefined }} />;
 	}
 });
 
