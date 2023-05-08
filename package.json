@@ -2,9 +2,9 @@
 	"name": "react-app",
 	"version": "0.1.0",
 	"volta": {
-		"node": "16.13.0",
+		"node": "18.16.0",
 		"npm": "8.1.0",
-		"yarn":"1.22.19"
+		"yarn": "1.22.19"
 	},
 	"private": true,
 	"dependencies": {
