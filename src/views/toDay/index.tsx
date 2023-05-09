@@ -9,7 +9,7 @@ import TaskList from './components/taskList';
 import ToDayContext from './context';
 import AddTask from './components/taskList/AddTask';
 
-const index = () => {
+const ToDay = () => {
 	return (
 		<ToDayContext>
 			<div className="flex justify-between min-w-xxl">
@@ -28,4 +28,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default ToDay;
