@@ -183,14 +183,22 @@ module.exports = {
 					]
 				};
 
-				/**
-				 * webpack split chunks
-				 */
-				webpackConfig.optimization.splitChunks = {
-					...webpackConfig.optimization.splitChunks,
-					...{
-						chunks: 'all',
-						name: false
+				// 配置optimization
+				webpackConfig.optimization = {
+					splitChunks: {
+						cacheGroups: {
+							// 分离第三方库
+							antd: {
+								test: /[\\/]node_modules[\\/]antd[\\/]/,
+								name: 'antd',
+								chunks: 'all'
+							},
+							reactDom: {
+								test: /[\\/]node_modules[\\/](react-dom)[\\/]/,
+								name: 'react-dom',
+								chunks: 'all'
+							}
+						}
 					}
 				};
 			});
