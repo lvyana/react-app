@@ -3,8 +3,8 @@
  * @author ly
  * @createDate 2023年2月3日
  */
-import axios from 'axios';
-import type { AxiosResponse, AxiosRequestConfig, AxiosError, Method } from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig, AxiosError, Method } from 'axios';
 import { message } from 'antd';
 import abortController from './abortController';
 import { errorCode, Message, logonFailure } from '@/utils/errorCode';
@@ -41,7 +41,7 @@ let instance = axios.create(config);
  * 每次请求前，如果存在token则在请求头中携带token
  */
 instance.interceptors.request.use(
-	(config: AxiosRequestConfig) => {
+	(config: InternalAxiosRequestConfig) => {
 		// 登录流程控制中，根据本地是否存在token判断用户的登录情况
 		// 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
 		// 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
