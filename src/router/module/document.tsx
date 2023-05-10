@@ -8,6 +8,7 @@ import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 const Volta = lazy(() => import(/* webpackChunkName: "Volta" */ '@/views/document/volta'));
+const CreateReactApp = lazy(() => import(/* webpackChunkName: "Volta" */ '@/views/document/createReactApp'));
 
 // 文档组件
 const documentCom = [
@@ -15,6 +16,10 @@ const documentCom = [
 	{
 		path: 'volta',
 		element: suspenseLoad(<Volta />)
+	},
+	{
+		path: 'createReactApp',
+		element: suspenseLoad(<CreateReactApp />)
 	}
 ];
 

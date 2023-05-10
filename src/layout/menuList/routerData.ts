@@ -216,6 +216,11 @@ const menuList: Router[] = [
 				title: 'volta',
 				path: '/document/volta',
 				icon: 'icon-qiche'
+			},
+			{
+				title: 'createReactApp',
+				path: '/document/createReactApp',
+				icon: 'icon-qiche'
 			}
 		]
 	},
