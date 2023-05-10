@@ -8,7 +8,7 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@antv/g2plot": "^2.4.30",
+		"@antv/g2plot": "^2.4.31",
 		"@craco/craco": "7.1.0",
 		"@reduxjs/toolkit": "^1.9.5",
 		"@wangeditor/editor": "^5.1.23",
@@ -83,7 +83,7 @@
 		"@testing-library/user-event": "^14.4.3",
 		"@types/jest": "^29.5.1",
 		"@types/lodash": "^4.14.194",
-		"@types/node": "^20.1.1",
+		"@types/node": "^20.1.2",
 		"@types/nprogress": "^0.2.0",
 		"@types/prismjs": "^1.26.0",
 		"@types/react": "^18.2.6",
