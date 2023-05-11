@@ -13,33 +13,24 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Iloading from '@/antdComponents/iLoading';
 import { Button } from 'antd';
 import useResize from '@/useHooks/useResize';
+import pdffile from './title.pdf';
+import Ipaginations from '@/antdComponents/iPagination';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const Pdf = () => {
-	const [numPages, setNumPages] = useState(0);
-	const [pageNumber, setPageNumber] = useState(1);
+	const page = useRef({ pageNum: 1, pageSize: 1 });
+	const [total, setTotal] = useState(1);
+	const [update, setUpdate] = useState(0);
 
 	const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-		setNumPages(numPages);
+		setTotal(numPages);
 	};
 
-	// 上一页
-	const onPreviousPage = () => {
-		if (pageNumber > 1) {
-			setPageNumber(pageNumber - 1);
-		} else {
-			alert('前面没有了');
-		}
+	const onPaginationChange = () => {
+		setUpdate(update + 1);
 	};
-	// 下一页
-	const onNextPage = () => {
-		if (pageNumber < numPages) {
-			setPageNumber(pageNumber + 1);
-		} else {
-			alert('后面没有了');
-		}
-	};
+
 	//阻止右键默认事件(禁止下载)
 	const onPreventDefault = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.preventDefault();
@@ -51,22 +42,19 @@ const Pdf = () => {
 	return (
 		<Icard>
 			<div id="pdfCard" className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
-				<Document
-					className={'w-full'}
-					file={'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/pdf.pdf'}
-					onLoadSuccess={onDocumentLoadSuccess}
-					loading={<Iloading></Iloading>}>
-					<Page pageNumber={pageNumber} width={resize?.width} />
+				<Document className={'w-full'} file={pdffile} onLoadSuccess={onDocumentLoadSuccess} loading={<Iloading></Iloading>}>
+					<Page pageNumber={page.current.pageNum} width={resize?.width} />
 				</Document>
-				<div className={styles.pdfBtn}>
-					<Button type="link" onClick={onPreviousPage}>
-						上一页
-					</Button>{' '}
-					{pageNumber} of {numPages}
-					<Button type="link" onClick={onNextPage}>
-						下一页
-					</Button>
-				</div>
+			</div>
+			<div>
+				<Ipaginations
+					page={page}
+					onPaginationChange={onPaginationChange}
+					total={total}
+					showTotal={false}
+					showSizeChanger={false}
+					showQuickJumper={false}
+					className="mt-4"></Ipaginations>
 			</div>
 		</Icard>
 	);
