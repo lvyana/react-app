@@ -42,7 +42,6 @@ const Lists = () => {
 		}
 		return 'cursor-pointer hover:text-blue-600';
 	};
-	console.log(token);
 
 	return (
 		<List
