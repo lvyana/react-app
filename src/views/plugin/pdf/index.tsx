@@ -11,10 +11,10 @@ import styles from './index.module.scss';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Iloading from '@/antdComponents/iLoading';
-import { Button } from 'antd';
 import useResize from '@/useHooks/useResize';
 import pdffile from './title.pdf';
 import Ipaginations from '@/antdComponents/iPagination';
+import { useDebounce } from 'ahooks';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -38,12 +38,13 @@ const Pdf = () => {
 
 	// 动态获取width
 	const { resize } = useResize(document.getElementById('pdfCard'));
+	const resizeDebounce = useDebounce(resize, { wait: 500 });
 
 	return (
 		<Icard>
 			<div id="pdfCard" className={styles.pdf} onContextMenu={(e) => onPreventDefault(e)}>
 				<Document className={'w-full'} file={pdffile} onLoadSuccess={onDocumentLoadSuccess} loading={<Iloading></Iloading>}>
-					<Page pageNumber={page.current.pageNum} width={resize?.width} />
+					<Page pageNumber={page.current.pageNum} width={resizeDebounce?.width} />
 				</Document>
 			</div>
 			<div>
