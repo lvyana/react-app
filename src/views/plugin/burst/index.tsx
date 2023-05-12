@@ -8,12 +8,11 @@ import React, { Fragment, ReactNode, useCallback, useEffect, useRef, useState } 
 import Icard from '@/antdComponents/iCard';
 
 let arr = Array.from({ length: 40000 }, (v, k) => k);
-const eachRenderNum = 1000; // 每次渲染数量
+const eachRenderNum = 350; // 每次渲染数量
 
 const Burst = () => {
 	const [list, setList] = useState<ReactNode[]>([]);
 	const count = useRef(0);
-	const time = useRef(0);
 
 	const onGeneral = () => {
 		let arr = Array.from({ length: 100000 }, (v, k) => k);
@@ -25,7 +24,6 @@ const Burst = () => {
 		const listItem = arr.slice(count.current * eachRenderNum, (count.current + 1) * eachRenderNum);
 
 		if (count.current >= times) {
-			time.current = Date.now() - time.current;
 			return;
 		}
 
@@ -58,7 +56,6 @@ const Burst = () => {
 	};
 
 	const onCallback = () => {
-		time.current = Date.now();
 		getArr();
 	};
 
@@ -79,7 +76,6 @@ const Burst = () => {
 					}}>
 					清除数据
 				</Button>
-				<div>渲染时间:{time.current}</div>
 			</div>
 			<div style={{ height: 500, overflow: 'auto' }}>{list}</div>
 		</Icard>
