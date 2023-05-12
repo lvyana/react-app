@@ -19,6 +19,7 @@ import type { ButtonType } from './components/SeachForm';
 export type ExpensesFormParams = Omit<TabelDataParams, 'pageSize' | 'pageNum' | 'name'>;
 
 export type ColumnsSeachValue = Pick<TabelDataParams, 'name'>;
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Expenses = () => {

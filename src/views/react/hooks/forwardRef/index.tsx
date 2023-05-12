@@ -13,7 +13,7 @@ type OnLoginHandler = {
 
 type Ordinary = {
 	text?: string;
-	cloneEl: any;
+	cloneEl: () => void;
 };
 // 1、ref 不会透传
 // 2、函数组件是没有实例 需要转发到dom上
