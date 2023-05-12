@@ -33,11 +33,11 @@ export interface ButtonItemParams<T> {
  * @param is 设置true禁用 false启用
  * @returns data数据
  */
-export type SetDisDataType = <T>(data: ButtonItemParams<T>[], btnList: string[], is: boolean) => ButtonItemParams<T>[];
+export type SetDisDataType = <T>(data: ButtonItemParams<T>[], btnList: T[], is: boolean) => ButtonItemParams<T>[];
 
 export const setDisData: SetDisDataType = (data, btnList, is) => {
 	return data.map((item) => {
-		if (btnList.indexOf(item.name) > -1) {
+		if (btnList.indexOf(item.type) > -1) {
 			return {
 				...item,
 				disabled: is

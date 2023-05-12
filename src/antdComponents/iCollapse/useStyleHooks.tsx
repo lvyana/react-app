@@ -1,7 +1,7 @@
 /**
- * @file 折叠面板样式配置
+ * @file 折叠面板主题样式配置
  * @author ly
- * @createDate
+ * @createDate 2023年5月12日
  */
 import React from 'react';
 import type { IcollapseProps } from './index';
@@ -28,6 +28,7 @@ const useStyleHooks = <T,>({ list, styleConfig, style, bordered }: UseStyleHooks
 				style: ListStyle
 			};
 		});
+
 		return { list: listOne, style: { background: token.colorBgContainer }, bordered: false };
 	}
 

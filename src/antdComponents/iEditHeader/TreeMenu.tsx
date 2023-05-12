@@ -3,10 +3,10 @@
  * @author ly
  * @createDate 2023年2月3日
  */
-import React, { FC, useState, useEffect, Key } from 'react';
+import React, { FC, Key } from 'react';
 import { Tree } from 'antd';
 import { arrIndexExchange } from '@/utils/exchange';
-import type { DataNode, TreeProps } from 'antd/es/tree';
+import type { TreeProps } from 'antd/es/tree';
 import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
 
 /**

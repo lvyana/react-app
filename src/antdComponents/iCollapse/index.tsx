@@ -3,8 +3,8 @@
  * @author ly
  * @createDate 2023年4月5日
  */
-import { Collapse } from 'antd';
 import React, { FC, ReactNode } from 'react';
+import { Collapse } from 'antd';
 import { useAppSelector } from '@/store/hooks';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useStyleHooks from './useStyleHooks';
@@ -25,6 +25,8 @@ export type ListParams<T> = {
 /**
  * @param list 渲染数据
  * @param defaultActiveKey 初始化选中面板的 key
+ * @param styleConfig 配置面板颜色主题类型
+ * @param bordered 带边框风格的折叠面板
  * @param onChange 切换面板的回调
  * @param style 面板css样式
  * @param expandIcon 自定义切换图标

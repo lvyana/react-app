@@ -65,18 +65,20 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 				dataIndex: 'name',
 				onSearch: () => buttonEvent('name'),
 				form: columnsSeachValue,
-				option: [
-					{
-						title: 'placeholder',
-						value: 'light'
-					},
-					{
-						title: 'placeholder1',
-						value: 'light1'
-					}
-				],
-				fieldNames: { label: 'title', value: 'value' },
-				placeholder: '请选择名字'
+				SeachFormItem: {
+					option: [
+						{
+							title: 'placeholder',
+							value: 'light'
+						},
+						{
+							title: 'placeholder1',
+							value: 'light1'
+						}
+					],
+					fieldNames: { label: 'title', value: 'value' },
+					placeholder: '请选择名字'
+				}
 			}),
 
 			width: 100,
@@ -151,6 +153,7 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 			}
 		}
 	];
+
 	return { columns };
 };
 

@@ -12,18 +12,13 @@ import Ibutton, { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton'
 type MenuItem = Required<MenuProps>['items'][number];
 
 /**
- * @param btArr 数据集合
+ * @param btArr 按钮数据集合
  * @param IbuttonEvent 点击事件
- */
-interface IbtFun<T> {
-	btArr: ButtonItemParams<T>[];
-	onClickBtn: OnClickBtn<T>;
-}
-
-/**
  * @param onOpenChange 移入移除
  */
-interface IdropdownProps<T> extends IbtFun<T> {
+interface IdropdownProps<T> {
+	btArr: ButtonItemParams<T>[];
+	onClickBtn: OnClickBtn<T>;
 	onOpenChange: (open: boolean) => void;
 }
 
@@ -40,7 +35,11 @@ const Idropdown = <T,>({ btArr, onOpenChange, onClickBtn }: IdropdownProps<T>) =
 	);
 };
 
-const getMenus = <T,>({ btArr, onClickBtn }: IbtFun<T>) => {
+/**
+ * @method 把按钮数据处理成菜单数据
+ * @returns 菜单数据
+ */
+const getMenus = <T,>({ btArr, onClickBtn }: Omit<IdropdownProps<T>, 'onOpenChange'>) => {
 	return btArr.reduce((acc: MenuItem[], item, i) => {
 		let newItem = getItem(<Ibutton buttonList={[item]} onClick={() => onClickBtn(item.type, item)}></Ibutton>, i);
 		return [...acc, newItem];
@@ -51,7 +50,7 @@ export default Idropdown;
 export type { ButtonItemParams, OnClickBtn };
 
 /**
- *
+ * @method 处理成标准数据
  * @param label 名字
  * @param key 键
  * @param icon 图标

@@ -36,7 +36,7 @@ export type IcolumnsType<T> = ColumnsType<T>; //表头
  * @param record 选中数据
  * @retruns void
  */
-export type ItbClick<T> = (type: string, record: T) => void;
+export type ItbClick<T> = (type: keyof T, record: T) => void;
 
 export type AlignType = 'left' | 'right' | 'center';
 

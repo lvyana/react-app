@@ -3,71 +3,45 @@
  * @author ly
  * @createDate 2023年4月9日
  */
-import { Button, Col, Divider, Row, TreeSelect } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { SearchOutlined } from '@ant-design/icons';
-import { ColumnType } from 'antd/es/table';
+import React, { FC, useEffect, useState } from 'react';
+import { Button, Col, Row, TreeSelect } from 'antd';
 import { formTreeSelect } from '@/antdComponents/iForm/components/ItreeSelect';
 import { BaseOptionType } from 'antd/es/cascader';
 import type { SearchProps, FormParamType } from './index';
+import { FormItemMap } from '@/antdComponents/iForm';
 
 const { SHOW_PARENT } = TreeSelect;
 
+type TreeSelectProps = {
+	children: React.ReactNode;
+	onSubmit: () => void;
+	onClose: () => void;
+};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const TableSeach = <T, D extends BaseOptionType>({
-	option,
-	onSearch = () => {},
-	form,
-	dataIndex,
-	fieldNames,
-	visible,
-	placeholder
-}: SearchProps<T, D>) => {
-	const onChange = (value: FormParamType) => {
-		setselectValue(value);
-	};
-	useEffect(() => {
-		if (visible) {
-			setselectValue(form.current[dataIndex] || []);
-		}
-	}, [visible]);
+export const Seach: FormItemMap['treeselect'] = ({ value, option, fieldNames, onChange, placeholder }) => {
+	return formTreeSelect({
+		value,
+		option,
+		fieldNames,
+		onChange: onChange,
+		placeholder,
+		checkbox: true,
+		showCheckedStrategy: SHOW_PARENT
+	});
+};
 
-	const [selectValue, setselectValue] = useState<FormParamType>([]);
-
+const TableSeach: FC<TreeSelectProps> = ({ children, onSubmit, onClose }) => {
 	return (
 		<Row className="p-2">
 			<Col>
-				<div className="w-52">
-					{formTreeSelect({
-						value: selectValue,
-						option,
-						fieldNames,
-						onChange: onChange,
-						placeholder,
-						checkbox: true,
-						showCheckedStrategy: SHOW_PARENT
-					})}
-				</div>
+				<div className="w-52">{children}</div>
 			</Col>
 			<Col>
-				<Button
-					className="ml-2"
-					type="default"
-					onClick={() => {
-						setselectValue([]);
-						form.current[dataIndex] = [];
-						onSearch();
-					}}>
+				<Button className="ml-2" type="default" onClick={onClose}>
 					清空
 				</Button>
-				<Button
-					className="ml-2"
-					type="primary"
-					onClick={() => {
-						form.current[dataIndex] = selectValue;
-						onSearch();
-					}}>
+				<Button className="ml-2" type="primary" onClick={onSubmit}>
 					确定
 				</Button>
 			</Col>

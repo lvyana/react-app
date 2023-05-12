@@ -34,4 +34,5 @@ const Idrawer: FC<IdrawerProps> = ({ children, open, title, width = 378, maskClo
 		</Drawer>
 	);
 };
+
 export default Idrawer;

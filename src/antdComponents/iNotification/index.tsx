@@ -1,10 +1,10 @@
 /**
- * @file 封装通知提醒框
+ * @file 通知提醒框
  * @author ly
  * @createDate 2022年12月11日
  */
 import React from 'react';
-import { Button, notification, Space } from 'antd';
+import { notification } from 'antd';
 
 export type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
