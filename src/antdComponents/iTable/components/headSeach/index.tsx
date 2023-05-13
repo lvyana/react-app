@@ -96,11 +96,7 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 	const onChange = (value: FormParamType) => {
 		setSelectedKeys(value);
 	};
-	useEffect(() => {
-		return () => {
-			console.log(selectedKeys);
-		};
-	});
+
 	useEffect(() => {
 		if (visible) {
 			setSelectedKeys(form.current[dataIndex] || []);
