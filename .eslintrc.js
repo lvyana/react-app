@@ -46,14 +46,13 @@ module.exports = {
 		'react/prop-types': 'off',
 		'react/jsx-uses-react': 'error',
 		'react/jsx-uses-vars': 'error',
-		'react-hooks/exhaustive-deps': 'warn',
+		'react-hooks/exhaustive-deps': 'off',
 		'react-hooks/rules-of-hooks': 'error',
 		'no-empty-function': 'off',
 		// ---
 		//配置camelcase选项
 		camelcase: [0, { properties: 'always' }],
 		'@typescript-eslint/no-var-requires': 'off',
-		camelcase: [0, { properties: 'always' }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'no-console': 'warn',
 		'no-debugger': 'warn',

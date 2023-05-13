@@ -9,7 +9,12 @@ module.exports = {
 	jsxBracketSameLine: true, // jsx > 是否另起一行
 	requirePragma: false, // 是否严格按照文件顶部的特殊注释格式化代码
 	arrowParens: 'always', // 箭头函数，单个参数添加括号
-	bracketSpacing: true // 大括号有空格 { name: 'rose' }
+	bracketSpacing: true, // 大括号有空格 { name: 'rose' }
+	endOfLine: 'auto', // 换行符格式为系统默认
+	quoteProps: 'as-needed', // 对象属性只在必要时加引号
+	jsxSingleQuote: false, // jsx中使用双引号
+	proseWrap: 'always', // 换行应用于markdown和其他类似格式的文件
+	htmlWhitespaceSensitivity: 'ignore' // HTML空白灵敏度忽略
 };
 
 // prettier
