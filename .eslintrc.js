@@ -43,9 +43,12 @@ module.exports = {
 		'@typescript-eslint/no-empty-interface': 'off',
 		'@typescript-eslint/no-empty-function': ['off'],
 		// react-hooks
+		'react/prop-types': 'off',
+		'react/jsx-uses-react': 'error',
+		'react/jsx-uses-vars': 'error',
+		'react-hooks/exhaustive-deps': 'warn',
 		'react-hooks/rules-of-hooks': 'error',
 		'no-empty-function': 'off',
-		'react-hooks/exhaustive-deps': 'off',
 		// ---
 		//配置camelcase选项
 		camelcase: [0, { properties: 'always' }],
@@ -86,12 +89,3 @@ module.exports = {
 
 // # 添加 react, hooks 相关的规则
 // yarn add eslint-plugin-react eslint-plugin-react-hooks  -D
-
-// prettier
-// yarn add prettier -D
-
-// prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题(eslint和prettier冲突)。
-// yarn add eslint-config-prettier -D
-
-// prettier 官方提供了一个 ESLint 插件 eslint-plugin-prettier。
-// yarn add eslint-plugin-prettier -D
