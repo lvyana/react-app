@@ -156,7 +156,7 @@ const Iform = <T extends FormItem[], F extends object>({
 			});
 		}
 
-		if (item.type === 'treeselect') {
+		if (item.type === 'treeSelect') {
 			const { label, disabled, allowClear, onChange, placeholder, option, checkbox, fieldNames, style, children } =
 				item as TreeselectType<DefaultOptionType>;
 			return FORM_ITEM_MAP[item.type]({

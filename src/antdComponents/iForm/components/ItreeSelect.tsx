@@ -8,7 +8,7 @@ import { TreeSelect } from 'antd';
 import type { ChangeEventExtra } from 'rc-tree-select/lib/TreeSelect';
 import type { FormItemMap } from '../type';
 
-export const formTreeSelect: FormItemMap['treeselect'] = (item) => {
+export const formTreeSelect: FormItemMap['treeSelect'] = (item) => {
 	return (
 		<TreeSelect
 			value={item.value}

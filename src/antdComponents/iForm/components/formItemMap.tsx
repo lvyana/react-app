@@ -22,7 +22,7 @@ import formUpload from './Iupload';
 const FORM_ITEM_MAP: FormItemMap = {
 	input: (item) => formInputItem(item),
 	select: (item) => formSelect(item),
-	treeselect: (item) => formTreeSelect(item),
+	treeSelect: (item) => formTreeSelect(item),
 	cascader: (item) => formCascader(item),
 	datePicker: (item) => formDatePicker(item),
 	rangePicker: (item) => formRangePicker(item),

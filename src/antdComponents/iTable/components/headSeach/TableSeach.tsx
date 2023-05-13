@@ -3,11 +3,9 @@
  * @author ly
  * @createDate 2023年4月9日
  */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, Col, Row, TreeSelect } from 'antd';
 import { formTreeSelect } from '@/antdComponents/iForm/components/ItreeSelect';
-import { BaseOptionType } from 'antd/es/cascader';
-import type { SearchProps, FormParamType } from './index';
 import { FormItemMap } from '@/antdComponents/iForm';
 
 const { SHOW_PARENT } = TreeSelect;
@@ -19,7 +17,7 @@ type TreeSelectProps = {
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-export const Seach: FormItemMap['treeselect'] = ({ value, option, fieldNames, onChange, placeholder }) => {
+export const treeSelect: FormItemMap['treeSelect'] = ({ value, option, fieldNames, onChange, placeholder }) => {
 	return formTreeSelect({
 		value,
 		option,

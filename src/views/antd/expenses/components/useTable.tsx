@@ -10,7 +10,7 @@ import Idropdown, { ButtonItemParams } from '@/antdComponents/iDropdown';
 import { ItbClick, AlignType, IcolumnsType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataParams, TabelDataResponse } from '../service';
-import getColumnSearchProps from '@/antdComponents/iTable/components';
+import getColumnSearchProps from '@/antdComponents/iTable/components/headSeach';
 import { ColumnsSeachValue } from '../index';
 
 type ButtonEventTypeParam = 'name' | OnClickBtnType;
@@ -62,6 +62,7 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 			dataIndex: 'name',
 			key: 'name',
 			...getColumnSearchProps<TabelDataResponse, { title: string; value: string }>({
+				type: 'treeSelect',
 				dataIndex: 'name',
 				onSearch: () => buttonEvent('name'),
 				form: columnsSeachValue,

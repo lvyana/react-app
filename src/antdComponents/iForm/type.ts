@@ -54,7 +54,7 @@ export type FormSelectType<T> = FormItem & SelectType<T>;
 
 const { SHOW_ALL, SHOW_PARENT, SHOW_CHILD } = TreeSelect;
 type ShowCheckedStrategy = typeof SHOW_ALL | typeof SHOW_PARENT | typeof SHOW_CHILD;
-// treeselect
+// treeSelect
 export type TreeselectType<T> = {
 	value?: (string | number)[];
 	label?: FormItem['label'];
@@ -252,7 +252,7 @@ export type FormUserDefinedType = FormItem & UserDefinedType;
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
 	select: <T extends BaseOptionType>(item: SelectType<T>) => JSX.Element;
-	treeselect: <T extends BaseOptionType>(item: TreeselectType<T>) => JSX.Element;
+	treeSelect: <T extends BaseOptionType>(item: TreeselectType<T>) => JSX.Element;
 	cascader: <T extends BaseOptionType>(item: CascaderType<T>) => JSX.Element;
 	datePicker: (item: AlonePicker) => JSX.Element;
 	rangePicker: (item: BothPicker) => JSX.Element;

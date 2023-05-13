@@ -8,8 +8,10 @@ import { SearchOutlined } from '@ant-design/icons';
 import { ColumnType } from 'antd/es/table';
 import { BaseOptionType } from 'antd/es/cascader';
 import TableSeach from './TableSeach';
-import { Seach } from './TableSeach';
 import { FilterDropdownProps } from 'antd/es/table/interface';
+import tableHeadSeach from './modules';
+
+import type { FormItemMapType } from './modules';
 import type { TreeselectType } from '@/antdComponents/iForm';
 
 export type FormParamType = (string | number)[];
@@ -35,6 +37,7 @@ export type SearchProps<D> = {
  * @param onSearch 搜索和重置回调
  */
 type ColumnSearchProps<T, P> = {
+	type: FormItemMapType;
 	SeachFormItem: SeachFormItemType<P>;
 	dataIndex: keyof T;
 	form: React.MutableRefObject<FormParam<T>>;
@@ -43,7 +46,7 @@ type ColumnSearchProps<T, P> = {
 };
 
 /**
- * 表头搜索组件
+ * 表头搜索组件(可拓展)
  */
 type SeachFormItemType<P> = TreeselectType<P>;
 
@@ -51,6 +54,7 @@ type SeachFormItemType<P> = TreeselectType<P>;
 
 // 表格表头参数配置
 const getColumnSearchProps = <T, P extends BaseOptionType>({
+	type,
 	dataIndex,
 	onSearch,
 	form,
@@ -59,6 +63,7 @@ const getColumnSearchProps = <T, P extends BaseOptionType>({
 	filterDropdown: ({ selectedKeys, setSelectedKeys, confirm, visible }) => {
 		return (
 			<TableHeadSeach<T, P>
+				type={type}
 				form={form}
 				dataIndex={dataIndex}
 				selectedKeys={selectedKeys}
@@ -76,6 +81,7 @@ const getColumnSearchProps = <T, P extends BaseOptionType>({
 
 // 表格表头filterDropdown组件
 const TableHeadSeach = <T, P extends BaseOptionType>({
+	type,
 	form,
 	selectedKeys,
 	setSelectedKeys,
@@ -117,7 +123,8 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 
 	return (
 		<TableSeach onClose={onClose} onSubmit={onSubmit}>
-			{Seach({ value: selectedKeys, onChange, ...SeachFormItem })}
+			{tableHeadSeach(type)({ value: selectedKeys, onChange, ...SeachFormItem })}
+			{/* {treeSelect({ value: selectedKeys, onChange, ...SeachFormItem })} */}
 		</TableSeach>
 	);
 };

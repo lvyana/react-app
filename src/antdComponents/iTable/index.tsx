@@ -1,12 +1,12 @@
 /**
- * @file 实现表格封装
+ * @file 表格封装
  * @author ly
  * @createDate 2020年4月27日
  */
 import React from 'react';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
-import { Table, Pagination, Switch } from 'antd';
+import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { antIcon } from '@/antdComponents/iLoading';
 

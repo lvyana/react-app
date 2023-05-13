@@ -6,20 +6,7 @@
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { Tooltip } from 'antd';
 import useThemeHooks from '@/config/theme/useThemeHooks';
-
-type Iplacement =
-	| 'top'
-	| 'left'
-	| 'right'
-	| 'bottom'
-	| 'topLeft'
-	| 'topRight'
-	| 'bottomLeft'
-	| 'bottomRight'
-	| 'leftTop'
-	| 'leftBottom'
-	| 'rightTop'
-	| 'rightBottom';
+import { TooltipPlacement } from 'antd/es/tooltip';
 
 /**
  * @param children 子集内容
@@ -31,7 +18,7 @@ type Iplacement =
 interface ItooltipProps {
 	children: ReactNode;
 	overlayInnerStyle?: CSSProperties;
-	placement?: Iplacement;
+	placement?: TooltipPlacement;
 	color?: string;
 	title: ReactNode;
 }

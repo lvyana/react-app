@@ -221,8 +221,8 @@ const Dynamicform = () => {
 			option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
 		},
 		{
-			type: 'treeselect',
-			name: 'treeselect',
+			type: 'treeSelect',
+			name: 'treeSelect',
 			label: '下拉树',
 			rules: [],
 			key: 7,
