@@ -77,7 +77,7 @@ yarn prepare，husky
 执行初始化，可以发现我们的项目目录多了.husky文件夹，代表初始化成功。
 
 ### 5.3、接着我们执行
-```npx husky add .husky/pre-commit "npm run lint-staged"```
+```npx husky add .husky/pre-commit "yarn run lint-staged"```
 
 ### 5.4、配置commitlint.config.js文件
 
@@ -98,4 +98,4 @@ npx --no-install commitlint --edit $1
 yarn commitlint --edit $1
 ```
 
-大功告成。之后我们 git 提交的时候会自动执行npm run lint-staged命令，即检查 git 缓存区的代码问题，若存在问题，lint-staged会终止并报错，git 提交自然不会成功。
+大功告成。之后我们 git 提交的时候会自动执行yarn run lint-staged命令，即检查 git 缓存区的代码问题，若存在问题，lint-staged会终止并报错，git 提交自然不会成功。
