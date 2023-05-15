@@ -7,7 +7,8 @@ import React, { FC, ReactNode } from 'react';
 import type { MenuProps } from 'antd';
 import { Menu, Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton, { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton';
+import Ibutton, { ButtonItemParams } from '@/antdComponents/iButton';
+import type { OnClickBtn } from '../iButton/type';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

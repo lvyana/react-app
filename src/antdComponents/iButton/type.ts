@@ -10,7 +10,7 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
  * @param type 类型
  * @param btType 按钮类型
  * @param disabled 开启禁用模式 true  否则 false
- * @param hasPermiss 权限标识
+ * @param permission 权限标识
  * @param iconFont 图标
  */
 export interface ButtonItemParams<T> {
@@ -18,7 +18,7 @@ export interface ButtonItemParams<T> {
 	type: T;
 	btType?: BTtype;
 	disabled?: boolean;
-	hasPermiss?: string;
+	permission?: string;
 	iconFont?: string | ReactElement;
 	className?: string;
 	style?: CSSProperties;

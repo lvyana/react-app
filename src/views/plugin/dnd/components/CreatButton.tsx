@@ -123,7 +123,7 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 						<Col span={12}>
 							{formInputItem({
 								placeholder: '权限标识',
-								value: option.hasPermiss,
+								value: option.permission,
 								onChange: (value) => onChange(value, 'hasPermiss', option.id)
 							})}
 						</Col>
