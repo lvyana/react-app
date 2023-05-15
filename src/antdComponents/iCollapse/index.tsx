@@ -19,6 +19,7 @@ export type ListParams<T> = {
 	header: ReactNode;
 	content: ReactNode;
 	style?: React.CSSProperties;
+	className?: string;
 	key: T;
 };
 
@@ -58,25 +59,24 @@ const Icollapse = <T extends string | number>({
 
 	// 折叠面板样式配置
 	const styleConfigParams = useStyleHooks({ list, styleConfig, style, bordered });
+	console.log(styleConfigParams);
 
 	return (
-		<div>
-			<Collapse
-				bordered={styleConfigParams.bordered}
-				defaultActiveKey={defaultActiveKey}
-				onChange={onChange}
-				size={size}
-				expandIcon={expandIcon}
-				style={styleConfigParams.style}>
-				{styleConfigParams.list.map((item) => {
-					return (
-						<Panel header={item.header} key={item.key} style={item.style}>
-							{item.content}
-						</Panel>
-					);
-				})}
-			</Collapse>
-		</div>
+		<Collapse
+			bordered={styleConfigParams.bordered}
+			defaultActiveKey={defaultActiveKey}
+			onChange={onChange}
+			size={size}
+			expandIcon={expandIcon}
+			style={styleConfigParams.style}>
+			{styleConfigParams.list.map((item) => {
+				return (
+					<Panel header={item.header} key={item.key} style={item.style} className={item.className}>
+						{item.content}
+					</Panel>
+				);
+			})}
+		</Collapse>
 	);
 };
 

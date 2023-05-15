@@ -221,6 +221,11 @@ const menuList: Router[] = [
 				title: 'createReactApp',
 				path: '/document/createReactApp',
 				icon: 'icon-qiche'
+			},
+			{
+				title: 'markdown语法',
+				path: '/document/markdown',
+				icon: 'icon-xinpin'
 			}
 		]
 	},
