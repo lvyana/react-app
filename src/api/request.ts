@@ -5,9 +5,8 @@
  */
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import type { AxiosRequestConfig, AxiosError, Method } from 'axios';
-import { message } from 'antd';
 import abortController from './abortController';
-import { errorCode, Message, logonFailure } from '@/utils/errorCode';
+import { errorCode, messages, logonFailure } from '@/utils/errorCode';
 import { getToken } from '@/utils/storage';
 
 /**
@@ -72,13 +71,13 @@ instance.interceptors.response.use(
 			logonFailure();
 			return Promise.reject(new Error('登录失效'));
 		} else if (code === 500) {
-			message.error(msg);
+			messages('error', msg);
 			return Promise.reject(new Error(msg));
 		} else if (code === 200) {
 			return res.data;
 		}
 
-		message.error(msg);
+		messages('error', msg);
 		return Promise.reject('error');
 	},
 
@@ -94,7 +93,7 @@ instance.interceptors.response.use(
 		} else if (message.includes('canceled')) {
 			return Promise.reject(error);
 		}
-		Message('error', message);
+		messages('error', message);
 		return Promise.reject(error);
 	}
 );

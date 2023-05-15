@@ -12,20 +12,30 @@ const { confirm } = Modal;
 export const errorCode = (code: number | string) => {
 	let codeMsg;
 	if (code === 401) {
-		codeMsg = '认证失败，无法访问系统资源';
-	} else if (code === 401) {
-		codeMsg = '当前操作没有权限';
+		codeMsg = '登陆已过期,请重新登录!';
 	} else if (code === 404) {
-		codeMsg = '当前操作没有权限';
+		codeMsg = '当前操作没有权限!';
 	} else if (code === 'default') {
-		codeMsg = '系统正在打盹，请稍后重试';
+		codeMsg = '系统正在打盹，请稍后重试!';
 	}
 	return codeMsg;
 };
 
-export const Message = (type: string, msg: string) => {
+export const messages = (type: string, msg: string) => {
 	if (type === 'error') {
-		return message.error(msg);
+		return message[type](msg);
+	}
+	if (type === 'success') {
+		return message[type](msg);
+	}
+	if (type === 'info') {
+		return message[type](msg);
+	}
+	if (type === 'warning') {
+		return message[type](msg);
+	}
+	if (type === 'loading') {
+		return message[type](msg);
 	}
 };
 
