@@ -3,13 +3,13 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC } from 'react';
+import React, { Children, FC, Fragment, ReactElement } from 'react';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
-import useHasPermiss from '@/useHooks/usePermissions';
 import { Button, Col, Row } from 'antd';
 import IconFont from '@/utils/iconfont';
 import { ButtonItemParams, OnClickBtn } from './type';
+import authButtonPermissionHoc from '@/hoc/authButtonPermissionHoc';
 
 /**
  * @param buttonList 按钮集合
@@ -20,45 +20,56 @@ export interface IbuttonProps<T> {
 	buttonList: ButtonItemParams<T>[];
 	loadingName?: T;
 	onClick?: OnClickBtn<T>;
-	style?: React.CSSProperties;
+}
+
+/**
+ * @param buttonItem 按钮
+ */
+export interface IbuttonItemProps<T> extends Omit<IbuttonProps<T>, 'buttonList'> {
+	buttonItem: ButtonItemParams<T>;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
+	const buttonListCol = buttonList.map((item, i) => {
+		const IbuttonItemCol = (
+			<Col span={item.span}>
+				<IbuttonItem buttonItem={item} loadingName={loadingName} onClick={onClick} />
+			</Col>
+		);
+
+		return <Fragment key={i}>{authButtonPermissionHoc(IbuttonItemCol, item.permission)}</Fragment>;
+	});
+
+	return <Row>{buttonListCol}</Row>;
+};
+
+export const IbuttonItem = <T,>({ buttonItem, loadingName, onClick }: IbuttonItemProps<T>) => {
 	const size = useAppSelector(GET_SIZE);
-	const { hasPermiss } = useHasPermiss();
+
 	return (
-		<Row>
-			{buttonList.map(
-				(item, i) =>
-					hasPermiss(item.hasPermiss) && (
-						<Col span={item.span} key={i}>
-							<Button
-								type={item.btType}
-								onClick={() => onClick && onClick(item.type, item)}
-								disabled={item.disabled === true}
-								loading={loadingName === item.type}
-								size={size}
-								className={item.className}
-								icon={(() => {
-									if (item.iconFont) {
-										if (typeof item.iconFont === 'string') {
-											return <IconFont type={item.iconFont}></IconFont>;
-										} else if (React.isValidElement(item.iconFont)) {
-											return item.iconFont;
-										}
-										return <></>;
-									}
-								})()}
-								block={item.block}
-								style={item.style}>
-								{item.name}
-							</Button>
-						</Col>
-					)
-			)}
-		</Row>
+		<Button
+			type={buttonItem.btType}
+			onClick={() => onClick && onClick(buttonItem.type, buttonItem)}
+			disabled={buttonItem.disabled === true}
+			loading={loadingName === buttonItem.type}
+			size={size}
+			className={buttonItem.className}
+			icon={(() => {
+				if (buttonItem.iconFont) {
+					if (typeof buttonItem.iconFont === 'string') {
+						return <IconFont type={buttonItem.iconFont}></IconFont>;
+					} else if (React.isValidElement(buttonItem.iconFont)) {
+						return buttonItem.iconFont;
+					}
+					return <></>;
+				}
+			})()}
+			block={buttonItem.block}
+			style={buttonItem.style}>
+			{buttonItem.name}
+		</Button>
 	);
 };
 

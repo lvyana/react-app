@@ -91,7 +91,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 									type: 'ok',
 									btType: 'primary',
 									span: 12,
-									hasPermiss: '',
+									permission: '',
 									iconFont: '',
 									id: '0'
 								}
