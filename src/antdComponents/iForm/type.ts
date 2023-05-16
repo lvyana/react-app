@@ -17,9 +17,9 @@ import type { DefaultOptionType, LabeledValue } from 'antd/es/select';
 import type { SwitchChangeEventHandler } from 'antd/es/switch';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
 import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
-import type { ButtonItemParams } from '../iButton';
 import type { ResponseData } from '@/api/request';
-import { HttpRequestHeader } from 'antd/lib/upload/interface';
+import type { HttpRequestHeader } from 'antd/lib/upload/interface';
+import type { ButtonItemParams } from '../iButton/type';
 
 // input
 export type InputType = {

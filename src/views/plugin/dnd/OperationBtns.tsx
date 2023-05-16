@@ -5,7 +5,7 @@
  */
 import React, { useContext, useState } from 'react';
 import { Form } from 'antd';
-import Ibutton, { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton';
+import Ibutton from '@/antdComponents/iButton';
 import JsonView from './components/JsonView';
 import ImportJson from './components/ImportJson';
 import { Context } from './context';
@@ -13,6 +13,7 @@ import type { importJsonForm } from './components/ImportJson';
 import type { OnOkOrCancelType } from '@/antdComponents/iModal';
 import TemplateForm from './components/TemplateForm';
 import GeneratCode from './components/GeneratCode';
+import type { ButtonItemParams, OnClickBtn } from '@/antdComponents/iDropdown';
 
 type ButtonType = 'JSON' | 'import' | 'template' | 'generatCode';
 

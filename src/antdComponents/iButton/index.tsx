@@ -1,15 +1,13 @@
 /**
- * @file 封装权限按钮
+ * @file 按钮集合
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { Children, FC, Fragment, ReactElement } from 'react';
-import { useAppSelector } from '@/store';
-import { GET_SIZE } from '@/store/reducers/layout';
-import { Button, Col, Row } from 'antd';
-import IconFont from '@/utils/iconfont';
-import { ButtonItemParams, OnClickBtn } from './type';
+import React, { Fragment } from 'react';
+import { Col, Row } from 'antd';
 import authButtonPermissionHoc from '@/hoc/authButtonPermissionHoc';
+import IbuttonItem from './IbuttonItem';
+import type { ButtonItemParams, OnClickBtn } from './type';
 
 /**
  * @param buttonList 按钮集合
@@ -22,15 +20,9 @@ export interface IbuttonProps<T> {
 	onClick?: OnClickBtn<T>;
 }
 
-/**
- * @param buttonItem 按钮
- */
-export interface IbuttonItemProps<T> extends Omit<IbuttonProps<T>, 'buttonList'> {
-	buttonItem: ButtonItemParams<T>;
-}
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
+// 按钮集合
 const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 	const buttonListCol = buttonList.map((item, i) => {
 		const IbuttonItemCol = (
@@ -45,33 +37,6 @@ const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 	return <Row>{buttonListCol}</Row>;
 };
 
-export const IbuttonItem = <T,>({ buttonItem, loadingName, onClick }: IbuttonItemProps<T>) => {
-	const size = useAppSelector(GET_SIZE);
-
-	return (
-		<Button
-			type={buttonItem.btType}
-			onClick={() => onClick && onClick(buttonItem.type, buttonItem)}
-			disabled={buttonItem.disabled === true}
-			loading={loadingName === buttonItem.type}
-			size={size}
-			className={buttonItem.className}
-			icon={(() => {
-				if (buttonItem.iconFont) {
-					if (typeof buttonItem.iconFont === 'string') {
-						return <IconFont type={buttonItem.iconFont}></IconFont>;
-					} else if (React.isValidElement(buttonItem.iconFont)) {
-						return buttonItem.iconFont;
-					}
-					return <></>;
-				}
-			})()}
-			block={buttonItem.block}
-			style={buttonItem.style}>
-			{buttonItem.name}
-		</Button>
-	);
-};
+// 单个按钮
 
 export default Ibutton;
-export type { ButtonItemParams, OnClickBtn };

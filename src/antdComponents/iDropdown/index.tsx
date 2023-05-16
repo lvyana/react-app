@@ -3,12 +3,12 @@
  *	@author ly
  *  @createDate 2020年4月27日
  */
-import React, { FC, ReactNode } from 'react';
+import React from 'react';
 import type { MenuProps } from 'antd';
-import { Menu, Dropdown, Button } from 'antd';
+import { Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton, { ButtonItemParams } from '@/antdComponents/iButton';
-import type { OnClickBtn } from '../iButton/type';
+import Ibutton from '@/antdComponents/iButton';
+import type { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton/type';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

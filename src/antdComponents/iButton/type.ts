@@ -1,8 +1,8 @@
+import { ButtonType } from 'antd/es/button';
 import { CSSProperties, ReactElement, ReactNode } from 'react';
 
+// 点击按钮事件
 export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点击事件
-
-export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed';
 
 /**
  * @param 按钮接口
@@ -16,7 +16,7 @@ export type BTtype = 'link' | 'text' | 'ghost' | 'default' | 'primary' | 'dashed
 export interface ButtonItemParams<T> {
 	name: string;
 	type: T;
-	btType?: BTtype;
+	btType?: ButtonType;
 	disabled?: boolean;
 	permission?: string;
 	iconFont?: string | ReactElement;
