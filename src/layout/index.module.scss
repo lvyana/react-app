@@ -1,0 +1,48 @@
+.layout-transition {
+  transition: all .2s ease 0s;
+}
+
+.my-layout {
+  :global {
+    .ant-layout-sider-trigger {
+      background-color: currentcolor;
+      box-shadow: 0 1px 6px 0 rgb(195, 195, 195);
+  
+      >.anticon {
+        color: #000;
+      }
+    }
+  
+    [data-theme='compact'] .card-container > .ant-tabs-card .ant-tabs-content {
+      /* height: 120px; */
+      margin-top: -8px;
+    }
+  
+    .ant-layout-sider {
+      position: fixed;
+      left: 0;
+    }
+  
+    .ant-layout-sider-children {
+      height: calc(100vh - 48px);
+      padding-top: 64px;
+      overflow: auto;
+    }
+  
+    .ant-layout-sider-children::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+  }
+  
+}
+
+ 
+
+.layout-content{
+  position: relative;
+  padding: 8px;
+  margin-top: 105px;
+  overflow-x: auto
+
+  /* width: `calc(100% - ${collapsedWidth})` */
+}

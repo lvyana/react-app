@@ -92,7 +92,6 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 			render: (text: unknown, record: TabelDataResponse) => {
 				return (
 					<>
-						<Ibutton buttonList={btArr}></Ibutton>
 						<Idropdown
 							btArr={btArr}
 							onOpenChange={(open) => onOpenChange(open)}

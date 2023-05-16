@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2022年10月10日
  */
-import React, { useRef, Suspense, lazy, FC } from 'react';
+import React, { Suspense, lazy, FC } from 'react';
 import { useAppDispatch } from '@/store';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
 import menuList, { Router } from '@/layout/menuList/routerData';
