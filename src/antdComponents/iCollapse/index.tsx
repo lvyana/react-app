@@ -59,7 +59,6 @@ const Icollapse = <T extends string | number>({
 
 	// 折叠面板样式配置
 	const styleConfigParams = useStyleHooks({ list, styleConfig, style, bordered });
-	console.log(styleConfigParams);
 
 	return (
 		<Collapse
