@@ -89,7 +89,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 								{
 									name: '确认',
 									type: 'ok',
-									btType: 'primary',
+									btnType: 'primary',
 									span: 12,
 									permission: '',
 									iconFont: '',

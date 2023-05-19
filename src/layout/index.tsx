@@ -68,7 +68,7 @@ const Layouts = () => {
 			</IresponsiveMin>
 
 			<Layout className={style['layout-transition']} style={{ position: 'relative', marginLeft: collapsedWidth }}>
-				<div className={style['layout-transition']} style={{ position: 'fixed', zIndex: 9999, width: `calc(100% - ${collapsedWidth}px)` }}>
+				<div className={style['layout-transition']} style={{ position: 'fixed', zIndex: 999, width: `calc(100% - ${collapsedWidth}px)` }}>
 					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
 						<Headerregion />
 					</Header>

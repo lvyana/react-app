@@ -25,7 +25,7 @@ export const IbuttonItem = <T,>({ buttonItem, loadingName, onClick }: IbuttonIte
 
 	return (
 		<Button
-			type={buttonItem.btType}
+			type={buttonItem.btnType}
 			onClick={() => onClick && onClick(buttonItem.type, buttonItem)}
 			disabled={buttonItem.disabled === true}
 			loading={loadingName === buttonItem.type}

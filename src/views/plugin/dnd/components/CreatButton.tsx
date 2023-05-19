@@ -21,7 +21,7 @@ import type { SelectValueType } from '@/antdComponents/iForm/type';
  */
 type GetNewOptionsParams = {
 	options: ButtonOptionsParams[];
-	key: 'name' | 'type' | 'btType' | 'span' | 'hasPermiss' | 'iconFont';
+	key: 'name' | 'type' | 'btnType' | 'span' | 'hasPermiss' | 'iconFont';
 	value: number | string | null | SelectValueType;
 	id: string;
 };
@@ -111,13 +111,13 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 						<Col span={12}>
 							{formSelect<ButtonTypeOptionsParams>({
 								placeholder: '组件类型',
-								value: option.btType,
+								value: option.btnType,
 								option: BUTTON_TYPE_OPTIONS,
 								fieldNames: {
 									label: 'type',
 									value: 'value'
 								},
-								onChange: (value) => onSelectChange(value, 'btType', option.id)
+								onChange: (value) => onSelectChange(value, 'btnType', option.id)
 							})}
 						</Col>
 						<Col span={12}>
@@ -143,7 +143,7 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 						</Col>
 						<Col span={12}>
 							{formButton({
-								option: [{ name: '', type: 'add', block: true, btType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
+								option: [{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
 								onClick: () => {
 									add(option.id);
 								}
@@ -157,7 +157,7 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 										name: '',
 										type: 'subtract',
 										block: true,
-										btType: 'dashed',
+										btnType: 'dashed',
 										iconFont: <MinusOutlined />,
 										span: 24
 									}

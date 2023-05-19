@@ -365,7 +365,7 @@ const Dynamicform = () => {
 			key: 15,
 			span: 24,
 			option: [
-				{ type: 'submit', name: '搜索', btType: 'primary' },
+				{ type: 'submit', name: '搜索', btnType: 'primary' },
 				{ type: 'onReset', name: '重置' }
 			],
 			onClick: onSubmit,

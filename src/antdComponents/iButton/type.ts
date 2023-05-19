@@ -8,7 +8,7 @@ export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点
  * @param 按钮接口
  * @param name 名称
  * @param type 类型
- * @param btType 按钮类型
+ * @param btnType 按钮类型
  * @param disabled 开启禁用模式 true  否则 false
  * @param permission 权限标识
  * @param iconFont 图标
@@ -16,7 +16,7 @@ export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点
 export interface ButtonItemParams<T> {
 	name: string;
 	type: T;
-	btType?: ButtonType;
+	btnType?: ButtonType;
 	disabled?: boolean;
 	permission?: string;
 	iconFont?: string | ReactElement;

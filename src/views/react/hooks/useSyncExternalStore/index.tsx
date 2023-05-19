@@ -4,51 +4,24 @@
  * @createDate 2023年5月19日
  */
 import React, { useSyncExternalStore } from 'react';
+import todosStore from './todosStore';
+import Icard from '@/antdComponents/iCard';
+import { IbuttonItem } from '@/antdComponents/iButton/IbuttonItem';
+import type { ButtonItemParams } from '@/antdComponents/iButton/type';
 
-let nextId = 0;
-let todos = [{ id: nextId++, text: 'Todo #1' }];
-let listeners: (() => void)[] = [];
-
-const todosStore = {
-	addTodo() {
-		todos = [...todos, { id: nextId++, text: 'Todo #' + nextId }];
-		emitChange();
-	},
-	deleteTodo() {
-		todos = todos.filter((item, i) => {
-			return i !== 0;
-		});
-		emitChange();
-	},
-	subscribe(listener: () => void) {
-		listeners = [...listeners, listener];
-		// console.log(listeners);
-
-		return () => {
-			listeners = listeners.filter((l) => l !== listener);
-		};
-	},
-	getSnapshot() {
-		return todos;
-	}
+const BUTTON_ITEM: ButtonItemParams<'key'> = {
+	name: 'Add todo',
+	type: 'key',
+	btnType: 'primary'
 };
-
-function emitChange() {
-	for (let listener of listeners) {
-		// console.log(listener);
-
-		listener();
-	}
-}
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const IuseSyncExternalStore = () => {
 	const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
 
 	return (
-		<div>
-			<button onClick={() => todosStore.addTodo()}>Add todo</button>
+		<Icard>
+			<IbuttonItem buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></IbuttonItem>
 			<hr />
 			<ul>
 				{todos.map((todo) => (
@@ -56,7 +29,7 @@ const IuseSyncExternalStore = () => {
 				))}
 			</ul>
 			<IuseSyncExternalStoreItem></IuseSyncExternalStoreItem>
-		</div>
+		</Icard>
 	);
 };
 
@@ -65,8 +38,9 @@ const IuseSyncExternalStoreItem = () => {
 
 	return (
 		<div>
-			<button onClick={() => todosStore.addTodo()}>Add todo</button>
-			<button onClick={() => todosStore.deleteTodo()}>delete todo</button>
+			<IbuttonItem buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></IbuttonItem>
+			<IbuttonItem buttonItem={{ ...BUTTON_ITEM, name: 'delete todo' }} onClick={() => todosStore.deleteTodo()}></IbuttonItem>
+
 			<hr />
 			<ul>
 				{todos.map((todo) => (

@@ -21,8 +21,8 @@ interface EditPersonnelTableProps {
 type OnClickBtnType = '修改' | '删除';
 
 const btArr: ButtonItemParams<OnClickBtnType>[] = [
-	{ type: '修改', name: '修改', btType: 'link' },
-	{ type: '删除', name: '删除', btType: 'link' }
+	{ type: '修改', name: '修改', btnType: 'link' },
+	{ type: '删除', name: '删除', btnType: 'link' }
 ];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 

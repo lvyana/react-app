@@ -120,7 +120,7 @@ const DISABLED_OPTIONS: DisabledParams[] = [
 export type ButtonOptionsParams = {
 	// name: string;
 	// type: string;
-	// btType: string;
+	// btnType: string;
 	// span: number | string | null;
 	// hasPermiss: string;
 	iconFont?: string;
@@ -131,7 +131,7 @@ const BUTTON_OPTIONS: ButtonOptionsParams[] = [
 	// {
 	// 	name: '确认',
 	// 	type: 'ok',
-	// 	btType: 'primary',
+	// 	btnType: 'primary',
 	// 	span: 12,
 	// 	hasPermiss: '',
 	// 	iconFont: '',

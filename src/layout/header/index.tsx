@@ -19,7 +19,7 @@ const Headerregion = () => {
 	return (
 		<>
 			<Row justify="space-around" align="middle">
-				<Col flex="345px">
+				<Col flex="355px">
 					{/* 面包屑 */}
 					<div className="pl-2">
 						<Crumb></Crumb>

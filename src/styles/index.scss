@@ -1,20 +1,4 @@
-/* 修改antd组件样式 */
-
-/*  @import url('./antd-ui.scss'); */
-
-
-/* 内外边距 */
-
-/* @import url('./marginAndPadding.scss');  */
-
-
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+/** 样式全局配置 */
 
 /* hover 75,171,252 */
 .hove-blue:hover {

@@ -68,7 +68,7 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			key: 14,
 			span: 6,
 			option: [
-				{ btType: 'primary', type: 'subimt', name: '搜索', iconFont: 'icon-sousuo' },
+				{ btnType: 'primary', type: 'subimt', name: '搜索', iconFont: 'icon-sousuo' },
 				{ type: 'onReset', name: '重置', iconFont: 'icon-zhongzhi', className: 'ml-1' }
 			],
 			style: { marginLeft: '10px' },

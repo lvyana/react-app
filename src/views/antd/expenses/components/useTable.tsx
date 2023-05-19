@@ -46,8 +46,8 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 	const onOpenChange = (open: boolean, record: TabelDataResponse) => {
 		if (open) {
 			setBtFun([
-				{ type: '修改', name: '修改', btType: 'link' },
-				{ type: '删除', name: '删除', btType: 'link' }
+				{ type: '修改', name: '修改', btnType: 'link' },
+				{ type: '删除', name: '删除', btnType: 'link' }
 			]);
 		} else {
 			// setBtFun([]);

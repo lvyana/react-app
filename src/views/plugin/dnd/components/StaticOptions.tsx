@@ -94,7 +94,7 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 						</Col>
 						<Col span={4}>
 							{formButton({
-								option: [{ name: '', type: 'add', block: true, btType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
+								option: [{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
 								onClick: () => {
 									add(option.id);
 								}
@@ -108,7 +108,7 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 										name: '',
 										type: 'subtract',
 										block: true,
-										btType: 'dashed',
+										btnType: 'dashed',
 										iconFont: <MinusOutlined />,
 										span: 24
 									}

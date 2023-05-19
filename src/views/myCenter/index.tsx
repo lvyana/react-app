@@ -3,7 +3,8 @@
  * @author ly
  * @createDate 2022年12月11日
  */
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
+import Icard from '@/antdComponents/iCard';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_PHOTO, GET_SELECTOR_PHOTO } from '@/store/reducers/user';
 import { Avatar } from 'antd';
@@ -46,7 +47,7 @@ const MyCenter: FC = () => {
 	};
 
 	return (
-		<>
+		<Icard>
 			<div>
 				<div style={{ marginBottom: '20px', textAlign: 'center' }}>
 					<span onClick={openPhoto}>
@@ -58,7 +59,7 @@ const MyCenter: FC = () => {
 			<Imodal title="修改头像" open={isModalOpen} confirmLoading={confirmLoading} onOkOrCancel={onOkOrCancel} width={800}>
 				<EditPhoto photoFinish={photoFinish} setPhotoFinish={setPhotoFinish}></EditPhoto>
 			</Imodal>
-		</>
+		</Icard>
 	);
 };
 

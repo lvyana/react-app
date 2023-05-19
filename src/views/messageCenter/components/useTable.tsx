@@ -31,7 +31,7 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 	};
 
 	// 初始化按钮
-	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([{ type: '去处理', name: '去处理', btType: 'link' }]);
+	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([{ type: '去处理', name: '去处理', btnType: 'link' }]);
 
 	const onOpenChange = (open: boolean) => {};
 

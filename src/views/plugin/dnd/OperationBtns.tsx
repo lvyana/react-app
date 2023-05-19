@@ -26,24 +26,24 @@ const OperationBtns = () => {
 		{
 			name: '生成示例',
 			type: 'template',
-			btType: 'primary'
+			btnType: 'primary'
 		},
 		{
 			name: '生成JSON',
 			type: 'JSON',
-			btType: 'primary',
+			btnType: 'primary',
 			className: 'ml-1'
 		},
 		{
 			name: '导入JSON',
 			type: 'import',
-			btType: 'primary',
+			btnType: 'primary',
 			className: 'ml-1'
 		},
 		{
 			name: '生成代码',
 			type: 'generatCode',
-			btType: 'primary',
+			btnType: 'primary',
 			className: 'ml-1'
 		}
 	];
