@@ -22,6 +22,9 @@ const IforwardRef = lazy(() => import(/* webpackChunkName: "IforwardRef" */ '@/v
 const IuseImperativeHandle = lazy(() => import(/* webpackChunkName: "IuseImperativeHandle" */ '@/views/react/hooks/useImperativeHandle'));
 const IuseTransition = lazy(() => import(/* webpackChunkName: "IuseTransition" */ '@/views/react/hooks/useTransition'));
 const IuseDeferredValue = lazy(() => import(/* webpackChunkName: "IuseDeferredValue" */ '@/views/react/hooks/useDeferredValue'));
+const IuseSyncExternalStore = lazy(
+	() => import(/* webpackChunkName: "IuseSyncExternalStore" */ '@/views/react/hooks/useSyncExternalStore')
+);
 
 // reactDom
 const IcreatePortal = lazy(() => import(/* webpackChunkName: "MyCreatePortal" */ '@/views/react/reactDom/createPortal'));
@@ -84,6 +87,10 @@ const reactHooks = [
 	{
 		path: 'useDeferredValue',
 		element: suspenseLoad(<IuseDeferredValue />)
+	},
+	{
+		path: 'useSyncExternalStore',
+		element: suspenseLoad(<IuseSyncExternalStore />)
 	}
 ];
 

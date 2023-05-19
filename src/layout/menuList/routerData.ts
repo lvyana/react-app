@@ -105,6 +105,11 @@ const menuList: Router[] = [
 						title: 'useDeferredValue',
 						path: '/react/hooks/useDeferredValue',
 						icon: 'icon-paimai'
+					},
+					{
+						title: 'useSyncExternalStore',
+						path: '/react/hooks/useSyncExternalStore',
+						icon: 'icon-paimai'
 					}
 				]
 			},

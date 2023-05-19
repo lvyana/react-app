@@ -50,7 +50,7 @@ const toDayReducer: ToDayReducerType = (state, action) => {
 	return state;
 };
 
-// hoc
+// context组件
 const ToDayContext: FC<ToDayReducerProps> = ({ children }) => {
 	const [state, dispatch] = useReducer(toDayReducer, initState);
 
