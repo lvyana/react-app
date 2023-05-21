@@ -8,6 +8,7 @@ import todosStore from './todosStore';
 import Icard from '@/antdComponents/iCard';
 import { IbuttonItem } from '@/antdComponents/iButton/IbuttonItem';
 import type { ButtonItemParams } from '@/antdComponents/iButton/type';
+import Icollapse from '@/antdComponents/iCollapse';
 
 const BUTTON_ITEM: ButtonItemParams<'key'> = {
 	name: 'Add todo',
@@ -16,7 +17,7 @@ const BUTTON_ITEM: ButtonItemParams<'key'> = {
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IuseSyncExternalStore = () => {
+export const IuseSyncExternalStore = () => {
 	const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
 
 	return (
@@ -29,15 +30,17 @@ const IuseSyncExternalStore = () => {
 				))}
 			</ul>
 			<IuseSyncExternalStoreItem></IuseSyncExternalStoreItem>
+			<Idocment></Idocment>
 		</Icard>
 	);
 };
 
-const IuseSyncExternalStoreItem = () => {
+export const IuseSyncExternalStoreItem = () => {
 	const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
 
 	return (
 		<div>
+			<div>测试: useSyncExternalStore数据可以共享</div>
 			<IbuttonItem buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></IbuttonItem>
 			<IbuttonItem buttonItem={{ ...BUTTON_ITEM, name: 'delete todo' }} onClick={() => todosStore.deleteTodo()}></IbuttonItem>
 
@@ -51,6 +54,43 @@ const IuseSyncExternalStoreItem = () => {
 	);
 };
 
+const DOCUMENT_LIST = [
+	{
+		header: 'useSyncExternalStore 参数说明',
+		content: (
+			<>
+				<div>useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot)</div>
+				<div>subscribe函数得订阅这个store, 并且返回一个可以取消订阅的函数。</div>
+				<div>getSnapshot函数得可以从store里读取数据快照。</div>
+				<div>
+					subscribe: 是一个函数，只有一个回调函数作为入参，并且使其订阅这个store.
+					当store发生改变的时候，这个回调函数应该得到执行，而且这会触发组件的重新渲染。subscribe函数应该返回一个可以取消订阅的方法。
+				</div>
+				<div>
+					getSnapshot:
+					是一个函数，返回一个组件中需要用到的store里的一个数据值的快照。当这个store没有改变的时候，重复调用getSnapshot必须返回同样的值。如果store发生改变并且返回的数据值不一样了（用Object.js做比较），那么Reacr重新渲染这个组件。
+				</div>
+				<div>
+					getServerSnapshot（可选参数）:
+					是一个函数，返回store数据的初始快照。只会在服务端渲染的时候使用，并且是在服务端渲染好的内容往客户端灌水的时候。服务端的快照必须和客户端的一致。并且通常是序列化后被发送到客户端的，如果你不传这个参数，在服务端渲染的时候会报错
+				</div>
+
+				<div>当前你在组件渲染中使用到的store数据的快照</div>
+				<div>警告</div>
+				<div>
+					调用getSnapshot返回的这个store数据快照不能修改，如果所依赖的store有可以更改的数据，当数据发生改变返回新的不可修改的数据，否则返回上一次缓存的数据快照。
+				</div>
+				<div>
+					如果在重新渲染的时候传来一个不同的subscribe函数，React会用新的subscribe重新订阅这个store。你可以通过在组件外面声明subscribe的方式来避免
+				</div>
+			</>
+		),
+		key: '1'
+	}
+];
+const Idocment = () => {
+	return <Icollapse list={DOCUMENT_LIST}></Icollapse>;
+};
 export default IuseSyncExternalStore;
 
 // https://juejin.cn/post/7217743118324858938
