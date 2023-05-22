@@ -9,6 +9,7 @@ import Icard from '@/antdComponents/iCard';
 import Icollapse from '@/antdComponents/iCollapse';
 import IcodeEditor from '@/pluginComponents/iCodeEditor';
 import { IuseSyncExternalStoreItem } from '../useSyncExternalStore';
+import Article from '@/pluginComponents/iMarkdown';
 
 const initCode = `import { useState } from 'react';
 
@@ -93,6 +94,7 @@ const IuseState = () => {
 			{first}
 			<Icollapse styleConfig="1" defaultActiveKey={['0']} list={list}></Icollapse>
 			<IuseSyncExternalStoreItem></IuseSyncExternalStoreItem>
+			<Article url={'README.md'}></Article>
 		</Icard>
 	);
 };

@@ -96,6 +96,7 @@ const Markdown = () => {
 			header: '超链接',
 			content: (
 				<div>
+					演示地址: [http://114.132.242.253](http://114.132.242.253)
 					{`[超链接名](超链接地址 "超链接title")`}
 					<br />
 					title可加可不加

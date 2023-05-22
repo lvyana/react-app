@@ -1,5 +1,5 @@
 ## 演示地址
-演示地址: http://114.132.242.253
+演示地址: [http://114.132.242.253](http://114.132.242.253)
 
 ## 1、使用yarn创建react ts项目
 ``` 
@@ -17,7 +17,9 @@ yarn add eslint stylelint prettier -D
 ```
  
 ### 3.1、eslint相关依赖
-```yarn add @typescript-eslint/parser @typescript-eslint/eslint-plugin -D```
+```
+yarn add @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+```
 
 package.json添加命令
 ```{
