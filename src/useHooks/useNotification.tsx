@@ -30,15 +30,19 @@ type OpenNotification = ({ type, message, description, duration }: OpenNotificat
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const openNotification: OpenNotification = ({ type, message, description, duration = 1.5 }) => {
-	const key = `open${Date.now()}`;
-	notification[type]({
-		message,
-		description,
-		key,
-		duration,
-		placement: 'bottomRight'
-	});
+const useNotification = () => {
+	const openNotification: OpenNotification = ({ type, message, description, duration = 1.5 }) => {
+		const key = `open${Date.now()}`;
+		notification[type]({
+			message,
+			description,
+			key,
+			duration,
+			placement: 'bottomRight'
+		});
+	};
+
+	return { openNotification };
 };
 
-export default openNotification;
+export default useNotification;

@@ -12,7 +12,7 @@ import Phone from './phone';
 import styles from './index.module.scss';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
-import openNotification from '@/antdComponents/iNotification';
+import useNotification from '@/useHooks/useNotification';
 
 /**
  * @param userName 用户名
@@ -30,6 +30,8 @@ export interface FromType {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Login = () => {
+	const { openNotification } = useNotification();
+
 	const [accountForm] = Form.useForm<FromType>();
 
 	useEffect(() => {
@@ -46,17 +48,6 @@ const Login = () => {
 	}, []);
 
 	const navigate = useNavigate();
-	// 登录弹框
-	const openNotificationFn = () => {
-		const key = `open${Date.now()}`;
-		notification.open({
-			message: '欢迎登录',
-			description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
-			key,
-			duration: 1.5,
-			placement: 'bottomRight'
-		});
-	};
 
 	const setUserInfo = (userName: FromType['userName'], password: FromType['password'], remember: FromType['remember']) => {
 		const jsencryptUserName = userName && encrypt(userName);
