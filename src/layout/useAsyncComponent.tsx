@@ -6,7 +6,7 @@
 import React, { Suspense, lazy, FC } from 'react';
 import { useAppDispatch } from '@/store';
 import { SET_ROUTER } from '@/store/reducers/globalConfig';
-import menuList, { Router } from '@/layout/menuList/routerData';
+import menuList, { Router } from '@/layout/menu/routerData';
 import Iloading from '@/pluginComponents/iLoading';
 
 // 异步路由

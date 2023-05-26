@@ -23,12 +23,15 @@ interface StateParams {
 	selectFormItemKey?: string;
 }
 
-interface actionParams {
-	type: keyof StateParams;
-	value: StateParams[keyof StateParams];
-}
+type actionParams =
+	| {
+			type: 'formList';
+			value: FormItemParams[];
+	  }
+	| { type: 'selectFormItemKey'; value: string };
 
 type ReducerFun = (state: StateParams, action: actionParams) => StateParams;
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Context = createContext<{ state: StateParams; dispatch: React.Dispatch<actionParams> } | null>(null);
@@ -41,9 +44,9 @@ const initState = {
 const reducer: ReducerFun = (state, action) => {
 	const { type, value } = action;
 	if (type === 'formList') {
-		return { ...state, formList: value as StateParams['formList'] };
+		return { ...state, formList: value };
 	} else if (type === 'selectFormItemKey') {
-		return { ...state, selectFormItemKey: value as StateParams['selectFormItemKey'] };
+		return { ...state, selectFormItemKey: value };
 	}
 	return state;
 };

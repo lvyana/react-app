@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
-import menuList, { Router } from '@/layout/menuList/routerData';
+import menuList, { Router } from '@/layout/menu/routerData';
 import { useAppSelector } from '@/store';
 import { GET_SIZE } from '@/store/reducers/layout';
 import useThemeHooks from '@/config/theme/useThemeHooks';

@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
-import Menulist from '@/layout/menuList';
+import Menu from '@/layout/menu';
 import Headerregion from '@/layout/header';
 import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useThemeHooks from '@/config/theme/useThemeHooks';
@@ -63,7 +63,7 @@ const Layouts = () => {
 		<Layout className={style['my-layout']} style={{ minHeight: '100vh' }}>
 			<IresponsiveMin MinWidth={SIDER_MIN_WIDTH}>
 				<SiderBar collapsed={collapsed} onCollapse={onCollapse}>
-					<Menulist />
+					<Menu />
 				</SiderBar>
 			</IresponsiveMin>
 

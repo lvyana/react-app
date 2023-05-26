@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
-import { Router, EXCLUDE_MENU } from '../../menuList/index';
+import { Router, EXCLUDE_MENU } from '../../menu/index';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';

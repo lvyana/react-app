@@ -6,7 +6,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import { headerConfig } from '@/api/publicApi';
-import type { Router } from '@/layout/menuList/routerData';
+import type { Router } from '@/layout/menu/routerData';
 import { SET_SIZE } from './layout';
 /**
  * @param headerFieldId 唯一标识

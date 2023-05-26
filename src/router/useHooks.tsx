@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import { Navigate, useLocation } from 'react-router-dom';
-import type { Router } from '@/layout/menuList';
+import type { Router } from '@/layout/menu';
 
 const useRouterHooks = () => {
 	const location = useLocation();

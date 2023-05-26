@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect, memo } from 'react';
 import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
+import { Menu as AntdMenu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store';
@@ -33,7 +33,7 @@ export const EXCLUDE_MENU = ['role/allocation'];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Menulist = () => {
+const Menu = () => {
 	const location = useLocation();
 	const { pathname } = location;
 
@@ -79,7 +79,7 @@ const Menulist = () => {
 	const menuList = useAppSelector(GET_ROUTER);
 
 	return (
-		<Menu
+		<AntdMenu
 			theme="light"
 			defaultOpenKeys={getSelectUrlArr(pathname)}
 			defaultSelectedKeys={[selectMenuPath || pathname]}
@@ -87,10 +87,10 @@ const Menulist = () => {
 			onOpenChange={onOpenChange}
 			selectedKeys={[selectMenuPath || pathname]}
 			mode="inline"
-			items={getMenu(menuList)}></Menu>
+			items={getMenu(menuList)}></AntdMenu>
 	);
 };
-export default memo(Menulist);
+export default memo(Menu);
 
 /**
  * @method 调整menu数据

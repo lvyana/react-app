@@ -7,5 +7,5 @@ import React, { FC } from 'react';
 import type { FormItemMap } from '../type';
 
 export const formUserDefined: FormItemMap['userDefined'] = (item) => {
-	return item.children;
+	return <div>{item.children}</div>;
 };

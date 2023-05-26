@@ -14,12 +14,12 @@ interface InitStateParams {
 	taskListLoading: boolean;
 }
 
-type ActionValueParams = InitStateParams[keyof InitStateParams];
-
-interface ActionParams {
-	type: keyof InitStateParams;
-	value: ActionValueParams;
-}
+type ActionParams =
+	| {
+			type: 'taskListData';
+			value: TaskListParams[];
+	  }
+	| { type: 'taskListLoading'; value: boolean };
 
 type ToDayReducerType = (state: InitStateParams, action: ActionParams) => InitStateParams;
 
@@ -43,9 +43,9 @@ const initState: InitStateParams = {
 const toDayReducer: ToDayReducerType = (state, action) => {
 	const { type, value } = action;
 	if (type === 'taskListData') {
-		return { ...state, taskListData: value as InitStateParams['taskListData'] };
+		return { ...state, taskListData: value };
 	} else if (type === 'taskListLoading') {
-		return { ...state, taskListLoading: value as InitStateParams['taskListLoading'] };
+		return { ...state, taskListLoading: value };
 	}
 	return state;
 };
