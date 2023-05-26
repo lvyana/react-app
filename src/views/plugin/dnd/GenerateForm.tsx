@@ -157,9 +157,11 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	const onDeleteFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation();
 
-		const formList = context?.state.formList.filter((item) => {
-			return item.key !== formParams.key;
-		});
+		const formList =
+			context?.state.formList.filter((item) => {
+				return item.key !== formParams.key;
+			}) || [];
+
 		context?.dispatch({ type: 'formList', value: formList });
 
 		if (formParams.key === context?.state.selectFormItemKey) {
@@ -170,23 +172,24 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	// 复制formItem
 	const onCopyFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation();
-		const newFormList = context?.state.formList.reduce<FormItemParams[]>((prev, item) => {
-			if (formParams.key === item.key) {
-				return [
-					...prev,
-					...[
-						item,
-						{
-							...item,
-							name: 'name' + formList?.length,
-							key: uuidv4()
-						}
-					]
-				];
-			} else {
-				return [...prev, item];
-			}
-		}, []);
+		const newFormList =
+			context?.state.formList.reduce<FormItemParams[]>((prev, item) => {
+				if (formParams.key === item.key) {
+					return [
+						...prev,
+						...[
+							item,
+							{
+								...item,
+								name: 'name' + formList?.length,
+								key: uuidv4()
+							}
+						]
+					];
+				} else {
+					return [...prev, item];
+				}
+			}, []) || [];
 
 		context?.dispatch({ type: 'formList', value: newFormList });
 	};

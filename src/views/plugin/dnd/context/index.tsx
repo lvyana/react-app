@@ -28,7 +28,7 @@ type actionParams =
 			type: 'formList';
 			value: FormItemParams[];
 	  }
-	| { type: 'selectFormItemKey'; value: string };
+	| { type: 'selectFormItemKey'; value?: string };
 
 type ReducerFun = (state: StateParams, action: actionParams) => StateParams;
 

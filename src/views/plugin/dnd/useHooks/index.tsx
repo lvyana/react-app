@@ -63,12 +63,13 @@ export const useWatchUrl = () => {
 		onSuccess: (res) => {
 			const { data } = res;
 
-			const newFormList = context?.state.formList.map((item) => {
-				if (item.key === context.state.selectFormItemKey) {
-					return { ...item, option: data };
-				}
-				return item;
-			});
+			const newFormList =
+				context?.state.formList.map((item) => {
+					if (item.key === context.state.selectFormItemKey) {
+						return { ...item, option: data };
+					}
+					return item;
+				}) || [];
 
 			context?.dispatch({ type: 'formList', value: newFormList });
 		}

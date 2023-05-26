@@ -78,9 +78,9 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 					// 放入目标
 					const { name: type } = item;
 					// 生成formItem
-					let newFormList = formList;
+					let newFormList = formList || [];
 					if (type === 'button') {
-						newFormList?.push({
+						newFormList.push({
 							type: type as ItemTypesParams,
 							name: 'name' + formList?.length,
 							key: uuidv4(),
@@ -98,7 +98,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 							]
 						});
 					} else {
-						newFormList?.push({
+						newFormList.push({
 							type: type as ItemTypesParams,
 							label: 'label',
 							name: 'name' + formList?.length,
