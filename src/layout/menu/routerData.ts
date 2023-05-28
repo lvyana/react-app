@@ -9,12 +9,12 @@ const menuList: Router[] = [
 	{
 		title: '首页',
 		path: '/home',
-		icon: 'icon-baohu'
+		icon: 'icon-shouyexuanzhong'
 	},
 	{
 		title: 'antd',
 		path: '/antd',
-		icon: 'icon-baohu',
+		icon: 'icon-antdesign',
 		children: [
 			{
 				title: 'expenses',
@@ -32,7 +32,7 @@ const menuList: Router[] = [
 	{
 		title: 'react',
 		path: '/react',
-		icon: 'icon-qianbao',
+		icon: 'icon-React',
 		children: [
 			{
 				title: 'hooks',
@@ -145,7 +145,7 @@ const menuList: Router[] = [
 	{
 		title: 'router',
 		path: '/router',
-		icon: 'icon-jiushui',
+		icon: 'icon-icon_luyouqi',
 		children: [
 			{
 				title: 'routerDemo',
@@ -162,7 +162,7 @@ const menuList: Router[] = [
 	{
 		title: 'plugin',
 		path: '/plugin',
-		icon: 'icon-yiliao',
+		icon: 'icon-plugin',
 		children: [
 			{
 				title: '富文本',
@@ -215,7 +215,7 @@ const menuList: Router[] = [
 	{
 		title: '文档',
 		path: '/document',
-		icon: 'icon-jiushui',
+		icon: 'icon-wenbenwendang-txt',
 		children: [
 			{
 				title: 'volta',
@@ -228,18 +228,18 @@ const menuList: Router[] = [
 				icon: 'icon-qiche'
 			},
 			{
-				title: 'markdown语法',
+				title: 'md语法',
 				path: '/document/markdown',
 				icon: 'icon-xinpin'
 			}
 		]
 	},
-	// 不显示在菜单中中
 	{
 		title: '个人中心',
 		path: '/mycenter',
-		show: false
+		icon: 'icon-gerenzhongxin'
 	},
+	// 不显示在菜单中中
 	{
 		title: '消息中心',
 		path: '/messgeCenter',

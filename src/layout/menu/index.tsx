@@ -3,16 +3,20 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useEffect, memo } from 'react';
-import type { MenuProps } from 'antd';
-import { Menu as AntdMenu } from 'antd';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, memo, useRef, useLayoutEffect, FC } from 'react';
+import { Button, Col, MenuProps, Row } from 'antd';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
-import useRouterHooks from '@/router/useHooks';
+import Icard from '@/antdComponents/iCard';
+import findNode from '@/utils/findNode';
+import findParentNode from '@/utils/findParentNode';
 
-type MenuItem = Required<MenuProps>['items'][number];
+type TitleProps = {
+	MenuTitle: Router | null;
+	onBack: () => void;
+};
 
 /**
  * @param title 标题
@@ -34,98 +38,113 @@ export const EXCLUDE_MENU = ['role/allocation'];
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Menu = () => {
+	const navigate = useNavigate();
+
 	const location = useLocation();
-	const { pathname } = location;
-
-	const { selectMenuPath } = useRouterHooks();
-
-	useEffect(() => {
-		onOpenChange(getSelectUrlArr(pathname));
-	}, [pathname]);
-
-	// 当前展开的 SubMenu 菜单项 key 数组
-	const [openKeys, setOpenKeys] = useState<Array<string>>([]);
-
-	// SubMenu 展开/关闭的回调
-	const onOpenChange = (keys: string[]) => {
-		setOpenKeys(keys);
-	};
-
-	/**
-	 * @method 处理路由
-	 * @param url 当前路径 /react/hooks/xxx
-	 * @returns ['/react','/react/hooks']
-	 */
-	const getSelectUrlArr = (url: string) => {
-		return url.split('/')?.reduce<string[]>((prevState, currentState, index, arr) => {
-			// 判空
-			if (!currentState) return prevState;
-			// 删除最后一个
-			if (arr.length - 1 === index) return prevState;
-
-			let newCurrent = '';
-
-			if (prevState.length === 0) {
-				newCurrent = '/' + currentState;
-			} else {
-				// ['/react', '/react/hooks'] + 'xxxx'
-				newCurrent = [prevState[prevState.length - 1], currentState].join('/');
-			}
-
-			return [...prevState, newCurrent];
-		}, []);
-	};
 
 	const menuList = useAppSelector(GET_ROUTER);
 
-	return (
-		<AntdMenu
-			theme="light"
-			defaultOpenKeys={getSelectUrlArr(pathname)}
-			defaultSelectedKeys={[selectMenuPath || pathname]}
-			openKeys={openKeys}
-			onOpenChange={onOpenChange}
-			selectedKeys={[selectMenuPath || pathname]}
-			mode="inline"
-			items={getMenu(menuList)}></AntdMenu>
-	);
-};
-export default memo(Menu);
+	// 历史菜单记录
+	const historyMenuList = useRef<Router[]>([]);
 
-/**
- * @method 调整menu数据
- * @param label 名称
- * @param key 唯一标志
- * @param icon 图标
- * @param children 子菜单的菜单项
- * @param type
- * @returns menu数据
- */
-const getItem = (label: React.ReactNode, key: React.Key, icon?: string, children?: MenuItem[], type?: 'group'): MenuItem => {
-	return {
-		key,
-		icon: icon && <IconFont type={icon} />,
-		children,
-		label,
-		type
-	} as MenuItem;
-};
+	// 当前菜单
+	const [currentMenu, setCurrentMenu] = useState<Router | null>(null);
 
-/**
- * @method 获取菜单数据结构
- * @param menu 路由数据
- * @returns menu数据
- */
-const getMenu = (menuArr: Router[]): MenuItem[] => {
-	return menuArr.reduce((acc: MenuItem[], item) => {
-		if (item.show === false) return [...acc];
+	useLayoutEffect(() => {
+		// 添加历史记录
+		let initHistoryMenuList: Router[] = [];
+		let isFind = true;
+		let path = location.pathname;
 
-		if (item.children && item.children.length > 0) {
-			let newItem = { ...getItem(item.title, item.path, item.icon), children: getMenu(item.children) } as MenuItem;
-			return [...acc, newItem];
+		while (isFind) {
+			const parentNode = findParentNode(menuList, path);
+			if (parentNode) {
+				initHistoryMenuList.unshift(parentNode);
+				path = parentNode.path;
+			} else {
+				initHistoryMenuList.unshift({ title: '系统', path: '/', children: menuList });
+				isFind = false;
+			}
+		}
+		historyMenuList.current = initHistoryMenuList;
+
+		// 初始化当前菜单
+		const initCurrentMenu = findParentNode(menuList, location.pathname);
+		if (initCurrentMenu) {
+			setCurrentMenu(initCurrentMenu);
 		} else {
-			let newItem = getItem(<Link to={item.path}> {item.title}</Link>, item.path, item.icon);
-			return [...acc, newItem];
+			setCurrentMenu({ title: '系统', path: '/', children: menuList });
 		}
 	}, []);
+
+	const onMenuClick = (menu: Router) => {
+		const nextMenu = findNode(menuList, 'path', menu.path);
+
+		if (nextMenu?.children) {
+			setCurrentMenu(nextMenu);
+			historyMenuList.current.push(nextMenu);
+		} else {
+			navigate(menu.path);
+		}
+	};
+
+	// 返回上一层菜单
+	const onBack = () => {
+		if (historyMenuList.current.length > 1) {
+			const copyHistoryMenuList = [...historyMenuList.current];
+			copyHistoryMenuList.pop();
+			historyMenuList.current = copyHistoryMenuList;
+			setCurrentMenu(copyHistoryMenuList[copyHistoryMenuList.length - 1]);
+		}
+	};
+
+	return (
+		<>
+			<Title MenuTitle={currentMenu} onBack={onBack}></Title>
+			<Row gutter={8}>
+				{currentMenu?.children?.map((menu) => {
+					if (menu.show === false) return null;
+					return (
+						<Col flex="80px" className="mb-2" key={menu.path}>
+							<Icard style={{ padding: 4 }} className="text-center" hoverable={true} onClick={() => onMenuClick(menu)}>
+								<IconFont type={menu.icon || ''}></IconFont>
+								<div>{menu.title}</div>
+							</Icard>
+						</Col>
+					);
+				})}
+			</Row>
+		</>
+	);
+};
+
+export default memo(Menu);
+
+const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
+	const navigate = useNavigate();
+
+	const onLogOut = () => {
+		navigate('/login');
+	};
+
+	return (
+		<>
+			<Row justify="space-between">
+				<Col>
+					<Button
+						type="link"
+						icon={MenuTitle?.path === '/' || <IconFont type="icon-fanhui" className="mr-1"></IconFont>}
+						className="mb-2"
+						onClick={onBack}>
+						{MenuTitle?.title}
+					</Button>
+				</Col>
+				<Col>
+					<Button danger type="link" onClick={onLogOut} icon={<IconFont type="icon-tuichu"></IconFont>}>
+						退出
+					</Button>
+				</Col>
+			</Row>
+		</>
+	);
 };

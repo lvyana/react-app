@@ -4,7 +4,7 @@
  * @createDate 2022年12月11日
  */
 import React from 'react';
-import { notification } from 'antd';
+import { App } from 'antd';
 
 export type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
@@ -31,6 +31,8 @@ type OpenNotification = ({ type, message, description, duration }: OpenNotificat
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const useNotification = () => {
+	const { notification } = App.useApp();
+
 	const openNotification: OpenNotification = ({ type, message, description, duration = 1.5 }) => {
 		const key = `open${Date.now()}`;
 		notification[type]({

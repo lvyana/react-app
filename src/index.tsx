@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import errorBoundaryHoc from '@/hoc/errorBoundaryHoc';
+import { App as AntdApp } from 'antd';
 
 // 数据持久化
 import { PersistGate } from 'redux-persist/integration/react';
@@ -37,7 +38,7 @@ function render() {
 				<Theme>
 					<BrowserRouter basename={'/'}>
 						{/* <StrictMode> */}
-						{errorBoundaryHoc(App)}
+						<AntdApp>{errorBoundaryHoc(App)}</AntdApp>
 						{/* </StrictMode> */}
 					</BrowserRouter>
 				</Theme>

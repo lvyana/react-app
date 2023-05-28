@@ -3,23 +3,17 @@
  * @author ly
  *  @createDate 日期：2020年4月27日
  */
-import React, { useState, useEffect } from 'react';
+import React, { CSSProperties } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
-import Menu from '@/layout/menu';
 import Headerregion from '@/layout/header';
-import { IresponsiveMin, useResponsiveMin } from '@/pluginComponents/iResponsive';
 import useThemeHooks from '@/config/theme/useThemeHooks';
 import useApi from '@/useHooks/useApi';
-import TabsMain from './tabsMain';
 import Tour from './tour';
 import useAysncComponent from './useAsyncComponent';
-import SiderBar from './siderBar';
-import style from './index.module.scss';
+import { Footer } from 'antd/es/layout/layout';
 
-const { Header, Content, Sider } = Layout;
-// width小于650 左侧隐藏
-const SIDER_MIN_WIDTH = 650;
+const { Header, Content } = Layout;
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -29,55 +23,24 @@ const Layouts = () => {
 	// 初始化api数据
 	useApi();
 
-	const { isShow } = useResponsiveMin(SIDER_MIN_WIDTH);
-
-	useEffect(() => {
-		if (isShow) {
-			setCollapsedWidth(0);
-		} else {
-			setCollapsedWidth(200);
-		}
-	}, [isShow]);
-
-	// 菜单收齐打开
-	const [collapsed, setcollapsed] = useState(false);
-	const [collapsedWidth, setCollapsedWidth] = useState(() => (isShow ? 0 : 200));
-
-	const onCollapse = (collapsed: boolean | ((prevState: boolean) => boolean)) => {
-		setcollapsed(collapsed);
+	const headerStyle: CSSProperties = {
+		position: 'sticky',
+		top: 0,
+		width: '100%',
+		alignItems: 'center',
+		backgroundColor: token.colorBgBase,
+		zIndex: 999
 	};
 
-	useEffect(() => {
-		if (isShow) {
-			setCollapsedWidth(0);
-		} else {
-			if (collapsed) {
-				setCollapsedWidth(80);
-			} else {
-				setCollapsedWidth(200);
-			}
-		}
-	}, [isShow, collapsed]);
-
 	return (
-		<Layout className={style['my-layout']} style={{ minHeight: '100vh' }}>
-			<IresponsiveMin MinWidth={SIDER_MIN_WIDTH}>
-				<SiderBar collapsed={collapsed} onCollapse={onCollapse}>
-					<Menu />
-				</SiderBar>
-			</IresponsiveMin>
-
-			<Layout className={style['layout-transition']} style={{ position: 'relative', marginLeft: collapsedWidth }}>
-				<div className={style['layout-transition']} style={{ position: 'fixed', zIndex: 999, width: `calc(100% - ${collapsedWidth}px)` }}>
-					<Header className="" style={{ padding: 0, backgroundColor: token.colorBgBase }}>
-						<Headerregion />
-					</Header>
-					<TabsMain />
-				</div>
-				<Content className={style['layout-content']}>
-					<Outlet />
-				</Content>
-			</Layout>
+		<Layout>
+			<Header style={headerStyle}>
+				<Headerregion />
+			</Header>
+			<Content className="site-layout p-4" style={{ minHeight: 'calc(100vh - 64px)' }}>
+				<Outlet />
+			</Content>
+			{/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer> */}
 			<FloatButton.BackTop visibilityHeight={600} />
 			<Tour></Tour>
 		</Layout>

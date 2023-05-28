@@ -19,14 +19,15 @@ interface IcardProps {
 	style?: object;
 	hoverable?: boolean;
 	className?: string;
+	onClick?: () => void;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Icard: FC<IcardProps> = ({ bordered = false, children, style = {}, hoverable = false, className }) => {
+const Icard: FC<IcardProps> = ({ bordered = false, children, style = {}, hoverable = false, className, onClick }) => {
 	return (
 		<>
-			<Card hoverable={hoverable} bordered={bordered} bodyStyle={{ padding: '16px', ...style }} className={className}>
+			<Card hoverable={hoverable} bordered={bordered} bodyStyle={{ padding: '16px', ...style }} className={className} onClick={onClick}>
 				{children}
 			</Card>
 		</>
