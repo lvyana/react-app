@@ -5,7 +5,7 @@
  */
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { Tooltip } from 'antd';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import { TooltipPlacement } from 'antd/es/tooltip';
 
 /**

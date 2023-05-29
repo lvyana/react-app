@@ -5,8 +5,6 @@
  */
 import React, { FC, Fragment } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
-import { useAppSelector } from '@/store';
-import { GET_SIZE } from '@/store/reducers/layout';
 import FORM_ITEM_MAP from './components/formItemMap';
 import type {
 	AlonePicker,
@@ -279,12 +277,9 @@ const Iform = <T extends FormItem[], F extends object>({
 		}
 	};
 
-	// 尺寸
-	const size = useAppSelector(GET_SIZE);
-
 	return (
 		<>
-			<Form form={form} layout={formLayout} size={size} onValuesChange={onValuesChange}>
+			<Form form={form} layout={formLayout} onValuesChange={onValuesChange}>
 				<Row>
 					{formList &&
 						formList.map((item) => {

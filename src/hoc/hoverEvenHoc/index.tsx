@@ -4,7 +4,7 @@
  * @createDate 2023年3月24日
  */
 import React, { useState } from 'react';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 

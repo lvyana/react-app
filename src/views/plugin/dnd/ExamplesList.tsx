@@ -10,7 +10,7 @@ import { useDrag } from 'react-dnd';
 import { ITEM_TYPES, FORM_ITEM } from './itemTypes';
 import { Context } from './context';
 import type { ItemTypesParams } from './itemTypes';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import hoverEvenHoc from '@/hoc/hoverEvenHoc';
 
 export const FORM_TYPE_LIST = [

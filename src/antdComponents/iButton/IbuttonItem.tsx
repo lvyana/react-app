@@ -1,11 +1,9 @@
 /**
- * @file 模板
+ * @file 单个按钮
  * @author ly
  * @createDate
  */
 import React from 'react';
-import { useAppSelector } from '@/store';
-import { GET_SIZE } from '@/store/reducers/layout';
 import { Button } from 'antd';
 import IconFont from '@/utils/iconfont';
 import type { IbuttonProps } from './index';
@@ -21,15 +19,12 @@ export interface IbuttonItemProps<T> extends Omit<IbuttonProps<T>, 'buttonList'>
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 export const IbuttonItem = <T,>({ buttonItem, loadingName, onClick }: IbuttonItemProps<T>) => {
-	const size = useAppSelector(GET_SIZE);
-
 	return (
 		<Button
 			type={buttonItem.btnType}
 			onClick={() => onClick && onClick(buttonItem.type, buttonItem)}
 			disabled={buttonItem.disabled === true}
 			loading={loadingName === buttonItem.type}
-			size={size}
 			className={buttonItem.className}
 			icon={(() => {
 				if (buttonItem.iconFont) {

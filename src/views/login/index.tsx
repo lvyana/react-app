@@ -72,7 +72,9 @@ const Login = () => {
 				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
 			});
 			return;
-		} else if (userName === 'today' && password === '123456') {
+		}
+
+		if (userName === 'today' && password === '123456') {
 			setUserInfo(userName, password, remember);
 			navigate('/today');
 			openNotification({
@@ -82,6 +84,7 @@ const Login = () => {
 			});
 			return;
 		}
+
 		openNotification({ type: 'error', message: '密码错误' });
 	};
 

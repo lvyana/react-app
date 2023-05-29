@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import type { IcollapseProps } from './index';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 type UseStyleHooksProps<T> = Pick<IcollapseProps<T>, 'list' | 'styleConfig' | 'style' | 'bordered'>;
 

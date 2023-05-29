@@ -14,7 +14,7 @@ import { Context } from './context';
 import { arrIndexExchange } from '@/utils/exchange';
 import { useFormData } from './useHooks';
 import type { FormItemParams } from './context';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 /**
  * @param formParams 某一项表单数据

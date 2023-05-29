@@ -4,8 +4,6 @@
  * @createDate 2020年4月27日
  */
 import React from 'react';
-import { useAppSelector } from '@/store';
-import { GET_SIZE } from '@/store/reducers/layout';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { antIcon } from '@/antdComponents/iLoading';
@@ -51,13 +49,10 @@ const Itable = <T extends object>({
 	bordered = false,
 	scroll = {}
 }: ItableProps<T>) => {
-	const size = useAppSelector(GET_SIZE);
-
 	return (
 		<Table
 			bordered={bordered}
 			style={{ marginTop: '10px' }}
-			size={size}
 			columns={columns}
 			rowSelection={rowSelection && { ...rowSelection }}
 			dataSource={data}

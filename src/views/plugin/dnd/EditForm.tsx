@@ -22,7 +22,7 @@ import type {
 } from '@/antdComponents/iForm/type';
 import type { Options } from './itemTypes';
 import { ButtonItemParams } from '@/antdComponents/iButton/type';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 type FormListType = [
 	// 标签

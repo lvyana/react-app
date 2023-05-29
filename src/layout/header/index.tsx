@@ -14,7 +14,7 @@ import UserAvatar from './userAvatar';
 import MessageCenter from './messageCenter';
 import ToggleTheme from './toggleTheme';
 import Warehouse from './warehouse';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import menuLogo from '@/assets/images/menu.png';
 import Menu from '@/layout/menu';
 

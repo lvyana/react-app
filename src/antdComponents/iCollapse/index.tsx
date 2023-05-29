@@ -5,8 +5,6 @@
  */
 import React, { FC, ReactNode } from 'react';
 import { Collapse } from 'antd';
-import { useAppSelector } from '@/store/hooks';
-import { GET_SIZE } from '@/store/reducers/layout';
 import useStyleHooks from './useStyleHooks';
 
 /**
@@ -55,8 +53,6 @@ const Icollapse = <T extends string | number>({
 	expandIcon,
 	style
 }: IcollapseProps<T>) => {
-	const size = useAppSelector(GET_SIZE);
-
 	// 折叠面板样式配置
 	const styleConfigParams = useStyleHooks({ list, styleConfig, style, bordered });
 
@@ -65,7 +61,6 @@ const Icollapse = <T extends string | number>({
 			bordered={styleConfigParams.bordered}
 			defaultActiveKey={defaultActiveKey}
 			onChange={onChange}
-			size={size}
 			expandIcon={expandIcon}
 			style={styleConfigParams.style}>
 			{styleConfigParams.list.map((item) => {

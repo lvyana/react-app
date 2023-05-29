@@ -7,7 +7,7 @@ import React, { CSSProperties } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
 import Headerregion from '@/layout/header';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import useApi from '@/useHooks/useApi';
 import Tour from './tour';
 import useAysncComponent from './useAsyncComponent';

@@ -13,7 +13,7 @@ import EditForm from './EditForm';
 import DndContext from './context';
 import OperationBtns from './OperationBtns';
 import Icard from '@/antdComponents/iCard';
-import useThemeHooks from '@/config/theme/useThemeHooks';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 

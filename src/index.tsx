@@ -24,8 +24,9 @@ import store from './store';
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 // import enUS from 'antd/lib/locale/en_US';
-// 中文
-import Theme from '@/config/theme';
+
+// antd定制化
+import Theme from '@/config/antd';
 
 function render() {
 	const container = document.querySelector('#root') as Element;

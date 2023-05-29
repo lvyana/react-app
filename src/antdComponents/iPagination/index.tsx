@@ -5,8 +5,6 @@
  */
 import React, { FC, useMemo } from 'react';
 import { Pagination } from 'antd';
-import { useAppSelector } from '@/store';
-import { GET_SIZE } from '@/store/reducers/layout';
 
 /**
  * @param pageSize 每页条数
@@ -48,15 +46,6 @@ const Ipaginations: FC<IpaginationsProps> = ({
 	style,
 	className
 }) => {
-	const size = useAppSelector(GET_SIZE);
-
-	const paginationSize = useMemo(() => {
-		if (size === 'small') {
-			return 'small';
-		}
-		return 'default';
-	}, [size]);
-
 	const onChange = (pageNum: number, pageSize: number) => {
 		page.current = { pageSize, pageNum };
 		onPaginationChange('subimt');
@@ -77,7 +66,6 @@ const Ipaginations: FC<IpaginationsProps> = ({
 			pageSize={pageSize}
 			// pageSizeOptions=[10, 20, 50, 100]
 			onChange={onChange}
-			size={paginationSize}
 			showTotal={(total) => {
 				if (showTotal) {
 					return `总 ${total} 条`;
