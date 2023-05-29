@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import Imarkdown from '@/pluginComponents/iMarkdown';
 
 const List = () => {
 	const location = useLocation();
@@ -9,7 +10,12 @@ const List = () => {
 	const onSearchParams = () => {
 		setSearchParams('ab=2');
 	};
-	return <div onClick={onSearchParams}>List{searchParams.get('ab')}</div>;
+	return (
+		<div onClick={onSearchParams}>
+			List{searchParams.get('ab')}
+			<Imarkdown url="reactRouterDomV6.md"></Imarkdown>
+		</div>
+	);
 };
 
 export default List;

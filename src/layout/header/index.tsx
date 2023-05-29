@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { Row, Col, Button, Avatar, Popover } from 'antd';
 import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 import Fullscreen from './fullscreen';
@@ -19,7 +19,6 @@ import menuLogo from '@/assets/images/menu.png';
 import Menu from '@/layout/menu';
 
 const Headerregion = () => {
-	const { token } = useThemeHooks();
 	const LayoutLogo: React.CSSProperties = {
 		width: '64px',
 		height: '64px',

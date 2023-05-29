@@ -81,8 +81,8 @@ const Menu = () => {
 		const nextMenu = findNode(menuList, 'path', menu.path);
 
 		if (nextMenu?.children) {
+			historyMenuList.current = [...historyMenuList.current, nextMenu];
 			setCurrentMenu(nextMenu);
-			historyMenuList.current.push(nextMenu);
 		} else {
 			navigate(menu.path);
 		}
@@ -99,14 +99,14 @@ const Menu = () => {
 	};
 
 	return (
-		<>
+		<div>
 			<Title MenuTitle={currentMenu} onBack={onBack}></Title>
 			<Row gutter={8}>
 				{currentMenu?.children?.map((menu) => {
 					if (menu.show === false) return null;
 					return (
-						<Col flex="80px" className="mb-2" key={menu.path}>
-							<Icard style={{ padding: 4 }} className="text-center" hoverable={true} onClick={() => onMenuClick(menu)}>
+						<Col flex="80px" className="mb-2" key={menu.path} onClick={() => onMenuClick(menu)}>
+							<Icard style={{ padding: 4 }} className="text-center" hoverable={true}>
 								<IconFont type={menu.icon || ''}></IconFont>
 								<div>{menu.title}</div>
 							</Icard>
@@ -114,7 +114,7 @@ const Menu = () => {
 					);
 				})}
 			</Row>
-		</>
+		</div>
 	);
 };
 

@@ -24,7 +24,7 @@ const RouterDemo = () => {
 				加载test
 			</Button>
 			<Button type="link" onClick={() => onRender(2)}>
-				加载list
+				加载list react-router-dom V6
 			</Button>
 			<Outlet />
 		</Icard>
