@@ -3,9 +3,8 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { memo, useState } from 'react';
-import { Row, Col, Button, Avatar, Popover } from 'antd';
-import { IresponsiveMin } from '@/pluginComponents/iResponsive';
+import React, { memo } from 'react';
+import { Row, Col, Popover } from 'antd';
 import Fullscreen from './fullscreen';
 import ComponentSize from './componentSize';
 import Crumb from './crumb';
@@ -14,9 +13,9 @@ import UserAvatar from './userAvatar';
 import MessageCenter from './messageCenter';
 import ToggleTheme from './toggleTheme';
 import Warehouse from './warehouse';
-import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import menuLogo from '@/assets/images/menu.png';
 import Menu from '@/layout/menu';
+import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 
 const Headerregion = () => {
 	const LayoutLogo: React.CSSProperties = {
@@ -34,18 +33,20 @@ const Headerregion = () => {
 			<Row justify="space-around" align="middle">
 				<Col flex="80px">
 					<Popover content={<Menu></Menu>} overlayStyle={{ width: 344 }} arrow={false} placement="bottomLeft" trigger="click">
-						<div style={LayoutLogo} />
+						<div style={LayoutLogo} className="cursor-pointer" />
 					</Popover>
 				</Col>
-				<Col flex="400px">
-					{/* 面包屑 */}
-					<div className="pl-2">
-						<Crumb></Crumb>
-					</div>
-				</Col>
+				<IresponsiveMin MinWidth={1100}>
+					<Col flex="400px">
+						{/* 面包屑 */}
+						<div className="pl-2">
+							<Crumb></Crumb>
+						</div>
+					</Col>
+				</IresponsiveMin>
 				<Col flex="auto">
 					<Row justify="end" id="header-icon-function">
-						<IresponsiveMin MinWidth={1040}>
+						<IresponsiveMin MinWidth={690}>
 							<Col>
 								{/* 搜索 */}
 								<Search></Search>
@@ -62,7 +63,6 @@ const Headerregion = () => {
 								<Warehouse></Warehouse>
 							</Col>
 						</IresponsiveMin>
-
 						<Col>
 							{/* 用户头像 */}
 							<UserAvatar></UserAvatar>

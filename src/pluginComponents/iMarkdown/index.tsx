@@ -3,7 +3,8 @@
  * @author ly
  * @createDate
  */
-import React, { FC, useEffect, useState } from 'react';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
+import React, { FC, useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -37,6 +38,14 @@ const Imarkdown: FC<ImarkdownProps> = ({ url = '', initContent = '' }) => {
 			});
 		} catch (error) {}
 	};
+
+	const { token } = useThemeHooks();
+
+	useEffect(() => {
+		console.log(document.querySelector('pre'));
+
+		document.querySelector('pre')?.style.setProperty('background-color', token.colorBgBase);
+	}, []);
 
 	return (
 		<div>

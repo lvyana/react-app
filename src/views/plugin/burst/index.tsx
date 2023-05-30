@@ -15,8 +15,8 @@ const Burst = () => {
 	const count = useRef(0);
 
 	const onGeneral = () => {
-		let arr = Array.from({ length: 100000 }, (v, k) => k);
-		setList([ReandList(0, arr)]);
+		let arr = Array.from({ length: 40000 }, (v, k) => k);
+		setList([ReandList(1, arr)]);
 	};
 
 	const getArr = () => {
@@ -47,7 +47,7 @@ const Burst = () => {
 				{listItem.map((item, i) => {
 					return (
 						<div style={{ border: '1px solid red' }} className="m-1" key={i}>
-							{index} {i}
+							{(index - 1) * eachRenderNum + i}
 						</div>
 					);
 				})}

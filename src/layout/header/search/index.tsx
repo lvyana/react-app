@@ -69,32 +69,32 @@ const HeaderSearch = () => {
 
 	return (
 		<div className="inline-block w-48 text-right">
-			<Dropdown open={open} menu={{ items: menu(searchList, onToRouter) }}>
-				<Input
-					placeholder="搜索"
-					ref={searchRef}
-					suffix={suffix}
-					value={searchValue}
-					onBlur={inputOnBlur}
-					onFocus={inputOnFocus}
-					onChange={searchChange}
-					className="rounded-full"
-					style={{
-						width: searchOpen ? '192px' : 0,
-						opacity: searchOpen ? 1 : 0,
-						transitionProperty: 'width,opacity',
-						transitionDuration: '0.5s,0.2s',
-						transitionTimingFunction: 'ease-out'
-						// transition: 'width,opacity 2s,0.2s'
-					}}
-				/>
-			</Dropdown>
-
-			{!searchOpen && (
+			{searchOpen ? (
+				<Dropdown open={open} menu={{ items: menu(searchList, onToRouter) }}>
+					<Input
+						placeholder="搜索"
+						ref={searchRef}
+						suffix={suffix}
+						value={searchValue}
+						onBlur={inputOnBlur}
+						onFocus={inputOnFocus}
+						onChange={searchChange}
+						className="rounded-full"
+						style={{
+							width: searchOpen ? '192px' : 0,
+							opacity: searchOpen ? 1 : 0,
+							transitionProperty: 'width,opacity',
+							transitionDuration: '0.5s,0.2s',
+							transitionTimingFunction: 'ease-out'
+							// transition: 'width,opacity 2s,0.2s'
+						}}
+					/>
+				</Dropdown>
+			) : (
 				<Button
 					type="link"
 					// className="absolute left-36 top-4"
-					style={{ position: 'absolute', left: 156, top: 17, zIndex: 1 }}
+					// style={{ position: 'absolute', left: 156, top: 17, zIndex: 1 }}
 					onClick={checkbox}
 					icon={suffix}></Button>
 			)}

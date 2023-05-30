@@ -16,7 +16,8 @@ import { Card } from 'antd';
 interface IcardProps {
 	bordered?: boolean;
 	children?: ReactNode;
-	style?: object;
+	style?: React.CSSProperties;
+	bodyStyle?: React.CSSProperties;
 	hoverable?: boolean;
 	className?: string;
 	onClick?: () => void;
@@ -24,10 +25,16 @@ interface IcardProps {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Icard: FC<IcardProps> = ({ bordered = false, children, style = {}, hoverable = false, className, onClick }) => {
+const Icard: FC<IcardProps> = ({ bordered = false, children, style = {}, bodyStyle = {}, hoverable = false, className, onClick }) => {
 	return (
 		<>
-			<Card hoverable={hoverable} bordered={bordered} bodyStyle={{ padding: '16px', ...style }} className={className} onClick={onClick}>
+			<Card
+				hoverable={hoverable}
+				bordered={bordered}
+				style={style}
+				bodyStyle={{ padding: '16px', ...bodyStyle }}
+				className={className}
+				onClick={onClick}>
 				{children}
 			</Card>
 		</>

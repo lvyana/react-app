@@ -30,11 +30,11 @@ const animateComponentIcon: React.CSSProperties = {
 const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 	const animateComponentPosition: React.CSSProperties = {
 		position: 'fixed',
-		top: 115,
-		left: '57%',
-		width: '80vw',
+		top: 80,
+		left: 0,
+		width: '100%',
 		zIndex: 10,
-		transform: 'translate(-50%, 0)'
+		padding: 20
 	};
 
 	const dragOffset = useRef<Point | null>();
@@ -76,8 +76,8 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 				<Button shape="circle" icon={<SearchOutlined />} />
 			</motion.div>
 
-			<div style={animateComponentPosition}>
-				{!flag && (
+			{!flag && (
+				<div style={animateComponentPosition}>
 					<motion.div style={{ opacity: 0 }} animate={{ opacity: 1, y: 'auto' }} transition={{ ease: 'linear', duration: 0.3 }}>
 						<Icard className={`shadow-2xl`}>
 							{children}
@@ -85,13 +85,13 @@ const AnimateComponent: FC<AnimateComponentProps> = ({ children }) => {
 								<Button
 									type="link"
 									onClick={onHidden}
-									style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)' }}
+									style={{ position: 'sticky', bottom: 0, left: '50%', transform: 'translate(-50%, 0)' }}
 									icon={<UpOutlined />}></Button>
 							</div>
 						</Icard>
 					</motion.div>
-				)}
-			</div>
+				</div>
+			)}
 		</>
 	);
 };

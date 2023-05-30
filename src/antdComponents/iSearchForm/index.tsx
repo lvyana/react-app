@@ -30,7 +30,7 @@ const IsearchForm = <T extends FormItem[], P extends object>({ form, formList }:
 			</IresponsiveMax>
 
 			<IresponsiveMin MinWidth={1540}>
-				<Icard style={{ paddingBottom: 0 }}>
+				<Icard bodyStyle={{ paddingBottom: 0 }}>
 					<Iform form={form} formList={formList}></Iform>
 				</Icard>
 			</IresponsiveMin>

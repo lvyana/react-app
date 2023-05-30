@@ -77,7 +77,7 @@ const Expenses = () => {
 		<div>
 			<SeachForm form={form} onFinish={onFinish}></SeachForm>
 			{/* <ClassCom hh={1}></ClassCom> */}
-			<Icard style={{ marginTop: '10px' }}>
+			<Icard bodyStyle={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} loading={loading} scroll={{ x: '100%' }} />
 				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>

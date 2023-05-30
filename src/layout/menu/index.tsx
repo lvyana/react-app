@@ -98,6 +98,16 @@ const Menu = () => {
 		}
 	};
 
+	// 当前路由卡片样式
+	const currentPathStyle = (path: string) => {
+		if (location.pathname.indexOf(path) > -1) {
+			return {
+				boxShadow: '0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09)',
+				borderColor: 'transparent'
+			};
+		}
+	};
+
 	return (
 		<div>
 			<Title MenuTitle={currentMenu} onBack={onBack}></Title>
@@ -106,7 +116,7 @@ const Menu = () => {
 					if (menu.show === false) return null;
 					return (
 						<Col flex="80px" className="mb-2" key={menu.path} onClick={() => onMenuClick(menu)}>
-							<Icard style={{ padding: 4 }} className="text-center" hoverable={true}>
+							<Icard bodyStyle={{ padding: 4 }} style={{ ...currentPathStyle(menu.path) }} className="text-center" hoverable={true}>
 								<IconFont type={menu.icon || ''}></IconFont>
 								<div>{menu.title}</div>
 							</Icard>
