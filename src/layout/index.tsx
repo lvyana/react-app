@@ -29,7 +29,8 @@ const Layouts = () => {
 		width: '100%',
 		alignItems: 'center',
 		backgroundColor: token.colorBgBase,
-		zIndex: 999
+		zIndex: 999,
+		padding: '0 16px'
 	};
 
 	return (
@@ -37,6 +38,7 @@ const Layouts = () => {
 			<Header style={headerStyle}>
 				<Headerregion />
 			</Header>
+
 			<Content className="site-layout p-4" style={{ minHeight: 'calc(100vh - 64px)' }}>
 				<Outlet />
 			</Content>

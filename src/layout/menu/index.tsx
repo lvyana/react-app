@@ -57,23 +57,23 @@ const Menu = () => {
 		let path = location.pathname;
 
 		while (isFind) {
-			const parentNode = findParentNode(menuList, path);
+			const parentNode = findParentNode(menuList, path, 'path', 'children');
 			if (parentNode) {
 				initHistoryMenuList.unshift(parentNode);
 				path = parentNode.path;
 			} else {
-				initHistoryMenuList.unshift({ title: '系统', path: '/', children: menuList });
+				initHistoryMenuList.unshift({ title: '系统', path: '/', icon: 'icon-shezhi', children: menuList });
 				isFind = false;
 			}
 		}
 		historyMenuList.current = initHistoryMenuList;
 
 		// 初始化当前菜单
-		const initCurrentMenu = findParentNode(menuList, location.pathname);
+		const initCurrentMenu = findParentNode(menuList, location.pathname, 'path', 'children');
 		if (initCurrentMenu) {
 			setCurrentMenu(initCurrentMenu);
 		} else {
-			setCurrentMenu({ title: '系统', path: '/', children: menuList });
+			setCurrentMenu({ title: '系统', path: '/', icon: 'icon-shezhi', children: menuList });
 		}
 	}, []);
 
@@ -143,7 +143,7 @@ const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
 				<Col>
 					<Button
 						type="link"
-						icon={MenuTitle?.path === '/' || <IconFont type="icon-fanhui" className="mr-1"></IconFont>}
+						icon={<IconFont type={MenuTitle?.path === '/' ? MenuTitle.icon || '' : 'icon-fanhui'}></IconFont>}
 						className="mb-2"
 						onClick={onBack}>
 						{MenuTitle?.title}

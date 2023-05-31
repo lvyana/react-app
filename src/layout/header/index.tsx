@@ -31,8 +31,8 @@ const Headerregion = () => {
 	return (
 		<>
 			<Row justify="space-around" align="middle">
-				<Col flex="80px">
-					<Popover content={<Menu></Menu>} overlayStyle={{ width: 344 }} arrow={false} placement="bottomLeft" trigger="click">
+				<Col flex="64px">
+					<Popover content={<Menu></Menu>} overlayStyle={{ width: 336 }} arrow={false} placement="bottomLeft" trigger="click">
 						<div style={LayoutLogo} className="cursor-pointer" />
 					</Popover>
 				</Col>
