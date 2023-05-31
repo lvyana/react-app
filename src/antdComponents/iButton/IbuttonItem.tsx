@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import { Button } from 'antd';
-import IconFont from '@/utils/iconfont';
+import IconFont from '../../utils/iconfont';
 import type { IbuttonProps } from './index';
 import type { ButtonItemParams } from './type';
 

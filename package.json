@@ -56,7 +56,7 @@
 		"dev": "cross-env PORT=3003 REACT_APP_BASE_API=/dev-api REACT_APP_ENV=development craco start",
 		"build:sit": "cross-env REACT_APP_BASE_API=/sit-api REACT_APP_ENV=sit craco build",
 		"build": "cross-env REACT_APP_BASE_API=https://mock.apifox.cn/m1/544622-0-default REACT_APP_ENV=prod craco build",
-		"test": "craco test",
+		"test": "react-scripts test",
 		"stylelint": "stylelint \"src/**/*.{css,less,scss}\"",
 		"stylelint:fix": "stylelint --fix \"src/**/*.{css,less,scss}\"",
 		"lint": "eslint --ext .js,.ts,.tsx src/ --ignore-path .gitignore",
@@ -102,6 +102,8 @@
 		"circular-dependency-plugin": "^5.2.2",
 		"compression-webpack-plugin": "^10.0.0",
 		"cross-env": "^7.0.3",
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.7",
 		"eslint": "8.40.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
@@ -119,5 +121,10 @@
 		"tailwindcss": "^3.3.2",
 		"terser-webpack-plugin": "^5.3.8",
 		"webpack-bundle-analyzer": "^4.8.0"
+	},
+	"jest": {
+		"moduleNameMapper": {
+			"^@/(.*)$": "<rootDir>/src/$1"
+		}
 	}
 }
