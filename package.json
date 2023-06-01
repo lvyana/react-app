@@ -102,8 +102,6 @@
 		"circular-dependency-plugin": "^5.2.2",
 		"compression-webpack-plugin": "^10.0.0",
 		"cross-env": "^7.0.3",
-		"enzyme": "^3.11.0",
-		"enzyme-adapter-react-16": "^1.15.7",
 		"eslint": "8.40.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
@@ -111,6 +109,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"husky": "^8.0.3",
 		"lint-staged": "^13.2.2",
+		"match-media-mock": "^0.1.1",
 		"postcss": "^8.4.23",
 		"prettier": "^2.8.8",
 		"progress-bar-webpack-plugin": "^2.1.0",
@@ -125,6 +124,9 @@
 	"jest": {
 		"moduleNameMapper": {
 			"^@/(.*)$": "<rootDir>/src/$1"
-		}
+		},
+		"transformIgnorePatterns": [
+			"/node_modules/(?!(axios)/)"
+		]
 	}
 }

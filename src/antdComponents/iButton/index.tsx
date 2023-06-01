@@ -25,9 +25,11 @@ export interface IbuttonProps<T> {
 // 按钮集合
 const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 	const buttonListCol = buttonList.map((item, i) => {
+		const loading = loadingName === item.type;
+
 		const IbuttonItemCol = (
 			<Col span={item.span}>
-				<IbuttonItem buttonItem={item} loadingName={loadingName} onClick={onClick} />
+				<IbuttonItem buttonItem={item} loading={loading} onClick={onClick} />
 			</Col>
 		);
 
@@ -36,7 +38,5 @@ const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
 
 	return <Row>{buttonListCol}</Row>;
 };
-
-// 单个按钮
 
 export default Ibutton;
