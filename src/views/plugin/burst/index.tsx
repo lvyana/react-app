@@ -7,6 +7,7 @@ import { Button } from 'antd';
 import React, { FC, Fragment, ReactNode, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Icard from '@/antdComponents/iCard';
 import VirtualScroll from './VirtualScroll';
+import scheduleSlicerHoc, { ScheduleSlicerRef } from './ScheduleSlicer';
 
 type listParam = {
 	name: string;
@@ -25,37 +26,14 @@ let arr: listParam[] = Array.from({ length: 40000 }, (v, k) => k).map((item) => 
 
 const eachRenderNum = 400; // 每次渲染数量
 
-let handleIdleCallback: number;
+const ScheduleSlicer = scheduleSlicerHoc<listParam>();
 
 const Burst = () => {
-	const [list, setList] = useState<ReactNode[]>([]);
-	const count = useRef(0);
+	const ScheduleSlicerRef = useRef<ScheduleSlicerRef | null>(null);
 
-	const onGeneral = () => {
-		setList([...arr.map((item) => <ReandList name={item.name} age={item.age} sex={item.sex} key={item.age}></ReandList>)]);
+	const onCallback = () => {
+		ScheduleSlicerRef.current?.onCallback();
 	};
-
-	const onCallback = useCallback(() => {
-		const currentCount = Math.ceil(arr.length / eachRenderNum);
-		const listItem = arr.slice(count.current * eachRenderNum, (count.current + 1) * eachRenderNum);
-
-		if (count.current >= currentCount) {
-			return window.cancelIdleCallback(handleIdleCallback);
-		}
-
-		setList((value) => {
-			return [...value, ...listItem.map((item) => <Fragment key={item.age}>{ReandList(item)}</Fragment>)];
-		});
-		count.current += 1;
-		handleIdleCallback = requestIdleCallback(
-			() => {
-				onCallback();
-			},
-			{
-				timeout: 1500
-			}
-		);
-	}, []);
 
 	return (
 		<Icard>
@@ -63,33 +41,29 @@ const Burst = () => {
 				<Button type="primary" onClick={onCallback}>
 					优化渲染
 				</Button>
-				<Button type="primary" onClick={onGeneral}>
-					普通渲染
-				</Button>
+
 				<Button
 					type="primary"
 					onClick={() => {
-						count.current = 0;
-						setList([]);
+						ScheduleSlicerRef.current?.reset();
 					}}>
 					清除数据
 				</Button>
 			</div>
-			<div style={{ height: 500, overflow: 'auto' }}>{list}</div>
+
+			<ScheduleSlicer ref={ScheduleSlicerRef} arr={arr} ReandList={ReandList} eachRenderNum={eachRenderNum}></ScheduleSlicer>
 			{/* 性能要求还是得要虚拟加载 */}
-			<VirtualScroll<listParam> data={arr} renderItem={ReandList} itemHeight={50} visibleCount={10} />
+			<VirtualScroll<listParam> data={arr} renderItem={ReandList} itemHeight={50} visibleCount={15} />
 		</Icard>
 	);
 };
 
 const ReandList = ({ name, age, sex }: listParam) => {
 	return (
-		<div style={{ height: 50 }}>
-			<Icard className="mb-2">
-				<span> 姓名: {name}</span>
-				<span>年龄:{age}</span>
-				<span> 性别:{sex}</span>
-			</Icard>
+		<div style={{ height: 50, border: '1px solid blue' }}>
+			<span> 姓名: {name}</span>
+			<span>年龄:{age}</span>
+			<span> 性别:{sex}</span>
 		</div>
 	);
 };

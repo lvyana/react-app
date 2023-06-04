@@ -1,7 +1,7 @@
 /**
- * @file 模板
- * @author 姓名
- * @createDate
+ * @file 虚拟滚动
+ * @author ly
+ * @createDate 2023年6月4日
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -19,9 +19,13 @@ const VirtualScroll = <T,>({ data, renderItem, itemHeight, visibleCount }: Virtu
 	const [end, setEnd] = useState(visibleCount);
 	const containerRef = useRef<HTMLDivElement>(null);
 
+	// 总高度 =  总数 * 一行高度
 	const totalHeight = useMemo(() => data.length * itemHeight, [data, itemHeight]);
-	const containerHeight = useMemo(() => visibleCount * itemHeight, [visibleCount, itemHeight]);
 
+	// 可视高度 = (渲染总条数 - 预渲染条数) * 一行高度
+	const containerHeight = useMemo(() => (visibleCount - 6) * itemHeight, [visibleCount, itemHeight]);
+
+	// 滚动执行函数
 	const handleScroll = useCallback(() => {
 		const scrollTop = containerRef.current?.scrollTop ?? 0;
 		const start = Math.floor(scrollTop / itemHeight);
