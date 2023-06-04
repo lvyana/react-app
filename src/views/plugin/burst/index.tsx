@@ -14,7 +14,6 @@ type listParam = {
 	age: number;
 	sex: string;
 };
-// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 let arr: listParam[] = Array.from({ length: 40000 }, (v, k) => k).map((item) => {
 	return {
@@ -27,6 +26,8 @@ let arr: listParam[] = Array.from({ length: 40000 }, (v, k) => k).map((item) => 
 const eachRenderNum = 400; // 每次渲染数量
 
 const ScheduleSlicer = scheduleSlicerHoc<listParam>();
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Burst = () => {
 	const ScheduleSlicerRef = useRef<ScheduleSlicerRef | null>(null);
