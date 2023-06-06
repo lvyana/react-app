@@ -4,7 +4,7 @@
  * @createDate 2023年3月17日
  */
 import { Button } from 'antd';
-import React, { FC, Fragment, ReactNode, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Icard from '@/antdComponents/iCard';
 import VirtualScroll from './VirtualScroll';
 import scheduleSlicerHoc, { ScheduleSlicerRef } from './ScheduleSlicer';
@@ -68,6 +68,5 @@ const ReandList = ({ name, age, sex }: listParam) => {
 		</div>
 	);
 };
-ReandList.displayName = 'ReandList';
 
 export default Burst;

@@ -42,8 +42,6 @@ const Imarkdown: FC<ImarkdownProps> = ({ url = '', initContent = '' }) => {
 	const { token } = useThemeHooks();
 
 	useEffect(() => {
-		console.log(document.querySelector('pre'));
-
 		document.querySelector('pre')?.style.setProperty('background-color', token.colorBgBase);
 	}, []);
 

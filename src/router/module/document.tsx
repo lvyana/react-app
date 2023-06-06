@@ -8,11 +8,11 @@ import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 // Volta 多node版本切换
-const Volta = lazy(() => import(/* webpackChunkName: "Volta" */ '@/views/document/volta'));
+const Volta = lazy(() => import(/* webpackChunkName: "volta" */ '@/views/document/volta'));
 // CreateReactApp 版本升级
-const CreateReactApp = lazy(() => import(/* webpackChunkName: "Volta" */ '@/views/document/createReactApp'));
+const CreateReactApp = lazy(() => import(/* webpackChunkName: "createReactApp" */ '@/views/document/createReactApp'));
 // Markdown 语法
-const Markdown = lazy(() => import(/* webpackChunkName: "Markdown" */ '@/views/document/markdown'));
+const Markdown = lazy(() => import(/* webpackChunkName: "markdown" */ '@/views/document/markdown'));
 
 // 文档组件
 const documentCom = [

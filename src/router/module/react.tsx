@@ -8,20 +8,20 @@ import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 // react use
-const IuseState = lazy(() => import(/* webpackChunkName: "IuseState" */ '@/views/react/hooks/useState'));
-const IuseEffect = lazy(() => import(/* webpackChunkName: "IuseEffect" */ '@/views/react/hooks/useEffect'));
-const IuseLayoutEffect = lazy(() => import(/* webpackChunkName: "IuseLayoutEffect" */ '@/views/react/hooks/useLayoutEffect'));
-const IuseInsertionEffect = lazy(() => import(/* webpackChunkName: "IuseInsertionEffect" */ '@/views/react/hooks/useInsertionEffect'));
-const IuseReducer = lazy(() => import(/* webpackChunkName: "IuseReducer" */ '@/views/react/hooks/useReducer'));
-const IuseContext = lazy(() => import(/* webpackChunkName: "IuseContext" */ '@/views/react/hooks/useContext'));
-const IuseMemo = lazy(() => import(/* webpackChunkName: "IuseMemo" */ '@/views/react/hooks/useMemo'));
-const IuseCallback = lazy(() => import(/* webpackChunkName: "IuseCallback" */ '@/views/react/hooks/useCallback'));
-const IuseRef = lazy(() => import(/* webpackChunkName: "IuseRef" */ '@/views/react/hooks/useRef'));
-const Isuspense = lazy(() => import(/* webpackChunkName: "Isuspense" */ '@/views/react/reactDom/suspense'));
-const IforwardRef = lazy(() => import(/* webpackChunkName: "IforwardRef" */ '@/views/react/hooks/forwardRef'));
-const IuseImperativeHandle = lazy(() => import(/* webpackChunkName: "IuseImperativeHandle" */ '@/views/react/hooks/useImperativeHandle'));
-const IuseTransition = lazy(() => import(/* webpackChunkName: "IuseTransition" */ '@/views/react/hooks/useTransition'));
-const IuseDeferredValue = lazy(() => import(/* webpackChunkName: "IuseDeferredValue" */ '@/views/react/hooks/useDeferredValue'));
+const IuseState = lazy(() => import(/* webpackChunkName: "useState" */ '@/views/react/hooks/useState'));
+const IuseEffect = lazy(() => import(/* webpackChunkName: "useEffect" */ '@/views/react/hooks/useEffect'));
+const IuseLayoutEffect = lazy(() => import(/* webpackChunkName: "useLayoutEffect" */ '@/views/react/hooks/useLayoutEffect'));
+const IuseInsertionEffect = lazy(() => import(/* webpackChunkName: "useInsertionEffect" */ '@/views/react/hooks/useInsertionEffect'));
+const IuseReducer = lazy(() => import(/* webpackChunkName: "useReducer" */ '@/views/react/hooks/useReducer'));
+const IuseContext = lazy(() => import(/* webpackChunkName: "useContext" */ '@/views/react/hooks/useContext'));
+const IuseMemo = lazy(() => import(/* webpackChunkName: "useMemo" */ '@/views/react/hooks/useMemo'));
+const IuseCallback = lazy(() => import(/* webpackChunkName: "useCallback" */ '@/views/react/hooks/useCallback'));
+const IuseRef = lazy(() => import(/* webpackChunkName: "useRef" */ '@/views/react/hooks/useRef'));
+const Isuspense = lazy(() => import(/* webpackChunkName: "suspense" */ '@/views/react/reactDom/suspense'));
+const IforwardRef = lazy(() => import(/* webpackChunkName: "forwardRef" */ '@/views/react/hooks/forwardRef'));
+const IuseImperativeHandle = lazy(() => import(/* webpackChunkName: "useImperativeHandle" */ '@/views/react/hooks/useImperativeHandle'));
+const IuseTransition = lazy(() => import(/* webpackChunkName: "useTransition" */ '@/views/react/hooks/useTransition'));
+const IuseDeferredValue = lazy(() => import(/* webpackChunkName: "useDeferredValue" */ '@/views/react/hooks/useDeferredValue'));
 const IuseSyncExternalStore = lazy(
 	() => import(/* webpackChunkName: "IuseSyncExternalStore" */ '@/views/react/hooks/useSyncExternalStore')
 );

@@ -7,8 +7,8 @@ import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
-const Expenses = lazy(() => import(/* webpackChunkName: "Expenses" */ '@/views/antd/expenses'));
-const Dynamicform = lazy(() => import(/* webpackChunkName: "Dynamicform" */ '@/views/antd/dynamicform')); //动态表单
+const Expenses = lazy(() => import(/* webpackChunkName: "expenses" */ '@/views/antd/expenses'));
+const Dynamicform = lazy(() => import(/* webpackChunkName: "dynamicform" */ '@/views/antd/dynamicform')); //动态表单
 
 // antd组件封装
 const antdCom = [
