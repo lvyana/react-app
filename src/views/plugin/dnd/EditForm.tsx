@@ -66,6 +66,23 @@ type FormListType = [
 	FormUserDefinedType
 ];
 
+type FormListParam = {
+	staticPattern: string;
+	items: TabsProps['items'];
+	onChangeStatic(value: string): void;
+	staticOptions: typeof OPTIONS;
+	updateStaticOptions: (data: Options[]) => void;
+	onGetOption(): Promise<void>;
+	formListLabel:
+		| {
+				label: string | undefined;
+				name: string;
+		  }[]
+		| undefined;
+	buttonOptions: ButtonOptionsParams[];
+	updateButtonOptions(data: ButtonOptionsParams[]): void;
+};
+
 /**
  * @param span 宽度
  * @param label 名称
@@ -233,7 +250,7 @@ const EditForm = () => {
 		}
 	];
 
-	const onChangeStatic = (value: string) => {
+	const onChangeStatic: FormListParam['onChangeStatic'] = (value) => {
 		setStaticPattern(value);
 
 		if (value === '1') {
@@ -250,17 +267,126 @@ const EditForm = () => {
 
 	// 静态数据模板
 	const [staticOptions, setStaticOptions] = useState(OPTIONS);
-	const updateStaticOptions = (data: Options[]) => {
+	const updateStaticOptions: FormListParam['updateStaticOptions'] = (data) => {
 		setStaticOptions(data);
 	};
 
 	// 生成按钮
 	const [buttonOptions, setButtonOptions] = useState(BUTTON_OPTIONS);
-	const updateButtonOptions = (data: ButtonOptionsParams[]) => {
+	const updateButtonOptions: FormListParam['updateButtonOptions'] = (data) => {
 		setButtonOptions(data);
 		editItemValue({ option: data });
 	};
 
+	const { formList } = useFormList({
+		staticPattern,
+		items,
+		onChangeStatic,
+		staticOptions,
+		updateStaticOptions,
+		onGetOption,
+		formListLabel,
+		buttonOptions,
+		updateButtonOptions
+	});
+
+	// 匹配类型 生成表单
+	const newFormList = useMemo(() => {
+		const selectFormItem = context?.state.formList.find((item) => {
+			return item.key === context?.state.selectFormItemKey;
+		});
+		if (selectFormItem?.type) {
+			return formList.filter((item) => {
+				if (HAS_SELECT_TYPE.indexOf(selectFormItem?.type) > -1) {
+					// 读取下拉类型所需要的form类型
+					return HAS_SELECT_NAME.indexOf(item.name) > -1;
+				} else if (HAS_COMMON_TYPE.indexOf(selectFormItem?.type) > -1) {
+					// 读取通用类型所需要的form类型
+					return HAS_COMMON_NAME.indexOf(item.name) > -1;
+				} else if (HAS_BUTTON_TYPE.indexOf(selectFormItem?.type) > -1) {
+					return HAS_BUTTON_NAME.indexOf(item.name) > -1;
+				}
+			});
+		} else {
+			return [];
+		}
+	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions, buttonOptions]);
+
+	// 初始化表单数据
+	useEffect(() => {
+		if (context?.state.selectFormItemKey) {
+			const newFormListItem = context.state.formList.find((item) => {
+				return context?.state.selectFormItemKey === item.key;
+			});
+
+			const { type, span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue, option } =
+				newFormListItem || {};
+			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue, option });
+
+			if (trigger) {
+				setStaticPattern(trigger);
+			}
+
+			if (type === 'button') {
+				setButtonOptions(option as ButtonOptionsParams[]);
+			}
+		}
+	}, [context?.state.selectFormItemKey]);
+
+	// span
+	useEditFormItemValue('span', form);
+
+	// label
+	useEditFormItemValue('label', form);
+
+	// disabled
+	useEditFormItemValue('disabled', form);
+
+	// url
+	useEditFormItemValue('url', form);
+
+	// parent
+	useEditFormItemValue('parent', form);
+
+	// rule
+	useEditFormItemValue('isRule', form);
+	useEditFormItemValue('isRuleTitle', form);
+	useEditFormItemValue('rule', form);
+	useEditFormItemValue('ruleTitle', form);
+
+	// name
+	useEditFormItemValue('name', form);
+
+	// labelCol
+	useEditFormItemValue('labelCol', form);
+
+	// urlLabel
+	useEditFormItemValue('urlLabel', form);
+
+	// urlValue
+	useEditFormItemValue('urlValue', form);
+
+	return context?.state.selectFormItemKey ? (
+		<div className="rounded-lg p-2 border-2 border-solid" style={{ borderColor: token.colorPrimaryBorder }}>
+			<Iform form={form} formList={newFormList}></Iform>
+		</div>
+	) : (
+		<></>
+	);
+};
+
+const useFormList = ({
+	staticPattern,
+	items,
+	onChangeStatic,
+	staticOptions,
+	updateStaticOptions,
+	onGetOption,
+	formListLabel,
+	buttonOptions,
+	updateButtonOptions
+}: FormListParam) => {
+	// 参数
 	const formList: FormListType = [
 		{
 			type: 'input',
@@ -451,90 +577,7 @@ const EditForm = () => {
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		}
 	];
-
-	// 匹配类型 生成表单
-	const newFormList = useMemo(() => {
-		const selectFormItem = context?.state.formList.find((item) => {
-			return item.key === context?.state.selectFormItemKey;
-		});
-		if (selectFormItem?.type) {
-			return formList.filter((item) => {
-				if (HAS_SELECT_TYPE.indexOf(selectFormItem?.type) > -1) {
-					// 读取下拉类型所需要的form类型
-					return HAS_SELECT_NAME.indexOf(item.name) > -1;
-				} else if (HAS_COMMON_TYPE.indexOf(selectFormItem?.type) > -1) {
-					// 读取通用类型所需要的form类型
-					return HAS_COMMON_NAME.indexOf(item.name) > -1;
-				} else if (HAS_BUTTON_TYPE.indexOf(selectFormItem?.type) > -1) {
-					return HAS_BUTTON_NAME.indexOf(item.name) > -1;
-				}
-			});
-		} else {
-			return [];
-		}
-	}, [context?.state.selectFormItemKey, context?.state.formList, staticOptions, buttonOptions]);
-
-	// 初始化表单数据
-	useEffect(() => {
-		if (context?.state.selectFormItemKey) {
-			const newFormListItem = context.state.formList.find((item) => {
-				return context?.state.selectFormItemKey === item.key;
-			});
-
-			const { type, span, label, disabled, url, parent, name, rule, isRule, labelCol, trigger, urlLabel, urlValue, option } =
-				newFormListItem || {};
-			form.setFieldsValue({ span, label, disabled, url, parent, name, rule, isRule, labelCol, urlLabel, urlValue, option });
-
-			if (trigger) {
-				setStaticPattern(trigger);
-			}
-
-			if (type === 'button') {
-				setButtonOptions(option as ButtonOptionsParams[]);
-			}
-		}
-	}, [context?.state.selectFormItemKey]);
-
-	// span
-	useEditFormItemValue('span', form);
-
-	// label
-	useEditFormItemValue('label', form);
-
-	// disabled
-	useEditFormItemValue('disabled', form);
-
-	// url
-	useEditFormItemValue('url', form);
-
-	// parent
-	useEditFormItemValue('parent', form);
-
-	// rule
-	useEditFormItemValue('isRule', form);
-	useEditFormItemValue('isRuleTitle', form);
-	useEditFormItemValue('rule', form);
-	useEditFormItemValue('ruleTitle', form);
-
-	// name
-	useEditFormItemValue('name', form);
-
-	// labelCol
-	useEditFormItemValue('labelCol', form);
-
-	// urlLabel
-	useEditFormItemValue('urlLabel', form);
-
-	// urlValue
-	useEditFormItemValue('urlValue', form);
-
-	return context?.state.selectFormItemKey ? (
-		<div className="rounded-lg p-2 border-2 border-solid" style={{ borderColor: token.colorPrimaryBorder }}>
-			<Iform form={form} formList={newFormList}></Iform>
-		</div>
-	) : (
-		<></>
-	);
+	return { formList };
 };
 
 export default EditForm;
