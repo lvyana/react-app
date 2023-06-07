@@ -5,7 +5,7 @@
  */
 import React, { useEffect, useRef } from 'react';
 import { Form } from 'antd';
-import useHeaderTable from './components/useTable';
+import useHeaderTable, { ButtonEvent } from './useHooks/useTable';
 import Itable from '@/antdComponents/iTable';
 import Icard from '@/antdComponents/iCard';
 import SeachForm from './components/SeachForm';
@@ -27,7 +27,7 @@ const Expenses = () => {
 		name: []
 	});
 
-	const buttonEvent = (type: string | number, value?: TabelDataResponse) => {
+	const buttonEvent: ButtonEvent = (type, value) => {
 		if (type === 'name') {
 			page.current.pageNum = 1;
 			onFinish('subimt');

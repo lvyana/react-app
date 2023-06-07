@@ -21,7 +21,7 @@ type ButtonEventTypeParam = 'name' | OnClickBtnType;
  * @param value 某一条数据
  * @returns void
  */
-type ButtonEvent = (type: ButtonEventTypeParam, value?: TabelDataResponse) => void;
+export type ButtonEvent = (type: ButtonEventTypeParam, value?: TabelDataResponse) => void;
 
 interface useHeaderTableParams {
 	buttonEvent: ButtonEvent;
