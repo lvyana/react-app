@@ -80,6 +80,10 @@ type FormListType = [
 	FormButtonType<SubmitParam>
 ];
 
+type FormListParam = {
+	selectOnChange: (value: SelectValueType) => void;
+	onSubmit: FinishType<SubmitParam>;
+};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dynamicform = () => {
@@ -89,6 +93,22 @@ const Dynamicform = () => {
 		// console.log(form.getFieldsValue());
 	};
 
+	const { formList } = useFormList({ selectOnChange, onSubmit });
+
+	//表单
+	const [form] = Form.useForm();
+
+	return (
+		<div>
+			<Icard>
+				<Iform<FormListType, object> formList={formList} form={form} />
+			</Icard>
+		</div>
+	);
+};
+export default Dynamicform;
+
+const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 	// 参数
 	const formList: FormListType = [
 		{
@@ -372,16 +392,5 @@ const Dynamicform = () => {
 			style: { float: 'right' }
 		}
 	];
-
-	//表单
-	const [form] = Form.useForm();
-
-	return (
-		<div>
-			<Icard>
-				<Iform<FormListType, object> formList={formList} form={form} />
-			</Icard>
-		</div>
-	);
+	return { formList };
 };
-export default Dynamicform;
