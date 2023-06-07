@@ -1,11 +1,11 @@
 /** 样式全局配置 */
 
- 
-
 ::-webkit-scrollbar {
+  /* 高宽分别对应横竖滚动条的尺寸 */
+  width: 8px;
+
   /* 滚动条整体样式 */
-  width: 8px; /* 高宽分别对应横竖滚动条的尺寸 */
-  height: 8px;
+  height: 8px; 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -18,4 +18,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #03022966;
 }
-
