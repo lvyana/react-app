@@ -22,7 +22,7 @@ const useStyleHooks = <T,>({ list, styleConfig, style, bordered }: UseStyleHooks
 	};
 
 	if (styleConfig === '1') {
-		const listOne = list.map((item) => {
+		const listOne = list?.map((item) => {
 			return {
 				...item,
 				style: ListStyle
