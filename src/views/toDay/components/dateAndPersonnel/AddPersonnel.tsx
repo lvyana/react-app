@@ -66,7 +66,9 @@ const AddPersonnel: FC<AddPersonnelProps> = ({ form, addPersonnelOpen, addPerson
 			name: 'post',
 			key: 2,
 			label: '岗位',
-			option: POST_OPTIONS,
+			comConfig: {
+				option: POST_OPTIONS
+			},
 			span: 12,
 			layout: {
 				labelCol: { span: 6 },

@@ -20,7 +20,7 @@ import type {
 	FormUserDefinedType,
 	FormTextAreaType
 } from '@/antdComponents/iForm/type';
-import type { Options } from './itemTypes';
+import type { ItemTypesParams, Options } from './itemTypes';
 import { ButtonItemParams } from '@/antdComponents/iButton/type';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
@@ -114,6 +114,8 @@ export type FormParams = {
 	option?: Options[] | ButtonOptionsParams[];
 	urlLabel?: string;
 	urlValue?: string;
+	type: ItemTypesParams;
+	key: string;
 };
 
 /**
@@ -415,8 +417,10 @@ const useFormList = ({
 			key: '3',
 			label: 'label宽度',
 			name: 'labelCol',
-			max: 24,
-			min: 0,
+			comConfig: {
+				max: 24,
+				min: 0
+			},
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
@@ -425,8 +429,10 @@ const useFormList = ({
 			key: '4',
 			label: '总宽度',
 			name: 'span',
-			max: 24,
-			min: 6,
+			comConfig: {
+				max: 24,
+				min: 6
+			},
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
@@ -435,19 +441,24 @@ const useFormList = ({
 			key: '5',
 			label: '是否禁用',
 			name: 'disabled',
-			allowClear: false,
-			option: DISABLED_OPTIONS,
+			comConfig: {
+				option: DISABLED_OPTIONS,
+				allowClear: false
+			},
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
 			type: 'userDefined',
 			name: 'trigger',
-			children: (
-				<>
-					<Tabs activeKey={staticPattern} items={items} onChange={onChangeStatic} />
-				</>
-			),
+			comConfig: {
+				children: (
+					<>
+						<Tabs activeKey={staticPattern} items={items} onChange={onChangeStatic} />
+					</>
+				)
+			},
+
 			key: '6'
 		},
 		{
@@ -456,7 +467,9 @@ const useFormList = ({
 			name: 'staticOptions',
 			span: 24,
 			show: staticPattern === '1',
-			children: <StaticOptions options={staticOptions} updateOptions={updateStaticOptions} />,
+			comConfig: {
+				children: <StaticOptions options={staticOptions} updateOptions={updateStaticOptions} />
+			},
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
 		{
@@ -464,7 +477,9 @@ const useFormList = ({
 			key: '88',
 			label: '',
 			name: 'url',
-			placeholder: '请输入url',
+			comConfig: {
+				placeholder: '请输入url'
+			},
 			rules: [{ required: true, message: '请输入url' }],
 			span: 12,
 			show: staticPattern === '2',
@@ -475,7 +490,9 @@ const useFormList = ({
 			key: '98',
 			label: '',
 			name: 'urlLabel',
-			placeholder: 'label',
+			comConfig: {
+				placeholder: 'label'
+			},
 			rules: [{ required: true, message: '请输入label' }],
 			span: 6,
 			show: staticPattern === '2',
@@ -486,7 +503,9 @@ const useFormList = ({
 			key: '108',
 			label: '',
 			name: 'urlValue',
-			placeholder: 'value',
+			comConfig: {
+				placeholder: 'value'
+			},
 			rules: [{ required: true, message: '请输入value' }],
 			span: 6,
 			show: staticPattern === '2',
@@ -498,13 +517,15 @@ const useFormList = ({
 			name: 'urlBtn',
 			span: 6,
 			// show: staticPattern === '1',
-			children: (
-				<div className="flex justify-end">
-					<Button type="primary" onClick={onGetOption}>
-						发送
-					</Button>
-				</div>
-			),
+			comConfig: {
+				children: (
+					<div className="flex justify-end">
+						<Button type="primary" onClick={onGetOption}>
+							发送
+						</Button>
+					</div>
+				)
+			},
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
 		{
@@ -512,8 +533,10 @@ const useFormList = ({
 			key: '12',
 			label: '关联父级',
 			name: 'parent',
-			option: formListLabel,
-			fieldNames: { label: 'label', value: 'name' },
+			comConfig: {
+				option: formListLabel,
+				fieldNames: { label: 'label', value: 'name' }
+			},
 			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
@@ -524,21 +547,24 @@ const useFormList = ({
 			rules: [],
 			key: '13',
 			span: 24,
-			option: [
-				{
-					// icon: 'icon-zhuzhuangtu-dashuju',
-					value: 1,
-					name: '否',
-					key: 1
-				},
-				{
-					// icon: 'icon-drxx91',
-					value: 2,
-					name: '是',
-					key: 2
-				}
-			],
-			optionType: 'button',
+			comConfig: {
+				option: [
+					{
+						// icon: 'icon-zhuzhuangtu-dashuju',
+						value: 1,
+						name: '否',
+						key: 1
+					},
+					{
+						// icon: 'icon-drxx91',
+						value: 2,
+						name: '是',
+						key: 2
+					}
+				],
+				optionType: 'button'
+			},
+
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -573,7 +599,7 @@ const useFormList = ({
 			key: 'button',
 			name: 'button',
 			span: 24,
-			children: <CreatButton options={buttonOptions} updateOptions={updateButtonOptions} />,
+			comConfig: { children: <CreatButton options={buttonOptions} updateOptions={updateButtonOptions} /> },
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		}
 	];

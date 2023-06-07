@@ -3,30 +3,23 @@
  * @author ly
  * @createDate 2022年12月21日
  */
+import { FormItem } from '@/antdComponents/iForm';
 import React, { FC, createContext, useReducer } from 'react';
-import type { ItemTypesParams } from '../itemTypes';
-import type { FormItem } from '@/antdComponents/iForm/type';
-import type { OptionsPararms } from '../service';
 import type { FormParams } from '../EditForm';
 
 interface DndContextProps {
 	children: React.ReactNode;
 }
 
-interface FormItemParams extends Omit<FormItem, 'key' | 'span' | 'label' | 'name'>, FormParams {
-	type: ItemTypesParams;
-	key: string;
-}
-
 interface StateParams {
-	formList: FormItemParams[];
+	formList: FormParams[];
 	selectFormItemKey?: string;
 }
 
 type actionParams =
 	| {
 			type: 'formList';
-			value: FormItemParams[];
+			value: FormParams[];
 	  }
 	| { type: 'selectFormItemKey'; value?: string };
 
@@ -57,5 +50,5 @@ const DndContext: FC<DndContextProps> = ({ children }) => {
 };
 
 export { Context };
-export type { FormItemParams };
+export type { FormParams };
 export default DndContext;

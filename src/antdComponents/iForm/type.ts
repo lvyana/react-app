@@ -24,7 +24,7 @@ import type { ButtonItemParams } from '../iButton/type';
 // input
 export type InputType = {
 	value?: string;
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
@@ -33,12 +33,12 @@ export type InputType = {
 	maxLength?: number;
 	style?: React.CSSProperties;
 };
-export type FormInputType = FormItem & InputType;
+export type FormInputType = FormItem<InputType>;
 
 // select
 export type SelectType<T> = {
 	value?: SelectValueType;
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: SelectValueType, option: T | T[]) => void) | undefined;
@@ -50,14 +50,15 @@ export type SelectType<T> = {
 	children?: ReactNode;
 };
 export type SelectValueType = string | string[] | number | number[] | LabeledValue | LabeledValue[];
-export type FormSelectType<T> = FormItem & SelectType<T>;
+
+export type FormSelectType<T> = FormItem<SelectType<T>>;
 
 const { SHOW_ALL, SHOW_PARENT, SHOW_CHILD } = TreeSelect;
 type ShowCheckedStrategy = typeof SHOW_ALL | typeof SHOW_PARENT | typeof SHOW_CHILD;
 // treeSelect
 export type TreeselectType<T> = {
 	value?: (string | number)[];
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: (string | number)[], labelList: ReactNode[], extra: ChangeEventExtra) => void) | undefined;
@@ -69,11 +70,12 @@ export type TreeselectType<T> = {
 	children?: ReactNode;
 	showCheckedStrategy?: ShowCheckedStrategy;
 };
-export type FormTreeselectType<T> = FormItem & TreeselectType<T>;
+
+export type FormTreeselectType<T> = FormItem<TreeselectType<T>>;
 
 // cascader
 export type CascaderType<T> = {
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	validateTrigger?: string | string[];
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -84,7 +86,8 @@ export type CascaderType<T> = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormCascaderType<T> = FormItem & CascaderType<T>;
+
+export type FormCascaderType<T> = FormItem<CascaderType<T>>;
 
 // alonePicker 单个
 export type AlonePicker = {
@@ -92,12 +95,12 @@ export type AlonePicker = {
 	allowClear?: boolean;
 	onChange?: ((value: Dayjs | null, dateString: string) => void) | undefined;
 	placeholder?: string;
-
 	style?: React.CSSProperties;
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	children?: ReactNode;
 };
-export type FormAlonePicker = FormItem & AlonePicker;
+
+export type FormAlonePicker = FormItem<AlonePicker>;
 
 // bothPicker 双个
 export type BothPicker = {
@@ -109,11 +112,12 @@ export type BothPicker = {
 	disabledDate?: (currentDate: Dayjs) => boolean;
 	children?: ReactNode;
 };
-export type FormBothPicker = FormItem & BothPicker;
+
+export type FormBothPicker = FormItem<BothPicker>;
 
 // inputNumber
 export type InputNumberType = {
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ((value: number | string | null) => void) | undefined;
@@ -123,7 +127,8 @@ export type InputNumberType = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormInputNumberType = FormItem & InputNumberType;
+
+export type FormInputNumberType = FormItem<InputNumberType>;
 
 // switch
 export type SwitchType = {
@@ -131,13 +136,15 @@ export type SwitchType = {
 	allowClear?: boolean;
 	onChange?: SwitchChangeEventHandler | undefined;
 	placeholder?: string;
-
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormSwitchType = FormItem & SwitchType;
+
+export type FormSwitchType = FormItem<SwitchType>;
 
 // button
+export type FinishType<T> = ((value: T) => void) | undefined;
+
 export type ButtonType<T> = {
 	// name?: string;
 	option?: ButtonItemParams<T>[];
@@ -145,9 +152,8 @@ export type ButtonType<T> = {
 	children?: ReactNode;
 	onClick?: FinishType<T>;
 };
-export type FormButtonType<T> = FormItem & ButtonType<T>;
 
-export type FinishType<T> = ((value: T) => void) | undefined;
+export type FormButtonType<T> = FormItem<ButtonType<T>>;
 
 // radio
 export type RadioType<T> = {
@@ -159,7 +165,8 @@ export type RadioType<T> = {
 	children?: ReactNode;
 	optionType?: 'default' | 'button';
 };
-export type FormRadioType<T> = FormItem & RadioType<T>;
+
+export type FormRadioType<T> = FormItem<RadioType<T>>;
 
 // checkbox
 export type CheckboxType<T> = {
@@ -170,7 +177,8 @@ export type CheckboxType<T> = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormCheckboxType<T> = FormItem & CheckboxType<T>;
+
+export type FormCheckboxType<T> = FormItem<CheckboxType<T>>;
 
 // rate
 export type RateType<T> = {
@@ -182,26 +190,27 @@ export type RateType<T> = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 };
-export type FormRateType<T> = FormItem & RateType<T>;
+
+export type FormRateType<T> = FormItem<RateType<T>>;
 
 // textArea
 export type TextAreaType = {
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: ChangeEventHandler<HTMLTextAreaElement> | undefined;
 	maxLength?: number;
 	placeholder?: string;
-
 	style?: React.CSSProperties;
 	children?: ReactNode;
 	rows?: number;
 };
-export type FormTextAreaType = FormItem & TextAreaType;
+
+export type FormTextAreaType = FormItem<TextAreaType>;
 
 // seachSelect
 export type SeachSelectType<T> = {
-	label?: FormItem['label'];
+	label?: FormItem<unknown>['label'];
 	disabled?: boolean;
 	allowClear?: boolean;
 	mode?: Mode;
@@ -214,11 +223,9 @@ export type SeachSelectType<T> = {
 	children?: ReactNode;
 };
 
-// slider
-interface SliderRange {
-	draggableTrack?: boolean;
-}
+export type FormSeachSelectType<T> = FormItem<SeachSelectType<T>>;
 
+// slider
 export type SliderType = {
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -228,7 +235,8 @@ export type SliderType = {
 	max?: number;
 	min?: number;
 };
-export type FormSliderType = FormItem & SliderType;
+
+export type FormSliderType = FormItem<SliderType>;
 
 // upload
 export type UploadType = {
@@ -241,13 +249,15 @@ export type UploadType = {
 	action?: string;
 	headers?: HttpRequestHeader;
 };
-export type FormUploadType = FormItem & UploadType;
+
+export type FormUploadType = FormItem<UploadType>;
 
 // userDefined
 export type UserDefinedType = {
 	children?: ReactNode;
 };
-export type FormUserDefinedType = FormItem & UserDefinedType;
+
+export type FormUserDefinedType = FormItem<UserDefinedType>;
 
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
@@ -285,8 +295,9 @@ export type FormItemMapType = keyof FormItemMap;
  * @param labelAlign 标签文本对齐方式
  * @param tooltip 配置提示信息
  * @param rules 校验规则
+ * @param comConfig 表单子组件参数
  */
-export interface FormItem {
+export interface FormItem<T> {
 	show?: boolean;
 	type: FormItemMapType;
 	span?: number;
@@ -298,6 +309,7 @@ export interface FormItem {
 	labelAlign?: FormLabelAlign;
 	tooltip?: LabelTooltipType;
 	rules?: Rule[];
+	comConfig?: T;
 }
 
 export type FormLabelAlign = 'left' | 'right';

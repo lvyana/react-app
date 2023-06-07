@@ -10,18 +10,17 @@ import { Button, Col, Form, Row } from 'antd';
 import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import Iform, { FormItem } from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
-import { Context } from './context';
+import { Context, FormParams } from './context';
 import { arrIndexExchange } from '@/utils/exchange';
 import { useFormData } from './useHooks';
-import type { FormItemParams } from './context';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 /**
  * @param formParams 某一项表单数据
  * @param index 表单下标
  */
-interface GenerateFormItemParams {
-	formParams: FormItemParams;
+interface GenerateFormParams {
+	formParams: FormParams;
 	index: number;
 }
 
@@ -61,7 +60,7 @@ const GenerateForm = () => {
 };
 
 // 表单子组件
-const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => {
+const GenerateFormItem: FC<GenerateFormParams> = ({ formParams, index }) => {
 	const { token } = useThemeHooks();
 
 	const context = useContext(Context);
@@ -146,9 +145,9 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	const [form] = Form.useForm();
 
 	// 处理回显表单数据
-	const formList: FormItem[] = [{ ...getFormData(formParams), span: 24 }];
+	const formList: FormItem<object>[] = [{ ...getFormData(formParams), span: 24 }];
 
-	const onEditFormItemParams = () => {
+	const onEditFormParams = () => {
 		if (formParams.key === context?.state.selectFormItemKey) return;
 		context?.dispatch({ type: 'selectFormItemKey', value: formParams.key });
 	};
@@ -165,7 +164,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 		context?.dispatch({ type: 'formList', value: formList });
 
 		if (formParams.key === context?.state.selectFormItemKey) {
-			context.dispatch({ type: 'selectFormItemKey', value: undefined });
+			context?.dispatch({ type: 'selectFormItemKey', value: undefined });
 		}
 	};
 
@@ -173,7 +172,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 	const onCopyFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation();
 		const newFormList =
-			context?.state.formList.reduce<FormItemParams[]>((prev, item) => {
+			context?.state.formList.reduce<FormParams[]>((prev, item) => {
 				if (formParams.key === item.key) {
 					return [
 						...prev,
@@ -196,7 +195,7 @@ const GenerateFormItem: FC<GenerateFormItemParams> = ({ formParams, index }) => 
 
 	return (
 		<Row
-			onClick={onEditFormItemParams}
+			onClick={onEditFormParams}
 			className={
 				'rounded-lg p-4 pb-0 mb-2 border border-solid ' + `${context?.state.selectFormItemKey === formParams.key ? 'shadow-lg' : ''}`
 			}

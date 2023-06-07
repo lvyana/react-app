@@ -31,7 +31,7 @@ const JsonView: FC<JsonViewProps> = ({ open, onOkOrCancel, confirmLoading }) => 
 
 	const { getFormData } = useFormData();
 
-	const [jsonData, setJsonData] = useState<FormItem[]>([]);
+	const [jsonData, setJsonData] = useState<FormItem<object>[]>([]);
 	useEffect(() => {
 		if (open) {
 			onJsonChange('dnd');

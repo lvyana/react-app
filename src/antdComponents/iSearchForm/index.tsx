@@ -20,7 +20,7 @@ interface IsearchFormProps<T, P> {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IsearchForm = <T extends FormItem[], P extends object>({ form, formList }: IsearchFormProps<T, P>) => {
+const IsearchForm = <T extends FormItem<object>[], P extends object>({ form, formList }: IsearchFormProps<T, P>) => {
 	return (
 		<>
 			<IresponsiveMax MaxWidth={1540}>
