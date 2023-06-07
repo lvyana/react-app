@@ -50,28 +50,28 @@ function Counter() {
 
 const list = [
 	{
-		header: '执行机制',
-		content: '浏览器渲染之后执行,不会阻塞渲染',
+		label: '执行机制',
+		children: '浏览器渲染之后执行,不会阻塞渲染',
 		key: '0'
 	},
 	{
-		header: '无参数',
-		content: '每次 reader 都会执行',
+		label: '无参数',
+		children: '每次 reader 都会执行',
 		key: '1'
 	},
 	{
-		header: '空数组 []',
-		content: '组件初始化执行一次',
+		label: '空数组 []',
+		children: '组件初始化执行一次',
 		key: '2'
 	},
 	{
-		header: '数组并且有参数 [a,b]',
-		content: '数组内数据变化就会执行',
+		label: '数组并且有参数 [a,b]',
+		children: '数组内数据变化就会执行',
 		key: '3'
 	},
 	{
-		header: '回调函数中 return 作用',
-		content: (
+		label: '回调函数中 return 作用',
+		children: (
 			<div>
 				<div>1、清理上一次事件绑定,不清理会导致事件多次绑定</div>
 				<div>2、组件初始化不执行,组件销毁时执行,数据更新时先执行 return 函数</div>
@@ -80,8 +80,8 @@ const list = [
 		key: '4'
 	},
 	{
-		header: '示例代码',
-		content: (
+		label: '示例代码',
+		children: (
 			<>
 				<IcodeEditor initCode={initCode}></IcodeEditor>
 			</>

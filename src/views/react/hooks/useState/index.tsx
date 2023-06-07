@@ -60,13 +60,13 @@ const IuseState = () => {
 
 	const list = [
 		{
-			header: 'useState在组件式编程里的基本用处',
-			content: <div>useState 是一个组件定义状态信息,所谓“状态”,就是该组件任意时刻都存放的各种数据</div>,
+			label: 'useState在组件式编程里的基本用处',
+			children: <div>useState 是一个组件定义状态信息,所谓“状态”,就是该组件任意时刻都存放的各种数据</div>,
 			key: '0'
 		},
 		{
-			header: 'useState更新',
-			content: (
+			label: 'useState更新',
+			children: (
 				<>
 					<div>1、当组件更新state时,会触发组件的重新渲染,可以认为发生了局部刷新</div>
 					<div>2、在函数内多次更新,会合并处理</div>
@@ -76,8 +76,8 @@ const IuseState = () => {
 			key: '1'
 		},
 		{
-			header: '代码示例',
-			content: (
+			label: '代码示例',
+			children: (
 				<>
 					<IcodeEditor initCode={initCode}></IcodeEditor>
 				</>

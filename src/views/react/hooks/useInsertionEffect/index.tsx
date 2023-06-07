@@ -41,8 +41,8 @@ const IuseInsertionEffect = () => {
 
 	const list = [
 		{
-			header: '执行机制',
-			content: (
+			label: '执行机制',
+			children: (
 				<div>
 					<div>
 						1、可以看到 useInsertionEffect 的执行时机要比 useLayoutEffect 提前,useLayoutEffect 执行的时候 DOM 已经更新了，但是在
@@ -57,8 +57,8 @@ const IuseInsertionEffect = () => {
 			key: '0'
 		},
 		{
-			header: '参数执行机制',
-			content: (
+			label: '参数执行机制',
+			children: (
 				<div>
 					参照 useEffect
 					<Button type="link" onClick={onToUseEffect}>

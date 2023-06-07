@@ -130,7 +130,7 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 
 	// 获取对应的formItem 子组件
 	const formItemCom = (item: FormItem<object>) => {
-		const comConfig = { ...item.comConfig, lable: item.label };
+		const comConfig = { ...item.comConfig, label: item.label };
 
 		if (item.type === 'input') {
 			const { value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style } = comConfig as InputType;

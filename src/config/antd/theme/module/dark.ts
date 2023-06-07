@@ -14,7 +14,7 @@ export default {
 			colorPrimaryHover: '#1677ff'
 		},
 		Menu: {
-			colorItemTextSelected: '#1677ff'
+			itemSelectedColor: '#1677ff'
 		}
 	}
 };

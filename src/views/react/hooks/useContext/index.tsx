@@ -120,8 +120,8 @@ function Button({ children }) {
 
 	const list = [
 		{
-			header: 'useContext 说明',
-			content: (
+			label: 'useContext 说明',
+			children: (
 				<>
 					<div>useContext 是一个 React 钩子,可以让你从组件中读取和订阅上下文</div>
 				</>
@@ -129,8 +129,8 @@ function Button({ children }) {
 			key: '0'
 		},
 		{
-			header: '代码示例',
-			content: (
+			label: '代码示例',
+			children: (
 				<>
 					<IcodeEditor initCode={initCode}></IcodeEditor>
 				</>

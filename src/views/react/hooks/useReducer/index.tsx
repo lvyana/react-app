@@ -40,8 +40,8 @@ const IuseReducer = () => {
 
 	const list = [
 		{
-			header: '什么是useReducer',
-			content: (
+			label: '什么是useReducer',
+			children: (
 				<div>
 					useReducer 是 React 推出的一个扩展 Hook ,如下代码所示,它接受 (state, action) ⇒ newState 的一个 reduce ,并返回当前的 state
 					以及与其配套的 dispatch 方法,让开发人员能够更好的管理代码中的数据
@@ -50,8 +50,8 @@ const IuseReducer = () => {
 			key: '0'
 		},
 		{
-			header: '介绍useReducer变量',
-			content: (
+			label: '介绍useReducer变量',
+			children: (
 				<>
 					<div>{'const [state, dispatch] = useReducer(reducer, initialState)'}</div>
 					<div>1、initialState: 需要我们自己定义,是我们要管理的一个初始变量.可以是一个数字,字符串,数组,对象等</div>
