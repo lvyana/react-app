@@ -25,6 +25,7 @@ interface IdrawerProps {
 	onClose: () => void;
 	placement?: PlacementType;
 }
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Idrawer: FC<IdrawerProps> = ({ children, open, title, width = 378, maskClosable = false, onClose, placement = 'right' }) => {

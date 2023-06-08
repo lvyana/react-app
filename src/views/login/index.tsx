@@ -20,9 +20,9 @@ import useNotification from '@/useHooks/useNotification';
  * @param remember 记住密码
  */
 export interface FromType {
-	userName: string | undefined;
-	password: string | undefined;
-	remember: boolean | undefined;
+	userName?: string;
+	password?: string;
+	remember?: boolean;
 	// phone?: string;
 	// code?: string;
 }

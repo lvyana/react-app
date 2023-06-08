@@ -42,6 +42,7 @@ const Menu = () => {
 
 	const location = useLocation();
 
+	// 路由信息
 	const menuList = useAppSelector(GET_ROUTER);
 
 	// 历史菜单记录
@@ -76,7 +77,8 @@ const Menu = () => {
 			setCurrentMenu({ title: '系统', path: '/', icon: 'icon-shezhi', children: menuList });
 		}
 	}, []);
-	console.log(currentMenu);
+
+	// 点击菜单事件
 	const onMenuClick = (menu: Router) => {
 		const nextMenu = findNode(menuList, 'path', menu.path);
 
