@@ -21,9 +21,7 @@ const Auth: FC<AuthProps> = ({ children }) => {
 	const { isMenu } = useRouterHooks();
 
 	// 获取token
-	const isToken = () => {
-		return getToken();
-	};
+	const isToken = () => getToken();
 
 	// token权限
 	if (isToken()) {
@@ -45,15 +43,13 @@ const Auth: FC<AuthProps> = ({ children }) => {
  */
 export const setRouterAuth: SetAuth<Routes[]> = (router) => {
 	return router.reduce<RouteObject[]>((acc, route) => {
-		if (route.children && route.children.length > 0) {
-			return [...acc, { ...route, children: setRouterAuth(route.children) }];
+		const isAuthRouter = route.auth === false ? route : { ...route, element: <Auth>{route.element}</Auth> };
+
+		if (isAuthRouter.children && isAuthRouter.children.length > 0) {
+			return [...acc, { ...isAuthRouter, children: setRouterAuth(isAuthRouter.children) }];
 		}
 
-		if (route.auth === false) {
-			return [...acc, route];
-		}
-
-		return [...acc, { ...route, element: <Auth>{route.element}</Auth> }];
+		return [...acc, isAuthRouter];
 	}, []);
 };
 

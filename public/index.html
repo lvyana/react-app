@@ -12,6 +12,12 @@
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
 	<title>ly-admin</title>
+	<!-- 在 html 文档中引入 JSSDK -->
+	<!-- 在升级功能时 JS 文件版本会相应更新，如有需要（比如使用新增的 API），请重新引用「客户端文档>网页应用>简介」页面中的最新JSSDK版本 -->
+	<!-- <script type="text/javascript" src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.23.js"></script> -->
+	<!-- 在页面上添加 VConsole 方便调试-->
+	<!-- <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script> -->
+
 	<!-- 使用cdncss -->
 	<% htmlWebpackPlugin.options.cdn.css.forEach(v=> { %>
 		<link rel="<%= v.rel %>" href="<%= v.url %>">
@@ -28,10 +34,10 @@
 			<script type="text/javascript" defer src="<%= v.url %>"></script>
 			<% }else if(v.async){ %>
 				<script type="text/javascript" async src="<%= v.url %>"></script>
-					<% }else{ %>
-						<script type="text/javascript" src="<%= v.url %>"></script>
-						<% } %>
-							<% }) %>
+				<% }else{ %>
+					<script type="text/javascript" src="<%= v.url %>"></script>
+					<% } %>
+						<% }) %>
 </body>
 
 </html>

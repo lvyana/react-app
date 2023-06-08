@@ -20,7 +20,7 @@ interface ThemeProps {
 
 // ----------------------------------------------------------------
 
-const Theme: FC<ThemeProps> = ({ children }) => {
+const AntdConfig: FC<ThemeProps> = ({ children }) => {
 	const { size } = useAntdSize();
 	const { themeConfig } = useTheme();
 	return (
@@ -30,4 +30,4 @@ const Theme: FC<ThemeProps> = ({ children }) => {
 	);
 };
 
-export default Theme;
+export default AntdConfig;

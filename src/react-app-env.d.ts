@@ -10,6 +10,14 @@ declare module '*.scss' {
 	export default content;
 }
 
+interface RequestAuthCodeParam {
+	appId: string;
+	success: (res: object) => void;
+	fail: (err: Error) => void;
+}
 declare interface Window {
-	a: string;
+	h5sdk: object;
+	tt: {
+		requestAuthCode: (param: RequestAuthCodeParam) => void;
+	};
 }
