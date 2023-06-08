@@ -35,9 +35,14 @@ export interface ScheduleSlicerRef {
 	reset: () => void;
 }
 
+type ForwardRefParam<T> = {
+	props: ScheduleSlicerProps<T>;
+	ref: ScheduleSlicerRef | null;
+};
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const ScheduleSlicer = <T,>({ readerComponent, config }: ScheduleSlicerProps<T>, ref: ForwardedRef<ScheduleSlicerRef | null>) => {
+const ScheduleSlicer = <T,>({ readerComponent, config }: ForwardRefParam<T>['props'], ref: ForwardedRef<ForwardRefParam<T>['ref']>) => {
 	const { arr, eachRenderNum, key } = config;
 	// 渲染次数
 	const count = useRef(0);
@@ -84,7 +89,10 @@ const ScheduleSlicer = <T,>({ readerComponent, config }: ScheduleSlicerProps<T>,
 	// 暴露调用事件
 	useImperativeHandle(ref, () => {
 		return {
-			onCallback,
+			onCallback: () => {
+				interruptRendering.current = false;
+				onCallback();
+			},
 			reset: () => {
 				interruptRendering.current = true;
 				count.current = 0;
@@ -102,6 +110,6 @@ const ScheduleSlicer = <T,>({ readerComponent, config }: ScheduleSlicerProps<T>,
 	);
 };
 
-const scheduleSlicerHoc = <T,>() => forwardRef(ScheduleSlicer<T>);
+const scheduleSlicerHoc = <T,>() => forwardRef<ForwardRefParam<T>['ref'], ForwardRefParam<T>['props']>(ScheduleSlicer);
 
 export default scheduleSlicerHoc;

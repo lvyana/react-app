@@ -73,7 +73,7 @@ module.exports = {
 		camelcase: 'error', //强制驼峰法命名
 		'callback-return': 'warn', //避免多次调用回调什么的
 		complexity: ['off', 11], //循环复杂度
-		'max-depth': ['off', 4], //嵌套块深度
+		'max-depth': ['error', 3], //嵌套块深度
 		'max-nested-callbacks': ['off', 2] //回调嵌套深度
 	}
 };

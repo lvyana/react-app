@@ -43,7 +43,17 @@ const Auth: FC<AuthProps> = ({ children }) => {
  */
 export const setRouterAuth: SetAuth<Routes[]> = (router) => {
 	return router.reduce<RouteObject[]>((acc, route) => {
-		const isAuthRouter = route.auth === false ? route : { ...route, element: <Auth>{route.element}</Auth> };
+		let isAuthRouter;
+
+		// 没有权限 且没有element 不做权限
+		if (route.auth === false || !route.element) {
+			isAuthRouter = route;
+		} else {
+			isAuthRouter = {
+				...route,
+				element: <Auth>{route.element}</Auth>
+			};
+		}
 
 		if (isAuthRouter.children && isAuthRouter.children.length > 0) {
 			return [...acc, { ...isAuthRouter, children: setRouterAuth(isAuthRouter.children) }];

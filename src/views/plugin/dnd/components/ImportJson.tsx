@@ -23,6 +23,20 @@ export type importJsonForm = {
 
 type formListParams = [FormTextAreaType];
 
+const validator = (rule: Rule, str: string) => {
+	if (typeof str === 'string') {
+		try {
+			let obj = JSON.parse(str);
+			if (typeof obj === 'object' && obj) {
+				return Promise.resolve();
+			} else {
+				return Promise.reject('格式不对');
+			}
+		} catch (e) {
+			return Promise.reject('格式不对');
+		}
+	}
+};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const ImportJson: FC<ImportJsonProps> = ({ form, open, onOkOrCancel, confirmLoading }) => {
@@ -36,20 +50,7 @@ const ImportJson: FC<ImportJsonProps> = ({ form, open, onOkOrCancel, confirmLoad
 			span: 24,
 			rules: [
 				{
-					validator: (rule: Rule, str: string) => {
-						if (typeof str === 'string') {
-							try {
-								let obj = JSON.parse(str);
-								if (typeof obj === 'object' && obj) {
-									return Promise.resolve();
-								} else {
-									return Promise.reject('格式不对');
-								}
-							} catch (e) {
-								return Promise.reject('格式不对');
-							}
-						}
-					}
+					validator: validator
 				}
 			],
 			layout: { labelCol: { span: 2 }, wrapperCol: { span: 22 } }

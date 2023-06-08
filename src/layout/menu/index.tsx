@@ -76,7 +76,7 @@ const Menu = () => {
 			setCurrentMenu({ title: '系统', path: '/', icon: 'icon-shezhi', children: menuList });
 		}
 	}, []);
-
+	console.log(currentMenu);
 	const onMenuClick = (menu: Router) => {
 		const nextMenu = findNode(menuList, 'path', menu.path);
 

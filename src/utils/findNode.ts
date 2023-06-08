@@ -14,9 +14,7 @@ const findNode: FindNode = (menuList, key, value) => {
 		}
 		if (node.children) {
 			const childNode = findNode(node.children, key, value);
-			if (childNode) {
-				return childNode;
-			}
+			if (childNode) return childNode;
 		}
 	}
 	return null;

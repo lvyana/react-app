@@ -78,4 +78,5 @@ const router: Routes[] = setRouterAuth([
 	{ path: '/today', element: suspenseLoad(<ToDay />), auth: false },
 	{ path: '*', element: suspenseLoad(<NotFound />), auth: false }
 ]);
+
 export default router;
