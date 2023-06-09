@@ -27,7 +27,7 @@ import documentCom from './module/document';
 // 首页
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/views/home'));
 // 404
-const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '@/antdComponents/NotFound'));
+const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '@/antdComponents/notFound'));
 // 个人中心
 const MyCenter = lazy(() => import(/* webpackChunkName: "MyCenter" */ '@/views/myCenter'));
 // 消息中心

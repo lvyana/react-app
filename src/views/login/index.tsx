@@ -3,9 +3,9 @@
  * @author ly
  * @createDate 2022年12月11日
  */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { notification, Tabs, Row, Col, Form } from 'antd';
+import { Form } from 'antd';
 import { getRemember, setRemember, setToken } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
@@ -30,7 +30,7 @@ export interface FromType {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Login = () => {
-	const { openNotification } = useNotification();
+	const { onNotification, contextHolder } = useNotification();
 
 	const [accountForm] = Form.useForm<FromType>();
 
@@ -61,37 +61,37 @@ const Login = () => {
 		// 存token
 		setToken(token);
 	};
+
 	const onFinish = async (values: FromType) => {
 		const { password, userName, remember } = values;
 		if (userName === 'admin' && password === '123456') {
 			setUserInfo(userName, password, remember);
+			// onNotification('info', {
+			// 	message: '欢迎登录',
+			// 	description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			// });
 			navigate('/');
-			openNotification({
-				type: 'info',
-				message: '欢迎登录',
-				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
-			});
 			return;
 		}
 
 		if (userName === 'today' && password === '123456') {
 			setUserInfo(userName, password, remember);
 			navigate('/today');
-			openNotification({
-				type: 'info',
-				message: '欢迎登录',
-				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
-			});
+			// onNotification('info', {
+			// 	message: '欢迎登录',
+			// 	description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			// });
 			return;
 		}
 
-		openNotification({ type: 'error', message: '密码错误' });
+		onNotification('error', { message: '密码错误' });
 	};
 
 	const items = [
 		{ label: '账号登录', key: '1', children: <Account form={accountForm} onFinish={onFinish} /> },
 		{ label: '手机号登录', key: '2', children: <Phone onFinish={onFinish} /> }
 	];
+
 	return (
 		<div className={styles.login}>
 			{/* <Row justify="center" style={{ height: '100%' }}>
@@ -111,6 +111,7 @@ const Login = () => {
 				</Col>
 			</Row> */}
 			<Account form={accountForm} onFinish={onFinish} />
+			{contextHolder}
 		</div>
 	);
 };
