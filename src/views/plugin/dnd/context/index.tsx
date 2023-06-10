@@ -4,7 +4,7 @@
  * @createDate 2022年12月21日
  */
 import { FormItem } from '@/antdComponents/iForm';
-import React, { FC, createContext, useReducer } from 'react';
+import React, { FC, createContext, useMemo, useReducer } from 'react';
 import type { FormParams } from '../EditForm';
 
 interface DndContextProps {
@@ -43,10 +43,13 @@ const reducer: ReducerFun = (state, action) => {
 	}
 	return state;
 };
+
 const DndContext: FC<DndContextProps> = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initState);
 
-	return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>;
+	const value = useMemo(() => ({ state, dispatch }), [state]);
+
+	return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
 export { Context };

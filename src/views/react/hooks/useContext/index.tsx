@@ -12,6 +12,12 @@ import IcodeEditor from '@/pluginComponents/iCodeEditor';
 
 /**
  * tips: 可以结合useReduce实现redux
+ *
+ * 优化context更新
+ * 不处理的情况下 外部组件更新会导致context内部组件都更新
+ * 优化
+ * Icontext更新 导致state dispatch更新 用useMemo缓存
+ * 被包裹的组件 用memo在包裹一下 这样即使子组件内部引用了context也不会更新。
  */
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

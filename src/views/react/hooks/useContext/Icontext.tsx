@@ -4,7 +4,7 @@
  * @date 日期：2020年4月27日
  */
 import React, { FC, useMemo } from 'react';
-import IuseReducer from './IuseReducer';
+import useContextReducer from './IuseReducer';
 
 export interface ReduerValueParam {
 	count: number;
@@ -30,8 +30,10 @@ type MyContextParam = {
 export const Context = React.createContext<MyContextParam | null>(null);
 
 const Icontext: FC<IuseContextComProps> = ({ children }) => {
-	const { sum, dispatch } = IuseReducer();
+	const { sum, dispatch } = useContextReducer();
+
 	const value = useMemo(() => ({ sum, dispatch }), [sum]);
+
 	return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 

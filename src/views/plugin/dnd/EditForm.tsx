@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2022年12月17日
  */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
 import Iform, { OnValuesChange } from '@/antdComponents/iForm';
 import { Button, Form, Tabs, TabsProps } from 'antd';
 import { Context } from './context';
@@ -201,7 +201,7 @@ const OPTIONS = [{ value: '', label: '', id: uuidv4() }];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const EditForm = () => {
+const EditForm = memo(() => {
 	const { token } = useThemeHooks();
 
 	const { editItemValue } = useEditItemValue();
@@ -375,7 +375,8 @@ const EditForm = () => {
 	) : (
 		<></>
 	);
-};
+});
+EditForm.displayName = 'EditForm';
 
 const useFormList = ({
 	staticPattern,
