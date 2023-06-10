@@ -17,7 +17,7 @@ import menuLogo from '@/assets/images/menu.png';
 import Menu from '@/layout/menu';
 import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 
-const Headerregion = () => {
+const Head = () => {
 	const LayoutLogo: React.CSSProperties = {
 		width: '64px',
 		height: '64px',
@@ -73,4 +73,4 @@ const Headerregion = () => {
 		</>
 	);
 };
-export default memo(Headerregion);
+export default memo(Head);

@@ -4,7 +4,7 @@
  * @createDate 2023年2月3日
  */
 import axios from '@/api/request'; // 导入http中创建的axios实例
-import { headerConfigListType } from '@/store/reducers/globalConfig';
+import { HeaderConfigListParam } from '@/store/reducers/globalConfig';
 
 /**
  * @param status 状态类型
@@ -29,7 +29,7 @@ export const status = () => {
  * @method 获取表头配置
  */
 export const headerConfig = () => {
-	return axios<never, headerConfigListType[]>({
+	return axios<never, HeaderConfigListParam[]>({
 		url: `/getHeader`,
 		method: 'get'
 	});

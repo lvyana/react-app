@@ -3,21 +3,16 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useEffect, memo, useRef, useLayoutEffect, FC } from 'react';
-import { Button, Col, MenuProps, Row } from 'antd';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, memo, useRef, useLayoutEffect } from 'react';
+import { Col, Row } from 'antd';
+import { useLocation, useNavigate } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import Icard from '@/antdComponents/iCard';
 import findNode from '@/utils/findNode';
 import findParentNode from '@/utils/findParentNode';
-import { clearToken } from '@/utils/cookie';
-
-type TitleProps = {
-	MenuTitle: Router | null;
-	onBack: () => void;
-};
+import Title from './Title';
 
 /**
  * @param title 标题
@@ -132,33 +127,3 @@ const Menu = () => {
 };
 
 export default memo(Menu);
-
-const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
-	const navigate = useNavigate();
-
-	const onLogOut = () => {
-		clearToken();
-		navigate('/login');
-	};
-
-	return (
-		<>
-			<Row justify="space-between">
-				<Col>
-					<Button
-						type="link"
-						icon={<IconFont type={MenuTitle?.path === '/' ? MenuTitle.icon || '' : 'icon-fanhui'}></IconFont>}
-						className="mb-2"
-						onClick={onBack}>
-						{MenuTitle?.title}
-					</Button>
-				</Col>
-				<Col>
-					<Button danger type="link" onClick={onLogOut} icon={<IconFont type="icon-tuichu"></IconFont>}>
-						退出
-					</Button>
-				</Col>
-			</Row>
-		</>
-	);
-};

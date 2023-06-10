@@ -11,7 +11,14 @@ type ContextMessageParam = {
 	children: React.ReactNode;
 };
 
-type ContextParam = { onNotification: OpenNotification; onMessage: MessageParam };
+/**
+ * @param onNotification 打开通知提示框
+ * @param onMessage 打开全局提示
+ */
+type ContextParam = {
+	onNotification: OpenNotification;
+	onMessage: MessageParam;
+};
 
 export const Context = React.createContext<ContextParam | null>(null);
 

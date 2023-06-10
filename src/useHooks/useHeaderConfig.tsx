@@ -7,7 +7,7 @@ import React, { useState, useEffect, Key } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { GET_HEADER_CONFIG } from '@/store/reducers/globalConfig';
 import type { IcolumnsType } from '@/antdComponents/iTable';
-import type { headerConfigListType, headerConfigListArrType } from '@/store/reducers/globalConfig';
+import type { HeaderConfigListParam, HeaderFieldParam } from '@/store/reducers/globalConfig';
 /**
  * @param type 表格类型
  * @param columns 前端表头模板
@@ -66,13 +66,13 @@ const useHeaderConfigItem = (type: string, open: boolean) => {
 	const headerConfig = useAppSelector(GET_HEADER_CONFIG);
 
 	// 拿到对应的后端表头数据
-	const [headerConfigItem, setHeaderConfigItem] = useState<headerConfigListArrType[]>([]);
+	const [headerConfigItem, setHeaderConfigItem] = useState<HeaderFieldParam[]>([]);
 
 	// 选中的key
 	const [checkedKeys, setCheckedKeys] = useState<Key[]>([]);
 
 	// 查出all选中的key
-	const getCheckedKeys = (headerConfigItem: headerConfigListArrType[]) => {
+	const getCheckedKeys = (headerConfigItem: HeaderFieldParam[]) => {
 		return headerConfigItem.reduce((pre: Key[], item) => {
 			if (item.headerSelected === 'true') {
 				return [...pre, item.headerFieldId];
@@ -96,8 +96,8 @@ const useHeaderConfigItem = (type: string, open: boolean) => {
 };
 
 // 获取后端某个表头配置
-const getHeaderConfigItem = (type: string, headerConfig: headerConfigListType[]) => {
-	return headerConfig.reduce((pre: headerConfigListArrType[], item) => {
+const getHeaderConfigItem = (type: string, headerConfig: HeaderConfigListParam[]) => {
+	return headerConfig.reduce((pre: HeaderFieldParam[], item) => {
 		if (item.type === type) {
 			return item.headerField;
 		}

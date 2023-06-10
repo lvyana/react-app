@@ -11,7 +11,7 @@ import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 import TreeMenu from './TreeMenu';
 import { useHeaderConfigItem } from '@/useHooks/useHeaderConfig';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
-import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
+import type { HeaderFieldParam } from '@/store/reducers/globalConfig';
 import { updateHeader } from './service';
 
 export type HeaderType = 'expenses';
@@ -36,7 +36,7 @@ const IheaderConfig: FC<IheaderConfigProps> = ({ type, open, closeHeader }) => {
 	const { headerConfigItem, setHeaderConfigItem, checkedKeys, setCheckedKeys } = useHeaderConfigItem(type, open);
 
 	// 更新数据
-	const updateInitData = (newInitData: headerConfigListArrType[]) => {
+	const updateInitData = (newInitData: HeaderFieldParam[]) => {
 		setHeaderConfigItem(newInitData);
 	};
 

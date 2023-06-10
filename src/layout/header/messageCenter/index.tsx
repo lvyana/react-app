@@ -32,6 +32,7 @@ const MessageCenter = () => {
 	return (
 		<>
 			<Popover
+				overlayStyle={{ width: 300 }}
 				getPopupContainer={() => document.getElementById('header-icon-function') as HTMLElement}
 				open={open}
 				onOpenChange={handleOpenChange}

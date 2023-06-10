@@ -7,7 +7,7 @@ import React, { FC, Key } from 'react';
 import { Tree } from 'antd';
 import { arrIndexExchange } from '@/utils/exchange';
 import type { TreeProps } from 'antd/es/tree';
-import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
+import type { HeaderFieldParam } from '@/store/reducers/globalConfig';
 
 /**
  * @param initData 初始化数据
@@ -16,9 +16,9 @@ import type { headerConfigListArrType } from '@/store/reducers/globalConfig';
  * @param updateCheckedKeys 更新选中数据
  */
 interface TreeMenuProps {
-	initData: headerConfigListArrType[];
+	initData: HeaderFieldParam[];
 	checkedKeys: Key[];
-	updateInitData: (newInitData: headerConfigListArrType[]) => void;
+	updateInitData: (newInitData: HeaderFieldParam[]) => void;
 	updateCheckedKeys: (type: Key[]) => void;
 }
 const TreeMenu: FC<TreeMenuProps> = ({ initData, checkedKeys, updateInitData, updateCheckedKeys }) => {

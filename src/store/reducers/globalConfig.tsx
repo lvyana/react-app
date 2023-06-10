@@ -8,6 +8,7 @@ import { RootState } from '../index';
 import { headerConfig } from '@/api/publicApi';
 import type { Router } from '@/layout/menu/routerData';
 import { SET_SIZE } from './layout';
+
 /**
  * @param headerFieldId 唯一标识
  * @param headerFieldKey 标识
@@ -15,7 +16,7 @@ import { SET_SIZE } from './layout';
  * @param headerSelected 是否选中
  * @param key
  */
-export type headerConfigListArrType = {
+export type HeaderFieldParam = {
 	headerFieldId: string;
 	headerFieldKey: string;
 	headerFieldName: string;
@@ -27,9 +28,9 @@ export type headerConfigListArrType = {
  * @param type 表头某一项标识
  * @param headerField 表头集合参数
  */
-export type headerConfigListType = {
+export type HeaderConfigListParam = {
 	type: string;
-	headerField: headerConfigListArrType[];
+	headerField: HeaderFieldParam[];
 };
 
 /**
@@ -37,7 +38,7 @@ export type headerConfigListType = {
  * @param router
  */
 export interface InitGlobalConfigParams {
-	headerConfigList: headerConfigListType[];
+	headerConfigList: HeaderConfigListParam[];
 	router: Router[];
 }
 
@@ -70,7 +71,7 @@ const globalConfig = createSlice({
 	name: 'globalConfig',
 	initialState,
 	reducers: {
-		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<headerConfigListType[]>) => {
+		SET_HEADER_CONFIG: (state, { payload, type }: PayloadAction<HeaderConfigListParam[]>) => {
 			state.headerConfigList = payload;
 		},
 		SET_ROUTER: (state, { payload, type }: PayloadAction<Router[]>) => {
@@ -80,7 +81,9 @@ const globalConfig = createSlice({
 	// extraReducers 字段让 slice 处理在别处定义的 actions，
 	// 包括由 createAsyncThunk 或其他slice生成的actions。
 	extraReducers(builder) {
+		// 调用 SET_SIZE 方法会触发下面逻辑
 		builder.addCase(SET_SIZE, (state, { payload }) => {
+			// console.log(state, payload);
 			// increment方法触发时的处理
 			// console.log(payload);
 		});

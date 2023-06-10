@@ -6,7 +6,7 @@
 import React, { CSSProperties } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
-import Headerregion from '@/layout/header';
+import Head from '@/layout/header';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import useApi from '@/useHooks/useApi';
 import Tour from './tour';
@@ -36,7 +36,7 @@ const Layouts = () => {
 	return (
 		<Layout>
 			<Header style={headerStyle}>
-				<Headerregion />
+				<Head />
 			</Header>
 
 			<Content className="site-layout p-4" style={{ minHeight: 'calc(100vh - 64px)' }}>
