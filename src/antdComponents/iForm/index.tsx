@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
 import FORM_ITEM_MAP from './components/formItemMap';
 import type {
@@ -58,16 +58,12 @@ export type OnValuesChange<F> = (changedValues: F, values: F) => void;
  * @param self 是否自适应
  */
 interface IformProps<T, F> {
-	formList: FormListParam<T>;
+	formList: T;
 	form: FormInstance<F>;
 	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
 	self?: boolean;
 }
-
-type FormListParam<T> = {
-	[K in keyof T]: T[K] & FormItem; // keyof T 返回联合类型 in 再遍历该联合类型
-};
 
 const normFile = (e: { fileList: UploadFile[] }) => {
 	if (Array.isArray(e)) {
@@ -78,14 +74,15 @@ const normFile = (e: { fileList: UploadFile[] }) => {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iform = <T extends FormItem[], F extends object>({
+const Iform = <T extends FormItem<object>[], F extends object>({
 	formList,
 	form,
 	formLayout = 'horizontal',
 	self = false,
 	onValuesChange
 }: IformProps<T, F>) => {
-	const formItem = (item: FormItem) => {
+	// 包装不同formItem
+	const formItem = (item: FormItem<object>) => {
 		if (item.type === 'input') {
 			return (
 				<Form.Item
@@ -131,15 +128,18 @@ const Iform = <T extends FormItem[], F extends object>({
 		);
 	};
 
-	const formItemCom = (item: FormItem) => {
+	// 获取对应的formItem 子组件
+	const formItemCom = (item: FormItem<object>) => {
+		const comConfig = { ...item.comConfig, label: item.label };
+
 		if (item.type === 'input') {
-			const { value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style } = item as InputType;
+			const { value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style } = comConfig as InputType;
 			return FORM_ITEM_MAP[item.type]({ value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style });
 		}
 
 		if (item.type === 'select') {
 			const { label, disabled, allowClear, onChange, mode, placeholder, option, fieldNames, style, children } =
-				item as SelectType<DefaultOptionType>;
+				comConfig as SelectType<DefaultOptionType>;
 			return FORM_ITEM_MAP[item.type]({
 				label,
 				disabled,
@@ -156,7 +156,7 @@ const Iform = <T extends FormItem[], F extends object>({
 
 		if (item.type === 'treeSelect') {
 			const { label, disabled, allowClear, onChange, placeholder, option, checkbox, fieldNames, style, children } =
-				item as TreeselectType<DefaultOptionType>;
+				comConfig as TreeselectType<DefaultOptionType>;
 			return FORM_ITEM_MAP[item.type]({
 				label,
 				disabled,
@@ -173,7 +173,7 @@ const Iform = <T extends FormItem[], F extends object>({
 
 		if (item.type === 'cascader') {
 			const { label, validateTrigger, disabled, allowClear, onChange, placeholder, option, fieldNames, style, children } =
-				item as CascaderType<BaseOptionType>;
+				comConfig as CascaderType<BaseOptionType>;
 			return FORM_ITEM_MAP[item.type]({
 				label,
 				validateTrigger,
@@ -189,63 +189,63 @@ const Iform = <T extends FormItem[], F extends object>({
 		}
 
 		if (item.type === 'datePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as AlonePicker;
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as AlonePicker;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
 
 		if (item.type === 'rangePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as BothPicker;
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as BothPicker;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
 
 		if (item.type === 'timePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as AlonePicker;
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as AlonePicker;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
 
 		if (item.type === 'timeRangePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = item as BothPicker;
+			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as BothPicker;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
 		}
 
 		if (item.type === 'inputNumber') {
-			const { label, disabled, allowClear, onChange, placeholder, checkbox, style, children } = item as InputNumberType;
+			const { label, disabled, allowClear, onChange, placeholder, checkbox, style, children } = comConfig as InputNumberType;
 			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, placeholder, checkbox, style, children });
 		}
 
 		if (item.type === 'switch') {
-			const { disabled, allowClear, onChange, placeholder, style, children } = item as SwitchType;
+			const { disabled, allowClear, onChange, placeholder, style, children } = comConfig as SwitchType;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, children });
 		}
 
 		if (item.type === 'button') {
-			const { option, style, children, onClick } = item as ButtonType<unknown>;
+			const { option, style, children, onClick } = comConfig as ButtonType<unknown>;
 			return FORM_ITEM_MAP[item.type]({ option, style, children, onClick });
 		}
 
 		if (item.type === 'radio') {
-			const { disabled, allowClear, onChange, option, style, children, optionType } = item as RadioType<formRadioOptionsParams>;
+			const { disabled, allowClear, onChange, option, style, children, optionType } = comConfig as RadioType<formRadioOptionsParams>;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children, optionType });
 		}
 
 		if (item.type === 'checkbox') {
-			const { disabled, allowClear, onChange, option, style, children } = item as CheckboxType<CheckboxOptionType>;
+			const { disabled, allowClear, onChange, option, style, children } = comConfig as CheckboxType<CheckboxOptionType>;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children });
 		}
 
 		if (item.type === 'rate') {
-			const { disabled, allowClear, onChange, placeholder, option, style, children } = item as RateType<string>;
+			const { disabled, allowClear, onChange, placeholder, option, style, children } = comConfig as RateType<string>;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, option, style, children });
 		}
 
 		if (item.type === 'textArea') {
-			const { label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows } = item as TextAreaType;
+			const { label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows } = comConfig as TextAreaType;
 			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows });
 		}
 
 		if (item.type === 'seachSelect') {
 			const { label, disabled, allowClear, mode, placeholder, option, checkbox, fieldNames, style, handleSearch, children } =
-				item as SeachSelectType<DefaultOptionType>;
+				comConfig as SeachSelectType<DefaultOptionType>;
 			return FORM_ITEM_MAP[item.type]({
 				label,
 				disabled,
@@ -262,17 +262,17 @@ const Iform = <T extends FormItem[], F extends object>({
 		}
 
 		if (item.type === 'slider') {
-			const { disabled, allowClear, onChange, range, style, max, min } = item as SliderType;
+			const { disabled, allowClear, onChange, range, style, max, min } = comConfig as SliderType;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, range, style, max, min });
 		}
 
 		if (item.type === 'upload') {
-			const { name, onChange, mode, style, children, multiple, action, headers } = item as UploadType;
+			const { name, onChange, mode, style, children, multiple, action, headers } = comConfig as unknown as UploadType;
 			return FORM_ITEM_MAP[item.type]({ name, onChange, mode, style, children, multiple, action, headers });
 		}
 
 		if (item.type === 'userDefined') {
-			const { children } = item as UserDefinedType;
+			const { children } = comConfig as UserDefinedType;
 			return FORM_ITEM_MAP[item.type]({ children });
 		}
 	};

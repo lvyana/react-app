@@ -12,6 +12,7 @@ import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import Icard from '@/antdComponents/iCard';
 import findNode from '@/utils/findNode';
 import findParentNode from '@/utils/findParentNode';
+import { clearToken } from '@/utils/cookie';
 
 type TitleProps = {
 	MenuTitle: Router | null;
@@ -42,6 +43,7 @@ const Menu = () => {
 
 	const location = useLocation();
 
+	// 路由信息
 	const menuList = useAppSelector(GET_ROUTER);
 
 	// 历史菜单记录
@@ -77,6 +79,7 @@ const Menu = () => {
 		}
 	}, []);
 
+	// 点击菜单事件
 	const onMenuClick = (menu: Router) => {
 		const nextMenu = findNode(menuList, 'path', menu.path);
 
@@ -134,6 +137,7 @@ const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
 	const navigate = useNavigate();
 
 	const onLogOut = () => {
+		clearToken();
 		navigate('/login');
 	};
 

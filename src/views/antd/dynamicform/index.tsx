@@ -130,23 +130,17 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 2,
 			span: 24,
-			onChange: selectOnChange,
-			fieldNames: {
-				label: 'name',
-				value: 'value'
-			},
-			option: [
-				{
-					name: 'male',
-					value: 'male',
-					key: 1
-				},
-				{
-					name: 'female',
-					value: 'female',
-					key: 2
+			comConfig: {
+				option: [
+					{ name: 'male', value: 'male', key: 1 },
+					{ name: 'female', value: 'female', key: 2 }
+				],
+				onChange: selectOnChange,
+				fieldNames: {
+					label: 'name',
+					value: 'value'
 				}
-			],
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -159,20 +153,22 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 3,
 			span: 24,
-			option: [
-				{
-					icon: 'icon-taiyang',
-					value: 'icon-zhuzhuangtu-dashuju',
-					name: '太阳',
-					key: 1
-				},
-				{
-					icon: 'icon-ClearNight-qing-yewan',
-					value: 'icon-drxx91',
-					name: '月亮',
-					key: 2
-				}
-			],
+			comConfig: {
+				option: [
+					{
+						icon: 'icon-taiyang',
+						value: 'icon-zhuzhuangtu-dashuju',
+						name: '太阳',
+						key: 1
+					},
+					{
+						icon: 'icon-ClearNight-qing-yewan',
+						value: 'icon-drxx91',
+						name: '月亮',
+						key: 2
+					}
+				]
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -185,18 +181,12 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 4,
 			span: 24,
-			option: [
-				{
-					name: '按钮11111111',
-					value: '1',
-					key: 1
-				},
-				{
-					name: '菜单222222222',
-					value: '2',
-					key: 2
-				}
-			],
+			comConfig: {
+				option: [
+					{ name: '按钮11111111', value: '1', key: 1 },
+					{ name: '菜单222222222', value: '2', key: 2 }
+				]
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -209,18 +199,12 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 5,
 			span: 24,
-			option: [
-				{
-					label: '按钮',
-					value: '1',
-					key: 1
-				},
-				{
-					label: '菜单',
-					value: '2',
-					key: 2
-				}
-			],
+			comConfig: {
+				option: [
+					{ label: '按钮', value: '1', key: 1 },
+					{ label: '菜单', value: '2', key: 2 }
+				]
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -233,12 +217,13 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 6,
 			span: 24,
-
+			comConfig: {
+				option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
-			},
-			option: ['terrible', 'bad', 'normal', 'good', 'wonderful']
+			}
 		},
 		{
 			type: 'treeSelect',
@@ -247,19 +232,22 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 7,
 			span: 24,
-			checkbox: true,
-			option: [
-				{
-					title: 'Light122222222222',
-					value: 'light',
-					children: [{ title: 'Bamboo', value: 'bamboo' }]
-				},
-				{
-					title: 'Light22333333333333',
-					value: 'light2',
-					children: [{ title: 'Bamboo2', value: 'bamboo2' }]
-				}
-			],
+			comConfig: {
+				option: [
+					{
+						title: 'Light122222222222',
+						value: 'light',
+						children: [{ title: 'Bamboo', value: 'bamboo' }]
+					},
+					{
+						title: 'Light22333333333333',
+						value: 'light2',
+						children: [{ title: 'Bamboo2', value: 'bamboo2' }]
+					}
+				],
+				checkbox: true
+			},
+
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -272,18 +260,20 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			rules: [],
 			key: 8,
 			span: 24,
-			option: [
-				{
-					value: 'zhejiang',
-					label: 'Zhejiang',
-					children: [
-						{
-							value: 'hangzhou',
-							label: 'Hangzhou'
-						}
-					]
-				}
-			],
+			comConfig: {
+				option: [
+					{
+						value: 'zhejiang',
+						label: 'Zhejiang',
+						children: [
+							{
+								value: 'hangzhou',
+								label: 'Hangzhou'
+							}
+						]
+					}
+				]
+			},
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }
@@ -360,23 +350,26 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			key: 14,
 			label: 'upload',
 			name: 'file',
-			action: `${baseURL}/file`,
-			span: 24,
-			headers: {
-				Authorization: '{token:00}'
-			},
-			onChange: (info) => {
-				const { status } = info.file;
+			comConfig: {
+				name: 'file',
+				action: `${baseURL}/file`,
+				headers: {
+					Authorization: '{token:00}'
+				},
+				onChange: (info) => {
+					const { status } = info.file;
 
-				if (status !== 'uploading') {
-					// console.log(info.file, info.fileList);
-				}
-				if (status === 'done') {
-					message.success(`${info.file.name} file uploaded successfully.`);
-				} else if (status === 'error') {
-					message.error(`${info.file.name} file upload failed.`);
+					if (status !== 'uploading') {
+						// console.log(info.file, info.fileList);
+					}
+					if (status === 'done') {
+						message.success(`${info.file.name} file uploaded successfully.`);
+					} else if (status === 'error') {
+						message.error(`${info.file.name} file upload failed.`);
+					}
 				}
 			},
+			span: 24,
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
@@ -384,12 +377,14 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			name: 'button',
 			key: 15,
 			span: 24,
-			option: [
-				{ type: 'submit', name: '搜索', btnType: 'primary' },
-				{ type: 'onReset', name: '重置' }
-			],
-			onClick: onSubmit,
-			style: { float: 'right' }
+			comConfig: {
+				option: [
+					{ type: 'submit', name: '搜索', btnType: 'primary' },
+					{ type: 'onReset', name: '重置' }
+				],
+				onClick: onSubmit,
+				style: { float: 'right' }
+			}
 		}
 	];
 	return { formList };

@@ -36,7 +36,7 @@ type UseGetTableReturnData<T, D> = {
 
 /**
  * @method useTableChange 获取表格相关数据
- * @returns
+ * @returns UseGetTableReturnData
  */
 const useGetTableData = <T, D>() => {
 	const [tableData, setTableData] = useState<UseGetTableReturnData<T, D>['data']>([]);

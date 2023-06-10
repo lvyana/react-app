@@ -1,7 +1,7 @@
 build/*.js
 dist/*.js
 config/*.js
-craco.config.js"
+craco.config.js
 /public/*.js
 /public/*.html
 /node_modules

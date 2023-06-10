@@ -81,7 +81,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 					let newFormList = formList || [];
 					if (type === 'button') {
 						newFormList.push({
-							type: type as ItemTypesParams,
+							type: type,
 							name: 'name' + formList?.length,
 							key: uuidv4(),
 							span: 24,
@@ -99,7 +99,7 @@ const ExamplesItem: FC<ExamplesItemProps> = ({ name, type }) => {
 						});
 					} else {
 						newFormList.push({
-							type: type as ItemTypesParams,
+							type: type,
 							label: 'label',
 							name: 'name' + formList?.length,
 							disabled: false,

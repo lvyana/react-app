@@ -53,8 +53,10 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			type: 'select',
 			name: 'status',
 			label: '状态',
-			option: statusData,
-			fieldNames: { label: 'name', value: 'status' },
+			comConfig: {
+				option: statusData,
+				fieldNames: { label: 'name', value: 'status' }
+			},
 			key: 3,
 			layout: {
 				labelCol: { span: 6 },
@@ -67,12 +69,14 @@ const SeachForm: FC<Iprops> = ({ form, onFinish }) => {
 			name: 'button',
 			key: 14,
 			span: 6,
-			option: [
-				{ btnType: 'primary', type: 'subimt', name: '搜索', iconFont: 'icon-sousuo' },
-				{ type: 'onReset', name: '重置', iconFont: 'icon-zhongzhi', className: 'ml-1' }
-			],
-			style: { marginLeft: '10px' },
-			onClick: onFinish
+			comConfig: {
+				option: [
+					{ btnType: 'primary', type: 'subimt', name: '搜索', iconFont: 'icon-sousuo' },
+					{ type: 'onReset', name: '重置', iconFont: 'icon-zhongzhi', className: 'ml-1' }
+				],
+				style: { marginLeft: '10px' },
+				onClick: onFinish
+			}
 		}
 	];
 

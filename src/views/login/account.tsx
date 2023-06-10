@@ -18,8 +18,6 @@ interface AccountProps {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Account: FC<AccountProps> = ({ onFinish, form }) => {
-	const [_, dispatch] = useState('');
-
 	const username = useRef<HTMLInputElement>(null);
 	const password = useRef<HTMLInputElement>(null);
 
@@ -69,7 +67,7 @@ const Account: FC<AccountProps> = ({ onFinish, form }) => {
 					<label htmlFor="Password">Password</label>
 				</div>
 				<div className="text-right">
-					<a href="#" onClick={onSubmit}>
+					<a onClick={onSubmit}>
 						<span></span>
 						<span></span>
 						<span></span>

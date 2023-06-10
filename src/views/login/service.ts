@@ -9,6 +9,7 @@ import { FromType } from './index';
 interface LoginResponse {
 	token: string;
 }
+
 // 登录
 export const login = (data: FromType) => {
 	return request<FromType, LoginResponse>({

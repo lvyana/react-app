@@ -4,22 +4,8 @@
  * @createDate 2023年4月5日
  */
 import React, { FC, ReactNode } from 'react';
-import { Collapse } from 'antd';
+import { Collapse, CollapseProps } from 'antd';
 import useStyleHooks from './useStyleHooks';
-
-/**
- * @param header 面板头内容
- * @param content 面板内容
- * @param style 面板css样式
- * @param key 对应 activeKey
- */
-export type ListParams<T> = {
-	header: ReactNode;
-	content: ReactNode;
-	style?: React.CSSProperties;
-	className?: string;
-	key: T;
-};
 
 /**
  * @param list 渲染数据
@@ -31,7 +17,7 @@ export type ListParams<T> = {
  * @param expandIcon 自定义切换图标
  */
 export type IcollapseProps<T> = {
-	list: ListParams<T>[];
+	list: CollapseProps['items'];
 	defaultActiveKey?: T[];
 	styleConfig?: '1';
 	bordered?: boolean;
@@ -39,8 +25,6 @@ export type IcollapseProps<T> = {
 	style?: React.CSSProperties;
 	expandIcon?: (value: { isActive?: boolean }) => ReactNode;
 };
-
-const { Panel } = Collapse;
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -62,15 +46,8 @@ const Icollapse = <T extends string | number>({
 			defaultActiveKey={defaultActiveKey}
 			onChange={onChange}
 			expandIcon={expandIcon}
-			style={styleConfigParams.style}>
-			{styleConfigParams.list.map((item) => {
-				return (
-					<Panel header={item.header} key={item.key} style={item.style} className={item.className}>
-						{item.content}
-					</Panel>
-				);
-			})}
-		</Collapse>
+			style={styleConfigParams.style}
+			items={styleConfigParams.list}></Collapse>
 	);
 };
 

@@ -5,10 +5,9 @@
  */
 import React, { ReactNode, FC } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-
-import { getToken } from '@/utils/storage';
 import useRouterHooks from './useHooks';
 import type { Routes } from './index';
+import { getToken } from '@/utils/cookie';
 export interface AuthProps {
 	children: ReactNode;
 }
@@ -21,9 +20,7 @@ const Auth: FC<AuthProps> = ({ children }) => {
 	const { isMenu } = useRouterHooks();
 
 	// 获取token
-	const isToken = () => {
-		return getToken();
-	};
+	const isToken = () => getToken();
 
 	// token权限
 	if (isToken()) {
@@ -45,15 +42,23 @@ const Auth: FC<AuthProps> = ({ children }) => {
  */
 export const setRouterAuth: SetAuth<Routes[]> = (router) => {
 	return router.reduce<RouteObject[]>((acc, route) => {
-		if (route.children && route.children.length > 0) {
-			return [...acc, { ...route, children: setRouterAuth(route.children) }];
+		let isAuthRouter;
+
+		// 没有权限 且没有element 不做权限
+		if (route.auth === false || !route.element) {
+			isAuthRouter = route;
+		} else {
+			isAuthRouter = {
+				...route,
+				element: <Auth>{route.element}</Auth>
+			};
 		}
 
-		if (route.auth === false) {
-			return [...acc, route];
+		if (isAuthRouter.children && isAuthRouter.children.length > 0) {
+			return [...acc, { ...isAuthRouter, children: setRouterAuth(isAuthRouter.children) }];
 		}
 
-		return [...acc, { ...route, element: <Auth>{route.element}</Auth> }];
+		return [...acc, isAuthRouter];
 	}, []);
 };
 

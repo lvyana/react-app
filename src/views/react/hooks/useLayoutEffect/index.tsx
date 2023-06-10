@@ -46,8 +46,8 @@ const IuseLayoutEffect = () => {
 
 	const list = [
 		{
-			header: '执行机制',
-			content: (
+			label: '执行机制',
+			children: (
 				<div>
 					<div>1、浏览器渲染页面之前 DOM 更新之后同步执行,会阻塞渲染</div>
 					<div>2、建议修改 DOM 在useLayoutEffect执行</div>
@@ -56,8 +56,8 @@ const IuseLayoutEffect = () => {
 			key: '0'
 		},
 		{
-			header: 'reader机制',
-			content: (
+			label: 'reader机制',
+			children: (
 				<div>
 					<div>1、useLayoutEffect 内更新数据,会进行合并处理,只会 reader 一次</div>
 					<div>2、useLayoutEffect 内更新数据,会 reader 一次,不会和 useEffect 合并处理</div>
@@ -69,8 +69,8 @@ const IuseLayoutEffect = () => {
 			key: '1'
 		},
 		{
-			header: '参数执行机制',
-			content: (
+			label: '参数执行机制',
+			children: (
 				<div>
 					参照 useEffect
 					<Button type="link" onClick={onToUseEffect}>
@@ -81,8 +81,8 @@ const IuseLayoutEffect = () => {
 			key: '2'
 		},
 		{
-			header: '测试是否阻塞',
-			content: <div>useEffect 内执行1000000000循环,我认为 useEffect 也阻塞了渲染</div>,
+			label: '测试是否阻塞',
+			children: <div>useEffect 内执行1000000000循环,我认为 useEffect 也阻塞了渲染</div>,
 			key: '3'
 		}
 	];

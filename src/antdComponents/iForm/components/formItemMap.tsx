@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2023年1月3日
  */
-import { ChangeEventHandler, ReactNode } from 'react';
+import React from 'react';
 import { FormItemMap } from '../type';
 import { formButton } from './Ibutton';
 import { formCascader } from './Icascader';
@@ -14,7 +14,7 @@ import { formRadio } from './Iradio';
 import { formRate } from './Irate';
 import { formSelect, formSeachSelect } from './Iselect';
 import { formSwitch } from './Iswitch';
-import { ChangeEventExtra, formTreeSelect } from './ItreeSelect';
+import { formTreeSelect } from './ItreeSelect';
 import { formslider } from './Islider';
 import { formUserDefined } from './IuserDefined';
 import formUpload from './Iupload';

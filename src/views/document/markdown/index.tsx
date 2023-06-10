@@ -12,8 +12,8 @@ import Icollapse from '@/antdComponents/iCollapse';
 const Markdown = () => {
 	const list = [
 		{
-			header: '标题',
-			content: (
+			label: '标题',
+			children: (
 				<div>
 					# 这是一级标题
 					<br />
@@ -30,8 +30,8 @@ const Markdown = () => {
 			key: '1'
 		},
 		{
-			header: '字体',
-			content: (
+			label: '字体',
+			children: (
 				<div>
 					**这是加粗的文字**
 					<br />
@@ -47,8 +47,8 @@ const Markdown = () => {
 			key: '2'
 		},
 		{
-			header: '引用',
-			content: (
+			label: '引用',
+			children: (
 				<div>
 					{`>`}这是引用的内容
 					<br />
@@ -62,8 +62,8 @@ const Markdown = () => {
 			key: '3'
 		},
 		{
-			header: '分割线',
-			content: (
+			label: '分割线',
+			children: (
 				<div>
 					---
 					<br />
@@ -79,8 +79,8 @@ const Markdown = () => {
 			key: '4'
 		},
 		{
-			header: '图片',
-			content: (
+			label: '图片',
+			children: (
 				<div>
 					{`![图片alt](图片地址 ''图片title'')`}
 					<br />
@@ -93,8 +93,8 @@ const Markdown = () => {
 			key: '5'
 		},
 		{
-			header: '超链接',
-			content: (
+			label: '超链接',
+			children: (
 				<div>
 					演示地址: [http://114.132.242.253](http://114.132.242.253)
 					{`[超链接名](超链接地址 "超链接title")`}
@@ -107,8 +107,8 @@ const Markdown = () => {
 			key: '6'
 		},
 		{
-			header: '无序列表',
-			content: (
+			label: '无序列表',
+			children: (
 				<div>
 					- 列表内容 <br />
 					+ 列表内容 <br />
@@ -120,8 +120,8 @@ const Markdown = () => {
 			key: '7'
 		},
 		{
-			header: '有序列表',
-			content: (
+			label: '有序列表',
+			children: (
 				<div>
 					1.列表内容
 					<br />
@@ -136,8 +136,8 @@ const Markdown = () => {
 			key: '8'
 		},
 		{
-			header: '嵌套列表',
-			content: (
+			label: '嵌套列表',
+			children: (
 				<div>
 					上一级与下一级之间敲三个空格即可。
 					<br />
@@ -159,8 +159,8 @@ const Markdown = () => {
 			key: '9'
 		},
 		{
-			header: '表格',
-			content: (
+			label: '表格',
+			children: (
 				<div>
 					表头|表头|表头 <br />
 					---|:--:|---: <br />
@@ -178,8 +178,8 @@ const Markdown = () => {
 			key: '10'
 		},
 		{
-			header: '代码',
-			content: (
+			label: '代码',
+			children: (
 				<div>
 					单行代码：代码之间分别用一个反引号包起来
 					<br />

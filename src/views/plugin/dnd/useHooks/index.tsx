@@ -8,7 +8,7 @@ import { Form } from 'antd';
 import { useRequest } from 'ahooks';
 import type { FormInstance } from 'antd/es/form';
 import type { ButtonOptionsParams, FormParams } from '../EditForm';
-import { Context, FormItemParams } from '../context';
+import { Context } from '../context';
 import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
 import { FormItem } from '@/antdComponents/iForm/type';
@@ -38,7 +38,7 @@ export const useEditFormItemValue = (key: keyof FormParams, form: FormInstance<F
 export const useEditItemValue = () => {
 	const context = useContext(Context);
 	//
-	const editItemValue = (params: Partial<FormItemParams>) => {
+	const editItemValue = (params: Partial<FormParams>) => {
 		if (context?.state.selectFormItemKey) {
 			const newFormList = context.state.formList.map((item) => {
 				if (context?.state.selectFormItemKey === item.key) {
@@ -80,16 +80,16 @@ export const useWatchUrl = () => {
 
 // 拖拽数据转成标准表单数据
 export const useFormData = () => {
-	const getFormData = (dndFormData: FormItemParams): FormItem => {
+	const getFormData = (dndFormData: FormParams): FormItem<object> => {
 		const { type, key, span, label, disabled, option, isRule, isRuleTitle, rule, ruleTitle, name, labelCol } = dndFormData;
-		let newFormList: FormItem & { disabled?: boolean; option?: Options[] | ButtonOptionsParams[] } = {
+		let newFormList: FormItem<object> & { disabled?: boolean } = {
 			type,
 			key,
 			span,
 			label,
 			name,
 			disabled,
-			option
+			comConfig: { option }
 		};
 
 		if (isRule === 2) {

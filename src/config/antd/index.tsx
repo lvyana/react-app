@@ -14,20 +14,25 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 dayjs.locale('en');
 
+// 全局注入antd组件调用方法
+import ContextMethod from './context';
+
 interface ThemeProps {
 	children: React.ReactNode;
 }
 
 // ----------------------------------------------------------------
 
-const Theme: FC<ThemeProps> = ({ children }) => {
+const AntdConfig: FC<ThemeProps> = ({ children }) => {
 	const { size } = useAntdSize();
 	const { themeConfig } = useTheme();
 	return (
+		// antd全局配置
 		<ConfigProvider locale={zhCN} theme={themeConfig} componentSize={size}>
-			{children}
+			{/* 自定义注入方法 */}
+			<ContextMethod>{children}</ContextMethod>
 		</ConfigProvider>
 	);
 };
 
-export default Theme;
+export default AntdConfig;

@@ -26,7 +26,7 @@ import store from './store';
 // import enUS from 'antd/lib/locale/en_US';
 
 // antd定制化
-import Theme from '@/config/antd';
+import AntdConfig from '@/config/antd';
 
 function render() {
 	const container = document.querySelector('#root') as Element;
@@ -36,13 +36,13 @@ function render() {
 	root.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<Theme>
+				<AntdConfig>
 					<BrowserRouter basename={'/'}>
 						{/* <StrictMode> */}
 						<AntdApp>{errorBoundaryHoc(App)}</AntdApp>
 						{/* </StrictMode> */}
 					</BrowserRouter>
-				</Theme>
+				</AntdConfig>
 			</PersistGate>
 		</Provider>
 	);

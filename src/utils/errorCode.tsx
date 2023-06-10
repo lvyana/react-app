@@ -6,7 +6,8 @@
 import React from 'react';
 import { Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { clearToken } from './storage';
+import { clearToken } from './cookie';
+
 const { confirm } = Modal;
 
 export const errorCode = (code: number | string) => {
