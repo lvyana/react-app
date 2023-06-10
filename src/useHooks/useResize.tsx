@@ -5,6 +5,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
+import debounce from 'lodash/debounce';
 
 type ResizeParams = {
 	left: number;
@@ -12,23 +13,26 @@ type ResizeParams = {
 	width: number;
 	height: number;
 };
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const useResize = (Dom?: HTMLElement | null) => {
 	const [resize, setResize] = useState<ResizeParams>();
 
-	const ro = new ResizeObserver((entries, observer) => {
-		// console.log(entries, observer);
+	const ro = new ResizeObserver(
+		debounce((entries, observer) => {
+			// console.log(entries, observer);
 
-		for (const entry of entries) {
-			const { left, top, width, height } = entry.contentRect;
-			setResize({ left, top, width, height });
+			for (const entry of entries) {
+				const { left, top, width, height } = entry.contentRect;
+				setResize({ left, top, width, height });
 
-			// console.log('Element:', entry.target);
-			// console.log(`Element's size: ${width}px x ${height}px`);
-			// console.log(`Element's paddings: ${top}px ; ${left}px`);
-		}
-	});
+				// console.log('Element:', entry.target);
+				// console.log(`Element's size: ${width}px x ${height}px`);
+				// console.log(`Element's paddings: ${top}px ; ${left}px`);
+			}
+		}, 500)
+	);
 
 	useEffect(() => {
 		if (Dom) {
