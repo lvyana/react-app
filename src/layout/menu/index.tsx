@@ -12,6 +12,7 @@ import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import Icard from '@/antdComponents/iCard';
 import findNode from '@/utils/findNode';
 import findParentNode from '@/utils/findParentNode';
+import { clearToken } from '@/utils/cookie';
 
 type TitleProps = {
 	MenuTitle: Router | null;
@@ -136,6 +137,7 @@ const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
 	const navigate = useNavigate();
 
 	const onLogOut = () => {
+		clearToken();
 		navigate('/login');
 	};
 

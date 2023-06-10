@@ -5,9 +5,9 @@
  */
 import React, { ReactNode, FC } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-import { getToken } from '@/utils/storage';
 import useRouterHooks from './useHooks';
 import type { Routes } from './index';
+import { getToken } from '@/utils/cookie';
 export interface AuthProps {
 	children: ReactNode;
 }

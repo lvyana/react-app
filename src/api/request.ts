@@ -7,7 +7,7 @@ import axios, { InternalAxiosRequestConfig } from 'axios';
 import type { AxiosRequestConfig, AxiosError, Method } from 'axios';
 import abortController from './abortController';
 import { errorCode, messages, logonFailure } from '@/utils/errorCode';
-import { getToken } from '@/utils/storage';
+import { getToken } from '@/utils/cookie';
 
 /**
  * AxiosConfig

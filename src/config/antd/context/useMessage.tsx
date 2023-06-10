@@ -7,19 +7,18 @@ import React from 'react';
 import { message } from 'antd';
 import { ArgsProps } from 'antd/es/message';
 
-type MessageParam = {
-	config: ArgsProps;
-};
+export type MessageParam = (config: ArgsProps) => void;
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const useMessage = () => {
-	const [messageApi, contextHolder] = message.useMessage();
+	const [messageApi, contextMessage] = message.useMessage();
 
-	const onSuccess = ({ config }: MessageParam) => {
+	const onMessage: MessageParam = (config) => {
 		messageApi.open(config);
 	};
 
-	return { onSuccess, contextHolder };
+	return { onMessage, contextMessage };
 };
 
 export default useMessage;

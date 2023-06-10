@@ -3,16 +3,17 @@
  * @author ly
  * @createDate 2022年12月11日
  */
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'antd';
-import { getRemember, setRemember, setToken } from '@/utils/storage';
+import { getRemember, setRemember } from '@/utils/storage';
 import Account from './account';
 import Phone from './phone';
 import styles from './index.module.scss';
 import { decrypt, encrypt } from '@/utils/jsencrypt';
 import { setUserName, setPassword, getUserName, getPassword } from '@/utils/storage';
-import useNotification from '@/useHooks/useNotification';
+import { setToken } from '@/utils/cookie';
+import { Context } from '@/config/antd/context';
 
 /**
  * @param userName 用户名
@@ -30,7 +31,7 @@ export interface FromType {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Login = () => {
-	const { onNotification, contextHolder } = useNotification();
+	const message = useContext(Context);
 
 	const [accountForm] = Form.useForm<FromType>();
 
@@ -57,19 +58,18 @@ const Login = () => {
 		if (remember) {
 			setRemember(remember.toString());
 		}
-		let { token } = { token: '11' };
 		// 存token
-		setToken(token);
+		setToken('11');
 	};
 
 	const onFinish = async (values: FromType) => {
 		const { password, userName, remember } = values;
 		if (userName === 'admin' && password === '123456') {
 			setUserInfo(userName, password, remember);
-			// onNotification('info', {
-			// 	message: '欢迎登录',
-			// 	description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
-			// });
+			message?.onNotification('info', {
+				message: '欢迎登录',
+				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			});
 			navigate('/');
 			return;
 		}
@@ -77,14 +77,13 @@ const Login = () => {
 		if (userName === 'today' && password === '123456') {
 			setUserInfo(userName, password, remember);
 			navigate('/today');
-			// onNotification('info', {
-			// 	message: '欢迎登录',
-			// 	description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
-			// });
+			message?.onNotification('info', {
+				message: '欢迎登录',
+				description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).'
+			});
 			return;
 		}
-
-		onNotification('error', { message: '密码错误' });
+		message?.onNotification('error', { message: '密码错误' });
 	};
 
 	const items = [
@@ -111,7 +110,6 @@ const Login = () => {
 				</Col>
 			</Row> */}
 			<Account form={accountForm} onFinish={onFinish} />
-			{contextHolder}
 		</div>
 	);
 };

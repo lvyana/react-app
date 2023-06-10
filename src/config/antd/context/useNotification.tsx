@@ -3,8 +3,8 @@
  * @author ly
  * @createDate 2022年12月11日
  */
-import React, { useMemo } from 'react';
-import { App, notification } from 'antd';
+import React from 'react';
+import { notification } from 'antd';
 import { ArgsProps } from 'antd/es/notification/interface';
 
 export type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -15,7 +15,7 @@ export type NotificationType = 'success' | 'info' | 'warning' | 'error';
  * @param config 参数
  * @returns void
  */
-type OpenNotification = (type: NotificationType, config: ArgsProps) => void;
+export type OpenNotification = (type: NotificationType, config: ArgsProps) => void;
 
 const CONFIG: Pick<ArgsProps, 'duration' | 'placement' | 'key'> = {
 	duration: 1.5,
@@ -25,7 +25,7 @@ const CONFIG: Pick<ArgsProps, 'duration' | 'placement' | 'key'> = {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const useNotification = () => {
-	const [api, contextHolder] = notification.useNotification({ getContainer: () => document.body });
+	const [api, contextNotification] = notification.useNotification({ getContainer: () => document.body });
 
 	const onNotification: OpenNotification = (type, config) => {
 		api[type]({
@@ -33,7 +33,7 @@ const useNotification = () => {
 			...config
 		});
 	};
-	return { onNotification, contextHolder };
+	return { onNotification, contextNotification };
 };
 
 export default useNotification;
