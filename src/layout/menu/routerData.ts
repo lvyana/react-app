@@ -3,7 +3,20 @@
  * @author ly
  * @createDate 2022年10月10日
  */
-import type { Router } from './index';
+/**
+ * @param title 标题
+ * @param path 路径
+ * @param icon 图标
+ * @param show 显示、隐藏
+ * @param children 子级
+ */
+export interface Router {
+	title: string;
+	path: string;
+	icon?: string;
+	show?: boolean;
+	children?: Router[];
+}
 
 const menuList: Router[] = [
 	{
@@ -246,5 +259,5 @@ const menuList: Router[] = [
 		show: false
 	}
 ];
-export type { Router };
+
 export default menuList;

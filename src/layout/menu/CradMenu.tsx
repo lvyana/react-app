@@ -1,10 +1,10 @@
 /**
- * @file 实现左侧菜单
+ * @file 卡片菜单
  * @author ly
  * @createDate 2020年4月27日
  */
 import React, { useState, memo, useRef, useLayoutEffect } from 'react';
-import { Col, Row } from 'antd';
+import { Col, Popover, Row } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store';
@@ -12,26 +12,29 @@ import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import Icard from '@/antdComponents/iCard';
 import findNode from '@/utils/findNode';
 import findParentNode from '@/utils/findParentNode';
-import Title from './Title';
-
-/**
- * @param title 标题
- * @param path 路径
- * @param icon 图标
- * @param show 显示、隐藏
- * @param children 子级
- */
-export interface Router {
-	title: string;
-	path: string;
-	icon?: string;
-	show?: boolean;
-	children?: Router[];
-}
-
-export const EXCLUDE_MENU = ['role/allocation'];
+import Title from './components/Title';
+import menuLogo from '@/assets/images/menu.png';
+import { Router } from './routerData';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const CradMenu = () => {
+	const LayoutLogo: React.CSSProperties = {
+		width: '64px',
+		height: '64px',
+		backgroundImage: `url(${menuLogo})`,
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
+		// background: `${token.colorBgBase} url(${menuLogo}) no-repeat center`,
+		backgroundSize: 'contain'
+	};
+
+	return (
+		<Popover content={<Menu></Menu>} overlayStyle={{ width: 336 }} arrow={false} placement="bottomLeft" trigger="click">
+			<div style={LayoutLogo} className="cursor-pointer" />
+		</Popover>
+	);
+};
 
 const Menu = () => {
 	const navigate = useNavigate();
@@ -126,4 +129,4 @@ const Menu = () => {
 	);
 };
 
-export default memo(Menu);
+export default memo(CradMenu);

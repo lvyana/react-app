@@ -1,0 +1,13 @@
+ 
+
+.select-style::after{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 20px;
+  content: ' ';
+  transform:translate(-50%,-50%) rotate(45deg); 
+  border-right: 4px solid skyblue;
+  border-bottom: 4px solid skyblue;
+}

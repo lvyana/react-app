@@ -6,45 +6,36 @@
 import React, { CSSProperties } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, FloatButton } from 'antd';
-import Head from '@/layout/header';
-import useThemeHooks from '@/config/antd/theme/useThemeHooks';
+import Header from '@/layout/header';
 import useApi from '@/useHooks/useApi';
 import Tour from './tour';
 import useAysncComponent from './useAsyncComponent';
-import { Footer } from 'antd/es/layout/layout';
-
-const { Header, Content } = Layout;
+import { Content, Footer } from 'antd/es/layout/layout';
+import ConfigLayout from './configLayout';
+import useConfigLayout from './configLayout/useConfigLayout';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Layouts = () => {
-	const { token } = useThemeHooks();
+	const { openConfigLayout, onOpenConfigLayout, onCloseConfigLayout } = useConfigLayout();
 
 	// 初始化api数据
 	useApi();
 
-	const headerStyle: CSSProperties = {
-		position: 'sticky',
-		top: 0,
-		width: '100%',
-		alignItems: 'center',
-		backgroundColor: token.colorBgBase,
-		zIndex: 999,
-		padding: '0 16px'
-	};
-
 	return (
 		<Layout>
-			<Header style={headerStyle}>
-				<Head />
-			</Header>
+			<Header></Header>
 
 			<Content className="site-layout p-4" style={{ minHeight: 'calc(100vh - 64px)' }}>
 				<Outlet />
 			</Content>
 			{/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer> */}
-			<FloatButton.BackTop visibilityHeight={600} />
+
 			<Tour></Tour>
+			<FloatButton.Group shape="circle" style={{ right: 24 }}>
+				<FloatButton.BackTop visibilityHeight={600} />
+				<ConfigLayout open={openConfigLayout} onOpen={onOpenConfigLayout} onClose={onCloseConfigLayout}></ConfigLayout>
+			</FloatButton.Group>
 		</Layout>
 	);
 };

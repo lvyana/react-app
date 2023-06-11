@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import type { MenuProps } from 'antd';
 import { useLocation, Link } from 'react-router-dom';
-import { Router, EXCLUDE_MENU } from '../../menu/index';
+import type { Router } from '@/layout/menu/routerData';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
@@ -22,7 +22,6 @@ const Crumb = () => {
 	const [currentRouter, SetcurrentRouter] = useState<ItemType[]>([]);
 
 	useEffect(() => {
-		if (location.pathname.indexOf(EXCLUDE_MENU[0]) !== -1) return;
 		let routerArr: Router[] = [];
 		location.pathname.split('/').map((item, i) => {
 			if (i === 0) {

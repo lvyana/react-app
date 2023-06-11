@@ -3,12 +3,13 @@
  * @author 姓名
  * @createDate
  */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Router } from './routerData';
+import { Router } from '../routerData';
 import { Button, Col, Row } from 'antd';
 import IconFont from '@/utils/iconfont';
 import { clearToken } from '@/utils/cookie';
+import ConfigLayout from '../../configLayout';
 
 export type TitleProps = {
 	MenuTitle: Router | null;
@@ -24,14 +25,13 @@ const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
 		clearToken();
 		navigate('/login');
 	};
-
 	return (
 		<>
 			<Row justify="space-between">
 				<Col>
 					<Button
 						type="link"
-						icon={<IconFont type={MenuTitle?.path === '/' ? MenuTitle.icon || '' : 'icon-fanhui'}></IconFont>}
+						icon={<IconFont type={MenuTitle?.path === '/' ? '' : 'icon-fanhui'}></IconFont>}
 						className="mb-2"
 						onClick={onBack}>
 						{MenuTitle?.title}
