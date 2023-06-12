@@ -26,7 +26,7 @@ import type {
 	UploadType,
 	UserDefinedType
 } from './type';
-import type { formRadioOptionsParams } from './components/Iradio';
+import type { RadioOptionsParam } from './components/Iradio';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import { DefaultOptionType } from 'antd/es/select';
 import { BaseOptionType } from 'antd/es/cascader';
@@ -224,7 +224,7 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 		}
 
 		if (item.type === 'radio') {
-			const { disabled, allowClear, onChange, option, style, children, optionType } = comConfig as RadioType<formRadioOptionsParams>;
+			const { disabled, allowClear, onChange, option, style, children, optionType } = comConfig as RadioType<RadioOptionsParam>;
 			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children, optionType });
 		}
 

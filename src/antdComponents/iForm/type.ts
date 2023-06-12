@@ -9,7 +9,7 @@ import type { Rule } from 'rc-field-form/lib/interface';
 import type { Dayjs } from 'dayjs';
 import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
 import type { RangeValue } from './components/Ipicker';
-import type { formRadioOptionsParams } from './components/Iradio';
+import type { RadioOptionsParam } from './components/Iradio';
 import type { ChangeEventExtra } from './components/ItreeSelect';
 import type { BaseOptionType } from 'antd/es/cascader';
 import type { CheckboxValueType } from 'antd/es/checkbox/Group';
@@ -166,7 +166,7 @@ export type RadioType<T> = {
 	optionType?: 'default' | 'button';
 };
 
-export type FormRadioType<T> = FormItem<RadioType<T>>;
+export type FormRadioType<T extends RadioOptionsParam> = FormItem<RadioType<T>>;
 
 // checkbox
 export type CheckboxType<T> = {
@@ -271,7 +271,7 @@ export interface FormItemMap {
 	inputNumber: (item: InputNumberType) => JSX.Element;
 	switch: (item: SwitchType) => JSX.Element;
 	button: <T>(item: ButtonType<T>) => JSX.Element;
-	radio: <T extends formRadioOptionsParams>(item: RadioType<T>) => JSX.Element;
+	radio: <T extends RadioOptionsParam>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;
 	textArea: (item: TextAreaType) => JSX.Element;

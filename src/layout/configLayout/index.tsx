@@ -36,8 +36,6 @@ const ConfigLayout: FC<ConfigLayoutProps> = ({ open, onOpen, onClose }) => {
 					</div>
 				}>
 				<StyleLayout></StyleLayout>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
 			</Drawer>
 		</>
 	);

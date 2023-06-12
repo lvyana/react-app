@@ -31,7 +31,7 @@ const Title: FC<TitleProps> = ({ MenuTitle, onBack }) => {
 				<Col>
 					<Button
 						type="link"
-						icon={<IconFont type={MenuTitle?.path === '/' ? '' : 'icon-fanhui'}></IconFont>}
+						icon={<IconFont type={MenuTitle?.path === '/' ? ' ' : 'icon-fanhui'}></IconFont>}
 						className="mb-2"
 						onClick={onBack}>
 						{MenuTitle?.title}

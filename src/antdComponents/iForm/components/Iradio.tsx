@@ -15,7 +15,7 @@ import type { FormItemMap } from '../type';
  * @param name 名字
  * @param icon 图标
  */
-export interface formRadioOptionsParams {
+export interface RadioOptionsParam {
 	key: string | number;
 	value: string | number;
 	icon?: string;

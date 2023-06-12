@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { CSSProperties, memo } from 'react';
+import React, { CSSProperties, FC, memo } from 'react';
 import { Row, Col } from 'antd';
 import { Header as AntHeader } from 'antd/es/layout/layout';
 import Fullscreen from './fullscreen';
@@ -16,9 +16,13 @@ import ToggleTheme from './toggleTheme';
 import Warehouse from './warehouse';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import { IresponsiveMin } from '@/pluginComponents/iResponsive';
-import CradMenu from '../menu/CradMenu';
 
-const Header = () => {
+type HeaderProps = {
+	children: React.ReactNode;
+};
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
+const Header: FC<HeaderProps> = ({ children }) => {
 	const { token } = useThemeHooks();
 
 	const headerStyle: CSSProperties = {
@@ -35,9 +39,9 @@ const Header = () => {
 		<>
 			<AntHeader style={headerStyle}>
 				<Row justify="space-around" align="middle">
-					<Col flex="64px">
-						<CradMenu></CradMenu>
-					</Col>
+					{/* 卡片菜单 */}
+					<Col flex="64px">{children}</Col>
+
 					<IresponsiveMin MinWidth={1100}>
 						<Col flex="400px">
 							{/* 面包屑 */}

@@ -1,30 +1,83 @@
 /**
- * @file 模板
- * @author 姓名
- * @createDate
+ * @file 布局
+ * @author ly
+ * @createDate 2023年6月12日
  */
-import { Col, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Col, Form, RadioChangeEvent, Row } from 'antd';
 import layout from '@/assets/images/layout.jpg';
 import layout1 from '@/assets/images/layout1.jpg';
+import { useAppSelector, useAppDispatch } from '@/store';
 import style from './index.module.scss';
+import { GET_MENU_LAYOUT, GET_TABSMAIN_LAYOUT, LayoutType, SET_MENU_LAYOUT, SET_TABSMAIN_LAYOUT } from '@/store/reducers/layout';
+import Iform, { FormRadioType } from '@/antdComponents/iForm';
 
-type styleType = 1 | 2;
+const TABSMAIN_LAYOUT = [
+	{
+		value: 2,
+		name: '显示',
+		key: 2
+	},
+	{
+		value: 1,
+		name: '隐藏',
+		key: 1
+	}
+];
+
+type FormListParam = [FormRadioType<(typeof TABSMAIN_LAYOUT)[0]>];
+
+type FormParam = { tabsMainLayout: number };
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const StyleLayout = () => {
-	const [selectStyle, setselectStyle] = useState(1);
+	// 获取菜单初始化数据
+	const selectLayout = useAppSelector(GET_MENU_LAYOUT);
 
-	const onSelectStyle = (value: styleType) => {
-		setselectStyle(value);
+	// 获取顶部导航栏初始化数据
+	const tabsMainLayout = useAppSelector(GET_TABSMAIN_LAYOUT);
+
+	const dispatch = useAppDispatch();
+
+	const onSelectStyle = (value: LayoutType) => {
+		dispatch(SET_MENU_LAYOUT(value));
 	};
 
-	const getStyle = (value: styleType) => {
-		if (value === selectStyle) {
+	const getStyle = (value: LayoutType) => {
+		if (value === selectLayout) {
 			return style['select-style'];
 		}
 		return '';
 	};
+
+	const onSelectTabsMainLayout = (e: RadioChangeEvent) => {
+		dispatch(SET_TABSMAIN_LAYOUT(e.target.value));
+	};
+
+	const [form] = Form.useForm<FormParam>();
+
+	const formList: FormListParam = [
+		{
+			type: 'radio',
+			name: 'tabsMainLayout',
+			label: '顶部导航栏',
+			comConfig: {
+				option: TABSMAIN_LAYOUT,
+				onChange: onSelectTabsMainLayout
+			},
+			key: 0,
+			layout: {
+				labelCol: { span: 6 },
+				wrapperCol: { span: 18 }
+			},
+			span: 24
+		}
+	];
+
+	useEffect(() => {
+		form.setFieldsValue({ tabsMainLayout });
+	}, []);
 
 	return (
 		<div>
@@ -37,6 +90,8 @@ const StyleLayout = () => {
 					<img src={layout1} alt="" className={'cursor-pointer '} onClick={() => onSelectStyle(2)} />
 				</Col>
 			</Row>
+			<h2 className="mt-2 mb-2 text-base">组件显示</h2>
+			<Iform form={form} formList={formList}></Iform>
 		</div>
 	);
 };
