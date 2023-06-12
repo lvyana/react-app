@@ -5,12 +5,11 @@
  */
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
-import type { MenuProps } from 'antd';
+import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { useLocation, Link } from 'react-router-dom';
 import type { Router } from '@/layout/menu/routerData';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
-import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 

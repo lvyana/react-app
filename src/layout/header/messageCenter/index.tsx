@@ -6,8 +6,8 @@
 import React, { FC, useState } from 'react';
 import { BellOutlined } from '@ant-design/icons';
 import { Button, Col, Popover, Row, Tabs, Badge } from 'antd';
-import Lists from './compoment/Lists';
 import { useNavigate } from 'react-router-dom';
+import Lists from './compoment/Lists';
 import style from './index.module.scss';
 
 /**

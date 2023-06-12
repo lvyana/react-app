@@ -4,9 +4,11 @@
  * @createDate 2020年4月27日
  */
 import React from 'react';
+import { Avatar } from 'antd';
 import { useAppSelector } from '@/store';
 import { GET_SELECTOR_PHOTO } from '@/store/reducers/user';
-import { Avatar } from 'antd';
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const UserAvatar = () => {
 	const photo = useAppSelector(GET_SELECTOR_PHOTO);

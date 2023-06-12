@@ -10,6 +10,8 @@ export type ThemeType = 'white' | 'dark';
 
 /**
  * @type 1-卡片菜单   2-左侧菜单
+ * @type tabsMainLayout 1-显示   2-隐藏
+ * @type footerLayout 1-显示   2-隐藏
  */
 export type LayoutType = 1 | 2;
 /**
@@ -23,12 +25,14 @@ export interface InitLayoutParams {
 	color: ThemeType;
 	menuLayout: LayoutType;
 	tabsMainLayout: LayoutType;
+	footerLayout: LayoutType;
 }
 let initialState: InitLayoutParams = {
 	size: 'middle',
 	color: 'white',
 	menuLayout: 1,
-	tabsMainLayout: 2
+	tabsMainLayout: 1,
+	footerLayout: 1
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -47,15 +51,19 @@ const layout = createSlice({
 		},
 		SET_TABSMAIN_LAYOUT: (state, { payload, type }: PayloadAction<LayoutType>) => {
 			state.tabsMainLayout = payload;
+		},
+		SET_FOOTER_LAYOUT: (state, { payload, type }: PayloadAction<LayoutType>) => {
+			state.footerLayout = payload;
 		}
 	}
 });
 
-export const { SET_SIZE, SET_THEME, SET_MENU_LAYOUT, SET_TABSMAIN_LAYOUT } = layout.actions;
+export const { SET_SIZE, SET_THEME, SET_MENU_LAYOUT, SET_TABSMAIN_LAYOUT, SET_FOOTER_LAYOUT } = layout.actions;
 
 export const GET_SIZE = (state: RootState) => state.layout.size;
 export const GET_THEME = (state: RootState) => state.layout.color;
 export const GET_MENU_LAYOUT = (state: RootState) => state.layout.menuLayout;
 export const GET_TABSMAIN_LAYOUT = (state: RootState) => state.layout.tabsMainLayout;
+export const GET_FOOTER_LAYOUT = (state: RootState) => state.layout.footerLayout;
 
 export default layout.reducer;

@@ -4,17 +4,12 @@
  * @createDate 2023年2月14日
  */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Avatar, Button } from 'antd';
-import gitee from '@/assets/images/gitee.png';
-import github from '@/assets/images/github.png';
 import IconFont from '@/utils/iconfont';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Warehouse = () => {
-	const navigate = useNavigate();
-
 	const onGoGitee = () => {
 		const w = window.open('about:blank');
 		if (w) {

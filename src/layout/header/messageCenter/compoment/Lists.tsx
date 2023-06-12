@@ -6,8 +6,8 @@
 import React, { useState, useEffect } from 'react';
 import { List } from 'antd';
 import { useRequest } from 'ahooks';
-import { messgeCenter } from '../../service';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
+import { messgeCenter } from '../../service';
 
 /**
  * @param title 标题

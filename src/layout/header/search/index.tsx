@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useRef, useEffect, ChangeEventHandler, ChangeEvent } from 'react';
+import React, { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { Input, Button, Dropdown, InputRef } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';

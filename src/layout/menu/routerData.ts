@@ -247,12 +247,12 @@ const menuList: Router[] = [
 			}
 		]
 	},
+	// 不显示在菜单中中
 	{
 		title: '个人中心',
 		path: '/mycenter',
 		icon: 'icon-gerenzhongxin'
 	},
-	// 不显示在菜单中中
 	{
 		title: '消息中心',
 		path: '/messgeCenter',

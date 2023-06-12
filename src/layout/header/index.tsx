@@ -6,6 +6,8 @@
 import React, { CSSProperties, FC, memo } from 'react';
 import { Row, Col } from 'antd';
 import { Header as AntHeader } from 'antd/es/layout/layout';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
+import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 import Fullscreen from './fullscreen';
 import ComponentSize from './componentSize';
 import Crumb from './crumb';
@@ -14,8 +16,6 @@ import UserAvatar from './userAvatar';
 import MessageCenter from './messageCenter';
 import ToggleTheme from './toggleTheme';
 import Warehouse from './warehouse';
-import useThemeHooks from '@/config/antd/theme/useThemeHooks';
-import { IresponsiveMin } from '@/pluginComponents/iResponsive';
 
 type HeaderProps = {
 	children: React.ReactNode;

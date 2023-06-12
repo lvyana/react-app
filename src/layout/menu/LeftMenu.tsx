@@ -3,17 +3,16 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useEffect, memo, FC } from 'react';
-import { Layout, MenuProps } from 'antd';
-import { Menu as AntdMenu } from 'antd';
+import React, { useState, useEffect, memo, FC, useMemo } from 'react';
+import { Layout, MenuProps, Menu as AntdMenu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
+import Sider from 'antd/es/layout/Sider';
+import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import IconFont from '@/utils/iconfont';
 import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import useRouterHooks from '@/router/useHooks';
 import { Router } from './routerData';
-import Sider from 'antd/es/layout/Sider';
-import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -70,6 +69,8 @@ const LeftMenu: FC<LeftMenuProps> = ({ children }) => {
 
 	const menuList = useAppSelector(GET_ROUTER);
 
+	const menu = useMemo(() => getMenu(menuList), [menuList]);
+
 	return (
 		<Layout>
 			<Sider
@@ -91,7 +92,7 @@ const LeftMenu: FC<LeftMenuProps> = ({ children }) => {
 					onOpenChange={onOpenChange}
 					selectedKeys={[selectMenuPath || pathname]}
 					mode="inline"
-					items={getMenu(menuList)}></AntdMenu>
+					items={menu}></AntdMenu>
 			</Sider>
 			{children}
 		</Layout>

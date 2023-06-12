@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, memo, useRef, useLayoutEffect } from 'react';
+import React, { useState, memo, useRef, useLayoutEffect, FC } from 'react';
 import { Col, Popover, Row } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
@@ -13,25 +13,17 @@ import Icard from '@/antdComponents/iCard';
 import findNode from '@/utils/findNode';
 import findParentNode from '@/utils/findParentNode';
 import Title from './components/Title';
-import menuLogo from '@/assets/images/menu.png';
 import { Router } from './routerData';
 
+type CradMenuProps = {
+	children: React.ReactNode;
+};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const CradMenu = () => {
-	const LayoutLogo: React.CSSProperties = {
-		width: '64px',
-		height: '64px',
-		backgroundImage: `url(${menuLogo})`,
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
-		// background: `${token.colorBgBase} url(${menuLogo}) no-repeat center`,
-		backgroundSize: 'contain'
-	};
-
+const CradMenu: FC<CradMenuProps> = ({ children }) => {
 	return (
 		<Popover content={<Menu></Menu>} overlayStyle={{ width: 336 }} arrow={false} placement="bottomLeft" trigger="click">
-			<div style={LayoutLogo} className="cursor-pointer" />
+			<> {children}</>
 		</Popover>
 	);
 };

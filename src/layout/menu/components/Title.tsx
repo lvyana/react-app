@@ -5,11 +5,10 @@
  */
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Router } from '../routerData';
 import { Button, Col, Row } from 'antd';
 import IconFont from '@/utils/iconfont';
 import { clearToken } from '@/utils/cookie';
-import ConfigLayout from '../../configLayout';
+import { Router } from '../routerData';
 
 export type TitleProps = {
 	MenuTitle: Router | null;

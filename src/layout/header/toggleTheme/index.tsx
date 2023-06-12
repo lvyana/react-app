@@ -4,13 +4,13 @@
  * @createDate 2022年11月19日
  */
 import React, { useMemo } from 'react';
+import { Button } from 'antd';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/store';
-import { GET_THEME, SET_THEME, ThemeType } from '@/store/reducers/layout';
-import { Button, Dropdown } from 'antd';
-import { BgColorsOutlined } from '@ant-design/icons';
-import style from '../index.module.scss';
+import { GET_THEME, SET_THEME } from '@/store/reducers/layout';
 import IconFont from '@/utils/iconfont';
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const ToggleTheme = () => {
 	const dispatch = useAppDispatch();

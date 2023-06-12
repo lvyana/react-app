@@ -3,12 +3,12 @@
  *	@author ly
  *  @createDate 2020年4月27日
  */
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Dropdown } from 'antd';
 import { FontSizeOutlined } from '@ant-design/icons';
-import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { SET_SIZE, GET_SIZE } from '@/store/reducers/layout';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 
 const ComponentSize = () => {
 	// 尺寸

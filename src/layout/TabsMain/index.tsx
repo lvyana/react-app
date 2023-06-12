@@ -7,8 +7,8 @@ import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs } from 'antd';
 import menuList, { Router } from '@/layout/menu/routerData';
-import style from './index.module.scss';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
+import style from './index.module.scss';
 
 type ACTION = 'add' | 'remove';
 
