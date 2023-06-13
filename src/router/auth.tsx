@@ -45,7 +45,7 @@ export const setRouterAuth: SetAuth<Routes[]> = (router) => {
 		let isAuthRouter;
 
 		// 没有权限 且没有element 不做权限
-		if (route.auth === false || !route.element) {
+		if (route.auth === false || !route.element || route.children) {
 			isAuthRouter = route;
 		} else {
 			isAuthRouter = {

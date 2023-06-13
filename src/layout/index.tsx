@@ -1,7 +1,7 @@
 /**
  * @file Layout
  * @author ly
- *  @createDate 日期：2020年4月27日
+ * @createDate 2023年6月13日
  */
 import React from 'react';
 import useApi from '@/useHooks/useApi';
@@ -21,8 +21,6 @@ const Layout = () => {
 		</>
 	);
 };
-
-// 控制布局
 
 const AsyncLayout = () => useAysncComponent(Layout);
 

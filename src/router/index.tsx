@@ -5,7 +5,7 @@
  */
 import React, { lazy } from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
-import Layouts from '@/layout';
+import AsyncLayout from '@/layout';
 import Login from '@/views/login';
 import ToDay from '@/views/toDay';
 import suspenseLoad from './suspenseLoad';
@@ -43,7 +43,7 @@ const router: Routes[] = setRouterAuth([
 	{ path: '/login', element: <Login />, auth: false },
 	{
 		path: '/',
-		element: <Layouts />,
+		element: <AsyncLayout />,
 		children: [
 			{ index: true, element: <Navigate to="home" /> },
 			{
