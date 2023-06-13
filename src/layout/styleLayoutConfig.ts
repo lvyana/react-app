@@ -18,16 +18,37 @@ const LEFT_MENU = {
 	}
 };
 
-const styleLayout = {
+const menuStyle = {
 	1: CARD_MENU,
 	2: LEFT_MENU
 };
 
-// #----------- 所有布局的样式 -----------
-const styleLayoutConfig = {
-	styleLayout: styleLayout
+const SHOW_FOOTER = {
+	main: { minHeight: 'calc(100vh - 140px)' },
+	marginLeft: 200
 };
 
-export type StyleLayout = typeof CARD_MENU | typeof LEFT_MENU;
+const HIDDEN_FOOTER = {
+	main: { minHeight: 'calc(100vh - 64px)' }
+};
+
+const footerStyle = {
+	1: HIDDEN_FOOTER,
+	2: SHOW_FOOTER
+};
+
+// #----------- 所有布局的样式 -----------
+const styleLayoutConfig = {
+	menuStyle,
+	footerStyle
+};
+
+export type MenuLayout = typeof CARD_MENU | typeof LEFT_MENU;
+export type FooterLayout = typeof SHOW_FOOTER | typeof HIDDEN_FOOTER;
+
+export type StyleLayoutConfig = {
+	menuStyle: MenuLayout;
+	footerStyle: FooterLayout;
+};
 
 export default styleLayoutConfig;

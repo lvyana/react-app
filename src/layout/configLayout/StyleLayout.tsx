@@ -96,7 +96,7 @@ const StyleLayout = () => {
 				option: TABSMAIN_LAYOUT,
 				onChange: onSelectFooterLayout
 			},
-			key: 0,
+			key: 1,
 			layout: {
 				labelCol: { span: 6 },
 				wrapperCol: { span: 18 }

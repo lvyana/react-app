@@ -11,7 +11,7 @@ import useApi from '@/useHooks/useApi';
 import { useAppSelector } from '@/store';
 import { GET_FOOTER_LAYOUT, GET_MENU_LAYOUT, GET_TABSMAIN_LAYOUT } from '@/store/reducers/layout';
 import OtherFunctions from './otherFunctions';
-import styleLayoutConfig, { StyleLayout } from './styleLayoutConfig';
+import styleLayoutConfig, { StyleLayoutConfig } from './styleLayoutConfig';
 import TabsMain from './TabsMain';
 import CradMenu from './menu/CradMenu';
 import Logo from './header/logo';
@@ -23,12 +23,14 @@ import LeftMenu from './menu/LeftMenu';
  * @param layoutStyle 布局所有需要的样式
  * @param tabsMain 顶部导航栏
  * @param CradMenu 卡片菜单
+ * @param leftMenu 左侧菜单
  * @param footer 底部
  */
 type LayoutsProps = {
-	layoutStyle: StyleLayout;
+	layoutStyle: StyleLayoutConfig;
 	tabsMain: React.ReactNode;
 	CradMenu: React.ReactNode;
+	leftMenu: React.ReactNode;
 	footer: React.ReactNode;
 };
 
@@ -76,6 +78,14 @@ const LayoutStyle = () => {
 		}
 	}, [menuLayout]);
 
+	const leftMenu = useMemo(() => {
+		if (menuLayout === 1) {
+			return <></>;
+		} else {
+			return <LeftMenu></LeftMenu>;
+		}
+	}, [menuLayout]);
+
 	const footer = useMemo(() => {
 		if (footerLayout === 1) {
 			return <></>;
@@ -90,35 +100,37 @@ const LayoutStyle = () => {
 	}, [footerLayout]);
 
 	// 所有布局的样式
-	const { styleLayout } = styleLayoutConfig;
+	// const { menu, footer } = styleLayoutConfig;
 
-	// 布局对应的样式
-	const layoutStyle = styleLayout[menuLayout];
+	// 菜单布局对应的样式
+	const menuStyle = styleLayoutConfig.menuStyle[menuLayout];
 
-	if (menuLayout === 1) {
-		return <Layouts layoutStyle={layoutStyle} tabsMain={tabsMain} CradMenu={cradMenu} footer={footer}></Layouts>;
-	} else if (menuLayout === 2) {
-		return (
-			<LeftMenu>
-				<Layouts layoutStyle={layoutStyle} tabsMain={tabsMain} CradMenu={cradMenu} footer={footer}></Layouts>
-			</LeftMenu>
-		);
-	}
-	return <></>;
+	// footer布局对应的样式
+	const footerStyle = styleLayoutConfig.footerStyle[footerLayout];
+
+	// 所有布局的样式
+	const layoutStyle = { menuStyle, footerStyle };
+
+	return <Layouts layoutStyle={layoutStyle} tabsMain={tabsMain} CradMenu={cradMenu} leftMenu={leftMenu} footer={footer}></Layouts>;
 };
 
 // 布局
-const Layouts: FC<LayoutsProps> = ({ layoutStyle, tabsMain, CradMenu, footer }) => {
+const Layouts: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu, footer }) => {
 	return (
-		<Layout>
-			<Header>{CradMenu}</Header>
+		<>
+			{leftMenu}
+			<Layout>
+				<Header>{CradMenu}</Header>
 
-			<Content className="site-layout p-4" style={{ minHeight: 'calc(100vh - 64px)', ...layoutStyle.main }}>
-				{tabsMain}
-				<Outlet />
-			</Content>
-			{footer}
-		</Layout>
+				<div style={{ ...layoutStyle.menuStyle.main }}>
+					<Content className="site-layout p-4" style={{ ...layoutStyle.footerStyle.main }}>
+						{tabsMain}
+						<Outlet />
+					</Content>
+					{footer}
+				</div>
+			</Layout>
+		</>
 	);
 };
 

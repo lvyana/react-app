@@ -16,13 +16,9 @@ import { Router } from './routerData';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-type LeftMenuProps = {
-	children: React.ReactNode;
-};
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const LeftMenu: FC<LeftMenuProps> = ({ children }) => {
+const LeftMenu = () => {
 	const location = useLocation();
 	const { pathname } = location;
 
@@ -72,12 +68,12 @@ const LeftMenu: FC<LeftMenuProps> = ({ children }) => {
 	const menu = useMemo(() => getMenu(menuList), [menuList]);
 
 	return (
-		<Layout>
+		<>
 			<Sider
 				zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
 				style={{
 					overflow: 'auto',
-					height: '100vh',
+					height: 'calc(100vh - 64px)',
 					position: 'fixed',
 					left: 0,
 					top: 64,
@@ -94,8 +90,7 @@ const LeftMenu: FC<LeftMenuProps> = ({ children }) => {
 					mode="inline"
 					items={menu}></AntdMenu>
 			</Sider>
-			{children}
-		</Layout>
+		</>
 	);
 };
 
