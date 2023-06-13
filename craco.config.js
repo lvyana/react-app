@@ -42,20 +42,20 @@ const whenProdPlugin = whenProd(
 		new CompressionWebpackPlugin({
 			test: /\.js$|\.css$/,
 			threshold: 1024
-		}),
-		new TerserPlugin({
-			terserOptions: {
-				// https://github.com/terser/terser#minify-options
-				compress: {
-					warnings: false, // 删除无用代码时是否给出警告
-					drop_debugger: true, // 删除所有的debugger
-					drop_console: true, // 删除所有的console.*
-					// pure_funcs: ['']
-					pure_funcs: ['console.log'] // 删除所有的console.log
-				}
-			}
-		}),
-		new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })
+		})
+		// new TerserPlugin({
+		// 	terserOptions: {
+		// 		// https://github.com/terser/terser#minify-options
+		// 		compress: {
+		// 			warnings: false, // 删除无用代码时是否给出警告
+		// 			drop_debugger: true, // 删除所有的debugger
+		// 			drop_console: true, // 删除所有的console.*
+		// 			// pure_funcs: ['']
+		// 			pure_funcs: ['console.log'] // 删除所有的console.log
+		// 		}
+		// 	}
+		// }),
+		// new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })
 	],
 	[]
 );
@@ -121,7 +121,7 @@ module.exports = {
 					publicPath: '/'
 				};
 				// 关闭 devtool
-				webpackConfig.devtool = false;
+				// webpackConfig.devtool = false;
 
 				// 配置扩展扩展名
 				webpackConfig.resolve.extensions = [...webpackConfig.resolve.extensions, ...['.scss']];
