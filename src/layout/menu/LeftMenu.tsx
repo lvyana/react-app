@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useEffect, memo, FC, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Layout, MenuProps, Menu as AntdMenu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import Sider from 'antd/es/layout/Sider';

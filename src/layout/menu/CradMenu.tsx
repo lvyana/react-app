@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, memo, useRef, useLayoutEffect, FC } from 'react';
+import React, { useState, useRef, useLayoutEffect, FC } from 'react';
 import { Col, Popover, Row } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IconFont from '@/utils/iconfont';
@@ -121,4 +121,4 @@ const Menu = () => {
 	);
 };
 
-export default memo(CradMenu);
+export default CradMenu;

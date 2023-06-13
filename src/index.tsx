@@ -39,7 +39,7 @@ function render() {
 				<AntdConfig>
 					<BrowserRouter basename={'/'}>
 						{/* <StrictMode> */}
-						<AntdApp>{errorBoundaryHoc(App)}</AntdApp>
+						{errorBoundaryHoc(App)}
 						{/* </StrictMode> */}
 					</BrowserRouter>
 				</AntdConfig>

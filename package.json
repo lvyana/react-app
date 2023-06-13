@@ -16,6 +16,7 @@
 		"ahooks": "^3.7.7",
 		"antd": "^5.4.7",
 		"axios": "^1.4.0",
+		"dayjs": "^1.11.8",
 		"easy-typer-js": "^2.1.0",
 		"framer-motion": "^10.12.9",
 		"html2canvas": "^1.4.1",
@@ -50,6 +51,7 @@
 		"redux-persist": "^6.0.0",
 		"resize-observer-polyfill": "^1.5.1",
 		"typescript": "^5.0.4",
+		"uuid": "^9.0.0",
 		"web-vitals": "^3.3.1"
 	},
 	"scripts": {
