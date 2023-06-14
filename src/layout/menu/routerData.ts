@@ -222,6 +222,11 @@ const menuList: Router[] = [
 				title: 'easyTyper',
 				path: '/plugin/easyTyper',
 				icon: 'icon-xinpin'
+			},
+			{
+				title: '视频通话',
+				path: '/plugin/videoCall',
+				icon: 'icon-xinpin'
 			}
 		]
 	},
