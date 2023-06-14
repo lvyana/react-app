@@ -15,14 +15,12 @@ import DemoGauge from './components/Gauge';
 import DemoLiquid from './components/Liquid';
 import DemoWordCloud from './components/WordCloud';
 import DemoMix from './components/Mix';
-import LeftMenu from '@/layout/menu/LeftMenu';
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Home = () => {
 	return (
 		<>
-			<LeftMenu></LeftMenu>
 			<Row gutter={16}>
 				<Col xs={24} sm={24} md={12} lg={12} xl={6} className="mb-4">
 					<Icard>
