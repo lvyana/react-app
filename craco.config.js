@@ -18,6 +18,9 @@ const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
 // gzip压缩
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
+// 生产调试模式
+const production_debugging = false;
+
 /* 修改默认的打包后文件夹名称build->dist */
 const paths = require('react-scripts/config/paths');
 paths.appBuild = path.join(path.dirname(paths.appBuild), 'dist');
@@ -37,28 +40,28 @@ const whenDevPlugin = whenDev(() => {
 }, []);
 
 // 生产环境需要用到的插件
-const whenProdPlugin = whenProd(
-	() => [
+const whenProdPlugin = whenProd(() => {
+	if (production_debugging) return [];
+	return [
 		new CompressionWebpackPlugin({
 			test: /\.js$|\.css$/,
 			threshold: 1024
-		})
-		// new TerserPlugin({
-		// 	terserOptions: {
-		// 		// https://github.com/terser/terser#minify-options
-		// 		compress: {
-		// 			warnings: false, // 删除无用代码时是否给出警告
-		// 			drop_debugger: true, // 删除所有的debugger
-		// 			drop_console: true, // 删除所有的console.*
-		// 			// pure_funcs: ['']
-		// 			pure_funcs: ['console.log'] // 删除所有的console.log
-		// 		}
-		// 	}
-		// }),
-		// new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })
-	],
-	[]
-);
+		}),
+		new TerserPlugin({
+			terserOptions: {
+				// https://github.com/terser/terser#minify-options
+				compress: {
+					warnings: false, // 删除无用代码时是否给出警告
+					drop_debugger: true, // 删除所有的debugger
+					drop_console: true, // 删除所有的console.*
+					// pure_funcs: ['']
+					pure_funcs: ['console.log'] // 删除所有的console.log
+				}
+			}
+		}),
+		new BundleAnalyzerPlugin({ analyzerHost: '127.0.0.2', analyzerPort: 8999 })
+	];
+}, []);
 
 module.exports = {
 	devServer: {
@@ -121,23 +124,10 @@ module.exports = {
 					publicPath: '/'
 				};
 				// 关闭 devtool
-				// webpackConfig.devtool = false;
+				webpackConfig.devtool = production_debugging ? 'hidden-source-map' : false;
 
 				// 配置扩展扩展名
 				webpackConfig.resolve.extensions = [...webpackConfig.resolve.extensions, ...['.scss']];
-
-				// 覆盖已经内置的 plugin 配置
-				// webpackConfig.plugins.map((plugin) => {
-				// 	whenProd(() => {
-				// 		if (plugin instanceof MiniCssExtractPlugin) {
-				// 			Object.assign(plugin.options, {
-				// 				filename: 'static/css/[name].css',
-				// 				chunkFilename: 'static/css/[name].css'
-				// 			});
-				// 		}
-				// 	});
-				// 	return plugin;
-				// });
 
 				webpackConfig.externals = {
 					// 注意对应的在public/index.html引入jquery的远程文件地址

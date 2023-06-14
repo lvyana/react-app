@@ -75,7 +75,7 @@ const router: Routes[] = setRouterAuth([
 			// { path: '*', element: suspenseLoad(<NotFound />) }
 		]
 	},
-	{ path: '/today', element: suspenseLoad(<ToDay />), auth: false },
+	{ path: '/today', element: <ToDay />, auth: false },
 	{ path: '*', element: suspenseLoad(<NotFound />), auth: false }
 ]);
 
