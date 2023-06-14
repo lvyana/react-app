@@ -10,9 +10,9 @@ import Header from '@/layout/header';
 import Logo from './header/logo';
 import CradMenu from './menu/CradMenu';
 import LeftMenu from './menu/LeftMenu';
-import TabsMain from './TabsMain';
 import useLayout from './useHooks/useLayout';
 import { StyleLayoutConfig } from './useHooks/styleLayoutConfig';
+import TabsMain from './tabsMain';
 
 /**
  * @param layoutStyle 布局所有需要的样式
