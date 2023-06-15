@@ -13,6 +13,7 @@ import LeftMenu from './menu/LeftMenu';
 import useLayout from './useHooks/useLayout';
 import { StyleLayoutConfig } from './useHooks/styleLayoutConfig';
 import TabsMain from './tabsMain';
+import { LayoutType } from '@/store/reducers/layout';
 
 /**
  * @param layoutStyle 布局所有需要的样式
@@ -29,17 +30,29 @@ type LayoutsProps = {
 	footer: React.ReactNode;
 };
 
+type TabsMainComProps = {
+	tabsMainLayout: LayoutType;
+};
+
+type CradMenuComProps = {
+	menuLayout: LayoutType;
+};
+
+type FooterComProps = {
+	footerLayout: LayoutType;
+};
+
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const LayoutStyle = () => {
-	const { layoutStyle } = useLayout();
+	const { layoutStyle, tabsMainLayout, menuLayout, footerLayout } = useLayout();
 	return (
 		<LayoutCom
 			layoutStyle={layoutStyle}
-			tabsMain={<TabsMainCom></TabsMainCom>}
-			CradMenu={<CradMenuCom></CradMenuCom>}
-			leftMenu={<LeftMenuCom></LeftMenuCom>}
-			footer={<FooterCom></FooterCom>}></LayoutCom>
+			tabsMain={<TabsMainCom tabsMainLayout={tabsMainLayout}></TabsMainCom>}
+			CradMenu={<CradMenuCom menuLayout={menuLayout}></CradMenuCom>}
+			leftMenu={<LeftMenuCom menuLayout={menuLayout}></LeftMenuCom>}
+			footer={<FooterCom footerLayout={footerLayout}></FooterCom>}></LayoutCom>
 	);
 };
 
@@ -47,15 +60,20 @@ const LayoutStyle = () => {
 const LayoutCom: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu, footer }) => {
 	return (
 		<>
+			{/* 左侧卡片 */}
 			{leftMenu}
 			<Layout>
+				{/* 顶部栏 */}
 				<Header>{CradMenu}</Header>
 
 				<div style={{ ...layoutStyle.menuStyle.main }}>
 					<Content className="site-layout p-4" style={{ ...layoutStyle.footerStyle.main }}>
+						{/* 导航栏 */}
 						{tabsMain}
+						{/* 内容 */}
 						<Outlet />
 					</Content>
+					{/* 底部 */}
 					{footer}
 				</div>
 			</Layout>
@@ -63,8 +81,7 @@ const LayoutCom: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu
 	);
 };
 
-const TabsMainCom = () => {
-	const { tabsMainLayout } = useLayout();
+const TabsMainCom: FC<TabsMainComProps> = ({ tabsMainLayout }) => {
 	if (tabsMainLayout === 1) {
 		return <></>;
 	} else {
@@ -72,8 +89,7 @@ const TabsMainCom = () => {
 	}
 };
 
-const CradMenuCom = () => {
-	const { menuLayout } = useLayout();
+const CradMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	if (menuLayout === 1) {
 		return (
 			<CradMenu>
@@ -85,8 +101,7 @@ const CradMenuCom = () => {
 	}
 };
 
-const LeftMenuCom = () => {
-	const { menuLayout } = useLayout();
+const LeftMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	if (menuLayout === 1) {
 		return <></>;
 	} else {
@@ -94,9 +109,7 @@ const LeftMenuCom = () => {
 	}
 };
 
-const FooterCom = () => {
-	const { footerLayout } = useLayout();
-
+const FooterCom: FC<FooterComProps> = ({ footerLayout }) => {
 	if (footerLayout === 1) {
 		return <></>;
 	} else {
