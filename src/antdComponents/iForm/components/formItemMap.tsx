@@ -8,7 +8,7 @@ import { FormItemMap } from '../type';
 import { formButton } from './Ibutton';
 import { formCascader } from './Icascader';
 import { formCheckbox } from './Icheckbox';
-import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker, RangeValue } from './Ipicker';
+import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker } from './Ipicker';
 import { formInputItem, formInputTextArea, formInputNumber } from './Iinput';
 import { formRadio } from './Iradio';
 import { formRate } from './Irate';

@@ -173,7 +173,7 @@ const menuList: Router[] = [
 		]
 	},
 	{
-		title: 'plugin',
+		title: '插件',
 		path: '/plugin',
 		icon: 'icon-plugin',
 		children: [
@@ -219,7 +219,7 @@ const menuList: Router[] = [
 				icon: 'icon-xinpin'
 			},
 			{
-				title: 'easyTyper',
+				title: '打字效果',
 				path: '/plugin/easyTyper',
 				icon: 'icon-xinpin'
 			},

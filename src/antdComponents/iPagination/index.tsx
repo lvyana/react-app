@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Pagination } from 'antd';
 
 /**

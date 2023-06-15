@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2022年11月6日
  */
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Image, Badge, List, Progress, Skeleton, Space, Tag, Tooltip } from 'antd';
 import Commoent from './Comment';

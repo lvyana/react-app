@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2023年1月3日
  */
-import React, { FC } from 'react';
+import React from 'react';
 import { Cascader } from 'antd';
 import type { FormItemMap } from '../type';
 

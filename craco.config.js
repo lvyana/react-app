@@ -187,6 +187,11 @@ module.exports = {
 								test: /[\\/]node_modules[\\/](react-dom)[\\/]/,
 								name: 'react-dom',
 								chunks: 'all'
+							},
+							refractor: {
+								test: /[\\/]node_modules[\\/](refractor)[\\/]/,
+								name: 'refractor',
+								chunks: 'all'
 							}
 						}
 					}
@@ -206,6 +211,16 @@ module.exports = {
 				// 找到了HtmlWebpackPlugin的插件
 				match.userOptions.cdn = cdn;
 			}
+
+			// 小于 40K 的图片都会变成 base64 的图片格式
+			webpackConfig.module.rules.push({
+				test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.jpg$/, /\.svg$/],
+				loader: require.resolve('url-loader'),
+				options: {
+					limit: 40000, // 把默认的 10000 修改为 40000
+					name: 'static/media/[name].[hash:8].[ext]'
+				}
+			});
 
 			// 返回重写后的新配置
 			return webpackConfig;

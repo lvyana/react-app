@@ -1,5 +1,5 @@
 import { ButtonType } from 'antd/es/button';
-import { CSSProperties, ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 
 // 点击按钮事件
 export type OnClickBtn<T> = (type: T, value: ButtonItemParams<T>) => void; //点击事件

@@ -33,5 +33,4 @@ const AddTask = () => {
 	);
 };
 
-const TaskContent = () => {};
 export default AddTask;

@@ -3,9 +3,8 @@
  * @author ly
  * @createDate 2023年1月3日
  */
-import React, { FC } from 'react';
+import React from 'react';
 import { DatePicker, TimePicker } from 'antd';
-import type { Dayjs } from 'dayjs';
 import type { FormItemMap } from '../type';
 
 const { RangePicker } = DatePicker;

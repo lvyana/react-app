@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Tag } from 'antd';
 
 const { CheckableTag } = Tag;

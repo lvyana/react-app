@@ -3,8 +3,7 @@
  * @author ly
  * @createDate 2023年1月3日
  */
-import React, { FC } from 'react';
-import { Button, Row, Col } from 'antd';
+import React from 'react';
 import Ibutton from '@/antdComponents/iButton';
 import type { FormItemMap } from '../type';
 

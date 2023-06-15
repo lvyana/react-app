@@ -3,7 +3,7 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { FC } from 'react';
+import React from 'react';
 import Iform, { FormItem, FormInstance } from '@/antdComponents/iForm';
 import AnimateComponent from '@/pluginComponents/iAnimateComponent';
 import { IresponsiveMin, IresponsiveMax } from '@/pluginComponents/iResponsive';

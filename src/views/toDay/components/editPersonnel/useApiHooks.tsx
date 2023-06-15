@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRequest } from 'ahooks';
 import { editPersonnelTableDataApi } from '../../service';
 
