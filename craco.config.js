@@ -213,14 +213,11 @@ module.exports = {
 			}
 
 			// 小于 40K 的图片都会变成 base64 的图片格式
-			webpackConfig.module.rules.push({
-				test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.jpg$/, /\.svg$/],
-				loader: require.resolve('url-loader'),
-				options: {
-					limit: 40000, // 把默认的 10000 修改为 40000
-					name: 'static/media/[name].[hash:8].[ext]'
-				}
-			});
+			const urlLoader = webpackConfig.module.rules.find((rule) => rule.loader && rule.loader.includes('url-loader'));
+			if (urlLoader) {
+				urlLoader.test = /\.(png|jpe?g|gif|webp)(\?.*)?$/;
+				urlLoader.use[0].options.limit = 40960;
+			}
 
 			// 返回重写后的新配置
 			return webpackConfig;
