@@ -25,6 +25,8 @@ const Dnd = lazy(() => import(/* webpackChunkName: "dnd" */ '@/views/plugin/dnd'
 const Burst = lazy(() => import(/* webpackChunkName: "burst" */ '@/views/plugin/burst'));
 // EasyTyper
 const EasyTyper = lazy(() => import(/* webpackChunkName: "easyTyper" */ '@/views/plugin/easyTyper'));
+// VideoCall
+const VideoCall = lazy(() => import(/* webpackChunkName: "videoCall" */ '@/views/plugin/videoCall'));
 
 // 插件的使用
 const pluginCom = [
@@ -37,7 +39,8 @@ const pluginCom = [
 	{ path: 'i18n', element: suspenseLoad(<I18n />) },
 	{ path: 'dnd', element: suspenseLoad(<Dnd />) },
 	{ path: 'burst', element: suspenseLoad(<Burst />) },
-	{ path: 'easyTyper', element: suspenseLoad(<EasyTyper />) }
+	{ path: 'easyTyper', element: suspenseLoad(<EasyTyper />) },
+	{ path: 'videoCall', element: suspenseLoad(<VideoCall />) }
 ];
 
 export default pluginCom;
