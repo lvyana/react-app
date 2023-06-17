@@ -13,7 +13,7 @@ import LeftMenu from './menu/LeftMenu';
 import useLayout from './useHooks/useLayout';
 import { StyleLayoutConfig } from './useHooks/styleLayoutConfig';
 import TabsMain from './tabsMain';
-import { LayoutType } from '@/store/reducers/layout';
+import { LayoutMenuType, LayoutType } from '@/store/reducers/layout';
 
 /**
  * @param layoutStyle 布局所有需要的样式
@@ -35,7 +35,7 @@ type TabsMainComProps = {
 };
 
 type CradMenuComProps = {
-	menuLayout: LayoutType;
+	menuLayout: LayoutMenuType;
 };
 
 type FooterComProps = {
@@ -46,6 +46,7 @@ type FooterComProps = {
 
 const LayoutStyle = () => {
 	const { layoutStyle, tabsMainLayout, menuLayout, footerLayout } = useLayout();
+
 	return (
 		<LayoutCom
 			layoutStyle={layoutStyle}

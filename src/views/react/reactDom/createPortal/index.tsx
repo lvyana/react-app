@@ -34,7 +34,9 @@ const Child: FC<{ children: React.ReactNode }> = ({ children }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		setCom(createPortal(children, ref.current as HTMLDivElement));
+		if (ref.current) {
+			setCom(createPortal(children, ref.current));
+		}
 	}, []);
 
 	return (

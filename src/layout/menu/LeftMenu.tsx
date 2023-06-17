@@ -3,8 +3,8 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { useState, useEffect, useMemo } from 'react';
-import { Layout, MenuProps, Menu as AntdMenu } from 'antd';
+import React, { useState, useEffect, useMemo, ReactPortal } from 'react';
+import { MenuProps, Menu as AntdMenu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import Sider from 'antd/es/layout/Sider';
 import useThemeHooks from '@/config/antd/theme/useThemeHooks';
@@ -13,12 +13,16 @@ import { useAppSelector } from '@/store';
 import { GET_ROUTER } from '@/store/reducers/globalConfig';
 import useRouterHooks from '@/router/useHooks';
 import { Router } from './routerData';
+import Collapsed, { useCollapsed } from './components/Collapsed';
+import { createPortal } from 'react-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const LeftMenu = () => {
+	const { collapsedPortal, collapsed } = useCollapsed();
+
 	const location = useLocation();
 	const { pathname } = location;
 
@@ -69,8 +73,12 @@ const LeftMenu = () => {
 
 	return (
 		<>
+			{collapsedPortal}
 			<Sider
 				zeroWidthTriggerStyle={{ backgroundColor: token.colorBgBase }}
+				collapsible
+				collapsed={collapsed}
+				trigger={null}
 				style={{
 					overflow: 'auto',
 					height: 'calc(100vh - 64px)',

@@ -8,24 +8,34 @@
 
 // 卡片配置参数
 const CARD_MENU = {
-	main: {}
+	main: { transition: 'all 0.2s' }
 };
 
 // 左侧菜单配置参数
 const LEFT_MENU = {
 	main: {
-		marginLeft: 200
+		marginLeft: 200,
+		transition: 'all 0.2s'
+	}
+};
+
+// 左侧收起菜单配置参数
+const LEFT_COLLAPSED_MENU = {
+	main: {
+		marginLeft: 80,
+		transition: 'all 0.2s'
 	}
 };
 
 const menuStyle = {
 	1: CARD_MENU,
-	2: LEFT_MENU
+	2: LEFT_MENU,
+	3: LEFT_COLLAPSED_MENU
 };
 
 const SHOW_FOOTER = {
-	main: { minHeight: 'calc(100vh - 140px)' },
-	marginLeft: 200
+	main: { minHeight: 'calc(100vh - 133px)' }
+	// marginLeft: 200
 };
 
 const HIDDEN_FOOTER = {
