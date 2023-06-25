@@ -88,7 +88,7 @@ yarn add husky -D
 
 ### 5.2、然后执行这条命令
 ```
-yarn prepare，husky
+yarn prepare
 ```
 
 执行初始化，可以发现我们的项目目录多了.husky文件夹，代表初始化成功。
@@ -99,15 +99,17 @@ npx husky add .husky/pre-commit "yarn run lint-staged"
 ```
 
 ### 5.4、配置commitlint.config.js文件
+```
+yarn add @commitlint/cli @commitlint/config-conventional -D
+```
 
 ### 5.5、 配置.husky/pre-commit 文件
 
 ```
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-# Run commitlint on staged files
-npx --no-install commitlint --edit $1
+yarn lint-staged --allow-empty "$1"
 ```
 
 ### 5.6、 配置.husky/commit-msg 文件

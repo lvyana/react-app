@@ -64,7 +64,8 @@
 		"lint": "eslint --ext .js,.ts,.tsx src/ --ignore-path .gitignore",
 		"lint:fix": "eslint \"src/**/*.{js,ts,tsx}\" --ignore-path .gitignore --fix",
 		"prepare": "husky install",
-		"lint-staged": "lint-staged"
+		"lint-staged": "lint-staged",
+		"serve": "npx serve -s dist -l 3000"
 	},
 	"browserslist": {
 		"production": [
