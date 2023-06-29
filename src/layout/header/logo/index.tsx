@@ -18,7 +18,12 @@ export const Logo = () => {
 		// background: `${token.colorBgBase} url(${menuLogo}) no-repeat center`,
 		backgroundSize: 'contain'
 	};
-	return <div style={LayoutLogo} className="cursor-pointer" />;
+	return (
+		<div className="flex">
+			<div style={LayoutLogo} className="cursor-pointer" />
+			<div id="collapsed"> </div>
+		</div>
+	);
 };
 
 export default Logo;
