@@ -1,39 +1,54 @@
 {
 	"file": [],
-	//编译器的选项
+	// 编译器的选项
 	"compilerOptions": {
+		// 基础目录，用于解析非相对模块名称的基础目录
 		"baseUrl": ".",
+		// 路径映射，用于指定模块名称到基于baseUrl的路径映射
 		"paths": {
 			"@/*": ["src/*"]
 		},
+		// 编译过程中需要引入的库文件
 		"lib": ["dom", "es5", "es6", "es7", "dom.iterable", "esnext", "ScriptHost"],
+		// 允许编译JavaScript文件
 		"allowJs": true,
+		// 跳过对声明文件的检查
 		"skipLibCheck": true,
+		// 启用esModuleInterop，允许使用default导出
 		"esModuleInterop": true,
+		// 允许从没有默认导出的模块中导入默认成员
 		"allowSyntheticDefaultImports": true,
+		// 启用严格模式
 		"strict": true,
-		//严格模式 false默认  没有严格模式
+		// 总是启用严格模式
 		"alwaysStrict": false,
-		//不允许隐式的any类型
+		// 不允许隐式的any类型
 		"noImplicitAny": true,
-		//不允许不明确的类型的this
+		// 不允许不明确的类型的this
 		"noImplicitThis": true,
-		//严格检查空值
+		// 严格检查空值
 		"strictNullChecks": true,
+		// 强制在文件名中使用一致的大小写
 		"forceConsistentCasingInFileNames": true,
+		// 在switch语句中强制使用break语句
 		"noFallthroughCasesInSwitch": true,
+		// 指定模块代码生成的方式
 		"module": "esnext",
+		// 模块解析策略
 		"moduleResolution": "node",
+		// 允许导入JSON模块
 		"resolveJsonModule": true,
+		// 将每个文件视为单独的模块
 		"isolatedModules": true,
+		// 不生成输出文件
 		"noEmit": true,
+		// 指定JSX代码生成的方式
 		"jsx": "react-jsx",
+		// 将for..of编译为ES5代码
 		"downlevelIteration": true
 	},
-	//需要被监视编译的文件 scr下面的全部文件
-	//**表示任意目录
-	//* 表示任意文件
+	// 需要被监视编译的文件，包括src下的所有文件和目录、static目录和mock目录
 	"include": ["src", "src/static", "mock"],
-	//不需要被编译的ts(一般不写）
+	// 不需要被编译的ts文件，一般不需要指定
 	"exclude": ["node_modules"]
 }

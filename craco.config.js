@@ -196,6 +196,20 @@ module.exports = {
 						}
 					}
 				};
+
+				// 启用多线程打包
+				// 在这里进行 thread-loader 的配置
+				const jsRule = webpackConfig.module.rules.find((rule) => rule.test && rule.test.toString().includes('.js'));
+				if (jsRule) {
+					jsRule.use.unshift('thread-loader');
+					// 	.loader('thread-loader').options({
+					// 	// 可以根据实际情况进行配置
+					// 	workers: 4, // 启用的 worker 数量，默认为 cpu 核心数减1
+					// 	workerParallelJobs: 50, // 每个 worker 并行执行的任务数量
+					// 	poolRespawn: false, // 是否在 worker 退出后重启 worker
+					// 	poolTimeout: 2000 // worker 空闲时自动销毁的时间，单位 ms
+					// });
+				}
 			});
 
 			// 开发环境配置

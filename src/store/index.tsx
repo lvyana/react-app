@@ -14,16 +14,14 @@ import storage from 'redux-persist/lib/storage';
 // sessionStorage
 import storageSession from 'redux-persist/lib/storage/session';
 
-// 数据持久化
-// const persistConfig = {
-// 	key: 'root',
-// 	version: 1,
-// 	storage
-// 	// reducer里不持久化的数据,除此外均为持久化数据,[]表示都持久化
-// 	// blacklist: ['log'],
-// 	// reducer里持久化的数据,除此外均为不持久化数据
-// 	// whitelist: ['layout']
-// };
+/**
+ * 数据持久化
+ * reducer里不持久化的数据,除此外均为持久化数据,[]表示都持久化
+ * blacklist: ['log'],
+ * reducer里持久化的数据,除此外均为不持久化数据
+ * whitelist: ['layout']
+ */
+
 const persistedReducer = combineReducers({
 	layout: persistReducer(
 		{
@@ -75,16 +73,17 @@ const persistedReducer = combineReducers({
 // 环境区分中间件
 const ENV = process.env.NODE_ENV === 'production';
 const middlewareConfig = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => {
+	const ignoredActions = [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER];
 	if (ENV) {
 		return getDefaultMiddleware({
 			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+				ignoredActions
 			}
 		});
 	} else {
 		return getDefaultMiddleware({
 			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+				ignoredActions
 			}
 		});
 		// .concat(logger);

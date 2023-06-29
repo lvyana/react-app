@@ -39,7 +39,7 @@ yarn add eslint-config-prettier eslint-plugin-prettier -D
 
 ### 3.3、stylelint相关依赖
 ```
-yarn add stylelint-config-standard stylelint-config-css-modules -D
+yarn add stylelint-config-standard stylelint-config-css-modules stylelint-order -D
 ```
 
 package.json添加命令
