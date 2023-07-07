@@ -157,17 +157,17 @@ module.exports = {
 						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
 						{
-							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.js',
+							url: 'http://114.132.242.253:81/wangeditor.js',
 							defer: true
 						},
 						{
-							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/g2plot.min.js'
+							url: 'http://114.132.242.253:81/g2plot.min.js'
 						}
 					],
 					css: [
 						// 编辑器
 						{
-							url: 'https://cdn-file-1308388249.cos.ap-nanjing.myqcloud.com/wangeditor.css',
+							url: 'http://114.132.242.253:81/wangeditor.css',
 							rel: 'prefetch'
 						}
 					]
