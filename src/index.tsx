@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import errorBoundaryHoc from '@/hoc/errorBoundaryHoc';
 import { App as AntdApp } from 'antd';
@@ -9,7 +9,6 @@ import { App as AntdApp } from 'antd';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from '@/store';
 
-import App from './App';
 import './index.css';
 
 // i18n
@@ -28,21 +27,19 @@ import store from './store';
 // antd定制化
 import AntdConfig from '@/config/antd';
 
+import routes from '@/router';
+const router = createBrowserRouter(routes);
+
 function render() {
 	const container = document.querySelector('#root') as Element;
 
 	const root = ReactDOM.createRoot(container);
-
 	root.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<AntdConfig>
-					<BrowserRouter basename={'/'}>
-						{/* <StrictMode> */}
-						{errorBoundaryHoc(App)}
-						{/* </StrictMode> */}
-					</BrowserRouter>
-				</AntdConfig>
+				{/* <StrictMode> */}
+				<AntdConfig>{errorBoundaryHoc(<RouterProvider router={router} />)}</AntdConfig>
+				{/* </StrictMode> */}
 			</PersistGate>
 		</Provider>
 	);

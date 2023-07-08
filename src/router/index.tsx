@@ -10,6 +10,7 @@ import Login from '@/views/login';
 import ToDay from '@/views/toDay';
 import suspenseLoad from './suspenseLoad';
 import { setRouterAuth } from './auth';
+import setRouterError from './catchError';
 import antdCom from './module/antd';
 import reactCom from './module/react';
 import routerCom from './module/router';
@@ -39,7 +40,7 @@ type Route = { auth?: boolean };
 
 export type Routes = Route & RouteObject;
 
-const router: Routes[] = setRouterAuth([
+const routes: Routes[] = [
 	{ path: '/login', element: <Login />, auth: false },
 	{
 		path: '/',
@@ -77,6 +78,11 @@ const router: Routes[] = setRouterAuth([
 	},
 	{ path: '/today', element: <ToDay />, auth: false },
 	{ path: '*', element: suspenseLoad(<NotFound />), auth: false }
-]);
+];
 
-export default router;
+// 添加权限
+const authRoutes = setRouterAuth(routes);
+// 添加错误组件
+const errorRoutes = setRouterError(authRoutes);
+
+export default errorRoutes;

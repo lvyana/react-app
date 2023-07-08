@@ -14,7 +14,7 @@ interface ErrorBoundaryState {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const errorBoundaryHoc = (Component: FC) => {
+const errorBoundaryHoc = (component: React.ReactNode) => {
 	class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
 		constructor(props: ErrorBoundaryProps | Readonly<ErrorBoundaryProps>) {
 			super(props);
@@ -31,16 +31,16 @@ const errorBoundaryHoc = (Component: FC) => {
 			if (this.state.hasError) {
 				// return null;
 				// 也可以在出错的component处展示出错信息
-				return <Result status="500" title="500" subTitle="Sorry, something went wrong." extra={<GoErrorView />} />;
+				return <ErrorView></ErrorView>;
 			}
-			return <Component></Component>;
+			return <>{component}</>;
 		}
 	}
 
 	return <ErrorBoundary></ErrorBoundary>;
 };
 
-const GoErrorView = () => {
+export const ErrorView = () => {
 	const navigate = useNavigate();
 
 	const onBackHome = () => {
@@ -48,9 +48,16 @@ const GoErrorView = () => {
 	};
 
 	return (
-		<Button onClick={onBackHome} type="primary">
-			Back Home
-		</Button>
+		<Result
+			status="500"
+			title="500"
+			subTitle="Sorry, something went wrong."
+			extra={
+				<Button onClick={onBackHome} type="primary">
+					Back Home
+				</Button>
+			}
+		/>
 	);
 };
 export default errorBoundaryHoc;

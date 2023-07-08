@@ -4,7 +4,7 @@
  * @createDate 2020年4月27日
  */
 import React from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet, useLoaderData } from 'react-router-dom';
 import Icard from '@/antdComponents/iCard';
 import { Button } from 'antd';
 

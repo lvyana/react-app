@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
-import router from '@/router';
+import routes from '@/router';
 
 function App() {
-	const element = useRoutes(router);
+	const element = useRoutes(routes);
 	return element;
 }
 
