@@ -1,4 +1,10 @@
 /**
+ * @file 查找某个父级节点
+ * @author ly
+ * @createDate 2023年7月11日
+ */
+
+/**
  * @method 查找某个父级节点
  * @param menuList 数组集合
  * @param targetPath 要查找的节点的名称

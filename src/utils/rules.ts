@@ -1,7 +1,7 @@
 /**
- *	@name 实现rules
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file rule校验
+ * @author ly
+ * @createData 2020年4月27日
  */
 import { Rule } from 'rc-field-form/lib/interface';
 

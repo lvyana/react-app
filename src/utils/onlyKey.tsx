@@ -1,7 +1,7 @@
 /**
- *	@name 实现uuid生成id
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file 实现uuid生成id
+ * @author ly
+ * @createData 2020年4月27日
  */
 import { v4 as uuidv4 } from 'uuid';
 

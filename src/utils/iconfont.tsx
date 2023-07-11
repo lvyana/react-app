@@ -1,7 +1,7 @@
 /**
- *	@name 实现icon 图标
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file icon图标
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import { createFromIconfontCN } from '@ant-design/icons';
 

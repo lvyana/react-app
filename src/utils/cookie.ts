@@ -1,7 +1,7 @@
 /**
- *	@name cookie
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file cookie
+ * @author ly
+ * @createDate 2020年4月27日
  */
 
 const TOKEN = 'token';

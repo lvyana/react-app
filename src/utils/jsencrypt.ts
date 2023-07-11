@@ -1,7 +1,7 @@
 /**
- * @name 密钥对生成 http://web.chacuo.net/netrsakeypair
- * @use ly
- * @date 2022年8月17日
+ * @file 密钥对生成 http://web.chacuo.net/netrsakeypair
+ * @aurhor ly
+ * @createDate 2022年8月17日
  */
 import JSEncrypt from 'jsencrypt/bin/jsencrypt.min';
 

@@ -1,7 +1,7 @@
 /**
- *	@name localStorage
- *	@user ly
- *  @data 日期：2020年4月27日
+ * @file localStorage
+ * @author ly
+ * @createData 2020年4月27日
  */
 
 const USER_NAME = 'userName';
