@@ -59,10 +59,7 @@
 		"build:sit": "cross-env REACT_APP_BASE_API=/sit-api REACT_APP_ENV=sit craco build",
 		"build": "cross-env REACT_APP_BASE_API=https://mock.apifox.cn/m1/544622-0-default REACT_APP_ENV=prod craco build",
 		"test": "react-scripts test",
-		"stylelint": "stylelint \"src/**/*.{css,less,scss}\"",
-		"stylelint:fix": "stylelint --fix \"src/**/*.{css,less,scss}\"",
-		"lint": "eslint --ext .js,.ts,.tsx src/ --ignore-path .gitignore",
-		"lint:fix": "eslint \"src/**/*.{js,ts,tsx}\" --ignore-path .gitignore --fix",
+		
 		"prepare": "husky install",
 		"lint-staged": "lint-staged",
 		"serve": "npx serve -s dist -l 3000"
