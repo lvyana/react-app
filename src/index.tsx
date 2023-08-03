@@ -28,7 +28,9 @@ import store from './store';
 import AntdConfig from '@/config/antd';
 
 import routes from '@/router';
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+	basename: '/admin/'
+});
 
 function render() {
 	const container = document.querySelector('#root') as Element;
@@ -38,7 +40,9 @@ function render() {
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				{/* <StrictMode> */}
-				<AntdConfig>{errorBoundaryHoc(<RouterProvider router={router} />)}</AntdConfig>
+				<AntdConfig>
+					<RouterProvider router={router} />
+				</AntdConfig>
 				{/* </StrictMode> */}
 			</PersistGate>
 		</Provider>

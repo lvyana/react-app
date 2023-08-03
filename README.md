@@ -1,5 +1,5 @@
 ## 演示地址
-演示地址: http://114.132.242.253
+演示地址: https://lvyana.github.io/admin
 
 ## 1、使用yarn创建react ts项目
 ``` 

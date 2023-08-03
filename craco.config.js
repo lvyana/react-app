@@ -21,6 +21,11 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 // 生产调试模式
 const production_debugging = false;
 
+// 生产模式
+const prodMode = process.env.NODE_ENV === 'production';
+
+let public_path = prodMode ? 'https://lvyana.github.io/admin' : '';
+
 /* 修改默认的打包后文件夹名称build->dist */
 const paths = require('react-scripts/config/paths');
 paths.appBuild = path.join(path.dirname(paths.appBuild), 'dist');
@@ -121,7 +126,7 @@ module.exports = {
 						chunkFilename: 'static/js/[name].[chunkhash].js'
 					},
 					path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
-					publicPath: '/'
+					publicPath: public_path + '/'
 				};
 				// 关闭 devtool
 				webpackConfig.devtool = production_debugging ? 'hidden-source-map' : false;
@@ -136,8 +141,8 @@ module.exports = {
 					// 'react-dom': 'ReactDOM',
 					// '@ant-design/plots': 'Plots',
 					// '@ant-design/graphs': 'Graphs',
-					'@wangeditor/editor': 'wangEditor',
-					'@antv/g2plot': 'G2Plot'
+					// '@wangeditor/editor': 'wangEditor',
+					// '@antv/g2plot': 'G2Plot'
 				};
 
 				// 配置现成的cdn 资源数组 现在是公共为了测试
@@ -156,20 +161,20 @@ module.exports = {
 						// Graphs 相关的图表
 						// 'https://unpkg.com/@ant-design/graphs@latest/dist/graphs.min.js',
 						// 编辑器
-						{
-							url: 'http://114.132.242.253:81/wangeditor.js',
-							defer: true
-						},
-						{
-							url: 'http://114.132.242.253:81/g2plot.min.js'
-						}
+						// {
+						// 	url: 'http://114.132.242.253:81/wangeditor.js',
+						// 	defer: true
+						// },
+						// {
+						// 	url: 'http://114.132.242.253:81/g2plot.min.js'
+						// }
 					],
 					css: [
 						// 编辑器
-						{
-							url: 'http://114.132.242.253:81/wangeditor.css',
-							rel: 'prefetch'
-						}
+						// {
+						// 	url: 'http://114.132.242.253:81/wangeditor.css',
+						// 	rel: 'prefetch'
+						// }
 					]
 				};
 
@@ -224,6 +229,7 @@ module.exports = {
 			if (isFound) {
 				// 找到了HtmlWebpackPlugin的插件
 				match.userOptions.cdn = cdn;
+				match.userOptions.public_path = public_path;
 			}
 
 			// 小于 40K 的图片都会变成 base64 的图片格式
