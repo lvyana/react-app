@@ -28,8 +28,20 @@ import store from './store';
 import AntdConfig from '@/config/antd';
 
 import routes from '@/router';
+
+const routerBasename = () => {
+	const env = 'github';
+	// 生产区分部署环境
+	if (process.env.NODE_ENV === 'production') {
+		if (env === 'github') return '/admin/';
+		return '/';
+	}
+
+	// 开发
+	return '/';
+};
 const router = createBrowserRouter(routes, {
-	basename: '/admin/'
+	basename: routerBasename()
 });
 
 function render() {

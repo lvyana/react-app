@@ -67,16 +67,16 @@ const LayoutCom: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu
 				{/* 顶部栏 */}
 				<Header>{CradMenu}</Header>
 
-				<div style={{ ...layoutStyle.menuStyle.main }}>
-					<Content className="site-layout p-4" style={{ ...layoutStyle.footerStyle.main }}>
-						{/* 导航栏 */}
-						{tabsMain}
-						{/* 内容 */}
-						<Outlet />
-					</Content>
-					{/* 底部 */}
-					{footer}
-				</div>
+				{/* 内容 */}
+				<Content className="site-layout p-4" style={{ ...layoutStyle.menuStyle.main, ...layoutStyle.footerStyle.main }}>
+					{/* 导航栏 */}
+					{tabsMain}
+					{/* 内容 */}
+					<Outlet />
+				</Content>
+
+				{/* 底部 */}
+				{footer}
 			</Layout>
 		</>
 	);

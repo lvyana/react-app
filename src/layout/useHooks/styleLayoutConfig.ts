@@ -1,21 +1,21 @@
 /**
  * @file 所有布局的样式
  * @author ly
- *  @createDate 日期：2020年4月27日
+ * @createDate 日期：2020年4月27日
  */
 
 // #----------- 菜单样式配置 -----------
 
 // 卡片配置参数
 const CARD_MENU = {
-	main: { transition: 'all 0.2s' }
+	main: { transition: 'all 0.3s' }
 };
 
 // 左侧菜单配置参数
 const LEFT_MENU = {
 	main: {
 		marginLeft: 200,
-		transition: 'all 0.2s'
+		transition: 'all 0.3s'
 	}
 };
 
@@ -23,7 +23,7 @@ const LEFT_MENU = {
 const LEFT_COLLAPSED_MENU = {
 	main: {
 		marginLeft: 80,
-		transition: 'all 0.2s'
+		transition: 'all 0.3s'
 	}
 };
 

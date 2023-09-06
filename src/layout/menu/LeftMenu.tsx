@@ -86,10 +86,12 @@ const LeftMenu = () => {
 					left: 0,
 					top: 64,
 					bottom: 0,
-					backgroundColor: token.colorBgBase
+					backgroundColor: token.colorBgBase,
+					transition: 'all 0.3s'
 				}}>
 				<AntdMenu
 					theme="light"
+					style={{ borderInlineEnd: 'none' }}
 					defaultOpenKeys={getSelectUrlArr(pathname)}
 					defaultSelectedKeys={[selectMenuPath || pathname]}
 					openKeys={openKeys}
