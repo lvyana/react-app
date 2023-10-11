@@ -5,13 +5,12 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
-import { formButton } from '@/antdComponents/iForm/components/Ibutton';
-import { formInputItem, formInputNumber } from '@/antdComponents/iForm/components/Iinput';
-import { formSelect } from '@/antdComponents/iForm/components/Iselect';
+import Ibutton from '@/antdComponents/iButton/List';
+import { Iinput, Inumber } from '@/antdComponents/iInput';
+import { Iselect, SelectValueType } from '@/antdComponents/iSelect';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import type { ButtonOptionsParams } from '../EditForm';
-import type { SelectValueType } from '@/antdComponents/iForm/type';
 
 /**
  * @param options 集合
@@ -95,64 +94,70 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 				return (
 					<Row key={option.id} className="m-4" gutter={16}>
 						<Col span={12}>
-							{formInputItem({
-								placeholder: '名字',
-								value: option.name,
-								onChange: (value) => onChange(value, 'name', option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: '名字',
+									value: option.name,
+									onChange: (value) => onChange(value, 'name', option.id)
+								}}></Iinput>
 						</Col>
 						<Col span={12}>
-							{formInputItem({
-								placeholder: '标识类型',
-								value: option.type,
-								onChange: (value) => onChange(value, 'type', option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: '标识类型',
+									value: option.type,
+									onChange: (value) => onChange(value, 'type', option.id)
+								}}></Iinput>
 						</Col>
 						<Col span={12}>
-							{formSelect<ButtonTypeOptionsParams>({
-								placeholder: '组件类型',
-								value: option.btnType,
-								option: BUTTON_TYPE_OPTIONS,
-								fieldNames: {
-									label: 'type',
-									value: 'value'
-								},
-								onChange: (value) => onSelectChange(value, 'btnType', option.id)
-							})}
+							<Iselect
+								item={{
+									placeholder: '组件类型',
+									value: option.btnType,
+									option: BUTTON_TYPE_OPTIONS,
+									fieldNames: {
+										label: 'type',
+										value: 'value'
+									},
+									onChange: (value) => onSelectChange(value, 'btnType', option.id)
+								}}></Iselect>
 						</Col>
 						<Col span={12}>
-							{formInputItem({
-								placeholder: '权限标识',
-								value: option.permission,
-								onChange: (value) => onChange(value, 'hasPermiss', option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: '权限标识',
+									value: option.permission,
+									onChange: (value) => onChange(value, 'hasPermiss', option.id)
+								}}></Iinput>
 						</Col>
 						<Col span={12}>
-							{formInputItem({
-								placeholder: '图标',
-								value: option.iconFont,
-								onChange: (value) => onChange(value, 'iconFont', option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: '图标',
+									value: option.iconFont,
+									onChange: (value) => onChange(value, 'iconFont', option.id)
+								}}></Iinput>
 						</Col>
 						<Col span={12}>
-							{formInputNumber({
-								placeholder: 'span',
-								value: option.span,
-								onChange: (value) => onInputNumberChange(value, 'span', option.id)
-							})}
+							<Inumber
+								item={{
+									placeholder: 'span',
+									value: option.span,
+									onChange: (value) => onInputNumberChange(value, 'span', option.id)
+								}}></Inumber>
 						</Col>
 						<Col span={12}>
-							{formButton({
-								option: [{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
-								onClick: () => {
+							<Ibutton
+								option={[{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }]}
+								onClick={() => {
 									add(option.id);
-								}
-							})}
+								}}></Ibutton>
+
 							{/* <Button type="dashed" block icon={<PlusOutlined />}></Button> */}
 						</Col>
 						<Col span={12}>
-							{formButton({
-								option: [
+							<Ibutton
+								option={[
 									{
 										name: '',
 										type: 'subtract',
@@ -161,11 +166,11 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 										iconFont: <MinusOutlined />,
 										span: 24
 									}
-								],
-								onClick: () => {
+								]}
+								onClick={() => {
 									subtract(option.id);
-								}
-							})}
+								}}></Ibutton>
+
 							{/* <Button type="dashed" onClick={() => subtract(option.id)} block icon={<MinusOutlined />}></Button> */}
 						</Col>
 					</Row>

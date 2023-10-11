@@ -1,42 +1,47 @@
 /**
- * @file 按钮集合
+ * @file 单个按钮
  * @author ly
- * @createDate 2020年4月27日
+ * @createDate
  */
-import React, { Fragment } from 'react';
-import { Col, Row } from 'antd';
-import authButtonPermissionHoc from '@/hoc/authButtonPermissionHoc';
-import IbuttonItem from './IbuttonItem';
-import type { ButtonItemParams, OnClickBtn } from './type';
+import React from 'react';
+import { Button } from 'antd';
+import IconFont from '../../utils/iconfont';
+import type { IbuttonListProps } from './List';
+import type { ButtonItemParams } from './type';
 
 /**
- * @param buttonList 按钮集合
- * @param loadingName 那个按钮需要加载直接传type
- * @param onClick 按钮事件
+ * @param buttonItem 单个按钮
  */
-export interface IbuttonProps<T> {
-	buttonList: ButtonItemParams<T>[];
-	loadingName?: T;
-	onClick?: OnClickBtn<T>;
+export interface IbuttonItemProps<T> extends Omit<IbuttonListProps<T>, 'option' | 'loadingName'> {
+	buttonItem: ButtonItemParams<T>;
+	loading?: boolean;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-// 按钮集合
-const Ibutton = <T,>({ buttonList, loadingName, onClick }: IbuttonProps<T>) => {
-	const buttonListCol = buttonList.map((item, i) => {
-		const loading = loadingName === item.type;
-
-		const IbuttonItemCol = (
-			<Col span={item.span}>
-				<IbuttonItem buttonItem={item} loading={loading} onClick={onClick} />
-			</Col>
-		);
-
-		return <Fragment key={i}>{authButtonPermissionHoc(IbuttonItemCol, item.permission)}</Fragment>;
-	});
-
-	return <Row>{buttonListCol}</Row>;
+const Ibutton = <T,>({ buttonItem, loading, onClick }: IbuttonItemProps<T>) => {
+	const getIconNode = (iconFont?: React.ReactNode) => {
+		if (iconFont) {
+			if (React.isValidElement(iconFont)) {
+				return <>{iconFont}</>;
+			} else if (typeof iconFont === 'string') {
+				return <IconFont type={iconFont}></IconFont>;
+			}
+		}
+	};
+	return (
+		<Button
+			type={buttonItem.btnType}
+			onClick={() => onClick && onClick(buttonItem.type, buttonItem)}
+			disabled={buttonItem.disabled}
+			loading={loading}
+			className={buttonItem.className}
+			icon={getIconNode(buttonItem.iconFont)}
+			block={buttonItem.block}
+			style={buttonItem.style}>
+			{buttonItem.name}
+		</Button>
+	);
 };
 
 export default Ibutton;

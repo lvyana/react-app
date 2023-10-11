@@ -8,7 +8,8 @@ import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
 import type { ExpensesFormParams } from '../index';
-import type { FormInputType, FormSelectType, FormButtonType, FinishType } from '@/antdComponents/iForm/type';
+import type { FormInputType, FormSelectType, FormButtonType } from '@/antdComponents/iForm/type';
+import type { OnClickBtn } from '@/antdComponents/iButton/type';
 
 export type ButtonType = 'subimt' | 'onReset';
 
@@ -18,7 +19,7 @@ export type ButtonType = 'subimt' | 'onReset';
  */
 interface Iprops {
 	form: FormInstance<ExpensesFormParams>;
-	onFinish: FinishType<ButtonType>;
+	onFinish: OnClickBtn<ButtonType>;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

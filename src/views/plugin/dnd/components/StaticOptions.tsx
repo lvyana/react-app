@@ -6,8 +6,8 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import { formInputItem } from '@/antdComponents/iForm/components/Iinput';
-import { formButton } from '@/antdComponents/iForm/components/Ibutton';
+import { Iinput } from '@/antdComponents/iInput';
+import Ibutton from '@/antdComponents/iButton/List';
 import { v4 as uuidv4 } from 'uuid';
 import type { Options } from '../itemTypes';
 /**
@@ -77,33 +77,36 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 				return (
 					<Row key={option.id}>
 						<Col span={8}>
-							{formInputItem({
-								placeholder: 'label',
-								value: option.label,
-								onChange: (value) => labelChange(value, option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: 'label',
+									value: option.label,
+									onChange: (value) => labelChange(value, option.id)
+								}}></Iinput>
+
 							{/* <Input placeholder="label" value={option.label} onChange={(value) => labelChange(value, option.id)} /> */}
 						</Col>
 						<Col span={8}>
-							{formInputItem({
-								placeholder: 'value',
-								value: option.value,
-								onChange: (value) => valueChange(value, option.id)
-							})}
+							<Iinput
+								item={{
+									placeholder: 'value',
+									value: option.value,
+									onChange: (value) => valueChange(value, option.id)
+								}}></Iinput>
 							{/* <Input placeholder="value" value={option.value} onChange={(value) => valueChange(value, option.id)} /> */}
 						</Col>
 						<Col span={4}>
-							{formButton({
-								option: [{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }],
-								onClick: () => {
+							<Ibutton
+								option={[{ name: '', type: 'add', block: true, btnType: 'dashed', iconFont: <PlusOutlined />, span: 24 }]}
+								onClick={() => {
 									add(option.id);
-								}
-							})}
+								}}></Ibutton>
+
 							{/* <Button type="dashed" block icon={<PlusOutlined />}></Button> */}
 						</Col>
 						<Col span={4}>
-							{formButton({
-								option: [
+							<Ibutton
+								option={[
 									{
 										name: '',
 										type: 'subtract',
@@ -112,11 +115,11 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 										iconFont: <MinusOutlined />,
 										span: 24
 									}
-								],
-								onClick: () => {
+								]}
+								onClick={() => {
 									subtract(option.id);
-								}
-							})}
+								}}></Ibutton>
+
 							{/* <Button type="dashed" onClick={() => subtract(option.id)} block icon={<MinusOutlined />}></Button> */}
 						</Col>
 					</Row>

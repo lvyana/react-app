@@ -5,40 +5,40 @@
  */
 import React from 'react';
 import { FormItemMap } from '../type';
-import { formButton } from './Ibutton';
-import { formCascader } from './Icascader';
-import { formCheckbox } from './Icheckbox';
-import { formDatePicker, formRangePicker, formTimePicker, formTimeRangePicker } from './Ipicker';
-import { formInputItem, formInputTextArea, formInputNumber } from './Iinput';
-import { formRadio } from './Iradio';
-import { formRate } from './Irate';
-import { formSelect, formSeachSelect } from './Iselect';
-import { formSwitch } from './Iswitch';
-import { formTreeSelect } from './ItreeSelect';
-import { formslider } from './Islider';
-import { formUserDefined } from './IuserDefined';
-import formUpload from './Iupload';
+import Icascader from '../../iCascader';
+import Icheckbox from '../../iCheckbox';
+import { IdatePicker, IrangePicker, ItimePicker, ItimeRangePicker } from '../../iPicker';
+import { Iinput, ItextArea, Inumber } from '../../iInput';
+import Iradio from '../../iRadio';
+import Irate from '../../iRate';
+import { Iselect, IseachSelect } from '../../iSelect';
+import Iswitch from '../../iSwitch';
+import ItreeSelect from '../../iTreeSelect';
+import Islider from '../../iSlider';
+import Slot from './Slot';
+import Iupload from '../../iUpload';
+import IbuttonList from '@/antdComponents/iButton/List';
 
 const FORM_ITEM_MAP: FormItemMap = {
-	input: (item) => formInputItem(item),
-	select: (item) => formSelect(item),
-	treeSelect: (item) => formTreeSelect(item),
-	cascader: (item) => formCascader(item),
-	datePicker: (item) => formDatePicker(item),
-	rangePicker: (item) => formRangePicker(item),
-	timePicker: (item) => formTimePicker(item),
-	timeRangePicker: (item) => formTimeRangePicker(item),
-	inputNumber: (item) => formInputNumber(item),
-	switch: (item) => formSwitch(item),
-	button: (item) => formButton(item),
-	radio: (item) => formRadio(item),
-	checkbox: (item) => formCheckbox(item),
-	rate: (item) => formRate(item),
-	textArea: (item) => formInputTextArea(item),
-	seachSelect: (item) => formSeachSelect(item),
-	slider: (item) => formslider(item),
-	upload: (item) => formUpload(item),
-	userDefined: (item) => formUserDefined(item)
+	input: (item) => <Iinput item={item}></Iinput>,
+	select: (item) => <Iselect item={item}></Iselect>,
+	treeSelect: (item) => <ItreeSelect item={item}></ItreeSelect>,
+	cascader: (item) => <Icascader item={item}></Icascader>,
+	datePicker: (item) => <IdatePicker item={item}></IdatePicker>,
+	rangePicker: (item) => <IrangePicker item={item}></IrangePicker>,
+	timePicker: (item) => <ItimePicker item={item}></ItimePicker>,
+	timeRangePicker: (item) => <ItimeRangePicker item={item}></ItimeRangePicker>,
+	inputNumber: (item) => <Inumber item={item}></Inumber>,
+	switch: (item) => <Iswitch item={item}></Iswitch>,
+	button: (item) => <IbuttonList option={item.option || []} onClick={item.onClick}></IbuttonList>,
+	radio: (item) => <Iradio item={item}></Iradio>,
+	checkbox: (item) => <Icheckbox item={item}></Icheckbox>,
+	rate: (item) => <Irate item={item}></Irate>,
+	textArea: (item) => <ItextArea item={item}></ItextArea>,
+	seachSelect: (item) => <IseachSelect item={item}></IseachSelect>,
+	slider: (item) => <Islider item={item}></Islider>,
+	upload: (item) => <Iupload item={item}></Iupload>,
+	userDefined: (item) => <Slot item={item}></Slot>
 };
 
 export default FORM_ITEM_MAP;

@@ -3,261 +3,83 @@
  * @author ly
  * @createDate 2023年12月27日
  */
-import React, { ReactNode, ChangeEventHandler } from 'react';
-import { TreeSelect } from 'antd';
+import React, { ReactNode } from 'react';
 import type { Rule } from 'rc-field-form/lib/interface';
-import type { Dayjs } from 'dayjs';
 import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
-import type { RangeValue } from './components/Ipicker';
-import type { RadioOptionsParam } from './components/Iradio';
-import type { ChangeEventExtra } from './components/ItreeSelect';
+import type { AlonePicker, BothPicker, RangeValue } from '../iPicker';
+import type { RadioOptionsParam, RadioType } from '../iRadio';
+import type { TreeselectType } from '../iTreeSelect';
 import type { BaseOptionType } from 'antd/es/cascader';
-import type { CheckboxValueType } from 'antd/es/checkbox/Group';
-import type { DefaultOptionType, LabeledValue } from 'antd/es/select';
-import type { SwitchChangeEventHandler } from 'antd/es/switch';
+import type { DefaultOptionType } from 'antd/es/select';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
-import type { UploadChangeParam, UploadFile } from 'antd/es/upload';
-import type { ResponseData } from '@/api/request';
-import type { HttpRequestHeader } from 'antd/lib/upload/interface';
-import type { ButtonItemParams } from '../iButton/type';
+import { InputNumberType, InputType, TextAreaType } from '../iInput';
+import { SeachSelectType, SelectType } from '../iSelect';
+import { CascaderType } from '../iCascader';
+import { SwitchType } from '../iSwitch';
+import { IbuttonListProps } from '../iButton/List';
+import { CheckboxType } from '../iCheckbox';
+import { RateType } from '../iRate';
+import { SliderType } from '../iSlider';
+import { UploadType } from '../iUpload';
 
 // input
-export type InputType = {
-	value?: string;
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-	onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
-	placeholder?: string;
-	maxLength?: number;
-	style?: React.CSSProperties;
-};
 export type FormInputType = FormItem<InputType>;
 
 // select
-export type SelectType<T> = {
-	value?: SelectValueType;
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: SelectValueType, option: T | T[]) => void) | undefined;
-	mode?: Mode;
-	placeholder?: string;
-	option?: T[];
-	fieldNames?: fieldNamesType;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-export type SelectValueType = string | string[] | number | number[] | LabeledValue | LabeledValue[];
-
 export type FormSelectType<T> = FormItem<SelectType<T>>;
 
-const { SHOW_ALL, SHOW_PARENT, SHOW_CHILD } = TreeSelect;
-type ShowCheckedStrategy = typeof SHOW_ALL | typeof SHOW_PARENT | typeof SHOW_CHILD;
 // treeSelect
-export type TreeselectType<T> = {
-	value?: (string | number)[];
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: (string | number)[], labelList: ReactNode[], extra: ChangeEventExtra) => void) | undefined;
-	placeholder?: string;
-	option?: T[];
-	checkbox?: boolean;
-	fieldNames?: fieldNamesType;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-	showCheckedStrategy?: ShowCheckedStrategy;
-};
-
 export type FormTreeselectType<T> = FormItem<TreeselectType<T>>;
 
 // cascader
-export type CascaderType<T> = {
-	label?: FormItem<unknown>['label'];
-	validateTrigger?: string | string[];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: (value: unknown[], selectedOptions: BaseOptionType) => void;
-	placeholder?: string;
-	option?: T[];
-	fieldNames?: fieldNamesType;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
 export type FormCascaderType<T> = FormItem<CascaderType<T>>;
 
 // alonePicker 单个
-export type AlonePicker = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: Dayjs | null, dateString: string) => void) | undefined;
-	placeholder?: string;
-	style?: React.CSSProperties;
-	disabledDate?: (currentDate: Dayjs) => boolean;
-	children?: ReactNode;
-};
-
 export type FormAlonePicker = FormItem<AlonePicker>;
 
 // bothPicker 双个
-export type BothPicker = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: (dates: RangeValue<Dayjs>, dateStrings: [string, string]) => void | undefined;
-	placeholder?: string;
-	style?: React.CSSProperties;
-	disabledDate?: (currentDate: Dayjs) => boolean;
-	children?: ReactNode;
-};
-
 export type FormBothPicker = FormItem<BothPicker>;
 
 // inputNumber
-export type InputNumberType = {
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: number | string | null) => void) | undefined;
-	placeholder?: string;
-	value?: number | string | null;
-	checkbox?: boolean;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
 export type FormInputNumberType = FormItem<InputNumberType>;
 
 // switch
-export type SwitchType = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: SwitchChangeEventHandler | undefined;
-	placeholder?: string;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
 export type FormSwitchType = FormItem<SwitchType>;
 
 // button
-export type FinishType<T> = ((value: T) => void) | undefined;
-
-export type ButtonType<T> = {
-	// name?: string;
-	option?: ButtonItemParams<T>[];
+export interface ButtonType<T> extends IbuttonListProps<T> {
 	style?: React.CSSProperties;
 	children?: ReactNode;
-	onClick?: FinishType<T>;
-};
-
+}
 export type FormButtonType<T> = FormItem<ButtonType<T>>;
 
 // radio
-export type RadioType<T> = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((e: RadioChangeEvent) => void) | undefined;
-	option?: T[];
-	style?: React.CSSProperties;
-	children?: ReactNode;
-	optionType?: 'default' | 'button';
-};
-
 export type FormRadioType<T extends RadioOptionsParam> = FormItem<RadioType<T>>;
 
 // checkbox
-export type CheckboxType<T> = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((checkedValue: CheckboxValueType[]) => void) | undefined;
-	option?: T[];
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
 export type FormCheckboxType<T> = FormItem<CheckboxType<T>>;
 
 // rate
-export type RateType<T> = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: number) => void) | undefined;
-	placeholder?: string;
-	option?: T[];
-	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
 export type FormRateType<T> = FormItem<RateType<T>>;
 
 // textArea
-export type TextAreaType = {
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ChangeEventHandler<HTMLTextAreaElement> | undefined;
-	maxLength?: number;
-	placeholder?: string;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-	rows?: number;
-};
-
 export type FormTextAreaType = FormItem<TextAreaType>;
 
 // seachSelect
-export type SeachSelectType<T> = {
-	label?: FormItem<unknown>['label'];
-	disabled?: boolean;
-	allowClear?: boolean;
-	mode?: Mode;
-	placeholder?: string;
-	option?: T[];
-	checkbox?: boolean;
-	fieldNames?: fieldNamesType;
-	style?: React.CSSProperties;
-	handleSearch?: (value: string) => void;
-	children?: ReactNode;
-};
-
 export type FormSeachSelectType<T> = FormItem<SeachSelectType<T>>;
 
 // slider
-export type SliderType = {
-	disabled?: boolean;
-	allowClear?: boolean;
-	onChange?: ((value: number) => void) | undefined;
-	range?: false;
-	style?: React.CSSProperties;
-	max?: number;
-	min?: number;
-};
-
 export type FormSliderType = FormItem<SliderType>;
 
 // upload
-export type UploadType = {
-	name: string;
-	onChange?: ((info: UploadChangeParam<UploadFile<ResponseData<never>>>) => void) | undefined;
-	mode?: Mode;
-	style?: React.CSSProperties;
-	children?: ReactNode;
-	multiple?: boolean;
-	action?: string;
-	headers?: HttpRequestHeader;
-};
-
 export type FormUploadType = FormItem<UploadType>;
 
 // userDefined
-export type UserDefinedType = {
+export type SlotType = {
 	children?: ReactNode;
 };
 
-export type FormUserDefinedType = FormItem<UserDefinedType>;
+export type FormSlotType = FormItem<SlotType>;
 
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
@@ -278,7 +100,7 @@ export interface FormItemMap {
 	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
 	slider: (item: SliderType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;
-	userDefined: (item: UserDefinedType) => ReactNode;
+	userDefined: (item: SlotType) => ReactNode;
 }
 export type FormItemMapType = keyof FormItemMap;
 

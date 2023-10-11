@@ -6,7 +6,7 @@
 import React, { useSyncExternalStore } from 'react';
 import todosStore from './todosStore';
 import Icard from '@/antdComponents/iCard';
-import { IbuttonItem } from '@/antdComponents/iButton/IbuttonItem';
+import Ibutton from '@/antdComponents/iButton';
 import type { ButtonItemParams } from '@/antdComponents/iButton/type';
 import Icollapse from '@/antdComponents/iCollapse';
 
@@ -22,7 +22,7 @@ export const IuseSyncExternalStore = () => {
 
 	return (
 		<Icard>
-			<IbuttonItem buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></IbuttonItem>
+			<Ibutton buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></Ibutton>
 			<hr />
 			<ul>
 				{todos.map((todo) => (
@@ -41,8 +41,8 @@ export const IuseSyncExternalStoreItem = () => {
 	return (
 		<div>
 			<div>测试: useSyncExternalStore数据可以共享</div>
-			<IbuttonItem buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></IbuttonItem>
-			<IbuttonItem buttonItem={{ ...BUTTON_ITEM, name: 'delete todo' }} onClick={() => todosStore.deleteTodo()}></IbuttonItem>
+			<Ibutton buttonItem={BUTTON_ITEM} onClick={() => todosStore.addTodo()}></Ibutton>
+			<Ibutton buttonItem={{ ...BUTTON_ITEM, name: 'delete todo' }} onClick={() => todosStore.deleteTodo()}></Ibutton>
 
 			<hr />
 			<ul>

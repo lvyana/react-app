@@ -17,7 +17,7 @@ import type {
 	FormInputType,
 	FormSelectType,
 	FormRadioType,
-	FormUserDefinedType,
+	FormSlotType,
 	FormTextAreaType
 } from '@/antdComponents/iForm/type';
 import type { ItemTypesParams, Options } from './itemTypes';
@@ -36,9 +36,9 @@ type FormListType = [
 	// 是否禁用
 	FormSelectType<DisabledParams>,
 	// option获取类型
-	FormUserDefinedType,
+	FormSlotType,
 	// 静态数据
-	FormUserDefinedType,
+	FormSlotType,
 	// url
 	FormInputType,
 	// urlLabel
@@ -46,7 +46,7 @@ type FormListType = [
 	// urlValue
 	FormInputType,
 	// 发送
-	FormUserDefinedType,
+	FormSlotType,
 	// 关联父级
 	FormSelectType<FormListLabel>,
 	// 是否必填
@@ -63,7 +63,7 @@ type FormListType = [
 	// 校验规则提示语
 	FormTextAreaType,
 	// 生成按钮
-	FormUserDefinedType
+	FormSlotType
 ];
 
 type FormListParam = {

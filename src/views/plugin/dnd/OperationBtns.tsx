@@ -5,7 +5,7 @@
  */
 import React, { useContext, useState } from 'react';
 import { Form } from 'antd';
-import Ibutton from '@/antdComponents/iButton';
+import Ibutton from '@/antdComponents/iButton/List';
 import JsonView from './components/JsonView';
 import ImportJson from './components/ImportJson';
 import { Context } from './context';
@@ -120,7 +120,7 @@ const OperationBtns = () => {
 
 	return (
 		<div className="mb-2">
-			<Ibutton buttonList={buttonList} onClick={onClickBtn}></Ibutton>
+			<Ibutton option={buttonList} onClick={onClickBtn}></Ibutton>
 			<JsonView open={jsonViewOpen} onOkOrCancel={jsonViewFun} confirmLoading={jsonViewLoading} />
 			<ImportJson open={importJsonOpen} onOkOrCancel={importJsonFun} confirmLoading={importJsonLoading} form={importJsonForm} />
 			<TemplateForm

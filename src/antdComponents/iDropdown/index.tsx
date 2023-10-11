@@ -7,7 +7,7 @@ import React from 'react';
 import type { MenuProps } from 'antd';
 import { Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton from '@/antdComponents/iButton';
+import Ibutton from '@/antdComponents/iButton/List';
 import type { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton/type';
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -42,7 +42,7 @@ const Idropdown = <T,>({ btArr, onOpenChange, onClickBtn }: IdropdownProps<T>) =
  */
 const getMenus = <T,>({ btArr, onClickBtn }: Omit<IdropdownProps<T>, 'onOpenChange'>) => {
 	return btArr.reduce((acc: MenuItem[], item, i) => {
-		let newItem = getItem(<Ibutton buttonList={[item]} onClick={() => onClickBtn(item.type, item)}></Ibutton>, i);
+		let newItem = getItem(<Ibutton option={[item]} onClick={() => onClickBtn(item.type, item)}></Ibutton>, i);
 		return [...acc, newItem];
 	}, []);
 };

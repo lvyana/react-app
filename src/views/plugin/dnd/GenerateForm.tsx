@@ -153,7 +153,7 @@ const GenerateFormItem: FC<GenerateFormParams> = ({ formParams, index }) => {
 	};
 
 	// 删除formItem
-	const onDeleteFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const onDeleteFormItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.stopPropagation();
 
 		const formList =
@@ -169,7 +169,7 @@ const GenerateFormItem: FC<GenerateFormParams> = ({ formParams, index }) => {
 	};
 
 	// 复制formItem
-	const onCopyFormItem = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const onCopyFormItem = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		e.stopPropagation();
 		const newFormList =
 			context?.state.formList.reduce<FormParams[]>((prev, item) => {

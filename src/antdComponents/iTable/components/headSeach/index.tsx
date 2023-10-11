@@ -12,7 +12,7 @@ import { FilterDropdownProps } from 'antd/es/table/interface';
 import tableHeadSeach from './modules';
 
 import type { FormItemMapType } from './modules';
-import type { TreeselectType } from '@/antdComponents/iForm';
+import { TreeselectType } from '@/antdComponents/iTreeSelect';
 
 export type FormParamType = (string | number)[];
 
@@ -111,7 +111,7 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 	};
 
 	const onSubmit = () => {
-		form.current[dataIndex] = selectedKeys;
+		form.current[dataIndex] = selectedKeys as (string | number)[];
 		setSelectedKeys(selectedKeys);
 		confirm();
 		onSearch();
@@ -119,7 +119,7 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 
 	return (
 		<TableSeach onClose={onClose} onSubmit={onSubmit}>
-			{tableHeadSeach(type)({ value: selectedKeys, onChange, ...SeachFormItem })}
+			{tableHeadSeach(type)({ value: selectedKeys as (string | number)[], onChange, ...SeachFormItem })}
 			{/* {treeSelect({ value: selectedKeys, onChange, ...SeachFormItem })} */}
 		</TableSeach>
 	);

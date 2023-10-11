@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { Button, Tag, Space } from 'antd';
 import Itooltip from '@/antdComponents/iTooltip';
-import Ibutton from '@/antdComponents/iButton';
+import Ibutton from '@/antdComponents/iButton/List';
 import { ItbClick, AlignType } from '@/antdComponents/iTable';
 import { useNavigate } from 'react-router-dom';
 import { TabelDataResponse } from '../service';

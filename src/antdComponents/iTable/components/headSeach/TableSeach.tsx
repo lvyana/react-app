@@ -5,7 +5,7 @@
  */
 import React, { FC } from 'react';
 import { Button, Col, Row, TreeSelect } from 'antd';
-import { formTreeSelect } from '@/antdComponents/iForm/components/ItreeSelect';
+import ItreeSelect from '@/antdComponents/iTreeSelect';
 import { FormItemMap } from '@/antdComponents/iForm';
 
 const { SHOW_PARENT } = TreeSelect;
@@ -18,15 +18,18 @@ type TreeSelectProps = {
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 export const treeSelect: FormItemMap['treeSelect'] = ({ value, option, fieldNames, onChange, placeholder }) => {
-	return formTreeSelect({
-		value,
-		option,
-		fieldNames,
-		onChange: onChange,
-		placeholder,
-		checkbox: true,
-		showCheckedStrategy: SHOW_PARENT
-	});
+	return (
+		<ItreeSelect
+			item={{
+				value,
+				option,
+				fieldNames,
+				onChange: onChange,
+				placeholder,
+				checkbox: true,
+				showCheckedStrategy: SHOW_PARENT
+			}}></ItreeSelect>
+	);
 };
 
 const TableSeach: FC<TreeSelectProps> = ({ children, onSubmit, onClose }) => {

@@ -25,7 +25,7 @@ interface PhoneProps {
 const Phone = ({ onFinish }: PhoneProps) => {
 	// 按钮状态
 	const [disabled, setDisabled] = useState(false);
-	let timer: NodeJS.Timer;
+	let timer: NodeJS.Timeout;
 	const [verificationName, setVerificationName] = useState('获取验证码');
 	const verificationCode = () => {
 		setDisabled(true);

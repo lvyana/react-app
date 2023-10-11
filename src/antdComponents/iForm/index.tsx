@@ -6,31 +6,22 @@
 import React, { Fragment } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
 import FORM_ITEM_MAP from './components/formItemMap';
-import type {
-	AlonePicker,
-	BothPicker,
-	ButtonType,
-	CascaderType,
-	CheckboxType,
-	FormItem,
-	InputNumberType,
-	InputType,
-	RadioType,
-	RateType,
-	SeachSelectType,
-	SelectType,
-	SliderType,
-	SwitchType,
-	TextAreaType,
-	TreeselectType,
-	UploadType,
-	UserDefinedType
-} from './type';
-import type { RadioOptionsParam } from './components/Iradio';
+import type { ButtonType, FormItem, SlotType } from './type';
+import type { RadioOptionsParam, RadioType } from '../iRadio';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import { DefaultOptionType } from 'antd/es/select';
 import { BaseOptionType } from 'antd/es/cascader';
 import { UploadFile } from 'antd/lib/upload/interface';
+import { InputNumberType, InputType, TextAreaType } from '../iInput';
+import { SeachSelectType, SelectType } from '../iSelect';
+import { TreeselectType } from '../iTreeSelect';
+import { CascaderType } from '../iCascader';
+import { AlonePicker, BothPicker } from '../iPicker';
+import { SwitchType } from '../iSwitch';
+import { CheckboxType } from '../iCheckbox';
+import { RateType } from '../iRate';
+import { SliderType } from '../iSlider';
+import { UploadType } from '../iUpload';
 
 /**
  * React Ant Design Upload 组件在Form中使用的警告,如何排除:
@@ -209,8 +200,8 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 		}
 
 		if (item.type === 'inputNumber') {
-			const { label, disabled, allowClear, onChange, placeholder, checkbox, style, children } = comConfig as InputNumberType;
-			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, placeholder, checkbox, style, children });
+			const { label, disabled, allowClear, onChange, placeholder, style, children } = comConfig as InputNumberType;
+			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, placeholder, style, children });
 		}
 
 		if (item.type === 'switch') {
@@ -219,7 +210,7 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 		}
 
 		if (item.type === 'button') {
-			const { option, style, children, onClick } = comConfig as ButtonType<unknown>;
+			const { option, style, children, onClick } = comConfig as unknown as ButtonType<unknown>;
 			return FORM_ITEM_MAP[item.type]({ option, style, children, onClick });
 		}
 
@@ -272,7 +263,7 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 		}
 
 		if (item.type === 'userDefined') {
-			const { children } = comConfig as UserDefinedType;
+			const { children } = comConfig as SlotType;
 			return FORM_ITEM_MAP[item.type]({ children });
 		}
 	};

@@ -20,12 +20,12 @@ import type {
 	FormInputNumberType,
 	FormSwitchType,
 	FormUploadType,
-	FormButtonType,
-	SelectValueType,
-	FinishType
+	FormButtonType
 } from '@/antdComponents/iForm/type';
 import Icard from '@/antdComponents/iCard';
 import { baseURL } from '@/api/request';
+import { SelectValueType } from '@/antdComponents/iSelect';
+import { OnClickBtn } from '@/antdComponents/iButton/type';
 
 type SubmitParam = 'submit' | 'onReset';
 
@@ -82,14 +82,14 @@ type FormListType = [
 
 type FormListParam = {
 	selectOnChange: (value: SelectValueType) => void;
-	onSubmit: FinishType<SubmitParam>;
+	onSubmit: OnClickBtn<SubmitParam>;
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Dynamicform = () => {
 	const selectOnChange = (value: SelectValueType) => {};
 
-	const onSubmit: FinishType<SubmitParam> = (type) => {
+	const onSubmit: OnClickBtn<SubmitParam> = (type) => {
 		// console.log(form.getFieldsValue());
 	};
 
