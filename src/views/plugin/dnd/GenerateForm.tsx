@@ -8,7 +8,7 @@ import { useDrop, useDrag, DropTargetHookSpec } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, Col, Form, Row } from 'antd';
 import { CloseCircleOutlined, CopyOutlined } from '@ant-design/icons';
-import Iform, { FormItem } from '@/antdComponents/iForm';
+import Iform, { FormItemParams } from '@/antdComponents/iForm';
 import { FORM_ITEM, GENERATE_FORM_ITEM } from './itemTypes';
 import { Context, FormParams } from './context';
 import { arrIndexExchange } from '@/utils/exchange';
@@ -145,7 +145,7 @@ const GenerateFormItem: FC<GenerateFormParams> = ({ formParams, index }) => {
 	const [form] = Form.useForm();
 
 	// 处理回显表单数据
-	const formList: FormItem<object>[] = [{ ...getFormData(formParams), span: 24 }];
+	const formList: FormItemParams<object>[] = [{ ...getFormData(formParams), span: 24 }];
 
 	const onEditFormParams = () => {
 		if (formParams.key === context?.state.selectFormItemKey) return;

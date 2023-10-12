@@ -23,63 +23,63 @@ import { SliderType } from '../iSlider';
 import { UploadType } from '../iUpload';
 
 // input
-export type FormInputType = FormItem<InputType>;
+export type FormInputType = FormItemParams<InputType>;
 
 // select
-export type FormSelectType<T> = FormItem<SelectType<T>>;
+export type FormSelectType<T> = FormItemParams<SelectType<T>>;
 
 // treeSelect
-export type FormTreeselectType<T> = FormItem<TreeselectType<T>>;
+export type FormTreeselectType<T> = FormItemParams<TreeselectType<T>>;
 
 // cascader
-export type FormCascaderType<T> = FormItem<CascaderType<T>>;
+export type FormCascaderType<T> = FormItemParams<CascaderType<T>>;
 
 // alonePicker 单个
-export type FormAlonePicker = FormItem<AlonePicker>;
+export type FormAlonePicker = FormItemParams<AlonePicker>;
 
 // bothPicker 双个
-export type FormBothPicker = FormItem<BothPicker>;
+export type FormBothPicker = FormItemParams<BothPicker>;
 
 // inputNumber
-export type FormInputNumberType = FormItem<InputNumberType>;
+export type FormInputNumberType = FormItemParams<InputNumberType>;
 
 // switch
-export type FormSwitchType = FormItem<SwitchType>;
+export type FormSwitchType = FormItemParams<SwitchType>;
 
 // button
 export interface ButtonType<T> extends IbuttonListProps<T> {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 }
-export type FormButtonType<T> = FormItem<ButtonType<T>>;
+export type FormButtonType<T> = FormItemParams<ButtonType<T>>;
 
 // radio
-export type FormRadioType<T extends RadioOptionsParam> = FormItem<RadioType<T>>;
+export type FormRadioType<T extends RadioOptionsParam> = FormItemParams<RadioType<T>>;
 
 // checkbox
-export type FormCheckboxType<T> = FormItem<CheckboxType<T>>;
+export type FormCheckboxType<T> = FormItemParams<CheckboxType<T>>;
 
 // rate
-export type FormRateType<T> = FormItem<RateType<T>>;
+export type FormRateType<T> = FormItemParams<RateType<T>>;
 
 // textArea
-export type FormTextAreaType = FormItem<TextAreaType>;
+export type FormTextAreaType = FormItemParams<TextAreaType>;
 
 // seachSelect
-export type FormSeachSelectType<T> = FormItem<SeachSelectType<T>>;
+export type FormSeachSelectType<T> = FormItemParams<SeachSelectType<T>>;
 
 // slider
-export type FormSliderType = FormItem<SliderType>;
+export type FormSliderType = FormItemParams<SliderType>;
 
 // upload
-export type FormUploadType = FormItem<UploadType>;
+export type FormUploadType = FormItemParams<UploadType>;
 
 // userDefined
 export type SlotType = {
 	children?: ReactNode;
 };
 
-export type FormSlotType = FormItem<SlotType>;
+export type FormSlotType = FormItemParams<SlotType>;
 
 export interface FormItemMap {
 	input: (item: InputType) => JSX.Element;
@@ -119,7 +119,7 @@ export type FormItemMapType = keyof FormItemMap;
  * @param rules 校验规则
  * @param comConfig 表单子组件参数
  */
-export interface FormItem<T> {
+export interface FormItemParams<T> {
 	show?: boolean;
 	type: FormItemMapType;
 	span?: number;

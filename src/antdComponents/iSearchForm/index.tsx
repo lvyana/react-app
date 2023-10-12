@@ -4,10 +4,11 @@
  * @createDate 2020年4月27日
  */
 import React from 'react';
-import Iform, { FormItem, FormInstance } from '@/antdComponents/iForm';
+import Iform, { FormItemParams } from '@/antdComponents/iForm';
 import AnimateComponent from '@/pluginComponents/iAnimateComponent';
 import { IresponsiveMin, IresponsiveMax } from '@/pluginComponents/iResponsive';
 import Icard from '@/antdComponents/iCard';
+import type { FormInstance } from 'antd';
 
 /**
  * @param form 表单实例
@@ -20,7 +21,7 @@ interface IsearchFormProps<T, P> {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const IsearchForm = <T extends FormItem<object>[], P extends object>({ form, formList }: IsearchFormProps<T, P>) => {
+const IsearchForm = <T extends FormItemParams<object>[], P extends object>({ form, formList }: IsearchFormProps<T, P>) => {
 	return (
 		<>
 			<IresponsiveMax MaxWidth={1540}>
@@ -37,5 +38,5 @@ const IsearchForm = <T extends FormItem<object>[], P extends object>({ form, for
 		</>
 	);
 };
-export type { FormInstance, FormItem };
+
 export default IsearchForm;

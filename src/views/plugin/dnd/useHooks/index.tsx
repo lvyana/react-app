@@ -11,7 +11,7 @@ import type { ButtonOptionsParams, FormParams } from '../EditForm';
 import { Context } from '../context';
 import { anyOptions } from '../service';
 import { Rule } from 'antd/es/form';
-import { FormItem } from '@/antdComponents/iForm/type';
+import { FormItemParams } from '@/antdComponents/iForm/type';
 import type { Options } from '../itemTypes';
 
 // 监听绑定表单的变化 修改GenerateForm
@@ -80,9 +80,9 @@ export const useWatchUrl = () => {
 
 // 拖拽数据转成标准表单数据
 export const useFormData = () => {
-	const getFormData = (dndFormData: FormParams): FormItem<object> => {
+	const getFormData = (dndFormData: FormParams): FormItemParams<object> => {
 		const { type, key, span, label, disabled, option, isRule, isRuleTitle, rule, ruleTitle, name, labelCol } = dndFormData;
-		let newFormList: FormItem<object> & { disabled?: boolean } = {
+		let newFormList: FormItemParams<object> & { disabled?: boolean } = {
 			type,
 			key,
 			span,

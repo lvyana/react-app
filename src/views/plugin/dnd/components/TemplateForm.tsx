@@ -4,10 +4,11 @@
  * @date 2022年12月18日
  */
 import React, { FC, useContext } from 'react';
-import Iform, { FormInstance } from '@/antdComponents/iForm';
+import Iform from '@/antdComponents/iForm';
 import Imodal, { OnOkOrCancelType } from '@/antdComponents/iModal';
 import { Context } from '../context';
 import { useFormData } from '../useHooks';
+import type { FormInstance } from 'antd';
 
 type TemplateFormProps = {
 	open: boolean;

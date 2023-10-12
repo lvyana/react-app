@@ -3,25 +3,25 @@
  * @author ly
  * @createDate 2020年4月27日
  */
-import React, { Fragment } from 'react';
+import React, { FC, Fragment } from 'react';
 import { Form, Row, Col, FormInstance } from 'antd';
 import FORM_ITEM_MAP from './components/formItemMap';
-import type { ButtonType, FormItem, SlotType } from './type';
+import type { ButtonType, FormItemParams, SlotType } from './type';
 import type { RadioOptionsParam, RadioType } from '../iRadio';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
-import { DefaultOptionType } from 'antd/es/select';
-import { BaseOptionType } from 'antd/es/cascader';
-import { UploadFile } from 'antd/lib/upload/interface';
-import { InputNumberType, InputType, TextAreaType } from '../iInput';
-import { SeachSelectType, SelectType } from '../iSelect';
-import { TreeselectType } from '../iTreeSelect';
-import { CascaderType } from '../iCascader';
-import { AlonePicker, BothPicker } from '../iPicker';
-import { SwitchType } from '../iSwitch';
-import { CheckboxType } from '../iCheckbox';
-import { RateType } from '../iRate';
-import { SliderType } from '../iSlider';
-import { UploadType } from '../iUpload';
+import type { DefaultOptionType } from 'antd/es/select';
+import type { BaseOptionType } from 'antd/es/cascader';
+import type { UploadFile } from 'antd/lib/upload/interface';
+import type { InputNumberType, InputType, TextAreaType } from '../iInput';
+import type { SeachSelectType, SelectType } from '../iSelect';
+import type { TreeselectType } from '../iTreeSelect';
+import type { CascaderType } from '../iCascader';
+import type { AlonePicker, BothPicker } from '../iPicker';
+import type { SwitchType } from '../iSwitch';
+import type { CheckboxType } from '../iCheckbox';
+import type { RateType } from '../iRate';
+import type { SliderType } from '../iSlider';
+import type { UploadType } from '../iUpload';
 
 /**
  * React Ant Design Upload 组件在Form中使用的警告,如何排除:
@@ -38,6 +38,14 @@ export type IformLayout = 'horizontal' | 'vertical' | 'inline';
 
 export type OnValuesChange<F> = (changedValues: F, values: F) => void;
 
+type LayoutParams<T> = {
+	FormItem: React.FC<FormItemProps>;
+	formList: T;
+};
+
+type FormItemProps = {
+	item: FormItemParams<object>;
+};
 /**
  * 表单参数
  * @param T 表单渲染数据
@@ -46,14 +54,17 @@ export type OnValuesChange<F> = (changedValues: F, values: F) => void;
  * @param form 表单实例
  * @param onValuesChange 表单发生变化
  * @param formLayout 表单格式
- * @param self 是否自适应
  */
 interface IformProps<T, F> {
 	formList: T;
 	form: FormInstance<F>;
 	onValuesChange?: OnValuesChange<F>;
 	formLayout?: IformLayout;
-	self?: boolean;
+	layout?: {
+		type?: 'row' | 'defalut' | 'custom';
+		self?: boolean;
+		setCustom?: (config: LayoutParams<T>) => React.ReactNode;
+	};
 }
 
 const normFile = (e: { fileList: UploadFile[] }) => {
@@ -65,46 +76,116 @@ const normFile = (e: { fileList: UploadFile[] }) => {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iform = <T extends FormItem<object>[], F extends object>({
+const Iform = <T extends FormItemParams<object>[], F extends object>({
 	formList,
 	form,
 	formLayout = 'horizontal',
-	self = false,
-	onValuesChange
+	onValuesChange,
+	layout
 }: IformProps<T, F>) => {
-	// 包装不同formItem
-	const formItem = (item: FormItem<object>) => {
-		if (item.type === 'input') {
-			return (
-				<Form.Item
-					name={item.name}
-					valuePropName={item.valuePropName}
-					label={item.label}
-					tooltip={item.tooltip}
-					rules={item.rules}
-					{...item.layout}
-					labelAlign={item.labelAlign}
-					getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}>
-					{formItemCom(item)}
-				</Form.Item>
-			);
+	// 默认用row 也可以自定义样式
+	const getForm = () => {
+		const { type, setCustom, self } = layout || {};
+		if (type === 'custom') {
+			return setCustom && setCustom({ FormItem, formList });
+		} else {
+			return setRow(FormItem, formList, self);
 		}
+	};
 
-		if (item.type === 'upload') {
-			return (
-				<Form.Item
-					name={item.name}
-					valuePropName={'fileList'}
-					label={item.label}
-					tooltip={item.tooltip}
-					rules={item.rules}
-					{...item.layout}
-					labelAlign={item.labelAlign}
-					getValueFromEvent={normFile}>
-					{formItemCom(item)}
-				</Form.Item>
-			);
-		}
+	return (
+		<>
+			<Form form={form} layout={formLayout} onValuesChange={onValuesChange}>
+				{getForm()}
+			</Form>
+		</>
+	);
+};
+
+// 获取对应的formItem 子组件
+const getFormItemCom = (item: FormItemParams<object>) => {
+	const comConfig = { ...item.comConfig, label: item.label };
+
+	if (item.type === 'input') {
+		return FORM_ITEM_MAP[item.type](comConfig as InputType);
+	}
+
+	if (item.type === 'select') {
+		return FORM_ITEM_MAP[item.type](comConfig as SelectType<DefaultOptionType>);
+	}
+
+	if (item.type === 'treeSelect') {
+		return FORM_ITEM_MAP[item.type](comConfig as TreeselectType<DefaultOptionType>);
+	}
+
+	if (item.type === 'cascader') {
+		return FORM_ITEM_MAP[item.type](comConfig as CascaderType<BaseOptionType>);
+	}
+
+	if (item.type === 'datePicker') {
+		return FORM_ITEM_MAP[item.type](comConfig as AlonePicker);
+	}
+
+	if (item.type === 'rangePicker') {
+		return FORM_ITEM_MAP[item.type](comConfig as BothPicker);
+	}
+
+	if (item.type === 'timePicker') {
+		return FORM_ITEM_MAP[item.type](comConfig as AlonePicker);
+	}
+
+	if (item.type === 'timeRangePicker') {
+		return FORM_ITEM_MAP[item.type](comConfig as BothPicker);
+	}
+
+	if (item.type === 'inputNumber') {
+		return FORM_ITEM_MAP[item.type](comConfig as InputNumberType);
+	}
+
+	if (item.type === 'switch') {
+		return FORM_ITEM_MAP[item.type](comConfig as SwitchType);
+	}
+
+	if (item.type === 'button') {
+		return FORM_ITEM_MAP[item.type](comConfig as unknown as ButtonType<unknown>);
+	}
+
+	if (item.type === 'radio') {
+		return FORM_ITEM_MAP[item.type](comConfig as RadioType<RadioOptionsParam>);
+	}
+
+	if (item.type === 'checkbox') {
+		return FORM_ITEM_MAP[item.type](comConfig as CheckboxType<CheckboxOptionType>);
+	}
+
+	if (item.type === 'rate') {
+		return FORM_ITEM_MAP[item.type](comConfig as RateType<string>);
+	}
+
+	if (item.type === 'textArea') {
+		return FORM_ITEM_MAP[item.type](comConfig as TextAreaType);
+	}
+
+	if (item.type === 'seachSelect') {
+		return FORM_ITEM_MAP[item.type](comConfig as SeachSelectType<DefaultOptionType>);
+	}
+
+	if (item.type === 'slider') {
+		return FORM_ITEM_MAP[item.type](comConfig as SliderType);
+	}
+
+	if (item.type === 'upload') {
+		return FORM_ITEM_MAP[item.type](comConfig as unknown as UploadType);
+	}
+
+	if (item.type === 'userDefined') {
+		return FORM_ITEM_MAP[item.type](comConfig as SlotType);
+	}
+};
+
+// 通过type处理不同formItem
+const FormItem: FC<FormItemProps> = ({ item }) => {
+	if (item.type === 'input') {
 		return (
 			<Form.Item
 				name={item.name}
@@ -113,183 +194,62 @@ const Iform = <T extends FormItem<object>[], F extends object>({
 				tooltip={item.tooltip}
 				rules={item.rules}
 				{...item.layout}
-				labelAlign={item.labelAlign}>
-				{formItemCom(item)}
+				labelAlign={item.labelAlign}
+				getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}>
+				{getFormItemCom(item)}
 			</Form.Item>
 		);
-	};
+	}
 
-	// 获取对应的formItem 子组件
-	const formItemCom = (item: FormItem<object>) => {
-		const comConfig = { ...item.comConfig, label: item.label };
-
-		if (item.type === 'input') {
-			const { value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style } = comConfig as InputType;
-			return FORM_ITEM_MAP[item.type]({ value, label, disabled, allowClear, onChange, onBlur, placeholder, maxLength, style });
-		}
-
-		if (item.type === 'select') {
-			const { label, disabled, allowClear, onChange, mode, placeholder, option, fieldNames, style, children } =
-				comConfig as SelectType<DefaultOptionType>;
-			return FORM_ITEM_MAP[item.type]({
-				label,
-				disabled,
-				allowClear,
-				onChange,
-				mode,
-				placeholder,
-				option,
-				fieldNames,
-				style,
-				children
-			});
-		}
-
-		if (item.type === 'treeSelect') {
-			const { label, disabled, allowClear, onChange, placeholder, option, checkbox, fieldNames, style, children } =
-				comConfig as TreeselectType<DefaultOptionType>;
-			return FORM_ITEM_MAP[item.type]({
-				label,
-				disabled,
-				allowClear,
-				onChange,
-				placeholder,
-				option,
-				checkbox,
-				fieldNames,
-				style,
-				children
-			});
-		}
-
-		if (item.type === 'cascader') {
-			const { label, validateTrigger, disabled, allowClear, onChange, placeholder, option, fieldNames, style, children } =
-				comConfig as CascaderType<BaseOptionType>;
-			return FORM_ITEM_MAP[item.type]({
-				label,
-				validateTrigger,
-				disabled,
-				allowClear,
-				onChange,
-				placeholder,
-				option,
-				fieldNames,
-				style,
-				children
-			});
-		}
-
-		if (item.type === 'datePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as AlonePicker;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
-		}
-
-		if (item.type === 'rangePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as BothPicker;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
-		}
-
-		if (item.type === 'timePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as AlonePicker;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
-		}
-
-		if (item.type === 'timeRangePicker') {
-			const { disabled, allowClear, onChange, placeholder, style, disabledDate, children } = comConfig as BothPicker;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, disabledDate, children });
-		}
-
-		if (item.type === 'inputNumber') {
-			const { label, disabled, allowClear, onChange, placeholder, style, children } = comConfig as InputNumberType;
-			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, placeholder, style, children });
-		}
-
-		if (item.type === 'switch') {
-			const { disabled, allowClear, onChange, placeholder, style, children } = comConfig as SwitchType;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, style, children });
-		}
-
-		if (item.type === 'button') {
-			const { option, style, children, onClick } = comConfig as unknown as ButtonType<unknown>;
-			return FORM_ITEM_MAP[item.type]({ option, style, children, onClick });
-		}
-
-		if (item.type === 'radio') {
-			const { disabled, allowClear, onChange, option, style, children, optionType } = comConfig as RadioType<RadioOptionsParam>;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children, optionType });
-		}
-
-		if (item.type === 'checkbox') {
-			const { disabled, allowClear, onChange, option, style, children } = comConfig as CheckboxType<CheckboxOptionType>;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, option, style, children });
-		}
-
-		if (item.type === 'rate') {
-			const { disabled, allowClear, onChange, placeholder, option, style, children } = comConfig as RateType<string>;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, placeholder, option, style, children });
-		}
-
-		if (item.type === 'textArea') {
-			const { label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows } = comConfig as TextAreaType;
-			return FORM_ITEM_MAP[item.type]({ label, disabled, allowClear, onChange, maxLength, placeholder, style, children, rows });
-		}
-
-		if (item.type === 'seachSelect') {
-			const { label, disabled, allowClear, mode, placeholder, option, checkbox, fieldNames, style, handleSearch, children } =
-				comConfig as SeachSelectType<DefaultOptionType>;
-			return FORM_ITEM_MAP[item.type]({
-				label,
-				disabled,
-				allowClear,
-				mode,
-				placeholder,
-				option,
-				checkbox,
-				fieldNames,
-				style,
-				handleSearch,
-				children
-			});
-		}
-
-		if (item.type === 'slider') {
-			const { disabled, allowClear, onChange, range, style, max, min } = comConfig as SliderType;
-			return FORM_ITEM_MAP[item.type]({ disabled, allowClear, onChange, range, style, max, min });
-		}
-
-		if (item.type === 'upload') {
-			const { name, onChange, mode, style, children, multiple, action, headers } = comConfig as unknown as UploadType;
-			return FORM_ITEM_MAP[item.type]({ name, onChange, mode, style, children, multiple, action, headers });
-		}
-
-		if (item.type === 'userDefined') {
-			const { children } = comConfig as SlotType;
-			return FORM_ITEM_MAP[item.type]({ children });
-		}
-	};
+	if (item.type === 'upload') {
+		return (
+			<Form.Item
+				name={item.name}
+				valuePropName={'fileList'}
+				label={item.label}
+				tooltip={item.tooltip}
+				rules={item.rules}
+				{...item.layout}
+				labelAlign={item.labelAlign}
+				getValueFromEvent={normFile}>
+				{getFormItemCom(item)}
+			</Form.Item>
+		);
+	}
 
 	return (
-		<>
-			<Form form={form} layout={formLayout} onValuesChange={onValuesChange}>
-				<Row>
-					{formList &&
-						formList.map((item) => {
-							if (item.show === false) return <Fragment key={item.key}></Fragment>;
-							return (
-								<Col
-									{...(self
-										? { xxl: { span: item.span }, xl: { span: 6 }, lg: { span: 8 }, md: { span: 12 }, xs: { span: 24 } }
-										: { lg: { span: item.span }, md: { span: item.span }, xs: { span: 24 } })}
-									key={item.key}>
-									{formItem(item)}
-								</Col>
-							);
-						})}
-				</Row>
-			</Form>
-		</>
+		<Form.Item
+			name={item.name}
+			valuePropName={item.valuePropName}
+			label={item.label}
+			tooltip={item.tooltip}
+			rules={item.rules}
+			{...item.layout}
+			labelAlign={item.labelAlign}>
+			{getFormItemCom(item)}
+		</Form.Item>
 	);
 };
 
-export type { FormInstance };
+// 默认设置表单样式
+const setRow = <T extends FormItemParams<object>[]>(Com: React.FC<FormItemProps>, formList: T, self = false) => {
+	return (
+		<Row>
+			{formList &&
+				formList.map((item) => {
+					if (item.show === false) return <Fragment key={item.key}></Fragment>;
+					return (
+						<Col
+							{...(self
+								? { xxl: { span: item.span }, xl: { span: 6 }, lg: { span: 8 }, md: { span: 12 }, xs: { span: 24 } }
+								: { lg: { span: item.span }, md: { span: item.span }, xs: { span: 24 } })}
+							key={item.key}>
+							<Com item={item}></Com>
+						</Col>
+					);
+				})}
+		</Row>
+	);
+};
+
 export default Iform;

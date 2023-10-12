@@ -4,12 +4,13 @@
  * @createDate 2023年1月3日
  */
 import React, { FC } from 'react';
-import IsearchForm, { FormInstance } from '@/antdComponents/iSearchForm';
+import IsearchForm from '@/antdComponents/iSearchForm';
 import { useHooksStatus } from '@/useHooks/usePublicApi';
 import { statusDataProps } from '@/api/publicApi';
 import type { ExpensesFormParams } from '../index';
 import type { FormInputType, FormSelectType, FormButtonType } from '@/antdComponents/iForm/type';
 import type { OnClickBtn } from '@/antdComponents/iButton/type';
+import { FormInstance } from 'antd';
 
 export type ButtonType = 'subimt' | 'onReset';
 

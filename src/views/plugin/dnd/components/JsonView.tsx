@@ -10,7 +10,7 @@ import { Context } from '../context';
 import { Segmented } from 'antd';
 import { useFormData } from '../useHooks';
 import type { SegmentedValue } from 'antd/es/segmented';
-import type { FormItem } from '@/antdComponents/iForm/type';
+import type { FormItemParams } from '@/antdComponents/iForm/type';
 
 interface JsonViewProps {
 	open: boolean;
@@ -31,7 +31,7 @@ const JsonView: FC<JsonViewProps> = ({ open, onOkOrCancel, confirmLoading }) => 
 
 	const { getFormData } = useFormData();
 
-	const [jsonData, setJsonData] = useState<FormItem<object>[]>([]);
+	const [jsonData, setJsonData] = useState<FormItemParams<object>[]>([]);
 	useEffect(() => {
 		if (open) {
 			onJsonChange('dnd');
