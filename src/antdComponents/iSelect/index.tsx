@@ -21,13 +21,6 @@ export type SelectType<T> = {
 	children?: ReactNode;
 };
 
-/**
- * @method select
- */
-type IselectProps<T> = {
-	item: SelectType<T>;
-};
-
 export type SeachSelectType<T> = {
 	label?: string;
 	disabled?: boolean;
@@ -40,13 +33,6 @@ export type SeachSelectType<T> = {
 	style?: React.CSSProperties;
 	handleSearch?: (value: string) => void;
 	children?: ReactNode;
-};
-
-/**
- * @method 远程搜索
- */
-type IseachSelectProps<T> = {
-	item: SeachSelectType<T>;
 };
 
 type Mode = 'multiple' | 'tags';
@@ -66,7 +52,7 @@ interface fieldNamesType {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-export const Iselect = <T extends BaseOptionType>({ item }: IselectProps<T>) => {
+export const getSelect = <T extends BaseOptionType>(item: SelectType<T>) => {
 	return (
 		<Select
 			value={item?.value}
@@ -96,7 +82,7 @@ export const Iselect = <T extends BaseOptionType>({ item }: IselectProps<T>) => 
 	);
 };
 
-export const IseachSelect = <T extends DefaultOptionType>({ item }: IseachSelectProps<T>) => {
+export const getSeachSelect = <T extends DefaultOptionType>(item: SeachSelectType<T>) => {
 	return (
 		<Select
 			showSearch

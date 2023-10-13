@@ -6,8 +6,8 @@
 import React, { FC, useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import Ibutton from '@/antdComponents/iButton/List';
-import { Iinput, Inumber } from '@/antdComponents/iInput';
-import { Iselect, SelectValueType } from '@/antdComponents/iSelect';
+import { getInput, getNumber } from '@/antdComponents/iInput';
+import { getSelect, SelectValueType } from '@/antdComponents/iSelect';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import type { ButtonOptionsParams } from '../EditForm';
@@ -94,57 +94,47 @@ const CreatButton: FC<CreatButtonProps> = ({ options, updateOptions }) => {
 				return (
 					<Row key={option.id} className="m-4" gutter={16}>
 						<Col span={12}>
-							<Iinput
-								item={{
-									placeholder: '名字',
-									value: option.name,
-									onChange: (value) => onChange(value, 'name', option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: '名字',
+								value: option.name,
+								onChange: (value) => onChange(value, 'name', option.id)
+							})}
 						</Col>
 						<Col span={12}>
-							<Iinput
-								item={{
-									placeholder: '标识类型',
-									value: option.type,
-									onChange: (value) => onChange(value, 'type', option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: '标识类型',
+								value: option.type,
+								onChange: (value) => onChange(value, 'type', option.id)
+							})}
 						</Col>
 						<Col span={12}>
-							<Iselect
-								item={{
-									placeholder: '组件类型',
-									value: option.btnType,
-									option: BUTTON_TYPE_OPTIONS,
-									fieldNames: {
-										label: 'type',
-										value: 'value'
-									},
-									onChange: (value) => onSelectChange(value, 'btnType', option.id)
-								}}></Iselect>
+							{getSelect({
+								placeholder: '组件类型',
+								value: option.btnType,
+								option: BUTTON_TYPE_OPTIONS,
+								fieldNames: {
+									label: 'type',
+									value: 'value'
+								},
+								onChange: (value) => onSelectChange(value, 'btnType', option.id)
+							})}
 						</Col>
 						<Col span={12}>
-							<Iinput
-								item={{
-									placeholder: '权限标识',
-									value: option.permission,
-									onChange: (value) => onChange(value, 'hasPermiss', option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: '权限标识',
+								value: option.permission,
+								onChange: (value) => onChange(value, 'hasPermiss', option.id)
+							})}
 						</Col>
 						<Col span={12}>
-							<Iinput
-								item={{
-									placeholder: '图标',
-									value: option.iconFont,
-									onChange: (value) => onChange(value, 'iconFont', option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: '图标',
+								value: option.iconFont,
+								onChange: (value) => onChange(value, 'iconFont', option.id)
+							})}
 						</Col>
 						<Col span={12}>
-							<Inumber
-								item={{
-									placeholder: 'span',
-									value: option.span,
-									onChange: (value) => onInputNumberChange(value, 'span', option.id)
-								}}></Inumber>
+							{getNumber({ placeholder: 'span', value: option.span, onChange: (value) => onInputNumberChange(value, 'span', option.id) })}
 						</Col>
 						<Col span={12}>
 							<Ibutton

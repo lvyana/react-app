@@ -32,12 +32,9 @@ export type CascaderType<T> = {
 	children?: ReactNode;
 };
 
-type IcascaderProps<T> = {
-	item: CascaderType<T>;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Icascader = <T extends BaseOptionType>({ item }: IcascaderProps<T>) => {
+const getCascader = <T extends BaseOptionType>(item: CascaderType<T>) => {
 	return (
 		<Cascader
 			fieldNames={item.fieldNames}
@@ -51,4 +48,4 @@ const Icascader = <T extends BaseOptionType>({ item }: IcascaderProps<T>) => {
 	);
 };
 
-export default Icascader;
+export default getCascader;

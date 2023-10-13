@@ -34,20 +34,13 @@ export type BothPicker = {
 	children?: ReactNode;
 };
 
-type IdatePickerProps = {
-	item: AlonePicker;
-};
-
-type IrangePickerProps = {
-	item: BothPicker;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 /**
  * @method 日期
  * @param item 组件参数
  */
-export const IdatePicker: FC<IdatePickerProps> = ({ item }) => {
+export const getDatePicker = (item: AlonePicker) => {
 	return <DatePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
 
@@ -55,7 +48,7 @@ export const IdatePicker: FC<IdatePickerProps> = ({ item }) => {
  * @method 区间日期
  * @param item 组件参数
  */
-export const IrangePicker: FC<IrangePickerProps> = ({ item }) => {
+export const getRangePicker = (item: BothPicker) => {
 	return <RangePicker onChange={item.onChange} disabledDate={item.disabledDate} style={{ width: '100%' }} disabled={item.disabled} />;
 };
 
@@ -63,7 +56,7 @@ export const IrangePicker: FC<IrangePickerProps> = ({ item }) => {
  * @method 时间
  * @param item 组件参数
  */
-export const ItimePicker: FC<IdatePickerProps> = ({ item }) => {
+export const getTimePicker = (item: AlonePicker) => {
 	const format = 'HH:mm';
 	return (
 		<TimePicker
@@ -81,7 +74,7 @@ export const ItimePicker: FC<IdatePickerProps> = ({ item }) => {
  * @method 时间区间
  * @param item 组件参数
  */
-export const ItimeRangePicker: FC<IrangePickerProps> = ({ item }) => {
+export const getTimeRangePicker = (item: BothPicker) => {
 	const format = 'HH:mm';
 	return (
 		<TimePicker.RangePicker

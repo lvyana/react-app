@@ -5,40 +5,40 @@
  */
 import React from 'react';
 import { FormItemMap } from '../type';
-import Icascader from '../../iCascader';
-import Icheckbox from '../../iCheckbox';
-import { IdatePicker, IrangePicker, ItimePicker, ItimeRangePicker } from '../../iPicker';
-import { Iinput, ItextArea, Inumber } from '../../iInput';
-import Iradio from '../../iRadio';
-import Irate from '../../iRate';
-import { Iselect, IseachSelect } from '../../iSelect';
-import Iswitch from '../../iSwitch';
-import ItreeSelect from '../../iTreeSelect';
-import Islider from '../../iSlider';
-import Slot from './Slot';
-import Iupload from '../../iUpload';
+import getCascader from '../../iCascader';
+import getCheckbox from '../../iCheckbox';
+import { getDatePicker, getRangePicker, getTimePicker, getTimeRangePicker } from '../../iPicker';
+import { getInput, getTextArea, getNumber } from '../../iInput';
+import getRadio from '../../iRadio';
+import getRate from '../../iRate';
+import { getSelect, getSeachSelect } from '../../iSelect';
+import getSwitch from '../../iSwitch';
+import getTreeSelect from '../../iTreeSelect';
+import getSlider from '../../iSlider';
+import setSlot from './Slot';
+import getUpload from '../../iUpload';
 import IbuttonList from '@/antdComponents/iButton/List';
 
 const FORM_ITEM_MAP: FormItemMap = {
-	input: (item) => <Iinput item={item}></Iinput>,
-	select: (item) => <Iselect item={item}></Iselect>,
-	treeSelect: (item) => <ItreeSelect item={item}></ItreeSelect>,
-	cascader: (item) => <Icascader item={item}></Icascader>,
-	datePicker: (item) => <IdatePicker item={item}></IdatePicker>,
-	rangePicker: (item) => <IrangePicker item={item}></IrangePicker>,
-	timePicker: (item) => <ItimePicker item={item}></ItimePicker>,
-	timeRangePicker: (item) => <ItimeRangePicker item={item}></ItimeRangePicker>,
-	inputNumber: (item) => <Inumber item={item}></Inumber>,
-	switch: (item) => <Iswitch item={item}></Iswitch>,
-	button: (item) => <IbuttonList option={item.option || []} onClick={item.onClick}></IbuttonList>,
-	radio: (item) => <Iradio item={item}></Iradio>,
-	checkbox: (item) => <Icheckbox item={item}></Icheckbox>,
-	rate: (item) => <Irate item={item}></Irate>,
-	textArea: (item) => <ItextArea item={item}></ItextArea>,
-	seachSelect: (item) => <IseachSelect item={item}></IseachSelect>,
-	slider: (item) => <Islider item={item}></Islider>,
-	upload: (item) => <Iupload item={item}></Iupload>,
-	userDefined: (item) => <Slot item={item}></Slot>
+	input: (item) => getInput(item),
+	select: (item) => getSelect(item),
+	treeSelect: (item) => getTreeSelect(item),
+	cascader: (item) => getCascader(item),
+	datePicker: (item) => getDatePicker(item),
+	rangePicker: (item) => getRangePicker(item),
+	timePicker: (item) => getTimePicker(item),
+	timeRangePicker: (item) => getTimeRangePicker(item),
+	inputNumber: (item) => getNumber(item),
+	switch: (item) => getSwitch(item),
+	button: (item) => <IbuttonList option={item.option || []} style={item.style} onClick={item.onClick}></IbuttonList>,
+	radio: (item) => getRadio(item),
+	checkbox: (item) => getCheckbox(item),
+	rate: (item) => getRate(item),
+	textArea: (item) => getTextArea(item),
+	seachSelect: (item) => getSeachSelect(item),
+	slider: (item) => getSlider(item),
+	upload: (item) => getUpload(item),
+	userDefined: (item) => setSlot(item)
 };
 
 export default FORM_ITEM_MAP;

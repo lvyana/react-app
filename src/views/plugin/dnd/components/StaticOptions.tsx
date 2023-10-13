@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import { Iinput } from '@/antdComponents/iInput';
+import { getInput } from '@/antdComponents/iInput';
 import Ibutton from '@/antdComponents/iButton/List';
 import { v4 as uuidv4 } from 'uuid';
 import type { Options } from '../itemTypes';
@@ -77,22 +77,21 @@ const StaticOptions: React.FC<StaticOptionsProps> = ({ options, updateOptions })
 				return (
 					<Row key={option.id}>
 						<Col span={8}>
-							<Iinput
-								item={{
-									placeholder: 'label',
-									value: option.label,
-									onChange: (value) => labelChange(value, option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: 'label',
+								value: option.label,
+								onChange: (value) => labelChange(value, option.id)
+							})}
 
 							{/* <Input placeholder="label" value={option.label} onChange={(value) => labelChange(value, option.id)} /> */}
 						</Col>
 						<Col span={8}>
-							<Iinput
-								item={{
-									placeholder: 'value',
-									value: option.value,
-									onChange: (value) => valueChange(value, option.id)
-								}}></Iinput>
+							{getInput({
+								placeholder: 'value',
+								value: option.value,
+								onChange: (value) => valueChange(value, option.id)
+							})}
+
 							{/* <Input placeholder="value" value={option.value} onChange={(value) => valueChange(value, option.id)} /> */}
 						</Col>
 						<Col span={4}>

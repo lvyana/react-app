@@ -86,10 +86,9 @@ export const useFormData = () => {
 			type,
 			key,
 			span,
-			label,
 			name,
-			disabled,
-			comConfig: { option }
+			label,
+			comConfig: { label, disabled, option }
 		};
 
 		if (isRule === 2) {

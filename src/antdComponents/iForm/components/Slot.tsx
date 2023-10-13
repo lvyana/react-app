@@ -6,13 +6,10 @@
 import React, { FC } from 'react';
 import type { SlotType } from '../type';
 
-type SlotProps = {
-	item: SlotType;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Slot: FC<SlotProps> = ({ item }) => {
-	return <div>{item.children}</div>;
+const setSlot = (item: SlotType) => {
+	return <>{item.children}</>;
 };
 
-export default Slot;
+export default setSlot;

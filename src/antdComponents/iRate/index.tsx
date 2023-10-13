@@ -16,13 +16,10 @@ export type RateType<T> = {
 	children?: ReactNode;
 };
 
-type IrateProps<T> = {
-	item: RateType<T>;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Irate = <T extends string>({ item }: IrateProps<T>) => {
+const getRate = <T extends string>(item: RateType<T>) => {
 	return <Rate tooltips={item.option} onChange={item.onChange} disabled={item.disabled} style={{ width: '100%', ...item.style }} />;
 };
 
-export default Irate;
+export default getRate;

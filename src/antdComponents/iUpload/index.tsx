@@ -25,12 +25,9 @@ export type UploadType = {
 	headers?: HttpRequestHeader;
 };
 
-type IuploadProps = {
-	item: UploadType;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iupload: FC<IuploadProps> = ({ item }) => {
+const getUpload = (item: UploadType) => {
 	return (
 		<Dragger name={item.name} multiple={item.multiple} action={item.action} headers={item.headers}>
 			<p className="ant-upload-drag-icon">
@@ -41,4 +38,4 @@ const Iupload: FC<IuploadProps> = ({ item }) => {
 	);
 };
 
-export default Iupload;
+export default getUpload;

@@ -16,13 +16,10 @@ export type SwitchType = {
 	children?: ReactNode;
 };
 
-type IswitchProps = {
-	item: SwitchType;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iswitch: FC<IswitchProps> = ({ item }) => {
+const getSwitch = (item: SwitchType) => {
 	return <Switch onChange={item.onChange} disabled={item.disabled} style={{ ...item.style }} />;
 };
 
-export default Iswitch;
+export default getSwitch;

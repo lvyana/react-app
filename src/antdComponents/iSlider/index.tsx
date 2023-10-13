@@ -16,13 +16,10 @@ export type SliderType = {
 	min?: number;
 };
 
-type IsliderProps = {
-	item: SliderType;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Islider: FC<IsliderProps> = ({ item }) => {
+const getSlider = (item: SliderType) => {
 	return <Slider range={item.range} onChange={item.onChange} disabled={item.disabled} max={item.max} min={item.min} />;
 };
 
-export default Islider;
+export default getSlider;

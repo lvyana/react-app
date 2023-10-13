@@ -18,12 +18,13 @@ export interface IbuttonListProps<T> {
 	option: ButtonItemParams<T>[];
 	loadingName?: T;
 	onClick?: OnClickBtn<T>;
+	style?: React.CSSProperties;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 // 按钮集合
-const IbuttonList = <T,>({ option, loadingName, onClick }: IbuttonListProps<T>) => {
+const IbuttonList = <T,>({ option, loadingName, onClick, style }: IbuttonListProps<T>) => {
 	const buttonListCol = option.map((item, i) => {
 		const loading = loadingName === item.type;
 
@@ -36,7 +37,7 @@ const IbuttonList = <T,>({ option, loadingName, onClick }: IbuttonListProps<T>) 
 		return <Fragment key={i}>{authButtonPermissionHoc(IbuttonItemCol, item.permission)}</Fragment>;
 	});
 
-	return <Row>{buttonListCol}</Row>;
+	return <Row style={style}>{buttonListCol}</Row>;
 };
 
 export default IbuttonList;

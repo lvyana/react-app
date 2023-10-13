@@ -31,12 +31,9 @@ export type RadioType<T> = {
 	optionType?: 'default' | 'button';
 };
 
-type IradioProps<T> = {
-	item: RadioType<T>;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Iradio = <T extends RadioOptionsParam>({ item }: IradioProps<T>) => {
+const getRadio = <T extends RadioOptionsParam>(item: RadioType<T>) => {
 	return (
 		<Radio.Group onChange={item.onChange} optionType={item.optionType}>
 			{item.option &&
@@ -51,4 +48,4 @@ const Iradio = <T extends RadioOptionsParam>({ item }: IradioProps<T>) => {
 	);
 };
 
-export default Iradio;
+export default getRadio;

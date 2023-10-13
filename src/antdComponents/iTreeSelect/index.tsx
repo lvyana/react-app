@@ -38,13 +38,9 @@ export type TreeselectType<T> = {
 	showCheckedStrategy?: ShowCheckedStrategy;
 };
 
-type ItreeSelectProps<T> = {
-	item: TreeselectType<T>;
-};
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const ItreeSelect = <T extends BaseOptionType>({ item }: ItreeSelectProps<T>) => {
+const getTreeSelect = <T extends BaseOptionType>(item: TreeselectType<T>) => {
 	return (
 		<TreeSelect
 			value={item.value}
@@ -62,4 +58,4 @@ const ItreeSelect = <T extends BaseOptionType>({ item }: ItreeSelectProps<T>) =>
 };
 
 export type { ChangeEventExtra };
-export default ItreeSelect;
+export default getTreeSelect;

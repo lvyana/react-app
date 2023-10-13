@@ -17,13 +17,10 @@ export type CheckboxType<T> = {
 	children?: ReactNode;
 };
 
-type IcheckboxProps<T> = {
-	item: CheckboxType<T>;
-};
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Icheckbox = <T extends CheckboxOptionType>({ item }: IcheckboxProps<T>) => {
+const getCheckbox = <T extends CheckboxOptionType>(item: CheckboxType<T>) => {
 	return <Checkbox.Group options={item.option} onChange={item.onChange} disabled={item.disabled} style={{ ...item.style }} />;
 };
 
-export default Icheckbox;
+export default getCheckbox;

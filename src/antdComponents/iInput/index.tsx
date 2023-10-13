@@ -18,10 +18,6 @@ export type InputType = {
 	style?: React.CSSProperties;
 };
 
-type IinputProps = {
-	item: InputType;
-};
-
 export type TextAreaType = {
 	label?: string;
 	disabled?: boolean;
@@ -32,9 +28,6 @@ export type TextAreaType = {
 	style?: React.CSSProperties;
 	children?: ReactNode;
 	rows?: number;
-};
-type ItextAreaProps = {
-	item: TextAreaType;
 };
 
 // inputNumber
@@ -49,14 +42,10 @@ export type InputNumberType = {
 	children?: ReactNode;
 };
 
-type InumberProps = {
-	item: InputNumberType;
-};
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 // input
-export const Iinput: FC<IinputProps> = ({ item }) => {
+export const getInput = (item: InputType) => {
 	return (
 		// getValueFromEvent={(e) => e.target.value.replace(/(^\s*)|(\s*$)/g, '')}
 		<Input
@@ -72,7 +61,7 @@ export const Iinput: FC<IinputProps> = ({ item }) => {
 };
 
 // 文本框
-export const ItextArea: FC<ItextAreaProps> = ({ item }) => {
+export const getTextArea = (item: TextAreaType) => {
 	return (
 		<Input.TextArea
 			showCount={!!item.maxLength}
@@ -88,7 +77,7 @@ export const ItextArea: FC<ItextAreaProps> = ({ item }) => {
 };
 
 // 数字
-export const Inumber: FC<InumberProps> = ({ item }) => {
+export const getNumber = (item: InputNumberType) => {
 	return (
 		<InputNumber
 			value={item?.value}

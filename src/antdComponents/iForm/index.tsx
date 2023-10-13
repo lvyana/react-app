@@ -84,7 +84,7 @@ const Iform = <T extends FormItemParams<object>[], F extends object>({
 	layout
 }: IformProps<T, F>) => {
 	// 默认用row 也可以自定义样式
-	const getForm = () => {
+	const getFormLayout = () => {
 		const { type, setCustom, self } = layout || {};
 		if (type === 'custom') {
 			return setCustom && setCustom({ FormItem, formList });
@@ -96,7 +96,7 @@ const Iform = <T extends FormItemParams<object>[], F extends object>({
 	return (
 		<>
 			<Form form={form} layout={formLayout} onValuesChange={onValuesChange}>
-				{getForm()}
+				{getFormLayout()}
 			</Form>
 		</>
 	);
