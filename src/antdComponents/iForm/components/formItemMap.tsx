@@ -38,7 +38,7 @@ const FORM_ITEM_MAP: FormItemMap = {
 	seachSelect: (item) => getSeachSelect(item),
 	slider: (item) => getSlider(item),
 	upload: (item) => getUpload(item),
-	userDefined: (item) => setSlot(item)
+	slot: (item) => setSlot(item)
 };
 
 export default FORM_ITEM_MAP;

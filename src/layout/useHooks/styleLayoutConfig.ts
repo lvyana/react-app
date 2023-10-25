@@ -34,12 +34,12 @@ const menuStyle = {
 };
 
 const SHOW_FOOTER = {
-	main: { minHeight: 'calc(100vh - 133px)' }
+	main: { minHeight: '69px' }
 	// marginLeft: 200
 };
 
 const HIDDEN_FOOTER = {
-	main: { minHeight: 'calc(100vh - 64px)' }
+	main: { minHeight: '0' }
 };
 
 const footerStyle = {

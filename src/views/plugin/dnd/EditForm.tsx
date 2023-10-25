@@ -450,7 +450,7 @@ const useFormList = ({
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
-			type: 'userDefined',
+			type: 'slot',
 			name: 'trigger',
 			comConfig: {
 				children: (
@@ -463,7 +463,7 @@ const useFormList = ({
 			key: '6'
 		},
 		{
-			type: 'userDefined',
+			type: 'slot',
 			key: '7777',
 			name: 'staticOptions',
 			span: 24,
@@ -513,7 +513,7 @@ const useFormList = ({
 			layout: { labelCol: { span: 0 }, wrapperCol: { span: 24 } }
 		},
 		{
-			type: 'userDefined',
+			type: 'slot',
 			key: '11',
 			name: 'urlBtn',
 			span: 6,
@@ -596,7 +596,7 @@ const useFormList = ({
 			layout: { labelCol: { span: 6 }, wrapperCol: { span: 18 } }
 		},
 		{
-			type: 'userDefined',
+			type: 'slot',
 			key: 'button',
 			name: 'button',
 			span: 24,

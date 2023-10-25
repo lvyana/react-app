@@ -100,7 +100,7 @@ export interface FormItemMap {
 	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
 	slider: (item: SliderType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;
-	userDefined: (item: SlotType) => ReactNode;
+	slot: (item: SlotType) => ReactNode;
 }
 export type FormItemMapType = keyof FormItemMap;
 

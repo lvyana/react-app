@@ -68,7 +68,9 @@ const LayoutCom: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu
 				<Header>{CradMenu}</Header>
 
 				{/* 内容 */}
-				<Content className="site-layout p-4" style={{ ...layoutStyle.menuStyle.main, ...layoutStyle.footerStyle.main }}>
+				<Content
+					className="site-layout p-4"
+					style={{ minHeight: `calc(100vh - 64px - ${layoutStyle.footerStyle.main.minHeight})`, ...layoutStyle.menuStyle.main }}>
 					{/* 导航栏 */}
 					{tabsMain}
 					{/* 内容 */}
@@ -82,6 +84,7 @@ const LayoutCom: FC<LayoutsProps> = ({ layoutStyle, leftMenu, tabsMain, CradMenu
 	);
 };
 
+// 标签页是否显示
 const TabsMainCom: FC<TabsMainComProps> = ({ tabsMainLayout }) => {
 	if (tabsMainLayout === 1) {
 		return <></>;
@@ -90,6 +93,7 @@ const TabsMainCom: FC<TabsMainComProps> = ({ tabsMainLayout }) => {
 	}
 };
 
+// logo是否显示卡片菜单
 const CradMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	if (menuLayout === 1) {
 		return (
@@ -102,6 +106,7 @@ const CradMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	}
 };
 
+// 左侧菜单是否显示
 const LeftMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	if (menuLayout === 1) {
 		return <></>;
@@ -110,6 +115,7 @@ const LeftMenuCom: FC<CradMenuComProps> = ({ menuLayout }) => {
 	}
 };
 
+// 底部表现是否显示
 const FooterCom: FC<FooterComProps> = ({ footerLayout }) => {
 	if (footerLayout === 1) {
 		return <></>;

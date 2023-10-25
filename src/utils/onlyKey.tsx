@@ -1,5 +1,5 @@
 /**
- * @file 实现uuid生成id
+ * @file uuid生成id
  * @author ly
  * @createData 2020年4月27日
  */

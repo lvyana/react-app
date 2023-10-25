@@ -24,7 +24,7 @@ const production_debugging = false;
 // 生产模式
 const prodMode = process.env.NODE_ENV === 'production';
 
-let public_path = prodMode ? 'https://lvyana.github.io/admin' : '';
+let public_path = prodMode ? '/admin' : '';
 
 /* 修改默认的打包后文件夹名称build->dist */
 const paths = require('react-scripts/config/paths');

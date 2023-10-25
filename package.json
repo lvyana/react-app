@@ -14,7 +14,7 @@
 		"@wangeditor/editor": "^5.1.23",
 		"@wangeditor/editor-for-react": "^1.0.6",
 		"ahooks": "^3.7.7",
-		"antd": "^5.4.7",
+		"antd": "^5.10.2",
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.8",
 		"easy-typer-js": "^2.1.0",

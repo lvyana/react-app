@@ -11,7 +11,7 @@ export const setRouterError = (router: Routes[]): Routes[] => {
 	return router.reduce<RouteObject[]>((acc, route) => {
 		let newRouter: Routes = route;
 
-		// 没有权限 且没有element 不做权限
+		// 没有单独做errorElement 就补上
 		if (!newRouter.errorElement) {
 			newRouter = {
 				...route,
