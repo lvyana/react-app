@@ -1,12 +1,26 @@
 /**
- * @file 下拉
+ * @file 选择器
  * @author ly
  * @createDate 2023年1月3日
  */
 import React, { ReactNode } from 'react';
 import { Select } from 'antd';
-import { BaseOptionType, DefaultOptionType, LabeledValue } from 'antd/es/select';
+import { BaseOptionType, LabeledValue } from 'antd/es/select';
 
+/**
+ * 选择器props
+ * @param value 指定当前选中的条目，多选时为一个数组。（value 数组引用未变化时，Select 不会更新）
+ * @param label 选择框默认文本
+ * @param disabled 是否禁用
+ * @param allowClear 自定义清除按钮
+ * @param mode 设置 Select 的模式为多选或标签
+ * @param placeholder 选择框默认文本
+ * @param option 数据化配置选项内容
+ * @param fieldNames 自定义节点 label、value、options、groupLabel 的字段
+ * @param filterOption 是否根据输入项进行筛选。当其为一个函数时，会接收 inputValue option 两个参数，当 option 符合筛选条件时，应返回 true，反之则返回 false
+ * @param style 样式
+ * @method onChange 选中 option，或 input 的 value 变化时，调用此函数
+ */
 export type SelectType<T> = {
 	value?: SelectValueType;
 	label?: string;
@@ -17,22 +31,8 @@ export type SelectType<T> = {
 	placeholder?: string;
 	option?: T[];
 	fieldNames?: fieldNamesType;
+	filterOption?: boolean | FilterOptionType;
 	style?: React.CSSProperties;
-	children?: ReactNode;
-};
-
-export type SeachSelectType<T> = {
-	label?: string;
-	disabled?: boolean;
-	allowClear?: boolean;
-	mode?: Mode;
-	placeholder?: string;
-	option?: T[];
-	checkbox?: boolean;
-	fieldNames?: fieldNamesType;
-	style?: React.CSSProperties;
-	handleSearch?: (value: string) => void;
-	children?: ReactNode;
 };
 
 type Mode = 'multiple' | 'tags';
@@ -64,38 +64,20 @@ export const getSelect = <T extends BaseOptionType>(item: SelectType<T>) => {
 			mode={item.mode}
 			placeholder={item.placeholder ? item.placeholder : '请选择' + item.label}
 			optionFilterProp={item.fieldNames?.label}
-			filterOption={(input, option) => {
-				if (option) {
-					return option[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase().indexOf(input.toLowerCase()) >= 0;
-				} else {
-					return false;
-				}
-			}}
-			disabled={item.disabled}
-			style={{ width: '100%', ...item.style }}
-			// filterSort={(optionA, optionB) =>
-			// 	optionA[item.fieldNames?.label ? item.fieldNames?.label : 'label']
-			// 		.toLowerCase()
-			// 		.localeCompare(optionB[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase())
-			// }
-		></Select>
-	);
-};
-
-export const getSeachSelect = <T extends DefaultOptionType>(item: SeachSelectType<T>) => {
-	return (
-		<Select
-			showSearch
-			allowClear={item.allowClear !== false}
-			placeholder={item.placeholder ? item.placeholder : '请输入' + item.label}
-			defaultActiveFirstOption={false}
-			showArrow={false}
-			filterOption={false}
-			onSearch={item.handleSearch}
-			options={item.option}
-			fieldNames={item.fieldNames}
-			notFoundContent={null}
+			filterOption={item.filterOption}
 			disabled={item.disabled}
 			style={{ width: '100%', ...item.style }}></Select>
 	);
+};
+
+type FilterOptionType = <T extends BaseOptionType>(input: string, option?: T) => boolean;
+type GetFilterOptionType = <T extends BaseOptionType>(item: SelectType<T>) => FilterOptionType;
+const getFilterOption: GetFilterOptionType = (item) => {
+	return (input, option) => {
+		if (option) {
+			return option[item.fieldNames?.label ? item.fieldNames?.label : 'label'].toLowerCase().indexOf(input.toLowerCase()) >= 0;
+		} else {
+			return false;
+		}
+	};
 };

@@ -5,6 +5,7 @@ interface updateHeaderParams {
 	type: string;
 	headerField: Key[];
 }
+
 // 更新表头配置
 export function updateHeader(data: updateHeaderParams) {
 	return axios({

@@ -1,9 +1,9 @@
-import { treeSelect } from './TableSeach';
 import type { FormItemMapType } from '@/antdComponents/iForm';
+import getTreeSelect from '@/antdComponents/iTreeSelect';
 
 const tableHeadSeach = (type: FormItemMapType) => {
 	if (type === 'treeSelect') {
-		return treeSelect;
+		return getTreeSelect;
 	}
 
 	return () => {

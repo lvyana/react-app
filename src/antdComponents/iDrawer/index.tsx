@@ -1,13 +1,14 @@
 /**
  * @file 抽屉
  * @author ly
- * @createDate 日期：2020年11月15日
+ * @createDate 2020年11月15日
  */
 import React, { FC } from 'react';
 import { Drawer } from 'antd';
 
 type PlacementType = 'top' | 'right' | 'bottom' | 'left';
 /**
+ * 抽屉props
  * @param children 子组件
  * @param open 开关
  * @param title 标题

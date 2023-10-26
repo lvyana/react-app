@@ -11,7 +11,7 @@ import { BaseOptionType } from 'antd/es/select';
  * 下拉类型
  * @param lable 名称
  * @param value 标识
- * @param children 子集
+ * @param children 子级
  */
 interface fieldNamesType {
 	label: string;
@@ -19,9 +19,19 @@ interface fieldNamesType {
 	children?: string;
 }
 
+/**
+ * 联级选择
+ * @param label 输入框占位文本
+ * @param disabled 禁用
+ * @param allowClear 支持清除
+ * @method onChange 选择完成后的回调
+ * @param placeholder 输入框占位文本
+ * @param option 可选项数据源
+ * @param fieldNames 自定义 options 中 label value children 的字段
+ * @param style 自定义样式
+ */
 export type CascaderType<T> = {
 	label?: string;
-	validateTrigger?: string | string[];
 	disabled?: boolean;
 	allowClear?: boolean;
 	onChange?: (value: unknown[], selectedOptions: BaseOptionType) => void;
@@ -29,7 +39,6 @@ export type CascaderType<T> = {
 	option?: T[];
 	fieldNames?: fieldNamesType;
 	style?: React.CSSProperties;
-	children?: ReactNode;
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

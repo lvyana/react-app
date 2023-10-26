@@ -17,18 +17,6 @@ type TreeSelectProps = {
 };
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-export const treeSelect: FormItemMap['treeSelect'] = ({ value, option, fieldNames, onChange, placeholder }) => {
-	return getTreeSelect({
-		value,
-		option,
-		fieldNames,
-		onChange: onChange,
-		placeholder,
-		checkbox: true,
-		showCheckedStrategy: SHOW_PARENT
-	});
-};
-
 const TableSeach: FC<TreeSelectProps> = ({ children, onSubmit, onClose }) => {
 	return (
 		<Row className="p-2">

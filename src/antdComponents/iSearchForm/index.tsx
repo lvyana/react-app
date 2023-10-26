@@ -1,5 +1,5 @@
 /**
- * @file 实现搜索表单
+ * @file 响应式表单
  * @author ly
  * @createDate 2020年4月27日
  */
@@ -11,6 +11,7 @@ import Icard from '@/antdComponents/iCard';
 import type { FormInstance } from 'antd';
 
 /**
+ * 响应式表单props
  * @param form 表单实例
  * @param formList 表单集合类型
  */

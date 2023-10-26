@@ -16,34 +16,25 @@ type AxiosResponseData<D> = {
 };
 
 /**
- * @method 请求接口数据方法
+ * 请求接口数据方法
  * @param seachData 请求参数
  * @param api 请求接口
  * @returns void
  */
 type GetTableData<T, D> = (seachData: T, api: (data: T) => AxiosPromise<AxiosResponseData<D>>) => void;
 
-/**
- * UseGetTableReturnData useGetTableData返回相关数据
- * @param loading 加载动画状态
- */
-type UseGetTableReturnData<T, D> = {
-	loading: boolean;
-} & GetTableData<T, D> &
-	AxiosResponseData<D>;
-
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 /**
- * @method useTableChange 获取表格相关数据
- * @returns UseGetTableReturnData
+ * useHooks 获取表格相关数据
  */
 const useGetTableData = <T, D>() => {
-	const [tableData, setTableData] = useState<UseGetTableReturnData<T, D>['data']>([]);
+	const [tableData, setTableData] = useState<AxiosResponseData<D>['data']>([]);
 	const [total, setTotal] = useState(0);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	const getTableData: GetTableData<T, D> = async (seachData, api) => {
+		setLoading(true);
 		const res = await api(seachData);
 		const { data, total } = res.data;
 		setTableData(data);

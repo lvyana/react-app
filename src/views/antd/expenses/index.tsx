@@ -80,7 +80,7 @@ const Expenses = () => {
 			<Icard bodyStyle={{ marginTop: '10px' }}>
 				<HeaderEdit type={'expenses'}></HeaderEdit>
 				<Itable<TabelDataResponse> rowKey="key" columns={columns} data={expensesTableData} loading={loading} scroll={{ x: '100%' }} />
-				<Ipaginations total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
+				<Ipaginations className="mt-4" total={total} page={page} onPaginationChange={onFinish}></Ipaginations>
 			</Icard>
 		</div>
 	);

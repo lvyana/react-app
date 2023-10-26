@@ -1,34 +1,38 @@
 /**
- * @file 实现弹框
+ * @file 对话框
  * @author ly
  * @createDate 日期：2020年4月27日
  */
 import React, { FC, ReactNode } from 'react';
 import { Modal } from 'antd';
+import { ModalFooterRender } from 'antd/es/modal/interface';
 
 /**
+ * 对话框
  * @param title 标题
  * @param open 控制弹框打开关闭
  * @param confirmLoading 确定按钮loading
- * @param handleOk 确定事件回调
- * @param handleCancel 取消事件回调
+ * @param onOkOrCancel 确定事件回调 取消事件回调
  * @param width 宽度
  * @param maskClosable 点击弹框之外是否关闭
  * @param destroyOnClose 关闭时销毁 Modal 里的子元素
+ * @param children 内容
+ * @param footer 底部内容，当不需要默认底部按钮时，可以设为 footer={null}
  */
 export interface ImodalProps {
 	title: string;
 	open: boolean;
-	confirmLoading: boolean;
+	confirmLoading?: boolean;
 	onOkOrCancel: OnOkOrCancelType;
 	width?: string | number;
 	maskClosable?: boolean;
 	destroyOnClose?: boolean;
 	children: ReactNode;
+	footer?: ModalFooterRender | React.ReactNode;
 }
 
 /**
- * @method 确认、取消事件
+ * 确认、取消事件
  * @param type 事件类型标识
  */
 export type OnOkOrCancelType = (type: 'ok' | 'cancel') => void;
@@ -46,7 +50,8 @@ const Imodal: FC<ImodalProps> = ({
 	onOkOrCancel,
 	width = '500px',
 	maskClosable = false,
-	destroyOnClose = true
+	destroyOnClose = true,
+	footer
 }) => {
 	const handleOk = () => {
 		onOkOrCancel(OK);
@@ -64,7 +69,8 @@ const Imodal: FC<ImodalProps> = ({
 				onCancel={handleCancel}
 				width={width}
 				maskClosable={maskClosable}
-				destroyOnClose={destroyOnClose}>
+				destroyOnClose={destroyOnClose}
+				footer={footer}>
 				{children}
 			</Modal>
 		</div>

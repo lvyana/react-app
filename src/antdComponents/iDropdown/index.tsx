@@ -1,34 +1,33 @@
 /**
- *	@file 封装下拉按钮
- *	@author ly
- *  @createDate 2020年4月27日
+ * @file 下拉按钮
+ * @author ly
+ * @createDate 2020年4月27日
  */
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Dropdown, Button } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
-import Ibutton from '@/antdComponents/iButton/List';
+import Ibutton, { IbuttonListProps } from '@/antdComponents/iButton/List';
 import type { ButtonItemParams, OnClickBtn } from '@/antdComponents/iButton/type';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 /**
- * @param btArr 按钮数据集合
- * @param IbuttonEvent 点击事件
- * @param onOpenChange 移入移除
+ * 下拉按钮组件props
+ * @param buttonList 按钮数据集合
+ * @method onClickBtn 点击事件
+ * @method onOpenChange 移入移除
  */
-interface IdropdownProps<T> {
-	btArr: ButtonItemParams<T>[];
-	onClickBtn: OnClickBtn<T>;
+interface IdropdownProps<T> extends IbuttonListProps<T> {
 	onOpenChange: (open: boolean) => void;
 }
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-const Idropdown = <T,>({ btArr, onOpenChange, onClickBtn }: IdropdownProps<T>) => {
+const Idropdown = <T,>({ option, onOpenChange, onClick }: IdropdownProps<T>) => {
 	return (
 		<>
-			<Dropdown menu={{ items: getMenus({ btArr, onClickBtn }) }} placement="bottom" arrow onOpenChange={onOpenChange} trigger={['click']}>
+			<Dropdown menu={{ items: getMenus({ option, onClick }) }} placement="bottom" arrow onOpenChange={onOpenChange} trigger={['click']}>
 				{/* <EllipsisOutlined /> */}
 				<Button type="link" icon={<EllipsisOutlined />} />
 			</Dropdown>
@@ -37,12 +36,12 @@ const Idropdown = <T,>({ btArr, onOpenChange, onClickBtn }: IdropdownProps<T>) =
 };
 
 /**
- * @method 把按钮数据处理成菜单数据
+ * 把按钮数据处理成菜单数据
  * @returns 菜单数据
  */
-const getMenus = <T,>({ btArr, onClickBtn }: Omit<IdropdownProps<T>, 'onOpenChange'>) => {
-	return btArr.reduce((acc: MenuItem[], item, i) => {
-		let newItem = getItem(<Ibutton option={[item]} onClick={() => onClickBtn(item.type, item)}></Ibutton>, i);
+const getMenus = <T,>({ option, onClick }: Omit<IdropdownProps<T>, 'onOpenChange'>) => {
+	return option.reduce((acc: MenuItem[], item, i) => {
+		let newItem = getItem(<Ibutton option={[item]} onClick={onClick}></Ibutton>, i);
 		return [...acc, newItem];
 	}, []);
 };
@@ -51,7 +50,7 @@ export default Idropdown;
 export type { ButtonItemParams, OnClickBtn };
 
 /**
- * @method 处理成标准数据
+ * 处理成标准数据
  * @param label 名字
  * @param key 键
  * @param icon 图标

@@ -1,7 +1,7 @@
 /**
- * @file 单个按钮
+ * @file 按钮
  * @author ly
- * @createDate
+ * @createDate 2023年10月25日
  */
 import React from 'react';
 import { Button } from 'antd';
@@ -10,9 +10,12 @@ import type { IbuttonListProps } from './List';
 import type { ButtonItemParams } from './type';
 
 /**
- * @param buttonItem 单个按钮
+ * @interface
+ * @param {ButtonItemParams} buttonItem 单个按钮
+ * @param {boolean} loading 动画
+ * @method onClick 点击事件
  */
-export interface IbuttonItemProps<T> extends Omit<IbuttonListProps<T>, 'option' | 'loadingName'> {
+export interface IbuttonItemProps<T> extends Pick<IbuttonListProps<T>, 'onClick'> {
 	buttonItem: ButtonItemParams<T>;
 	loading?: boolean;
 }
@@ -20,15 +23,6 @@ export interface IbuttonItemProps<T> extends Omit<IbuttonListProps<T>, 'option' 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
 const Ibutton = <T,>({ buttonItem, loading, onClick }: IbuttonItemProps<T>) => {
-	const getIconNode = (iconFont?: React.ReactNode) => {
-		if (iconFont) {
-			if (React.isValidElement(iconFont)) {
-				return <>{iconFont}</>;
-			} else if (typeof iconFont === 'string') {
-				return <IconFont type={iconFont}></IconFont>;
-			}
-		}
-	};
 	return (
 		<Button
 			type={buttonItem.btnType}
@@ -42,6 +36,16 @@ const Ibutton = <T,>({ buttonItem, loading, onClick }: IbuttonItemProps<T>) => {
 			{buttonItem.name}
 		</Button>
 	);
+};
+
+const getIconNode = (iconFont?: React.ReactNode) => {
+	if (iconFont) {
+		if (React.isValidElement(iconFont)) {
+			return <>{iconFont}</>;
+		} else if (typeof iconFont === 'string') {
+			return <IconFont type={iconFont}></IconFont>;
+		}
+	}
 };
 
 export default Ibutton;

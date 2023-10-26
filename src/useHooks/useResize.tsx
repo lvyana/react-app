@@ -20,18 +20,24 @@ const useResize = (Dom?: HTMLElement | null) => {
 	const [resize, setResize] = useState<ResizeParams>();
 
 	const ro = new ResizeObserver(
-		debounce((entries, observer) => {
-			// console.log(entries, observer);
+		debounce(
+			(entries, observer) => {
+				// console.log(entries, observer);
 
-			for (const entry of entries) {
-				const { left, top, width, height } = entry.contentRect;
-				setResize({ left, top, width, height });
+				for (const entry of entries) {
+					const { left, top, width, height } = entry.contentRect;
+					setResize({ left, top, width, height });
 
-				// console.log('Element:', entry.target);
-				// console.log(`Element's size: ${width}px x ${height}px`);
-				// console.log(`Element's paddings: ${top}px ; ${left}px`);
+					// console.log('Element:', entry.target);
+					// console.log(`Element's size: ${width}px x ${height}px`);
+					// console.log(`Element's paddings: ${top}px ; ${left}px`);
+				}
+			},
+			500,
+			{
+				leading: true
 			}
-		}, 500)
+		)
 	);
 
 	useEffect(() => {

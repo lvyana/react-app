@@ -1,5 +1,5 @@
 /**
- * @file Paginations分页
+ * @file 分页
  * @author ly
  * @createDate 2020年4月27日
  */
@@ -16,12 +16,15 @@ type Page = {
 };
 
 /**
+ * 分页
  * @param total 总条数
  * @param page 页码
- * @param onPaginationChange 页码或 pageSize 改变的回调，参数是改变后的页码及每页条数
+ * @method onPaginationChange 页码或 pageSize 改变的回调，参数是改变后的页码及每页条数
  * @param showTotal 用于显示数据总量和当前数据顺序
  * @param showSizeChanger 是否展示 pageSize 切换器，当 total 大于 50 时默认为 true
  * @param showQuickJumper 是否可以快速跳转至某页
+ * @param style 样式
+ * @param className 类名
  */
 interface IpaginationsProps {
 	total?: number; // 条数
@@ -55,7 +58,7 @@ const Ipaginations: FC<IpaginationsProps> = ({
 
 	return (
 		<Pagination
-			style={{ marginTop: '30px', float: 'right', ...style }}
+			style={{ float: 'right', ...style }}
 			className={className}
 			total={total}
 			showSizeChanger={showSizeChanger}

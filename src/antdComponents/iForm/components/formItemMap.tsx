@@ -11,7 +11,7 @@ import { getDatePicker, getRangePicker, getTimePicker, getTimeRangePicker } from
 import { getInput, getTextArea, getNumber } from '../../iInput';
 import getRadio from '../../iRadio';
 import getRate from '../../iRate';
-import { getSelect, getSeachSelect } from '../../iSelect';
+import { getSelect } from '../../iSelect';
 import getSwitch from '../../iSwitch';
 import getTreeSelect from '../../iTreeSelect';
 import getSlider from '../../iSlider';
@@ -35,7 +35,6 @@ const FORM_ITEM_MAP: FormItemMap = {
 	checkbox: (item) => getCheckbox(item),
 	rate: (item) => getRate(item),
 	textArea: (item) => getTextArea(item),
-	seachSelect: (item) => getSeachSelect(item),
 	slider: (item) => getSlider(item),
 	upload: (item) => getUpload(item),
 	slot: (item) => setSlot(item)

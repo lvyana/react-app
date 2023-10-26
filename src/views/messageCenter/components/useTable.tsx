@@ -31,7 +31,9 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 	};
 
 	// 初始化按钮
-	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([{ type: '去处理', name: '去处理', btnType: 'link' }]);
+	const [buttonOption, setButtonOption] = useState<ButtonItemParams<OnClickBtnType>[]>([
+		{ type: '去处理', name: '去处理', btnType: 'link' }
+	]);
 
 	const onOpenChange = (open: boolean) => {};
 
@@ -93,9 +95,9 @@ const useHeaderTable = ({ buttonEvent }: useHeaderTableParams) => {
 				return (
 					<>
 						<Idropdown
-							btArr={btArr}
+							option={buttonOption}
 							onOpenChange={(open) => onOpenChange(open)}
-							onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
+							onClick={(type) => buttonEvent(type, record)}></Idropdown>
 					</>
 				);
 			}

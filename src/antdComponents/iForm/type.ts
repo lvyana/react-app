@@ -5,22 +5,22 @@
  */
 import React, { ReactNode } from 'react';
 import type { Rule } from 'rc-field-form/lib/interface';
-import type { CheckboxOptionType, RadioChangeEvent } from 'antd';
-import type { AlonePicker, BothPicker, RangeValue } from '../iPicker';
-import type { RadioOptionsParam, RadioType } from '../iRadio';
-import type { TreeselectType } from '../iTreeSelect';
+import type { CheckboxOptionType } from 'antd';
 import type { BaseOptionType } from 'antd/es/cascader';
 import type { DefaultOptionType } from 'antd/es/select';
 import type { LabelTooltipType } from 'antd/es/form/FormItemLabel';
-import { InputNumberType, InputType, TextAreaType } from '../iInput';
-import { SeachSelectType, SelectType } from '../iSelect';
-import { CascaderType } from '../iCascader';
-import { SwitchType } from '../iSwitch';
-import { IbuttonListProps } from '../iButton/List';
-import { CheckboxType } from '../iCheckbox';
-import { RateType } from '../iRate';
-import { SliderType } from '../iSlider';
-import { UploadType } from '../iUpload';
+import type { AlonePicker, BothPicker } from '../iPicker';
+import type { RadioOptionType, RadioType } from '../iRadio';
+import type { TreeselectType } from '../iTreeSelect';
+import type { InputNumberType, InputType, TextAreaType } from '../iInput';
+import type { SelectType } from '../iSelect';
+import type { CascaderType } from '../iCascader';
+import type { SwitchType } from '../iSwitch';
+import type { IbuttonListProps } from '../iButton/List';
+import type { CheckboxType } from '../iCheckbox';
+import type { RateType } from '../iRate';
+import type { SliderType } from '../iSlider';
+import type { UploadType } from '../iUpload';
 
 // input
 export type FormInputType = FormItemParams<InputType>;
@@ -54,7 +54,7 @@ export interface ButtonType<T> extends IbuttonListProps<T> {
 export type FormButtonType<T> = FormItemParams<ButtonType<T>>;
 
 // radio
-export type FormRadioType<T extends RadioOptionsParam> = FormItemParams<RadioType<T>>;
+export type FormRadioType<T extends RadioOptionType> = FormItemParams<RadioType<T>>;
 
 // checkbox
 export type FormCheckboxType<T> = FormItemParams<CheckboxType<T>>;
@@ -64,9 +64,6 @@ export type FormRateType<T> = FormItemParams<RateType<T>>;
 
 // textArea
 export type FormTextAreaType = FormItemParams<TextAreaType>;
-
-// seachSelect
-export type FormSeachSelectType<T> = FormItemParams<SeachSelectType<T>>;
 
 // slider
 export type FormSliderType = FormItemParams<SliderType>;
@@ -93,11 +90,10 @@ export interface FormItemMap {
 	inputNumber: (item: InputNumberType) => JSX.Element;
 	switch: (item: SwitchType) => JSX.Element;
 	button: <T>(item: ButtonType<T>) => JSX.Element;
-	radio: <T extends RadioOptionsParam>(item: RadioType<T>) => JSX.Element;
+	radio: <T extends RadioOptionType>(item: RadioType<T>) => JSX.Element;
 	checkbox: <T extends CheckboxOptionType>(item: CheckboxType<T>) => JSX.Element;
 	rate: <T extends string>(item: RateType<T>) => JSX.Element;
 	textArea: (item: TextAreaType) => JSX.Element;
-	seachSelect: <T extends DefaultOptionType>(item: SeachSelectType<T>) => JSX.Element;
 	slider: (item: SliderType) => JSX.Element;
 	upload: (item: UploadType) => JSX.Element;
 	slot: (item: SlotType) => ReactNode;

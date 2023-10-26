@@ -45,7 +45,7 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 	// 表格图表移入移出功能
 	const onOpenChange = (open: boolean, record: TabelDataResponse) => {
 		if (open) {
-			setBtFun([
+			setButtonOption([
 				{ type: '修改', name: '修改', btnType: 'link' },
 				{ type: '删除', name: '删除', btnType: 'link' }
 			]);
@@ -54,7 +54,7 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 		}
 	};
 	// 初始化按钮
-	const [btArr, setBtFun] = useState<ButtonItemParams<OnClickBtnType>[]>([]);
+	const [buttonOption, setButtonOption] = useState<ButtonItemParams<OnClickBtnType>[]>([]);
 
 	const columns: IcolumnsType<TabelDataResponse> = [
 		{
@@ -66,7 +66,7 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 				dataIndex: 'name',
 				onSearch: () => buttonEvent('name'),
 				form: columnsSeachValue,
-				SeachFormItem: {
+				formItemParams: {
 					option: [
 						{
 							title: 'placeholder',
@@ -147,9 +147,9 @@ const useHeaderTable = ({ buttonEvent, columnsSeachValue }: useHeaderTableParams
 			render: (text, record) => {
 				return (
 					<Idropdown
-						btArr={btArr}
+						option={buttonOption}
 						onOpenChange={(open) => onOpenChange(open, record)}
-						onClickBtn={(type) => buttonEvent(type, record)}></Idropdown>
+						onClick={(type) => buttonEvent(type, record)}></Idropdown>
 				);
 			}
 		}

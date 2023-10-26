@@ -8,13 +8,14 @@ import { Collapse, CollapseProps } from 'antd';
 import useStyleHooks from './useStyleHooks';
 
 /**
+ * 折叠面板props
  * @param list 渲染数据
  * @param defaultActiveKey 初始化选中面板的 key
  * @param styleConfig 配置面板颜色主题类型
  * @param bordered 带边框风格的折叠面板
- * @param onChange 切换面板的回调
+ * @method onChange 切换面板的回调
  * @param style 面板css样式
- * @param expandIcon 自定义切换图标
+ * @method expandIcon 自定义切换图标
  */
 export type IcollapseProps<T> = {
 	list: CollapseProps['items'];

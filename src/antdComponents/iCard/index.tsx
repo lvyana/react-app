@@ -7,11 +7,14 @@ import React, { FC, ReactNode } from 'react';
 import { Card } from 'antd';
 
 /**
+ * 卡片props
  * @param bordered 边框
  * @param children 传入内容
  * @param style 样式
+ * @param bodyStyle 内容区域自定义样式
  * @param hoverable 鼠标移过时可浮起
  * @param className 类名
+ * @method onClick 点击事件
  */
 interface IcardProps {
 	bordered?: boolean;

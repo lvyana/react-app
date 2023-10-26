@@ -10,9 +10,11 @@ import IbuttonItem from '.';
 import type { ButtonItemParams, OnClickBtn } from './type';
 
 /**
- * @param option 按钮集合
+ * 按钮集合
+ * @param option 集合数据
  * @param loadingName 那个按钮需要加载直接传type
- * @param onClick 按钮事件
+ * @method onClick 点击事件
+ * @param style 样式
  */
 export interface IbuttonListProps<T> {
 	option: ButtonItemParams<T>[];
@@ -23,7 +25,6 @@ export interface IbuttonListProps<T> {
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
-// 按钮集合
 const IbuttonList = <T,>({ option, loadingName, onClick, style }: IbuttonListProps<T>) => {
 	const buttonListCol = option.map((item, i) => {
 		const loading = loadingName === item.type;

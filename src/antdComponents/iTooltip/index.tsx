@@ -1,5 +1,5 @@
 /**
- * @file 鼠标移入出现提示
+ * @file 文字提示
  * @author ly
  * @createDate 2020年4月27日
  */
@@ -9,6 +9,7 @@ import useThemeHooks from '@/config/antd/theme/useThemeHooks';
 import { TooltipPlacement } from 'antd/es/tooltip';
 
 /**
+ * 文字提示props
  * @param children 子集内容
  * @param overlayInnerStyle 样式
  * @param placement 位置

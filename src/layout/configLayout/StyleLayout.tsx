@@ -23,13 +23,11 @@ import Iform, { FormRadioType } from '@/antdComponents/iForm';
 const TABSMAIN_LAYOUT = [
 	{
 		value: 2,
-		name: '显示',
-		key: 2
+		label: '显示'
 	},
 	{
 		value: 1,
-		name: '隐藏',
-		key: 1
+		label: '隐藏'
 	}
 ];
 

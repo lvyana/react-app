@@ -20,7 +20,7 @@ interface EditPersonnelTableProps {
 
 type OnClickBtnType = '修改' | '删除';
 
-const btArr: ButtonItemParams<OnClickBtnType>[] = [
+const buttonOption: ButtonItemParams<OnClickBtnType>[] = [
 	{ type: '修改', name: '修改', btnType: 'link' },
 	{ type: '删除', name: '删除', btnType: 'link' }
 ];
@@ -49,7 +49,9 @@ const EditPersonnelTable: FC<EditPersonnelTableProps> = ({ loading, data }) => {
 			dataIndex: 'operation',
 			key: 'operation',
 			render: (value, record) => {
-				return <Idropdown btArr={btArr} onOpenChange={onOpenChange} onClickBtn={(type, value) => onClickBtn(type, record)}></Idropdown>;
+				return (
+					<Idropdown option={buttonOption} onOpenChange={onOpenChange} onClick={(type, value) => onClickBtn(type, record)}></Idropdown>
+				);
 			}
 		}
 	];

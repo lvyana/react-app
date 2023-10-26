@@ -46,7 +46,7 @@ const ImportJson: FC<ImportJsonProps> = ({ form, open, onOkOrCancel, confirmLoad
 			key: '1',
 			label: 'JSON',
 			name: 'json',
-			comConfig: { rows: 20 },
+			comConfig: { autoSize: { minRows: 20 } },
 			span: 24,
 			rules: [
 				{

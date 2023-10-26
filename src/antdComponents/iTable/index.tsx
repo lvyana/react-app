@@ -1,5 +1,5 @@
 /**
- * @file 表格封装
+ * @file 表格
  * @author ly
  * @createDate 2020年4月27日
  */
@@ -9,6 +9,7 @@ import { ColumnsType } from 'antd/es/table';
 import { antIcon } from '@/antdComponents/iLoading';
 
 /**
+ * 表格props
  * @param columns 定义表头格式数据
  * @param data 表格美容显示数据
  * @param loading 加载状态

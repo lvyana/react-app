@@ -9,7 +9,15 @@ import { Dayjs } from 'dayjs';
 
 const { RangePicker } = DatePicker;
 
-// alonePicker 单个
+/**
+ * 日期、时间
+ * @param disabled 禁用
+ * @param allowClear 自定义清除按钮
+ * @method onChange 时间发生变化的回调
+ * @param placeholder 输入框提示文字
+ * @param style 样式
+ * @param disabledDate 不可选择的日期
+ */
 export type AlonePicker = {
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -17,13 +25,21 @@ export type AlonePicker = {
 	placeholder?: string;
 	style?: React.CSSProperties;
 	disabledDate?: (currentDate: Dayjs) => boolean;
-	children?: ReactNode;
 };
 
 type EventValue<DateType> = DateType | null;
 export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null;
 
 // bothPicker 双个
+/**
+ * 日期、时间区间
+ * @param disabled 禁用
+ * @param allowClear 自定义清除按钮
+ * @method onChange 时间发生变化的回调
+ * @param placeholder 输入框提示文字
+ * @param style 样式
+ * @param disabledDate 不可选择的日期
+ */
 export type BothPicker = {
 	disabled?: boolean;
 	allowClear?: boolean;
@@ -31,7 +47,6 @@ export type BothPicker = {
 	placeholder?: string;
 	style?: React.CSSProperties;
 	disabledDate?: (currentDate: Dayjs) => boolean;
-	children?: ReactNode;
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

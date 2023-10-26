@@ -30,25 +30,20 @@ export type SearchProps<D> = {
 };
 
 /**
- * @param SeachFormItemType
+ * 表格表头参数配置
+ * @param type 组件类型键
+ * @param formItemParams 组件参数
  * @param dataIndex 表头搜索对应名字
  * @param form 表头所有搜索的ref数据
- * @param visible 打开表头搜索
  * @param onSearch 搜索和重置回调
  */
 type ColumnSearchProps<T, P> = {
 	type: FormItemMapType;
-	SeachFormItem: SeachFormItemType<P>;
+	formItemParams: TreeselectType<P>;
 	dataIndex: keyof T;
 	form: React.MutableRefObject<FormParam<T>>;
-	visible: boolean;
 	onSearch: () => void;
 };
-
-/**
- * 表头搜索组件(可拓展)
- */
-type SeachFormItemType<P> = TreeselectType<P>;
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
 
@@ -58,8 +53,8 @@ const getColumnSearchProps = <T, P extends BaseOptionType>({
 	dataIndex,
 	onSearch,
 	form,
-	SeachFormItem
-}: Omit<ColumnSearchProps<T, P>, 'visible'>): ColumnType<T> => ({
+	formItemParams
+}: ColumnSearchProps<T, P>): ColumnType<T> => ({
 	filterDropdown: ({ selectedKeys, setSelectedKeys, confirm, visible }) => {
 		return (
 			<TableHeadSeach<T, P>
@@ -71,7 +66,7 @@ const getColumnSearchProps = <T, P extends BaseOptionType>({
 				confirm={confirm}
 				visible={visible}
 				onSearch={onSearch}
-				SeachFormItem={SeachFormItem}></TableHeadSeach>
+				formItemParams={formItemParams}></TableHeadSeach>
 		);
 	},
 	filterIcon: (filtered: boolean) => {
@@ -89,20 +84,20 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 	visible,
 	dataIndex,
 	onSearch,
-	SeachFormItem
+	formItemParams
 }: Omit<FilterDropdownProps, 'prefixCls' | 'close'> & ColumnSearchProps<T, P>) => {
-	// const [selectValue, setselectValue] = useState<FormParamType>([]);
+	// const onChange = (value: FormParamType) => {
+	// 	setSelectedKeys(value);
+	// };
 
-	const onChange = (value: FormParamType) => {
-		setSelectedKeys(value);
-	};
-
+	// 回显初始化数据
 	useEffect(() => {
 		if (visible) {
 			setSelectedKeys(form.current[dataIndex] || []);
 		}
 	}, [visible]);
 
+	// 重置按钮
 	const onClose = () => {
 		form.current[dataIndex] = [];
 		setSelectedKeys([]);
@@ -110,6 +105,7 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 		onSearch();
 	};
 
+	// 确认按钮
 	const onSubmit = () => {
 		form.current[dataIndex] = selectedKeys as (string | number)[];
 		setSelectedKeys(selectedKeys);
@@ -119,7 +115,7 @@ const TableHeadSeach = <T, P extends BaseOptionType>({
 
 	return (
 		<TableSeach onClose={onClose} onSubmit={onSubmit}>
-			{tableHeadSeach(type)({ value: selectedKeys as (string | number)[], onChange, ...SeachFormItem })}
+			{tableHeadSeach(type)({ value: selectedKeys as (string | number)[], ...formItemParams })}
 			{/* {treeSelect({ value: selectedKeys, onChange, ...SeachFormItem })} */}
 		</TableSeach>
 	);

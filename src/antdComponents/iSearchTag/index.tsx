@@ -1,5 +1,5 @@
 /**
- * @file 实现搜索tag
+ * @file 搜索Tag
  * @author ly
  * @createDate 2020年4月27日
  */
@@ -11,6 +11,7 @@ const { CheckableTag } = Tag;
 export type onChangeType = (val: string | string[]) => void;
 
 /**
+ * 搜索Tag props
  * @param selectedTags 选中数据
  * @param setSelectedTags 更新选中数据列表
  * @param multiple 多选true 否则反之

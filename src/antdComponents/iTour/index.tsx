@@ -1,5 +1,5 @@
 /**
- * @file 封装用户指导
+ * @file 漫游式引导
  * @author ly
  * @createDate 日期：2020年4月27日
  */
@@ -24,6 +24,7 @@ const STEPS: TourStepProps[] = [
 ];
 
 /**
+ * 漫游式引导props
  * @param open 开关
  * @param steps 引导数据
  * @param onClose 关闭引导时的回调函数

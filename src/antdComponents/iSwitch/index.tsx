@@ -7,13 +7,16 @@ import React, { FC, ReactNode } from 'react';
 import { Switch } from 'antd';
 import { SwitchChangeEventHandler } from 'antd/es/switch';
 
+/**
+ * 开关props
+ * @param disabled 是否禁用
+ * @method onChange 变化时的回调函数
+ * @param style 样式
+ */
 export type SwitchType = {
 	disabled?: boolean;
-	allowClear?: boolean;
 	onChange?: SwitchChangeEventHandler | undefined;
-	placeholder?: string;
 	style?: React.CSSProperties;
-	children?: ReactNode;
 };
 
 // #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------

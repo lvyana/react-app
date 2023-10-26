@@ -1,5 +1,5 @@
 /**
- * @file 排序、选中
+ * @file tree 排序、选中
  * @author ly
  * @createDate 2023年2月3日
  */
@@ -21,6 +21,9 @@ interface TreeMenuProps {
 	updateInitData: (newInitData: HeaderFieldParam[]) => void;
 	updateCheckedKeys: (type: Key[]) => void;
 }
+
+// #----------- 上: ts类型定义 ----------- 分割线 ----------- 下: JS代码 -----------
+
 const TreeMenu: FC<TreeMenuProps> = ({ initData, checkedKeys, updateInitData, updateCheckedKeys }) => {
 	const onDragEnter: TreeProps['onDragEnter'] = (info) => {
 		// console.log(info);

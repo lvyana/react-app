@@ -39,13 +39,11 @@ type FormListType = [
 	FormRadioType<{
 		icon: string;
 		value: string;
-		name: string;
-		key: number;
+		label: string;
 	}>,
 	FormRadioType<{
-		name: string;
+		label: string;
 		value: string;
-		key: number;
 	}>,
 	FormCheckboxType<{
 		label: string;
@@ -158,14 +156,12 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 					{
 						icon: 'icon-taiyang',
 						value: 'icon-zhuzhuangtu-dashuju',
-						name: '太阳',
-						key: 1
+						label: '太阳'
 					},
 					{
 						icon: 'icon-ClearNight-qing-yewan',
 						value: 'icon-drxx91',
-						name: '月亮',
-						key: 2
+						label: '月亮'
 					}
 				]
 			},
@@ -183,8 +179,8 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 			span: 24,
 			comConfig: {
 				option: [
-					{ name: '按钮11111111', value: '1', key: 1 },
-					{ name: '菜单222222222', value: '2', key: 2 }
+					{ label: '按钮11111111', value: '1' },
+					{ label: '菜单222222222', value: '2' }
 				]
 			},
 			layout: {
@@ -245,7 +241,7 @@ const useFormList = ({ selectOnChange, onSubmit }: FormListParam) => {
 						children: [{ title: 'Bamboo2', value: 'bamboo2' }]
 					}
 				],
-				checkbox: true
+				treeCheckable: true
 			},
 
 			layout: {

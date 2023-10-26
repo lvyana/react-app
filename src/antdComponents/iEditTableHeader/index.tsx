@@ -1,5 +1,5 @@
 /**
- * @file 封装编辑表头
+ * @file 编辑表头
  * @author ly
  * @createDate 2020年4月27日
  */

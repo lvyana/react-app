@@ -1,19 +1,19 @@
 /**
  * @file FormItem
- * @author 姓名
- * @createDate
+ * @author ly
+ * @createDate 2023年10月25日
  */
 import React, { FC } from 'react';
 import { Form } from 'antd';
 import FORM_ITEM_MAP from './components/formItemMap';
 import type { ButtonType, FormItemParams, SlotType } from './type';
-import type { RadioOptionsParam, RadioType } from '../iRadio';
+import type { RadioOptionType, RadioType } from '../iRadio';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import type { DefaultOptionType } from 'antd/es/select';
 import type { BaseOptionType } from 'antd/es/cascader';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import type { InputNumberType, InputType, TextAreaType } from '../iInput';
-import type { SeachSelectType, SelectType } from '../iSelect';
+import type { SelectType } from '../iSelect';
 import type { TreeselectType } from '../iTreeSelect';
 import type { CascaderType } from '../iCascader';
 import type { AlonePicker, BothPicker } from '../iPicker';
@@ -143,7 +143,7 @@ const getFormItemCom = (item: FormItemParams<object>) => {
 	}
 
 	if (item.type === 'radio') {
-		return FORM_ITEM_MAP[item.type](comConfig as RadioType<RadioOptionsParam>);
+		return FORM_ITEM_MAP[item.type](comConfig as RadioType<RadioOptionType>);
 	}
 
 	if (item.type === 'checkbox') {
@@ -156,10 +156,6 @@ const getFormItemCom = (item: FormItemParams<object>) => {
 
 	if (item.type === 'textArea') {
 		return FORM_ITEM_MAP[item.type](comConfig as TextAreaType);
-	}
-
-	if (item.type === 'seachSelect') {
-		return FORM_ITEM_MAP[item.type](comConfig as SeachSelectType<DefaultOptionType>);
 	}
 
 	if (item.type === 'slider') {

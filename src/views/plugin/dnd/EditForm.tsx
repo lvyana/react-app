@@ -52,9 +52,8 @@ type FormListType = [
 	// 是否必填
 	FormRadioType<{
 		// icon: string;
+		label: string;
 		value: number;
-		key: number;
-		name: string;
 	}>,
 	// 是否必填提示语
 	FormTextAreaType,
@@ -553,14 +552,12 @@ const useFormList = ({
 					{
 						// icon: 'icon-zhuzhuangtu-dashuju',
 						value: 1,
-						name: '否',
-						key: 1
+						label: '否'
 					},
 					{
 						// icon: 'icon-drxx91',
 						value: 2,
-						name: '是',
-						key: 2
+						label: '是'
 					}
 				],
 				optionType: 'button'
