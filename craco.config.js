@@ -111,7 +111,34 @@ module.exports = {
 				css: []
 			};
 
-			// 只有生产环境才配置
+			// 开发环境配置
+			whenDev(() => {
+				webpackConfig.devtool = 'source-map';
+				cdn = {
+					js: [
+						// {
+						// 	url: '/react.development.js'
+						// },
+						// {
+						// 	url: '/react-dom.development.js'
+						// }
+					],
+					css: [
+						// 编辑器
+						// {
+						// 	url: 'http://114.132.242.253:81/wangeditor.css',
+						// 	rel: 'prefetch'
+						// }
+					]
+				};
+				webpackConfig.externals = {
+					// 注意对应的在public/index.html引入jquery的远程文件地址
+					// react: 'React',
+					// 'react-dom': 'ReactDOM'
+				};
+			});
+
+			// 生产环境配置
 			whenProd(() => {
 				// paths.appPath='public'
 				paths.appBuild = 'dist'; // 配合输出打包修改文件目录
@@ -215,11 +242,6 @@ module.exports = {
 					// 	poolTimeout: 2000 // worker 空闲时自动销毁的时间，单位 ms
 					// });
 				}
-			});
-
-			// 开发环境配置
-			whenDev(() => {
-				webpackConfig.devtool = 'source-map';
 			});
 
 			// 配置 htmlWebpackPlugin插件 将在public/index.html注入

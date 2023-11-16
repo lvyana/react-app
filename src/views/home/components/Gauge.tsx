@@ -54,5 +54,5 @@ const DemoGauge: FC<DemoGaugeProps> = ({ divId = 'gauge' }) => {
 
 	return <div id={divId} />;
 };
-
+DemoGauge.displayName = 'DemoGauge';
 export default DemoGauge;
