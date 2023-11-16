@@ -12,17 +12,17 @@ import List from '@/views/routerDom/routerDemo/List';
 import { Routes } from '../index';
 
 // react-router-dom
-const RouterDemo = lazy(() => import(/* webpackChunkName: "routerDemo" */ '@/views/routerDom/routerDemo'));
-// const Test = lazy(() => import(/* webpackChunkName: "Test" */ '@/views/routerDom/routerDemo/Test'));
-// const List = lazy(() => import(/* webpackChunkName: "List" */ '@/views/routerDom/routerDemo/List'));
-const RouterInfo = lazy(() => import(/* webpackChunkName: "routerInfo" */ '@/views/routerDom/routerInfo'));
+const RouterDemo = () => import(/* webpackChunkName: "routerDemo" */ '@/views/routerDom/routerDemo');
+// const Test = () => import(/* webpackChunkName: "Test" */ '@/views/routerDom/routerDemo/Test');
+// const List = () => import(/* webpackChunkName: "List" */ '@/views/routerDom/routerDemo/List');
+const RouterInfo = () => import(/* webpackChunkName: "routerInfo" */ '@/views/routerDom/routerInfo');
 
 // react-router-dom
 const routerCom: Routes[] = [
 	{ index: true, element: <Navigate to="routerDemo" /> },
 	{
 		path: 'routerDemo',
-		element: suspenseLoad(<RouterDemo />),
+		element: suspenseLoad(RouterDemo),
 		// 如果一下使用懒加载会导致路由无法使用
 
 		children: [
@@ -60,7 +60,7 @@ const routerCom: Routes[] = [
 	},
 	{
 		path: 'routerInfo',
-		element: suspenseLoad(<RouterInfo />)
+		element: suspenseLoad(RouterInfo)
 	}
 ];
 

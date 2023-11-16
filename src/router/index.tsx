@@ -22,19 +22,19 @@ import documentCom from './module/document';
  */
 
 // login
-// const Login = lazy(() => import(/* webpackChunkName: "Login" */ '@/views/login'));
+// const Login = () => import(/* webpackChunkName: "Login" */ '@/views/login');
 // Layouts
-// const Layouts = lazy(() => import(/* webpackChunkName: "Layouts" */ '@/layout'));
+const Layouts = () => import(/* webpackChunkName: "Layouts" */ '@/layout');
 // 首页
-const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/views/home'));
+const Home = () => import(/* webpackChunkName: "Home" */ '@/views/home');
 // 404
-const NotFound = lazy(() => import(/* webpackChunkName: "NotFound" */ '@/antdComponents/notFound'));
+const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@/antdComponents/notFound');
 // 个人中心
-const MyCenter = lazy(() => import(/* webpackChunkName: "MyCenter" */ '@/views/myCenter'));
+const MyCenter = () => import(/* webpackChunkName: "MyCenter" */ '@/views/myCenter');
 // 消息中心
-const MessgeCenter = lazy(() => import(/* webpackChunkName: "MessgeCenter" */ '@/views/messageCenter'));
+const MessgeCenter = () => import(/* webpackChunkName: "MessgeCenter" */ '@/views/messageCenter');
 // today
-// const ToDay = lazy(() => import(/* webpackChunkName: "ToDay" */ '@/views/toDay'));
+// const ToDay = () => import(/* webpackChunkName: "ToDay" */ '@/views/toDay');
 
 type Route = { auth?: boolean };
 
@@ -49,7 +49,7 @@ const routes: Routes[] = [
 			{ index: true, element: <Navigate to="home" /> },
 			{
 				path: 'home',
-				element: suspenseLoad(<Home />)
+				element: suspenseLoad(Home)
 			},
 			{
 				path: 'antd',
@@ -71,13 +71,13 @@ const routes: Routes[] = [
 				path: 'document',
 				children: [...documentCom]
 			},
-			{ path: 'mycenter', element: suspenseLoad(<MyCenter />) },
-			{ path: 'messgeCenter', element: suspenseLoad(<MessgeCenter />) }
+			{ path: 'mycenter', element: suspenseLoad(MyCenter) },
+			{ path: 'messgeCenter', element: suspenseLoad(MessgeCenter) }
 			// { path: '*', element: suspenseLoad(<NotFound />) }
 		]
 	},
 	{ path: '/today', element: <ToDay />, auth: false },
-	{ path: '*', element: suspenseLoad(<NotFound />), auth: false }
+	{ path: '*', element: suspenseLoad(NotFound), auth: false }
 ];
 
 // 添加权限

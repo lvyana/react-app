@@ -8,24 +8,24 @@ import { Navigate } from 'react-router-dom';
 import suspenseLoad from '../suspenseLoad';
 
 // Volta 多node版本切换
-const Volta = lazy(() => import(/* webpackChunkName: "volta" */ '@/views/document/volta'));
+const Volta = () => import(/* webpackChunkName: "volta" */ '@/views/document/volta');
 // CreateReactApp 版本升级
-const CreateReactApp = lazy(() => import(/* webpackChunkName: "createReactApp" */ '@/views/document/createReactApp'));
+const CreateReactApp = () => import(/* webpackChunkName: "createReactApp" */ '@/views/document/createReactApp');
 // Markdown 语法
-const Markdown = lazy(() => import(/* webpackChunkName: "markdown" */ '@/views/document/markdown'));
+const Markdown = () => import(/* webpackChunkName: "markdown" */ '@/views/document/markdown');
 
 // 文档组件
 const documentCom = [
 	{ index: true, element: <Navigate to="volta" /> },
 	{
 		path: 'volta',
-		element: suspenseLoad(<Volta />)
+		element: suspenseLoad(Volta)
 	},
 	{
 		path: 'createReactApp',
-		element: suspenseLoad(<CreateReactApp />)
+		element: suspenseLoad(CreateReactApp)
 	},
-	{ path: 'markdown', element: suspenseLoad(<Markdown />) }
+	{ path: 'markdown', element: suspenseLoad(Markdown) }
 ];
 
 export default documentCom;
